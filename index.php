@@ -21,8 +21,8 @@ switch ($page) {
         $main_content = 'companyData_en';
         include 'layouten.php';
         break;
-        case 'add_new_calendar_en':
-        $main_content = 'add_new_calendar_en';
+        case 'report_en':
+        $main_content = 'report_en';
         include 'layouten.php';
         break;
 
