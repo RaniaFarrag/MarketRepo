@@ -81,177 +81,184 @@
                 <div class="col-md-12">
                     <!--begin::Card-->
                     <div class="card card-custom">
-                        <div class="card-header flex-wrap">
-                            <div class="card-title text-center" style="width: 100%;display: inline-block;">
-                                <h3 class="card-label" style="line-height: 70px;">
-                                    Companies Filters
-                                </h3>
-                            </div>
-
-                        </div>
+                        
                         <div class="card-body">
-                            <div class="row fliter_serch">
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Name</label>
-                                        <input type="text" class="form-control" placeholder="Company Name">
+                            <div class="accordion accordion-toggle-arrow" id="accordionExample1">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseOne1">
+                                            Companies Filters
+                                        </div>
                                     </div>
+                                    <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
+                                        <div class="card-body">
+                                            <div class="row fliter_serch">
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Name</label>
+                                                        <input type="text" class="form-control" placeholder="Company Name">
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Sectors</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="">Health Care</option>
-                                            <option value="">Oil & Gas</option>
-                                        </select>
-                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Sectors</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="">Health Care</option>
+                                                            <option value="">Oil & Gas</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Type</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="72" data-select2-id="23">Senior management of pharmacies
-                                            </option>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Type</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="72" data-select2-id="23">Senior management of pharmacies
+                                                            </option>
 
-                                            <option value="71" data-select2-id="24">Pharmaceutical Company</option>
+                                                            <option value="71" data-select2-id="24">Pharmaceutical Company</option>
 
-                                            <option value="70" data-select2-id="25">Medical complex</option>
+                                                            <option value="70" data-select2-id="25">Medical complex</option>
 
-                                            <option value="69" data-select2-id="26">medical Center</option>
-                                        </select>
-                                    </div>
+                                                            <option value="69" data-select2-id="26">medical Center</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Country</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
-                                            <option value="2" data-select2-id="59">United Arab Emirates</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>City</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
-                                            <option value="2" data-select2-id="59">United Arab Emirates</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Evaluation status</label>
-                                        <select class="form-control select2" name="param" multiple="multiple">
-                                            <option value="A" data-select2-id="287">A</option>
-                                            <option value="B" data-select2-id="288">B</option>
-                                            <option value="C" data-select2-id="289">C</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Communication Type</label>
-                                        <select class="form-control select2" name="param" multiple="multiple">
-                                            <option value="whats" data-select2-id="71">Whatsapp</option>
-                                            <option value="email" data-select2-id="72">Email</option>
-                                            <option value="phone" data-select2-id="73">Phone</option>
-                                            <option value="twiter" data-select2-id="74">Twitter</option>
-                                            <option value="linkedin" data-select2-id="75">Linkedin</option>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Country</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                            <option value="2" data-select2-id="59">United Arab Emirates</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>City</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                            <option value="2" data-select2-id="59">United Arab Emirates</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Evaluation status</label>
+                                                        <select class="form-control select2" name="param" multiple="multiple">
+                                                            <option value="A" data-select2-id="287">A</option>
+                                                            <option value="B" data-select2-id="288">B</option>
+                                                            <option value="C" data-select2-id="289">C</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Communication Type</label>
+                                                        <select class="form-control select2" name="param" multiple="multiple">
+                                                            <option value="whats" data-select2-id="71">Whatsapp</option>
+                                                            <option value="email" data-select2-id="72">Email</option>
+                                                            <option value="phone" data-select2-id="73">Phone</option>
+                                                            <option value="twiter" data-select2-id="74">Twitter</option>
+                                                            <option value="linkedin" data-select2-id="75">Linkedin</option>
 
 
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Status</label>
-                                        <select class="form-control select2" name="param" multiple="multiple">
-                                            <option value="is_called">Confirm Connection</option>
-                                            <option value="is_verified">Confirm Interview</option>
-                                            <option value="confirm_register">Confirm Need</option>
-                                            <option value="is_registered">Confirm Contract</option>
-                                            <option value="no_meeting">No Meeting</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Representative </label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="103">Existing</option>
-                                            <option value="0" data-select2-id="104">Not Exist</option>
-                                        </select>
-                                    </div>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Status</label>
+                                                        <select class="form-control select2" name="param" multiple="multiple">
+                                                            <option value="is_called">Confirm Connection</option>
+                                                            <option value="is_verified">Confirm Interview</option>
+                                                            <option value="confirm_register">Confirm Need</option>
+                                                            <option value="is_registered">Confirm Contract</option>
+                                                            <option value="no_meeting">No Meeting</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Representative </label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="103">Existing</option>
+                                                            <option value="0" data-select2-id="104">Not Exist</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Representative name </label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="13471" data-select2-id="94">BABU ANSARI</option>
-                                            <option value="13473" data-select2-id="95">RAAFAT ALI</option>
-                                        </select>
-                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Representative name </label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="13471" data-select2-id="94">BABU ANSARI</option>
+                                                            <option value="13473" data-select2-id="95">RAAFAT ALI</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Location</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="103">Existing</option>
-                                            <option value="0" data-select2-id="104">Not Exist</option>
-                                        </select>
-                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Location</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="103">Existing</option>
+                                                            <option value="0" data-select2-id="104">Not Exist</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Confirm the interview</label>
-                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="Select date & time" data-target="#kt_datetimepicker_3"/>
-                                            <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Confirm the interview</label>
+                                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
+                                                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="Select date & time" data-target="#kt_datetimepicker_3"/>
+                                                            <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
 				<span class="input-group-text">
 					<i class="ki ki-calendar"></i>
 				</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Date</label>
-                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_113" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="Select date & time" data-target="#kt_datetimepicker_113"/>
-                                            <div class="input-group-append" data-target="#kt_datetimepicker_113" data-toggle="datetimepicker">
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Date</label>
+                                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_113" data-target-input="nearest">
+                                                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="Select date & time" data-target="#kt_datetimepicker_113"/>
+                                                            <div class="input-group-append" data-target="#kt_datetimepicker_113" data-toggle="datetimepicker">
 				<span class="input-group-text">
 					<i class="ki ki-calendar"></i>
 				</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-8 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>&nbsp;</label>
+                                                        <button type="button" class="btn btn-block btn-success">Search</button>
+
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="col-md-8 col-xs-12">
-                                    <div class="form-group">
-                                        <label>&nbsp;</label>
-                                        <button type="button" class="btn btn-block btn-success">Search</button>
-
-                                    </div>
-
                                 </div>
                             </div>
+
 
                             <div class="separator separator-dashed mt-8 mb-5"></div>
                           <div class="row">

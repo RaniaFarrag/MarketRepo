@@ -2,18 +2,21 @@
     a.sociall img {
         width: 25px;
     }
+
     .checkbox-inline.company_Card label {
         display: inline-block;
         text-align: center;
     }
+
     .checkbox-inline .checkbox span {
         margin: auto;
     }
+
     .btn .badge {
         position: absolute;
         top: -1px;
         right: 0;
-        color: #6993FF ;
+        color: #6993FF;
         border: 1px solid;
         padding: 7px 5px;
         line-height: 0;
@@ -98,177 +101,221 @@
                 <div class="col-md-12">
                     <!--begin::Card-->
                     <div class="card card-custom">
-                        <div class="card-header flex-wrap">
+                        <!--<div class="card-header flex-wrap">
                             <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                 <h3 class="card-label" style="line-height: 70px;">
                                     Companies Filters
                                 </h3>
                             </div>
 
-                        </div>
+                        </div>-->
                         <div class="card-body">
-                            <div class="row fliter_serch">
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Name</label>
-                                        <input type="text" class="form-control" placeholder="Company Name">
-                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Sectors</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="">Health Care</option>
-                                            <option value="">Oil & Gas</option>
-                                        </select>
+                            <div class="accordion accordion-toggle-arrow" id="accordionExample1">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-title" data-toggle="collapse" data-target="#collapseOne1">
+                                            Companies Filters
+                                        </div>
                                     </div>
+                                    <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
+                                        <div class="card-body">
+                                            <div class="row fliter_serch">
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Name</label>
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Company Name">
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Type</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="72" data-select2-id="23">Senior management of pharmacies
-                                            </option>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Sectors</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="">Health Care</option>
+                                                            <option value="">Oil & Gas</option>
+                                                        </select>
+                                                    </div>
 
-                                            <option value="71" data-select2-id="24">Pharmaceutical Company</option>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Type</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="72" data-select2-id="23">Senior management of
+                                                                pharmacies
+                                                            </option>
 
-                                            <option value="70" data-select2-id="25">Medical complex</option>
+                                                            <option value="71" data-select2-id="24">Pharmaceutical
+                                                                Company
+                                                            </option>
 
-                                            <option value="69" data-select2-id="26">medical Center</option>
-                                        </select>
-                                    </div>
+                                                            <option value="70" data-select2-id="25">Medical complex
+                                                            </option>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Country</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
-                                            <option value="2" data-select2-id="59">United Arab Emirates</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>City</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
-                                            <option value="2" data-select2-id="59">United Arab Emirates</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Evaluation status</label>
-                                        <select class="form-control select2" name="param" multiple="multiple">
-                                            <option value="A" data-select2-id="287">A</option>
-                                            <option value="B" data-select2-id="288">B</option>
-                                            <option value="C" data-select2-id="289">C</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Communication Type</label>
-                                        <select class="form-control select2" name="param" multiple="multiple">
-                                            <option value="whats" data-select2-id="71">Whatsapp</option>
-                                            <option value="email" data-select2-id="72">Email</option>
-                                            <option value="phone" data-select2-id="73">Phone</option>
-                                            <option value="twiter" data-select2-id="74">Twitter</option>
-                                            <option value="linkedin" data-select2-id="75">Linkedin</option>
+                                                            <option value="69" data-select2-id="26">medical Center
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Country</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                            <option value="2" data-select2-id="59">United Arab
+                                                                Emirates
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>City</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                            <option value="2" data-select2-id="59">United Arab
+                                                                Emirates
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Evaluation status</label>
+                                                        <select class="form-control select2" name="param"
+                                                                multiple="multiple">
+                                                            <option value="A" data-select2-id="287">A</option>
+                                                            <option value="B" data-select2-id="288">B</option>
+                                                            <option value="C" data-select2-id="289">C</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Communication Type</label>
+                                                        <select class="form-control select2" name="param"
+                                                                multiple="multiple">
+                                                            <option value="whats" data-select2-id="71">Whatsapp</option>
+                                                            <option value="email" data-select2-id="72">Email</option>
+                                                            <option value="phone" data-select2-id="73">Phone</option>
+                                                            <option value="twiter" data-select2-id="74">Twitter</option>
+                                                            <option value="linkedin" data-select2-id="75">Linkedin
+                                                            </option>
 
 
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Status</label>
-                                        <select class="form-control select2" name="param" multiple="multiple">
-                                            <option value="is_called">Confirm Connection</option>
-                                            <option value="is_verified">Confirm Interview</option>
-                                            <option value="confirm_register">Confirm Need</option>
-                                            <option value="is_registered">Confirm Contract</option>
-                                            <option value="no_meeting">No Meeting</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Representative </label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="103">Existing</option>
-                                            <option value="0" data-select2-id="104">Not Exist</option>
-                                        </select>
-                                    </div>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Status</label>
+                                                        <select class="form-control select2" name="param"
+                                                                multiple="multiple">
+                                                            <option value="is_called">Confirm Connection</option>
+                                                            <option value="is_verified">Confirm Interview</option>
+                                                            <option value="confirm_register">Confirm Need</option>
+                                                            <option value="is_registered">Confirm Contract</option>
+                                                            <option value="no_meeting">No Meeting</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Representative </label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="103">Existing</option>
+                                                            <option value="0" data-select2-id="104">Not Exist</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Representative name </label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="13471" data-select2-id="94">BABU ANSARI</option>
-                                            <option value="13473" data-select2-id="95">RAAFAT ALI</option>
-                                        </select>
-                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Representative name </label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="13471" data-select2-id="94">BABU ANSARI
+                                                            </option>
+                                                            <option value="13473" data-select2-id="95">RAAFAT ALI
+                                                            </option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Location</label>
-                                        <select class="form-control select2" name="param">
-                                            <option value="" selected="">Select All</option>
-                                            <option value="1" data-select2-id="103">Existing</option>
-                                            <option value="0" data-select2-id="104">Not Exist</option>
-                                        </select>
-                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Location</label>
+                                                        <select class="form-control select2" name="param">
+                                                            <option value="" selected="">Select All</option>
+                                                            <option value="1" data-select2-id="103">Existing</option>
+                                                            <option value="0" data-select2-id="104">Not Exist</option>
+                                                        </select>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Confirm the interview</label>
-                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="Select date & time" data-target="#kt_datetimepicker_3"/>
-                                            <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Confirm the interview</label>
+                                                        <div class="input-group input-group-solid date"
+                                                             id="kt_datetimepicker_3" data-target-input="nearest">
+                                                            <input type="text"
+                                                                   class="form-control form-control-solid datetimepicker-input"
+                                                                   placeholder="Select date & time"
+                                                                   data-target="#kt_datetimepicker_3"/>
+                                                            <div class="input-group-append"
+                                                                 data-target="#kt_datetimepicker_3"
+                                                                 data-toggle="datetimepicker">
 				<span class="input-group-text">
 					<i class="ki ki-calendar"></i>
 				</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                </div>
-                                <div class="col-md-4 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Company Date</label>
-                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_113" data-target-input="nearest">
-                                            <input type="text" class="form-control form-control-solid datetimepicker-input" placeholder="Select date & time" data-target="#kt_datetimepicker_113"/>
-                                            <div class="input-group-append" data-target="#kt_datetimepicker_113" data-toggle="datetimepicker">
+                                                </div>
+                                                <div class="col-md-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Company Date</label>
+                                                        <div class="input-group input-group-solid date"
+                                                             id="kt_datetimepicker_113" data-target-input="nearest">
+                                                            <input type="text"
+                                                                   class="form-control form-control-solid datetimepicker-input"
+                                                                   placeholder="Select date & time"
+                                                                   data-target="#kt_datetimepicker_113"/>
+                                                            <div class="input-group-append"
+                                                                 data-target="#kt_datetimepicker_113"
+                                                                 data-toggle="datetimepicker">
 				<span class="input-group-text">
 					<i class="ki ki-calendar"></i>
 				</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-8 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>&nbsp;</label>
+                                                        <button type="button" class="btn btn-block btn-success">Search
+                                                        </button>
+
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="col-md-8 col-xs-12">
-                                    <div class="form-group">
-                                        <label>&nbsp;</label>
-                                        <button type="button" class="btn btn-block btn-success">Search</button>
-
-                                    </div>
-
                                 </div>
                             </div>
+
 
                             <div class="separator separator-dashed mt-8 mb-5"></div>
                             <div class="row">
@@ -319,7 +366,8 @@
                                                                 </a>
                                                             </li>
                                                             <li class="navi-item">
-                                                                <a href="#" class="navi-link"   data-toggle="modal" data-target="#exampleModal">
+                                                                <a href="#" class="navi-link" data-toggle="modal"
+                                                                   data-target="#exampleModal">
                                                                     <span class="navi-icon"><i
                                                                                 class="flaticon2-rocket-1"></i></span>
                                                                     <span class="navi-text">Send Email</span>
@@ -462,7 +510,8 @@
                                                         </label>
 
                                                         <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5" checked="checked" />
+                                                            <input type="checkbox" name="Checkboxes5"
+                                                                   checked="checked"/>
                                                             <span></span>
                                                             Confirm Interview
                                                         </label>
@@ -481,9 +530,8 @@
                                                         </label>
 
                                                     </div>
-                                                 </div>
+                                                </div>
                                             </div>
-
 
 
                                         </div>
@@ -585,7 +633,8 @@
                                                 <!--begin::Title-->
                                                 <div class="d-flex flex-column">
                                                     <a href="#"
-                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Saudi Steel Galvanizin.</a>
+                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Saudi
+                                                        Steel Galvanizin.</a>
                                                     <span class="text-muted font-weight-bold"><a class="business_card"
                                                                                                  data-toggle="modal"
                                                                                                  href="#md-photo-61"><img
@@ -678,7 +727,8 @@
                                                         </label>
 
                                                         <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5" checked="checked" />
+                                                            <input type="checkbox" name="Checkboxes5"
+                                                                   checked="checked"/>
                                                             <span></span>
                                                             Confirm Interview
                                                         </label>
@@ -699,440 +749,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-                                        </div>
-                                        <!--end::Body-->
-                                    </div>
-                                    <!--end::Card-->
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <!--begin::Card-->
-                                    <div class="card card-custom gutter-b card-stretch border-1 border-primary border">
-                                        <!--begin::Body-->
-                                        <div class="card-body p-4">
-                                            <!--begin::Toolbar-->
-                                            <div class="d-flex justify-content-end">
-                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                     data-placement="left" data-original-title="2020-07-13 05:00 PM">
-                                                    <a href="#"
-                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
-                                                        <i class="far fa-bell text-primary"></i>
-                                                        <span class="pulse-ring"></span>
-
-                                                        <span class="badge" id="count-alert2">1</span>
-                                                    </a>
-                                                </div>
-                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                     data-placement="left" data-original-title="Quick actions">
-                                                    <a href="#"
-                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
-                                                       data-toggle="dropdown" aria-haspopup="true"
-                                                       aria-expanded="false">
-                                                        <i class="ki ki-bold-more-hor"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right"
-                                                         style="">
-                                                        <!--begin::Navigation-->
-                                                        <ul class="navi navi-hover py-5">
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-list-3"></i></span>
-                                                                    <span class="navi-text">View Company Data</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon-edit"></i></span>
-                                                                    <span class="navi-text">Modifying Company Data</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-rocket-1"></i></span>
-                                                                    <span class="navi-text">Send Email</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-rubbish-bin"></i></span>
-                                                                    <span class="navi-text">Delete Company </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-user-1"></i></span>
-                                                                    <span class="navi-text">Assign companies to a representative </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon-graph"></i></span>
-                                                                    <span class="navi-text">TEAM SALES LEAD REPORT </span>
-                                                                </a>
-                                                            </li>
-
-                                                        </ul>
-                                                        <!--end::Navigation-->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--end::Toolbar-->
-                                            <!--begin::User-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <!--begin::Pic-->
-                                                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                                    <div class="symbol symbol-circle symbol-lg-75 border">
-                                                        <img src="https://marketing-hc.com/photos/5f154b2c6de301595231020.png"
-                                                             alt="image">
-                                                    </div>
-
-                                                </div>
-                                                <!--end::Pic-->
-                                                <!--begin::Title-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="#"
-                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Tasnee
-                                                        - National Indu.</a>
-                                                    <span class="text-muted font-weight-bold"><a class="business_card"
-                                                                                                 data-toggle="modal"
-                                                                                                 href="#md-photo-61"><img
-                                                                    style="width: 60px;"
-                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
-                                                        <a class="business_card" data-toggle="modal"
-                                                           href="#md-photo-61"><img style="width: 60px;"
-                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
-                                                        <a class="business_card" data-toggle="modal"
-                                                           href="#md-photo-61"><img style="width: 60px;"
-                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
-
-
-
-
-                                                    </span>
-                                                </div>
-                                                <!--end::Title-->
-                                            </div>
-                                            <!--end::User-->
-
-                                            <!--begin::Info-->
-                                            <div class="mb-7">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Contact Information :</span>
-                                                    <a href="#"
-                                                       class="text-hover-primary">96614770512</a>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Number of Employees : </span>
-                                                    <span class=" text-hover-primary">20</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Location:</span>
-                                                    <a href="#"> <span class="text-muted font-weight-bold"><i
-                                                                    class="fas far fa-compass text-primary fa-spin"></i> Al Riyad</span></a>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Type:</span>
-                                                    <span class="text-muted font-weight-bold">Government hospital</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Representative name :</span>
-                                                    <span class="text-muted font-weight-bold">-</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Communication Type :</span>
-                                                    <span class="text-muted font-weight-bold">
-                                                  <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
-                                                     data-effect="md-flipHor" req_id="1248">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/mail.png">
-                                            </a>
-
-                                            <a class="sociall" href="https://twitter.com/saudibitumen" target="_blank">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/twit.png">
-                                            </a>
-
-                                            <a class="sociall"
-                                               href="https://www.linkedin.com/company/saudi-bitumen-industries-co-ltd"
-                                               target="_blank">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/linked.png">
-
-                                            </a>
-
-                                            <a class="sociall"
-                                               href="https://api.whatsapp.com/send?phone=+966112652602&amp;text=Hi,"
-                                               target="_blank">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/whats.png">
-
-                                            </a></span>
-                                                </div>
-                                            </div>
-                                            <!--end::Info-->
-
-                                            <div class="separator separator-dashed mt-1 mb-1"></div>
-
-                                            <div class="form-group mb-0">
-
-                                                <div class="col-form-label">
-                                                    <div class="checkbox-inline company_Card">
-
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5"/>
-                                                            <span></span>
-                                                            Confirm Connection
-                                                        </label>
-
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5" checked="checked" />
-                                                            <span></span>
-                                                            Confirm Interview
-                                                        </label>
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5"/>
-                                                            <span></span>
-                                                            Confirm Need
-
-                                                        </label>
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5"/>
-                                                            <span></span>
-                                                            Confirm Contract
-
-
-                                                        </label>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                        <!--end::Body-->
-                                    </div>
-                                    <!--end::Card-->
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <!--begin::Card-->
-                                    <div class="card card-custom gutter-b card-stretch border-1 border-primary border">
-                                        <!--begin::Body-->
-                                        <div class="card-body p-4">
-                                            <!--begin::Toolbar-->
-                                            <div class="d-flex justify-content-end">
-                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                     data-placement="left" data-original-title="2020-07-13 05:00 PM">
-                                                    <a href="#"
-                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
-                                                        <i class="far fa-bell text-primary"></i>
-                                                        <span class="pulse-ring"></span>
-
-                                                        <span class="badge" id="count-alert2">1</span>
-                                                    </a>
-                                                </div>
-                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                     data-placement="left" data-original-title="Quick actions">
-                                                    <a href="#"
-                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
-                                                       data-toggle="dropdown" aria-haspopup="true"
-                                                       aria-expanded="false">
-                                                        <i class="ki ki-bold-more-hor"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right"
-                                                         style="">
-                                                        <!--begin::Navigation-->
-                                                        <ul class="navi navi-hover py-5">
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-list-3"></i></span>
-                                                                    <span class="navi-text">View Company Data</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon-edit"></i></span>
-                                                                    <span class="navi-text">Modifying Company Data</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-rocket-1"></i></span>
-                                                                    <span class="navi-text">Send Email</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-rubbish-bin"></i></span>
-                                                                    <span class="navi-text">Delete Company </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon2-user-1"></i></span>
-                                                                    <span class="navi-text">Assign companies to a representative </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="navi-item">
-                                                                <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
-                                                                                class="flaticon-graph"></i></span>
-                                                                    <span class="navi-text">TEAM SALES LEAD REPORT </span>
-                                                                </a>
-                                                            </li>
-
-                                                        </ul>
-                                                        <!--end::Navigation-->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--end::Toolbar-->
-                                            <!--begin::User-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <!--begin::Pic-->
-                                                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                                    <div class="symbol symbol-circle symbol-lg-75 border">
-                                                        <img src="https://marketing-hc.com/photos/5f1547c5991121595230149.jpg"
-                                                             alt="image">
-                                                    </div>
-
-                                                </div>
-                                                <!--end::Pic-->
-                                                <!--begin::Title-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="#"
-                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Saudi Steel Galvanizin.</a>
-                                                    <span class="text-muted font-weight-bold"><a class="business_card"
-                                                                                                 data-toggle="modal"
-                                                                                                 href="#md-photo-61"><img
-                                                                    style="width: 60px;"
-                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
-                                                        <a class="business_card" data-toggle="modal"
-                                                           href="#md-photo-61"><img style="width: 60px;"
-                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
-                                                        <a class="business_card" data-toggle="modal"
-                                                           href="#md-photo-61"><img style="width: 60px;"
-                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
-
-
-
-
-                                                    </span>
-                                                </div>
-                                                <!--end::Title-->
-                                            </div>
-                                            <!--end::User-->
-
-                                            <!--begin::Info-->
-                                            <div class="mb-7">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Contact Information :</span>
-                                                    <a href="#"
-                                                       class="text-hover-primary">96614770512</a>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Number of Employees : </span>
-                                                    <span class=" text-hover-primary">20</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Location:</span>
-                                                    <a href="#"> <span class="text-muted font-weight-bold"><i
-                                                                    class="fas far fa-compass text-primary fa-spin"></i> Al Riyad</span></a>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Type:</span>
-                                                    <span class="text-muted font-weight-bold">Government hospital</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Representative name :</span>
-                                                    <span class="text-muted font-weight-bold">-</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="text-dark-75 font-weight-bolder mr-2">Communication Type :</span>
-                                                    <span class="text-muted font-weight-bold">
-                                                  <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
-                                                     data-effect="md-flipHor" req_id="1248">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/mail.png">
-                                            </a>
-
-                                            <a class="sociall" href="https://twitter.com/saudibitumen" target="_blank">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/twit.png">
-                                            </a>
-
-                                            <a class="sociall"
-                                               href="https://www.linkedin.com/company/saudi-bitumen-industries-co-ltd"
-                                               target="_blank">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/linked.png">
-
-                                            </a>
-
-                                            <a class="sociall"
-                                               href="https://api.whatsapp.com/send?phone=+966112652602&amp;text=Hi,"
-                                               target="_blank">
-                                                <img class="img-responsive"
-                                                     src="https://marketing-hc.com/system/assets/img/icon/whats.png">
-
-                                            </a></span>
-                                                </div>
-                                            </div>
-                                            <!--end::Info-->
-
-                                            <div class="separator separator-dashed mt-1 mb-1"></div>
-
-                                            <div class="form-group mb-0">
-
-                                                <div class="col-form-label">
-                                                    <div class="checkbox-inline company_Card">
-
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5"/>
-                                                            <span></span>
-                                                            Confirm Connection
-                                                        </label>
-
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5" checked="checked" />
-                                                            <span></span>
-                                                            Confirm Interview
-                                                        </label>
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5"/>
-                                                            <span></span>
-                                                            Confirm Need
-
-                                                        </label>
-                                                        <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5"/>
-                                                            <span></span>
-                                                            Confirm Contract
-
-
-                                                        </label>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
 
 
                                         </div>
@@ -1328,7 +944,8 @@
                                                         </label>
 
                                                         <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5" checked="checked" />
+                                                            <input type="checkbox" name="Checkboxes5"
+                                                                   checked="checked"/>
                                                             <span></span>
                                                             Confirm Interview
                                                         </label>
@@ -1349,7 +966,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
 
 
                                         </div>
@@ -1451,7 +1067,8 @@
                                                 <!--begin::Title-->
                                                 <div class="d-flex flex-column">
                                                     <a href="#"
-                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Saudi Steel Galvanizin.</a>
+                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Saudi
+                                                        Steel Galvanizin.</a>
                                                     <span class="text-muted font-weight-bold"><a class="business_card"
                                                                                                  data-toggle="modal"
                                                                                                  href="#md-photo-61"><img
@@ -1544,7 +1161,8 @@
                                                         </label>
 
                                                         <label class="checkbox checkbox-success">
-                                                            <input type="checkbox" name="Checkboxes5" checked="checked" />
+                                                            <input type="checkbox" name="Checkboxes5"
+                                                                   checked="checked"/>
                                                             <span></span>
                                                             Confirm Interview
                                                         </label>
@@ -1567,15 +1185,445 @@
                                             </div>
 
 
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                    <!--begin::Card-->
+                                    <div class="card card-custom gutter-b card-stretch border-1 border-primary border">
+                                        <!--begin::Body-->
+                                        <div class="card-body p-4">
+                                            <!--begin::Toolbar-->
+                                            <div class="d-flex justify-content-end">
+                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
+                                                     data-placement="left" data-original-title="2020-07-13 05:00 PM">
+                                                    <a href="#"
+                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
+                                                        <i class="far fa-bell text-primary"></i>
+                                                        <span class="pulse-ring"></span>
+
+                                                        <span class="badge" id="count-alert2">1</span>
+                                                    </a>
+                                                </div>
+                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
+                                                     data-placement="left" data-original-title="Quick actions">
+                                                    <a href="#"
+                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
+                                                       data-toggle="dropdown" aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ki ki-bold-more-hor"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right"
+                                                         style="">
+                                                        <!--begin::Navigation-->
+                                                        <ul class="navi navi-hover py-5">
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-list-3"></i></span>
+                                                                    <span class="navi-text">View Company Data</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon-edit"></i></span>
+                                                                    <span class="navi-text">Modifying Company Data</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-rocket-1"></i></span>
+                                                                    <span class="navi-text">Send Email</span>
+
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-rubbish-bin"></i></span>
+                                                                    <span class="navi-text">Delete Company </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-user-1"></i></span>
+                                                                    <span class="navi-text">Assign companies to a representative </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon-graph"></i></span>
+                                                                    <span class="navi-text">TEAM SALES LEAD REPORT </span>
+                                                                </a>
+                                                            </li>
+
+                                                        </ul>
+                                                        <!--end::Navigation-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Toolbar-->
+                                            <!--begin::User-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <!--begin::Pic-->
+                                                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                                    <div class="symbol symbol-circle symbol-lg-75 border">
+                                                        <img src="https://marketing-hc.com/photos/5f154b2c6de301595231020.png"
+                                                             alt="image">
+                                                    </div>
+
+                                                </div>
+                                                <!--end::Pic-->
+                                                <!--begin::Title-->
+                                                <div class="d-flex flex-column">
+                                                    <a href="#"
+                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Tasnee
+                                                        - National Indu.</a>
+                                                    <span class="text-muted font-weight-bold"><a class="business_card"
+                                                                                                 data-toggle="modal"
+                                                                                                 href="#md-photo-61"><img
+                                                                    style="width: 60px;"
+                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
+                                                        <a class="business_card" data-toggle="modal"
+                                                           href="#md-photo-61"><img style="width: 60px;"
+                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
+                                                        <a class="business_card" data-toggle="modal"
+                                                           href="#md-photo-61"><img style="width: 60px;"
+                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
+
+
+
+
+                                                    </span>
+                                                </div>
+                                                <!--end::Title-->
+                                            </div>
+                                            <!--end::User-->
+
+                                            <!--begin::Info-->
+                                            <div class="mb-7">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Contact Information :</span>
+                                                    <a href="#"
+                                                       class="text-hover-primary">96614770512</a>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-cente my-1">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Number of Employees : </span>
+                                                    <span class=" text-hover-primary">20</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Location:</span>
+                                                    <a href="#"> <span class="text-muted font-weight-bold"><i
+                                                                    class="fas far fa-compass text-primary fa-spin"></i> Al Riyad</span></a>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Type:</span>
+                                                    <span class="text-muted font-weight-bold">Government hospital</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Representative name :</span>
+                                                    <span class="text-muted font-weight-bold">-</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Communication Type :</span>
+                                                    <span class="text-muted font-weight-bold">
+                                                  <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
+                                                     data-effect="md-flipHor" req_id="1248">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/mail.png">
+                                            </a>
+
+                                            <a class="sociall" href="https://twitter.com/saudibitumen" target="_blank">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/twit.png">
+                                            </a>
+
+                                            <a class="sociall"
+                                               href="https://www.linkedin.com/company/saudi-bitumen-industries-co-ltd"
+                                               target="_blank">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/linked.png">
+
+                                            </a>
+
+                                            <a class="sociall"
+                                               href="https://api.whatsapp.com/send?phone=+966112652602&amp;text=Hi,"
+                                               target="_blank">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/whats.png">
+
+                                            </a></span>
+                                                </div>
+                                            </div>
+                                            <!--end::Info-->
+
+                                            <div class="separator separator-dashed mt-1 mb-1"></div>
+
+                                            <div class="form-group mb-0">
+
+                                                <div class="col-form-label">
+                                                    <div class="checkbox-inline company_Card">
+
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                            <span></span>
+                                                            Confirm Connection
+                                                        </label>
+
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"
+                                                                   checked="checked"/>
+                                                            <span></span>
+                                                            Confirm Interview
+                                                        </label>
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                            <span></span>
+                                                            Confirm Need
+
+                                                        </label>
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                            <span></span>
+                                                            Confirm Contract
+
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                         <!--end::Body-->
                                     </div>
                                     <!--end::Card-->
                                 </div>
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                    <!--begin::Card-->
+                                    <div class="card card-custom gutter-b card-stretch border-1 border-primary border">
+                                        <!--begin::Body-->
+                                        <div class="card-body p-4">
+                                            <!--begin::Toolbar-->
+                                            <div class="d-flex justify-content-end">
+                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
+                                                     data-placement="left" data-original-title="2020-07-13 05:00 PM">
+                                                    <a href="#"
+                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
+                                                        <i class="far fa-bell text-primary"></i>
+                                                        <span class="pulse-ring"></span>
+
+                                                        <span class="badge" id="count-alert2">1</span>
+                                                    </a>
+                                                </div>
+                                                <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
+                                                     data-placement="left" data-original-title="Quick actions">
+                                                    <a href="#"
+                                                       class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
+                                                       data-toggle="dropdown" aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <i class="ki ki-bold-more-hor"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right"
+                                                         style="">
+                                                        <!--begin::Navigation-->
+                                                        <ul class="navi navi-hover py-5">
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-list-3"></i></span>
+                                                                    <span class="navi-text">View Company Data</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon-edit"></i></span>
+                                                                    <span class="navi-text">Modifying Company Data</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-rocket-1"></i></span>
+                                                                    <span class="navi-text">Send Email</span>
+
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-rubbish-bin"></i></span>
+                                                                    <span class="navi-text">Delete Company </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-user-1"></i></span>
+                                                                    <span class="navi-text">Assign companies to a representative </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="navi-item">
+                                                                <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon-graph"></i></span>
+                                                                    <span class="navi-text">TEAM SALES LEAD REPORT </span>
+                                                                </a>
+                                                            </li>
+
+                                                        </ul>
+                                                        <!--end::Navigation-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Toolbar-->
+                                            <!--begin::User-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <!--begin::Pic-->
+                                                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                                    <div class="symbol symbol-circle symbol-lg-75 border">
+                                                        <img src="https://marketing-hc.com/photos/5f1547c5991121595230149.jpg"
+                                                             alt="image">
+                                                    </div>
+
+                                                </div>
+                                                <!--end::Pic-->
+                                                <!--begin::Title-->
+                                                <div class="d-flex flex-column">
+                                                    <a href="#"
+                                                       class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">Saudi
+                                                        Steel Galvanizin.</a>
+                                                    <span class="text-muted font-weight-bold"><a class="business_card"
+                                                                                                 data-toggle="modal"
+                                                                                                 href="#md-photo-61"><img
+                                                                    style="width: 60px;"
+                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
+                                                        <a class="business_card" data-toggle="modal"
+                                                           href="#md-photo-61"><img style="width: 60px;"
+                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
+                                                        <a class="business_card" data-toggle="modal"
+                                                           href="#md-photo-61"><img style="width: 60px;"
+                                                                                    src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg"></a>
 
 
 
+
+                                                    </span>
+                                                </div>
+                                                <!--end::Title-->
+                                            </div>
+                                            <!--end::User-->
+
+                                            <!--begin::Info-->
+                                            <div class="mb-7">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Contact Information :</span>
+                                                    <a href="#"
+                                                       class="text-hover-primary">96614770512</a>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-cente my-1">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Number of Employees : </span>
+                                                    <span class=" text-hover-primary">20</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Location:</span>
+                                                    <a href="#"> <span class="text-muted font-weight-bold"><i
+                                                                    class="fas far fa-compass text-primary fa-spin"></i> Al Riyad</span></a>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Type:</span>
+                                                    <span class="text-muted font-weight-bold">Government hospital</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Company Representative name :</span>
+                                                    <span class="text-muted font-weight-bold">-</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-dark-75 font-weight-bolder mr-2">Communication Type :</span>
+                                                    <span class="text-muted font-weight-bold">
+                                                  <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
+                                                     data-effect="md-flipHor" req_id="1248">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/mail.png">
+                                            </a>
+
+                                            <a class="sociall" href="https://twitter.com/saudibitumen" target="_blank">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/twit.png">
+                                            </a>
+
+                                            <a class="sociall"
+                                               href="https://www.linkedin.com/company/saudi-bitumen-industries-co-ltd"
+                                               target="_blank">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/linked.png">
+
+                                            </a>
+
+                                            <a class="sociall"
+                                               href="https://api.whatsapp.com/send?phone=+966112652602&amp;text=Hi,"
+                                               target="_blank">
+                                                <img class="img-responsive"
+                                                     src="https://marketing-hc.com/system/assets/img/icon/whats.png">
+
+                                            </a></span>
+                                                </div>
+                                            </div>
+                                            <!--end::Info-->
+
+                                            <div class="separator separator-dashed mt-1 mb-1"></div>
+
+                                            <div class="form-group mb-0">
+
+                                                <div class="col-form-label">
+                                                    <div class="checkbox-inline company_Card">
+
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                            <span></span>
+                                                            Confirm Connection
+                                                        </label>
+
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"
+                                                                   checked="checked"/>
+                                                            <span></span>
+                                                            Confirm Interview
+                                                        </label>
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                            <span></span>
+                                                            Confirm Need
+
+                                                        </label>
+                                                        <label class="checkbox checkbox-success">
+                                                            <input type="checkbox" name="Checkboxes5"/>
+                                                            <span></span>
+                                                            Confirm Contract
+
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
 
 
                             </div>
@@ -1592,11 +1640,11 @@
         <!--end::Row-->
 
 
-
     </div>
     <!--end::Container-->
     <!-- Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1609,13 +1657,13 @@
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close
+                    </button>
                     <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 </div>
