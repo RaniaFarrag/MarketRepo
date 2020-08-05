@@ -81,7 +81,7 @@
                 <div class="col-md-12">
                     <!--begin::Card-->
                     <div class="card card-custom">
-                        
+
                         <div class="card-body">
                             <div class="accordion accordion-toggle-arrow" id="accordionExample1">
                                 <div class="card">
