@@ -15,9 +15,11 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'Sign In' => 'Sign In',
-    'Enter your username and password' => 'Enter your username and password',
-    'username' => 'Username',
-    'password' => 'password',
+    'Sign In' => 'تسجيل الدخول',
+    'Enter your username and password' => 'من فضلك ادخل اسم المستخدم وكلمة المرور',
+    'username' => 'اسم المستخدم',
+    'password' => 'كلمة المرور',
+
+
 
 ];

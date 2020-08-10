@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('system.home');
+
+Route::group(['middleware'=>'auth'] , function (){
+
+    Route::get('/' , 'HomeController@index');
+
+    /** Add New Role */
+    Route::resource('add_role' , 'RoleController');
 });
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

@@ -2,7 +2,7 @@
 <!--begin::Header Mobile-->
 <div id="kt_header_mobile" class="header-mobile ">
     <!--begin::Logo-->
-    <a href="index.html">
+    <a href="#">
         <img alt="Logo" src="{{ asset('dashboard/assets/media/logos/logo-letter-1.png') }}" class="logo-default max-h-30px"/>
     </a>
     <!--end::Logo-->
@@ -43,7 +43,7 @@
                     <div class="d-flex align-items-stretch mr-3">
                         <!--begin::Header Logo-->
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a href="#">
                                 <img alt="Logo" src="{{ asset('dashboard/assets/media/logos/logo-letter-9.png') }}"
                                      class="logo-default max-h-40px"/>
                                 <img alt="Logo" src="{{ asset('dashboard/assets/media/logos/logo-letter-1.png') }}"
@@ -62,7 +62,7 @@
                                     <li class="menu-item   menu-item-here"
                                         data-menu-toggle="click" aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle">
-                                            <span class="menu-text">Dashboard</span>
+                                            <span class="menu-text">{{ trans('dashboard.dashboard') }}</span>
                                         </a>
 
                                     </li>
@@ -279,8 +279,8 @@
                                                         <span class="menu-text">View Users</span> </a>
 
                                                 </li>
-                                            <li class="menu-item " data-menu-toggle="hover"
-                                                    aria-haspopup="true">
+                                                <li class="menu-item " data-menu-toggle="hover"
+                                                        aria-haspopup="true">
                                                     <a href="javascript:;" class="menu-link menu-toggle">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
@@ -288,6 +288,15 @@
                                                             <!--end::Svg Icon--></span>
                                                         <span class="menu-text">Add New Users</span> </a>
 
+                                                </li>
+                                                <li class="menu-item " data-menu-toggle="hover"
+                                                    aria-haspopup="true">
+                                                    <a href="{{ route('add_role.create') }}" class="menu-link menu-toggle">
+                                                        <span class="svg-icon menu-icon">
+                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                         <i class="fas fa-user-plus"></i>
+                                                            <!--end::Svg Icon--></span>
+                                                        <span class="menu-text">Add New Role</span> </a>
                                                 </li>
 
 
@@ -695,7 +704,7 @@
                             <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px">
                                 <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto">
                                     <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
-                                    <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">Admin</span>
+                                    <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">{{ auth()->user()->name }}</span>
                                     <span class="symbol symbol-35">
 	                            <span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">A</span>
 	                        </span>
@@ -709,10 +718,14 @@
                                 <div class="navi navi-spacer-x-0 pt-5">
 
                                     <div class="navi-footer  px-8 py-5">
-                                        <a href="#" target="_blank"
-                                           class="btn btn-light-primary btn-block font-weight-bold">Sign Out</a>
-
+                                        <a href="{{ route('logout') }}" class="btn btn-light-primary btn-block font-weight-bold"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>
                                     </div>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+
                                     <!--end::Footer-->
                                 </div>
                                 <!--end::Nav-->
