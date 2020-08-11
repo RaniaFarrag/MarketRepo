@@ -9,6 +9,6 @@ class Log extends Model
 {
     use Translatable;
 
-    protected $fillable = ['user_id' , 'model_id' , 'model_name'];
+    protected $fillable = ['user_id' , 'row_id'  , 'model_name'];
     protected $translatedAttributes = ['content'];
 }

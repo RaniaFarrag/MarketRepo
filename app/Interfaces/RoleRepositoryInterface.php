@@ -9,7 +9,25 @@
 namespace App\Interfaces;
 
 
-class RoleRepositoryInterface
+interface RoleRepositoryInterface
 {
+
+    /** View All Roles */
+    public function index();
+
+    /** View Add Role Form */
+    public function create();
+
+    /** Store Role */
+    public function store($request);
+
+    /** View Edit Role Form */
+    public function edit($id);
+
+    /** Submit Edit Role */
+    public function update($request , $id);
+
+    /** Delete Role */
+    public function destroy($id);
 
 }

@@ -18,7 +18,6 @@ class CreateLogTranslationsTable extends Migration
             $table->bigInteger('log_id')->unsigned();
             $table->foreign('log_id')->references('id')->on('logs')->onDelete('cascade');
             $table->string('locale')->index();
-            $table->unique('log_id' , 'locale');
             $table->string('content');
             $table->timestamps();
         });

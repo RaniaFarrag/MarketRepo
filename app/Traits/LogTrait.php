@@ -11,9 +11,10 @@ use App\Models\Log;
 
 trait logTrait{
 
-    public function addLog($user_id, $model_name, $content_ar, $content_en){
+    public function addLog($user_id, $row_id, $model_name, $content_ar, $content_en){
         Log::create([
             'user_id' =>$user_id,
+            'row_id' =>$row_id,
             'model_name' => $model_name,
             'content:ar' => $content_ar,
             'content:en' => $content_en

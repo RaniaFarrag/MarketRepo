@@ -61,7 +61,7 @@
                                 <ul class="menu-nav ">
                                     <li class="menu-item   menu-item-here"
                                         data-menu-toggle="click" aria-haspopup="true">
-                                        <a href="javascript:;" class="menu-link menu-toggle">
+                                        <a href="{{ route('home') }}" class="menu-link ">
                                             <span class="menu-text">{{ trans('dashboard.dashboard') }}</span>
                                         </a>
 
@@ -291,17 +291,24 @@
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="{{ route('add_role.create') }}" class="menu-link menu-toggle">
+                                                    <a href="{{ route('roles.index') }}" class="menu-link">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-user-plus"></i>
-                                                            <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Add New Role</span> </a>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text">{{ trans('dashboard.View Roles') }}</span> </a>
                                                 </li>
-
-
-
-
+                                                <li class="menu-item " data-menu-toggle="hover"
+                                                    aria-haspopup="true">
+                                                    <a href="{{ route('roles.create') }}" class="menu-link">
+                                                        <span class="svg-icon menu-icon">
+                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                         <i class="fas fa-user-plus"></i>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text">{{ trans('dashboard.Add New Role') }}</span> </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>
