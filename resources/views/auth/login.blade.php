@@ -80,7 +80,7 @@
                               id="">
                             @csrf
                             <div class="form-group py-2 m-0">
-                                <input value="{{ old('email') }}" class="form-control h-auto border-0 px-0 placeholder-dark-75"
+                                <input value="{{ old('email') }}" class="form-control h-auto border-0 px-0 placeholder-dark-75 @error('email') is-invalid @enderror"
                                        type="email" placeholder="{{ trans('auth.username') }}" name="email"
                                        autocomplete="off" required/>
                                 @error('email')
@@ -90,11 +90,11 @@
                                 @enderror
                             </div>
                             <div class="form-group py-2 border-top m-0">
-                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75" type="Password"
+                                <input class="form-control h-auto border-0 px-0 placeholder-dark-75 @error('password') is-invalid @enderror" type="Password"
                                        placeholder="{{ trans('auth.password') }}" name="password"/>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                        <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
