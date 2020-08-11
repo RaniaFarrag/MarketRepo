@@ -22,12 +22,12 @@ interface RoleRepositoryInterface
     public function store($request);
 
     /** View Edit Role Form */
-    public function edit($id);
+    public function edit($role);
 
     /** Submit Edit Role */
-    public function update($request , $id);
+    public function update($request , $role);
 
     /** Delete Role */
-    public function destroy($id);
+    public function destroy($role);
 
 }

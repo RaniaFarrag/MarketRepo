@@ -59,20 +59,16 @@ class RoleRepository implements RoleRepositoryInterface
     }
 
     /** View Edit Role Form */
-    public function edit($id){
-        $role = $this->role_model::find($id);
-        //dd($id);
+    public function edit($role){
         return view('system.roles.edit')->with('role' , $role);
     }
 
     /** Submit Edit Role */
-    public function update($request , $id){
+    public function update($request , $role){
         $validator = Validator::make($request->all() , [
             'name_ar' => 'required',
             'name_en' => 'required',
         ])->validate();
-
-        $role = $this->role_model::find($id);
 
         $role->update([
             'name' =>$request->name_ar,
@@ -88,9 +84,7 @@ class RoleRepository implements RoleRepositoryInterface
     }
 
     /** Delete Role */
-    public function destroy($id){
-        $role = $this->role_model::find($id);
-        //dd($role);
+    public function destroy($role){
         $role->delete();
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم حذف الدور' , 'Role has been deleted');
 

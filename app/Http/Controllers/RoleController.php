@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\RoleRepositoryInterface;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -59,7 +60,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
         //
     }
@@ -72,9 +73,9 @@ class RoleController extends Controller
      */
 
     /** View Edit Role Form */
-    public function edit($id)
+    public function edit(Role $role)
     {
-       return $this->rolerepositoryinterface->edit($id);
+       return $this->rolerepositoryinterface->edit($role);
     }
 
     /**
@@ -86,9 +87,9 @@ class RoleController extends Controller
      */
 
     /** Submit Edit Role */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        return $this->rolerepositoryinterface->update($request , $id);
+        return $this->rolerepositoryinterface->update($request , $role);
     }
 
     /**
@@ -99,8 +100,8 @@ class RoleController extends Controller
      */
 
     /** Delete Role */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        return $this->rolerepositoryinterface->destroy($id);
+        return $this->rolerepositoryinterface->destroy($role);
     }
 }
