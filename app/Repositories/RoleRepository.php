@@ -30,12 +30,7 @@ class RoleRepository implements RoleRepositoryInterface
 
     /** View All Roles */
     public function index(){
-        return view('system.roles.index')->with('roles' , $this->role_model->paginate(20));
-    }
-
-    /** View Add Role Form */
-    public function create(){
-        return view('system.roles.create');
+        return $this->role_model->paginate(20);
     }
 
     /** Store Role */
@@ -58,10 +53,6 @@ class RoleRepository implements RoleRepositoryInterface
 
     }
 
-    /** View Edit Role Form */
-    public function edit($role){
-        return view('system.roles.edit')->with('role' , $role);
-    }
 
     /** Submit Edit Role */
     public function update($request , $role){

@@ -24,7 +24,8 @@ class RoleController extends Controller
     /** View All Roles */
     public function index()
     {
-        return $this->rolerepositoryinterface->index();
+        $roles = $this->rolerepositoryinterface->index();
+        return view('system.roles.index')->with('roles' , $roles);
     }
 
     /**
@@ -36,7 +37,7 @@ class RoleController extends Controller
     /** View Add Role Form */
     public function create()
     {
-        return $this->rolerepositoryinterface->create();
+        return view('system.roles.create');
     }
 
     /**
@@ -75,7 +76,7 @@ class RoleController extends Controller
     /** View Edit Role Form */
     public function edit(Role $role)
     {
-       return $this->rolerepositoryinterface->edit($role);
+        return view('system.roles.edit')->with('role' , $role);
     }
 
     /**
