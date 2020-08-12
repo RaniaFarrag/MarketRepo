@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware'=>'auth'] , function (){
+
+    Route::get('/' , 'HomeController@index')->name('home');
+
+    /** Manage Roles */
+    Route::resource('roles' , 'RoleController');
 });
+
+
+Auth::routes();
+
