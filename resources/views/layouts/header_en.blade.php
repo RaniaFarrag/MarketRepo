@@ -136,7 +136,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">Cities</span>
+                                                    class="menu-text">{{ trans('dashboard.countries') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -145,25 +145,23 @@
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('all_countries') }}" class="menu-link">
+                                                    <span class="svg-icon menu-icon">
+                                                        <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                     <i class="fas fa-marker"></i>
+                                                        <!--end::Svg Icon--></span>
+                                                        <span class="menu-text">{{ trans('dashboard.Countries') }}</span> </a>
+                                                </li>
+                                                <li class="menu-item " data-menu-toggle="hover"
+                                                    aria-haspopup="true">
+                                                    <a href="javascript:;" class="menu-link">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-map-marker-alt"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">View Cities</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Cities') }}</span> </a>
 
                                                 </li>
-                                            <li class="menu-item " data-menu-toggle="hover"
-                                                    aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
-                                                        <span class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
-                                                         <i class="fas fa-marker"></i>
-                                                            <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Add New City</span> </a>
-
-                                                </li>
-
 
                                             </ul>
                                         </div>
@@ -677,10 +675,10 @@
                                 <ul class="navi navi-hover py-4">
                                     <!--begin::Item-->
                                     <li class="navi-item">
-                                        <a href="#" class="navi-link">
-            <span class="symbol symbol-20 mr-3">
-                <img src="{{ asset('dashboard/assets/media/svg/flags/226-united-states.svg') }}" alt=""/>
-            </span>
+                                        <a href="{{ route('locale' , 'en') }}" class="navi-link">
+                                            <span class="symbol symbol-20 mr-3">
+                                                <img src="{{ asset('dashboard/assets/media/svg/flags/226-united-states.svg') }}" alt=""/>
+                                            </span>
                                             <span class="navi-text">English</span>
                                         </a>
                                     </li>
@@ -688,10 +686,10 @@
 
                                     <!--begin::Item-->
                                     <li class="navi-item active">
-                                        <a href="#" class="navi-link">
-            <span class="symbol symbol-20 mr-3">
-                <img src="{{ asset('dashboard/assets/media/svg/flags/133-saudi-arabia.svg') }}" alt=""/>
-            </span>
+                                        <a href="{{ route('locale' , 'ar') }}" class="navi-link">
+                                            <span class="symbol symbol-20 mr-3">
+                                                <img src="{{ asset('dashboard/assets/media/svg/flags/133-saudi-arabia.svg') }}" alt=""/>
+                                            </span>
                                             <span class="navi-text">Arabic</span>
                                         </a>
                                     </li>
