@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="64da163b-8d37-4f5e-b2d1-88721434ae7c" name="Default" comment="" />
+=======
+    <list default="true" id="9c787153-202c-4ef8-8e7c-c4e1601ca06f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/main_content/report_en.php" beforeDir="false" afterPath="$PROJECT_DIR$/main_content/report_en.php" afterDir="false" />
+    </list>
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +19,7 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name=".env" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
@@ -22,10 +29,63 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor" />
+=======
+    <leaf>
+      <file leaf-file-name="Kernel.php" pinned="true" current-in-tab="true">
+        <entry file="remoteDeploymentFS://&lt;89cac47e-f984-4d66-841b-df6bdfc645b4&gt;/app/Console/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            </state>
+          </provider>
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
         </entry>
       </file>
     </leaf>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>&lt;!--begin::Quick panel--&gt;</find>
+      <find>btn btn-transparent-white font-weight-bold</find>
+      <find>Basic Example</find>
+      <find>topbar_notifications_events</find>
+      <find>Multi Select</find>
+      <find>Enable Helper Buttons</find>
+      <find>Communication Type</find>
+      <find>../../</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$USER_HOME$/Downloads/Metronic 7.0.6/metronic_v7.0.6/theme/html/demo2/dist/custom/pages/login/classic/login-6.html" />
+        <option value="$USER_HOME$/Downloads/Metronic 7.0.6/metronic_v7.0.6/theme/html/demo1/dist/crud/datatables/basic/basic.html" />
+        <option value="$USER_HOME$/Downloads/Metronic 7.0.6/metronic_v7.0.6/theme/html/demo2/dist/crud/forms/widgets/select2.html" />
+        <option value="$PROJECT_DIR$/component/header_en.php" />
+        <option value="$PROJECT_DIR$/main_content/index_en.php" />
+        <option value="$PROJECT_DIR$/main_content/addcompanyData_en.php" />
+        <option value="$PROJECT_DIR$/../keenthemes.com/metronic/preview/demo1/index.html" />
+        <option value="$PROJECT_DIR$/component/meta_en.php" />
+        <option value="$PROJECT_DIR$/login_en.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/main_content/report.php" />
+        <option value="$PROJECT_DIR$/layouten.php" />
+        <option value="$PROJECT_DIR$/component/footer_en.php" />
+        <option value="$PROJECT_DIR$/main_content/companyData_en.php" />
+        <option value="$PROJECT_DIR$/main_content/report_en.php" />
+        <option value="&lt;89cac47e-f984-4d66-841b-df6bdfc645b4&gt;/app/Console/Kernel.php" />
+      </list>
+    </option>
+  </component>
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -147,6 +207,16 @@
     <option name="width" value="1346" />
     <option name="height" value="688" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="445" />
+    <option name="y" value="-10" />
+    <option name="width" value="1230" />
+    <option name="height" value="915" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -172,8 +242,18 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../markting" />
+=======
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -205,7 +285,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="1814000" />
+=======
+    <option name="totallyTimeSpent" value="44602000" />
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -219,6 +303,14 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
+<<<<<<< HEAD
+=======
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" anchor="right" id="Remote Host" order="3" visible="true" weight="0.3294271" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18359375" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -242,11 +334,90 @@
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor" />
+=======
+    <entry file="file://$PROJECT_DIR$/main_content/report.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="275" lean-forward="true" selection-start-line="275" selection-end-line="275" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/meta_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_content/report_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layouten.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="15" lean-forward="true" selection-end-line="15" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_content/index_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="350" column="36" lean-forward="true" selection-start-line="291" selection-start-column="20" selection-end-line="350" selection-end-column="36" />
+          <folding>
+            <element signature="n#table#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_content/companyData_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="317" lean-forward="true" selection-end-line="1674" />
+          <folding>
+            <element signature="e#17324#17330#1#HTML" expanded="true" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/footer_en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-140">
+          <caret line="121" column="22" lean-forward="true" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="22" />
+        </state>
+      </provider>
+>>>>>>> bae61e749b048853aa6d40b4066eaa38689563a4
     </entry>
   </component>
 </project>

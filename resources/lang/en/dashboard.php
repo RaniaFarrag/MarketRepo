@@ -14,6 +14,17 @@ return [
     */
 
     'dashboard' => 'Dashboard',
+    'Add New role' => 'Add New role',
+    'Role Name English' => 'Role Name English',
+    'Role Name Arabic' => 'Role Name Arabic',
+    'submit' => 'Submit',
+    'cancel' => 'Cancel',
+    'Access Name' => 'Access Name',
+    'View' => 'View',
+    'Add' => 'Add',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'Action' => 'Action',
 
 
 
