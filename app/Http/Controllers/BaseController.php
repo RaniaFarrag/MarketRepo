@@ -51,4 +51,45 @@ class BaseController extends Controller
         return $this->baseRepositoryinterface->deleteCountry($country_id);
     }
 
+
+    /** ****************************** */
+
+    /** Add Country */
+    public function addCityform()
+    {
+        $countries = $this->baseRepositoryinterface->addCityform();
+        return view('system.cities.create')->with('countries' , $countries);
+    }
+
+    /** Add City */
+    public function addCity(Request $request){
+        return $this->baseRepositoryinterface->addCity($request);
+    }
+
+    /** View All cities */
+    public function getAllcities(){
+        $cities =  $this->baseRepositoryinterface->getAllcities();
+
+        return view('system.cities.index')->with('cities' , $cities);
+    }
+
+    /** Edit City Form */
+    public function editCityform($city_id){
+        $city = $this->baseRepositoryinterface->editCityform($city_id);
+        $countries = $this->baseRepositoryinterface->addCityform();
+
+        return view('system.cities.edit')->with(['city' => $city , 'countries' => $countries]);
+    }
+
+    /** Edit City */
+    public function editCity(Request $request , $city_id){
+        return $this->baseRepositoryinterface->editCity($request , $city_id);
+    }
+
+
+    /** Delete City */
+    public function deleteCity($city_id){
+        return $this->baseRepositoryinterface->deleteCity($city_id);
+    }
+
 }

@@ -28,5 +28,24 @@ interface BaseRepositoryInterface
     public function deleteCountry($country_id);
 
 
+    /** ****************************** */
+    /** Add Country */
+    public function addCityform();
+
+    /** Add City */
+    public function addCity($request);
+
+    /** View All cities */
+    public function getAllcities();
+
+    /** Edit City Form */
+    public function editCityform($city_id);
+
+    /** Edit City */
+    public function editCity($request , $city_id);
+
+    /** Delete City */
+    public function deleteCity($city_id);
+
 
 }

@@ -30,6 +30,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Countries */
         /** Add Country Form*/
         Route::get('add_country_form' , 'BaseController@addCountryform')->name('add_country_form');
+
         /** Add Country */
         Route::post('add_country' , 'BaseController@addCountry')->name('add_country');
 
@@ -44,7 +45,25 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         /** Delete Country */
         Route::get('delete_country/{country_id}' , 'BaseController@deleteCountry')->name('delete_country');
 
+
     /** Manage Cities */
+    /** Add City Form*/
+    Route::get('add_city_form' , 'BaseController@addCityform')->name('add_city_form');
+
+    /** Add City */
+    Route::post('add_city' , 'BaseController@addCity')->name('add_city');
+
+    /** View All Cities */
+    Route::get('all_cities' , 'BaseController@getAllcities')->name('all_cities');
+
+    /** Edit City Form */
+    Route::get('edit_city_form/{city_id}' , 'BaseController@editCityform')->name('edit_city_form');
+
+    /** Edit City */
+    Route::put('edit_city{city_id}' , 'BaseController@editCity')->name('edit_city');
+
+    /** Delete City */
+    Route::get('delete_city/{city_id}' , 'BaseController@deleteCity')->name('delete_city');
 });
 
 
