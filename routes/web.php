@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('locale/{locale}' , function ($locale){
     \Session::put('locale' , $locale);
 
@@ -26,68 +28,47 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Roles */
     Route::resource('roles' , 'RoleController');
 
+    /** Manage Countries */
+    Route::resource('countries' , 'CountryController');
 
-    /****************************** Manage Countries ***************************/
-        /** Add Country Form*/
-        Route::get('add_country_form' , 'BaseController@addCountryform')->name('add_country_form');
+    /** Manage Cities */
+    Route::resource('cities' , 'CityController');
 
-        /** Add Country */
-        Route::post('add_country' , 'BaseController@addCountry')->name('add_country');
+    /*********************************************** Manage Sectors ****************************************/
 
-        /** View All Countries */
-        Route::get('all_countries' , 'BaseController@getAllcountries')->name('all_countries');
+        /** Add Sector Form*/
+        Route::get('add_sector_form' , 'BaseController@addSectorForm')->name('add_sector_form');
 
-        /** Edit Country Form */
-        Route::get('edit_country_form/{country_id}' , 'BaseController@editCountryform')->name('edit_country_form');
-        /** Edit Country */
-        Route::put('edit_country{country_id}' , 'BaseController@editCountry')->name('edit_country');
+        /** Add Sector */
+        Route::post('add_sector' , 'BaseController@addSector')->name('add_sector');
 
-        /** Delete Country */
-        Route::get('delete_country/{country_id}' , 'BaseController@deleteCountry')->name('delete_country');
+        /** View All Sectors */
+        Route::get('all_sectors' , 'BaseController@getAllsectors')->name('all_sectors');
 
+        /** Edit Sector Form */
+        Route::get('edit_sector_form/{sector_id}' , 'BaseController@editSectorform')->name('edit_sector_form');
 
-    /******************************* Manage Cities *******************************/
-    /** Add City Form*/
-    Route::get('add_city_form' , 'BaseController@addCityform')->name('add_city_form');
+        /** Edit Sector */
+        Route::put('edit_sector/{sector_id}' , 'BaseController@editSector')->name('edit_sector');
 
-    /** Add City */
-    Route::post('add_city' , 'BaseController@addCity')->name('add_city');
-
-    /** View All Cities */
-    Route::get('all_cities' , 'BaseController@getAllcities')->name('all_cities');
-
-    /** Edit City Form */
-    Route::get('edit_city_form/{city_id}' , 'BaseController@editCityform')->name('edit_city_form');
-
-    /** Edit City */
-    Route::put('edit_city{city_id}' , 'BaseController@editCity')->name('edit_city');
-
-    /** Delete City */
-    Route::get('delete_city/{city_id}' , 'BaseController@deleteCity')->name('delete_city');
+        /** Delete Sector */
+        Route::get('delete_sector/{sector_id}' , 'BaseController@deleteSector')->name('delete_sector');
 
 
-    /********************************* Manage Sectors *****************************/
-    /** Add Sector Form*/
-    Route::get('add_sector_form' , 'BaseController@addSectorForm')->name('add_sector_form');
+    /*********************************************** Manage Sub-Sectors ******************************************/
 
-    /** Add Sector */
-    Route::post('add_sector' , 'BaseController@addSector')->name('add_sector');
+        /** Get All Sub-sectors Of Specific Sector */
+        Route::get('get_sub_sectors_of_sector/{sector_id}' , 'BaseController@getSubsectorOfsector')->name('get_sub_sectors_of_sector');
 
-    /** View All Sectors */
-    Route::get('all_sectors' , 'BaseController@getAllsectors')->name('all_sectors');
+        /** Add Sub-Sector Form */
+        Route::get('add_sub_sector_form/{sector_id}' , 'BaseController@addSubsectorForm')->name('add_sub_sector_form');
 
-    /** Edit Sector Form */
-    Route::get('edit_sector_form/{sector_id}' , 'BaseController@editSectorform')->name('edit_sector_form');
-
-    /** Edit Sector */
-    Route::put('edit_sector{sector_id}' , 'BaseController@editSector')->name('edit_sector');
-
-    /** Delete Sector */
-    Route::get('delete_sector/{sector_id}' , 'BaseController@deleteSector')->name('delete_sector');
+        /** Add Sub-Sector To Specific Sector */
+        Route::post('add_sub_sector' , 'BaseController@addSubsector')->name('add_sub_sector');
 
 
 });
 
 
-Auth::routes();
+
 

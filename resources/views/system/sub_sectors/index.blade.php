@@ -43,8 +43,8 @@
 
 
                     <!--begin::Button-->
-                    <a href="{{ route('countries.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Country') }}
+                    <a href="{{ route('add_sub_sector_form' , $sector_id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Add New Sub-Sector') }}
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
@@ -80,7 +80,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.All Countries') }}
+                                        {{ trans('dashboard.All sub-sectors') }}
                                     </h3>
                                 </div>
 
@@ -91,9 +91,8 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ trans('dashboard.Country Name Arabic') }}</th>
-                                        <th>{{ trans('dashboard.Country Name English') }}</th>
-                                        <th>{{ trans('dashboard.Code') }}</th>
+                                        <th>{{ trans('dashboard.Sub-Sector Name Arabic') }}</th>
+                                        <th>{{ trans('dashboard.Sub-Sector Name English') }}</th>
                                         <th>{{ trans('dashboard.edit') }}</th>
                                         <th>{{ trans('dashboard.delete') }}</th>
 
@@ -101,26 +100,22 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($countries as $k=>$country)
+                                    @foreach($sub_sectors as $sub_sector)
                                         <tr>
-                                            <td>{{ ++$k }}</td>
-                                            <td>{{ $country->translate('ar')->name }}</td>
-                                            <td>{{ $country->translate('en')->name}}</td>
-                                            <td>{{ $country->code}}</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('countries.edit' , $country->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            <td>{{ $sub_sector->id }}</td>
+                                            <td>{{ $sub_sector->translate('ar')->name }}</td>
+                                            <td>{{ $sub_sector->translate('en')->name }}</td>
+                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('edit_sector_form' , $sub_sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
-                                                <form method="post" action="{{ route('countries.destroy' , $country->id) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
-                                                </form>
+                                                <a class="btn btn-danger" onclick="return confirm('Are you sure?')"
+                                                   href="{{route('delete_sector', $sub_sector->id)}}"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
 
                                     </tbody>
 
-                                </table>{{ $countries->links() }}
+                                </table>{{ $sub_sectors->links() }}
                                 <!--end: Datatable-->
                             </div>
                         </div>

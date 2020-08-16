@@ -16,82 +16,6 @@ class BaseController extends Controller
         $this->baseRepositoryinterface = $baseRepositoryinterface;
     }
 
-    /****************************** Manage Countries ***************************/
-    /** Add Country */
-    public function addCountryform()
-    {
-        return view('system.countries.create');
-    }
-
-    /** Add Country */
-    public function addCountry(Request $request){
-        return $this->baseRepositoryinterface->addCountry($request);
-    }
-
-    /** View All countries */
-    public function getAllcountries(){
-        $countries = $this->baseRepositoryinterface->getAllcountries();
-        return view('system.countries.index')->with('countries' , $countries);
-    }
-
-    /** Edit Country Form */
-    public function editCountryform($country_id){
-        $country = $this->baseRepositoryinterface->editCountryform($country_id);
-
-        return view('system.countries.edit')->with('country' , $country);
-    }
-
-    /** Edit Country */
-    public function editCountry(Request $request , $country_id){
-        return $this->baseRepositoryinterface->editCountry($request , $country_id);
-
-    }
-
-    /** Delete Country */
-    public function deleteCountry($country_id){
-        return $this->baseRepositoryinterface->deleteCountry($country_id);
-    }
-
-
-    /******************************* Manage Cities *******************************/
-
-    /** Add City Form */
-    public function addCityform()
-    {
-        $countries = $this->baseRepositoryinterface->addCityform();
-        return view('system.cities.create')->with('countries' , $countries);
-    }
-
-    /** Add City */
-    public function addCity(Request $request){
-        return $this->baseRepositoryinterface->addCity($request);
-    }
-
-    /** View All cities */
-    public function getAllcities(){
-        $cities =  $this->baseRepositoryinterface->getAllcities();
-
-        return view('system.cities.index')->with('cities' , $cities);
-    }
-
-    /** Edit City Form */
-    public function editCityform($city_id){
-        $city = $this->baseRepositoryinterface->editCityform($city_id);
-        $countries = $this->baseRepositoryinterface->addCityform();
-
-        return view('system.cities.edit')->with(['city' => $city , 'countries' => $countries]);
-    }
-
-    /** Edit City */
-    public function editCity(Request $request , $city_id){
-        return $this->baseRepositoryinterface->editCity($request , $city_id);
-    }
-
-    /** Delete City */
-    public function deleteCity($city_id){
-        return $this->baseRepositoryinterface->deleteCity($city_id);
-    }
-
     /********************************* Manage Sectors *****************************/
 
     /** Add Country */
@@ -120,13 +44,33 @@ class BaseController extends Controller
 
     /** Edit Sector */
     public function editSector(Request $request , $sector_id){
-        return $this->baseRepositoryinterface->editCity($request , $sector_id);
+        return $this->baseRepositoryinterface->editSector($request , $sector_id);
     }
 
 
     /** Delete Sector */
     public function deleteSector($sector_id){
         return $this->baseRepositoryinterface->deleteSector($sector_id);
+    }
+
+
+    /********************************* Manage Sub-Sectors *****************************/
+
+    /** Get All Sub-sectors Of Specific Sector */
+    public function getSubsectorOfsector($sector_id){
+        $sub_sectors = $this->baseRepositoryinterface->getSubsectorOfsector($sector_id);
+
+         return view('system.sub_sectors.index')->with(['sub_sectors' => $sub_sectors , 'sector_id' => $sector_id]);
+    }
+
+    /** Add Sub-Sector Form */
+    public function addSubsectorForm($sector_id){
+        return view('system.sub_sectors.create')->with('sector_id' , $sector_id);
+    }
+
+    /** Add Sub Sector To Specific Sector */
+    public function addSubsector(Request $request){
+        $this->baseRepositoryinterface->addSubsector($request);
     }
 
 }

@@ -93,6 +93,7 @@
                                         <th>#</th>
                                         <th>{{ trans('dashboard.Sector Name Arabic') }}</th>
                                         <th>{{ trans('dashboard.Sector Name English') }}</th>
+                                        <th>{{ trans('dashboard.Sub-Sector') }}</th>
                                         <th>{{ trans('dashboard.edit') }}</th>
                                         {{--<th>{{ trans('dashboard.delete') }}</th>--}}
 
@@ -104,7 +105,8 @@
                                         <tr>
                                             <td>{{ $sector->id }}</td>
                                             <td>{{ $sector->translate('ar')->name }}</td>
-                                            <td>{{ $sector->translate('en')->name}}</td>
+                                            <td>{{ $sector->translate('en')->name }}</td>
+                                            <td><a href="{{ route('get_sub_sectors_of_sector' , $sector->id) }}">{{ trans('dashboard.Sub-Sector') }}</a></td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('edit_sector_form' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             {{--<td>--}}
                                                 {{--<a class="btn btn-danger" onclick="return confirm('Are you sure?')"--}}

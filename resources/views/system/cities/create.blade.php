@@ -67,7 +67,7 @@
                                 </div>
                             @endif
 
-                            <form method="post" action="{{ route('add_city') }}" class="form">
+                            <form method="post" action="{{ route('cities.store') }}" class="form">
                                 @csrf
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
@@ -122,7 +122,7 @@
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-8">
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                            <a href="{{ route('all_cities') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
+                                            <a href="{{ route('cities.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>

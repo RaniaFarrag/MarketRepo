@@ -145,7 +145,7 @@
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="{{ route('all_countries') }}" class="menu-link">
+                                                    <a href="{{ route('countries.index') }}" class="menu-link">
                                                     <span class="svg-icon menu-icon">
                                                         <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                      <i class="fas fa-marker"></i>
@@ -154,7 +154,7 @@
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="{{ route('all_cities') }}" class="menu-link">
+                                                    <a href="{{ route('cities.index') }}" class="menu-link">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-map-marker-alt"></i>
@@ -178,12 +178,12 @@
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('all_sectors') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-suitcase"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">View Sectors</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.View Sectors') }}</span> </a>
 
                                                 </li>
                                             <li class="menu-item " data-menu-toggle="hover"

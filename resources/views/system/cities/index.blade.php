@@ -43,7 +43,7 @@
 
 
                     <!--begin::Button-->
-                    <a href="{{ route('add_city_form') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('cities.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New City') }}
                     </a>
                     <!--end::Button-->
@@ -107,10 +107,13 @@
                                             <td>{{ $city->translate('ar')->name }}</td>
                                             <td>{{ $city->translate('en')->name}}</td>
                                             <td>{{ $city->code}}</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('edit_city_form' , $city->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('cities.edit' , $city->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
-                                                <a class="btn btn-danger" onclick="return confirm('Are you sure?')"
-                                                   href="{{route('delete_city', $city->id)}}"><i class="fa fa-trash"></i></a>
+                                                <form method="post" action="{{ route('cities.destroy' , $city->id) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
