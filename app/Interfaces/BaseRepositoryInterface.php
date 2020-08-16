@@ -12,6 +12,8 @@ namespace App\Interfaces;
 interface BaseRepositoryInterface
 {
 
+    /****************************** Manage Countries ***************************/
+
     /** Add Country */
     public function addCountry($request);
 
@@ -28,7 +30,8 @@ interface BaseRepositoryInterface
     public function deleteCountry($country_id);
 
 
-    /** ****************************** */
+    /******************************* Manage Cities *******************************/
+
     /** Add Country */
     public function addCityform();
 
@@ -46,6 +49,24 @@ interface BaseRepositoryInterface
 
     /** Delete City */
     public function deleteCity($city_id);
+
+    /********************************* Manage Sectors *****************************/
+
+    /** Add Sector */
+    public function addSector($request);
+
+    /** View All sectors */
+    public function getAllsectors();
+
+    /** Edit Sector Form */
+    public function editSectorform($sector_id);
+
+    /** Edit Sector */
+    public function editSector($request , $sector_id);
+
+
+    /** Delete Sector */
+    public function deleteSector($sector_id);
 
 
 }

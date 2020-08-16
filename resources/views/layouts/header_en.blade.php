@@ -169,7 +169,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">Sectors</span>
+                                                    class="menu-text">{{ trans('dashboard.sectors') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -188,12 +188,12 @@
                                                 </li>
                                             <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('add_sector_form') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-marker"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Add New Sector</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Add New Sector') }}</span> </a>
 
                                                 </li>
 

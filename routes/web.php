@@ -27,7 +27,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::resource('roles' , 'RoleController');
 
 
-    /** Manage Countries */
+    /****************************** Manage Countries ***************************/
         /** Add Country Form*/
         Route::get('add_country_form' , 'BaseController@addCountryform')->name('add_country_form');
 
@@ -46,7 +46,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         Route::get('delete_country/{country_id}' , 'BaseController@deleteCountry')->name('delete_country');
 
 
-    /** Manage Cities */
+    /******************************* Manage Cities *******************************/
     /** Add City Form*/
     Route::get('add_city_form' , 'BaseController@addCityform')->name('add_city_form');
 
@@ -64,6 +64,28 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /** Delete City */
     Route::get('delete_city/{city_id}' , 'BaseController@deleteCity')->name('delete_city');
+
+
+    /********************************* Manage Sectors *****************************/
+    /** Add Sector Form*/
+    Route::get('add_sector_form' , 'BaseController@addSectorForm')->name('add_sector_form');
+
+    /** Add Sector */
+    Route::post('add_sector' , 'BaseController@addSector')->name('add_sector');
+
+    /** View All Sectors */
+    Route::get('all_sectors' , 'BaseController@getAllsectors')->name('all_sectors');
+
+    /** Edit Sector Form */
+    Route::get('edit_sector_form/{sector_id}' , 'BaseController@editSectorform')->name('edit_sector_form');
+
+    /** Edit Sector */
+    Route::put('edit_sector{sector_id}' , 'BaseController@editSector')->name('edit_sector');
+
+    /** Delete Sector */
+    Route::get('delete_sector/{sector_id}' , 'BaseController@deleteSector')->name('delete_sector');
+
+
 });
 
 
