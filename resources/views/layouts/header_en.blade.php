@@ -178,7 +178,7 @@
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="{{ route('all_sectors') }}" class="menu-link ">
+                                                    <a href="{{ route('sectors.index') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-suitcase"></i>
@@ -188,7 +188,7 @@
                                                 </li>
                                             <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="{{ route('add_sector_form') }}" class="menu-link ">
+                                                    <a href="{{ route('sectors.create') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-marker"></i>

@@ -67,7 +67,7 @@
                                 </div>
                             @endif
 
-                            <form method="post" action="{{ route('edit_sector' , $sector->id) }}" class="form">
+                            <form method="post" action="{{ route('sectors.update' , $sector->id) }}" class="form">
                                 @method('PUT')
                                 @csrf
                                 <div class="card-body">
@@ -100,7 +100,7 @@
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-8">
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                            <a href="{{ route('all_sectors') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
+                                            <a href="{{ route('sectors.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>

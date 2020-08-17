@@ -34,6 +34,9 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Cities */
     Route::resource('cities' , 'CityController');
 
+    /** Manage Sectors */
+    Route::resource('sectors' , 'SectorController');
+
     /*********************************************** Manage Sectors ****************************************/
 
         /** Add Sector Form*/

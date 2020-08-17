@@ -16,43 +16,6 @@ class BaseController extends Controller
         $this->baseRepositoryinterface = $baseRepositoryinterface;
     }
 
-    /********************************* Manage Sectors *****************************/
-
-    /** Add Country */
-    public function addSectorForm()
-    {
-        return view('system.sectors.create');
-    }
-
-    /** Add Sector */
-    public function addSector(Request $request){
-        return $this->baseRepositoryinterface->addSector($request);
-    }
-
-    /** View All sectors */
-    public function getAllsectors(){
-        $sectors =  $this->baseRepositoryinterface->getAllsectors();
-
-        return view('system.sectors.index')->with('sectors' , $sectors);
-    }
-
-    /** Edit Sector Form */
-    public function editSectorform($sector_id){
-        $sector = $this->baseRepositoryinterface->editSectorform($sector_id);
-        return view('system.sectors.edit')->with(['sector' => $sector]);
-    }
-
-    /** Edit Sector */
-    public function editSector(Request $request , $sector_id){
-        return $this->baseRepositoryinterface->editSector($request , $sector_id);
-    }
-
-
-    /** Delete Sector */
-    public function deleteSector($sector_id){
-        return $this->baseRepositoryinterface->deleteSector($sector_id);
-    }
-
 
     /********************************* Manage Sub-Sectors *****************************/
 

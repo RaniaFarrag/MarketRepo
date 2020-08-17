@@ -34,6 +34,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\CityRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\SectorRepositoryInterface',
+            'App\Repositories\SectorRepository'
+        );
+
     }
 
     /**

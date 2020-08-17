@@ -43,7 +43,7 @@
 
 
                     <!--begin::Button-->
-                    <a href="{{ route('add_sector_form') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('sectors.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Sector') }}
                     </a>
                     <!--end::Button-->
@@ -107,11 +107,15 @@
                                             <td>{{ $sector->translate('ar')->name }}</td>
                                             <td>{{ $sector->translate('en')->name }}</td>
                                             <td><a href="{{ route('get_sub_sectors_of_sector' , $sector->id) }}">{{ trans('dashboard.Sub-Sector') }}</a></td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('edit_sector_form' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('sectors.edit' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             {{--<td>--}}
-                                                {{--<a class="btn btn-danger" onclick="return confirm('Are you sure?')"--}}
-                                                   {{--href="{{route('delete_sector', $sector->id)}}"><i class="fa fa-trash"></i></a>--}}
+                                                {{--<form method="post" action="{{ route('sectors.destroy' , $sector->id) }}">--}}
+                                                    {{--@method('DELETE')--}}
+                                                    {{--@csrf--}}
+                                                    {{--<button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>--}}
+                                                {{--</form>--}}
                                             {{--</td>--}}
+
                                         </tr>
                                     @endforeach
 
