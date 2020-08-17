@@ -103,7 +103,7 @@
                                     <tbody>
                                     @foreach($countries as $k=>$country)
                                         <tr>
-                                            <td>{{ ++$k }}</td>
+                                            <td>{{ $k+1 }}</td>
                                             <td>{{ $country->translate('ar')->name }}</td>
                                             <td>{{ $country->translate('en')->name}}</td>
                                             <td>{{ $country->code}}</td>

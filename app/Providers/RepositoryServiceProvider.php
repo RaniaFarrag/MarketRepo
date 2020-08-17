@@ -20,11 +20,6 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\Interfaces\BaseRepositoryInterface',
-            'App\Repositories\BaseRepository'
-        );
-
-        $this->app->bind(
             'App\Interfaces\CountryRepositoryInterface',
             'App\Repositories\CountryRepository'
         );
@@ -37,6 +32,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Interfaces\SectorRepositoryInterface',
             'App\Repositories\SectorRepository'
+        );
+
+        $this->app->bind(
+            'App\Interfaces\SubSectorRepositoryInterface',
+            'App\Repositories\SubSectorRepository'
         );
 
     }

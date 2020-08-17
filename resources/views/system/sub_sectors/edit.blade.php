@@ -14,7 +14,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Add New sector') }}
+                            {{ trans('dashboard.Add New sub-sector') }}
                         </h2>
                         <!--end::Title-->
 
@@ -33,7 +33,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Add New sector') }}
+                                {{ trans('dashboard.Add New sub-sector') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -67,26 +67,30 @@
                                 </div>
                             @endif
 
-                            <form method="post" action="{{ route('add_sector') }}" class="form">
+                            <form method="post" action="{{ route('sub_sectors.update' , $subSector->id) }}" class="form">
+                                @method('PUT')
                                 @csrf
+
+                                <input value="{{ $subSector->sector_id }}" name="sector_id" type="hidden">
+
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New sector') }}
+                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New sub-sector') }}
                                     </h3>
 
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.Sector Name Arabic') }} :</label>
-                                            <input value="{{ $sector->translate('ar')->name }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.sectorname_ar') }}"/>
+                                            <label>{{ trans('dashboard.Sub-Sector Name Arabic') }} :</label>
+                                            <input value="{{ $subSector->translate('ar')->name }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.Sub-Sector Name Arabic') }}"/>
                                             @error('name_ar')
-                                            <div class="error">{{ $message }}</div>
+                                                <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.Sector Name English') }}  :</label>
-                                            <input value="{{ $sector->translate('en')->name }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.sectorname_en') }}"/>
+                                            <label>{{ trans('dashboard.Sub-Sector Name English') }}  :</label>
+                                            <input value="{{ $subSector->translate('en')->name }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.Sub-Sector Name English') }}"/>
                                             @error('name_en')
-                                            <div class="error">{{ $message }}</div>
+                                                <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -99,7 +103,7 @@
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-8">
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                            <a href="{{ route('all_sectors') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
+                                            <a href="{{ route('sub_sectors.index' , $subSector->sector_id) }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>

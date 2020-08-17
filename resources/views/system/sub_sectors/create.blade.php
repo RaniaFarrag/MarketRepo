@@ -67,7 +67,7 @@
                                 </div>
                             @endif
 
-                            <form method="post" action="{{ route('add_sub_sector') }}" class="form">
+                            <form method="post" action="{{ route('sub_sectors.store') }}" class="form">
                                 @csrf
 
                                 <input value="{{ $sector_id }}" name="sector_id" type="hidden">
@@ -102,7 +102,7 @@
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-8">
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                            <a href="{{ route('get_sub_sectors_of_sector' , $sector_id) }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
+                                            <a href="{{ route('sub_sectors.index' , $sector_id) }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>
