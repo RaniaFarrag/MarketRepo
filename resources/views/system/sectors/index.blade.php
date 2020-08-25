@@ -43,8 +43,8 @@
 
 
                     <!--begin::Button-->
-                    <a href="{{ route('roles.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Role') }}
+                    <a href="{{ route('sectors.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Add New Sector') }}
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
@@ -80,7 +80,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.All Roles') }}
+                                        {{ trans('dashboard.All sectors') }}
                                     </h3>
                                 </div>
 
@@ -91,34 +91,37 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ trans('dashboard.Role Name Arabic') }}</th>
-                                        <th>{{ trans('dashboard.Role Name English') }}</th>
+                                        <th>{{ trans('dashboard.Sector Name Arabic') }}</th>
+                                        <th>{{ trans('dashboard.Sector Name English') }}</th>
+                                        <th>{{ trans('dashboard.Sub-Sector') }}</th>
                                         <th>{{ trans('dashboard.edit') }}</th>
-                                        <th>{{ trans('dashboard.delete') }}</th>
+                                        {{--<th>{{ trans('dashboard.delete') }}</th>--}}
 
                                     </tr>
                                     </thead>
 
                                     <tbody>
-                                    @foreach($roles as $role)
+                                    @foreach($sectors as $sector)
                                         <tr>
-                                            <td>{{ $role->id }}</td>
-                                            <td>{{ $role->name }}</td>
-                                            <td>{{ $role->name_en }}</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('roles.edit' , $role->id) }}">{{ trans('dashboard.edit') }}</a></td>
-                                            <td>
-                                                <form method="post" action="{{ route('roles.destroy' , $role->id) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
-                                                </form>
-                                            </td>
+                                            <td>{{ $sector->id }}</td>
+                                            <td>{{ $sector->translate('ar')->name }}</td>
+                                            <td>{{ $sector->translate('en')->name }}</td>
+                                            <td><a href="{{ route('get_sub_sectors_of_sector' , $sector->id) }}">{{ trans('dashboard.Sub-Sector') }}</a></td>
+                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('sectors.edit' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            {{--<td>--}}
+                                                {{--<form method="post" action="{{ route('sectors.destroy' , $sector->id) }}">--}}
+                                                    {{--@method('DELETE')--}}
+                                                    {{--@csrf--}}
+                                                    {{--<button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>--}}
+                                                {{--</form>--}}
+                                            {{--</td>--}}
+
                                         </tr>
                                     @endforeach
 
                                     </tbody>
 
-                                </table>{{ $roles->links() }}
+                                </table>{{ $sectors->links() }}
                                 <!--end: Datatable-->
                             </div>
                         </div>
@@ -135,5 +138,42 @@
     </div>
     <!--end::Content-->
 
-
 @endsection
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+            onConfirm: function (event, element) {
+                element.trigger('confirm');
+            }
+        });
+
+
+        $(document).on('confirm', function (e) {
+            var ele = e.target;
+            e.preventDefault();
+
+            $.ajax({
+                url: ele.href,
+                type: 'DELETE',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (data) {
+                    if (data['success']) {
+                        $("#" + data['tr']).slideUp("slow");
+                        alert(data['success']);
+                    } else if (data['error']) {
+                        alert(data['error']);
+                    } else {
+                        alert('Whoops Something went wrong!!');
+                    }
+                },
+                error: function (data) {
+                    alert(data.responseText);
+                }
+            });
+
+            return false;
+        });
+    });
+</script>

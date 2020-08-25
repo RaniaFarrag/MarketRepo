@@ -71,7 +71,6 @@ class RoleRepository implements RoleRepositoryInterface
 
         return redirect(route('roles.index'))->with('success' , trans('dashboard.updated successfully'));
 
-
     }
 
     /** Delete Role */
