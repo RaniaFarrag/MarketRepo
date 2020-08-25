@@ -100,9 +100,9 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($roles as $role)
+                                    @foreach($roles as $k=>$role)
                                         <tr>
-                                            <td>{{ $role->id }}</td>
+                                            <td>{{ $k+1 }}</td>
                                             <td>{{ $role->name }}</td>
                                             <td>{{ $role->name_en }}</td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('roles.edit' , $role->id) }}">{{ trans('dashboard.edit') }}</a></td>

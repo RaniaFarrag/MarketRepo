@@ -68,7 +68,7 @@ class SectorRepository implements SectorRepositoryInterface
 
         $this->addLog(auth()->id() , $sector->id , 'sectors' , 'تم حذف قطاع ' , 'Sector has been deleted');
 
-        return redirect(route('all_sectors'))->with('success' , trans('dashboard.deleted successfully'));
+        return redirect(route('sectors.index'))->with('success' , trans('dashboard.deleted successfully'));
     }
 
 }

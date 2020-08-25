@@ -83,7 +83,6 @@
                                         {{ trans('dashboard.All sectors') }}
                                     </h3>
                                 </div>
-
                             </div>
                             <div class="card-body">
                                 <!--begin: Datatable-->
@@ -101,12 +100,12 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($sectors as $sector)
+                                    @foreach($sectors as $k=>$sector)
                                         <tr>
-                                            <td>{{ $sector->id }}</td>
+                                            <td>{{ $k+1 }}</td>
                                             <td>{{ $sector->translate('ar')->name }}</td>
                                             <td>{{ $sector->translate('en')->name }}</td>
-                                            <td><a href="{{ route('get_sub_sectors_of_sector' , $sector->id) }}">{{ trans('dashboard.Sub-Sector') }}</a></td>
+                                            <td><a href="{{ route('sub_sectors.index' , $sector->id) }}">{{ trans('dashboard.Sub-Sector') }}</a></td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('sectors.edit' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             {{--<td>--}}
                                                 {{--<form method="post" action="{{ route('sectors.destroy' , $sector->id) }}">--}}

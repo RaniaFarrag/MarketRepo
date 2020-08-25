@@ -40,10 +40,8 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
                     <!--begin::Button-->
-                    <a href="{{ route('add_sub_sector_form' , $sector_id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('sub_sectors.create' , $sector_id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Sub-Sector') }}
                     </a>
                     <!--end::Button-->
@@ -100,15 +98,18 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($sub_sectors as $sub_sector)
+                                    @foreach($sub_sectors as $k=>$sub_sector)
                                         <tr>
-                                            <td>{{ $sub_sector->id }}</td>
+                                            <td>{{ $k+1 }}</td>
                                             <td>{{ $sub_sector->translate('ar')->name }}</td>
                                             <td>{{ $sub_sector->translate('en')->name }}</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('edit_sector_form' , $sub_sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('sub_sectors.edit' , $sub_sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
-                                                <a class="btn btn-danger" onclick="return confirm('Are you sure?')"
-                                                   href="{{route('delete_sector', $sub_sector->id)}}"><i class="fa fa-trash"></i></a>
+                                                <form method="post" action="{{ route('sub_sectors.destroy' , $sub_sector->id) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
