@@ -15,7 +15,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.dashboard') }}
+                            {{ trans('dashboard.Countries') }}
                         </h2>
                         <!--end::Title-->
 
@@ -28,8 +28,12 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }}
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Region') }}
+                            </a>
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Countries') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -48,9 +52,7 @@
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total companies (1406)
-                    </a>
+
                     <!--end::Button-->
 
 

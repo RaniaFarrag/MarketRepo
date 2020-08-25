@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" direction="rtl" style="direction: rtl;">
+@if(app()->getLocale() == 'en')
+    <html lang="en">
+
+    @elseif(app()->getLocale() == 'ar')
+
+        <html lang="en" direction="rtl" style="direction: rtl;">
+
+        @endif
 <head>
     @include('layouts.meta_en')
 </head>

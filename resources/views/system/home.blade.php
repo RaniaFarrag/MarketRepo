@@ -14,7 +14,8 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            Dashboard                                    </h2>
+                            {{ trans('dashboard.dashboard') }}
+                        </h2>
                         <!--end::Title-->
 
                         <!--begin::Breadcrumb-->
@@ -27,13 +28,10 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Dashboard                            </a>
+                                {{ trans('dashboard.dashboard') }}
+                            </a>
                             <!--end::Item-->
-                            <!--begin::Item-->
-                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Latest Updated                            </a>
-                            <!--end::Item-->
+
                         </div>
                         <!--end::Breadcrumb-->
                     </div>
@@ -80,7 +78,7 @@
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
-                                                            COMPANIES REGISTERED TODAY
+                                                            {{ trans('dashboard.COMPANIES REGISTERED TODAY') }}
                                                             <div class="text-dark-75">
                                                                 2
 
@@ -113,7 +111,7 @@
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
-                                                            TOTAL COMPANIES
+                                                            {{ trans('dashboard.TOTAL COMPANIES') }}
                                                             <div class="text-dark-75">
                                                                 1398
 
@@ -146,7 +144,7 @@
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
-                                                            TOTAL USERS
+                                                            {{ trans('dashboard.TOTAL USERS') }}
 
                                                             <div class="text-dark-75">
                                                                 8
@@ -182,7 +180,7 @@
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
-                                                            REP DAILY REPORT
+                                                            {{ trans('dashboard.REP DAILY REPORT') }}
 
                                                             <div class="text-dark-75">
                                                                 0
@@ -216,7 +214,7 @@
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
-                                                            TODAY MEETING
+                                                            {{ trans('dashboard.TODAY MEETING') }}
 
                                                             <div class="text-dark-75">
                                                                 2
@@ -251,7 +249,7 @@
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
-                                                            COMING MEETING
+                                                            {{ trans('dashboard.COMING MEETING') }}
 
 
                                                             <div class="text-dark-75">
@@ -285,7 +283,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        The Dates of Interviews With Companies
+                                        {{ trans('dashboard.The Dates of Interviews With Companies') }}
                                     </h3>
                                 </div>
 
@@ -296,12 +294,12 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Company Name</th>
-                                        <th>Company Type	</th>
-                                        <th>Interview Time	</th>
-                                        <th>Interview Date	</th>
-                                        <th>City</th>
-                                        <th>BY</th>
+                                        <th> {{ trans('dashboard.Company Name') }}</th>
+                                        <th>{{ trans('dashboard.Company Type') }}	</th>
+                                        <th>{{ trans('dashboard.Interview Time') }}</th>
+                                        <th>{{ trans('dashboard.Interview Date') }}</th>
+                                        <th>{{ trans('dashboard.City') }}</th>
+                                        <th>{{ trans('dashboard.BY') }}</th>
                                     </tr>
                                     </thead>
 

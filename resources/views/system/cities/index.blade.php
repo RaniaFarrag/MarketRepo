@@ -28,8 +28,12 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }}
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Region') }}
+                            </a>
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Cities') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -45,11 +49,6 @@
                     <!--begin::Button-->
                     <a href="{{ route('cities.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New City') }}
-                    </a>
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total companies (1406)
                     </a>
                     <!--end::Button-->
 
