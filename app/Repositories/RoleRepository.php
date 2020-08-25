@@ -12,6 +12,7 @@ use App\Traits\logTrait;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationData;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 
@@ -20,11 +21,13 @@ class RoleRepository implements RoleRepositoryInterface
     use LogTrait;
 
     protected $role_model;
+    protected $permission_model;
 
 
-    public function __construct(Role $role)
+    public function __construct(Role $role , Permission $permission)
     {
         $this->role_model = $role;
+        $this->permission_model = $permission;
 
     }
 
@@ -33,14 +36,23 @@ class RoleRepository implements RoleRepositoryInterface
         return $this->role_model->paginate(20);
     }
 
+    /** Create Role */
+    public function create()
+    {
+        return $this->permission_model::all();
+    }
+
     /** Store Role */
     public function store($request)
     {
+        //dd($request->all());
         $role = $this->role_model::create([
             'name' => $request->name_ar,
             'name_en' => $request->name_en,
             'guard_name' => 'web'
         ]);
+
+        $role->syncPermissions($request->permissions);
 
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم اضافة دور جديد' , 'New Role has been added');
 
@@ -48,15 +60,23 @@ class RoleRepository implements RoleRepositoryInterface
 
     }
 
+    /** Edit Role */
+    public function edit()
+    {
+        return $this->permission_model::all();
+    }
+
 
     /** Submit Edit Role */
     public function update($request , $role){
-        
+
         $role->update([
             'name' =>$request->name_ar,
             'name_en' =>$request->name_en,
             'guard_name' =>'web',
         ]);
+
+        $role->syncPermissions($request->permissions);
 
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم تعديل دور ' , 'Role has been updated');
 
