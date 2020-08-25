@@ -13,16 +13,10 @@
 
 <!--begin::Global Theme Styles(used by all pages)-->
 
-@if(app()->getLocale() == 'en')
-    <link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.css?v=7.0.6" ') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6') }}"  rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('dashboard/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css"/>
-@elseif(app()->getLocale() == 'ar')
 
-    <link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.css?v=7.0.6" ') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6') }}"  rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('dashboard/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css"/>
-@endif
+<link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.css?v=7.0.6" ') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6') }}"  rel="stylesheet" type="text/css"/>
+<link href="{{ asset('dashboard/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css"/>
 <!--end::Global Theme Styles-->
 
 <!--begin::Layout Themes(used by all pages)-->

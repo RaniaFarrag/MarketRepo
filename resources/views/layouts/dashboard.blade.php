@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" direction="rtl" style="direction: rtl;">
 <head>
     @include('layouts.meta_en')
 </head>
