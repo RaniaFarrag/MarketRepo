@@ -115,18 +115,45 @@
 <script src="{{ asset('dashboard/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}"></script>
 <!--end::Page Scripts-->
 
+@if(app()->getLocale() == 'en')
+
+    <script>
+        $(document).ready(function () {
+              $('.select2').select2();
+
+        });
+    </script>
+@elseif(app()->getLocale() == 'ar')
+
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                // options
+                searchInputPlaceholder: 'بحث ...',
+                dir: "rtl",
+                language: {
+                    noResults: function (params) {
+                        return "لم يتم العثور على تطابق";
+                    }
+                }
+            });
+        });
+    </script>
+@endif
+
 <script>
     $(document).ready(function () {
-           $('.select2').select2();
-     /*   $('.select2').select2({
+        //   $('.select2').select2();
+       $('.select2').select2({
             // options
             searchInputPlaceholder: 'بحث ...',
+           dir: "rtl",
             language: {
                 noResults: function (params) {
                     return "لم يتم العثور على تطابق";
                 }
             }
-        });*/
+        });
     });
 </script>
 

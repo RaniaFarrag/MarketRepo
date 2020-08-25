@@ -3,7 +3,8 @@
 <div id="kt_header_mobile" class="header-mobile ">
     <!--begin::Logo-->
     <a href="#">
-        <img alt="Logo" src="{{ asset('dashboard/assets/media/logos/logo-letter-1.png') }}" class="logo-default max-h-30px"/>
+        <img alt="Logo" src="{{ asset('dashboard/assets/media/logos/logo-letter-1.png') }}"
+             class="logo-default max-h-30px"/>
     </a>
     <!--end::Logo-->
 
@@ -69,7 +70,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">Companies Data</span>
+                                                    class="menu-text">{{ trans('dashboard.Companies Data') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -81,16 +82,17 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="icon  fa fa-building"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Companies View</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Companies View') }}</span>
+                                                    </a>
 
                                                 </li>
-                                            <li class="menu-item "aria-haspopup="true">
+                                                <li class="menu-item " aria-haspopup="true">
                                                     <a href="javascript:;" class="menu-link menu-toggle">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-marker"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Add New Company</span>
+                                                        <span class="menu-text">{{ trans('dashboard.Add New Company') }}</span>
                                                     </a>
 
                                                 </li>
@@ -102,7 +104,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">Corporate Assignment</span>
+                                                    class="menu-text">{{ trans('dashboard.Corporate Assignment') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -115,7 +117,8 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                       <i class="fas fa-user-tie"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Assign companies to a representative</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Assign companies to a representative') }}</span>
+                                                    </a>
 
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
@@ -125,7 +128,8 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="far fa-building"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text"> Representative companies</span> </a>
+                                                        <span class="menu-text"> {{ trans('dashboard.Representative companies') }}</span>
+                                                    </a>
 
                                                 </li>
 
@@ -136,7 +140,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">{{ trans('dashboard.countries') }}</span>
+                                                    class="menu-text">{{ trans('dashboard.Region') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -150,7 +154,8 @@
                                                         <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                      <i class="fas fa-marker"></i>
                                                         <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.Countries') }}</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Countries') }}</span>
+                                                    </a>
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
@@ -159,7 +164,8 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-map-marker-alt"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.Cities') }}</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Cities') }}</span>
+                                                    </a>
 
                                                 </li>
 
@@ -169,7 +175,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">{{ trans('dashboard.sectors') }}</span>
+                                                    class="menu-text">{{ trans('dashboard.Sectors') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -183,17 +189,19 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-suitcase"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.View Sectors') }}</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.View Sectors') }}</span>
+                                                    </a>
 
                                                 </li>
-                                            <li class="menu-item " data-menu-toggle="hover"
+                                                <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
                                                     <a href="{{ route('sectors.create') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-marker"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.Add New Sector') }}</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Add New Sector') }}</span>
+                                                    </a>
 
                                                 </li>
 
@@ -204,7 +212,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">Reports</span>
+                                                    class="menu-text">{{ trans('dashboard.Reports') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -218,17 +226,19 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="far fa-chart-bar"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Company Report</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Company Report') }}</span>
+                                                    </a>
 
                                                 </li>
-                                            <li class="menu-item " data-menu-toggle="hover"
+                                                <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
                                                     <a href="javascript:;" class="menu-link menu-toggle">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-user-tie"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Rep Reports</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Rep Reports') }}</span>
+                                                    </a>
 
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
@@ -238,7 +248,8 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="far fa-list-alt"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Monitor the login</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Monitor the login') }}</span>
+                                                    </a>
 
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
@@ -248,10 +259,10 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-users-cog"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">TEAM SALES LEAD REPORT</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
+                                                    </a>
 
                                                 </li>
-
 
 
                                             </ul>
@@ -260,7 +271,7 @@
                                     <li class="menu-item  menu-item-submenu menu-item-rel" data-menu-toggle="click"
                                         aria-haspopup="true">
                                         <a href="javascript:;" class="menu-link menu-toggle"><span
-                                                    class="menu-text">Users</span>
+                                                    class="menu-text">{{ trans('dashboard.Users') }}</span>
                                             <span class="menu-desc"></span>
                                             <i class="menu-arrow"></i>
                                         </a>
@@ -274,17 +285,19 @@
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="fas fa-users"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">View Users</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.View Users') }}</span>
+                                                    </a>
 
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
-                                                        aria-haspopup="true">
+                                                    aria-haspopup="true">
                                                     <a href="javascript:;" class="menu-link menu-toggle">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-user-plus"></i>
                                                             <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">Add New Users</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Add New Users') }}</span>
+                                                    </a>
 
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
@@ -295,7 +308,8 @@
                                                          <i class="fas fa-user-plus"></i>
                                                             <!--end::Svg Icon-->
                                                         </span>
-                                                        <span class="menu-text">{{ trans('dashboard.View Roles') }}</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.View Roles') }}</span>
+                                                    </a>
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
@@ -305,7 +319,8 @@
                                                          <i class="fas fa-user-plus"></i>
                                                             <!--end::Svg Icon-->
                                                         </span>
-                                                        <span class="menu-text">{{ trans('dashboard.Add New Role') }}</span> </a>
+                                                        <span class="menu-text">{{ trans('dashboard.Add New role') }}</span>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -353,8 +368,8 @@
                                          style="background-image: url({{ asset('dashboard/assets/media/misc/bg-1.jpg') }})">
                                         <!--begin::Title-->
                                         <h4 class="d-flex flex-center rounded-top">
-                                            <span class="text-white">User Notifications</span>
-                                            <span class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2">23 new</span>
+                                            <span class="text-white">{{ trans('dashboard.User Notifications') }}</span>
+                                            <span class="btn btn-text btn-success btn-sm font-weight-bold btn-font-md ml-2">23 {{ trans('dashboard.new') }}</span>
                                         </h4>
                                         <!--end::Title-->
 
@@ -379,7 +394,8 @@
 
 
                                         <!--begin::Tabpane-->
-                                        <div class="tab-pane active show p-8" id="topbar_notifications_events" role="tabpanel">
+                                        <div class="tab-pane active show p-8" id="topbar_notifications_events"
+                                             role="tabpanel">
                                             <!--begin::Nav-->
                                             <div class="navi navi-hover scroll my-4" data-scroll="true"
                                                  data-height="300" data-mobile-height="200">
@@ -664,7 +680,8 @@
                             <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
                                 <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1">
                                     <img class="h-20px w-20px rounded-sm"
-                                         src="{{ asset('dashboard/assets/media/svg/flags/226-united-states.svg') }}" alt=""/>
+                                         src="{{ asset('dashboard/assets/media/svg/flags/226-united-states.svg') }}"
+                                         alt=""/>
                                 </div>
                             </div>
                             <!--end::Toggle-->
@@ -677,7 +694,8 @@
                                     <li class="navi-item">
                                         <a href="{{ route('locale' , 'en') }}" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="{{ asset('dashboard/assets/media/svg/flags/226-united-states.svg') }}" alt=""/>
+                                                <img src="{{ asset('dashboard/assets/media/svg/flags/226-united-states.svg') }}"
+                                                     alt=""/>
                                             </span>
                                             <span class="navi-text">English</span>
                                         </a>
@@ -688,7 +706,8 @@
                                     <li class="navi-item active">
                                         <a href="{{ route('locale' , 'ar') }}" class="navi-link">
                                             <span class="symbol symbol-20 mr-3">
-                                                <img src="{{ asset('dashboard/assets/media/svg/flags/133-saudi-arabia.svg') }}" alt=""/>
+                                                <img src="{{ asset('dashboard/assets/media/svg/flags/133-saudi-arabia.svg') }}"
+                                                     alt=""/>
                                             </span>
                                             <span class="navi-text">Arabic</span>
                                         </a>
@@ -723,11 +742,14 @@
                                 <div class="navi navi-spacer-x-0 pt-5">
 
                                     <div class="navi-footer  px-8 py-5">
-                                        <a href="{{ route('logout') }}" class="btn btn-light-primary btn-block font-weight-bold"
-                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>
+                                        <a href="{{ route('logout') }}"
+                                           class="btn btn-light-primary btn-block font-weight-bold"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                                            Out</a>
                                     </div>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
 

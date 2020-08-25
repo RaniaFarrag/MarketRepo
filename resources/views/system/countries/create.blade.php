@@ -14,7 +14,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Add New country') }}
+                            {{ trans('dashboard.Add New Country') }}
                         </h2>
                         <!--end::Title-->
 
@@ -27,13 +27,16 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }} </a>
-                            <!--end::Item-->
-                            <!--begin::Item-->
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Region') }}
+                            </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Add New country') }}
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Countries') }}
+                            </a>
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Add New Country') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -71,28 +74,28 @@
                                 @csrf
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New country') }}
+                                         {{ trans('dashboard.Add New Country') }}
                                     </h3>
 
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Country Name Arabic') }} :</label>
-                                            <input value="{{ old('name_ar') }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.rolename_ar') }}"/>
+                                            <input value="{{ old('name_ar') }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.Country Name Arabic') }}"/>
                                             @error('name_ar')
                                                 <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Country Name English') }}  :</label>
-                                            <input value="{{ old('name_en') }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.rolename_en') }}"/>
+                                            <input value="{{ old('name_en') }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.Country Name English') }}"/>
                                             @error('name_en')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Country Name English') }}  :</label>
-                                            <input value="{{ old('code') }}" name="code" type="text" class="form-control" placeholder="{{ trans('dashboard.code') }}"/>
+                                            <label>{{ trans('dashboard.Code') }}  :</label>
+                                            <input value="{{ old('code') }}" name="code" type="text" class="form-control" placeholder="{{ trans('dashboard.Code') }}"/>
                                             @error('code')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
@@ -103,8 +106,8 @@
 
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-4"></div>
-                                        <div class="col-lg-8">
+
+                                        <div class="col-lg-12 text-center">
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
                                             <a href="{{ route('countries.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>

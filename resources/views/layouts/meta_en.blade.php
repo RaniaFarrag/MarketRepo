@@ -1,5 +1,5 @@
 <meta charset="utf-8"/>
-<title>Marketing HC | Dashboard</title>
+<title>Marketing System | Dashboard</title>
 <meta name="description" content="Updates and statistics"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
@@ -19,9 +19,11 @@
     <link href="{{ asset('dashboard/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css"/>
 @elseif(app()->getLocale() == 'ar')
 
-    <link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.css?v=7.0.6" ') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6') }}"  rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('dashboard/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Cairo:400,700&amp;subset=arabic" rel="stylesheet">
+    <link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css') }}"  rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('dashboard/assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
+
 @endif
 <!--end::Global Theme Styles-->
 
