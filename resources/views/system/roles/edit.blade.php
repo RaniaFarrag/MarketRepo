@@ -91,7 +91,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Role Name Arabic') }} :</label>
-                                            <input value="{{ $role->name }}" name="name_ar" type="text"
+                                            <input value="{{ $role->name_ar }}" name="name_ar" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Role Name Arabic') }}"/>
                                             @error('name_ar')
@@ -100,10 +100,10 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Role Name English') }} :</label>
-                                            <input value="{{ $role->name_en }}" name="name_en" type="text"
+                                            <input value="{{ $role->name }}" name="name" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Role Name English') }}"/>
-                                            @error('name_en')
+                                            @error('name')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -133,12 +133,12 @@
                                         @foreach($permissions as $k => $permission)
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
-                                                <td>  {{ app()->getLocale()=='ar' ? $permission->name : $permission->name_en }}  </td>
+                                                <td>  {{ app()->getLocale()=='ar' ? $permission->name_ar : $permission->name }}  </td>
                                                 <td>
                                                 <span class="switch switch-icon">
                                                     <label>
-                                                        <input name="permissions[]" value="{{ $permission->name_en }}" type="checkbox"
-                                                                {{ $role->hasPermissionTo($permission->name_en) ? ' checked' : '' }}/>
+                                                        <input name="permissions[]" value="{{ $permission->name }}" type="checkbox"
+                                                                {{ $role->hasPermissionTo($permission->name) ? ' checked' : '' }}/>
                                                         <span></span>
                                                     </label>
                                                 </span>

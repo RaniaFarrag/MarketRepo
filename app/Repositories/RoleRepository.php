@@ -47,8 +47,8 @@ class RoleRepository implements RoleRepositoryInterface
     {
         //dd($request->all());
         $role = $this->role_model::create([
-            'name' => $request->name_ar,
-            'name_en' => $request->name_en,
+            'name' =>$request->name,
+            'name_ar' =>$request->name_ar,
             'guard_name' => 'web'
         ]);
 
@@ -71,8 +71,8 @@ class RoleRepository implements RoleRepositoryInterface
     public function update($request , $role){
 
         $role->update([
-            'name' =>$request->name_ar,
-            'name_en' =>$request->name_en,
+            'name' =>$request->name,
+            'name_ar' =>$request->name_ar,
             'guard_name' =>'web',
         ]);
 

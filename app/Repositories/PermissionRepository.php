@@ -38,8 +38,8 @@ class PermissionRepository implements PermissionRepositoryInterface
     public function store($request)
     {
         $permission = $this->permission_model::create([
-            'name' => $request->name_ar,
-            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'name' => $request->name,
             'guard_name' => 'web'
         ]);
 
@@ -53,8 +53,8 @@ class PermissionRepository implements PermissionRepositoryInterface
     /** Submit Edit Role */
     public function update($request , $permission){
         $permission->update([
-            'name' => $request->name_ar,
-            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'name' => $request->name,
             'guard_name' => 'web'
         ]);
 

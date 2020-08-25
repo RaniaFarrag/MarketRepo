@@ -87,10 +87,10 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Permission Name English') }} :</label>
-                                            <input value="{{ old('name_en') }}" name="name_en" type="text"
+                                            <input value="{{ old('name') }}" name="name" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Permission Name English') }}"/>
-                                            @error('name_en')
+                                            @error('name')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>

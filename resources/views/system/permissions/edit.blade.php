@@ -79,7 +79,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Permission Name Arabic') }} :</label>
-                                            <input value="{{ $permission->name }}" name="name_ar" type="text"
+                                            <input value="{{ $permission->name_ar }}" name="name_ar" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Permission Name Arabic') }}"/>
                                             @error('name_ar')
@@ -88,10 +88,10 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Permission Name English') }} :</label>
-                                            <input value="{{ $permission->name_en }}" name="name_en" type="text"
+                                            <input value="{{ $permission->name }}" name="name" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Permission Name English') }}"/>
-                                            @error('name_en')
+                                            @error('name')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
