@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleRequest;
 use App\Interfaces\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -48,7 +49,7 @@ class RoleController extends Controller
      */
 
     /** Store Role */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
 
         return $this->rolerepositoryinterface->store($request);
@@ -88,7 +89,7 @@ class RoleController extends Controller
      */
 
     /** Submit Edit Role */
-    public function update(Request $request, Role $role)
+    public function update(RoleRequest $request, Role $role)
     {
         return $this->rolerepositoryinterface->update($request , $role);
     }
