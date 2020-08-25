@@ -2,31 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RoleRequest;
-use App\Interfaces\RoleRepositoryInterface;
+use App\Http\Requests\PermissionRequest;
+use App\Interfaces\PermissionRepositoryInterface;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
-    protected $rolerepositoryinterface;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    protected $permissionRepositoryinterface;
 
-    public function __construct(RoleRepositoryInterface $roleRepositoryinterface)
+    public function __construct(PermissionRepositoryInterface $permissionRepositoryinterface)
     {
-        $this->rolerepositoryinterface = $roleRepositoryinterface;
-
+        $this->permissionRepositoryinterface = $permissionRepositoryinterface;
     }
 
-    /** View All Roles */
     public function index()
     {
-        $roles = $this->rolerepositoryinterface->index();
-        return view('system.roles.index')->with('roles' , $roles);
+        $permissions  = $this->permissionRepositoryinterface->index();
+        return view('system.permissions.index')->with('permissions' , $permissions);
     }
 
     /**
@@ -34,11 +32,9 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    /** View Add Role Form */
     public function create()
     {
-        return view('system.roles.create');
+        return view('system.permissions.create');
     }
 
     /**
@@ -47,13 +43,9 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    /** Store Role */
-    public function store(RoleRequest $request)
+    public function store(PermissionRequest $request)
     {
-
-        return $this->rolerepositoryinterface->store($request);
-
+        return $this->permissionRepositoryinterface->store($request);
     }
 
     /**
@@ -62,7 +54,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
         //
     }
@@ -73,11 +65,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    /** View Edit Role Form */
-    public function edit(Role $role)
+    public function edit(Permission $permission)
     {
-        return view('system.roles.edit')->with('role' , $role);
+        return view('system.permissions.edit')->with('permission' , $permission);
+
     }
 
     /**
@@ -87,11 +78,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    /** Submit Edit Role */
-    public function update(RoleRequest $request, Role $role)
+    public function update(PermissionRequest $request, Permission $permission)
     {
-        return $this->rolerepositoryinterface->update($request , $role);
+        return $this->permissionRepositoryinterface->update($request , $permission);
     }
 
     /**
@@ -100,10 +89,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    /** Delete Role */
-    public function destroy(Role $role)
+    public function destroy(Permission $permission)
     {
-        return $this->rolerepositoryinterface->destroy($role);
+        return $this->permissionRepositoryinterface->destroy($permission);
     }
 }

@@ -16,7 +16,7 @@ class CreateSubSectorTranslationsTable extends Migration
         Schema::create('sub_sector_translations', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('sub_sector_id')->unsigned();
-            $table->foreign('sub_sector_id')->references('id')->on('sectors')->onDelete('cascade');
+            $table->foreign('sub_sector_id')->references('id')->on('sub_sectors')->onDelete('cascade');
             $table->string('locale')->index();
             $table->string('name');
             $table->timestamps();

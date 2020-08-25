@@ -36,11 +36,6 @@ class RoleRepository implements RoleRepositoryInterface
     /** Store Role */
     public function store($request)
     {
-        $validator = Validator::make($request->all() , [
-            'name_ar' => 'required',
-            'name_en' => 'required',
-        ])->validate();
-
         $role = $this->role_model::create([
             'name' => $request->name_ar,
             'name_en' => $request->name_en,
@@ -56,11 +51,7 @@ class RoleRepository implements RoleRepositoryInterface
 
     /** Submit Edit Role */
     public function update($request , $role){
-        $validator = Validator::make($request->all() , [
-            'name_ar' => 'required',
-            'name_en' => 'required',
-        ])->validate();
-
+        
         $role->update([
             'name' =>$request->name_ar,
             'name_en' =>$request->name_en,

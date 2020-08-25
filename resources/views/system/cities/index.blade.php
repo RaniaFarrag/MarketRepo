@@ -101,9 +101,9 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($cities as $city)
+                                    @foreach($cities as $k=>$city)
                                         <tr>
-                                            <td>{{ $city->id }}</td>
+                                            <td>{{ $k+1 }}</td>
                                             <td>{{ $city->translate('ar')->name }}</td>
                                             <td>{{ $city->translate('en')->name}}</td>
                                             <td>{{ $city->code}}</td>

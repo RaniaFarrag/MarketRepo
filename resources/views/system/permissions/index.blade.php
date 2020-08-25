@@ -43,13 +43,13 @@
 
 
                     <!--begin::Button-->
-                    <a href="{{ route('countries.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Country') }}
+                    <a href="{{ route('permissions.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Add New permission') }}
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
                     <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total companies (1406)
+                        Total permissions (1406)
                     </a>
                     <!--end::Button-->
 
@@ -80,7 +80,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.All Countries') }}
+                                        {{ trans('dashboard.All permissions') }}
                                     </h3>
                                 </div>
 
@@ -91,9 +91,8 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ trans('dashboard.Country Name Arabic') }}</th>
-                                        <th>{{ trans('dashboard.Country Name English') }}</th>
-                                        <th>{{ trans('dashboard.Code') }}</th>
+                                        <th>{{ trans('dashboard.Permission Name Arabic') }}</th>
+                                        <th>{{ trans('dashboard.Permission Name English') }}</th>
                                         <th>{{ trans('dashboard.edit') }}</th>
                                         <th>{{ trans('dashboard.delete') }}</th>
 
@@ -101,15 +100,14 @@
                                     </thead>
 
                                     <tbody>
-                                    @foreach($countries as $k=>$country)
+                                    @foreach($permissions as $k=>$permission)
                                         <tr>
                                             <td>{{ $k+1 }}</td>
-                                            <td>{{ $country->translate('ar')->name }}</td>
-                                            <td>{{ $country->translate('en')->name}}</td>
-                                            <td>{{ $country->code}}</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('countries.edit' , $country->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            <td>{{ $permission->name }}</td>
+                                            <td>{{ $permission->name_en }}</td>
+                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('permissions.edit' , $permission->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
-                                                <form method="post" action="{{ route('countries.destroy' , $country->id) }}">
+                                                <form method="post" action="{{ route('permissions.destroy' , $permission->id) }}">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
@@ -120,7 +118,7 @@
 
                                     </tbody>
 
-                                </table>{{ $countries->links() }}
+                                </table>{{ $permissions->links() }}
                                 <!--end: Datatable-->
                             </div>
                         </div>
@@ -137,42 +135,5 @@
     </div>
     <!--end::Content-->
 
+
 @endsection
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event, element) {
-                element.trigger('confirm');
-            }
-        });
-
-
-        $(document).on('confirm', function (e) {
-            var ele = e.target;
-            e.preventDefault();
-
-            $.ajax({
-                url: ele.href,
-                type: 'DELETE',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                success: function (data) {
-                    if (data['success']) {
-                        $("#" + data['tr']).slideUp("slow");
-                        alert(data['success']);
-                    } else if (data['error']) {
-                        alert(data['error']);
-                    } else {
-                        alert('Whoops Something went wrong!!');
-                    }
-                },
-                error: function (data) {
-                    alert(data.responseText);
-                }
-            });
-
-            return false;
-        });
-    });
-</script>
