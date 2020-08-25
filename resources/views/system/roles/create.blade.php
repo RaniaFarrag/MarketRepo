@@ -198,6 +198,412 @@
                                     </div>
                                 </div>
                             </form>
+<<<<<<< HEAD
+=======
+                            <div class="separator separator-dashed mt-8 mb-5"></div>
+                            <div class="col-md-12">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th> {{ trans('dashboard.Access Name') }}</th>
+                                        <th>{{ trans('dashboard.View') }}</th>
+                                        <th>{{ trans('dashboard.Add') }}</th>
+                                        <th>{{ trans('dashboard.edit') }}</th>
+                                        <th>{{ trans('dashboard.delete') }}</th>
+                                        <th>{{ trans('dashboard.Action') }}</th>
+
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Dashboard</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                            <label>
+                                                <input type="checkbox" checked="checked" name="select"/>
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                      <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Dashboard Boxs</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Dashboard Report</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class="sprated">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Companies Data</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                            <label>
+                                                <input type="checkbox" checked="checked" name="select"/>
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                      <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Companies Filters</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>General information</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Designated contact</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Confirm Meeting</td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+		                            	</span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                     <input type="checkbox" disabled name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="switch switch-icon">
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="select"/>
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class="sprated">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+
+                                    </tbody>
+>>>>>>> 93d8fddced4cf80eab2301c5cc3418cb21527086
 
                         </div>
 
