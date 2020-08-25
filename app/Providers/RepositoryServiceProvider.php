@@ -39,6 +39,12 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\SubSectorRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\PermissionRepositoryInterface',
+            'App\Repositories\PermissionRepository'
+        );
+
+
     }
 
     /**

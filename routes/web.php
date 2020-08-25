@@ -28,6 +28,9 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Roles */
     Route::resource('roles' , 'RoleController');
 
+    /** Manage Permissions */
+    Route::resource('permissions' , 'PermissionController');
+
     /** Manage Countries */
     Route::resource('countries' , 'CountryController');
 
