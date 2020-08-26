@@ -84,7 +84,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New role') }}
+                                       {{ trans('dashboard.Add New role') }}
                                     </h3>
 
                                     <div class="form-group row">
@@ -275,16 +275,7 @@
 
                                     </tr>
 
-                                    <tr class="sprated">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
 
-                                    </tr>
 
                                     <tr>
                                         <td>4</td>
@@ -511,17 +502,7 @@
                                         </td>
 
                                     </tr>
-
-                                    <tr class="sprated">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-
-                                    </tr>
+ 
 
                                     </tbody>
 

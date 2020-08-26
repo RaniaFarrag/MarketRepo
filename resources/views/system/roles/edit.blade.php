@@ -72,7 +72,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Edit role') }}
+                                         {{ trans('dashboard.Edit role') }}
                                     </h3>
 
                                     <div class="form-group row">
