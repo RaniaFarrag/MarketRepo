@@ -85,7 +85,9 @@
 
                             </div>
                             <div class="card-body">
+                                <div class="table-responsive">
                                 <!--begin: Datatable-->
+
                                 <table class="table table-bordered text-center">
                                     <thead>
                                     <tr>
@@ -121,6 +123,7 @@
 
                                 </table>{{ $cities->links() }}
                                 <!--end: Datatable-->
+                            </div>
                             </div>
                         </div>
                         <!--end::Card-->

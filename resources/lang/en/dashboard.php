@@ -74,6 +74,23 @@ return [
     'Country' => 'Country',
     'Select All' => 'Select All',
     'Edit City' => 'Edit City',
+    'All Roles' => 'All Roles',
+    'Edit role' => 'Edit role',
+    'Permission Name' => 'Permission Name',
+    'All sectors' => 'All sectors',
+    'Sector Name Arabic' => 'Sector Name Arabic',
+    'Sector Name English' => 'Sector Name English',
+    'Sub-Sector' => 'Sub-Sector',
+    'All sub-sectors' => 'All sub-sectors',
+    'Sub-Sector Name English' => 'Sub-Sector Name English',
+    'Sub-Sector Name Arabic' => 'Sub-Sector Name Arabic',
+    'Add New Sub-Sector' => 'Add New Sub-Sector',
+    'Edit Sub-Sector' => 'Edit Sub-Sector',
+    'All permissions' => 'All permissions',
+    'Add New permission' => 'Add New permission',
+    'Permission Name Arabic' => 'Add New permission',
+    'Permission Name English' => 'Permission Name English',
+    'Edit permission' => 'Edit permission',
 
 
 

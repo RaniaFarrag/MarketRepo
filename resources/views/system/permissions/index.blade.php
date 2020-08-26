@@ -15,7 +15,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.dashboard') }}
+                            {{ trans('dashboard.All permissions') }}
                         </h2>
                         <!--end::Title-->
 
@@ -29,7 +29,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }}
+                                {{ trans('dashboard.All permissions') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -45,11 +45,6 @@
                     <!--begin::Button-->
                     <a href="{{ route('permissions.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New permission') }}
-                    </a>
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total permissions (1406)
                     </a>
                     <!--end::Button-->
 
@@ -86,6 +81,7 @@
 
                             </div>
                             <div class="card-body">
+                                <div class="table-responsive">
                                 <!--begin: Datatable-->
                                 <table class="table table-bordered text-center">
                                     <thead>
@@ -110,7 +106,7 @@
                                                 <form method="post" action="{{ route('permissions.destroy' , $permission->id) }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -120,6 +116,7 @@
 
                                 </table>{{ $permissions->links() }}
                                 <!--end: Datatable-->
+                            </div>
                             </div>
                         </div>
                         <!--end::Card-->

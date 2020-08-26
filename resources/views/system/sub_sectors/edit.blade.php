@@ -14,7 +14,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Add New sub-sector') }}
+                            {{ trans('dashboard.Edit Sub-Sector') }}
                         </h2>
                         <!--end::Title-->
 
@@ -33,7 +33,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Add New sub-sector') }}
+                                {{ trans('dashboard.Edit Sub-Sector') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -75,7 +75,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New sub-sector') }}
+                                        {{ trans('dashboard.Edit Sub-Sector') }}
                                     </h3>
 
                                     <div class="form-group row">
