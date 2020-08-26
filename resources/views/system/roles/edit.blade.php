@@ -1,7 +1,19 @@
 @extends('layouts.dashboard')
 
 @section('body')
-
+    <style>
+        .switch label {
+            margin: 0 auto;
+        }
+        table.table.table-bordered.text-center tbody tr.sprated td {
+            background: #6993FF !important;
+            color: #6993FF;
+            height: 3px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            line-height: 1px;
+            font-size: 0;}
+    </style>
     <!--begin::Content-->
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -14,7 +26,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Edit role') }}
+                            {{ trans('dashboard.Add New role') }}
                         </h2>
                         <!--end::Title-->
 
@@ -27,13 +39,14 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}"
+                               class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.dashboard') }} </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Edit role') }}
+                                {{ trans('dashboard.Add New role') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -68,48 +81,136 @@
                             @endif
 
                             <form method="post" action="{{ route('roles.update' , $role->id) }}" class="form">
-                                @method('PUT')
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
+<<<<<<< HEAD
                                          {{ trans('dashboard.Edit role') }}
+=======
+                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New role') }}
+>>>>>>> 52ef84f84f9b8f961d5e6490ee79cea9f4b15e0e
                                     </h3>
 
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Role Name Arabic') }} :</label>
-                                            <input value="{{ $role->name }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.rolename_ar') }}"/>
+                                            <input value="{{ $role->name_ar }}" name="name_ar" type="text"
+                                                   class="form-control"
+                                                   placeholder="{{ trans('dashboard.Role Name Arabic') }}"/>
                                             @error('name_ar')
-                                            <div class="error">{{ $message }}</div>
+                                                <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.Role Name English') }}  :</label>
-                                            <input value="{{ $role->name_en }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.rolename_en') }}"/>
-                                            @error('name_en')
+                                            <label>{{ trans('dashboard.Role Name English') }} :</label>
+                                            <input value="{{ $role->name }}" name="name" type="text"
+                                                   class="form-control"
+                                                   placeholder="{{ trans('dashboard.Role Name English') }}"/>
+                                            @error('name')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
 
+                                </div>
+
+
+                                {{--<div class="separator separator-dashed mt-8 mb-5"></div>--}}
+                                <div class="col-md-12">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th> {{ trans('dashboard.Permission Name') }}</th>
+                                            {{--<th>{{ trans('dashboard.View') }}</th>--}}
+                                            {{--<th>{{ trans('dashboard.Add') }}</th>--}}
+                                            {{--<th>{{ trans('dashboard.edit') }}</th>--}}
+                                            {{--<th>{{ trans('dashboard.delete') }}</th>--}}
+                                            <th>{{ trans('dashboard.Action') }}</th>
+
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($permissions as $k => $permission)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>  {{ app()->getLocale()=='ar' ? $permission->name_ar : $permission->name }}  </td>
+                                                <td>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input name="permissions[]" value="{{ $permission->name }}" type="checkbox"
+                                                                {{ $role->hasPermissionTo($permission->name) ? ' checked' : '' }}/>
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                                </td>
+                                                {{--<td>--}}
+                                                {{--<span class="switch switch-icon">--}}
+                                                {{--<label>--}}
+                                                {{--<input type="checkbox" name="select"/>--}}
+                                                {{--<span></span>--}}
+                                                {{--</label>--}}
+                                                {{--</span>--}}
+                                                {{--</td>--}}
+                                                {{--<td>--}}
+                                                {{--<span class="switch switch-icon">--}}
+                                                {{--<label>--}}
+                                                {{--<input type="checkbox" disabled name="select"/>--}}
+                                                {{--<span></span>--}}
+                                                {{--</label>--}}
+                                                {{--</span>--}}
+                                                {{--</td>--}}
+                                                {{--<td>--}}
+                                                {{--<span class="switch switch-icon">--}}
+                                                {{--<label>--}}
+                                                {{--<input type="checkbox" disabled name="select"/>--}}
+                                                {{--<span></span>--}}
+                                                {{--</label>--}}
+                                                {{--</span>--}}
+                                                {{--</td>--}}
+                                                {{--<td>--}}
+                                                {{--<span class="switch switch-icon">--}}
+                                                {{--<label>--}}
+                                                {{--<input type="checkbox" disabled name="select"/>--}}
+                                                {{--<span></span>--}}
+                                                {{--</label>--}}
+                                                {{--</span>--}}
+                                                {{--</td>--}}
+                                            </tr>
+                                        @endforeach
+                                        <tr class="sprated">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+                                        </tbody>
+
+                                    </table>
                                 </div>
 
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-4"></div>
-                                        <div class="col-lg-8">
-                                            <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                            <a href="{{ route('roles.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
+                                        <div class="col-lg-12 text-center">
+                                            <button type="submit"
+                                                    class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
+                                            <a href="{{ route('roles.index') }}"
+                                               class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
 
 
                     </div>
                     <!--end::Card-->
                 </div>
+
             </div>
             <!--end::Row-->
 

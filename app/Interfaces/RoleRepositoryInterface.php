@@ -15,9 +15,14 @@ interface RoleRepositoryInterface
     /** View All Roles */
     public function index();
 
+    /** Create Role */
+    public function create();
+
     /** Store Role */
     public function store($request);
 
+    /** Edit Role */
+    public function edit();
 
     /** Submit Edit Role */
     public function update($request , $role);

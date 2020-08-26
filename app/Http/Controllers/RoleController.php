@@ -38,7 +38,8 @@ class RoleController extends Controller
     /** View Add Role Form */
     public function create()
     {
-        return view('system.roles.create');
+        $permissions = $this->rolerepositoryinterface->create();
+        return view('system.roles.create')->with('permissions' , $permissions);
     }
 
     /**
@@ -51,9 +52,7 @@ class RoleController extends Controller
     /** Store Role */
     public function store(RoleRequest $request)
     {
-
         return $this->rolerepositoryinterface->store($request);
-
     }
 
     /**
@@ -77,7 +76,9 @@ class RoleController extends Controller
     /** View Edit Role Form */
     public function edit(Role $role)
     {
-        return view('system.roles.edit')->with('role' , $role);
+        //dd($role);
+        $permissions = $this->rolerepositoryinterface->edit();
+        return view('system.roles.edit')->with(['role' => $role , 'permissions' => $permissions]);
     }
 
     /**
