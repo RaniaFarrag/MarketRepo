@@ -26,7 +26,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Add New role') }}
+                            {{ trans('dashboard.Edit role') }}
                         </h2>
                         <!--end::Title-->
 
@@ -46,7 +46,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Add New role') }}
+                                {{ trans('dashboard.Edit role') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -85,7 +85,7 @@
                                 @method('PUT')
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New role') }}
+                                        {{ trans('dashboard.Edit role') }}
                                     </h3>
 
                                     <div class="form-group row">
@@ -119,10 +119,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th> {{ trans('dashboard.Permission Name') }}</th>
-                                            {{--<th>{{ trans('dashboard.View') }}</th>--}}
-                                            {{--<th>{{ trans('dashboard.Add') }}</th>--}}
-                                            {{--<th>{{ trans('dashboard.edit') }}</th>--}}
-                                            {{--<th>{{ trans('dashboard.delete') }}</th>--}}
                                             <th>{{ trans('dashboard.Action') }}</th>
 
 
@@ -143,45 +139,9 @@
                                                     </label>
                                                 </span>
                                                 </td>
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" disabled name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" disabled name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" disabled name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
+
                                             </tr>
                                         @endforeach
-                                        <tr class="sprated">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
 
                                         </tbody>
 

@@ -28,8 +28,12 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }}
+                            <a href="{{ route('sectors.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.All sectors') }}
+                            </a>
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.All sub-sectors') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -45,12 +49,10 @@
                         {{ trans('dashboard.Add New Sub-Sector') }}
                     </a>
                     <!--end::Button-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total companies (1406)
-                    </a>
-                    <!--end::Button-->
 
+                    <a href="{{ route('sectors.index') }}" class="btn btn-white font-weight-bold py-3 px-6">
+                        {{ trans('dashboard.All sectors') }}
+                    </a>
 
                 </div>
 
@@ -84,6 +86,7 @@
 
                             </div>
                             <div class="card-body">
+                                <div class="table-responsive">
                                 <!--begin: Datatable-->
                                 <table class="table table-bordered text-center">
                                     <thead>
@@ -108,7 +111,7 @@
                                                 <form method="post" action="{{ route('sub_sectors.destroy' , $sub_sector->id) }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -118,6 +121,7 @@
 
                                 </table>{{ $sub_sectors->links() }}
                                 <!--end: Datatable-->
+                            </div>
                             </div>
                         </div>
                         <!--end::Card-->

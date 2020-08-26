@@ -51,7 +51,7 @@ return [
     'Add New City' => 'اضافة مدينة جديدة',
     'Sectors' => 'القطاعات',
     'View Sectors' => 'عرض القطاعات',
-    'Add New Sector' => 'اضافة قطاع',
+    'Add New Sector' => 'اضافة قطاع جديد',
     'Reports' => 'التقارير',
     'Company Report' => 'تقرير الشركات',
     'Rep Reports' => 'تقرير المندوب',
@@ -76,6 +76,22 @@ return [
     'Edit City' => 'تعديل المدينة',
     'All Roles' => 'كل الصلاحيات',
     'Edit role' => 'تعديل الصلاحية',
+    'Permission Name' => 'اسم الإذن',
+    'All sectors' => 'كل القطاعات',
+    'Sector Name Arabic' => 'اسم القطاع بالعربى',
+    'Sector Name English' => 'اسم القطاع بالانجليزي',
+    'Sub-Sector' => 'القطاعات الفرعية',
+    'All sub-sectors' => 'كل القطاعات الفرعية',
+    'Sub-Sector Name English' => 'اسم القطاع الفرعى بالانجليزي',
+    'Sub-Sector Name Arabic' => 'اسم القطاع الفرعى بالعربية',
+    'Add New Sub-Sector' => 'اضافة قطاع فرعي جديد',
+    'Edit Sub-Sector' => 'تعديل قطاع فرعي',
+    'All permissions' => 'كل الاذونات',
+    'Add New permission' => 'اضافة اذن جديد',
+    'Permission Name Arabic' => 'الاذن بالعربية',
+    'Permission Name English' => 'الاذن بالانجليزية',
+    'Edit permission' => 'تعديل الاذن',
+
 
 
 

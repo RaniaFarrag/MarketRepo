@@ -84,7 +84,7 @@
                                 @csrf
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New role') }}
+                                      {{ trans('dashboard.Add New role') }}
                                     </h3>
 
                                     <div class="form-group row">
@@ -110,18 +110,12 @@
 
                                 </div>
 
-
-                                {{--<div class="separator separator-dashed mt-8 mb-5"></div>--}}
                                 <div class="col-md-12">
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
                                             <th>#</th>
                                             <th> {{ trans('dashboard.Permission Name') }}</th>
-                                            {{--<th>{{ trans('dashboard.View') }}</th>--}}
-                                            {{--<th>{{ trans('dashboard.Add') }}</th>--}}
-                                            {{--<th>{{ trans('dashboard.edit') }}</th>--}}
-                                            {{--<th>{{ trans('dashboard.delete') }}</th>--}}
                                             <th>{{ trans('dashboard.Action') }}</th>
 
 
@@ -142,45 +136,9 @@
                                                         </label>
                                                     </span>
                                                 </td>
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" disabled name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" disabled name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
-                                                {{--<td>--}}
-                                                {{--<span class="switch switch-icon">--}}
-                                                {{--<label>--}}
-                                                {{--<input type="checkbox" disabled name="select"/>--}}
-                                                {{--<span></span>--}}
-                                                {{--</label>--}}
-                                                {{--</span>--}}
-                                                {{--</td>--}}
+
                                             </tr>
                                         @endforeach
-                                        <tr class="sprated">
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
 
                                         </tbody>
 

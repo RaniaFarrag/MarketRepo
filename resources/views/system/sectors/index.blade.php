@@ -15,7 +15,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.dashboard') }}
+                            {{ trans('dashboard.View Sectors') }}
                         </h2>
                         <!--end::Title-->
 
@@ -29,7 +29,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }}
+                                {{ trans('dashboard.View Sectors') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -48,10 +48,6 @@
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total companies (1406)
-                    </a>
-                    <!--end::Button-->
 
 
                 </div>
@@ -85,6 +81,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <div class="table-responsive">
                                 <!--begin: Datatable-->
                                 <table class="table table-bordered text-center">
                                     <thead>
@@ -105,8 +102,10 @@
                                             <td>{{ $k+1 }}</td>
                                             <td>{{ $sector->translate('ar')->name }}</td>
                                             <td>{{ $sector->translate('en')->name }}</td>
-                                            <td><a href="{{ route('sub_sectors.index' , $sector->id) }}">{{ trans('dashboard.Sub-Sector') }}</a></td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('sectors.edit' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                            <td>     <a href="{{ route('sub_sectors.index' , $sector->id) }}" class="btn btn-success btn-sm mr-3"><i class="flaticon2-add"></i> {{ trans('dashboard.Sub-Sector') }}</a>
+                                         </td>
+                                            <td>
+                                                <a class="btn btn-success font-weight-bold" href="{{ route('sectors.edit' , $sector->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             {{--<td>--}}
                                                 {{--<form method="post" action="{{ route('sectors.destroy' , $sector->id) }}">--}}
                                                     {{--@method('DELETE')--}}
@@ -122,6 +121,7 @@
 
                                 </table>{{ $sectors->links() }}
                                 <!--end: Datatable-->
+                            </div>
                             </div>
                         </div>
                         <!--end::Card-->
