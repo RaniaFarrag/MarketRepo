@@ -103,8 +103,8 @@
                                     @foreach($permissions as $k=>$permission)
                                         <tr>
                                             <td>{{ $k+1 }}</td>
+                                            <td>{{ $permission->name_ar }}</td>
                                             <td>{{ $permission->name }}</td>
-                                            <td>{{ $permission->name_en }}</td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('permissions.edit' , $permission->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
                                                 <form method="post" action="{{ route('permissions.destroy' , $permission->id) }}">

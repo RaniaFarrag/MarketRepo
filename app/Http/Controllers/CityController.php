@@ -76,7 +76,7 @@ class CityController extends Controller
     /** Edit City */
     public function edit(City $city)
     {
-        $countries =  $this->cityRepositoryinterface->create();
+        $countries =  $this->cityRepositoryinterface->edit();
         return view('system.cities.edit')->with(['countries' => $countries , 'city' => $city]);
     }
 
