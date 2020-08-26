@@ -85,11 +85,7 @@
                                 @method('PUT')
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-<<<<<<< HEAD
-                                         {{ trans('dashboard.Edit role') }}
-=======
                                         <span class="label label-lg label-primary mr-2">1</span>{{ trans('dashboard.Add New role') }}
->>>>>>> 52ef84f84f9b8f961d5e6490ee79cea9f4b15e0e
                                     </h3>
 
                                     <div class="form-group row">
@@ -99,7 +95,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Role Name Arabic') }}"/>
                                             @error('name_ar')
-                                                <div class="error">{{ $message }}</div>
+                                            <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6">
