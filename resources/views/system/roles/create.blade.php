@@ -111,6 +111,7 @@
                                 </div>
 
                                 <div class="col-md-12">
+                                    <div class="table-responsive">
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
@@ -143,6 +144,8 @@
                                         </tbody>
 
                                     </table>
+
+                                </div>
                                 </div>
 
                                 <div class="card-footer">
