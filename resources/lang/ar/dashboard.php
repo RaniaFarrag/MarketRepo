@@ -74,6 +74,8 @@ return [
     'Country' => 'البلد',
     'Select All' => 'اختر الكل',
     'Edit City' => 'تعديل المدينة',
+    'All Roles' => 'كل الصلاحيات',
+    'Edit role' => 'تعديل الصلاحية',
 
 
 

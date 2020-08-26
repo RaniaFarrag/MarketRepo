@@ -103,7 +103,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Role Name English') }}"/>
                                             @error('name')
-                                                <div class="error">{{ $message }}</div>
+                                            <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -201,16 +201,16 @@
 
 
 
+                        </div>
+                        <!--end::Card-->
                     </div>
-                    <!--end::Card-->
+
                 </div>
+                <!--end::Row-->
 
             </div>
-            <!--end::Row-->
-
+            <!--end::Container-->
         </div>
-        <!--end::Container-->
-    </div>
 
 
 

@@ -95,7 +95,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Role Name Arabic') }}"/>
                                             @error('name_ar')
-                                                <div class="error">{{ $message }}</div>
+                                            <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6">
