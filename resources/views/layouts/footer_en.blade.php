@@ -246,7 +246,6 @@
 </script>
 
 
-
 <!--begin::Page companyData -->
 <script>
 
@@ -257,7 +256,7 @@
         format: 'L'
     });
 
-
-
-
 </script>
+
+@yield('script')
+

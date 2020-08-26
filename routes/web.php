@@ -40,6 +40,9 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Sectors */
     Route::resource('sectors' , 'SectorController');
 
+    /** Manage Users */
+    Route::resource('users' , 'UserController');
+
     /** Manage Sub-Sectors */
     Route::get('sub_sectors/index/{sector_id}', [
         'as' => 'sub_sectors.index',

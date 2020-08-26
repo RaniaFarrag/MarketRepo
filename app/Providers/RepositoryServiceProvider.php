@@ -44,6 +44,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\PermissionRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\UserRepositoryInterface',
+            'App\Repositories\UserRepository'
+        );
 
     }
 

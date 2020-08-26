@@ -10,8 +10,6 @@ namespace App\Repositories;
 use App\Interfaces\RoleRepositoryInterface;
 use App\Traits\logTrait;
 use function GuzzleHttp\Promise\all;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationData;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
