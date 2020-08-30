@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNameEnAndRoleToUsers extends Migration
+class AddNameEnToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,6 @@ class AddNameEnAndRoleToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('name_en')->nullable()->after('name');
-            $table->unsignedBigInteger('role_id');
-            //$table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

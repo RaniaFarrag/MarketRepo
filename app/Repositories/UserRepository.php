@@ -49,11 +49,10 @@ class UserRepository implements UserRepositoryInterface
             'name_en' => $request->name_en,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $request->role_id,
             'active' => 1
         ]);
 
-        //$user->syncPermissions($request->permissions);
+        $user->assignRole($request->role);
 
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم اضافة مستخدم جديد' , 'New User has been added');
 
@@ -76,11 +75,11 @@ class UserRepository implements UserRepositoryInterface
             'name_en' => $request->name_en,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $request->role_id,
             'active' => 1
         ]);
 
-        //$user->syncPermissions($request->permissions);
+        $user->removeRole($user->roles->first()->name);
+        $user->assignRole($request->role);
 
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم تعديل مستخدم ' , 'User has been updated');
 

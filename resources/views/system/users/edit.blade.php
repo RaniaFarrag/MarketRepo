@@ -107,7 +107,7 @@
 
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
-                                            <select class="form-control select2" name="role_id">
+                                            <select class="form-control select2" name="role">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($roles as $role)
                                                     <option value="{{ $role->id }}" {{ old('role_id') && in_array($role->id, old('role_id')) ? ' checked' : '' }}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
@@ -143,7 +143,7 @@
                                             <select class="form-control select2" name="sector_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('sector_id')

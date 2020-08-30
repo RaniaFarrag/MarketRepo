@@ -107,10 +107,10 @@
 
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
-                                            <select class="form-control select2" name="role_id">
+                                            <select class="form-control select2" name="role">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}">{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
+                                                    <option value="{{ $role->name }}">{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('role_id')
