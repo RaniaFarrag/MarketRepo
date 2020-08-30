@@ -23,8 +23,9 @@
     <link href="{{ asset('dashboard/assets/plugins/global/plugins.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css') }}"  rel="stylesheet" type="text/css"/>
     <link href="{{ asset('dashboard/assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
-
 @endif
+
+@yield('css')
 <!--end::Global Theme Styles-->
 
 <!--begin::Layout Themes(used by all pages)-->
