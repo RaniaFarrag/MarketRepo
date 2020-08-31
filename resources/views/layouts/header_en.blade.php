@@ -77,7 +77,7 @@
                                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " aria-haspopup="true">
-                                                    <a href="?page=companyData_en" class="menu-link">
+                                                    <a href="{{ route('companies.index') }}" class="menu-link">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="icon  fa fa-building"></i>
@@ -87,7 +87,7 @@
 
                                                 </li>
                                                 <li class="menu-item " aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('companies.create') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-marker"></i>

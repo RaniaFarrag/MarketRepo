@@ -7,6 +7,22 @@
  */
 namespace App\Traits;
 
+use Illuminate\Http\Request;
+
 trait UploadTrait{
 
+    public function verifyAndStoreFile( $request, $fieldname , $directory ) {
+
+        if( $request->hasFile( $fieldname ) ) {
+            if (!$request->file($fieldname)->isValid()) {
+
+                flash('Invalid Image!')->error()->important();
+
+                return redirect()->back()->withInput();
+            }
+
+            return $request->file($fieldname)->store('uploads/' . $directory, 'public');
+        }
+        return null;
+    }
 }

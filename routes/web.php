@@ -43,6 +43,9 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Users */
     Route::resource('users' , 'UserController');
 
+    /** Manage Company */
+    Route::resource('companies' , 'CompanyController');
+
     /** Manage Sub-Sectors */
     Route::get('sub_sectors/index/{sector_id}', [
         'as' => 'sub_sectors.index',
@@ -54,6 +57,13 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     ]);
     //Route::resource('sub_sectors', 'SubSectorController', ['except' => 'index' , 'create']);
     Route::resource('sub_sectors', 'SubSectorController')->except('index' , 'create');
+
+    /** Get Sub-Sectors Of Sector */
+    Route::get('/get/sub/sectors/of/sector/{sector_id}' , 'SubSectorController@getSubsectorOfsector')->name('get_sub_sectros_of_sector');
+
+    /** Get Cities Of Country */
+    Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
+
 
     
 });

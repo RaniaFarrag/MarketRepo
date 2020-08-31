@@ -104,4 +104,13 @@ class SubSectorController extends Controller
     {
         return $this->subsectorRepositoryinterface->destroy($subSector);
     }
+
+    /** Get Sub-Sectors Of Sector */
+    public function getSubsectorOfsector($sector_id){
+        $sub_sectors = $this->subsectorRepositoryinterface->getSubsectorOfsector($sector_id);
+        //dd($sub_sectors);
+        return response()->json(['sub_sectors' => $sub_sectors]);
+    }
+
+
 }

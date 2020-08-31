@@ -88,4 +88,9 @@ class CityRepository implements CityRepositoryInterface
         return redirect(route('cities.index'))->with('success' , trans('dashboard.deleted successfully'));
     }
 
+    /** Get Cities Of Country */
+    public function getCitiesOfcountry($country_id){
+        return $this->city_model::where('country_id' , $country_id)->get();
+    }
+
 }
