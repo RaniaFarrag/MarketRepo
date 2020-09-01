@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 trait UploadTrait{
 
-    public function verifyAndStoreFile( $request, $fieldname , $directory ) {
+    public function verifyAndStoreFile($request, $fieldname) {
 
         if( $request->hasFile( $fieldname ) ) {
             if (!$request->file($fieldname)->isValid()) {
@@ -20,8 +20,10 @@ trait UploadTrait{
 
                 return redirect()->back()->withInput();
             }
+            $file_name = time().'_'.$request->file($fieldname)->getClientOriginalName();
 
-            return $request->file($fieldname)->store('uploads/' . $directory, 'public');
+//            return $request->file($fieldname)->store('uploads/' . $directory, 'public');
+            return $path = $request->file($fieldname)->storeAs('uploads' , $file_name);
         }
         return null;
     }

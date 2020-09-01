@@ -10,6 +10,6 @@ class CompanyMeeting extends Model
         'date',
         'time',
         'company_id',
-        'by_user',
+        'user_id',
     ];
 }
