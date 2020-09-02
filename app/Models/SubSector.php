@@ -16,5 +16,9 @@ class SubSector extends Model
         $this->belongsTo(Sector::class);
     }
 
+    public function companies(){
+        return $this->hasMany(Company::class);
+    }
+
 
 }

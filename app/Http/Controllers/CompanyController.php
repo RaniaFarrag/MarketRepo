@@ -22,7 +22,7 @@ class CompanyController extends Controller
         $this->companyRepositoryinterface = $companyRepositoryinterface;
     }
 
-    /** View All countries */
+    /** View All companies */
     public function index()
     {
         $companies = $this->companyRepositoryinterface->index();
@@ -35,11 +35,11 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /** Create Company */
     public function create()
     {
         $data = $this->companyRepositoryinterface->create();
         return view('system.companies.create')->with('data' , $data);
-
     }
 
     /**
@@ -48,6 +48,7 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /** Store Company */
     public function store(CompanyRequest $request)
     {
         //dd($request->item[0]['date']);
@@ -71,9 +72,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /** Edit Company */
     public function edit(Company $company)
     {
-        return view('system.countries.edit')->with('company' , $company);
+        $data = $this->companyRepositoryinterface->edit($company);
+        return view('system.companies.edit')->with(['company' => $company , 'data' => $data]);
     }
 
     /**
@@ -83,6 +86,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /** Submit Edit Company */
     public function update(CompanyRequest $request, Company $company)
     {
         return $this->companyRepositoryinterface->update($request , $company);
@@ -94,6 +98,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /** Delete Company */
     public function destroy(Company $company)
     {
         return $this->companyRepositoryinterface->destroy($company);

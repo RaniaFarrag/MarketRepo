@@ -67,7 +67,7 @@ class CompanyRepository implements CompanyRepositoryInterface
 
     /** View All countries */
     public function index(){
-        return $this->company_model->with('subSector')->paginate(20);
+        return $this->company_model->with('subSector')->orderBy('created_at' , 'desc')->paginate(20);
     }
 
     /** Store Role */
@@ -157,28 +157,135 @@ class CompanyRepository implements CompanyRepositoryInterface
         return redirect(route('companies.index'))->with('success' , trans('dashboard. added successfully'));
     }
 
+    /** Edit Company */
+    public function edit($company)
+    {
+//        dd(count($company->company_designated_contacts));
+        $data = array();
+        $data['countries'] = $this->country_model::all();
+        $data['cities'] = $this->city_model::all();;
+        $data['sectors'] = $this->sector_model::all();;
+        $data['sub_sectors'] = $this->sub_sector_model::all();
+
+        return $data;
+
+    }
 
     /** Submit Edit Role */
     public function update($request , $company){
 
+//        dd($company->companyDesignatedcontacts[0]);
+//        dd($request->item);
+        if($request->hasFile('logo')){
+            $logo = $this->verifyAndStoreFile($request , 'logo');
+        }
+        else{
+            $logo = $company->logo;
+        }
+
+
+        if($request->hasFile('first_business_card')){
+            $first_business_card = $this->verifyAndStoreFile($request , 'first_business_card');
+        }
+        else{
+            $first_business_card = $company->first_business_card;
+        }
+
+
+        if($request->hasFile('second_business_card')){
+            $second_business_card = $this->verifyAndStoreFile($request , 'second_business_card');
+        }
+        else{
+            $second_business_card = $company->second_business_card;
+        }
+
+
+        if($request->hasFile('third_business_card')){
+            $third_business_card = $this->verifyAndStoreFile($request , 'third_business_card');
+        }
+        else{
+            $third_business_card = $company->third_business_card;
+        }
+
+
         $company->update([
+            'logo' => $logo,
+            'first_business_card' => $first_business_card,
+            'second_business_card' => $second_business_card,
+            'third_business_card' => $third_business_card,
             'name:ar' => $request->name_ar,
             'name:en' => $request->name_en,
-            'code' => $request->code,
+            'whatsapp' => $request->whatsapp,
+            'phone' => $request->phone,
+            'sector_id' => $request->sector_id,
+            'sub_sector_id' => $request->sub_sector_id,
+            'country_id' => $request->country_id,
+            'city_id' => $request->city_id,
+            'district' => $request->district,
+            'location' => $request->location,
+            'branch_number' => $request->branch_number,
+            'num_of_employees' => $request->num_of_employees,
+            'website' => $request->website,
+            'email' => $request->email,
+            'website' => $request->website,
+            'linkedin' => $request->linkedin,
+            'twitter' => $request->twitter,
+            'company_representative_name' => $request->company_representative_name,
+            'company_representative_job_title' => $request->company_representative_job_title,
+            'company_representative_job_mobile' => $request->company_representative_job_mobile,
+            'company_representative_job_phone' => $request->company_representative_job_phone,
+            'company_representative_job_email' => $request->company_representative_job_email,
+            'hr_director_job_name' => $request->hr_director_job_name,
+            'hr_director_job_email' => $request->hr_director_job_email,
+            'hr_director_job_mobile' => $request->hr_director_job_mobile,
+            'hr_director_job_phone' => $request->hr_director_job_phone,
+            'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+            'notes' => $request->notes,
         ]);
 
-        $this->addLog(auth()->id() , $company->id , 'countries' , 'تم تعديل دولة ' , 'Country has been updated');
+        for($i=0 ; $i<count($request->designated_contact_name) ; $i++){
+             $company->companyDesignatedcontacts[$i]->update([
+                'name' => $request->designated_contact_name[$i],
+                'job_title' => $request->designated_contact_job_title[$i],
+                'mobile' => $request->designated_contact_mobile[$i],
+                'linkedin' => $request->designated_contact_linkedin[$i],
+                'whatsapp' => $request->designated_contact_whatsapp[$i],
+                'email' => $request->designated_contact_email[$i],
+                'company_id' => $company->id,
+            ]);
+        }
+        //dd(auth()->id());
 
-        return redirect(route('countries.index'))->with('success' , trans('dashboard.updated successfully'));
+        foreach ($request->item as $k=>$item) {
+             $company->companyMeetings[$k]->update([
+                'date' => $item['date'],
+                'time' => $item['time'],
+                'company_id' => $company->id,
+                'user_id' => auth()->id(),
+            ]);
+        }
+
+        $this->addLog(auth()->id() , $company->id , 'companies' , 'تم تعديل شركة ' , 'Company has been updated');
+
+        return redirect(route('companies.index'))->with('success' , trans('dashboard.updated successfully'));
 
     }
 
     /** Delete Role */
     public function destroy($company){
-        $company->delete();
-        $this->addLog(auth()->id() , $company->id , 'countries' , 'تم حذف دولة' , 'Country has been deleted');
+//        dd($company->companyDesignatedcontacts);
+        foreach ($company->companyDesignatedcontacts as $companyDesignatedcontact){
+            $companyDesignatedcontact->delete();
+        }
 
-        return redirect(route('countries.index'))->with('success' , trans('dashboard.deleted successfully'));
+        foreach ($company->companyMeetings as $companyMeeting){
+            $companyMeeting->delete();
+        }
+        $company->delete();
+
+        $this->addLog(auth()->id() , $company->id , 'companies' , 'تم حذف شركة' , 'Company has been deleted');
+
+        return redirect(route('companies.index'))->with('success' , trans('dashboard.deleted successfully'));
     }
 
 }
