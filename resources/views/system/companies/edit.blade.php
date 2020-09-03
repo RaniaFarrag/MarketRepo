@@ -217,7 +217,7 @@
 
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company Type') }} :</label>
-                                            <select id="subSector" class="form-control select2" name="sub_sector_id">
+                                            <select id="subSector" class="form-control select2" name="sub_sector_id" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['sub_sectors'] as $sub_sector)
                                                     <option value="{{ $sub_sector->id }}" {{ $company->sub_sector_id == $sub_sector->id ? 'selected' : '' }}>{{ $sub_sector->name }}</option>
@@ -365,7 +365,56 @@
                                     <div id="kt_repeater_1">
                                         <div id="kt_repeater_1" class="form-group row">
                                             <div data-repeater-list="" class="col-lg-12">
-                                                @foreach($company->companyMeetings as $companyMeeting)
+                                                @if(count($company->companyMeetings))
+                                                    @foreach($company->companyMeetings as $companyMeeting)
+                                                        <div data-repeater-item class="form-group row align-items-center">
+                                                            <div class="col-lg-6">
+                                                                <label>{{ trans('dashboard.Date') }} :</label>
+                                                                <div class="input-group input-group-solid date" id="kt_datetimepicker_3"
+                                                                     data-target-input="nearest">
+                                                                    {{--<input value="{{ old('date') }}" name="date" type="text" arr-name="item"--}}
+                                                                    {{--class="form-control form-control-solid datetimepicker-input"--}}
+                                                                    {{--placeholder="Select date" data-target="#kt_datetimepicker_3"/> --}}
+
+                                                                    <input value="{{ $companyMeeting->date }}" name="date" type="date" arr-name="item"
+                                                                           class="form-control form-control-solid "
+                                                                           placeholder="Select date" />
+                                                                    {{--<div class="input-group-append" data-target="#kt_datetimepicker_3"--}}
+                                                                    {{--data-toggle="datetimepicker">--}}
+                                                                    {{--<span class="input-group-text">--}}
+                                                                    {{--<i class="ki ki-calendar"></i>--}}
+                                                                    {{--</span>--}}
+                                                                    {{--</div>--}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label>{{ trans('dashboard.Time') }} :</label>
+                                                                {{--<div class="input-group input-group-solid date" id="kt_datetimepicker_4"--}}
+                                                                {{--data-target-input="nearest">--}}
+                                                                {{--<input name="time" type="text" arr-name="item"--}}
+                                                                {{--class="form-control form-control-solid datetimepicker-input"--}}
+                                                                {{--placeholder="Select time" data-target="#kt_datetimepicker_4"/>--}}
+                                                                {{--<div class="input-group-append" data-target="#kt_datetimepicker_4"--}}
+                                                                {{--data-toggle="datetimepicker">--}}
+                                                                {{--<span class="input-group-text">--}}
+                                                                {{--<i class="ki ki-clock"></i>--}}
+                                                                {{--</span>--}}
+                                                                {{--</div>--}}
+                                                                {{--</div>--}}
+
+                                                                <div class="input-group timepicker">
+                                                                    {{--<input value="{{ old('time') }}" name="time" arr-name="item" class="form-control" id="kt_timepicker_2" readonly placeholder="Select time" type="text"/>--}}
+                                                                    <input value="{{ $companyMeeting->time }}" name="time" arr-name="item" class="form-control"  placeholder="Select time" type="time"/>
+                                                                    {{--<div class="input-group-append">--}}
+                                                                    {{--<span class="input-group-text">--}}
+                                                                    {{--<i class="la la-clock-o"></i>--}}
+                                                                    {{--</span>--}}
+                                                                    {{--</div>--}}
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                    @endforeach
+                                                @else
                                                     <div data-repeater-item class="form-group row align-items-center">
                                                         <div class="col-lg-6">
                                                             <label>{{ trans('dashboard.Date') }} :</label>
@@ -375,7 +424,7 @@
                                                                 {{--class="form-control form-control-solid datetimepicker-input"--}}
                                                                 {{--placeholder="Select date" data-target="#kt_datetimepicker_3"/> --}}
 
-                                                                <input value="{{ $companyMeeting->date }}" name="date" type="date" arr-name="item"
+                                                                <input value="{{ old('date') }}" name="date" type="date" arr-name="item"
                                                                        class="form-control form-control-solid "
                                                                        placeholder="Select date" />
                                                                 {{--<div class="input-group-append" data-target="#kt_datetimepicker_3"--}}
@@ -403,7 +452,7 @@
 
                                                             <div class="input-group timepicker">
                                                                 {{--<input value="{{ old('time') }}" name="time" arr-name="item" class="form-control" id="kt_timepicker_2" readonly placeholder="Select time" type="text"/>--}}
-                                                                <input value="{{ $companyMeeting->time }}" name="time" arr-name="item" class="form-control"  placeholder="Select time" type="time"/>
+                                                                <input value="{{ old('time') }}" name="time" arr-name="item" class="form-control"  placeholder="Select time" type="time"/>
                                                                 {{--<div class="input-group-append">--}}
                                                                 {{--<span class="input-group-text">--}}
                                                                 {{--<i class="la la-clock-o"></i>--}}
@@ -411,16 +460,15 @@
                                                                 {{--</div>--}}
                                                             </div>
                                                         </div>
-
-                                                </div>
-                                                @endforeach
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group row align-items-center" >
 
                                             <div class="col-lg-3 float-right" style="float: none !important;margin: 0 auto;">
                                                 <a href="javascript:;" data-repeater-create="" class="btn btn-block font-weight-bolder btn-light-primary">
-                                                    <i class="la la-plus"></i> {{ trans('dashboard.Editew Meeting') }}
+                                                    <i class="la la-plus"></i> {{ trans('dashboard.Add a New Meeting') }}
                                                 </a>
                                             </div>
                                         </div>

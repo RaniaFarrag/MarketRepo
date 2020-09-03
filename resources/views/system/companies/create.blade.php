@@ -216,7 +216,7 @@
 
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company Type') }} :</label>
-                                            <select id="subSector" class="form-control select2" name="sub_sector_id">
+                                            <select id="subSector" class="form-control select2" name="sub_sector_id" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                             </select>
                                         </div>
@@ -642,7 +642,7 @@
                             var sub_sectors = response.sub_sectors;
                             if (sub_sectors.length){
                                 console.log(sub_sectors);
-                                var html = '<option value="">{{ trans(\'dashboard.Select All\') }}</option>'
+                                var html = '<option value="">{{ trans('dashboard.Select All') }}</option>'
                                 for (let i = 0; i < sub_sectors.length; i++) {
                                     html+= '<option value="'+ sub_sectors[i].id +'">' + sub_sectors[i].name +'</option>';
                                 }
