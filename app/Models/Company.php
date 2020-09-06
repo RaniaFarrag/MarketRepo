@@ -13,6 +13,7 @@ class Company extends Model
 
     protected $translatedAttributes = ['name'];
     protected $fillable = [
+        'id' ,
         'logo' ,
         'first_business_card' ,
         'second_business_card' ,

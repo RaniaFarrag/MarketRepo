@@ -11,6 +11,7 @@ class Sector extends Model
     use Translatable;
     use SoftDeletes;
 
+    protected $fillable = ['id'];
     protected $translatedAttributes = ['name'];
     protected $dates = ['deleted_at'];
 

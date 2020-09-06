@@ -10,6 +10,6 @@ class City extends Model
     use Translatable;
 
     protected $translatedAttributes = ['name'];
-    protected $fillable = ['code' , 'country_id'];
+    protected $fillable = ['id' , 'code' , 'country_id'];
 
 }

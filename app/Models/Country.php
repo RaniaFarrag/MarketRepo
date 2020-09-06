@@ -10,6 +10,6 @@ class Country extends Model
     use Translatable;
 
     protected $translatedAttributes = ['name'];
-    protected $fillable = ['code'];
+    protected $fillable = ['code','id'];
 
 }
