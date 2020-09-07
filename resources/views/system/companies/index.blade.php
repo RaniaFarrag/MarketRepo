@@ -41,7 +41,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            Companies View</h2>
+                            {{ trans('dashboard.Companies View') }}</h2>
                         <!--end::Title-->
 
                         <!--begin::Breadcrumb-->
@@ -54,15 +54,15 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Dashboard </a>
+                                {{ trans('dashboard.dashboard') }}  </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Companies Data </a>
+                                {{ trans('dashboard.Companies Data') }} </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Companies View </a>
+                                {{ trans('dashboard.Companies View') }}  </a>
                             <!--end::Item-->
                         </div>
                         <!--end::Breadcrumb-->
@@ -115,7 +115,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <div class="card-title" data-toggle="collapse" data-target="#collapseOne1">
-                                                Companies Filters
+                                                {{ trans('dashboard.Companies Filters') }}
                                             </div>
                                         </div>
                                         <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
@@ -123,7 +123,7 @@
                                                 <div class="row fliter_serch">
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Company Name</label>
+                                                            <label> {{ trans('dashboard.Company Name') }}  </label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Company Name">
                                                         </div>
@@ -131,9 +131,9 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Sectors</label>
+                                                            <label>{{ trans('dashboard.Sectors') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="">Health Care</option>
                                                                 <option value="">Oil & Gas</option>
                                                             </select>
@@ -142,9 +142,9 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Company Type</label>
+                                                            <label>{{ trans('dashboard.Company Type') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="72" data-select2-id="23">Senior management of
                                                                     pharmacies
                                                                 </option>
@@ -164,9 +164,9 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Country</label>
+                                                            <label>{{ trans('dashboard.Country') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="1" data-select2-id="58">Saudi Arabia</option>
                                                                 <option value="2" data-select2-id="59">United Arab
                                                                     Emirates
@@ -176,9 +176,9 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>City</label>
+                                                            <label>{{ trans('dashboard.City') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="1" data-select2-id="58">Saudi Arabia</option>
                                                                 <option value="2" data-select2-id="59">United Arab
                                                                     Emirates
@@ -188,7 +188,7 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Evaluation status</label>
+                                                            <label>{{ trans('dashboard.Evaluation status') }}</label>
                                                             <select class="form-control select2" name="param"
                                                                     multiple="multiple">
                                                                 <option value="A" data-select2-id="287">A</option>
@@ -199,7 +199,7 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Communication Type</label>
+                                                            <label>{{ trans('dashboard.Communication Type') }}</label>
                                                             <select class="form-control select2" name="param"
                                                                     multiple="multiple">
                                                                 <option value="whats" data-select2-id="71">Whatsapp</option>
@@ -215,7 +215,7 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Company Status</label>
+                                                            <label>{{ trans('dashboard.Company Status') }}</label>
                                                             <select class="form-control select2" name="param"
                                                                     multiple="multiple">
                                                                 <option value="is_called">Confirm Connection</option>
@@ -228,9 +228,9 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Representative </label>
+                                                            <label>{{ trans('dashboard.Representative') }} </label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="1" data-select2-id="103">Existing</option>
                                                                 <option value="0" data-select2-id="104">Not Exist</option>
                                                             </select>
@@ -239,9 +239,9 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Company Representative name </label>
+                                                            <label>{{ trans('dashboard.Company Representative name') }}  </label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="13471" data-select2-id="94">BABU ANSARI
                                                                 </option>
                                                                 <option value="13473" data-select2-id="95">RAAFAT ALI
@@ -252,9 +252,20 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Location</label>
+                                                            <label>{{ trans('dashboard.Client Status') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">Select All</option>
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value="1" data-select2-id="103">Hot</option>
+                                                                <option value="0" data-select2-id="104">Not Exist</option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>{{ trans('dashboard.Location') }}</label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="1" data-select2-id="103">Existing</option>
                                                                 <option value="0" data-select2-id="104">Not Exist</option>
                                                             </select>
@@ -263,7 +274,7 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Confirm the interview</label>
+                                                            <label>{{ trans('dashboard.Confirm the interview') }}</label>
                                                             <div class="input-group input-group-solid date"
                                                                  id="kt_datetimepicker_3" data-target-input="nearest">
                                                                 <input type="text"
@@ -283,7 +294,7 @@
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
-                                                            <label>Company Date</label>
+                                                            <label>{{ trans('dashboard.Company Date') }}</label>
                                                             <div class="input-group input-group-solid date"
                                                                  id="kt_datetimepicker_113" data-target-input="nearest">
                                                                 <input type="text"
@@ -301,10 +312,10 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="col-md-8 col-xs-12">
+                                                    <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>&nbsp;</label>
-                                                            <button type="button" class="btn btn-block btn-success">Search
+                                                            <button type="button" class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
                                                             </button>
                                                         </div>
                                                     </div>
@@ -337,7 +348,7 @@
                                                             </a>
                                                         </div>
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                             data-placement="left" data-original-title="Quick actions">
+                                                             data-placement="left" data-original-title="{{ trans('dashboard.Quick actions') }}">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
                                                                data-toggle="dropdown" aria-haspopup="true"
@@ -526,25 +537,25 @@
                                                                 <label class="checkbox checkbox-success">
                                                                     <input type="checkbox" name="Checkboxes5"/>
                                                                     <span></span>
-                                                                    Confirm Connection
+                                                                    {{ trans('dashboard.Confirm Connection') }}
                                                                 </label>
 
                                                                 <label class="checkbox checkbox-success">
                                                                     <input type="checkbox" name="Checkboxes5"
                                                                            checked="checked"/>
                                                                     <span></span>
-                                                                    Confirm Interview
+                                                                    {{ trans('dashboard.Confirm Interview') }}
                                                                 </label>
                                                                 <label class="checkbox checkbox-success">
                                                                     <input type="checkbox" name="Checkboxes5"/>
                                                                     <span></span>
-                                                                    Confirm Need
+                                                                     {{ trans('dashboard.Confirm Need') }}
 
                                                                 </label>
                                                                 <label class="checkbox checkbox-success">
                                                                     <input type="checkbox" name="Checkboxes5"/>
-                                                                    <span></span>
-                                                                    Confirm Contract
+                                                                    <span></span>{{ trans('dashboard.Confirm Contract') }}
+
 
                                                                 </label>
 

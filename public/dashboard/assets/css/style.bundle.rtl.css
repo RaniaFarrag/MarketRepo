@@ -46430,12 +46430,6 @@ code {
   .checkbox.checkbox-outline.checkbox-white > input:checked ~ span:after {
     border-color: #ffffff; }
 
-.checkbox-inline {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
   .checkbox-inline .checkbox {
     margin-left: 1rem;
     margin-bottom: 0.35rem; }
@@ -63200,3 +63194,19 @@ body {
     direction: rtl !important;
     text-align: right !important;
 }
+button.navi-link {
+    border: none;
+    width: 100%;
+    text-align: inherit;
+    background: #fff;
+}
+.checkbox-inline .checkbox {font-size: 13px}
+.checkbox-inline {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.navi .navi-item form {
+    margin: 0;
+}
+
