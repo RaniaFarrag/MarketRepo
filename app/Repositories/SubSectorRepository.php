@@ -70,4 +70,9 @@ class SubSectorRepository implements SubSectorRepositoryInterface
         return redirect(route('sub_sectors.index' , $subSector->sector_id))->with('success' , trans('dashboard.deleted successfully'));
     }
 
+    /** Get Sub-Sectors Of Sector */
+    public function getSubsectorOfsector($sector_id){
+        return $this->sub_sector_model::where('sector_id' , $sector_id)->get();
+    }
+
 }

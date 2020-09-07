@@ -105,6 +105,12 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         return $this->cityRepositoryinterface->destroy($city);
+    }
 
+    /** Get Cities Of Country */
+    public function getCitiesOfcountry($country_id){
+        $cities = $this->cityRepositoryinterface->getCitiesOfcountry($country_id);
+
+        return response()->json(['cities' => $cities]);
     }
 }

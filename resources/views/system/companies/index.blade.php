@@ -3,6 +3,32 @@
 @section('body')
 
 
+    <style>
+        a.sociall img {
+            width: 25px;
+        }
+
+        .checkbox-inline.company_Card label {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .checkbox-inline .checkbox span {
+            margin: auto;
+        }
+
+        .btn .badge {
+            position: absolute;
+            top: -1px;
+            right: 0;
+            color: #6993FF;
+            border: 1px solid;
+            padding: 7px 5px;
+            line-height: 0;
+            border-radius: 50%;
+        }
+    </style>
+
     <!--begin::Content-->
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -15,8 +41,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.dashboard') }}
-                        </h2>
+                            Companies View</h2>
                         <!--end::Title-->
 
                         <!--begin::Breadcrumb-->
@@ -28,32 +53,43 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Region') }}
-                            </a>
+                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                Dashboard </a>
+                            <!--end::Item-->
+                            <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Cities') }}
-                            </a>
+                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                Companies Data </a>
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                Companies View </a>
                             <!--end::Item-->
                         </div>
                         <!--end::Breadcrumb-->
                     </div>
                     <!--end::Heading-->
+
                 </div>
                 <!--end::Info-->
 
+                <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
 
 
                     <!--begin::Button-->
-                    <a href="{{ route('cities.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New City') }}
+                    <a href="{{ route('companies.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Add New Company') }}
+                    </a>
+                    <!--end::Button-->
+                    <!--begin::Button-->
+                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
+                        Total companies (1406)
                     </a>
                     <!--end::Button-->
 
 
                 </div>
+                <!--end::Toolbar-->
 
             </div>
         </div>
@@ -65,79 +101,496 @@
             <div class=" container ">
                 <!--begin::Dashboard-->
 
-                <!--begin::Row-->
                 <div class="row">
 
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            @if(Session::has('success'))
-                                <div class="alert alert-success">
-                                    {{ Session::get('success') }}
-                                </div>
-                            @endif
-                            <div class="card-header flex-wrap">
+                            <!--<div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.All Cities') }}
+                                        Companies Filters
                                     </h3>
                                 </div>
 
-                            </div>
+                            </div>-->
                             <div class="card-body">
-                                <div class="table-responsive">
-                                <!--begin: Datatable-->
 
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>{{ trans('dashboard.City Name Arabic') }}</th>
-                                        <th>{{ trans('dashboard.City Name English') }}</th>
-                                        <th>{{ trans('dashboard.Code') }}</th>
-                                        <th>{{ trans('dashboard.edit') }}</th>
-                                        <th>{{ trans('dashboard.delete') }}</th>
+                                <div class="accordion accordion-toggle-arrow" id="accordionExample1">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title" data-toggle="collapse" data-target="#collapseOne1">
+                                                Companies Filters
+                                            </div>
+                                        </div>
+                                        <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
+                                            <div class="card-body">
+                                                <div class="row fliter_serch">
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Company Name</label>
+                                                            <input type="text" class="form-control"
+                                                                   placeholder="Company Name">
+                                                        </div>
 
-                                    </tr>
-                                    </thead>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Sectors</label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="">Health Care</option>
+                                                                <option value="">Oil & Gas</option>
+                                                            </select>
+                                                        </div>
 
-                                    <tbody>
-                                    @foreach($cities as $k=>$city)
-                                        <tr>
-                                            <td>{{ $k+1 }}</td>
-                                            <td>{{ $city->translate('ar')->name }}</td>
-                                            <td>{{ $city->translate('en')->name}}</td>
-                                            <td>{{ $city->code}}</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('cities.edit' , $city->id) }}">{{ trans('dashboard.edit') }}</a></td>
-                                            <td>
-                                                <form method="post" action="{{ route('cities.destroy' , $city->id) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Company Type</label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="72" data-select2-id="23">Senior management of
+                                                                    pharmacies
+                                                                </option>
+
+                                                                <option value="71" data-select2-id="24">Pharmaceutical
+                                                                    Company
+                                                                </option>
+
+                                                                <option value="70" data-select2-id="25">Medical complex
+                                                                </option>
+
+                                                                <option value="69" data-select2-id="26">medical Center
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Country</label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                                <option value="2" data-select2-id="59">United Arab
+                                                                    Emirates
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>City</label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                                <option value="2" data-select2-id="59">United Arab
+                                                                    Emirates
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Evaluation status</label>
+                                                            <select class="form-control select2" name="param"
+                                                                    multiple="multiple">
+                                                                <option value="A" data-select2-id="287">A</option>
+                                                                <option value="B" data-select2-id="288">B</option>
+                                                                <option value="C" data-select2-id="289">C</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Communication Type</label>
+                                                            <select class="form-control select2" name="param"
+                                                                    multiple="multiple">
+                                                                <option value="whats" data-select2-id="71">Whatsapp</option>
+                                                                <option value="email" data-select2-id="72">Email</option>
+                                                                <option value="phone" data-select2-id="73">Phone</option>
+                                                                <option value="twiter" data-select2-id="74">Twitter</option>
+                                                                <option value="linkedin" data-select2-id="75">Linkedin
+                                                                </option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Company Status</label>
+                                                            <select class="form-control select2" name="param"
+                                                                    multiple="multiple">
+                                                                <option value="is_called">Confirm Connection</option>
+                                                                <option value="is_verified">Confirm Interview</option>
+                                                                <option value="confirm_register">Confirm Need</option>
+                                                                <option value="is_registered">Confirm Contract</option>
+                                                                <option value="no_meeting">No Meeting</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Representative </label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="1" data-select2-id="103">Existing</option>
+                                                                <option value="0" data-select2-id="104">Not Exist</option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Company Representative name </label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="13471" data-select2-id="94">BABU ANSARI
+                                                                </option>
+                                                                <option value="13473" data-select2-id="95">RAAFAT ALI
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Location</label>
+                                                            <select class="form-control select2" name="param">
+                                                                <option value="" selected="">Select All</option>
+                                                                <option value="1" data-select2-id="103">Existing</option>
+                                                                <option value="0" data-select2-id="104">Not Exist</option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Confirm the interview</label>
+                                                            <div class="input-group input-group-solid date"
+                                                                 id="kt_datetimepicker_3" data-target-input="nearest">
+                                                                <input type="text"
+                                                                       class="form-control form-control-solid datetimepicker-input"
+                                                                       placeholder="Select date & time"
+                                                                       data-target="#kt_datetimepicker_3"/>
+                                                                <div class="input-group-append"
+                                                                     data-target="#kt_datetimepicker_3"
+                                                                     data-toggle="datetimepicker">
+                                                                    <span class="input-group-text">
+                                                                        <i class="ki ki-calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-4 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Company Date</label>
+                                                            <div class="input-group input-group-solid date"
+                                                                 id="kt_datetimepicker_113" data-target-input="nearest">
+                                                                <input type="text"
+                                                                       class="form-control form-control-solid datetimepicker-input"
+                                                                       placeholder="Select date & time"
+                                                                       data-target="#kt_datetimepicker_113"/>
+                                                                <div class="input-group-append"
+                                                                     data-target="#kt_datetimepicker_113"
+                                                                     data-toggle="datetimepicker">
+                                                                        <span class="input-group-text">
+                                                                            <i class="ki ki-calendar"></i>
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-8 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>&nbsp;</label>
+                                                            <button type="button" class="btn btn-block btn-success">Search
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="separator separator-dashed mt-8 mb-5"></div>
+                                <div class="row">
+                                    @foreach($companies as $company)
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                            <!--begin::Card-->
+                                            <div class="card card-custom gutter-b card-stretch border-1 border-primary border">
+                                                <!--begin::Body-->
+                                                <div class="card-body p-4">
+                                                    <!--begin::Toolbar-->
+                                                    <div class="d-flex justify-content-end">
+                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
+                                                             data-placement="left" data-original-title="2020-07-13 05:00 PM">
+                                                            <a href="#"
+                                                               class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
+                                                                <i class="far fa-bell text-primary"></i>
+                                                                <span class="pulse-ring"></span>
+
+                                                                <span class="badge" id="count-alert2">1</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
+                                                             data-placement="left" data-original-title="Quick actions">
+                                                            <a href="#"
+                                                               class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
+                                                               data-toggle="dropdown" aria-haspopup="true"
+                                                               aria-expanded="false">
+                                                                <i class="ki ki-bold-more-hor"></i>
+                                                            </a>
+
+                                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right"
+                                                                 style="">
+                                                                <!--begin::Navigation-->
+                                                                <ul class="navi navi-hover py-5">
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-list-3"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.View Company Data') }}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon-edit"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.Modifying Company Data') }}</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link" data-toggle="modal"
+                                                                           data-target="#exampleModal">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-rocket-1"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.Send Email') }}</span>
+
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-rubbish-bin"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-user-1"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.Assign companies to a representative') }} </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="navi-item">
+                                                                        <a href="#" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon-graph"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }} </span>
+                                                                        </a>
+                                                                    </li>
+
+                                                                </ul>
+                                                                <!--end::Navigation-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Toolbar-->
+                                                    <!--begin::User-->
+                                                    <div class="d-flex align-items-center mb-7">
+                                                        <!--begin::Pic-->
+                                                        <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                                            <div class="symbol symbol-circle symbol-lg-75 border">
+                                                                <img src="https://marketing-hc.com/photos/5f154b2c6de301595231020.png"
+                                                                     alt="image">
+                                                            </div>
+
+                                                        </div>
+                                                        <!--end::Pic-->
+                                                        <!--begin::Title-->
+                                                        <div class="d-flex flex-column">
+                                                            <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
+                                                                {{ $company->name }}
+                                                            </a>
+                                                            <span class="text-muted font-weight-bold">
+                                                                <a class="business_card" data-toggle="modal" href="#md-photo-61">
+                                                                    <img style="width: 60px;" src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg">
+                                                                </a>
+                                                                <a class="business_card" data-toggle="modal"
+                                                                   href="#md-photo-61">
+                                                                    <img style="width: 60px;" src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg">
+                                                                </a>
+                                                                <a class="business_card" data-toggle="modal"
+                                                                   href="#md-photo-61">
+                                                                    <img style="width: 60px;" src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg">
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                        <!--end::Title-->
+                                                    </div>
+                                                    <!--end::User-->
+
+                                                    <!--begin::Info-->
+                                                    <div class="mb-7">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Contact Information') }} :</span>
+                                                            <a href="#"
+                                                               class="text-hover-primary">{{ $company->phone }}</a>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between align-items-cente my-1">
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Number of Employees') }} : </span>
+                                                            <span class=" text-hover-primary">{{ $company->num_of_employees ? $company->num_of_employees : '-' }}</span>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Location') }}:</span>
+                                                            <a href="#"> <span class="text-muted font-weight-bold"><i
+                                                                            class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location }}</span></a>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}:</span>
+                                                            <span class="text-muted font-weight-bold">{{ $company->subSector->name }}</span>
+                                                        </div>
+                                                        @if($company->company_representative_name)
+                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Representative name') }} :</span>
+                                                                <span class="text-muted font-weight-bold">{{ $company->company_representative_name }}</span>
+                                                            </div>
+                                                        @endif
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }} :</span>
+                                                            <span class="text-muted font-weight-bold">
+                                                                @if($company->email)
+                                                                    <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
+                                                                       data-effect="md-flipHor" req_id="1248">
+                                                                        <img class="img-responsive"
+                                                                             src="https://marketing-hc.com/system/assets/img/icon/mail.png">
+                                                                    </a>
+                                                                @endif
+
+                                                                @if($company->twitter)
+                                                                    <a class="sociall" href="{{ $company->twitter }}" target="_blank">
+                                                                        <img class="img-responsive"
+                                                                             src="https://marketing-hc.com/system/assets/img/icon/twit.png">
+                                                                    </a>
+                                                                @endif
+
+                                                                @if($company->linkedin)
+                                                                     <a class="sociall" href="{{ $company->linkedin }}" target="_blank">
+                                                                        <img class="img-responsive"
+                                                                             src="https://marketing-hc.com/system/assets/img/icon/linked.png">
+                                                                    </a>
+                                                                @endif
+                                                                @if($company->whatsapp)
+                                                                    <a class="sociall"
+                                                                       href="https://api.whatsapp.com/send?phone=+{{ $company->whatsapp }}&amp;text=Hi,"
+                                                                       target="_blank">
+                                                                        <img class="img-responsive"
+                                                                             src="https://marketing-hc.com/system/assets/img/icon/whats.png">
+                                                                    </a>
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Info-->
+
+                                                    <div class="separator separator-dashed mt-1 mb-1"></div>
+
+                                                    <div class="form-group mb-0">
+
+                                                        <div class="col-form-label">
+                                                            <div class="checkbox-inline company_Card">
+
+                                                                <label class="checkbox checkbox-success">
+                                                                    <input type="checkbox" name="Checkboxes5"/>
+                                                                    <span></span>
+                                                                    Confirm Connection
+                                                                </label>
+
+                                                                <label class="checkbox checkbox-success">
+                                                                    <input type="checkbox" name="Checkboxes5"
+                                                                           checked="checked"/>
+                                                                    <span></span>
+                                                                    Confirm Interview
+                                                                </label>
+                                                                <label class="checkbox checkbox-success">
+                                                                    <input type="checkbox" name="Checkboxes5"/>
+                                                                    <span></span>
+                                                                    Confirm Need
+
+                                                                </label>
+                                                                <label class="checkbox checkbox-success">
+                                                                    <input type="checkbox" name="Checkboxes5"/>
+                                                                    <span></span>
+                                                                    Confirm Contract
+
+
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <!--end::Body-->
+                                            </div>
+                                            <!--end::Card-->
+                                        </div>
                                     @endforeach
+                                </div>
 
-                                    </tbody>
 
-                                </table>{{ $cities->links() }}
-                                <!--end: Datatable-->
-                            </div>
                             </div>
                         </div>
-                        <!--end::Card-->
+
+
+                    </div>
+                    <!--end::Card-->
+                </div>
+            </div>
+            <!--end::Row-->
+
+
+        </div>
+        <!--end::Container-->
+        <!-- Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close
+                        </button>
+                        <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>
                     </div>
                 </div>
-                <!--end::Row-->
-
-                <!--end::Dashboard-->
             </div>
-            <!--end::Container-->
         </div>
-        <!--end::Entry-->
+
+
     </div>
-    <!--end::Content-->
+
+
+
+
+
 
 @endsection
 

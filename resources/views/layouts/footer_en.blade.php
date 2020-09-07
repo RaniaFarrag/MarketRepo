@@ -163,87 +163,7 @@
 <!--<script src="assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js?v=7.0.6"></script>
 --><!--end::Page Scripts-->
 
-<!--begin::Page add company-->
-<script>
-    var avatar5 = new KTImageInput('kt_image_5');
-
-    avatar5.on('cancel', function (imageInput) {
-        swal.fire({
-            title: 'Image successfully changed !',
-            type: 'success',
-            buttonsStyling: false,
-            confirmButtonText: 'Awesome!',
-            confirmButtonClass: 'btn btn-primary font-weight-bold'
-        });
-    });
-
-    avatar5.on('change', function (imageInput) {
-        swal.fire({
-            title: 'Image successfully changed !',
-            type: 'success',
-            buttonsStyling: false,
-            confirmButtonText: 'Awesome!',
-            confirmButtonClass: 'btn btn-primary font-weight-bold'
-        });
-    });
-
-    avatar5.on('remove', function (imageInput) {
-        swal.fire({
-            title: 'Image successfully removed !',
-            type: 'error',
-            buttonsStyling: false,
-            confirmButtonText: 'Got it!',
-            confirmButtonClass: 'btn btn-primary font-weight-bold'
-        });
-    });
-
-    // Demo 3
-    $('#kt_datetimepicker_3').datetimepicker({
-        format: 'L'
-    });
-
-    // Demo 4
-    $('#kt_datetimepicker_4').datetimepicker({
-        format: 'LT'
-    });
-
-
-    // Class definition
-    var KTFormRepeater = function() {
-
-        // Private functions
-        var demo1 = function() {
-            $('#kt_repeater_1').repeater({
-                initEmpty: false,
-
-                defaultValues: {
-                    'text-input': 'foo'
-                },
-
-                show: function () {
-                    $(this).slideDown();
-                },
-
-                hide: function (deleteElement) {
-                    $(this).slideUp(deleteElement);
-                }
-            });
-        }
-
-        return {
-            // public functions
-            init: function() {
-                demo1();
-            }
-        };
-    }();
-
-    jQuery(document).ready(function() {
-        KTFormRepeater.init();
-    });
-
-
-</script>
+@yield('script')
 
 
 <!--begin::Page companyData -->
@@ -258,5 +178,5 @@
 
 </script>
 
-@yield('script')
+
 

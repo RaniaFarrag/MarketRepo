@@ -25,4 +25,7 @@ interface SubSectorRepositoryInterface
     /** Delete Sub-Sector */
     public function destroy($subSector);
 
+
+    /** Get Sub-Sectors Of Sector */
+    public function getSubsectorOfsector($sector_id);
 }

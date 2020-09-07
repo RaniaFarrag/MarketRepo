@@ -30,4 +30,8 @@ interface CityRepositoryInterface
     /** Delete city */
     public function destroy($city);
 
+    /** Get Cities Of Country */
+    public function getCitiesOfcountry($country_id);
+
+
 }
