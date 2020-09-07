@@ -93,6 +93,48 @@ return [
     'Edit permission' => 'تعديل الاذن',
 
 
+    'General information about the company' => 'معلومات عامة عن الشركة',
+    'Company logo' => 'شعار الشركة',
+    'business card 1' => 'بطاقة العمل 1',
+    'business card 2' => 'بطاقة العمل 2',
+    'business card 3' => 'بطاقة العمل 3',
+    'Change avatar' => 'تغير الشعار',
+    'profile_avatar_remove' => 'ازالة الشعار',
+    'Company Name Arabic' => 'اسم الشركة بالعربية',
+    'Company Name English' => 'اسم الشركة بالانجليزية',
+    'Mobile / WhatsApp number' => 'رقم الجوال/ الواتس',
+    'phone number' => 'رقم التليفون',
+    'Sector' => 'القطاع',
+    'District' => 'الحي',
+    'Location' => 'اللوكيشن',
+    'Branches Number' => 'عدد فروع الشركة',
+    'Number of Employees Company' => 'عدد الموظفين بالشركة',
+    'Website' => 'الموقع الالكترونى',
+    'E-mail' => 'البريد الالكترونى',
+    'Linkedin' => 'لينكد ان',
+    'Twitter' => 'تويتر',
+    'Designated contact' => 'الاتصال المعين',
+    'Name' => 'الاسم',
+    'Job Title' => 'المسمى الوظيفي',
+    'Mobile' => 'الجوال',
+    'Whatsapp' => 'واتس اب',
+    'E-Mail' => 'البريد الالكترونى',
+    'Confirm Meeting' => 'تأكيد المقابلة',
+    'Date' => 'التاريخ',
+    'Time' => 'الوقت',
+    'name of Confirmed' => 'أسم المؤكد',
+    'Add a new Meeting' => 'اضافة ميعاد جديد',
+    'Company Representative' => 'مسؤول المقابله',
+    'Email' => 'البريد الالكترونى',
+    'Phone' => 'الهاتف',
+    'HR Director' => ' مدير HR',
+    'HR Whatsapp' => 'HR واتس اب',
+    'Notes' => 'تذكيرات',
+    'Submit' => 'حفظ',
+    'Total companies' => 'عدد الشركات',
+
+
+
 
 
 

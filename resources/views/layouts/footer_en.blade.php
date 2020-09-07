@@ -141,22 +141,6 @@
     </script>
 @endif
 
-<script>
-    $(document).ready(function () {
-        //   $('.select2').select2();
-       $('.select2').select2({
-            // options
-            searchInputPlaceholder: 'بحث ...',
-           dir: "rtl",
-            language: {
-                noResults: function (params) {
-                    return "لم يتم العثور على تطابق";
-                }
-            }
-        });
-    });
-</script>
-
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{ asset('dashboard/assets/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js?v=7.0.6') }}"></script>
 
