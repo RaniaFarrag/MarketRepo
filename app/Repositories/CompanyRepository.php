@@ -73,7 +73,8 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Store Role */
     public function store($request)
     {
-        //dd($request->designated_contact_name[0]);
+        //dd($request->client_status);
+        //dd(count($request->designated_contact_name));
 //        dd(Storage::disk('local')->path('/'));
 //        dd(storage_path('app') .'/'. $logo);
 
@@ -114,22 +115,25 @@ class CompanyRepository implements CompanyRepositoryInterface
             'hr_director_job_mobile' => $request->hr_director_job_mobile,
             'hr_director_job_phone' => $request->hr_director_job_phone,
             'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+            'client_status' => $request->client_status,
+            'client_status_user_id' => auth()->id(),
             'notes' => $request->notes,
         ]);
 
+
         for($i=0 ; $i<count($request->designated_contact_name) ; $i++){
-            //dd($request->designated_contact_job_title[$i]);
-            $company_designated_contact = $this->company_designated_contact_model::create([
-                'name' => $request->designated_contact_name[$i],
-                'job_title' => $request->designated_contact_job_title[$i],
-                'mobile' => $request->designated_contact_mobile[$i],
-                'linkedin' => $request->designated_contact_linkedin[$i],
-                'whatsapp' => $request->designated_contact_whatsapp[$i],
-                'email' => $request->designated_contact_email[$i],
-                'company_id' => $company->id,
-            ]);
+            if($request->designated_contact_name[$i] != null){
+                $company_designated_contact = $this->company_designated_contact_model::create([
+                    'name' => $request->designated_contact_name[$i],
+                    'job_title' => $request->designated_contact_job_title[$i],
+                    'mobile' => $request->designated_contact_mobile[$i],
+                    'linkedin' => $request->designated_contact_linkedin[$i],
+                    'whatsapp' => $request->designated_contact_whatsapp[$i],
+                    'email' => $request->designated_contact_email[$i],
+                    'company_id' => $company->id,
+                ]);
+            }
         }
-        //dd(auth()->id());
 
         foreach ($request->item as $item) {
             //dd($item['time']);
@@ -174,7 +178,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Submit Edit Role */
     public function update($request , $company){
 
-//        dd($company->companyDesignatedcontacts[0]);
+        //dd(count($request->designated_contact_name));
 //        dd($request->item);
         if($request->hasFile('logo')){
             $logo = $this->verifyAndStoreFile($request , 'logo');
@@ -182,7 +186,6 @@ class CompanyRepository implements CompanyRepositoryInterface
         else{
             $logo = $company->logo;
         }
-
 
         if($request->hasFile('first_business_card')){
             $first_business_card = $this->verifyAndStoreFile($request , 'first_business_card');
@@ -240,21 +243,37 @@ class CompanyRepository implements CompanyRepositoryInterface
             'hr_director_job_mobile' => $request->hr_director_job_mobile,
             'hr_director_job_phone' => $request->hr_director_job_phone,
             'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+            'client_status' => $request->client_status,
+            'client_status_user_id' => auth()->id(),
             'notes' => $request->notes,
         ]);
 
+        //dd(count($company->companyDesignatedcontacts));
+
         for($i=0 ; $i<count($request->designated_contact_name) ; $i++){
-             $company->companyDesignatedcontacts[$i]->update([
-                'name' => $request->designated_contact_name[$i],
-                'job_title' => $request->designated_contact_job_title[$i],
-                'mobile' => $request->designated_contact_mobile[$i],
-                'linkedin' => $request->designated_contact_linkedin[$i],
-                'whatsapp' => $request->designated_contact_whatsapp[$i],
-                'email' => $request->designated_contact_email[$i],
-                'company_id' => $company->id,
-            ]);
+            if (isset($company->companyDesignatedcontacts[$i])){
+                $company->companyDesignatedcontacts[$i]->update([
+                    'name' => $request->designated_contact_name[$i],
+                    'job_title' => $request->designated_contact_job_title[$i],
+                    'mobile' => $request->designated_contact_mobile[$i],
+                    'linkedin' => $request->designated_contact_linkedin[$i],
+                    'whatsapp' => $request->designated_contact_whatsapp[$i],
+                    'email' => $request->designated_contact_email[$i],
+                    'company_id' => $company->id,
+                ]);
+            }
+            else{
+                $this->company_designated_contact_model::create([
+                    'name' => $request->designated_contact_name[$i],
+                    'job_title' => $request->designated_contact_job_title[$i],
+                    'mobile' => $request->designated_contact_mobile[$i],
+                    'linkedin' => $request->designated_contact_linkedin[$i],
+                    'whatsapp' => $request->designated_contact_whatsapp[$i],
+                    'email' => $request->designated_contact_email[$i],
+                    'company_id' => $company->id,
+                ]);
+            }
         }
-        //dd(auth()->id());
 
         foreach ($request->item as $k=>$item) {
              $company->companyMeetings[$k]->update([

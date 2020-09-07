@@ -71,7 +71,7 @@
                                         <div class="col-lg-3 text-center">
                                             <label style="width: 100%;">{{ trans('dashboard.Company logo') }}</label>
                                             <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
-                                                 style="background-image: url({{ $company->logo ?  storage_path('app') . '/' . $company->logo : asset('dashboard/assets/media/users/blank.png') }})">
+                                                 style="background-image: url({{ $company->logo ?  asset('storage/images/'.$company->logo) : 'http://localhost/marketing-hc/public/dashboard/assets/media/users/blank.png' }})">
                                                 <div class="image-input-wrapper"></div>
 
                                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -95,8 +95,8 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="width: 100%;">{{ trans('dashboard.business card 1') }}</label>
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
-                                                 style="background-image: url({{ $company->first_business_card ? storage_path('app').'/'.$company->first_business_card : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_6"
+                                                 style="background-image: url({{ $company->first_business_card ? asset('storage/images/'.$company->first_business_card) : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
                                                     max-height: 120px;">
                                                 <div class="image-input-wrapper"
                                                      style="width: 100%;display: inline-block;"></div>
@@ -122,8 +122,8 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="width: 100%;">{{ trans('dashboard.business card 2') }}</label>
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
-                                                 style="background-image: url({{ $company->second_business_card ? storage_path('app').'/'.$company->second_business_card : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_7"
+                                                 style="background-image: url({{ $company->second_business_card ?  asset('storage/images/'.$company->second_business_card) : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
                                                     max-height: 120px;">
                                                 <div class="image-input-wrapper"
                                                      style="width: 100%;display: inline-block;"></div>
@@ -148,8 +148,8 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="width: 100%;">{{ trans('dashboard.business card 3') }}</label>
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
-                                                 style="background-image: url({{ $company->third_business_card ? storage_path('app').'/'.$company->third_business_card : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_8"
+                                                 style="background-image: url({{ $company->third_business_card ?  asset('storage/images/'.$company->third_business_card) : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
                                                     max-height: 120px;">
                                                 <div class="image-input-wrapper"
                                                      style="width: 100%;display: inline-block;"></div>
@@ -289,42 +289,76 @@
                                         <span class="label label-lg label-primary mr-2">2</span>{{ trans('dashboard.Designated contact') }}
                                     </h3>
                                     <div class="row">
-                                        @foreach($company->companyDesignatedcontacts as $designated_contact)
-                                            <div class="col-md-4 border">
-                                                <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">1</span>
-                                                <div class="form-group">
+                                        {{--@foreach($company->companyDesignatedcontacts as $k=>$designated_contact)--}}
+                                        @for($i = 0 ; $i<3 ; $i++)
+                                            @if(isset($company->companyDesignatedcontacts[$i]))
+                                                <div class="col-md-4 border">
+                                                    <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
+                                                    <div class="form-group">
 
-                                                    {{--@if(old('designated_contact_name'))--}}
+                                                        {{--@if(old('designated_contact_name'))--}}
 
-                                                    {{--@for( $i =0; $i < count(old('designated_contact_name')); $i++)--}}
-                                                    <label>{{ trans('dashboard.Name') }}:</label>
-                                                    <input value="{{ $designated_contact->name }}" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
-                                                    {{--@endfor--}}
-                                                    {{--@endif--}}
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>{{ trans('dashboard.Job Title') }}:</label>
-                                                    <input value=" {{ $designated_contact->job_title }}" name="designated_contact_job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>{{ trans('dashboard.Mobile') }}:</label>
-                                                    <input value="{{ $designated_contact->mobile }}" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
+                                                        {{--@for( $i =0; $i < count(old('designated_contact_name')); $i++)--}}
+                                                        <label>{{ trans('dashboard.Name') }}:</label>
+                                                        <input value="{{ $company->companyDesignatedcontacts[$i]->name }}" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
+                                                        {{--@endfor--}}
+                                                        {{--@endif--}}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Job Title') }}:</label>
+                                                        <input value=" {{ $company->companyDesignatedcontacts[$i]->job_title }}" name="designated_contact_job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Mobile') }}:</label>
+                                                        <input value="{{ $company->companyDesignatedcontacts[$i]->mobile }}" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Linkedin') }}:</label>
+                                                        <input value="{{ $company->companyDesignatedcontacts[$i]->linkedin }}" name="designated_contact_linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Whatsapp') }}:</label>
+                                                        <input value="{{ $company->companyDesignatedcontacts[$i]->whatsapp }}" name="designated_contact_whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.E-Mail') }}:</label>
+                                                        <input value="{{ $company->companyDesignatedcontacts[$i]->email }}" name="designated_contact_email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>{{ trans('dashboard.Linkedin') }}:</label>
-                                                    <input value="{{ $designated_contact->linkedin }}" name="designated_contact_linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
+                                            @else
+                                                <div class="col-md-4 border">
+                                                    <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Name') }}:</label>
+                                                        <input value="" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Job Title') }}:</label>
+                                                        <input value="" name="designated_contact_job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Mobile') }}:</label>
+                                                        <input value="" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Linkedin') }}:</label>
+                                                        <input value="" name="designated_contact_linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.Whatsapp') }}:</label>
+                                                        <input value="" name="designated_contact_whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.E-Mail') }}:</label>
+                                                        <input value="" name="designated_contact_email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>{{ trans('dashboard.Whatsapp') }}:</label>
-                                                    <input value="{{ $designated_contact->whatsapp }}" name="designated_contact_whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>{{ trans('dashboard.E-Mail') }}:</label>
-                                                    <input value="{{ $designated_contact->email }}" name="designated_contact_email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                            @endif
+                                        @endfor
+                                        {{--@endforeach--}}
+
+
                                         {{--<div class="col-md-4 border">--}}
 
                                         {{--<span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">3</span>--}}
@@ -560,6 +594,28 @@
                                     </div>
 
                                 </div>
+
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Client Status') }} :</label>
+                                            <select name="client_status" class="form-control select2">
+                                                <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                                <option {{ $company->client_status == 1 ? 'selected' : '' }} value="1">{{ trans('dashboard.Hot') }}</option>
+                                                <option {{ $company->client_status == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Warm') }}</option>
+                                                <option {{ $company->client_status == 3 ? 'selected' : '' }} value="3">{{ trans('dashboard.Cold') }}</option>
+                                                <option {{ $company->client_status == 4 ? 'selected' : '' }} value="4">{{ trans('dashboard.Awarded') }}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.By User') }} :</label>
+                                            <input class="form-control" type="text" value="{{ auth()->user()->name }}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
                                         <span class="label label-lg label-primary mr-2">6</span>{{ trans('dashboard.Notes') }}
@@ -606,28 +662,116 @@
     <!--begin::Page add company-->
     <script>
         var avatar5 = new KTImageInput('kt_image_5');
+        var avatar6 = new KTImageInput('kt_image_6');
+        var avatar7 = new KTImageInput('kt_image_7');
+        var avatar8 = new KTImageInput('kt_image_8');
 
         avatar5.on('cancel', function (imageInput) {
             swal.fire({
                 title: 'Image successfully changed !',
                 type: 'success',
                 buttonsStyling: false,
-                confirmButtonText: 'Awesome!',
+                confirmButtonText: 'successfully!',
                 confirmButtonClass: 'btn btn-primary font-weight-bold'
             });
         });
-
         avatar5.on('change', function (imageInput) {
             swal.fire({
                 title: 'Image successfully changed !',
                 type: 'success',
                 buttonsStyling: false,
-                confirmButtonText: 'Awesome!',
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar5.on('remove', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
                 confirmButtonClass: 'btn btn-primary font-weight-bold'
             });
         });
 
-        avatar5.on('remove', function (imageInput) {
+
+        avatar6.on('cancel', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar6.on('change', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar6.on('remove', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+
+        avatar7.on('cancel', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar7.on('change', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar7.on('remove', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+
+        avatar8.on('cancel', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar8.on('change', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+        avatar8.on('remove', function (imageInput) {
             swal.fire({
                 title: 'Image successfully removed !',
                 type: 'error',

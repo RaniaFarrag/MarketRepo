@@ -284,11 +284,9 @@
                                     <div class="row">
                                         @for($i = 0 ; $i<3 ; $i++)
                                             <div class="col-md-4 border">
-                                            <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2"></span>
+                                                <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
                                             <div class="form-group">
-
                                                 {{--@if(old('designated_contact_name'))--}}
-
                                                     {{--@for( $i =0; $i < count(old('designated_contact_name')); $i++)--}}
                                                         <label>{{ trans('dashboard.Name') }}:</label>
                                                         <input value="" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
@@ -497,6 +495,24 @@
                                     </div>
 
                                 </div>
+
+
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label>{{ trans('dashboard.Client Status') }} :</label>
+                                            <select name="client_status" class="form-control select2">
+                                                <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                                <option value="1">{{ trans('dashboard.Hot') }}</option>
+                                                <option value="2">{{ trans('dashboard.Warm') }}</option>
+                                                <option value="3">{{ trans('dashboard.Cold') }}</option>
+                                                <option value="4">{{ trans('dashboard.Awarded') }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
                                         <span class="label label-lg label-primary mr-2">6</span>{{ trans('dashboard.Notes') }}
