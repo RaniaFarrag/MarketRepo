@@ -62705,3 +62705,13 @@ body {
     background-clip: padding-box;
     border: 1px solid #E4E6EF !important;
 }
+
+button.navi-link {
+    border: none;
+    width: 100%;
+    text-align: inherit;
+    background: #fff;
+}
+.navi .navi-item form {
+    margin: 0;
+}

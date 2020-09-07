@@ -88,8 +88,11 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ trans('dashboard.User Name') }}</th>
+                                        <th>{{ trans('dashboard.Name Arabic') }}</th>
+                                        <th>{{ trans('dashboard.Name English') }}</th>
                                         <th>{{ trans('dashboard.User E-mail') }}</th>
+                                        <th>{{ trans('dashboard.User Roles') }}</th>
+                                        <th>{{ trans('dashboard.Sector') }}</th>
                                         <th>{{ trans('dashboard.edit') }}</th>
                                         <th>{{ trans('dashboard.delete') }}</th>
 
@@ -101,13 +104,16 @@
                                         <tr>
                                             <td>{{ $k+1 }}</td>
                                             <td>{{ $user->name }}</td>
+                                            <td>{{ $user->name_en }}</td>
                                             <td>{{ $user->email }}</td>
+                                            <td>  </td>
+                                            <td>  </td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('users.edit' , $user->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
                                                 <form method="post" action="{{ route('users.destroy' , $user->id) }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -115,7 +121,8 @@
 
                                     </tbody>
 
-                                </table>{{ $users->links() }}
+                                </table>
+                                {{ $users->links() }}
                                 <!--end: Datatable-->
                             </div>
                             </div>
