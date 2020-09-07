@@ -14,11 +14,12 @@ use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationData;
 use Spatie\Permission\Models\Role;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CountryRepository implements CountryRepositoryInterface
 {
     use LogTrait;
+    //use SweetAlert;
 
     protected $country_model;
 
@@ -45,7 +46,10 @@ class CountryRepository implements CountryRepositoryInterface
 
         $this->addLog(auth()->id() , $country->id , 'countries' , 'تم اضافة دولة جديدة' , 'New Country has been added');
 
-        return redirect(route('countries.index'))->with('success' , trans('dashboard. added successfully'));
+        //SweetAlert::message(trans('dashboard. added successfully'));
+        //alert()->success(trans('dashboard. added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('countries.index'));
     }
 
 
