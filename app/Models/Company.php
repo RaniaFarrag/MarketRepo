@@ -56,4 +56,12 @@ class Company extends Model
     public function subSector(){
         return $this->belongsTo(SubSector::class);
     }
+
+    public function companyDesignatedcontacts(){
+        return $this->hasMany(CompanyDesignatedContact::class);
+    }
+
+    public function companyMeetings(){
+        return $this->hasMany(CompanyMeeting::class);
+    }
 }

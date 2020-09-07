@@ -361,7 +361,7 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
+                                                                        <a href="{{ route('companies.edit' , $company->id) }}" class="navi-link">
                                                                     <span class="navi-icon"><i
                                                                                 class="flaticon-edit"></i></span>
                                                                             <span class="navi-text">{{ trans('dashboard.Modifying Company Data') }}</span>
@@ -377,8 +377,14 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
-                                                                    <span class="navi-icon"><i
+                                                                        <form id="del" method="post" action="{{ route('companies.destroy' , $company->id) }}">
+                                                                            @method('DELETE')
+                                                                            @csrf
+                                                                        </form>
+                                                                        <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
+
+                                                                        <a onclick="document.getElementById('del').submit(); return false;" href="javascript:{}" class="navi-link">
+                                                                            <span class="navi-icon"><i
                                                                                 class="flaticon2-rubbish-bin"></i></span>
                                                                             <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
                                                                         </a>
@@ -416,7 +422,7 @@
                                                         <!--end::Pic-->
                                                         <!--begin::Title-->
                                                         <div class="d-flex flex-column">
-                                                            <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
+                                                            <a href="{{ route('companies.show' , $company->id) }}" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
                                                                 {{ $company->name }}
                                                             </a>
                                                             <span class="text-muted font-weight-bold">
@@ -530,14 +536,11 @@
                                                                     <span></span>
                                                                     Confirm Contract
 
-
                                                                 </label>
 
                                                             </div>
                                                         </div>
                                                     </div>
-
-
                                                 </div>
                                                 <!--end::Body-->
                                             </div>
@@ -545,7 +548,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-
+                                {{ $companies->links() }}
 
                             </div>
                         </div>

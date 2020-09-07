@@ -21,6 +21,8 @@ interface CompanyRepositoryInterface
     /** Store Company */
     public function store($request);
 
+    /** Edit Company */
+    public function edit($company);
 
     /** Submit Edit Company */
     public function update($request , $company);

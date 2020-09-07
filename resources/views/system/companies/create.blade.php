@@ -642,7 +642,7 @@
                             var sub_sectors = response.sub_sectors;
                             if (sub_sectors.length){
                                 console.log(sub_sectors);
-                                var html = ''
+                                var html = '<option value="">{{ trans(\'dashboard.Select All\') }}</option>'
                                 for (let i = 0; i < sub_sectors.length; i++) {
                                     html+= '<option value="'+ sub_sectors[i].id +'">' + sub_sectors[i].name +'</option>';
                                 }

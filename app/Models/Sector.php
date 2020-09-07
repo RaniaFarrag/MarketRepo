@@ -19,6 +19,10 @@ class Sector extends Model
         return $this->hasMany(SubSector::class);
     }
 
+    public function companies(){
+        return $this->hasMany(Company::class);
+    }
+
 
 
 }
