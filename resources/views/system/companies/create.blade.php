@@ -28,12 +28,12 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Dashboard </a>
+                                {{ trans('dashboard.dashboard') }} </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                Companies Data </a>
+                                {{ trans('dashboard.Companies Data') }}  </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Add New Company') }}
@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="width: 100%;">{{ trans('dashboard.business card 1') }}</label>
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_6"
                                                  style="background-image: url(https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg);width: 100%;
                                                     max-height: 120px;">
                                                 <div class="image-input-wrapper"
@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="width: 100%;">{{ trans('dashboard.business card 2') }}</label>
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_7"
                                                  style="background-image: url(https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg);width: 100%;
                                                     max-height: 120px;">
                                                 <div class="image-input-wrapper"
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <label style="width: 100%;">{{ trans('dashboard.business card 3') }}</label>
-                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_5"
+                                            <div class="image-input image-input-empty image-input-outline" id="kt_image_8"
                                                  style="background-image: url(https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg);width: 100%;
     max-height: 120px;">
                                                 <div class="image-input-wrapper"
@@ -227,7 +227,7 @@
                                             <select id="countries" class="form-control select2" name="country_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['countries'] as $country)
-                                                    <option value="{{ $country->id }}" data-select2-id="59">{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
 
                                             </select>
@@ -284,7 +284,7 @@
                                     <div class="row">
                                         @for($i = 0 ; $i<3 ; $i++)
                                             <div class="col-md-4 border">
-                                            <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">1</span>
+                                            <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2"></span>
                                             <div class="form-group">
 
                                                 {{--@if(old('designated_contact_name'))--}}
@@ -512,8 +512,8 @@
 
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-4"></div>
-                                        <div class="col-lg-8">
+
+                                        <div class="col-lg-12 text-center">
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
                                             <a href="{{ route('companies.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
@@ -543,13 +543,16 @@
     <!--begin::Page add company-->
     <script>
         var avatar5 = new KTImageInput('kt_image_5');
+        var avatar6 = new KTImageInput('kt_image_6');
+        var avatar7 = new KTImageInput('kt_image_7');
+        var avatar8 = new KTImageInput('kt_image_8');
 
         avatar5.on('cancel', function (imageInput) {
             swal.fire({
                 title: 'Image successfully changed !',
                 type: 'success',
                 buttonsStyling: false,
-                confirmButtonText: 'Awesome!',
+                confirmButtonText: 'successfully!',
                 confirmButtonClass: 'btn btn-primary font-weight-bold'
             });
         });
@@ -559,12 +562,102 @@
                 title: 'Image successfully changed !',
                 type: 'success',
                 buttonsStyling: false,
-                confirmButtonText: 'Awesome!',
+                confirmButtonText: 'successfully!',
                 confirmButtonClass: 'btn btn-primary font-weight-bold'
             });
         });
 
         avatar5.on('remove', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar6.on('cancel', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar6.on('change', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar6.on('remove', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar7.on('cancel', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar7.on('change', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar7.on('remove', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar8.on('cancel', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar8.on('change', function (imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'successfully!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar8.on('remove', function (imageInput) {
             swal.fire({
                 title: 'Image successfully removed !',
                 type: 'error',
