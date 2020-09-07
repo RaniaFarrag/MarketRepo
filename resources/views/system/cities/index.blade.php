@@ -113,7 +113,7 @@
                                                 <form method="post" action="{{ route('cities.destroy' , $city->id) }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
