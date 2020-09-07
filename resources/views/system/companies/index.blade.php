@@ -330,14 +330,15 @@
                                                 <div class="card-body p-4">
                                                     <!--begin::Toolbar-->
                                                     <div class="d-flex justify-content-end">
+
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                             data-placement="left" data-original-title="2020-07-13 05:00 PM">
+                                                             data-placement="left" data-original-title="{{ $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time  }}">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                                                 <i class="far fa-bell text-primary"></i>
                                                                 <span class="pulse-ring"></span>
 
-                                                                <span class="badge" id="count-alert2">1</span>
+                                                                <span class="badge" id="count-alert2">{{ count($company->companyMeetings) }}</span>
                                                             </a>
                                                         </div>
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
@@ -380,14 +381,17 @@
                                                                         <form id="del" method="post" action="{{ route('companies.destroy' , $company->id) }}">
                                                                             @method('DELETE')
                                                                             @csrf
+                                                                            <button onclick="return confirm('Are you sure?')" class="navi-link" type="submit">
+                                                                                <span class="navi-icon"><i
+                                                                                            class="flaticon2-rubbish-bin"></i></span>
+                                                                                <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
+                                                                            </button>
                                                                         </form>
-                                                                        <button onclick="return confirm('Are you sure?')" class="btn btn-bg-danger font-weight-bold" type="submit"><i class="fa fa-trash"></i></button>
-
-                                                                        <a onclick="document.getElementById('del').submit(); return false;" href="javascript:{}" class="navi-link">
-                                                                            <span class="navi-icon"><i
-                                                                                class="flaticon2-rubbish-bin"></i></span>
-                                                                            <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
-                                                                        </a>
+                                                                        {{--<a href="javascript:{}" class="navi-link">--}}
+                                                                            {{--<span class="navi-icon"><i--}}
+                                                                                {{--class="flaticon2-rubbish-bin"></i></span>--}}
+                                                                            {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
+                                                                        {{--</a>--}}
                                                                     </li>
                                                                     <li class="navi-item">
                                                                         <a href="#" class="navi-link">
@@ -415,7 +419,7 @@
                                                         <!--begin::Pic-->
                                                         <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                                                             <div class="symbol symbol-circle symbol-lg-75 border">
-                                                                <img src="https://marketing-hc.com/photos/5f154b2c6de301595231020.png"
+                                                                <img src="{{ $company->logo ? storage_path('app').'/'.$company->logo :  'https://marketing-hc.com/photos/5f154b2c6de301595231020.png'}}"
                                                                      alt="image">
                                                             </div>
                                                         </div>
@@ -427,15 +431,16 @@
                                                             </a>
                                                             <span class="text-muted font-weight-bold">
                                                                 <a class="business_card" data-toggle="modal" href="#md-photo-61">
-                                                                    <img style="width: 60px;" src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg">
+                                                                    <img style="width: 60px;"
+                                                                         src="{{ $company->first_business_card ? storage_path('app').'/'.$company->first_business_card : 'https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg' }}">
                                                                 </a>
                                                                 <a class="business_card" data-toggle="modal"
                                                                    href="#md-photo-61">
-                                                                    <img style="width: 60px;" src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg">
+                                                                    <img style="width: 60px;" src="{{ $company->second_business_card ? storage_path('app').'/'.$company->second_business_card : 'https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg' }}">
                                                                 </a>
                                                                 <a class="business_card" data-toggle="modal"
                                                                    href="#md-photo-61">
-                                                                    <img style="width: 60px;" src="https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg">
+                                                                    <img style="width: 60px;" src="{{ $company->third_business_card ? storage_path('app').'/'.$company->third_business_card : 'https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg' }}">
                                                                 </a>
                                                             </span>
                                                         </div>
@@ -470,7 +475,9 @@
                                                             </div>
                                                         @endif
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }} :</span>
+                                                            @if($company->email || $company->twitter || $company->linkedin || $company->whatsapp)
+                                                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }} :</span>
+                                                            @endif
                                                             <span class="text-muted font-weight-bold">
                                                                 @if($company->email)
                                                                     <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
