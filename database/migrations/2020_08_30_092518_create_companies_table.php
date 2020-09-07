@@ -30,7 +30,7 @@ class CreateCompaniesTable extends Migration
             $table->bigInteger('city_id')->unsigned()->nullable();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->string('district')->nullable();
-            $table->string('location')->nullable();
+            $table->text('location')->nullable();
             $table->string('branch_number')->nullable();
             $table->integer('num_of_employees')->nullable();
             $table->string('website')->nullable();

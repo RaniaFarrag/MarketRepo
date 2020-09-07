@@ -28,6 +28,7 @@ class CompanyRequest extends FormRequest
             'name_en' => 'required',
             'phone' => 'required',
             'sector_id' => 'required',
+            'sub_sector_id' => 'required',
             'logo' => 'image|mimes:jpeg,png,jpg',
             'first_business_card' => 'image|mimes:jpeg,png,jpg',
             'second_business_card' => 'image|mimes:jpeg,png,jpg',

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\CompanyMeeting;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,4 +48,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function companyMeetings(){
+        return $this->hasMany(CompanyMeeting::class);
+    }
 }

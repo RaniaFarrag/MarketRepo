@@ -217,7 +217,7 @@
 
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company Type') }} :</label>
-                                            <select id="subSector" class="form-control select2" name="sub_sector_id" required>
+                                            <select id="subSector" class="form-control select2" name="sub_sector_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['sub_sectors'] as $sub_sector)
                                                     <option value="{{ $sub_sector->id }}" {{ $company->sub_sector_id == $sub_sector->id ? 'selected' : '' }}>{{ $sub_sector->name }}</option>
@@ -368,7 +368,7 @@
                                                 @if(count($company->companyMeetings))
                                                     @foreach($company->companyMeetings as $companyMeeting)
                                                         <div data-repeater-item class="form-group row align-items-center">
-                                                            <div class="col-lg-6">
+                                                            <div class="col-lg-4">
                                                                 <label>{{ trans('dashboard.Date') }} :</label>
                                                                 <div class="input-group input-group-solid date" id="kt_datetimepicker_3"
                                                                      data-target-input="nearest">
@@ -387,7 +387,7 @@
                                                                     {{--</div>--}}
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-6">
+                                                            <div class="col-lg-4">
                                                                 <label>{{ trans('dashboard.Time') }} :</label>
                                                                 {{--<div class="input-group input-group-solid date" id="kt_datetimepicker_4"--}}
                                                                 {{--data-target-input="nearest">--}}
@@ -410,6 +410,13 @@
                                                                     {{--<i class="la la-clock-o"></i>--}}
                                                                     {{--</span>--}}
                                                                     {{--</div>--}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <label>{{ trans('dashboard.By User') }} :</label>
+
+                                                                <div class="input-group timepicker">
+                                                                    <input value="{{ $companyMeeting->user->name }}" name="user_id" arr-name="item" class="form-control"  placeholder="{{ trans('dashboard.By User') }}" type="text" readonly/>
                                                                 </div>
                                                             </div>
                                                     </div>

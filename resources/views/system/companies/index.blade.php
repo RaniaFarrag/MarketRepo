@@ -74,8 +74,6 @@
 
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
-
-
                     <!--begin::Button-->
                     <a href="{{ route('companies.create') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Company') }}
@@ -83,14 +81,11 @@
                     <!--end::Button-->
                     <!--begin::Button-->
                     <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        Total companies (1406)
+                        {{ trans('dashboard.Total companies') }} {{ count($companies) }}
                     </a>
                     <!--end::Button-->
-
-
                 </div>
                 <!--end::Toolbar-->
-
             </div>
         </div>
         <!--end::Subheader-->
