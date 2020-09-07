@@ -168,6 +168,7 @@ return [
     'Select Sector' => 'اختر القطاع',
     'User Roles' => 'صلاحية الموظف',
     'By User' => 'بواسطة الموظف',
+    'Edit Company' => 'تعديل الشركة',
 
 
 

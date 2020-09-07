@@ -166,6 +166,7 @@ return [
     'Select Sector' => 'Select Sector',
     'User Roles' => 'User Roles',
     'By User' => 'By User',
+    'Edit Company' => 'Edit Company',
 
 
 
