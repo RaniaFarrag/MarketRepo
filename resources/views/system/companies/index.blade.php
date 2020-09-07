@@ -412,7 +412,6 @@
                                                                 <img src="https://marketing-hc.com/photos/5f154b2c6de301595231020.png"
                                                                      alt="image">
                                                             </div>
-
                                                         </div>
                                                         <!--end::Pic-->
                                                         <!--begin::Title-->
@@ -456,7 +455,7 @@
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}:</span>
-                                                            <span class="text-muted font-weight-bold">{{ $company->subSector->name }}</span>
+                                                            <span class="text-muted font-weight-bold">{{ $company->subSector->name ? $company->subSector->name : '-' }}</span>
                                                         </div>
                                                         @if($company->company_representative_name)
                                                             <div class="d-flex justify-content-between align-items-center">

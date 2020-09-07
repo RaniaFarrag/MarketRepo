@@ -177,15 +177,21 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company Name Arabic') }} :</label>
-                                            <input name="name" type="text" class="form-control" placeholder="{{ trans('dashboard.Company Name Arabic') }}"/>
+                                            <input value="{{ old('name_ar') }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.Company Name Arabic') }}" required/>
+                                            @error('name_ar')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company Name English') }} :</label>
-                                            <input name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.Company Name English') }} "/>
+                                            <input value="{{ old('name_en') }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.Company Name English') }} " required/>
+                                            @error('name_en')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Mobile / WhatsApp number') }} :</label>
-                                            <input name="whatsapp" type="number" class="form-control"
+                                            <input value="{{ old('whatsapp') }}" name="whatsapp" type="number" class="form-control"
                                                    placeholder="Mobile / WhatsApp number"/>
 
                                         </div>
@@ -193,11 +199,14 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.phone number') }} :</label>
-                                            <input name="phone" type="number" class="form-control" placeholder="phone number"/>
+                                            <input value="{{ old('phone') }}" name="phone" type="number" class="form-control" placeholder="phone number" required/>
+                                            @error('phone')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Sector') }} :</label>
-                                            <select id="sector" name="sector_id" class="form-control select2" >
+                                            <select id="sector" name="sector_id" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['sectors'] as $sector)
                                                     <option value="{{ $sector->id }}">{{ $sector->name }}</option>
@@ -230,76 +239,82 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>District:</label>
-                                            <input type="text" class="form-control" placeholder="District"/>
+                                            <label>{{ trans('dashboard.District') }}:</label>
+                                            <input value="{{ old('district') }}" name="district" type="text" class="form-control" placeholder="{{ trans('dashboard.District') }}"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
-                                            <label>Location:</label>
-                                            <input type="text" class="form-control" placeholder="Location"/>
+                                            <label>{{ trans('dashboard.Location') }}:</label>
+                                            <input value="{{ old('location') }}" name="location" type="text" class="form-control" placeholder="{{ trans('dashboard.Location') }}"/>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Branches Number:</label>
-                                            <input type="text" class="form-control" placeholder="Branches Number"/>
+                                            <label>{{ trans('dashboard.Branches Number') }}:</label>
+                                            <input value="{{ old('branch_number') }}" name="branch_number" type="text" class="form-control" placeholder="{{ trans('dashboard.Branches Number') }}"/>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Number of Employees Company:</label>
-                                            <input type="text" class="form-control"
-                                                   placeholder="Number of Employees Company"/>
+                                            <label>{{ trans('dashboard.Number of Employees Company') }}:</label>
+                                            <input value="{{ old('num_of_employees') }}" name="num_of_employees" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.Number of Employees Company') }}"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-3">
-                                            <label>Website:</label>
-                                            <input type="url" class="form-control" placeholder="Website"/>
+                                            <label>{{ trans('dashboard.Website') }}:</label>
+                                            <input value="{{ old('website') }}" name="website" type="url" class="form-control" placeholder="{{ trans('dashboard.Website') }}"/>
                                         </div>
                                         <div class="col-lg-3">
-                                            <label>E-mail:</label>
-                                            <input type="email" class="form-control" placeholder="E-mail"/>
+                                            <label>{{ trans('dashboard.E-mail') }}:</label>
+                                            <input value="{{ old('email') }}" name="email" type="email" class="form-control" placeholder="{{ trans('dashboard.E-mail') }}"/>
                                         </div>
                                         <div class="col-lg-3">
-                                            <label>Linkedin:</label>
-                                            <input type="text" class="form-control" placeholder="Linkedin"/>
+                                            <label>{{ trans('dashboard.Linkedin') }}:</label>
+                                            <input value="{{ old('linkedin') }}" name="linkedin" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
                                         </div>
                                         <div class="col-lg-3">
-                                            <label>Twitter:</label>
-                                            <input type="text" class="form-control" placeholder="Twitter"/>
+                                            <label>{{ trans('dashboard.Twitter') }}:</label>
+                                            <input value="{{ old('twitter') }}" name="twitter" type="text" class="form-control" placeholder="{{ trans('dashboard.Twitter') }}"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">2</span>Designated contact
+                                        <span class="label label-lg label-primary mr-2">2</span>{{ trans('dashboard.Designated contact') }}
                                     </h3>
                                     <div class="row">
                                         @for($i = 0 ; $i<3 ; $i++)
                                             <div class="col-md-4 border">
                                             <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">1</span>
                                             <div class="form-group">
-                                                <label>{{ trans('dashboard.Name') }}:</label>
-                                                <input name="name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
+
+                                                {{--@if(old('designated_contact_name'))--}}
+
+                                                    {{--@for( $i =0; $i < count(old('designated_contact_name')); $i++)--}}
+                                                        <label>{{ trans('dashboard.Name') }}:</label>
+                                                        <input value="" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
+                                                    {{--@endfor--}}
+                                                {{--@endif--}}
                                             </div>
                                             <div class="form-group">
                                                 <label>{{ trans('dashboard.Job Title') }}:</label>
-                                                <input name="job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
+                                                <input value="" name="designated_contact_job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>{{ trans('dashboard.Mobile') }}:</label>
-                                                <input name="mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
+                                                <input value="" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
 
                                             </div>
                                             <div class="form-group">
                                                 <label>{{ trans('dashboard.Linkedin') }}:</label>
-                                                <input name="linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
+                                                <input value="" name="designated_contact_linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>{{ trans('dashboard.Whatsapp') }}:</label>
-                                                <input name="whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
+                                                <input value="" name="designated_contact_whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>{{ trans('dashboard.E-Mail') }}:</label>
-                                                <input name="email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
+                                                <input value="" name="designated_contact_email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
                                             </div>
                                         </div>
                                         @endfor
@@ -308,28 +323,28 @@
                                                 {{--<span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">3</span>--}}
                                                 {{--<div class="form-group">--}}
                                                     {{--<label>Name:</label>--}}
-                                                    {{--<input type="text" class="form-control" placeholder="Name"/>--}}
+                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Name"/>--}}
                                                 {{--</div>--}}
                                                 {{--<div class="form-group">--}}
                                                     {{--<label>Job Title:</label>--}}
-                                                    {{--<input type="text" class="form-control" placeholder="Job Title"/>--}}
+                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Job Title"/>--}}
                                                 {{--</div>--}}
                                                 {{--<div class="form-group">--}}
                                                     {{--<label>Mobile:</label>--}}
-                                                    {{--<input type="number" class="form-control" placeholder="Mobile"/>--}}
+                                                    {{--<input value={{ old('') }} type="number" class="form-control" placeholder="Mobile"/>--}}
 
                                                 {{--</div>--}}
                                                 {{--<div class="form-group">--}}
                                                     {{--<label>Linkedin:</label>--}}
-                                                    {{--<input type="text" class="form-control" placeholder="Linkedin"/>--}}
+                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Linkedin"/>--}}
                                                 {{--</div>--}}
                                                 {{--<div class="form-group">--}}
                                                     {{--<label>Whatsapp:</label>--}}
-                                                    {{--<input type="text" class="form-control" placeholder="Whatsapp"/>--}}
+                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Whatsapp"/>--}}
                                                 {{--</div>--}}
                                                 {{--<div class="form-group">--}}
                                                     {{--<label>E-mail:</label>--}}
-                                                    {{--<input type="email" class="form-control" placeholder="E-mail"/>--}}
+                                                    {{--<input value={{ old('') }} type="email" class="form-control" placeholder="E-mail"/>--}}
                                                 {{--</div>--}}
                                             {{--</div>--}}
                                     </div>
@@ -338,48 +353,55 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">3</span>Confirm Meeting
+                                        <span class="label label-lg label-primary mr-2">3</span>{{ trans('dashboard.Confirm Meeting') }}
                                     </h3>
                                     <div id="kt_repeater_1">
                                         <div id="kt_repeater_1" class="form-group row">
                                             <div data-repeater-list="" class="col-lg-12">
                                                 <div data-repeater-item class="form-group row align-items-center">
-                                                    <div class="col-lg-4">
-                                                        <label>Date :</label>
-
+                                                    <div class="col-lg-6">
+                                                        <label>{{ trans('dashboard.Date') }} :</label>
                                                         <div class="input-group input-group-solid date" id="kt_datetimepicker_3"
                                                              data-target-input="nearest">
-                                                            <input type="text"
-                                                                   class="form-control form-control-solid datetimepicker-input"
-                                                                   placeholder="Select date" data-target="#kt_datetimepicker_3"/>
-                                                            <div class="input-group-append" data-target="#kt_datetimepicker_3"
-                                                                 data-toggle="datetimepicker">
-                                                    <span class="input-group-text">
-                                                        <i class="ki ki-calendar"></i>
-                                                    </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <label>Time :</label>
+                                                            {{--<input value="{{ old('date') }}" name="date" type="text" arr-name="item"--}}
+                                                                   {{--class="form-control form-control-solid datetimepicker-input"--}}
+                                                                   {{--placeholder="Select date" data-target="#kt_datetimepicker_3"/> --}}
 
-                                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_4"
-                                                             data-target-input="nearest">
-                                                            <input type="text"
-                                                                   class="form-control form-control-solid datetimepicker-input"
-                                                                   placeholder="Select time" data-target="#kt_datetimepicker_4"/>
-                                                            <div class="input-group-append" data-target="#kt_datetimepicker_4"
-                                                                 data-toggle="datetimepicker">
-                                            <span class="input-group-text">
-                                                <i class="ki ki-clock"></i>
-                                            </span>
-                                                            </div>
+                                                            <input value="{{ old('date') }}" name="date" type="date" arr-name="item"
+                                                                   class="form-control form-control-solid "
+                                                                   placeholder="Select date" />
+                                                            {{--<div class="input-group-append" data-target="#kt_datetimepicker_3"--}}
+                                                                 {{--data-toggle="datetimepicker">--}}
+                                                                {{--<span class="input-group-text">--}}
+                                                                    {{--<i class="ki ki-calendar"></i>--}}
+                                                                {{--</span>--}}
+                                                            {{--</div>--}}
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4">
-                                                        <label>Name of Confirmed:</label>
-                                                        <input type="text" disabled class="form-control disabled"
-                                                               placeholder="name of Confirmed"/>
+                                                    <div class="col-lg-6">
+                                                        <label>{{ trans('dashboard.Time') }} :</label>
+                                                            {{--<div class="input-group input-group-solid date" id="kt_datetimepicker_4"--}}
+                                                                 {{--data-target-input="nearest">--}}
+                                                                {{--<input name="time" type="text" arr-name="item"--}}
+                                                                       {{--class="form-control form-control-solid datetimepicker-input"--}}
+                                                                       {{--placeholder="Select time" data-target="#kt_datetimepicker_4"/>--}}
+                                                                {{--<div class="input-group-append" data-target="#kt_datetimepicker_4"--}}
+                                                                     {{--data-toggle="datetimepicker">--}}
+                                                                    {{--<span class="input-group-text">--}}
+                                                                        {{--<i class="ki ki-clock"></i>--}}
+                                                                    {{--</span>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+
+                                                        <div class="input-group timepicker">
+                                                            {{--<input value="{{ old('time') }}" name="time" arr-name="item" class="form-control" id="kt_timepicker_2" readonly placeholder="Select time" type="text"/>--}}
+                                                            <input value="{{ old('time') }}" name="time" arr-name="item" class="form-control"  placeholder="Select time" type="time"/>
+                                                            {{--<div class="input-group-append">--}}
+                                                                {{--<span class="input-group-text">--}}
+                                                                    {{--<i class="la la-clock-o"></i>--}}
+                                                                {{--</span>--}}
+                                                            {{--</div>--}}
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -389,7 +411,7 @@
 
                                             <div class="col-lg-3 float-right" style="float: none !important;margin: 0 auto;">
                                                 <a href="javascript:;" data-repeater-create="" class="btn btn-block font-weight-bolder btn-light-primary">
-                                                    <i class="la la-plus"></i> Add a new Meeting
+                                                    <i class="la la-plus"></i> {{ trans('dashboard.Add a new Meeting') }}
                                                 </a>
                                             </div>
                                         </div>
@@ -398,41 +420,41 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">4</span>Company Representative
+                                        <span class="label label-lg label-primary mr-2">4</span>{{ trans('dashboard.Company Representative') }}
                                     </h3>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <label>Name:</label>
-                                            <input type="text" class="form-control" placeholder="Name"/>
+                                            <label>{{ trans('dashboard.Name') }}:</label>
+                                            <input value="{{ old('company_representative_name') }}" name="company_representative_name" type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>Job Title:</label>
-                                            <input type="text" class="form-control" placeholder="Job Title"/>
+                                            <label>{{ trans('dashboard.Job Title') }}:</label>
+                                            <input value="{{ old('company_representative_job_title') }}" name="company_representative_job_title" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
                                         </div>
 
 
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
-                                            <label>Mobile:</label>
-                                            <input type="number" class="form-control"
-                                                   placeholder="Mobile"/>
+                                            <label>{{ trans('dashboard.Mobile') }}:</label>
+                                            <input value="{{ old('company_representative_job_mobile') }}" name="company_representative_job_mobile" type="number" class="form-control"
+                                                   placeholder="{{ trans('dashboard.Mobile') }}"/>
 
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Email:</label>
-                                            <input type="email" class="form-control" placeholder="Email"/>
+                                            <label>{{ trans('dashboard.Email') }}:</label>
+                                            <input value="{{ old('company_representative_job_email') }}" name="company_representative_job_email" type="email" class="form-control" placeholder="{{ trans('dashboard.Email') }}"/>
 
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Phone:</label>
+                                            <label>{{ trans('dashboard.Phone') }}:</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon2">
-                                                <div class="input-group-append" style="width: 20%">
-                                                <span class="input-group-text p-0">
-                                                    <input type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">
-                                                </span>
-                                                </div>
+                                                <input value="{{ old('company_representative_job_phone') }}" name="company_representative_job_phone" type="number" class="form-control" placeholder="{{ trans('dashboard.Phone') }}" aria-describedby="basic-addon2">
+                                                {{--<div class="input-group-append" style="width: 20%">--}}
+                                                    {{--<span class="input-group-text p-0">--}}
+                                                        {{--<input name="company_representative_job_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
+                                                    {{--</span>--}}
+                                                {{--</div>--}}
                                             </div>
 
                                         </div>
@@ -441,35 +463,35 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">5</span>HR Director
+                                        <span class="label label-lg label-primary mr-2">5</span>{{ trans('dashboard.HR Director') }}
                                     </h3>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <label>Name:</label>
-                                            <input type="text" class="form-control" placeholder="Name"/>
+                                            <label>{{ trans('dashboard.Name') }}:</label>
+                                            <input value="{{ old('hr_director_job_name') }}" name="hr_director_job_name" type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label>Email:</label>
-                                            <input type="text" class="form-control" placeholder="Mobile"/>
+                                            <label>{{ trans('dashboard.Email') }}:</label>
+                                            <input value="{{ old('hr_director_job_email') }}" name="hr_director_job_email" type="text" class="form-control" placeholder="Mobile"/>
                                         </div>
 
 
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
-                                            <label>Mobile:</label>
-                                            <input type="number" class="form-control"
-                                                   placeholder="Mobile"/>
+                                            <label>{{ trans('dashboard.Mobile') }}:</label>
+                                            <input value="{{ old('hr_director_job_mobile') }}" name="hr_director_job_mobile" type="number" class="form-control"
+                                                   placeholder="{{ trans('dashboard.Mobile') }}"/>
 
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>Phone:</label>
-                                            <input type="number" class="form-control" placeholder="Phone"/>
+                                            <label>{{ trans('dashboard.Phone') }}:</label>
+                                            <input value="{{ old('hr_director_job_phone') }}" name="hr_director_job_phone" type="number" class="form-control" placeholder="{{ trans('dashboard.Phone') }}"/>
 
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>HR Whatsapp:</label>
-                                            <input type="number" class="form-control" placeholder="HR Whatsapp"/>
+                                            <label>{{ trans('dashboard.HR Whatsapp') }}:</label>
+                                            <input value="{{ old('hr_director_job_whatsapp') }}" name="hr_director_job_whatsapp" type="number" class="form-control" placeholder="{{ trans('dashboard.HR Whatsapp') }}"/>
 
                                         </div>
                                     </div>
@@ -477,15 +499,13 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">6</span>Notes
+                                        <span class="label label-lg label-primary mr-2">6</span>{{ trans('dashboard.Notes') }}
                                     </h3>
                                     <div class="form-group row">
                                         <div class="col-lg-12">
-                                            <label>Notes:</label>
-                                            <textarea name="notes" class="form-control"   rows="5"></textarea>
+                                            <label>{{ trans('dashboard.Notes') }}:</label>
+                                            <textarea name="notes" class="form-control"   rows="5">{{ old('notes') }}</textarea>
                                         </div>
-
-
                                     </div>
 
                                 </div>
@@ -494,8 +514,8 @@
                                     <div class="row">
                                         <div class="col-lg-4"></div>
                                         <div class="col-lg-8">
-                                            <button type="reset" class="btn btn-primary mr-2">Submit</button>
-                                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                                            <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
+                                            <a href="{{ route('companies.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -518,6 +538,7 @@
 
 
 @section('script')
+    <script src="{{ asset('dashboard/assets/js/pages/crud/forms/widgets/bootstrap-timepicker.js') }}"></script>
 
     <!--begin::Page add company-->
     <script>

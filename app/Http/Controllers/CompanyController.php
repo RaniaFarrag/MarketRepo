@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
 use App\Interfaces\CompanyRepositoryInterface;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -46,8 +48,9 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CountryRequest $request)
+    public function store(CompanyRequest $request)
     {
+        //dd($request->item[0]['date']);
         return $this->companyRepositoryinterface->store($request);
     }
 
@@ -68,9 +71,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit(Company $company)
     {
-        return view('system.countries.edit')->with('country' , $country);
+        return view('system.countries.edit')->with('company' , $company);
     }
 
     /**
@@ -80,9 +83,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CountryRequest $request, Country $country)
+    public function update(CompanyRequest $request, Company $company)
     {
-        return $this->companyRepositoryinterface->update($request , $country);
+        return $this->companyRepositoryinterface->update($request , $company);
     }
 
     /**
@@ -91,8 +94,8 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy(Company $company)
     {
-        return $this->companyRepositoryinterface->destroy($country);
+        return $this->companyRepositoryinterface->destroy($company);
     }
 }

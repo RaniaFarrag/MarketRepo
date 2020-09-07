@@ -79944,6 +79944,7 @@ $.fn.repeater = function (fig) {
                     var $input = $(this);
                     // match non empty brackets (ex: "[foo]")
                     var matches = $input.attr('name').match(/\[[^\]]+\]/g);
+                    var arrName = $input.attr('arr-name');
 
                     var name = matches ?
                         // strip "[" and "]" characters
@@ -79951,7 +79952,7 @@ $.fn.repeater = function (fig) {
                         $input.attr('name');
 
 
-                    var newName = groupName + '[' + index + '][' + name + ']' +
+                    var newName = arrName + '[' + index + ']' +'[' + name + ']'+
                         ($input.is(':checkbox') || $input.attr('multiple') ? '[]' : '');
 
                     $input.attr('name', newName);
@@ -79990,16 +79991,20 @@ $.fn.repeater = function (fig) {
                 if(data || fig.defaultValues) {
                     var inputNames = {};
                     $filterNested($item.find('[name]'), repeaters).each(function () {
+                        console.log($(this).attr('name'))
                         var key = $(this).attr('name').match(/\[([^\]]*)(\]|\]\[\])$/)[1];
                         inputNames[key] = $(this).attr('name');
+
                     });
 
                     $item.inputVal(map(
                         filter(data || fig.defaultValues, function (val, name) {
+
                             return inputNames[name];
                         }),
                         identity,
                         function (name) {
+
                             return inputNames[name];
                         }
                     ));
@@ -80008,6 +80013,7 @@ $.fn.repeater = function (fig) {
 
                 $foreachRepeaterInItem(repeaters, $item, function (nestedFig) {
                     var $repeater = $(this);
+
                     $filterNested(
                         $repeater.find('[data-repeater-item]'),
                         nestedFig.repeaters
