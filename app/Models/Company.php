@@ -45,6 +45,9 @@ class Company extends Model
         'hr_director_job_phone',
         'hr_director_job_whatsapp',
 
+        'client_status',
+        'client_status_user_id',
+
         'notes',
     ];
 
