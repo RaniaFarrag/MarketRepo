@@ -21,9 +21,10 @@ trait UploadTrait{
                 return redirect()->back()->withInput();
             }
             $file_name = time().'_'.$request->file($fieldname)->getClientOriginalName();
-
-//            return $request->file($fieldname)->store('uploads/' . $directory, 'public');
-            return $path = $request->file($fieldname)->storeAs('uploads' , $file_name);
+            $request->file($fieldname)->storeAs('public/images' , $file_name);
+            //dd($request->file($fieldname)->storeAs('public/images' , $file_name));
+            return $file_name;
+//            return $path = $request->file($fieldname)->storeAs('uploads' , $file_name);
         }
         return null;
     }
