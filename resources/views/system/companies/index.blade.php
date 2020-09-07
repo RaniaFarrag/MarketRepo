@@ -414,7 +414,7 @@
                                                         <!--begin::Pic-->
                                                         <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                                                             <div class="symbol symbol-circle symbol-lg-75 border">
-                                                                <img src="{{ $company->logo ? storage_path('app').'/'.$company->logo :  'https://marketing-hc.com/photos/5f154b2c6de301595231020.png'}}"
+                                                                <img src="{{ $company->logo ? asset('storage/images/'.$company->logo) :  'https://marketing-hc.com/photos/5f154b2c6de301595231020.png'}}"
                                                                      alt="image">
                                                             </div>
                                                         </div>
@@ -425,18 +425,26 @@
                                                                 {{ $company->name }}
                                                             </a>
                                                             <span class="text-muted font-weight-bold">
-                                                                <a class="business_card" data-toggle="modal" href="#md-photo-61">
-                                                                    <img style="width: 60px;"
-                                                                         src="{{ $company->first_business_card ? storage_path('app').'/'.$company->first_business_card : 'https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg' }}">
-                                                                </a>
-                                                                <a class="business_card" data-toggle="modal"
-                                                                   href="#md-photo-61">
-                                                                    <img style="width: 60px;" src="{{ $company->second_business_card ? storage_path('app').'/'.$company->second_business_card : 'https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg' }}">
-                                                                </a>
-                                                                <a class="business_card" data-toggle="modal"
-                                                                   href="#md-photo-61">
-                                                                    <img style="width: 60px;" src="{{ $company->third_business_card ? storage_path('app').'/'.$company->third_business_card : 'https://marketing-hc.com/photos/5e5cd34c690fd1583141708.kisspng-saudi-vision-2030-crown-prince-of-saudi-arabia-cou-2030-5b23c77cd67922.4568870315290714848785.jpg' }}">
-                                                                </a>
+                                                                @if($company->first_business_card)
+                                                                    <a class="business_card" data-toggle="modal" href="#md-photo-61">
+                                                                        <img style="width: 60px;"
+                                                                             src="{{ asset('storage/images/'.$company->first_business_card) }}">
+                                                                    </a>
+                                                                @endif
+
+                                                                @if($company->second_business_card)
+                                                                    <a class="business_card" data-toggle="modal"
+                                                                       href="#md-photo-61">
+                                                                        <img style="width: 60px;" src="{{ asset('storage/images/'.$company->second_business_card) }}">
+                                                                    </a>
+                                                                @endif
+
+                                                                @if($company->third_business_card)
+                                                                    <a class="business_card" data-toggle="modal"
+                                                                       href="#md-photo-61">
+                                                                        <img style="width: 60px;" src="{{ asset('storage/images/'.$company->third_business_card) }}">
+                                                                    </a>
+                                                                @endif
                                                             </span>
                                                         </div>
                                                         <!--end::Title-->
