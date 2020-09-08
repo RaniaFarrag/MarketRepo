@@ -169,6 +169,9 @@ return [
     'User Roles' => 'صلاحية الموظف',
     'By User' => 'بواسطة الموظف',
     'Edit Company' => 'تعديل الشركة',
+    'Print' => 'طباعة',
+    'Edit sector' => 'تعديل قطاع',
+    'sub-sectors' => 'قطاع فرعي',
 
 
 
