@@ -167,6 +167,9 @@ return [
     'User Roles' => 'User Roles',
     'By User' => 'By User',
     'Edit Company' => 'Edit Company',
+    'Print' => 'Print',
+    'Edit sector' => 'Edit New sector',
+    'sub-sectors' => 'sub-sectors',
 
 
 
