@@ -466,7 +466,7 @@
                                                             <span class="text-muted font-weight-bold">
                                                                 @if($company->first_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#exampleModal">
+                                                                       href="#myModal" data-img-url="{{ asset('storage/images/'.$company->first_business_card) }}">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->first_business_card) }}">
                                                                     </a>
@@ -474,7 +474,7 @@
 
                                                                 @if($company->second_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#exampleModal">
+                                                                       href="#myModal" data-img-url="{{ asset('storage/images/'.$company->second_business_card) }}">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->second_business_card) }}">
                                                                     </a>
@@ -482,7 +482,7 @@
 
                                                                 @if($company->third_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#exampleModal">
+                                                                       href="#myModal" data-img-url="{{ asset('storage/images/'.$company->third_business_card) }}">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->third_business_card) }}">
                                                                     </a>
@@ -625,7 +625,7 @@
         </div>
         <!--end::Container-->
         <!-- Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -636,26 +636,34 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <img src="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close
                         </button>
-                        <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>
+                        {{--<button type="button" class="btn btn-primary font-weight-bold">Save changes</button>--}}
                     </div>
                 </div>
             </div>
         </div>
 
-
     </div>
 
-
-
-
-
-
 @endsection
+
+
+@section('script')
+    {{--VIEW BUSINESS CARDS IN MODAL--}}
+    <script>
+        $('.business_card').on('click', function() {
+            //$('#myModal').html('<img src="' + $(this).data('userphoto') + '"/>')
+
+            $('#myModal img').attr('src', $(this).attr('data-img-url'));
+        });
+    </script>
+@endsection
+
+
 
 <script type="text/javascript">
     $(document).ready(function () {
