@@ -146,7 +146,7 @@
 
 <!--<script src="assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js?v=7.0.6"></script>
 --><!--end::Page Scripts-->
-
+@include('sweetalert::alert')
 @yield('script')
 
 

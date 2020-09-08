@@ -161,6 +161,13 @@ class CompanyRepository implements CompanyRepositoryInterface
         return redirect(route('companies.index'))->with('success' , trans('dashboard. added successfully'));
     }
 
+
+    /** Show One Company */
+    public function show($company)
+    {
+        return $this->companyRepositoryinterface->show($company);
+    }
+
     /** Edit Company */
     public function edit($company)
     {
