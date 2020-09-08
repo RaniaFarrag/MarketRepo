@@ -1,8 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('body')
-
-
     <style>
         a.sociall img {
             width: 25px;
@@ -133,7 +131,8 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Sectors') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="">Health Care</option>
                                                                 <option value="">Oil & Gas</option>
                                                             </select>
@@ -144,8 +143,10 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Company Type') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="72" data-select2-id="23">Senior management of
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value="72" data-select2-id="23">Senior
+                                                                    management of
                                                                     pharmacies
                                                                 </option>
 
@@ -166,8 +167,10 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Country') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value="1" data-select2-id="58">Saudi Arabia
+                                                                </option>
                                                                 <option value="2" data-select2-id="59">United Arab
                                                                     Emirates
                                                                 </option>
@@ -178,8 +181,10 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.City') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="1" data-select2-id="58">Saudi Arabia</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value="1" data-select2-id="58">Saudi Arabia
+                                                                </option>
                                                                 <option value="2" data-select2-id="59">United Arab
                                                                     Emirates
                                                                 </option>
@@ -202,10 +207,14 @@
                                                             <label>{{ trans('dashboard.Communication Type') }}</label>
                                                             <select class="form-control select2" name="param"
                                                                     multiple="multiple">
-                                                                <option value="whats" data-select2-id="71">Whatsapp</option>
-                                                                <option value="email" data-select2-id="72">Email</option>
-                                                                <option value="phone" data-select2-id="73">Phone</option>
-                                                                <option value="twiter" data-select2-id="74">Twitter</option>
+                                                                <option value="whats" data-select2-id="71">Whatsapp
+                                                                </option>
+                                                                <option value="email" data-select2-id="72">Email
+                                                                </option>
+                                                                <option value="phone" data-select2-id="73">Phone
+                                                                </option>
+                                                                <option value="twiter" data-select2-id="74">Twitter
+                                                                </option>
                                                                 <option value="linkedin" data-select2-id="75">Linkedin
                                                                 </option>
 
@@ -230,9 +239,12 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Representative') }} </label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="1" data-select2-id="103">Existing</option>
-                                                                <option value="0" data-select2-id="104">Not Exist</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value="1" data-select2-id="103">Existing
+                                                                </option>
+                                                                <option value="0" data-select2-id="104">Not Exist
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -241,7 +253,8 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Company Representative name') }}  </label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="13471" data-select2-id="94">BABU ANSARI
                                                                 </option>
                                                                 <option value="13473" data-select2-id="95">RAAFAT ALI
@@ -254,9 +267,11 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Client Status') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 <option value="1" data-select2-id="103">Hot</option>
-                                                                <option value="0" data-select2-id="104">Not Exist</option>
+                                                                <option value="0" data-select2-id="104">Not Exist
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -265,9 +280,12 @@
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Location') }}</label>
                                                             <select class="form-control select2" name="param">
-                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="1" data-select2-id="103">Existing</option>
-                                                                <option value="0" data-select2-id="104">Not Exist</option>
+                                                                <option value=""
+                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                <option value="1" data-select2-id="103">Existing
+                                                                </option>
+                                                                <option value="0" data-select2-id="104">Not Exist
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -315,7 +333,8 @@
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>&nbsp;</label>
-                                                            <button type="button" class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
+                                                            <button type="button"
+                                                                    class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
                                                             </button>
                                                         </div>
                                                     </div>
@@ -337,18 +356,23 @@
                                                     <!--begin::Toolbar-->
                                                     <div class="d-flex justify-content-end">
 
-                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                             data-placement="left" data-original-title="{{ $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time  }}">
+                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip"
+                                                             title=""
+                                                             data-placement="left"
+                                                             data-original-title="{{ $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time  }}">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                                                 <i class="far fa-bell text-primary"></i>
                                                                 <span class="pulse-ring"></span>
 
-                                                                <span class="badge" id="count-alert2">{{ count($company->companyMeetings) }}</span>
+                                                                <span class="badge"
+                                                                      id="count-alert2">{{ count($company->companyMeetings) }}</span>
                                                             </a>
                                                         </div>
-                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title=""
-                                                             data-placement="left" data-original-title="{{ trans('dashboard.Quick actions') }}">
+                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip"
+                                                             title=""
+                                                             data-placement="left"
+                                                             data-original-title="{{ trans('dashboard.Quick actions') }}">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
                                                                data-toggle="dropdown" aria-haspopup="true"
@@ -368,14 +392,16 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="navi-item">
-                                                                        <a href="{{ route('companies.edit' , $company->id) }}" class="navi-link">
+                                                                        <a href="{{ route('companies.edit' , $company->id) }}"
+                                                                           class="navi-link">
                                                                     <span class="navi-icon"><i
                                                                                 class="flaticon-edit"></i></span>
                                                                             <span class="navi-text">{{ trans('dashboard.Modifying Company Data') }}</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="navi-item">
-                                                                        <a href="#" class="navi-link" data-toggle="modal"
+                                                                        <a href="#" class="navi-link"
+                                                                           data-toggle="modal"
                                                                            data-target="#exampleModal">
                                                                     <span class="navi-icon"><i
                                                                                 class="flaticon2-rocket-1"></i></span>
@@ -384,19 +410,21 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="navi-item">
-                                                                        <form id="del" method="post" action="{{ route('companies.destroy' , $company->id) }}">
+                                                                        <form id="del" method="post"
+                                                                              action="{{ route('companies.destroy' , $company->id) }}">
                                                                             @method('DELETE')
                                                                             @csrf
-                                                                            <button onclick="return confirm('Are you sure?')" class="navi-link" type="submit">
+                                                                            <button onclick="return confirm('Are you sure?')"
+                                                                                    class="navi-link" type="submit">
                                                                                 <span class="navi-icon"><i
                                                                                             class="flaticon2-rubbish-bin"></i></span>
                                                                                 <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
                                                                             </button>
                                                                         </form>
                                                                         {{--<a href="javascript:{}" class="navi-link">--}}
-                                                                            {{--<span class="navi-icon"><i--}}
-                                                                                {{--class="flaticon2-rubbish-bin"></i></span>--}}
-                                                                            {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
+                                                                        {{--<span class="navi-icon"><i--}}
+                                                                        {{--class="flaticon2-rubbish-bin"></i></span>--}}
+                                                                        {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
                                                                         {{--</a>--}}
                                                                     </li>
                                                                     <li class="navi-item">
@@ -432,12 +460,14 @@
                                                         <!--end::Pic-->
                                                         <!--begin::Title-->
                                                         <div class="d-flex flex-column">
-                                                            <a href="{{ route('companies.show' , $company->id) }}" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
+                                                            <a href="{{ route('companies.show' , $company->id) }}"
+                                                               class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
                                                                 {{ $company->name }}
                                                             </a>
                                                             <span class="text-muted font-weight-bold">
                                                                 @if($company->first_business_card)
-                                                                    <a class="business_card" data-toggle="modal" href="#md-photo-61">
+                                                                    <a class="business_card" data-toggle="modal"
+                                                                       href="#exampleModal">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->first_business_card) }}">
                                                                     </a>
@@ -445,15 +475,17 @@
 
                                                                 @if($company->second_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#md-photo-61">
-                                                                        <img style="width: 60px;" src="{{ asset('storage/images/'.$company->second_business_card) }}">
+                                                                       href="#exampleModal">
+                                                                        <img style="width: 60px;"
+                                                                             src="{{ asset('storage/images/'.$company->second_business_card) }}">
                                                                     </a>
                                                                 @endif
 
                                                                 @if($company->third_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#md-photo-61">
-                                                                        <img style="width: 60px;" src="{{ asset('storage/images/'.$company->third_business_card) }}">
+                                                                       href="#exampleModal">
+                                                                        <img style="width: 60px;"
+                                                                             src="{{ asset('storage/images/'.$company->third_business_card) }}">
                                                                     </a>
                                                                 @endif
                                                             </span>
@@ -465,36 +497,43 @@
                                                     <!--begin::Info-->
                                                     <div class="mb-7">
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Contact Information') }} :</span>
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Contact Information') }}
+                                                                :</span>
                                                             <a href="#"
                                                                class="text-hover-primary">{{ $company->phone }}</a>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-cente my-1">
-                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Number of Employees') }} : </span>
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Number of Employees') }}
+                                                                : </span>
                                                             <span class=" text-hover-primary">{{ $company->num_of_employees ? $company->num_of_employees : '-' }}</span>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Location') }}:</span>
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Location') }}
+                                                                :</span>
                                                             <a href="#"> <span class="text-muted font-weight-bold"><i
                                                                             class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location }}</span></a>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}:</span>
+                                                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}
+                                                                :</span>
                                                             <span class="text-muted font-weight-bold">{{ $company->subSector->name ? $company->subSector->name : '-' }}</span>
                                                         </div>
                                                         @if($company->company_representative_name)
                                                             <div class="d-flex justify-content-between align-items-center">
-                                                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Representative name') }} :</span>
+                                                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Representative name') }}
+                                                                    :</span>
                                                                 <span class="text-muted font-weight-bold">{{ $company->company_representative_name }}</span>
                                                             </div>
                                                         @endif
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             @if($company->email || $company->twitter || $company->linkedin || $company->whatsapp)
-                                                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }} :</span>
+                                                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }}
+                                                                    :</span>
                                                             @endif
                                                             <span class="text-muted font-weight-bold">
                                                                 @if($company->email)
-                                                                    <a class="md-effect sociall" data-toggle="modal" href="#btnMail-2863"
+                                                                    <a class="md-effect sociall" data-toggle="modal"
+                                                                       href="#btnMail-2863"
                                                                        data-effect="md-flipHor" req_id="1248">
                                                                         <img class="img-responsive"
                                                                              src="https://marketing-hc.com/system/assets/img/icon/mail.png">
@@ -502,14 +541,16 @@
                                                                 @endif
 
                                                                 @if($company->twitter)
-                                                                    <a class="sociall" href="{{ $company->twitter }}" target="_blank">
+                                                                    <a class="sociall" href="{{ $company->twitter }}"
+                                                                       target="_blank">
                                                                         <img class="img-responsive"
                                                                              src="https://marketing-hc.com/system/assets/img/icon/twit.png">
                                                                     </a>
                                                                 @endif
 
                                                                 @if($company->linkedin)
-                                                                     <a class="sociall" href="{{ $company->linkedin }}" target="_blank">
+                                                                    <a class="sociall" href="{{ $company->linkedin }}"
+                                                                       target="_blank">
                                                                         <img class="img-responsive"
                                                                              src="https://marketing-hc.com/system/assets/img/icon/linked.png">
                                                                     </a>
@@ -549,7 +590,7 @@
                                                                 <label class="checkbox checkbox-success">
                                                                     <input type="checkbox" name="Checkboxes5"/>
                                                                     <span></span>
-                                                                     {{ trans('dashboard.Confirm Need') }}
+                                                                    {{ trans('dashboard.Confirm Need') }}
 
                                                                 </label>
                                                                 <label class="checkbox checkbox-success">
