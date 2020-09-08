@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Sector;
 use App\Traits\logTrait;
 use function GuzzleHttp\Promise\all;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class SectorRepository implements SectorRepositoryInterface
@@ -30,7 +31,7 @@ class SectorRepository implements SectorRepositoryInterface
     /** View All sectors */
     public function index(){
         return $this->sector_model->paginate(20);
-        return $this->sector_model->w(20);
+        //return $this->sector_model->w(20);
     }
 
     /** Store Sector */
@@ -43,7 +44,8 @@ class SectorRepository implements SectorRepositoryInterface
 
         $this->addLog(auth()->id() , $sector->id , 'sectors' , 'تم اضافة قطاع جديد' , 'New Sector has been added');
 
-        return redirect(route('sectors.index'))->with('success' , trans('dashboard.added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('sectors.index'));
 
     }
 
@@ -58,7 +60,8 @@ class SectorRepository implements SectorRepositoryInterface
 
         $this->addLog(auth()->id() , $sector->id , 'sectors' , 'تم تعديل قطاع ' , 'Sector has been updated');
 
-        return redirect(route('sectors.index'))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('sectors.index'));
 
     }
 
@@ -68,7 +71,8 @@ class SectorRepository implements SectorRepositoryInterface
 
         $this->addLog(auth()->id() , $sector->id , 'sectors' , 'تم حذف قطاع ' , 'Sector has been deleted');
 
-        return redirect(route('sectors.index'))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('sectors.index'));
     }
 
 }
