@@ -359,14 +359,13 @@
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip"
                                                              title=""
                                                              data-placement="left"
-                                                             data-original-title="{{ $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time  }}">
+                                                             data-original-title="{{$company->companyMeetings[ count($company->companyMeetings) - 1 ]->date ?  $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time : ''  }}">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                                                 <i class="far fa-bell text-primary"></i>
                                                                 <span class="pulse-ring"></span>
 
-                                                                <span class="badge"
-                                                                      id="count-alert2">{{ count($company->companyMeetings) }}</span>
+                                                                <span class="badge" id="count-alert2">{{ $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date ? count($company->companyMeetings) : 0 }}</span>
                                                             </a>
                                                         </div>
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip"
@@ -385,7 +384,7 @@
                                                                 <!--begin::Navigation-->
                                                                 <ul class="navi navi-hover py-5">
                                                                     <li class="navi-item">
-                                                                        <a href="#" class="navi-link">
+                                                                        <a href="{{ route('companies.show' , $company->id) }}" class="navi-link">
                                                                     <span class="navi-icon"><i
                                                                                 class="flaticon2-list-3"></i></span>
                                                                             <span class="navi-text">{{ trans('dashboard.View Company Data') }}</span>
@@ -500,7 +499,7 @@
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Contact Information') }}
                                                                 :</span>
                                                             <a href="#"
-                                                               class="text-hover-primary">{{ $company->phone }}</a>
+                                                               class="text-hover-primary">{{ $company->phone ? $company->phone : '-' }}</a>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-cente my-1">
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Number of Employees') }}
@@ -511,25 +510,25 @@
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Location') }}
                                                                 :</span>
                                                             <a href="#"> <span class="text-muted font-weight-bold"><i
-                                                                            class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location }}</span></a>
+                                                                            class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location ? $company->location : '-' }}</span></a>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}
                                                                 :</span>
                                                             <span class="text-muted font-weight-bold">{{ $company->subSector->name ? $company->subSector->name : '-' }}</span>
                                                         </div>
-                                                        @if($company->company_representative_name)
+                                                        {{--@if($company->company_representative_name)--}}
                                                             <div class="d-flex justify-content-between align-items-center">
                                                                 <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Representative name') }}
                                                                     :</span>
-                                                                <span class="text-muted font-weight-bold">{{ $company->company_representative_name }}</span>
+                                                                <span class="text-muted font-weight-bold">{{ $company->company_representative_name ? $company->company_representative_name : '-' }}</span>
                                                             </div>
-                                                        @endif
+                                                        {{--@endif--}}
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            @if($company->email || $company->twitter || $company->linkedin || $company->whatsapp)
+                                                            {{--@if($company->email || $company->twitter || $company->linkedin || $company->whatsapp)--}}
                                                                 <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }}
                                                                     :</span>
-                                                            @endif
+                                                            {{--@endif--}}
                                                             <span class="text-muted font-weight-bold">
                                                                 @if($company->email)
                                                                     <a class="md-effect sociall" data-toggle="modal"

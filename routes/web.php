@@ -65,7 +65,25 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
 
+    Route::get('company_report' , function (){
+        return view('system.reports.company_report');
+    })->name('company_report');
 
+    Route::get('rep_report' , function (){
+        return view('system.reports.company_report');
+    })->name('rep_report');
+
+    Route::get('monitor_auth_report' , function (){
+        return view('system.reports.monitor_auth_report');
+    })->name('monitor_auth_report');
+
+    Route::get('team_sales_lead_report' , function (){
+        return view('system.reports.team_sales_lead_report');
+    })->name('team_sales_lead_report');
+
+    Route::get('whatsapp' , function (){
+        return view('system.whatsapp.view');
+    })->name('whatsapp');
 
 
 

@@ -221,7 +221,7 @@
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('company_report')}}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                   <i class="far fa-chart-bar"></i>
@@ -232,7 +232,7 @@
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('rep_report')}}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-user-tie"></i>
@@ -243,7 +243,7 @@
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('monitor_auth_report') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="far fa-list-alt"></i>
@@ -254,7 +254,7 @@
                                                 </li>
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('team_sales_lead_report')}}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                          <i class="fas fa-users-cog"></i>
@@ -324,6 +324,15 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                    </li>
+
+
+                                    <li class="menu-item   menu-item-here"
+                                        data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="{{ route('whatsapp') }}" class="menu-link ">
+                                            <span class="menu-text">{{ trans('dashboard.WhatsApp') }}</span>
+                                        </a>
+
                                     </li>
 
                                 </ul>
