@@ -80,7 +80,7 @@
                                             <label>{{ trans('dashboard.Name Arabic') }} :</label>
                                             <input value="{{ $user->name }}" name="name" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.User Name Arabic') }}"/>
+                                                   placeholder="{{ trans('dashboard.Name Arabic') }}"/>
                                             @error('name')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
@@ -94,7 +94,8 @@
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.User E-mail') }} :</label>
                                             <input value="{{ $user->email }}" name="email" type="email"
@@ -117,7 +118,8 @@
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Password') }} :</label>
                                             <input value="{{ old('password') }}" name="password" type="password"
@@ -137,7 +139,8 @@
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Sector') }}</label>
                                             <select class="form-control select2" name="sector_id">
@@ -177,7 +180,6 @@
             <!--end::Container-->
         </div>
 
-
-
-
+    </div>
+    <!--end::Content-->
 @endsection
