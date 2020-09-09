@@ -636,12 +636,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <img src="">
+                        <img class="img-fluid" src="">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close
+                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">
+                            {{ trans('dashboard.Close') }}
                         </button>
-                        {{--<button type="button" class="btn btn-primary font-weight-bold">Save changes</button>--}}
                     </div>
                 </div>
             </div>
