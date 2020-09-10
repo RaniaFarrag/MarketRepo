@@ -205,6 +205,13 @@ return [
     'Type of Service required' => 'Type of Service Required',
     'Client Feedback' => 'Client Feedback',
     'Next FollowUp' => 'Next FollowUp',
+    'Evaluator' => 'Evaluator',
+    'Monitor All Log' => 'Monitor All Log',
+    'Filters' => 'Filters',
+    'Date To' => 'Date To',
+    'Date From' => 'Date From',
+    'User status' => 'User status',
+
 
 
 
