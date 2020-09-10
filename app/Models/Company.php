@@ -45,10 +45,16 @@ class Company extends Model
         'hr_director_job_phone',
         'hr_director_job_whatsapp',
 
-        'client_status',
-        'client_status_user_id',
+        'contract_manager_name',
+        'contract_manager_email',
+        'contract_manager_mobile',
+        'contract_manager_phone',
+        'contract_manager_whatsapp',
 
         'notes',
+        'user_id',
+        'client_status',
+        'client_status_user_id',
     ];
 
     protected $dates = ['deleted_at'];
@@ -67,5 +73,13 @@ class Company extends Model
 
     public function companyMeetings(){
         return $this->hasMany(CompanyMeeting::class);
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class);
     }
 }

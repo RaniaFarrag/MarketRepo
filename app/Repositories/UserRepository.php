@@ -12,6 +12,7 @@ use App\Traits\logTrait;
 use App\User;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
 
@@ -56,7 +57,8 @@ class UserRepository implements UserRepositoryInterface
 
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم اضافة مستخدم جديد' , 'New User has been added');
 
-        return redirect(route('users.index'))->with('success' , trans('dashboard.added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('users.index'));
 
     }
 
@@ -83,7 +85,8 @@ class UserRepository implements UserRepositoryInterface
 
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم تعديل مستخدم ' , 'User has been updated');
 
-        return redirect(route('users.index'))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('users.index'));
 
     }
 
@@ -92,7 +95,8 @@ class UserRepository implements UserRepositoryInterface
         $user->delete();
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم حذف مستخدم' , 'User has been deleted');
 
-        return redirect(route('users.index'))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('users.index'));
     }
 
 }

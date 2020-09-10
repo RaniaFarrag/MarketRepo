@@ -52,8 +52,16 @@ class CreateCompaniesTable extends Migration
             $table->string('hr_director_job_phone')->nullable();
             $table->string('hr_director_job_whatsapp')->nullable();
 
+            $table->string('contract_manager_name')->nullable();
+            $table->string('contract_manager_email')->nullable();
+            $table->string('contract_manager_mobile')->nullable();
+            $table->string('contract_manager_phone')->nullable();
+            $table->string('contract_manager_whatsapp')->nullable();
+
             $table->text('notes')->nullable();
 
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

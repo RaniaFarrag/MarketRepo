@@ -12,4 +12,8 @@ class City extends Model
     protected $translatedAttributes = ['name'];
     protected $fillable = ['id' , 'code' , 'country_id'];
 
+    public function companies(){
+        return $this->hasMany(Company::class);
+    }
+
 }

@@ -327,7 +327,7 @@
                                     </li>
 
 
-                                    <li class="menu-item   menu-item-here"
+                                    <li class="menu-item   menu-item"
                                         data-menu-toggle="click" aria-haspopup="true">
                                         <a href="{{ route('whatsapp') }}" class="menu-link ">
                                             <span class="menu-text">{{ trans('dashboard.WhatsApp') }}</span>

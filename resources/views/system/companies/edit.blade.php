@@ -449,7 +449,7 @@
                                                                 <label>{{ trans('dashboard.By User') }} :</label>
 
                                                                 <div class="input-group timepicker">
-                                                                    <input value="{{ $companyMeeting->user->name }}" name="user_id" arr-name="item" class="form-control"  placeholder="{{ trans('dashboard.By User') }}" type="text" readonly/>
+                                                                    <input value="{{ $companyMeeting->date ?  $companyMeeting->user->name : ''}}" name="user_id" arr-name="item" class="form-control"  placeholder="{{ trans('dashboard.By User') }}" type="text" readonly/>
                                                                 </div>
                                                             </div>
                                                     </div>
@@ -589,6 +589,41 @@
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.HR Whatsapp') }}:</label>
                                             <input value="{{ $company->hr_director_job_whatsapp }}" name="hr_director_job_whatsapp" type="number" class="form-control" placeholder="{{ trans('dashboard.HR Whatsapp') }}"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="card-body">
+                                    <h3 class="card-label text-center border-bottom pb-2">
+                                        <span class="label label-lg label-primary mr-2">6</span>{{ trans('dashboard.Contract Manager') }}
+                                    </h3>
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Name') }}:</label>
+                                            <input value="{{ $company->contract_manager_name }}" name="contract_manager_name" type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Email') }}:</label>
+                                            <input value="{{ $company->contract_manager_email }}" name="contract_manager_email" type="text" class="form-control" placeholder="{{ trans('dashboard.Email') }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.Mobile') }}:</label>
+                                            <input value="{{ $company->contract_manager_mobile }}" name="contract_manager_mobile" type="number" class="form-control"
+                                                   placeholder="{{ trans('dashboard.Mobile') }}"/>
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.Phone') }}:</label>
+                                            <input value="{{ $company->contract_manager_phone }}" name="contract_manager_phone" type="number" class="form-control" placeholder="{{ trans('dashboard.Phone') }}"/>
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.HR Whatsapp') }}:</label>
+                                            <input value="{{ $company->contract_manager_whatsapp }}" name="contract_manager_whatsapp" type="number" class="form-control" placeholder="{{ trans('dashboard.HR Whatsapp') }}"/>
+
                                         </div>
                                     </div>
 
