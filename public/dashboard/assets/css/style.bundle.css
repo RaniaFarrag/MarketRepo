@@ -62715,3 +62715,4 @@ button.navi-link {
 .navi .navi-item form {
     margin: 0;
 }
+.table th, .table td {vertical-align: middle;}

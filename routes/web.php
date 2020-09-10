@@ -74,7 +74,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     })->name('company_report');
 
     Route::get('rep_report' , function (){
-        return view('system.reports.company_report');
+        return view('system.reports.rep_report');
     })->name('rep_report');
 
     Route::get('monitor_auth_report' , function (){
