@@ -206,6 +206,12 @@ return [
     'Type of Service required' => 'نوع الخدمة المطلوبة	',
     'Client Feedback' => 'تقرير العميل	',
     'Next FollowUp' => 'المتابعة القادمة',
+    'Evaluator' => 'المقييم',
+    'Monitor All Log' => 'تقرير الحركات',
+    'Filters' => 'البحث',
+    'Date To' => 'التاريخ من',
+    'Date From' => 'التاريخ الى',
+    'User status' => 'حالة المستخدم	',
 
 
 
