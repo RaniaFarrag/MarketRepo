@@ -23,6 +23,7 @@ use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationData;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
 
@@ -168,7 +169,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         $this->addLog(auth()->id() , $company->id , 'companies' , 'تم اضافة شركة جديدة' , 'New Company has been added');
 
-        return redirect(route('companies.index'))->with('success' , trans('dashboard. added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('companies.index'));
     }
 
 
@@ -318,7 +320,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         $this->addLog(auth()->id() , $company->id , 'companies' , 'تم تعديل شركة ' , 'Company has been updated');
 
-        return redirect(route('companies.index'))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('companies.index'));
 
     }
 
@@ -336,7 +339,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         $this->addLog(auth()->id() , $company->id , 'companies' , 'تم حذف شركة' , 'Company has been deleted');
 
-        return redirect(route('companies.index'))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('companies.index'));
     }
 
 }

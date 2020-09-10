@@ -80,7 +80,7 @@
                                             <label>{{ trans('dashboard.Name Arabic') }} :</label>
                                             <input value="{{ old('name') }}" name="name" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Name Arabic') }}"/>
+                                                   placeholder="{{ trans('dashboard.Name Arabic') }}" required/>
                                             @error('name')
                                                 <div class="error">{{ $message }}</div>
                                             @enderror
@@ -100,14 +100,14 @@
                                             <label>{{ trans('dashboard.User E-mail') }} :</label>
                                             <input value="{{ old('email') }}" name="email" type="email"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Name Arabic') }}"/>
+                                                   placeholder="{{ trans('dashboard.Name Arabic') }}" required/>
                                             @error('email')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
-                                            <select class="form-control select2" name="role">
+                                            <select class="form-control select2" name="role" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($roles as $role)
                                                     <option value="{{ $role->name }}">{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
@@ -123,7 +123,7 @@
                                             <label>{{ trans('dashboard.Password') }} :</label>
                                             <input value="{{ old('password') }}" name="password" type="password"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Password') }}"/>
+                                                   placeholder="{{ trans('dashboard.Password') }}" required/>
                                             @error('password')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
