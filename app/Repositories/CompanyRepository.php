@@ -115,6 +115,15 @@ class CompanyRepository implements CompanyRepositoryInterface
             'hr_director_job_mobile' => $request->hr_director_job_mobile,
             'hr_director_job_phone' => $request->hr_director_job_phone,
             'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+
+            'contract_manager_name' => $request->contract_manager_name,
+            'contract_manager_email' => $request->contract_manager_email,
+            'contract_manager_mobile' => $request->contract_manager_mobile,
+            'contract_manager_phone' => $request->contract_manager_phone,
+            'contract_manager_whatsapp' => $request->contract_manager_whatsapp,
+
+            'user_id' => auth()->id(),
+
             'client_status' => $request->client_status,
             'client_status_user_id' => auth()->id(),
             'notes' => $request->notes,
@@ -133,6 +142,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                     'company_id' => $company->id,
                 ]);
             }
+            //dd($request->designated_contact_name[$i]);
         }
 
         foreach ($request->item as $item) {
@@ -250,6 +260,15 @@ class CompanyRepository implements CompanyRepositoryInterface
             'hr_director_job_mobile' => $request->hr_director_job_mobile,
             'hr_director_job_phone' => $request->hr_director_job_phone,
             'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+
+            'contract_manager_name' => $request->contract_manager_name,
+            'contract_manager_email' => $request->contract_manager_email,
+            'contract_manager_mobile' => $request->contract_manager_mobile,
+            'contract_manager_phone' => $request->contract_manager_phone,
+            'contract_manager_whatsapp' => $request->contract_manager_whatsapp,
+
+            'user_id' => auth()->id(),
+
             'client_status' => $request->client_status,
             'client_status_user_id' => auth()->id(),
             'notes' => $request->notes,
@@ -259,26 +278,32 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         for($i=0 ; $i<count($request->designated_contact_name) ; $i++){
             if (isset($company->companyDesignatedcontacts[$i])){
-                $company->companyDesignatedcontacts[$i]->update([
-                    'name' => $request->designated_contact_name[$i],
-                    'job_title' => $request->designated_contact_job_title[$i],
-                    'mobile' => $request->designated_contact_mobile[$i],
-                    'linkedin' => $request->designated_contact_linkedin[$i],
-                    'whatsapp' => $request->designated_contact_whatsapp[$i],
-                    'email' => $request->designated_contact_email[$i],
-                    'company_id' => $company->id,
-                ]);
+//                if($request->designated_contact_name[$i] != null){
+                    $company->companyDesignatedcontacts[$i]->update([
+                        'name' => $request->designated_contact_name[$i],
+                        'job_title' => $request->designated_contact_job_title[$i],
+                        'mobile' => $request->designated_contact_mobile[$i],
+                        'linkedin' => $request->designated_contact_linkedin[$i],
+                        'whatsapp' => $request->designated_contact_whatsapp[$i],
+                        'email' => $request->designated_contact_email[$i],
+                        'company_id' => $company->id,
+                    ]);
+//                }
+
             }
+
             else{
-                $this->company_designated_contact_model::create([
-                    'name' => $request->designated_contact_name[$i],
-                    'job_title' => $request->designated_contact_job_title[$i],
-                    'mobile' => $request->designated_contact_mobile[$i],
-                    'linkedin' => $request->designated_contact_linkedin[$i],
-                    'whatsapp' => $request->designated_contact_whatsapp[$i],
-                    'email' => $request->designated_contact_email[$i],
-                    'company_id' => $company->id,
-                ]);
+                if($request->designated_contact_name[$i] != null){
+                    $this->company_designated_contact_model::create([
+                        'name' => $request->designated_contact_name[$i],
+                        'job_title' => $request->designated_contact_job_title[$i],
+                        'mobile' => $request->designated_contact_mobile[$i],
+                        'linkedin' => $request->designated_contact_linkedin[$i],
+                        'whatsapp' => $request->designated_contact_whatsapp[$i],
+                        'email' => $request->designated_contact_email[$i],
+                        'company_id' => $company->id,
+                    ]);
+                }
             }
         }
 

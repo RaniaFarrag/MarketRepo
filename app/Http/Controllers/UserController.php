@@ -24,6 +24,7 @@ class UserController extends Controller
 
     }
 
+    /** View All Users */
     public function index()
     {
         $users = $this->userRepositoryinterface->index();
@@ -35,6 +36,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /** Create User */
     public function create()
     {
         $roles = $this->userRepositoryinterface->create();
@@ -47,6 +50,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /** Store User */
     public function store(UserRequest $request)
     {
         return $this->userRepositoryinterface->store($request);
@@ -58,6 +63,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function show($id)
     {
         //
@@ -69,6 +76,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /** Edit User */
     public function edit(User $user)
     {
         $roles = $this->userRepositoryinterface->edit();
@@ -83,6 +92,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /** Submit Edit User */
     public function update(Request $request, User $user)
     {
         return $this->userRepositoryinterface->update($request , $user);
@@ -94,6 +105,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    /** Delete User */
     public function destroy(User $user)
     {
         return $this->userRepositoryinterface->destroy($user);

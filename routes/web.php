@@ -65,6 +65,10 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
 
+
+
+
+
     Route::get('company_report' , function (){
         return view('system.reports.company_report');
     })->name('company_report');

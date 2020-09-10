@@ -14,7 +14,7 @@ class AddDeletedAtToCompanies extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->softDeletes()->after('notes');
+            $table->softDeletes()->after('updated_at');
         });
     }
 

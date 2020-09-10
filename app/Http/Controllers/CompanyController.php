@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyRequest;
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Company;
+use App\User;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -65,7 +66,11 @@ class CompanyController extends Controller
     /** Show One Company */
     public function show(Company $company)
     {
-        return view ('system.companies.show')->with('company' , $company);
+        if ($company->client_status){
+            $client_status_user = User::findOrFail($company->client_status_user_id);
+        }
+
+        return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
     }
 
     /**

@@ -14,7 +14,7 @@ class AddAttributesToCompany extends Migration
     public function up()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->integer('client_status')->nullable()->after('hr_director_job_whatsapp');
+            $table->integer('client_status')->nullable()->after('user_id');
             $table->integer('evaluation_status')->nullable()->after('client_status');
             $table->integer('evaluation_status_user_id')->nullable()->after('evaluation_status');
 

@@ -12,4 +12,8 @@ class Country extends Model
     protected $translatedAttributes = ['name'];
     protected $fillable = ['code','id'];
 
+    public function companies(){
+        return $this->hasMany(Company::class);
+    }
+
 }
