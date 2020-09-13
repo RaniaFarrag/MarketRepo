@@ -12,37 +12,7 @@
             can be of the full height and width !
          **/
         @page {
-            margin: 20px 20px 0 20px;
-            /*background: url("
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {{url('assets/letter.jpg')}}") center no-repeat 250% 100%;*/
-
-        }
+            margin: 20px 20px 0 20px;/*background: url("{{url('assets/letter.jpg')}}") center no-repeat 250% 100%;*/}
 
         main {
             height: 870px;
@@ -144,7 +114,7 @@
 <div class="page1">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -233,7 +203,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -242,7 +212,7 @@
 <div class="page2 en">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -318,7 +288,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -327,7 +297,7 @@
 <div class="page1">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -394,7 +364,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -403,7 +373,7 @@
 <div class="page2 en">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -452,7 +422,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -461,7 +431,7 @@
 <div class="page1">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -564,7 +534,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -574,7 +544,7 @@
 <div class="page2 en">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -639,7 +609,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -649,7 +619,7 @@
 <div class="page1">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -766,7 +736,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
@@ -775,7 +745,7 @@
 <div class="page2 en">
     <header>
 
-        <img style="width: 100%" src="{{url('assets/head.jpg')}}">
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
 
     </header>
     <main>
@@ -865,7 +835,7 @@
     </main>
     <footer>
 
-        <img src="{{url('assets/foot.jpg')}}" width="100%"/>
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
 
     </footer>
 </div>
