@@ -359,15 +359,16 @@
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip"
                                                              title=""
                                                              data-placement="left"
-                                                             data-original-title="{{$company->companyMeetings[ count($company->companyMeetings) - 1 ]->date ?  $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time : ''  }}">
+                                                             data-original-title="{{count($company->companyMeetings) ?  $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time : ''  }}">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                                                 <i class="far fa-bell text-primary"></i>
                                                                 <span class="pulse-ring"></span>
 
-                                                                <span class="badge" id="count-alert2">{{ $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date ? count($company->companyMeetings) : 0 }}</span>
+                                                                <span class="badge" id="count-alert2">{{ count($company->companyMeetings) ? count($company->companyMeetings) : 0 }}</span>
                                                             </a>
                                                         </div>
+
                                                         <div class="dropdown dropdown-inline" data-toggle="tooltip"
                                                              title=""
                                                              data-placement="left"
@@ -464,9 +465,13 @@
                                                                 {{ $company->name }}
                                                             </a>
                                                             <span class="text-muted font-weight-bold">
+                                                                {{--RANIA--}}
+                                                                {{--data-name :: IS ATT TO CARRY COMPANY NAME TO PASS IT TO MODAL--}}
+                                                                {{--data-img-url :: IS ATT TO CARRY BUSINESS CARD IMAGE TO PASS IT TO MODAL--}}
+
                                                                 @if($company->first_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#myModal" data-img-url="{{ asset('storage/images/'.$company->first_business_card) }}">
+                                                                       href="#myModal" data-name="{{ $company->name }}" data-img-url="{{ asset('storage/images/'.$company->first_business_card) }}">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->first_business_card) }}">
                                                                     </a>
@@ -474,7 +479,7 @@
 
                                                                 @if($company->second_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#myModal" data-img-url="{{ asset('storage/images/'.$company->second_business_card) }}">
+                                                                       href="#myModal" data-name="{{ $company->name }}" data-img-url="{{ asset('storage/images/'.$company->second_business_card) }}">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->second_business_card) }}">
                                                                     </a>
@@ -482,7 +487,7 @@
 
                                                                 @if($company->third_business_card)
                                                                     <a class="business_card" data-toggle="modal"
-                                                                       href="#myModal" data-img-url="{{ asset('storage/images/'.$company->third_business_card) }}">
+                                                                       href="#myModal" data-name="{{ $company->name }}" data-img-url="{{ asset('storage/images/'.$company->third_business_card) }}">
                                                                         <img style="width: 60px;"
                                                                              src="{{ asset('storage/images/'.$company->third_business_card) }}">
                                                                     </a>
@@ -570,33 +575,34 @@
                                                     <div class="separator separator-dashed mt-1 mb-1"></div>
 
                                                     <div class="form-group mb-0">
-
                                                         <div class="col-form-label">
                                                             <div class="checkbox-inline company_Card">
-
+                                                                {{--RANIA--}}
+                                                                {{--data-id :: ATT TO ADD company_id IN INPUT FIELD--}}
+                                                                {{--class confirm_interview_checked :: CLASS TO CALL THE INPUT FIELD IN JS--}}
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input type="checkbox" name="Checkboxes5"/>
+                                                                    <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1" {{ $company->confirm_connected == 1 ? ' checked' : '' }}
+                                                                           type="checkbox" name="confirm_connected"/>
                                                                     <span></span>
                                                                     {{ trans('dashboard.Confirm Connection') }}
                                                                 </label>
 
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input type="checkbox" name="Checkboxes5"
-                                                                           checked="checked"/>
+                                                                    <input class="confirm_interview_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_interview"
+                                                                            {{ $company->confirm_interview == 1 ? ' checked' : '' }} {{ count($company->companyMeetings) ? '' : 'disabled' }}/>
                                                                     <span></span>
                                                                     {{ trans('dashboard.Confirm Interview') }}
                                                                 </label>
+
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input type="checkbox" name="Checkboxes5"/>
+                                                                    <input class="confirm_need_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_need" {{ $company->confirm_need == 1 ? ' checked' : '' }}/>
                                                                     <span></span>
                                                                     {{ trans('dashboard.Confirm Need') }}
 
                                                                 </label>
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input type="checkbox" name="Checkboxes5"/>
+                                                                    <input class="confirm_contract_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_contract" {{ $company->confirm_contract == 1 ? ' checked' : '' }}/>
                                                                     <span></span>{{ trans('dashboard.Confirm Contract') }}
-
-
                                                                 </label>
 
                                                             </div>
@@ -610,11 +616,9 @@
                                     @endforeach
                                 </div>
                                 {{ $companies->links() }}
-
                             </div>
                         </div>
-
-
+                        
                     </div>
                     <!--end::Card-->
                 </div>
@@ -630,7 +634,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i aria-hidden="true" class="ki ki-close"></i>
                         </button>
@@ -657,9 +663,130 @@
     <script>
         $('.business_card').on('click', function() {
             //$('#myModal').html('<img src="' + $(this).data('userphoto') + '"/>')
-
             $('#myModal img').attr('src', $(this).attr('data-img-url'));
+            $("#myModal h5").html($(this).attr('data-name'));
         });
+    </script>
+
+    {{--CKECKBOXES IN COMPANY VIEW--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
+    <script>
+
+        $('input.confirm_connected_checked').on('change', function() {
+            if ( this.checked ) {
+                // if checked ...
+                //alert( this.value );
+                var company_id = $(this).attr('data-id');
+                //console.log(company_id);
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('/confirm/connected/') }}" + '/' + company_id,
+                    //dataType: "json",
+                    success: function (response) {
+                        // swal("Our First Alert", "With some body text and success icon!", "success");
+                        swal( 'Success', response, "success");
+                    }
+                });
+
+            }
+            else {
+                var company_id = $(this).attr('data-id');
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('/confirm/connected/') }}" + '/' + company_id,
+                    success: function (response) {
+                        swal( 'Cancel', response, "success");
+                    }
+                });
+            }
+        });
+
+        $('input.confirm_interview_checked').on('change' , function () {
+            if( this.checked ){
+                var company_id = $(this).attr('data-id');
+                console.log(company_id);
+                $.ajax({
+                    type : "get",
+                    url : "{{ url('/confirm/interview/') }}" + '/' + company_id,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    },
+                    error:function () {
+                        swal('Faild' , response , 'failed');
+                    }
+                })
+            }
+            else {
+                var company_id = $(this).attr('data-id');
+
+                $.ajax({
+                    type : "get",
+                    url : "{{ url('/confirm/interview/') }}" + '/' + company_id,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    }
+                })
+            }
+        });
+
+        $('input.confirm_need_checked').on('change' , function () {
+            if( this.checked ){
+                var company_id = $(this).attr('data-id');
+                console.log(company_id);
+                $.ajax({
+                    type : "get",
+                    url : "{{ url('/confirm/need/') }}" + '/' + company_id,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    },
+                    error:function () {
+                        swal('Faild' , response , 'failed');
+                    }
+                })
+            }
+            else {
+                var company_id = $(this).attr('data-id');
+
+                $.ajax({
+                    type : "get",
+                    url : "{{ url('/confirm/need/') }}" + '/' + company_id,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    }
+                })
+            }
+        });
+
+        $('input.confirm_contract_checked').on('change' , function () {
+            if( this.checked ){
+                var company_id = $(this).attr('data-id');
+                console.log(company_id);
+                $.ajax({
+                    type : "get",
+                    url : "{{ url('/confirm/contract/') }}" + '/' + company_id,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    },
+                    error:function () {
+                        swal('Faild' , response , 'failed');
+                    }
+                })
+            }
+            else {
+                var company_id = $(this).attr('data-id');
+
+                $.ajax({
+                    type : "get",
+                    url : "{{ url('/confirm/contract/') }}" + '/' + company_id,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    }
+                })
+            }
+        });
+
     </script>
 @endsection
 

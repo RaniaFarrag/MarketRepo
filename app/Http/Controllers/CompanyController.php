@@ -110,4 +110,29 @@ class CompanyController extends Controller
     {
         return $this->companyRepositoryinterface->destroy($company);
     }
+
+    /** Confirm Connected */
+    public function confirmConnected($company_id){
+        return $this->companyRepositoryinterface->confirmConnected($company_id);
+    }
+
+//    /** Cancel Confirm Connected */
+//    public function cancelConfirmConnected($company_id){
+//        return $this->companyRepositoryinterface->cancelConfirmConnected($company_id);
+//    }
+
+    /** Confirm Interview */
+    public function confirmInterview($company_id){
+        return $this->companyRepositoryinterface->confirmInterview($company_id);
+    }
+
+    /** Confirm Need */
+    public function confirmNeed($company_id){
+        return $this->companyRepositoryinterface->confirmNeed($company_id);
+    }
+
+    /** Confirm Contract */
+    public function confirmContract($company_id){
+        return $this->companyRepositoryinterface->confirmContract($company_id);
+    }
 }

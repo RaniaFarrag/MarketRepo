@@ -64,9 +64,18 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Get Cities Of Country */
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
+    /** MANAGE CHECK BOXES */
+    /** Confirm Connected */
+    Route::get('/confirm/connected/{company_id}' , 'CompanyController@confirmConnected')->name('confirm_connected');
 
+    /** Confirm Interview */
+    Route::get('/confirm/interview/{company_id}' , 'CompanyController@confirmInterview')->name('confirm_interview');
 
+    /** Confirm Need */
+    Route::get('/confirm/need/{company_id}' , 'CompanyController@confirmNeed')->name('confirm_need');
 
+    /** Confirm Contract */
+    Route::get('/confirm/contract/{company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
 
 
     Route::get('company_report' , function (){
