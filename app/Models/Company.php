@@ -55,6 +55,17 @@ class Company extends Model
         'user_id',
         'client_status',
         'client_status_user_id',
+
+        'evaluation_status',
+        'evaluation_status_user_id',
+        'confirm_connected',
+        'confirm_connected_user_id',
+        'confirm_interview',
+        'confirm_interview_user_id',
+        'confirm_need',
+        'confirm_need_user_id',
+        'confirm_contract',
+        'confirm_contract_user_id',
     ];
 
     protected $dates = ['deleted_at'];
