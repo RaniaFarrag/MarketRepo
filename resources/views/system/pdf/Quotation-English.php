@@ -126,7 +126,7 @@
     </header>
     <main>
 
-        <table style="line-height: 24px; border: none;">
+        <table class="en ltr" style="line-height: 24px; border: none;">
 
             <tbody>
             <tr>
