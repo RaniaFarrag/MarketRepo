@@ -68,9 +68,10 @@ class CompanyController extends Controller
     {
         if ($company->client_status){
             $client_status_user = User::findOrFail($company->client_status_user_id);
+            return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
         }
 
-        return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
+        return view ('system.companies.show')->with(['company' => $company]);
     }
 
     /**

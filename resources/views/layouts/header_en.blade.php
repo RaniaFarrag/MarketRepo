@@ -112,7 +112,7 @@
                                             <ul class="menu-subnav">
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
-                                                    <a href="javascript:;" class="menu-link menu-toggle">
+                                                    <a href="{{ route('assign_companies_to_representatives') }}" class="menu-link ">
                                                         <span class="svg-icon menu-icon">
                                                             <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
                                                       <i class="fas fa-user-tie"></i>
