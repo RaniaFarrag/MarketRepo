@@ -236,6 +236,12 @@ return [
     'Ref No' => 'Ref No',
     'Edit Company Needs' => 'Edit Company Needs',
     'View Company Needs' => 'View Company Needs',
+    'Show Companies' => 'Show Companies',
+    'All Representative' => 'All Representative',
+    'Remove' => 'Remove',
+    'Companies' => 'Companies',
+    'Male' => 'Male',
+    'Female' => 'Female',
 
 
 
