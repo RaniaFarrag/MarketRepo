@@ -618,7 +618,7 @@
                                 {{ $companies->links() }}
                             </div>
                         </div>
-                        
+
                     </div>
                     <!--end::Card-->
                 </div>
