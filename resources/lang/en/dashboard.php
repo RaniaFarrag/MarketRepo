@@ -211,6 +211,31 @@ return [
     'Date To' => 'Date To',
     'Date From' => 'Date From',
     'User status' => 'User status',
+    'Add New Need' => 'Add New Need',
+    'Company Needs' => 'Company Needs',
+    'Recruitment Type' => 'Recruitment Type',
+    'Required Position' => 'Required Position',
+    'Job Description' => 'Job Description',
+    'No of candidates' => 'No of candidates',
+    'Nationality' => 'Nationality',
+    'Gender' => 'Gender',
+    'Age Limit' => 'Age Limit',
+    'Contract Duration' => 'Contract Duration',
+    'Experience Range' => 'Experience Range',
+    'Work Location' => 'Work Location',
+    'Working Hours' => 'Working Hours',
+    'Total Salary' => 'Total Salary',
+    'Deadline' => 'Deadline',
+    'Special Remarks' => 'Special Remarks',
+    'Internaional/local' => 'Internaional/local',
+    'local' => 'local',
+    'International' => 'International',
+    'Needs Details' => 'Needs Details',
+    'By' => 'By',
+    'Needs' => 'Needs',
+    'Ref No' => 'Ref No',
+
+
 
 
 
