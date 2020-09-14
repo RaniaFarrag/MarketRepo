@@ -25,6 +25,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('/' , 'HomeController@index')->name('home');
 
+    /***********************************************RESOURCES***************************************************/
     /** Manage Roles */
     Route::resource('roles' , 'RoleController');
 
@@ -37,16 +38,16 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Cities */
     Route::resource('cities' , 'CityController');
 
-    /** Manage Sectors */
-    Route::resource('sectors' , 'SectorController');
-
     /** Manage Users */
     Route::resource('users' , 'UserController');
 
-    /** Manage Company */
-    Route::resource('companies' , 'CompanyController');
+    /** Manage Sectors */
+    Route::resource('sectors' , 'SectorController');
 
     /** Manage Sub-Sectors */
+    //Route::resource('sub_sectors', 'SubSectorController', ['except' => 'index' , 'create']);
+    Route::resource('sub_sectors', 'SubSectorController')->except('index' , 'create');
+
     Route::get('sub_sectors/index/{sector_id}', [
         'as' => 'sub_sectors.index',
         'uses' => 'SubSectorController@index'
@@ -55,8 +56,11 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         'as' => 'sub_sectors.create',
         'uses' => 'SubSectorController@create'
     ]);
-    //Route::resource('sub_sectors', 'SubSectorController', ['except' => 'index' , 'create']);
-    Route::resource('sub_sectors', 'SubSectorController')->except('index' , 'create');
+
+    /** Manage Company */
+    Route::resource('companies' , 'CompanyController');
+
+    /**************************************************GET******************************************************/
 
     /** Get Sub-Sectors Of Sector */
     Route::get('/get/sub/sectors/of/sector/{sector_id}' , 'SubSectorController@getSubsectorOfsector')->name('get_sub_sectros_of_sector');
@@ -76,6 +80,21 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /** Confirm Contract */
     Route::get('/confirm/contract/{company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
+
+    /**************************************************POST******************************************************************/
+
+
+
+
+    Route::get('needs' , function (){
+        return view('system.companies.needs.index');
+    })->name('companies_needs');
+
+    Route::get('assign_companies_to_representatives' , function (){
+        return view('system.corporate_assignment.assign_companies_to_representatives');
+    })->name('assign_companies_to_representatives');
+
+
 
 
     Route::get('company_report' , function (){

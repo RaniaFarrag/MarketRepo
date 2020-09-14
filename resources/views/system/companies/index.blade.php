@@ -391,6 +391,15 @@
                                                                             <span class="navi-text">{{ trans('dashboard.View Company Data') }}</span>
                                                                         </a>
                                                                     </li>
+
+                                                                    <li class="navi-item">
+                                                                        <a href="{{ route('companies_needs') }}" class="navi-link">
+                                                                    <span class="navi-icon"><i
+                                                                                class="flaticon2-list-3"></i></span>
+                                                                            <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
+                                                                        </a>
+                                                                    </li>
+
                                                                     <li class="navi-item">
                                                                         <a href="{{ route('companies.edit' , $company->id) }}"
                                                                            class="navi-link">
