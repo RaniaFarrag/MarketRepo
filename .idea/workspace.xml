@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64da163b-8d37-4f5e-b2d1-88721434ae7c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/marketing-hc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/marketing-hc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/CityRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CityRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/CountryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/CountryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/SectorRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SectorRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/SubSectorRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/SubSectorRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/cities/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/cities/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/cities/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/cities/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/cities/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/cities/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/companies/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/companies/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/companies/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/companies/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/companies/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/companies/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/countries/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/countries/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/countries/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/countries/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/countries/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/countries/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/roles/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/roles/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/roles/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/roles/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/roles/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/roles/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/sectors/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/sectors/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/sectors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/sectors/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/sectors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/sectors/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/sub_sectors/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/sub_sectors/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/sub_sectors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/sub_sectors/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/sub_sectors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/sub_sectors/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/users/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/users/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/system/pdf/Undertakeing-OPAL.php" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,15 +13,107 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <pharConfigPath />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/system/sectors/edit.blade.php">
+      <file leaf-file-name="invoice.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/system/pdf/invoice.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+            <state relative-caret-position="643">
+              <caret line="278" selection-start-line="278" selection-end-line="278" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#3;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#4;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#3;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#2;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#3;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#4;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#4;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#5;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#6;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#tr#7;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#td#0;n#tr#7;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#7;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#tr#8;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#td#0;n#tr#8;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#8;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#tr#9;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#td#0;n#tr#9;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#9;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#tr#10;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#td#0;n#tr#10;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#10;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#11;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#12;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Quotation-English.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/system/pdf/Quotation-English.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="357" column="102" selection-end-line="390" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deductionPdf.blade.php" pinned="true" current-in-tab="true">
+        <entry file="remoteDeploymentFS://&lt;e8b47e30-4cc1-4a7a-b06d-e07e7a20e22c&gt;/reminder/resources/views/calender/deductionPdf.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="606">
+              <caret line="249" lean-forward="true" selection-end-line="249" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h3#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#1;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#1;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#2;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#2;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#3;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#3;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#4;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#4;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#5;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#5;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#6;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#td#0;n#tr#6;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,9 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2020_08_13_104439_create_cities_table.php" />
-        <option value="$PROJECT_DIR$/app/Models/Sector_old.php" />
-        <option value="$PROJECT_DIR$/app/Models/Sector.php" />
         <option value="$PROJECT_DIR$/app/Models/SubSector_old.php" />
         <option value="$PROJECT_DIR$/app/Models/SubSector.php" />
         <option value="$PROJECT_DIR$/app/Models/marking_companies_old.php" />
@@ -145,6 +208,9 @@
         <option value="$PROJECT_DIR$/resources/views/system/companies/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/system/companies/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/system/sectors/edit.blade.php" />
+        <option value="&lt;e8b47e30-4cc1-4a7a-b06d-e07e7a20e22c&gt;/reminder/resources/views/calender/pdf.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/system/pdf/invoice.blade.php" />
+        <option value="&lt;e8b47e30-4cc1-4a7a-b06d-e07e7a20e22c&gt;/reminder/resources/views/calender/deductionPdf.blade.php" />
       </list>
     </option>
   </component>
@@ -153,9 +219,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
@@ -276,10 +339,9 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="x" value="-9" />
+    <option name="width" value="1348" />
+    <option name="height" value="690" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -287,71 +349,61 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
+              <item name="marketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
+              <item name="marketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
+              <item name="marketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
+              <item name="marketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="system" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
+              <item name="marketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="pdf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="marketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="system" type="462c0819:PsiDirectoryNode" />
               <item name="sectors" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="marketing-hc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="marketing-hc" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -413,14 +465,16 @@
       <workItem from="1599391626511" duration="7630000" />
       <workItem from="1599459556783" duration="22076000" />
       <workItem from="1599546063643" duration="15602000" />
+      <workItem from="1600001376324" duration="8000" />
+      <workItem from="1600060097042" duration="2881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="361024000" />
+    <option name="totallyTimeSpent" value="363913000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -429,10 +483,10 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3290938" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.19141914" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18683812" />
+      <window_info anchor="right" id="Remote Host" weight="0.3294271" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18619792" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -442,6 +496,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,21 +511,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="234" column="62" selection-start-line="234" selection-start-column="62" selection-end-line="234" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CountryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/public/Uvn0ULWJzUWm9EASalEnQVGX0BSh4TsLdcPTpxoD.jpeg" />
     <entry file="file://$PROJECT_DIR$/storage/app/public/beOYTFOcRhDtuD1PQl7YGYXRJJJvik0sATPI9t9j.jpeg" />
     <entry file="file://$PROJECT_DIR$/config/filesystems.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -486,7 +526,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../marketing/main_content/report_en.php">
+    <entry file="file://$PROJECT_DIR$/main_content/report_en.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2210">
           <caret line="268" column="44" selection-start-line="268" selection-end-line="269" />
@@ -519,11 +559,7 @@
         <state relative-caret-position="-250" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../marketing/component/footer_en.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-27" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/component/footer_en.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/system/companies/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -531,13 +567,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../marketing/main_content/companyData_en.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1152">
-          <caret line="409" column="66" selection-start-line="409" selection-start-column="66" selection-end-line="409" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/main_content/companyData_en.php" />
     <entry file="file://$PROJECT_DIR$/app/Interfaces/CompanyRepositoryInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -549,11 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="166" column="5" selection-start-line="166" selection-start-column="5" selection-end-line="166" selection-end-column="5" />
-          <folding>
-            <element signature="e#118#164#0#PHP" expanded="true" />
-            <element signature="e#1550#1865#0#PHP" />
-            <element signature="e#2061#6474#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -581,9 +606,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/whatsapp/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/whatsapp/edit.blade.php" />
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -609,9 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="331" column="67" selection-start-line="331" selection-start-column="59" selection-end-line="331" selection-end-column="67" />
-          <folding>
-            <element signature="n#li#6;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,9 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="50" column="74" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="74" />
-          <folding>
-            <element signature="e#118#164#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -790,16 +807,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#52027#0#Blade" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/system/sectors/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="17">
           <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/pdf/invoice.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="278" selection-start-line="278" selection-end-line="278" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#3;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#4;n#tr#0;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#3;n#tr#1;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#2;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#2;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#3;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#3;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#4;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#4;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#5;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#5;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#6;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#tr#7;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#7;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#7;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#tr#8;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#8;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#8;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#tr#9;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#9;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#9;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#tr#10;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#td#0;n#tr#10;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#10;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#11;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#12;n#tbody#0;n#table#1;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#2;n#main#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/reminder/calender/deductionPdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-end-line="249" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/pdf/Quotation-English.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="357" column="102" selection-end-line="390" />
         </state>
       </provider>
     </entry>
