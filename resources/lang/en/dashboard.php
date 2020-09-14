@@ -234,6 +234,8 @@ return [
     'By' => 'By',
     'Needs' => 'Needs',
     'Ref No' => 'Ref No',
+    'Edit Company Needs' => 'Edit Company Needs',
+    'View Company Needs' => 'View Company Needs',
 
 
 

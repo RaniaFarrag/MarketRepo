@@ -213,7 +213,7 @@ return [
     'Date From' => 'التاريخ الى',
     'User status' => 'حالة المستخدم	',
     'Add New Need' => 'اضافة احتاج جديد',
-    'Company Needs' => 'اضافة احتاج جديد',
+    'Company Needs' => 'احتاجات الشركة',
 
 
 
