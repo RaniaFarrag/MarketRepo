@@ -81,15 +81,17 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Sectors') }} :</label>
-                                            <select  class="form-control select2" required>
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select class="form-control select2" required>
+                                                <option value=""
+                                                        selected="">{{ trans('dashboard.Select All') }}</option>
 
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.City') }} :</label>
-                                            <select  class="form-control select2" required>
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select class="form-control select2" required>
+                                                <option value=""
+                                                        selected="">{{ trans('dashboard.Select All') }}</option>
 
                                             </select>
                                         </div>
@@ -99,16 +101,19 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Company Type') }}:</label>
-                                            <select  class="form-control select2" required>
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select class="form-control select2" required>
+                                                <option value=""
+                                                        selected="">{{ trans('dashboard.Select All') }}</option>
 
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Companies') }} :</label>
-                                            <select id="subSector" multiple class="form-control select2" name="sub_sector_id"
+                                            <select id="subSector" multiple class="form-control select2"
+                                                    name="sub_sector_id"
                                                     required>
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                <option value=""
+                                                        selected="">{{ trans('dashboard.Select All') }}</option>
                                                 <option value="">{{ trans('dashboard.Male') }}</option>
                                                 <option value="" selected="">{{ trans('dashboard.Female') }}</option>
                                             </select>
