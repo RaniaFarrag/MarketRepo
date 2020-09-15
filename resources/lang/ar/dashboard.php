@@ -238,6 +238,11 @@ return [
     'Edit Company Needs' => 'تعديل احتياجات الشركة',
     'View Company Needs' => 'عرض احتياجات الشركة',
     'Show Companies' => 'اظهار الشركات',
+    'All Representative' => 'كل المندوبين',
+    'Remove' => 'ازالة',
+    'Companies' => 'الشركات',
+    'Male' => 'ذكر',
+    'Female' => 'انثي',
 
 
 
