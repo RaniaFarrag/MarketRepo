@@ -22,13 +22,13 @@
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
-                            <a href="#" class="opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Needs') }}
                             </a>
                             <!--end::Item-->
@@ -40,10 +40,8 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('company_needs.create' , $company_id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Need') }}
                     </a>
                     <!--end::Button-->
@@ -99,24 +97,23 @@
                                         </thead>
 
                                         <tbody>
-
-                                        <tr>
-                                            <td>1</td>
-                                            <td>	Service/Kitchen Crew</td>
-                                            <td>2020-09-03 08:25:37	</td>
-                                            <td>hussein.saleh</td>
-                                            <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Needs Details') }}</a></td>
-                                            <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.edit') }}</a></td>
-                                            <td>
-                                                <form method="post" action="#">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-
-
+                                            @foreach($needs as $need)
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>{{ $need->required_position }}</td>
+                                                    <td>{{ $need->created_at }}</td>
+                                                    <td>{{ $need->user->name }}</td>
+                                                    <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Needs Details') }}</a></td>
+                                                    <td><a class="btn btn-success font-weight-bold" href="{{ route('company_needs.edit' , $need->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                                    <td>
+                                                        <form method="post" action="#">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
 
                                     </table>

@@ -47,7 +47,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Sub-Sectors */
     //Route::resource('sub_sectors', 'SubSectorController', ['except' => 'index' , 'create']);
     Route::resource('sub_sectors', 'SubSectorController')->except('index' , 'create');
-
+    /** Custom index route */
     Route::get('sub_sectors/index/{sector_id}', [
         'as' => 'sub_sectors.index',
         'uses' => 'SubSectorController@index'
@@ -59,6 +59,19 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /** Manage Company */
     Route::resource('companies' , 'CompanyController');
+
+    /** Manage Company Needs */
+    Route::resource('company_needs' , 'CompanyNeedController');
+    /** Custom index route */
+    Route::get('company_needs/index/{company_id}', [
+        'as' => 'company_needs.index',
+        'uses' => 'CompanyNeedController@index'
+    ]);
+    /** Custom create route */
+    Route::get('company_needs/create/{company_id}', [
+        'as' => 'company_needs.create',
+        'uses' => 'CompanyNeedController@create'
+    ]);
 
     /**************************************************GET******************************************************/
 

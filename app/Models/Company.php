@@ -86,6 +86,10 @@ class Company extends Model
         return $this->hasMany(CompanyMeeting::class);
     }
 
+    public function companyNeeds(){
+        return $this->hasMany(CompanyNeed::class);
+    }
+
     public function country(){
         return $this->belongsTo(Country::class);
     }
