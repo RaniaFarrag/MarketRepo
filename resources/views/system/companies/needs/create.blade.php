@@ -105,6 +105,9 @@
                                             <label>{{ trans('dashboard.Nationality') }} :</label>
                                             <select  class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                @foreach($data['countries'] as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
 
                                             </select>
                                         </div>
