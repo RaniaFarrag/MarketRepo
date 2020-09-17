@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <label>{{ trans('dashboard.Required Position') }} :</label>
-                                                    <input name="required_position" type="text" class="form-control"
+                                                    <input value="{{ old('required_position') }}" name="required_position" type="text" class="form-control"
                                                            placeholder="{{ trans('dashboard.Required Position') }}" required/>
                                                 </div>
 
@@ -90,7 +90,7 @@
 
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Job Description') }} :</label>
-                                            <textarea name="job_description" class="form-control" rows="5"></textarea>
+                                            <textarea name="job_description" class="form-control" rows="5">{{ old('job_description') }}</textarea>
                                         </div>
 
 
@@ -98,7 +98,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.No of candidates') }} :</label>
-                                            <input name="candidates_number" type="number"
+                                            <input value="{{ old('candidates_number') }}" name="candidates_number" type="number"
                                                    class="form-control" placeholder="{{ trans('dashboard.No of candidates') }}" required/>
                                                     @error('candidates_number')
                                                         <div class="error">{{ $message }}</div>
@@ -127,7 +127,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Age Limit') }}:</label>
-                                            <input value="" name="minimum_age" type="number"
+                                            <input value="{{ old('minimum_age') }}" name="minimum_age" type="number"
                                                    class="form-control" placeholder="{{ trans('dashboard.Age Limit') }}" required/>
                                                     @error('minimum_age')
                                                     <div class="error">{{ $message }}</div>
@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Qualification') }}:</label>
-                                            <input value="" name="educational_qualification" type="text"
+                                            <input value="{{ old('educational_qualification') }}" name="educational_qualification" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
                                                     @error('educational_qualification')
                                                     <div class="error">{{ $message }}</div>
@@ -164,7 +164,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.classification') }}:</label>
-                                            <input value="" name="classification" type="text"
+                                            <input value="{{ old('classification') }}" name="classification" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.classification') }}" required/>
                                                     @error('classification')
@@ -173,7 +173,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.total_experience') }}:</label>
-                                            <input value="" name="total_experience" type="text"
+                                            <input value="{{ old('total_experience') }}" name="total_experience" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.total_experience') }}" required/>
                                                     @error('total_experience')
@@ -184,7 +184,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.area_of_experience') }}:</label>
-                                            <input value="" name="website" type="text"
+                                            <input value="{{ old('area_of_experience') }}" name="area_of_experience" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.area_of_experience') }}" required/>
                                                     @error('area_of_experience')
                                                     <div class="error">{{ $message }}</div>
@@ -192,7 +192,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.total_salary') }}:</label>
-                                            <input value="" name="total_salary" type="text" class="form-control"
+                                            <input value="{{ old('total_salary') }}" name="total_salary" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.total_salary') }}" required/>
                                                     @error('total_salary')
                                                     <div class="error">{{ $message }}</div>
@@ -200,40 +200,38 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.other_skills') }}:</label>
-                                            <input value="" name="other_skills" type="text" class="form-control"
+                                            <input value="{{ old('other_skills') }}" name="other_skills" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.other_skills') }}" required/>
-                                            @error('other_skills')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
+                                                    @error('other_skills')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                         </div>
 
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label>{{ trans('dashboard.special_note') }}:</label>
-                                            <input value="" name="special_note" type="text"
+                                            <input value="{{ old('special_note') }}" name="special_note" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.special_note') }}" required/>
-                                            @error('special_note')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
+                                                    @error('special_note')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                            <a href="{{ route('companies.index') }}"
+                                            <a href="{{ route('company_needs.index' , $company_id) }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
 
                     </div>
                     <!--end::Card-->

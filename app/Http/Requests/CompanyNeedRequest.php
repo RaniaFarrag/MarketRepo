@@ -30,6 +30,7 @@ class CompanyNeedRequest extends FormRequest
             'country_id' => 'required',
             'gender' => 'required',
             'minimum_age' => 'required',
+            'total_salary' => 'required',
         ];
     }
 }

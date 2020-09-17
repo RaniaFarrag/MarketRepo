@@ -58,15 +58,15 @@
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            <form method="post" action="{{ route('company_needs.store') }}" class="form"
+                            <form method="post" action="{{ route('company_needs.update' , $companyneed->id) }}" class="form"
                                   enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
 
                                 <input type="hidden" name="company_id" value="{{ $company_id }}">
                                 <input type="hidden" name="sector_id" value="{{ $sector_id }}">
 
                                 <div class="card-body">
-
                                     <div class=" row">
                                         <div class="col-lg-6">
                                             <div class="form-group row">
@@ -75,13 +75,13 @@
                                                     <select name="employment_type_id" class="form-control select2" required>
                                                         <option value="">{{ trans('dashboard.Select All') }}</option>
                                                         @foreach($employeement_types as $employeement_type)
-                                                            <option value="{{ $employeement_type->id }}">{{ app()->getLocale() == 'ar' ? $employeement_type->name : $employeement_type->name_en }}</option>
+                                                            <option {{ $employeement_type->id == $companyneed->employment_type_id ? 'selected' : '' }} value="{{ $employeement_type->id }}">{{ app()->getLocale() == 'ar' ? $employeement_type->name : $employeement_type->name_en }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <label>{{ trans('dashboard.Required Position') }} :</label>
-                                                    <input name="required_position" type="text" class="form-control"
+                                                    <input value="{{ $companyneed->required_position }}" name="required_position" type="text" class="form-control"
                                                            placeholder="{{ trans('dashboard.Required Position') }}" required/>
                                                 </div>
 
@@ -90,7 +90,7 @@
 
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Job Description') }} :</label>
-                                            <textarea name="job_description" class="form-control" rows="5"></textarea>
+                                            <textarea name="job_description" class="form-control" rows="5">{{ $companyneed->job_description }}</textarea>
                                         </div>
 
 
@@ -98,18 +98,18 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.No of candidates') }} :</label>
-                                            <input name="candidates_number" type="number"
+                                            <input value="{{ $companyneed->candidates_number }}" name="candidates_number" type="number"
                                                    class="form-control" placeholder="{{ trans('dashboard.No of candidates') }}" required/>
-                                                    @error('candidates_number')
-                                                        <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('candidates_number')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Nationality') }} :</label>
                                             <select name="country_id" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option {{ $country->id == $companyneed->country_id ? 'selected' : '' }} value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -119,36 +119,36 @@
                                             <select id="gender" class="form-control select2" name="gender"
                                                     required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="1" >{{ trans('dashboard.Male') }}</option>
-                                                <option value="2">{{ trans('dashboard.Female') }}</option>
+                                                <option {{ $companyneed->gender == 1 ? 'selected' : '' }} value="1" >{{ trans('dashboard.Male') }}</option>
+                                                <option {{ $companyneed->gender == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Female') }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Age Limit') }}:</label>
-                                            <input value="" name="minimum_age" type="number"
+                                            <input value="{{$companyneed->minimum_age }}" name="minimum_age" type="number"
                                                    class="form-control" placeholder="{{ trans('dashboard.Age Limit') }}" required/>
-                                                    @error('minimum_age')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('minimum_age')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Qualification') }}:</label>
-                                            <input value="" name="educational_qualification" type="text"
+                                            <input value="{{$companyneed->educational_qualification }}" name="educational_qualification" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
-                                                    @error('educational_qualification')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('educational_qualification')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.DataFlow') }}:</label>
                                             <select id="data_flow" class="form-control select2" name="data_flow"
                                                     required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="0">{{ trans('dashboard.Not required') }}</option>
-                                                <option value="1" >{{ trans('dashboard.Required from inside the Kingdom') }}</option>
-                                                <option value="2">{{ trans('dashboard.Required from outside the Kingdom') }}</option>
+                                                <option {{ $companyneed->data_flow == 0 ? 'selected' : '' }} value="0">{{ trans('dashboard.Not required') }}</option>
+                                                <option {{ $companyneed->data_flow == 1 ? 'selected' : '' }} value="1" >{{ trans('dashboard.Required from inside the Kingdom') }}</option>
+                                                <option {{ $companyneed->data_flow == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Required from outside the Kingdom') }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -158,49 +158,49 @@
                                             <select id="prometric" class="form-control select2" name="prometric"
                                                     required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="1">{{ trans('dashboard.yes') }}</option>
-                                                <option value="2" >{{ trans('dashboard.No') }}</option>
+                                                <option {{ $companyneed->prometric == 1 ? 'selected' : '' }} value="1">{{ trans('dashboard.yes') }}</option>
+                                                <option {{ $companyneed->prometric == 2 ? 'selected' : '' }} value="2" >{{ trans('dashboard.No') }}</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.classification') }}:</label>
-                                            <input value="" name="classification" type="text"
+                                            <input value="{{$companyneed->classification }}" name="classification" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.classification') }}" required/>
-                                                    @error('classification')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('classification')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.total_experience') }}:</label>
-                                            <input value="" name="total_experience" type="text"
+                                            <input value="{{$companyneed->total_experience }}" name="total_experience" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.total_experience') }}" required/>
-                                                    @error('total_experience')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('total_experience')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.area_of_experience') }}:</label>
-                                            <input value="" name="website" type="text"
+                                            <input value="{{$companyneed->area_of_experience }}" name="area_of_experience" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.area_of_experience') }}" required/>
-                                                    @error('area_of_experience')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('area_of_experience')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.total_salary') }}:</label>
-                                            <input value="" name="total_salary" type="text" class="form-control"
+                                            <input value="{{$companyneed->total_salary }}" name="total_salary" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.total_salary') }}" required/>
-                                                    @error('total_salary')
-                                                    <div class="error">{{ $message }}</div>
-                                                    @enderror
+                                            @error('total_salary')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.other_skills') }}:</label>
-                                            <input value="" name="other_skills" type="text" class="form-control"
+                                            <input value="{{$companyneed->other_skills }}" name="other_skills" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.other_skills') }}" required/>
                                             @error('other_skills')
                                             <div class="error">{{ $message }}</div>
@@ -211,7 +211,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label>{{ trans('dashboard.special_note') }}:</label>
-                                            <input value="" name="special_note" type="text"
+                                            <input value="{{$companyneed->special_note }}" name="special_note" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.special_note') }}" required/>
                                             @error('special_note')
                                             <div class="error">{{ $message }}</div>
@@ -222,18 +222,16 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                            <a href="{{ route('companies.index') }}"
+                                            <a href="{{ route('company_needs.index' , $company_id) }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
 
                     </div>
                     <!--end::Card-->
