@@ -532,6 +532,18 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-lg-12">
+                                            <label>{{ trans('dashboard.Company Evaluation') }} :</label>
+                                            <select name="evaluation_status" class="form-control select2">
+                                                <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                                <option value="1">A</option>
+                                                <option value="2">B</option>
+                                                <option value="3">C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
                                             <label>{{ trans('dashboard.Client Status') }} :</label>
                                             <select name="client_status" class="form-control select2">
                                                 <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
