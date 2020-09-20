@@ -130,122 +130,121 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         return view('system.whatsapp.view');
     })->name('whatsapp');
 
+});
+
+//-------------------------------------EXPORT OLD DATA--------------------------------------------------
 
 
-    //-------------------------------------EXPORT OLD DATA--------------------------------------------------
+/** Export Companies Data */
+Route::get('update/database/companies',function (){
+    //$oldData = \App\Models\marking_companies_old::all();
+    $oldData = \App\Models\marking_companies_old::with('images')->get();
+    //dd($oldData[6]->images[1]->image);
 
+    foreach ($oldData as $value)
+    {
+        $company= \App\Models\Company::create([
+            'id' => $value->id , // add id in fillable
+            'logo' => $value->com_photo ,
+            'name:ar' => $value->com_name_ar , // Make name null in phpMyAdmin
+            'name:en' => $value->com_name_en , // Make name null in phpMyAdmin
+            'whatsapp' => $value->com_mobile ,
+            'phone' => $value->com_phone ,
+            'sector_id' => $value->sector_id ,
+            'sub_sector_id' => $value->com_job_category ,
+            'country_id' => $value->com_country ,
+            'com_city' => $value->city_id ,
+            'district' => $value->district ,
+            'location' => $value->com_district ,
+            'branch_number' => $value->com_branches,
+            'num_of_employees' => $value->com_emplyee_nom,
+            'website' => $value->com_website ,
+            'email' => $value->com_email ,
+            'linkedin' => $value->com_linked_in ,
+            'twitter' => $value->com_facebook ,
+            'company_representative_name' => $value->man_name ,
+            'company_representative_job_title' => $value->man_job_title ,
+            'company_representative_job_mobile' => $value->man_mobile ,
+            'company_representative_job_phone' => $value->man_phone ,
+            'company_representative_job_email' => $value->man_email ,
+            'hr_director_job_name' => $value->hr_name ,
+            'hr_director_job_email' => $value->hr_email ,
+            'hr_director_job_mobile' => $value->hr_mobile ,
+            'hr_director_job_phone' => $value->hr_phone ,
+            'hr_director_job_whatsapp' => $value->hr_whats ,
+            'client_status' => $value->client_status ,
+            'evaluation_status' => $value->rate ,
+            'evaluation_status_user_id' => $value->user_rate ,
+            'confirm_connected' => $value->is_called ,
+            'confirm_connected_user_id' => $value->is_called_user ,
+            'confirm_interview' => $value->is_verified ,
+            'confirm_interview_user_id' => $value->is_verified_user ,
+            'confirm_need' => $value->confirm_register ,
+            'confirm_need_user_id' => $value->confirm_register_user ,
+            'confirm_contract' => $value->is_registered ,
+            'confirm_contract_user_id' => $value->is_registered_user ,
+            'notes' => $value->notes ,
 
-    /** Export Companies Data */
-    Route::get('update/database/companies',function (){
-        //$oldData = \App\Models\marking_companies_old::all();
-        $oldData = \App\Models\marking_companies_old::with('images')->get();
-        //dd($oldData[6]->images[1]->image);
+        ]);
 
-        foreach ($oldData as $value)
-        {
-            $company= \App\Models\Company::create([
-                'id' => $value->id , // add id in fillable
-                'logo' => $value->com_photo ,
-                'name:ar' => $value->com_name_ar , // Make name null in phpMyAdmin
-                'name:en' => $value->com_name_en , // Make name null in phpMyAdmin
-                'whatsapp' => $value->com_mobile ,
-                'phone' => $value->com_phone ,
-                'sector_id' => $value->sector_id ,
-                'sub_sector_id' => $value->com_job_category ,
-                'country_id' => $value->com_country ,
-                'com_city' => $value->city_id ,
-                'district' => $value->district ,
-                'location' => $value->com_district ,
-                'branch_number' => $value->com_branches,
-                'num_of_employees' => $value->com_emplyee_nom,
-                'website' => $value->com_website ,
-                'email' => $value->com_email ,
-                'linkedin' => $value->com_linked_in ,
-                'twitter' => $value->com_facebook ,
-                'company_representative_name' => $value->man_name ,
-                'company_representative_job_title' => $value->man_job_title ,
-                'company_representative_job_mobile' => $value->man_mobile ,
-                'company_representative_job_phone' => $value->man_phone ,
-                'company_representative_job_email' => $value->man_email ,
-                'hr_director_job_name' => $value->hr_name ,
-                'hr_director_job_email' => $value->hr_email ,
-                'hr_director_job_mobile' => $value->hr_mobile ,
-                'hr_director_job_phone' => $value->hr_phone ,
-                'hr_director_job_whatsapp' => $value->hr_whats ,
-                'client_status' => $value->client_status ,
-                'evaluation_status' => $value->rate ,
-                'evaluation_status_user_id' => $value->user_rate ,
-                'confirm_connected' => $value->is_called ,
-                'confirm_connected_user_id' => $value->is_called_user ,
-                'confirm_interview' => $value->is_verified ,
-                'confirm_interview_user_id' => $value->is_verified_user ,
-                'confirm_need' => $value->confirm_register ,
-                'confirm_need_user_id' => $value->confirm_register_user ,
-                'confirm_contract' => $value->is_registered ,
-                'confirm_contract_user_id' => $value->is_registered_user ,
-                'notes' => $value->notes ,
-
-            ]);
-
-            if (count($value->images)){
-                //dd($value->id);
-                foreach ($value->images as $k=>$image){
-                    if(count($value->images) == 1){
-                        //dd(4);
-                        $company->update([
-                            'first_business_card' => $image->image ,
-                        ]);
-                    }
-                    elseif (count($value->images) == 2){
-                        //dd(5);
-                        $company->update([
-                            'first_business_card' => $image->image,
-                            'second_business_card' => $image->image,
-                        ]);
-                    }
-                    elseif (count($value->images) ==3){
-                        //dd(6);
-                        $company->update([
-                            'first_business_card' => $image->image,
-                            'second_business_card' => $image->image,
-                            'third_business_card' => $image->image,
-                        ]);
-                    }
-
+        if (count($value->images)){
+            //dd($value->id);
+            foreach ($value->images as $k=>$image){
+                if(count($value->images) == 1){
+                    //dd(4);
+                    $company->update([
+                        'first_business_card' => $image->image ,
+                    ]);
                 }
+                elseif (count($value->images) == 2){
+                    //dd(5);
+                    $company->update([
+                        'first_business_card' => $image->image,
+                        'second_business_card' => $image->image,
+                    ]);
+                }
+                elseif (count($value->images) ==3){
+                    //dd(6);
+                    $company->update([
+                        'first_business_card' => $image->image,
+                        'second_business_card' => $image->image,
+                        'third_business_card' => $image->image,
+                    ]);
+                }
+
             }
-
-            $company_designated_contact = App\Models\CompanyDesignatedContact::create([
-                'name' => $value->name_1,
-                'job_title' => $value->jobTitle_1,
-                'mobile' => $value->phone_1,
-                'linkedin' => $value->linkedin_1,
-                'whatsapp' => $value->whatsApp_1,
-                'email' => $value->d_email_1,
-                'company_id' => $company->id,
-            ]);
-
-            $company_designated_contact = App\Models\CompanyDesignatedContact::create([
-                'name' => $value->name_2,
-                'job_title' => $value->jobTitle_2,
-                'mobile' => $value->phone_2,
-                'linkedin' => $value->linkedin_2,
-                'whatsapp' => $value->whatsApp_2,
-                'email' => $value->d_email_2,
-                'company_id' => $company->id,
-            ]);
-
-            $company_designated_contact = App\Models\CompanyDesignatedContact::create([
-                'name' => $value->name_3,
-                'job_title' => $value->jobTitle_3,
-                'mobile' => $value->phone_3,
-                'linkedin' => $value->linkedin_3,
-                'whatsapp' => $value->whatsApp_3,
-                'email' => $value->email_3,
-                'company_id' => $company->id,
-            ]);
         }
-    });
+
+        $company_designated_contact = App\Models\CompanyDesignatedContact::create([
+            'name' => $value->name_1,
+            'job_title' => $value->jobTitle_1,
+            'mobile' => $value->phone_1,
+            'linkedin' => $value->linkedin_1,
+            'whatsapp' => $value->whatsApp_1,
+            'email' => $value->d_email_1,
+            'company_id' => $company->id,
+        ]);
+
+        $company_designated_contact = App\Models\CompanyDesignatedContact::create([
+            'name' => $value->name_2,
+            'job_title' => $value->jobTitle_2,
+            'mobile' => $value->phone_2,
+            'linkedin' => $value->linkedin_2,
+            'whatsapp' => $value->whatsApp_2,
+            'email' => $value->d_email_2,
+            'company_id' => $company->id,
+        ]);
+
+        $company_designated_contact = App\Models\CompanyDesignatedContact::create([
+            'name' => $value->name_3,
+            'job_title' => $value->jobTitle_3,
+            'mobile' => $value->phone_3,
+            'linkedin' => $value->linkedin_3,
+            'whatsapp' => $value->whatsApp_3,
+            'email' => $value->email_3,
+            'company_id' => $company->id,
+        ]);
+    }
 });
 
 

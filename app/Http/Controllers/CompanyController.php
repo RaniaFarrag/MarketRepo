@@ -66,12 +66,21 @@ class CompanyController extends Controller
     /** Show One Company */
     public function show(Company $company)
     {
+        $evaluation_status_user = '';
+        $client_status_user = '';
+
         if ($company->client_status){
             $client_status_user = User::findOrFail($company->client_status_user_id);
-            return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
+            //return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
         }
 
-        return view ('system.companies.show')->with(['company' => $company]);
+        if ($company->evaluation_status){
+            $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
+            //dd($evaluation_status_user);
+        }
+
+        return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user ,
+            'evaluation_status_user' => $evaluation_status_user]);
     }
 
     /**
@@ -84,7 +93,21 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         $data = $this->companyRepositoryinterface->edit($company);
-        return view('system.companies.edit')->with(['company' => $company , 'data' => $data]);
+        $evaluation_status_user = '';
+        $client_status_user = '';
+
+        if ($company->client_status){
+            $client_status_user = User::findOrFail($company->client_status_user_id);
+            //return view('system.companies.edit')->with(['company' => $company , 'data' => $data , 'client_status_user' => $client_status_user]);
+        }
+
+        if ($company->evaluation_status){
+            $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
+            //dd($evaluation_status_user);
+        }
+
+        return view('system.companies.edit')->with(['company' => $company , 'data' => $data ,
+            'client_status_user' => $client_status_user , 'evaluation_status_user' => $evaluation_status_user]);
     }
 
     /**
