@@ -1,692 +1,393 @@
-@extends('layouts.dashboard')
-
-@section('body')
-
-
-    <!--begin::Content-->
-    <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
-        <!--begin::Subheader-->
-        <div class="subheader py-2 py-lg-12  subheader-transparent " id="kt_subheader">
-            <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-                <!--begin::Info-->
-                <div class="d-flex align-items-center flex-wrap mr-1">
-                    <!--begin::Heading-->
-                    <div class="d-flex flex-column">
-                        <!--begin::Title-->
-                        <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ $company->name }}
-                        </h2>
-                        <!--end::Title-->
-
-                        <!--begin::Breadcrumb-->
-                        <div class="d-flex align-items-center font-weight-bold my-2">
-                            <!--begin::Item-->
-                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
-                                <i class="flaticon2-shelter text-white icon-1x"></i>
-                            </a>
-                            <!--end::Item-->
-                            <!--begin::Item-->
-                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('companies.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Companies Data') }}
-                            </a>
-                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.View Company Data') }}
-                            </a>
-                            <!--end::Item-->
-                        </div>
-                        <!--end::Breadcrumb-->
-                    </div>
-                    <!--end::Heading-->
-                </div>
-                <!--end::Info-->
-            </div>
-        </div>
-        <!--end::Subheader-->
-
-        <!--begin::Entry-->
-        <div class="d-flex flex-column-fluid">
-            <!--begin::Container-->
-            <div class=" container ">
-                <!--begin::Card-->
-                <div class="card card-custom gutter-b">
-                    <div class="card-body">
-                        <div class="d-flex">
-                            <!--begin::Pic-->
-                            <div class="flex-shrink-0 mr-7">
-                                <div class="symbol symbol-50 symbol-lg-120">
-                                    <img alt="Pic" src="{{ $company->logo ? asset('storage/images/'.$company->logo) :  'https://marketing-hc.com/photos/5f154b2c6de301595231020.png'}}">
-                                </div>
-                            </div>
-                            <!--end::Pic-->
-
-                            <!--begin: Info-->
-                            <div class="flex-grow-1">
-                                <!--begin::Title-->
-                                <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                    <!--begin::User-->
-                                    <div class="mr-3">
-                                        <div class="d-flex align-items-center mr-3">
-                                            <!--begin::Name-->
-                                            <a href="#"
-                                               class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">
-                                                {{ $company->name }}
-                                            </a>
-                                            <!--end::Name-->
-                                            @if($company->client_status)
-                                                @if($company->client_status == 1)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Hot') }}</span>
-                                                @elseif($company->client_status == 2)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Warm') }}</span>
-                                                @elseif($company->client_status == 3)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Cold') }}</span>
-                                                @elseif($company->client_status == 4)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Awarded') }}</span>
-                                                    {{ trans('dashboard.By User') }}
-                                                @endif
-                                            @endif
-
-                                            {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
-                                            <span class="label  label-dark label-inline font-weight-bolder ml-1">
-                                                @if (app()->getLocale() == 'ar')
-                                                    {{ $client_status_user->name }}
-                                                @else
-                                                    {{ $client_status_user->name_en }}
-                                                @endif
-                                            </span>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Agreement </title>
 
 
-                                        </div>
+    <style>
 
-                                        <!--begin::Contacts-->
-                                        <div class="d-flex flex-wrap my-2">
-                                            <a href="#"
-                                               class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                                    <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
-                                                        <i class="fa fa-envelope-open-text text-primary"></i>
-                                                    </span> {{ $company->email }}
-                                            </a>
-                                            <a href="#"
-                                               class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1"> <i class="fa fa-suitcase text-primary"></i></span>
-                                                {{ $company->subSector->name ? $company->subSector->name : '-' }}
-                                            </a>
-                                            <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
-                               <i
-                                       class="fas far fa-map-marker text-primary"></i>
-                                </span> {{ $company->location ? $company->location : '-' }}
-                                            </a>
-
-                                            <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
-                               <i
-                                       class="fab fa-whatsapp text-primary"></i>
-                                </span>{{ $company->whatsapp }}
-                                            </a>
-                                        </div>
-                                        <!--end::Contacts-->
-                                    </div>
-                                    <!--begin::User-->
-
-                                    <!--begin::Actions-->
-                                    <div class="mb-10">
-                                        <a href="#"
-                                           class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">{{ trans('dashboard.Print') }}</a>
-
-                                    </div>
-                                    <!--end::Actions-->
-                                </div>
-                                <!--end::Title-->
-
-                                <!--begin::Content-->
-                                <div class="d-flex align-items-center flex-wrap justify-content-between">
-                                    <!--begin::Description-->
-                                    <div class="flex-grow-1 font-weight-bold text-dark-50 py-2 py-lg-2 mr-5">
-                                        @if($company->first_business_card)
-                                            <a class="business_card" data-toggle="modal"
-                                               href="#myModal" data-img-url="{{ asset('storage/images/'.$company->first_business_card) }}">
-                                                <img style="width: 100px;"
-                                                     src="{{ asset('storage/images/'.$company->first_business_card) }}">
-                                            </a>
-                                        @endif
-
-                                        @if($company->second_business_card)
-                                            <a class="business_card" data-toggle="modal"
-                                               href="#myModal" data-img-url="{{ asset('storage/images/'.$company->second_business_card) }}">
-                                                <img style="width: 100px;"
-                                                     src="{{ asset('storage/images/'.$company->second_business_card) }}">
-                                            </a>
-                                        @endif
-
-                                        @if($company->third_business_card)
-                                            <a class="business_card" data-toggle="modal"
-                                               href="#myModal" data-img-url="{{ asset('storage/images/'.$company->third_business_card) }}">
-                                                <img style="width: 100px;"
-                                                     src="{{ asset('storage/images/'.$company->third_business_card) }}">
-                                            </a>
-                                        @endif
-                                    </div>
-                                    <!--end::Description-->
-                                </div>
-                                <!--end::Content-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                    </div>
-                </div>
-                <!--end::Card-->
-
-                <!--begin::Row-->
-                <div class="row">
-                    <div class="col-xl-4">
-
-                        <!--begin::Card-->
-                        <div class="card card-custom">
-                            <!--begin::Header-->
-                            <div class="card-header h-auto py-4">
-                                <div class="card-title">
-                                    <h3 class="card-label">
-                                        {{ $company->name }}
-                                        <span class="d-block text-muted pt-2 font-size-sm">{{ trans('dashboard.General information about the company') }}
-                                        </span>
-                                    </h3>
-                                </div>
-
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
-                            <div class="card-body py-4">
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.phone number') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->phone }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Sector') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->sector->name ? $company->sector->name : '-' }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Country') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext"><span
-                                                    class="font-weight-bolder">{{ $company->country->name }}
-                                        </span> &nbsp;<span
-                                                    class="label label-inline label-danger label-bold">{{ $company->city->name }}</span></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.District') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->district }}</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Location') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                           {{ $company->location }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Branches Number') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                           {{ $company->branch_number }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Number of Employees Company') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                           {{ $company->num_of_employees }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Website') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                          <a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Linkedin') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                          <a href="{{ $company->linkedin }}" target="_blank">{{ $company->linkedin }}</a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row my-2">
-                                    <label class="col-4 col-form-label">{{ trans('dashboard.Twitter') }}:</label>
-                                    <div class="col-8">
-                                        <span class="form-control-plaintext font-weight-bolder">
-                                          <a href="{{ $company->twitter }}" target="_blank">{{ $company->twitter }}</a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end::Body-->
-                        </div>
-                        <!--end::Card-->
-                    </div>
-                    <div class="col-xl-8">
-                        <!--begin::Card-->
-                        <div class="card card-custom gutter-b">
-                            <div class="card-header h-auto py-4">
-                                <div class="card-title">
-                                    <h3 class="card-label">
-                                        {{ trans('dashboard.Designated contact') }}
-
-                                    </h3>
-                                </div>
-
-                            </div>
-                            <!--begin::Body-->
-                            <div class="card-body p-0">
-                                <div class="tab-content pt-5">
-                                    <!--begin::Tab Content-->
-                                    <div class="tab-pane active" id="kt_apps_contacts_view_tab_1" role="tabpanel">
-                                        <div class="container">
-                                            <div class="row">
-                                                @for($i = 0 ; $i<3 ; $i++)
-                                                    @if(isset($company->companyDesignatedcontacts[$i]))
-                                                        <div class="col-md-4 border">
-                                                            <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext font-weight-bolder"> {{ $company->companyDesignatedcontacts[$i]->name ? $company->companyDesignatedcontacts[$i]->name : '-' }}</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.Job Title') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext font-weight-bolder">{{ $company->companyDesignatedcontacts[$i]->job_title ? $company->companyDesignatedcontacts[$i]->job_title : '-' }}</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext">
-                                                                        <span class="font-weight-bolder">{{ $company->companyDesignatedcontacts[$i]->mobile ? $company->companyDesignatedcontacts[$i]->mobile : '-' }} </span> &nbsp;
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-5 col-form-label">{{ trans('dashboard.Linkedin') }}:</label>
-                                                                <div class="col-7">
-                                                                     <span class="form-control-plaintext font-weight-bolder">
-                                                                          @if($company->companyDesignatedcontacts[$i]->linkedin)
-                                                                             <a target="_blank" href="{{ $company->companyDesignatedcontacts[$i]->linkedin ? $company->companyDesignatedcontacts[$i]->linkedin : '-' }}">
-                                                                                <i class="fab fa-linkedin  text-primary"></i>
-                                                                             </a>
-                                                                          @else
-                                                                              -
-                                                                          @endif
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-5 col-form-label">{{ trans('dashboard.Whatsapp') }}:</label>
-                                                                    <div class="col-7">
-                                                                        <span class="form-control-plaintext font-weight-bolder">
-                                                                            @if($company->companyDesignatedcontacts[$i]->whatsapp)
-                                                                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->companyDesignatedcontacts[$i]->whatsapp }}">
-                                                                                    <i class="fab fa-whatsapp  text-success"></i>
-                                                                                </a>
-                                                                            @else -
-                                                                            @endif
-                                                                      </span>
-                                                                  </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-5 col-form-label">{{ trans('dashboard.E-Mail') }}:</label>
-                                                                <div class="col-7">
-                                                                    <span class="form-control-plaintext font-weight-bolder">
-                                                                        @if($company->companyDesignatedcontacts[$i]->email)
-                                                                            <a target="_blank" href="mailto:{{ $company->companyDesignatedcontacts[$i]->email }}">
-                                                                                <i class="fa fa-envelope-open-text text-primary"></i>
-                                                                            </a>
-                                                                        @else -
-                                                                        @endif
-                                                                  </span>
-                                                              </div>
-                                                            </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="col-md-4 border"HR Director
-                                                        >
-                                                            <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext font-weight-bolder">-</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.Job Title') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext font-weight-bolder">-</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext">
-                                                                        <span class="font-weight-bolder">- </span> &nbsp;
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-4 col-form-label">{{ trans('dashboard.District') }}:</label>
-                                                                <div class="col-8">
-                                                                    <span class="form-control-plaintext font-weight-bolder">-</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-5 col-form-label">{{ trans('dashboard.Linkedin') }}:</label>
-                                                                <div class="col-7">
-                                                                    <span class="form-control-plaintext font-weight-bolder">
-                                                                        -
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-5 col-form-label">{{ trans('dashboard.Whatsapp') }}:</label>
-                                                                <div class="col-7">
-                                                                    <span class="form-control-plaintext font-weight-bolder">
-                                                                        -
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row my-2">
-                                                                <label class="col-5 col-form-label">{{ trans('dashboard.E-Mail') }}:</label>
-                                                                <div class="col-7">
-                                                                    <span class="form-control-plaintext font-weight-bolder">
-                                                                        -
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                     @endif
-                                                @endfor
-                                            </div>
-
-                                            <div class="separator separator-dashed my-5"></div>
-                                            <div class="card-header h-auto p-0">
-                                                <div class="card-title">
-                                                    <h3 class="card-label">
-                                                        {{ trans('dashboard.Confirm Meeting') }}
-
-                                                    </h3>
-                                                </div>
-
-                                            </div>
-                                            @if(count($company->companyMeetings))
-                                                @foreach($company->companyMeetings as $companyMeeting)
-                                                    <div class="form-group row my-2">
-                                                        <label class="col-2 col-form-label">{{ trans('dashboard.Date') }}:</label>
-                                                        <div class="col-2">
-                                                            <span class="form-control-plaintext font-weight-bolder">{{ $companyMeeting->date ? $companyMeeting->date : '-' }}</span>
-                                                        </div>
-                                                        <label class="col-2 col-form-label">{{ trans('dashboard.Time') }}:</label>
-                                                        <div class="col-2">
-                                                            <span class="form-control-plaintext font-weight-bolder"> {{ $companyMeeting->time ? $companyMeeting->time : '-' }}</span>
-                                                        </div>
-                                                        <label class="col-2 col-form-label">{{ trans('dashboard.By User') }}:</label>
-                                                        <div class="col-2">
-                                                            <span class="form-control-plaintext font-weight-bolder">{{ app()->getLocale() == 'ar' ? $companyMeeting->user->name : $companyMeeting->user->name_en }}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="separator separator-dashed my-5"></div>
-                                                @endforeach
-                                            @endif
-
-
-                                            <div class="separator separator-dashed my-5"></div>
-                                                <div class="row">
-                                                    <div class="col-md-4 border">
-                                                <div class="card-header h-auto p-5">
-                                                    <div class="card-title m-0">
-                                                        <h3 class="card-label  m-0">
-                                                            {{ trans('dashboard.Company Representative') }}
-
-                                                        </h3>
-                                                    </div>
-
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_name ? $company->company_representative_name : '-' }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Job Title') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_job_title ? $company->company_representative_job_title : '-' }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext">
-                                                            <span class="font-weight-bolder">{{ $company->company_representative_job_mobile ? $company->company_representative_job_mobile : '-' }} </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_job_email ? $company->company_representative_job_email : '-' }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">
-                                                          {{ $company->company_representative_job_phone ? $company->company_representative_job_phone : '-' }}
-
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                    <div class="col-md-4 border">
-                                                    <div class="card-header h-auto p-5">
-                                                        <div class="card-title m-0">
-                                                            <h3 class="card-label  m-0">
-                                                                {{ trans('dashboard.HR Director') }}
-
-                                                            </h3>
-                                                        </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</span>
-                                                    </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->hr_director_job_email ? $company->hr_director_job_email : '-' }}</span>
-                                                    </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext">
-                                                            <span class="font-weight-bolder"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">
-                                                         {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.HR Whatsapp') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">
-                                                            @if($company->hr_director_job_whatsapp)
-                                                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->hr_director_job_whatsapp }}">
-                                                                    <i class="fab fa-whatsapp  text-success"></i>
-                                                                </a>
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 border">
-                                                        <div class="card-header h-auto p-5">
-                                                            <div class="card-title m-0">
-                                                                <h3 class="card-label  m-0">
-                                                                    {{ trans('dashboard.Contract Manager') }}
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                            <div class="col-8">
-                                                                <span class="form-control-plaintext font-weight-bolder">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
-                                                            <div class="col-8">
-                                                                <span class="form-control-plaintext font-weight-bolder">{{ $company->contract_manager_email ? $company->contract_manager_email : '-' }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                            <div class="col-8">
-                                                        <span class="form-control-plaintext">
-                                                            <span class="font-weight-bolder"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</span>
-                                                        </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
-                                                            <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">
-                                                         {{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}
-                                                        </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.HR Whatsapp') }}:</label>
-                                                            <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">
-                                                            @if($company->contract_manager_whatsapp)
-                                                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->contract_manager_whatsapp }}">
-                                                                    <i class="fab fa-whatsapp  text-success"></i>
-                                                                </a>
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <div class="separator separator-dashed my-5"></div>
-
-                                            <form class="form">
-                                                <div class="form-group">
-                                                    <textarea disabled class="form-control form-control-lg form-control-solid disabled" id="exampleTextarea" rows="3" placeholder="{{ trans('dashboard.Notes') }}">
-                                                        {{ $company->notes }}
-                                                    </textarea>
-                                                </div>
-
-                                            </form>
-                                            <div class="separator separator-dashed my-5"></div>
-                                        </div>
-                                    </div>
-                                    <!--end::Tab Content-->
-
-                                </div>
-                            </div>
-                            <!--end::Body-->
-                        </div>
-                        <!--end::Card-->
-                    </div>
-                </div>
-                <!--end::Row-->
-            </div>
-            <!--end::Container-->
-        </div>
-        <!--end::Entry-->
-    </div>
-    <!--end::Content-->
-
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">
-
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i aria-hidden="true" class="ki ki-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close
-                    </button>
-                    {{--<button type="button" class="btn btn-primary font-weight-bold">Save changes</button>--}}
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-@endsection
+        /**
+            Set the margins of the page to 0, so the footer and the header
+            can be of the full height and width !
+         **/
+        @page {
+            margin: 10px 20px 0 10px;
+            /*background: url("
 
 
 
-@section('script')
 
-    {{--VIEW BUSINESS CARDS IN MODAL--}}
-    <script>
-        $('.business_card').on('click', function() {
-            //$('#myModal').html('<img src="' + $(this).data('userphoto') + '"/>')
-            var name = {!! json_encode($company->name) !!};
+        {{url('assets/letter.jpg')}}") center no-repeat 250% 100%;*/
+        }
 
-            $('#myModal img').attr('src', $(this).attr('data-img-url'));
-            //$("#myModal").dialog("option","title", name);
-            $("#myModal h5").html(name);
-        });
-    </script>
+        main {
+            height: 870px;
+            display: block
+        }
 
-@endsection
+        td {
+            padding: 2px;
+            text-align: center;
+            border: 1px solid #77697a;
+            border-collapse: collapse;
+
+            font-size: 14px !important;
+        }
+
+        /** Define now the real margins of every page in the PDF **/
+        body {
+            border: 3px solid #2196f3;
+            /*   border-left: 3px solid #c00000;font-family: 'Lato', sans-serif;
+             font-family: DejaVu Sans, sans-serif;*/
+            /*border-bottom: 3px solid #c00000;*/
+            /* border-right: 3px solid #c00000;*/
+            font-size: 13px;
+            padding: 15px 15px;
+            letter-spacing: 0px;
+            margin: 5px;
+            text-align: right;
+            font-family: 'examplefont', sans-serif;
+
+        }
+
+        /*    .ar {
+                font-family: 'examplefont', sans-serif;
+            }
+*/
+        .en {
+            font-family: 'examplefont2', sans-serif;
+            direction: ltr;
+        }
+
+        .ltr {
+            direction: ltr;
+            text-align: left
+        }
+
+        h4 {
+            font-size: 24px;
+        }
+
+        h5 {
+            font-size: 18px
+        }
+
+        main {
+
+            padding: 10px;
+            position: relative
+        }
+
+        table {
+            width: 100% !important;
+            border-collapse: collapse;
+
+            border: 1px solid #77697a
+        }
+
+        .page_break {
+            page-break-before: always;
+        }
+
+        p {
+            font-size: 14px
+        }
+
+        header {
+            position: absolute;
+            top: 0cm;
+            left: 0cm;
+            right: 0cm;
+            text-align: center;
+            width: 100%;
+            height: 1cm;
+        }
+
+        /** Define the footer rules **/
+        footer {
+            position: fixed;
+            bottom: 0px;
+            left: 0cm;
+            right: 0cm;
+        }
+
+
+    </style>
+</head>
+
+
+<body dir="rtl">
+<div class="page1">
+    <header>
+
+        <img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg">
+
+    </header>
+    <main>
+        <h3 class="en ltr"  style="text-align: center">Business Detail Report</h3>
+        <table class="en ltr" style="line-height: 16px; border: none; direction: ltr">
+
+            <tbody>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Vendor No: 70000</td>
+
+            </tr>
+            <tr>
+                <td  class="en ltr" style="width: 50%;font-size: 12px; vertical-align: middle; border: none">General information about the company</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle;border: none;text-align: right;">Evaluation status:</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle;">A</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+        border-spacing: 0 2px;">
+
+            <tbody>
+
+
+
+            <tr>
+                <td colspan="1" class="en ltr" style="font-size: 12px; vertical-align: middle;width: 25%; border: none;">Company Name English :</td>
+                <td colspan="3" class="en ltr" style="font-size: 12px;vertical-align: middle;width: 75%;">FNRCO FNRCO</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Company Name Arabic :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">الشركة الوطنية الاولى </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Tel :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966138872020</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">ECN :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">ADC</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966138872020</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Vendor No:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">10005493</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Web :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">https://fnrco.com.sa/en</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">CR:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">10005493</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Activity:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Engineering</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Primary Country:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">France</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Ksa Bransh:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Yes</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Social Media Info
+                    <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">www.linkedin.com</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
+                    <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
+                </td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">https://www.facebook.com/</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr style="margin: 5px;"/>
+        <h3 class="en ltr"  style="margin: 5px;">Designated Contacts</h3>
+
+        <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+        border-spacing: 0 2px;">
+
+            <tbody>
+
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"><span style="padding: 10px; border: 1px solid;">&nbsp;1&nbsp;</span>
+                </td>
+                <td  style="font-size: 12px; vertical-align: middle; border: none"> </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: center; text-indent: 50px"><span style="padding: 10px; border: 1px solid; padding: 5px !important;">&nbsp;2&nbsp;</span>
+                </td>
+                <td style="font-size: 12px; vertical-align: middle; border: none"> </td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Full Name:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Citizenship :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Saudi Arabia</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Citizenship :</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">United kingdom</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Position:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Manger Director Administrator</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Position:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Manger Director Techincal</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Email:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">genral-adc@slb.con</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Email:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">genral-adc@slb.con</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Mobile:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Telephone:</td>
+                </td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Fax:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax:</td>
+                </td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right"> <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
+                </td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">  <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
+                </td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> <img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">  <img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
+                </td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr style="margin: 5px;"/>
+        <h3 class="en ltr"  style="margin: 5px;">Contract Manger</h3>
+
+        <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+        border-spacing: 0 2px;">
+
+            <tbody>
+
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            </tbody>
+        </table>
+        <h3 class="en ltr"  style="margin: 5px;">HR Manger</h3>
+
+        <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+        border-spacing: 0 2px;">
+
+            <tbody>
+
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            </tr>
+            </tbody>
+        </table>
+        <hr style="margin: 5px;"/>
+        <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+        border-spacing: 0 2px; margin-top: 5px">
+            <tbody>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">1</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">Feedback: </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: right; border: none">Next Feedback</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
+            </tr>
+            <tr>
+                <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: none; text-align: left;">
+                    Client Said To Call Them Again For Next Calling Client Said To Call Them Again For Next Calling
+                </td>
+            </tr>
+            <tr>
+                <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6; text-align: left; padding: 0px"></td>
+            </tr>
+            <tr>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">2</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">Feedback: </td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: right; border: none">Next Feedback</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
+                <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
+                <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
+            </tr>
+
+            <tr>
+                <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: none; text-align: left;">
+                    Client Said To Call Them Again For Next Calling Client Said To Call Them Again For Next Calling
+                </td>
+            </tr>
+            <tr>
+                <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6; text-align: left; padding: 0px"></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+
+    </main>
+    <footer>
+
+        <img src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg" width="100%"/>
+
+    </footer>
+</div>
+
+
+
+</body>
+</html>
