@@ -363,16 +363,13 @@
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                                                 <i class="far fa-bell text-primary"></i>
-                                                                <span class="pulse-ring"></span>
+                                                               {{-- <span class="pulse-ring"></span>--}}
 
                                                                 <span class="badge" id="count-alert2">{{ count($company->companyMeetings) ? count($company->companyMeetings) : 0 }}</span>
                                                             </a>
                                                         </div>
 
-                                                        <div class="dropdown dropdown-inline" data-toggle="tooltip"
-                                                             title=""
-                                                             data-placement="left"
-                                                             data-original-title="{{ trans('dashboard.Quick actions') }}">
+                                                        <div class="dropdown dropdown-inline">
                                                             <a href="#"
                                                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
                                                                data-toggle="dropdown" aria-haspopup="true"
@@ -523,8 +520,8 @@
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Location') }}
                                                                 :</span>
-                                                            <a href="#"> <span class="text-muted font-weight-bold"><i
-                                                                            class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location ? $company->location : '-' }}</span></a>
+                                                            <a href="#"> <span class="text-muted font-weight-bold">
+                                                                    <i class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location ? $company->location : '-' }}</span></a>
                                                         </div>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}
