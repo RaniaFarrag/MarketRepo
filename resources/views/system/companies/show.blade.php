@@ -91,11 +91,24 @@
                                                class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">
                                                 {{ $company->name }}
                                             </a>
+                                            @if($company->evaluation_status)
+                                                @if($company->evaluation_status == 1)
+                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">A</span>
+                                                @elseif($company->evaluation_status == 2)
+                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">B</span>
+                                                @elseif($company->evaluation_status == 3)
+                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">C</span>
+                                                @endif
+                                                <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
+                                                    @if(app()->getLocale() == 'ar')
+                                                        {{ $evaluation_status_user->name }}
+                                                    @else
+                                                        {{ $evaluation_status_user->name_en }}
+                                                    @endif
+                                                </span>
+                                            @endif
 
-                                            <span class="label label-light-danger label-inline font-weight-bolder mr-1">A</span>
-                                            <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
-                                                                                                    ادمون
-                                                                                            </span>
+
                                             <!--end::Name-->
                                             @if($company->client_status)
                                                 @if($company->client_status == 1)
@@ -108,19 +121,15 @@
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Awarded') }}</span>
                                                     {{ trans('dashboard.By User') }}
                                                 @endif
+                                                {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
+                                                <span class="label  label-dark label-inline font-weight-bolder ml-1">
+                                                    @if (app()->getLocale() == 'ar')
+                                                        {{ $client_status_user->name }}
+                                                    @else
+                                                        {{ $client_status_user->name_en }}
+                                                    @endif
+                                                </span>
                                             @endif
-
-
-                                            {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
-                                            <span class="label  label-dark label-inline font-weight-bolder ml-1">
-                                                @if (app()->getLocale() == 'ar')
-                                                    {{ $client_status_user->name }}
-                                                @else
-                                                    {{ $client_status_user->name_en }}
-                                                @endif
-                                            </span>
-
-
                                         </div>
 
                                         <!--begin::Contacts-->
@@ -237,10 +246,9 @@
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">{{ trans('dashboard.Country') }}:</label>
                                     <div class="col-8">
-                                        <span class="form-control-plaintext"><span
-                                                    class="font-weight-bolder">{{ $company->country->name }}
-                                        </span> &nbsp;<span
-                                                    class="label label-inline label-danger label-bold">{{ $company->city->name }}</span></span>
+                                        <span class="form-control-plaintext"><span class="font-weight-bolder">{{ $company->country ? $company->country->name : '-' }}
+                                        </span> &nbsp;
+                                            <span class="label label-inline label-danger label-bold">{{ $company->city ? $company->city->name : '-' }}</span></span>
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">

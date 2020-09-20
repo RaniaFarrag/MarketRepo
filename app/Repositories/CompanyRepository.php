@@ -127,6 +127,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
             'client_status' => $request->client_status,
             'client_status_user_id' => auth()->id(),
+            'evaluation_status' => $request->evaluation_status,
+            'evaluation_status_user_id' => auth()->id(),
             'notes' => $request->notes,
         ]);
 
@@ -272,6 +274,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
             'client_status' => $request->client_status,
             'client_status_user_id' => auth()->id(),
+            'evaluation_status' => $request->evaluation_status,
+            'evaluation_status_user_id' => auth()->id(),
             'notes' => $request->notes,
         ]);
 
