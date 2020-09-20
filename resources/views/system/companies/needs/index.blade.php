@@ -15,7 +15,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Needs') }}
+                            {{ trans('dashboard.Needs') }} {{ $company->name }}
                         </h2>
                         <!--end::Title-->
 
@@ -37,7 +37,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Needs') }}
+                                {{ trans('dashboard.Needs') }} {{ $company->name }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -53,8 +53,6 @@
                         {{ trans('dashboard.Add New Need') }}
                     </a>
                     <!--end::Button-->
-
-
                 </div>
 
             </div>
@@ -81,7 +79,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Needs') }}
+                                        {{ trans('dashboard.Needs') }} {{ $company->name }}
                                     </h3>
                                 </div>
 
@@ -112,16 +110,16 @@
                                                     <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Needs Details') }}</a></td>
                                                     <td><a class="btn btn-success font-weight-bold" href="{{ route('company_needs.edit' , $need->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                                     <td>
-                                                        <form method="post" action="#">
+                                                        {{--onsubmit = "return confirmDelete()"--}}
+                                                        <form onsubmit="return confirmDelete()" method="post" action="{{ route('company_needs.destroy' , $need->id) }}">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
+                                                            <button  class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
-
                                     </table>
                                     <!--end: Datatable-->
                                 </div>
@@ -140,5 +138,20 @@
     </div>
     <!--end::Content-->
 
+@endsection
 
+@section('script')
+
+    <script>
+        {{--RANIA--}}
+        {{--CONFIRM TO DELETE NEED--}}
+        function confirmDelete() {
+            @if(app()->getLocale() == 'ar')
+                return confirm('هل متاكد انك تريد حذف هذا الاحتياج ؟ ');
+            @else
+                return confirm('Are you sure you want to delete?');
+            @endif
+        }
+
+    </script>
 @endsection

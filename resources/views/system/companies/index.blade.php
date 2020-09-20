@@ -668,7 +668,7 @@
 
 
 @section('script')
-    {{--VIEW BUSINESS CARDS IN MODAL--}}
+    {{--VIEW BUSINESS CARDS IN MODAL--}} {{--RANIA--}}
     <script>
         $('.business_card').on('click', function() {
             //$('#myModal').html('<img src="' + $(this).data('userphoto') + '"/>')
@@ -677,7 +677,7 @@
         });
     </script>
 
-    {{--CKECKBOXES IN COMPANY VIEW--}}
+    {{--CKECKBOXES IN COMPANY VIEW--}} {{--RANIA--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 

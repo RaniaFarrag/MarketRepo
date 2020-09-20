@@ -23,11 +23,12 @@ class CompanyNeedController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /** View All Company Need */
+    /** View All CompanyNeed */
     public function index($company_id)
     {
         $needs = $this->companyNeedRepositoryinterface->index($company_id);
-        return view('system.companies.needs.index')->with(['needs' => $needs , 'company_id' => $company_id]);
+        $company = Company::findOrFail($company_id);
+        return view('system.companies.needs.index')->with(['needs' => $needs , 'company_id' => $company_id , 'company'=>$company]);
     }
 
     /**
@@ -36,7 +37,7 @@ class CompanyNeedController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /** Create Company Need */
+    /** Create CompanyNeed */
     public function create($company_id)
     {
         $countries = $this->companyNeedRepositoryinterface->create($company_id);
@@ -59,7 +60,7 @@ class CompanyNeedController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /** Store Company Need */
+    /** Store CompanyNeed */
     public function store(CompanyNeedRequest $request)
     {
         return $this->companyNeedRepositoryinterface->store($request);
@@ -104,7 +105,7 @@ class CompanyNeedController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /** Submit Edit Company Need */
+    /** Submit Edit CompanyNeed */
     public function update(CompanyNeedRequest $request, CompanyNeed $companyNeed)
     {
         //dd($companyNeed);
@@ -117,8 +118,10 @@ class CompanyNeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    /** Delete CompanyNeed */
+    public function destroy(CompanyNeed $companyNeed)
     {
-        //
+        return $this->companyNeedRepositoryinterface->destroy($companyNeed);
     }
 }
