@@ -25,9 +25,7 @@
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
-                            <!--begin::Item-->
 
-                            <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="{{ route('companies.index') }}"
@@ -42,7 +40,6 @@
                         <!--end::Breadcrumb-->
                     </div>
                     <!--end::Heading-->
-
                 </div>
                 <!--end::Info-->
             </div>
@@ -58,9 +55,13 @@
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            <form method="post" action="{{ route('companies.store') }}" class="form"
+                            <form method="post" action="{{ route('company_needs.store') }}" class="form"
                                   enctype="multipart/form-data">
                                 @csrf
+
+                                <input type="hidden" name="company_id" value="{{ $company_id }}">
+                                <input type="hidden" name="sector_id" value="{{ $sector_id }}">
+
                                 <div class="card-body">
 
                                     <div class=" row">
@@ -68,26 +69,24 @@
                                             <div class="form-group row">
                                                 <div class="col-lg-12 mb-3">
                                                     <label>{{ trans('dashboard.Recruitment Type') }} :</label>
-                                                    <select name="" class="form-control select2" required>
-                                                        <option value="0">{{ trans('dashboard.Select All') }}</option>
-                                                        <option value="1">{{ trans('dashboard.International') }}</option>
-                                                        <option value="2">{{ trans('dashboard.local') }}</option>
-                                                        <option value="3">{{ trans('dashboard.International/local') }}</option>
-
+                                                    <select name="employment_type_id" class="form-control select2" required>
+                                                        <option value="">{{ trans('dashboard.Select All') }}</option>
+                                                        @foreach($employeement_types as $employeement_type)
+                                                            <option value="{{ $employeement_type->id }}">{{ app()->getLocale() == 'ar' ? $employeement_type->name : $employeement_type->name_en }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <label>{{ trans('dashboard.Required Position') }} :</label>
-                                                    <input value="" name="" type="number" class="form-control"
-                                                           placeholder="Required Position"/>
+                                                    <input value="{{ old('required_position') }}" name="required_position" type="text" class="form-control"
+                                                           placeholder="{{ trans('dashboard.Required Position') }}" required/>
                                                 </div>
-
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Job Description') }} :</label>
-                                            <textarea name="notes" class="form-control" rows="5"></textarea>
+                                            <textarea name="job_description" class="form-control" rows="5">{{ old('job_description') }}</textarea>
                                         </div>
 
 
@@ -95,84 +94,84 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.No of candidates') }} :</label>
-                                            <input value="" name="phone" type="number"
-                                                   class="form-control" placeholder="No of candidates" required/>
-                                            @error('phone')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
+                                            <input value="{{ old('candidates_number') }}" name="candidates_number" type="number"
+                                                   class="form-control" placeholder="{{ trans('dashboard.No of candidates') }}" required/>
+                                                    @error('candidates_number')
+                                                    <div class="error">{{ $message }}</div>
+                                                    @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Nationality') }} :</label>
-                                            <select  class="form-control select2" required>
+                                            <select name="country_id" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($data['countries'] as $country)
+                                                @foreach($countries as $country)
                                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
-
                                             </select>
                                         </div>
 
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Gender') }} :</label>
-                                            <select id="subSector" class="form-control select2" name="sub_sector_id"
+                                            <select id="gender" class="form-control select2" name="gender"
                                                     required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="" selected="">{{ trans('dashboard.Male') }}</option>
-                                                <option value="" selected="">{{ trans('dashboard.Female') }}</option>
+                                                <option value="1" >{{ trans('dashboard.Male') }}</option>
+                                                <option value="2">{{ trans('dashboard.Female') }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Age Limit') }}:</label>
-                                            <input value="" name="Contract_Duration" type="number"
+                                            <input value="{{ old('minimum_age') }}" name="minimum_age" type="number"
                                                    class="form-control" placeholder="{{ trans('dashboard.Age Limit') }}" required/>
-                                            @error('phone')
+                                            @error('minimum_age')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Contract Duration') }}:</label>
-                                            <input value="" name="phone" type="text"
+                                            <input value="{{ old('contract_duration') }}" name="contract_duration" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Contract Duration') }}" required/>
-                                            @error('phone')
+                                            @error('contract_duration')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
+
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Work Location') }}:</label>
-                                            <input value="" name="district" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Work Location') }}"/>
+                                            <label>{{ trans('dashboard.Experience Range') }}:</label>
+                                            <input value="{{ old('experience_range') }}" name="experience_range" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.Work Location') }}" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.Work Location') }}:</label>
+                                            <input value="{{ old('work_location') }}" name="work_location" type="text"
+                                                   class="form-control"
+                                                   placeholder="{{ trans('dashboard.Work Location') }}" required/>
+                                        </div>
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Working Hours') }}:</label>
-                                            <input value="" name="location" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Working Hours') }}"/>
+                                            <input value="{{ old('work_hours') }}" name="work_hours" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.Working Hours') }}" required/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Total Salary') }}:</label>
-                                            <input value="" name="branch_number" type="text"
+                                            <input value="{{ old('total_salary') }}" name="total_salary" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Total Salary') }}"/>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Number of Employees Company') }}:</label>
-                                            <input value="" name="num_of_employees" type="text"
-                                                   class="form-control"
-                                                   placeholder="{{ trans('dashboard.Number of Employees Company') }}"/>
+                                                   placeholder="{{ trans('dashboard.Total Salary') }}" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Deadline') }}:</label>
-                                            <input value="" name="website" type="text"
+                                            <input value="{{ old('deadline') }}" name="deadline" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Deadline') }}"/>
                                         </div>
                                         <div class="col-lg-9">
                                             <label>{{ trans('dashboard.Special Remarks') }}:</label>
-                                            <input value="" name="email" type="text" class="form-control"
+                                            <input name="special_note" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.Special Remarks') }}"/>
                                         </div>
 
@@ -180,19 +179,16 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                            <a href="{{ route('companies.index') }}"
+                                            <a href="{{ route('company_needs.index' , $company_id) }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
-
                     </div>
                     <!--end::Card-->
                 </div>

@@ -26,6 +26,14 @@
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
+
+                            <!--begin::Item-->
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="{{ route('companies.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Companies Data') }}
+                            </a>
+                            <!--end::Item-->
+
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
@@ -84,7 +92,6 @@
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
-
                                             <th>{{ trans('dashboard.Ref No') }}</th>
                                             <th>{{ trans('dashboard.Required Position') }}</th>
                                             <th>{{ trans('dashboard.Date') }}</th>
@@ -92,14 +99,13 @@
                                             <th>{{ trans('dashboard.Company Needs') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>
                                             <th>{{ trans('dashboard.delete') }}</th>
-
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @foreach($needs as $need)
+                                            @foreach($needs as $k=>$need)
                                                 <tr>
-                                                    <td>1</td>
+                                                    <td>{{ $k+1 }}</td>
                                                     <td>{{ $need->required_position }}</td>
                                                     <td>{{ $need->created_at }}</td>
                                                     <td>{{ $need->user->name }}</td>

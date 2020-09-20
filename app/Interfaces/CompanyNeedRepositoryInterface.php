@@ -27,11 +27,8 @@ interface CompanyNeedRepositoryInterface
     /** Show One Company Need */
     public function show($company);
 
-    /** Edit Company Need */
-    public function edit($company);
-
     /** Submit Edit Company Need */
-    public function update($request , $company);
+    public function update($request , $companyNeed);
 
     /** Delete Company Need */
     public function destroy($company);

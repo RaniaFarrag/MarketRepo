@@ -10,11 +10,6 @@ use Illuminate\Http\Request;
 
 class CompanyNeedController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     protected $companyNeedRepositoryinterface;
 
     public function __construct(CompanyNeedRepositoryInterface $companyNeedRepositoryinterface)
@@ -22,6 +17,13 @@ class CompanyNeedController extends Controller
         $this->companyNeedRepositoryinterface = $companyNeedRepositoryinterface;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    /** View All Company Need */
     public function index($company_id)
     {
         $needs = $this->companyNeedRepositoryinterface->index($company_id);
@@ -33,6 +35,8 @@ class CompanyNeedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /** Create Company Need */
     public function create($company_id)
     {
         $countries = $this->companyNeedRepositoryinterface->create($company_id);
@@ -41,11 +45,11 @@ class CompanyNeedController extends Controller
         $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($company->sector_id);
 
         if ($company->sector_id == 1){
-            //dd($company->sector_id);
             return view('system.companies.needs.healthcare.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types ,
                 'company_id' => $company_id , 'sector_id' => $company->sector_id]);
         }
-        return view('system.companies.needs.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types]);
+        return view('system.companies.needs.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types,
+                'company_id' => $company_id , 'sector_id' => $company->sector_id]);
     }
 
     /**
@@ -54,6 +58,8 @@ class CompanyNeedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    /** Store Company Need */
     public function store(CompanyNeedRequest $request)
     {
         return $this->companyNeedRepositoryinterface->store($request);
@@ -76,18 +82,18 @@ class CompanyNeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanyNeed $companyneed)
+    public function edit(CompanyNeed $companyNeed)
     {
-        $countries = $this->companyNeedRepositoryinterface->create($companyneed->company_id);
-        $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($companyneed->sector_id);
+        $countries = $this->companyNeedRepositoryinterface->create($companyNeed->company_id);
+        $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($companyNeed->sector_id);
 
-        if ($companyneed->sector_id == 1){
+        if ($companyNeed->sector_id == 1){
             //dd($company->sector_id);
-            return view('system.companies.needs.healthcare.edit')->with(['countries' => $countries , 'employeement_types' => $employeement_types ,
-                'company_id' => $companyneed->company_id , 'sector_id' => $companyneed->sector_id]);
+            return view('system.companies.needs.healthcare.edit')->with(['companyneed' => $companyNeed , 'countries' => $countries , 'employeement_types' => $employeement_types ,
+                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->sector_id]);
         }
-        return view('system.companies.needs.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types]);
-
+        return view('system.companies.needs.edit')->with(['companyneed' => $companyNeed ,'countries' => $countries , 'employeement_types' => $employeement_types ,
+                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->sector_id]);
     }
 
     /**
@@ -97,9 +103,12 @@ class CompanyNeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    /** Submit Edit Company Need */
+    public function update(CompanyNeedRequest $request, CompanyNeed $companyNeed)
     {
-        //
+        //dd($companyNeed);
+        return $this->companyNeedRepositoryinterface->update($request , $companyNeed);
     }
 
     /**
