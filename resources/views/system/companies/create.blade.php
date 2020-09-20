@@ -520,8 +520,8 @@
 
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.HR Whatsapp') }}:</label>
-                                            <input value="{{ old('contract_manager_whatsapp') }}" name="contract_manager_whatsapp" type="number" class="form-control" placeholder="{{ trans('dashboard.HR Whatsapp') }}"/>
+                                            <label>{{ trans('dashboard.Whatsapp') }}:</label>
+                                            <input value="{{ old('contract_manager_whatsapp') }}" name="contract_manager_whatsapp" type="number" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
 
                                         </div>
                                     </div>
@@ -547,7 +547,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">6</span>{{ trans('dashboard.Notes') }}
+                                        <span class="label label-lg label-primary mr-2">7</span>{{ trans('dashboard.Notes') }}
                                     </h3>
                                     <div class="form-group row">
                                         <div class="col-lg-12">

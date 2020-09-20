@@ -242,6 +242,18 @@ return [
     'Companies' => 'Companies',
     'Male' => 'Male',
     'Female' => 'Female',
+    'Contract Manager' => 'Contract Manager',
+    'Qualification' => 'Educational Qualification',
+    'prometric' => 'Pro-Metric',
+    'DataFlow' => 'Data Flow',
+    'total_experience' => 'Total Experience',
+    'other_skills' => 'Other Skills',
+    'total_salary' => 'Total Salary',
+    'area_of_experience' => 'Area of Expertise',
+    'special_note' => 'Special Note',
+    'classification' => 'Classification',
+    'International Experience' => 'International Experience',
+    'Company Evaluation' => 'Company Evaluation',
 
 
 

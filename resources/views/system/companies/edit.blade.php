@@ -632,6 +632,22 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Company Evaluation') }} :</label>
+                                            <select name="client_status" class="form-control select2">
+                                                <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                                <option {{ $company->client_status == 1 ? 'selected' : '' }} value="1">A</option>
+                                                <option {{ $company->client_status == 2 ? 'selected' : '' }} value="2">B</option>
+                                                <option {{ $company->client_status == 3 ? 'selected' : '' }} value="3">V</option>
+                                             </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.By User') }} :</label>
+                                            <input class="form-control" type="text" value="{{ auth()->user()->name }}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Client Status') }} :</label>
                                             <select name="client_status" class="form-control select2">
                                                 <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
@@ -652,7 +668,7 @@
 
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
-                                        <span class="label label-lg label-primary mr-2">6</span>{{ trans('dashboard.Notes') }}
+                                        <span class="label label-lg label-primary mr-2">7</span>{{ trans('dashboard.Notes') }}
                                     </h3>
                                     <div class="form-group row">
                                         <div class="col-lg-12">

@@ -40,25 +40,7 @@
                     </div>
                     <!--end::Heading-->
                 </div>
-
                 <!--end::Info-->
-                <!--begin::Toolbar-->
-                <div class="d-flex align-items-center">
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.View Company Needs') }}
-                    </a>
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Need') }}
-                    </a>
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        {{ trans('dashboard.Modifying Company Data') }}
-                    </a>
-                    <!--end::Button-->
-                </div>
-                <!--end::Toolbar-->
             </div>
         </div>
         <!--end::Subheader-->
@@ -91,11 +73,6 @@
                                                class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">
                                                 {{ $company->name }}
                                             </a>
-
-                                            <span class="label label-light-danger label-inline font-weight-bolder mr-1">A</span>
-                                            <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
-                                                                                                    ادمون
-                                                                                            </span>
                                             <!--end::Name-->
                                             @if($company->client_status)
                                                 @if($company->client_status == 1)
@@ -109,7 +86,6 @@
                                                     {{ trans('dashboard.By User') }}
                                                 @endif
                                             @endif
-
 
                                             {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
                                             <span class="label  label-dark label-inline font-weight-bolder ml-1">

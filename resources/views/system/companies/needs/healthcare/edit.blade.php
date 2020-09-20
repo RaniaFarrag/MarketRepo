@@ -172,10 +172,10 @@
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.total_experience') }}:</label>
+                                            <label>{{ trans('dashboard.International Experience') }}:</label>
                                             <input value="{{$companyneed->total_experience }}" name="total_experience" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.total_experience') }}" required/>
+                                                   placeholder="{{ trans('dashboard.International Experience') }}" required/>
                                             @error('total_experience')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
@@ -210,9 +210,9 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-12">
-                                            <label>{{ trans('dashboard.special_note') }}:</label>
+                                            <label>{{ trans('dashboard.Special Remarks') }}:</label>
                                             <input value="{{$companyneed->special_note }}" name="special_note" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.special_note') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Special Remarks') }}" required/>
                                             @error('special_note')
                                             <div class="error">{{ $message }}</div>
                                             @enderror

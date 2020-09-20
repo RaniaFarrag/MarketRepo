@@ -243,6 +243,19 @@ return [
     'Companies' => 'الشركات',
     'Male' => 'ذكر',
     'Female' => 'انثي',
+    'Contract Manager' => 'مدير التعاقدات',
+    'Qualification' => 'المؤهل العلمي',
+    'prometric' => 'حاصل على شهادة البرومتريك',
+    'DataFlow' => 'الداتا فلو',
+    'total_experience' => 'مجموع الخبرات',
+    'other_skills' => 'مهارات أخرى',
+    'total_salary' => 'الراتب الكلي',
+    'area_of_experience' => 'مجال الخبرة',
+    'special_note' => 'ملاحظة خاصة',
+    'classification' => 'التصنيف',
+    'Add a New Meeting' => 'اضافة موعد جديد',
+    'International Experience' => 'مجموع الخبرات',
+    'Company Evaluation' => 'تقييم الشركة',
 
 
 
