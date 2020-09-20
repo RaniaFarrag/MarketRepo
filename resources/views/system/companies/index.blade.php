@@ -590,7 +590,9 @@
                                                                 {{--data-id :: ATT TO ADD company_id IN INPUT FIELD--}}
                                                                 {{--class confirm_interview_checked :: CLASS TO CALL THE INPUT FIELD IN JS--}}
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1" {{ $company->confirm_connected == 1 ? ' checked' : '' }}
+                                                                    <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1"
+                                                                           {{ $company->confirm_connected == 1 ? 'checked' : '' }}
+                                                                           {{ $company->confirm_connected == 1 && $company->confirm_connected_user_id != auth()->id() ? 'disabled' : '' }}
                                                                            type="checkbox" name="confirm_connected"/>
                                                                     <span></span>
                                                                     {{ trans('dashboard.Confirm Connection') }}
@@ -598,19 +600,26 @@
 
                                                                 <label class="checkbox checkbox-success">
                                                                     <input class="confirm_interview_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_interview"
-                                                                            {{ $company->confirm_interview == 1 ? ' checked' : '' }} {{ count($company->companyMeetings) ? '' : 'disabled' }}/>
+                                                                            {{ $company->confirm_interview == 1 ? 'checked' : '' }}
+                                                                            {{ count($company->companyMeetings) ? '' : 'disabled' }}
+                                                                            {{ $company->confirm_interview == 1 && $company->confirm_interview_user_id != auth()->id() ? 'disabled' : '' }}/>
                                                                     <span></span>
                                                                     {{ trans('dashboard.Confirm Interview') }}
                                                                 </label>
 
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input class="confirm_need_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_need" {{ $company->confirm_need == 1 ? ' checked' : '' }}/>
+                                                                    <input class="confirm_need_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_need"
+                                                                            {{ $company->confirm_need == 1 ? ' checked' : '' }}
+                                                                            {{ count($company->companyNeeds) ? '' : 'disabled' }}
+                                                                            {{ $company->confirm_need == 1 && $company->confirm_need_user_id != auth()->id() ? 'disabled' : '' }}/>
                                                                     <span></span>
                                                                     {{ trans('dashboard.Confirm Need') }}
-
                                                                 </label>
+
                                                                 <label class="checkbox checkbox-success">
-                                                                    <input class="confirm_contract_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_contract" {{ $company->confirm_contract == 1 ? ' checked' : '' }}/>
+                                                                    <input class="confirm_contract_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_contract"
+                                                                            {{ $company->confirm_contract == 1 ? ' checked' : '' }}
+                                                                            {{ $company->confirm_contract == 1 && $company->confirm_contract_user_id != auth()->id() ? 'disabled' : '' }}/>
                                                                     <span></span>{{ trans('dashboard.Confirm Contract') }}
                                                                 </label>
 

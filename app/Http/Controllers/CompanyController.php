@@ -136,4 +136,5 @@ class CompanyController extends Controller
     public function confirmContract($company_id){
         return $this->companyRepositoryinterface->confirmContract($company_id);
     }
+
 }

@@ -420,16 +420,25 @@ class CompanyRepository implements CompanyRepositoryInterface
     public function confirmNeed($company_id){
         $company = $this->company_model::findOrFail($company_id);
 
-        if ($company->confirm_interview == 0){
-            $company->update([
-                'confirm_interview' => 1,
-                'confirm_interview_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id() , $company->id , 'companies' , 'تم تأكيد مقابلة الشركة' , 'The company interview was confirmed');
-            return trans('dashboard.The company interview was confirmed');
+        if ($company->confirm_need == 0){
+            if (count($company->companyNeeds)){
+                $company->update([
+                    'confirm_need' => 1,
+                    'confirm_need_user_id' => auth()->id(),
+                ]);
+                $this->addLog(auth()->id() , $company->id , 'companies' , 'تم تأكيد احتياج الشركة ' , 'The company need was confirmed');
+                return trans('dashboard.The company needs was confirmed');
+            }
+            return trans('dashboard.No Needs has been added');
         }
-
-
+        elseif ($company->confirm_need == 1){
+            $company->update([
+                'confirm_need' => 0,
+                'confirm_need_user_id' => auth()->id(),
+            ]);
+            $this->addLog(auth()->id() , $company->id , 'companies' , 'تم إلغاء احتياج الشركة' , 'Company need canceled');
+            return trans('dashboard.Company need canceled');
+        }
     }
 
     /** Confirm Contract */
