@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\Sector;
 use App\Traits\logTrait;
 use App\User;
 use function GuzzleHttp\Promise\all;
@@ -22,13 +23,14 @@ class UserRepository implements UserRepositoryInterface
 
     protected $user_model;
     protected $role_model;
+    protected $sector_model;
 
 
-    public function __construct(User $user , Role $role)
+    public function __construct(User $user , Role $role , Sector $sector)
     {
         $this->user_model = $user;
         $this->role_model = $role;
-
+        $this->sector_model = $sector;
     }
 
     /** View All Users */
@@ -39,7 +41,13 @@ class UserRepository implements UserRepositoryInterface
     /** Create User */
     public function create()
     {
-        return $this->role_model::all();
+        $data = array();
+
+        $data['sectors'] = $this->sector_model::all();
+        $data['users'] = $this->user_model::all();
+        $data['roles'] = $this->role_model::all();
+
+        return $data;
     }
 
     /** Store User */

@@ -41,11 +41,8 @@
                         <!--end::Breadcrumb-->
                     </div>
                     <!--end::Heading-->
-
                 </div>
                 <!--end::Info-->
-
-
             </div>
         </div>
         <!--end::Subheader-->
@@ -55,9 +52,7 @@
             <!--begin::Container-->
             <div class=" container ">
                 <!--begin::Dashboard-->
-
                 <div class="row">
-
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
@@ -109,7 +104,7 @@
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
                                             <select class="form-control select2" name="role" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($roles as $role)
+                                                @foreach($data['roles'] as $role)
                                                     <option value="{{ $role->name }}">{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
                                                 @endforeach
                                             </select>
@@ -134,23 +129,30 @@
                                             <input value="{{ old('password') }}" name="password_confirmation" type="password"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Password') }}" required autocomplete="new-password"/>
-                                            @error('password')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
+                                                @error('password')
+                                                    <div class="error">{{ $message }}</div>
+                                                @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6 col-xs-6">
-                                            <label>{{ trans('dashboard.Select Sector') }}</label>
-                                            <select class="form-control select2" name="sector_id">
+                                            <label>{{ trans('dashboard.Select Group') }}</label>
+                                            <select class="form-control select2" name="parent_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($roles as $role)
+                                                @foreach($data['roles'] as $role)
                                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('sector_id')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6 col-xs-6">
+                                            <label>{{ trans('dashboard.Select Sector') }}</label>
+                                            <select class="form-control select2" name="sector_id">
+                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                @foreach($data['sectors'] as $sector)
+                                                    <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 

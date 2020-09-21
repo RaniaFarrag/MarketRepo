@@ -59,6 +59,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\CompanyNeedRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\CompanyRepresentativeRepositoryInterface',
+            'App\Repositories\CompanyRepresentativeRepository'
+        );
+
     }
 
     /**

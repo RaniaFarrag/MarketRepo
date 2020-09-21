@@ -40,8 +40,8 @@ class UserController extends Controller
     /** Create User */
     public function create()
     {
-        $roles = $this->userRepositoryinterface->create();
-        return view('system.users.create')->with('roles' , $roles);
+        $data = $this->userRepositoryinterface->create();
+        return view('system.users.create')->with('data' , $data);
     }
 
     /**
