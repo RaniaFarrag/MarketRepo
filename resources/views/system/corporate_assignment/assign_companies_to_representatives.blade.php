@@ -25,9 +25,7 @@
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
-                            <!--begin::Item-->
 
-                            <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
 
@@ -66,7 +64,6 @@
                                             <select name="" class="form-control select2" required>
                                                 <option value="0">{{ trans('dashboard.Select All') }}</option>
                                                 <option value="1">{{ trans('dashboard.BABU ANSARI') }}</option>
-
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
@@ -92,7 +89,6 @@
                                             <select class="form-control select2" required>
                                                 <option value=""
                                                         selected="">{{ trans('dashboard.Select All') }}</option>
-
                                             </select>
                                         </div>
 

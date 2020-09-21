@@ -81,6 +81,10 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Get Cities Of Country */
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
+    /** Assign Company To Representative Form */
+    Route::get('assign/company/representative' , 'RepresentativeCompanyController@assignCompanyToRepresentative')
+        ->name('assign_company_representative');
+
     /*********************************************MANAGE CHECK BOXES****************************************************/
     /** Confirm Connected */
     Route::get('/confirm/connected/{company_id}' , 'CompanyController@confirmConnected')->name('confirm_connected');
