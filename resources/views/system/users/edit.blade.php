@@ -108,9 +108,9 @@
 
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
-                                            <select class="form-control select2" name="role">
+                                            <select class="form-control select2" name="role" disabled>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($roles as $k=>$role)
+                                                @foreach($data['roles'] as $k=>$role)
                                                     <option value="{{ $role->id }}" {{ $role->id == $user->roles[0]->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
                                                 @endforeach
                                             </select>
@@ -142,11 +142,24 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6 col-xs-6">
-                                            <label>{{ trans('dashboard.Select Sector') }}</label>
-                                            <select class="form-control select2" name="sector_id">
+                                            <label>{{ trans('dashboard.Select Manager') }}</label>
+                                            <select class="form-control select2" name="parent_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($roles as $role)
-                                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                                @foreach($data['managers'] as $manager)
+                                                    <option {{ $manager->id == $user->parent_id ? 'selected' : '' }} value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('parent_id')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-md-6 col-xs-6">
+                                            <label>{{ trans('dashboard.Select Sector') }}</label>
+                                            <select class="form-control select2" name="sector_ids[]" multiple>
+                                                <option disabled>{{ trans('dashboard.Select All') }}</option>
+                                                @foreach($data['sectors'] as $sector)
+                                                    <option {{ in_array($sector->id , $user->sectors()->pluck('sector_id')->toArray()) ? 'selected' : '' }} value="{{ $sector->id }}">{{ $sector->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('sector_id')
