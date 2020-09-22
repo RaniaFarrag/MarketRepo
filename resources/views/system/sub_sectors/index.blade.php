@@ -22,7 +22,7 @@
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
-                            <a href="#" class="opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
@@ -33,7 +33,7 @@
                             </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.All sub-sectors') }}
+                                {{ trans('dashboard.sub-sectors') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -111,7 +111,7 @@
                                                 <form method="post" action="{{ route('sub_sectors.destroy' , $sub_sector->id) }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
+                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

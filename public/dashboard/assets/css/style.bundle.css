@@ -62698,3 +62698,21 @@ body {
 @media (max-width: 425px) {
   .offcanvas-mobile {
     width: 90% !important; } }
+
+
+.date input.form-control {
+    background-color: #fff !important;
+    background-clip: padding-box;
+    border: 1px solid #E4E6EF !important;
+}
+
+button.navi-link {
+    border: none;
+    width: 100%;
+    text-align: inherit;
+    background: #fff;
+}
+.navi .navi-item form {
+    margin: 0;
+}
+.table th, .table td {vertical-align: middle;}

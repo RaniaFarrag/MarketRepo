@@ -21,19 +21,19 @@
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
-                            <a href="#" class="opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}"
+                            <a href="{{ route('users.index') }}"
                                class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }} </a>
+                                {{ trans('dashboard.All Users') }} </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Edit user') }}
                             </a>
                             <!--end::Item-->
@@ -80,7 +80,7 @@
                                             <label>{{ trans('dashboard.Name Arabic') }} :</label>
                                             <input value="{{ $user->name }}" name="name" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.User Name Arabic') }}"/>
+                                                   placeholder="{{ trans('dashboard.Name Arabic') }}"/>
                                             @error('name')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
@@ -94,7 +94,8 @@
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.User E-mail') }} :</label>
                                             <input value="{{ $user->email }}" name="email" type="email"
@@ -109,15 +110,16 @@
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
                                             <select class="form-control select2" name="role">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}" {{ old('role_id') && in_array($role->id, old('role_id')) ? ' checked' : '' }}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
+                                                @foreach($roles as $k=>$role)
+                                                    <option value="{{ $role->id }}" {{ $role->id == $user->roles[0]->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('role_id')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Password') }} :</label>
                                             <input value="{{ old('password') }}" name="password" type="password"
@@ -137,7 +139,8 @@
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Sector') }}</label>
                                             <select class="form-control select2" name="sector_id">
@@ -177,7 +180,6 @@
             <!--end::Container-->
         </div>
 
-
-
-
+    </div>
+    <!--end::Content-->
 @endsection

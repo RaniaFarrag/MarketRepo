@@ -10,6 +10,7 @@ namespace App\Repositories;
 use App\Interfaces\SubSectorRepositoryInterface;
 use App\Models\SubSector;
 use App\Traits\logTrait;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class SubSectorRepository implements SubSectorRepositoryInterface
@@ -41,7 +42,8 @@ class SubSectorRepository implements SubSectorRepositoryInterface
 
         $this->addLog(auth()->id() , $sub_sector->id , 'sub_sectors' , 'تم اضافة قطاع فرعي جديد' , 'New Sub Sector has been added');
 
-        return redirect(route('sub_sectors.index' , $request->sector_id))->with('success' , trans('dashboard.added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('sub_sectors.index' , $request->sector_id));
 
     }
 
@@ -57,7 +59,8 @@ class SubSectorRepository implements SubSectorRepositoryInterface
 
         $this->addLog(auth()->id() , $subSector->id , 'sub_sectors' , 'تم تعديل قطاع فرعي ' , 'Sub-Sector has been updated');
 
-        return redirect(route('sub_sectors.index' , $subSector->sector_id))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('sub_sectors.index' , $subSector->sector_id));
 
     }
 
@@ -67,7 +70,13 @@ class SubSectorRepository implements SubSectorRepositoryInterface
 
         $this->addLog(auth()->id() , $subSector->id , 'sub_sectors' , 'تم حذف قطاع فرعي' , 'Sub-Sector has been deleted');
 
-        return redirect(route('sub_sectors.index' , $subSector->sector_id))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('sub_sectors.index' , $subSector->sector_id));
+    }
+
+    /** Get Sub-Sectors Of Sector */
+    public function getSubsectorOfsector($sector_id){
+        return $this->sub_sector_model::where('sector_id' , $sector_id)->get();
     }
 
 }

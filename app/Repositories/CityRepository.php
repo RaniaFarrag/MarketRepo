@@ -12,6 +12,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Traits\logTrait;
 use function GuzzleHttp\Promise\all;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class CityRepository implements CityRepositoryInterface
@@ -53,7 +54,8 @@ class CityRepository implements CityRepositoryInterface
 
         $this->addLog(auth()->id() , $city->id , 'cities' , 'تم اضافة مدينة جديدة' , 'New City has been added');
 
-        return redirect(route('cities.index'))->with('success' , trans('dashboard. added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('cities.index'));
     }
 
     /** Edit City */
@@ -76,7 +78,8 @@ class CityRepository implements CityRepositoryInterface
 
         $this->addLog(auth()->id() , $city->id , 'cities' , 'تم تعديل مدينة ' , 'City has been updated');
 
-        return redirect(route('cities.index'))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('cities.index'));
 
     }
 
@@ -85,7 +88,13 @@ class CityRepository implements CityRepositoryInterface
         $city->delete();
         $this->addLog(auth()->id() , $city->id , 'cities' , 'تم حذف مدينة' , 'City has been deleted');
 
-        return redirect(route('cities.index'))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('cities.index'));
+    }
+
+    /** Get Cities Of Country */
+    public function getCitiesOfcountry($country_id){
+        return $this->city_model::where('country_id' , $country_id)->get();
     }
 
 }

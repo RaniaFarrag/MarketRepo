@@ -11,12 +11,17 @@ class Sector extends Model
     use Translatable;
     use SoftDeletes;
 
+    protected $fillable = ['id'];
     protected $translatedAttributes = ['name'];
     protected $dates = ['deleted_at'];
 
 
     public function subSectors(){
         return $this->hasMany(SubSector::class);
+    }
+
+    public function companies(){
+        return $this->hasMany(Company::class);
     }
 
 

@@ -10,6 +10,7 @@ namespace App\Repositories;
 use App\Interfaces\RoleRepositoryInterface;
 use App\Traits\logTrait;
 use function GuzzleHttp\Promise\all;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -54,7 +55,8 @@ class RoleRepository implements RoleRepositoryInterface
 
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم اضافة دور جديد' , 'New Role has been added');
 
-        return redirect(route('roles.index'))->with('success' , trans('dashboard.added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('roles.index'));
 
     }
 
@@ -78,7 +80,8 @@ class RoleRepository implements RoleRepositoryInterface
 
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم تعديل دور ' , 'Role has been updated');
 
-        return redirect(route('roles.index'))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('roles.index'));
 
     }
 
@@ -87,7 +90,8 @@ class RoleRepository implements RoleRepositoryInterface
         $role->delete();
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم حذف الدور' , 'Role has been deleted');
 
-        return redirect(route('roles.index'))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('roles.index'));
     }
 
 }

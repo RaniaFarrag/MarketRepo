@@ -21,22 +21,19 @@
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
-                            <a href="#" class="opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.dashboard') }} </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="{{ route('cities.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Cities') }}
                             </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Edit City') }}
                             </a>
                             <!--end::Item-->
@@ -85,7 +82,7 @@
                                             <select class="form-control select2" name="country_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($countries as $country)
-                                                    <option @if( old('country_id') == $country->id) selected="selected" @endif value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    <option {{ $city->country_id == $country->id ? 'selected' : '' }} value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('country_id')

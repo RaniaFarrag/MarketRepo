@@ -9,11 +9,15 @@ class SubSector extends Model
 {
     use Translatable;
 
-    protected $fillable= ['sector_id'];
+    protected $fillable= ['id','sector_id'];
     protected $translatedAttributes = ['name'];
 
     public function sector(){
         $this->belongsTo(Sector::class);
+    }
+
+    public function companies(){
+        return $this->hasMany(Company::class);
     }
 
 

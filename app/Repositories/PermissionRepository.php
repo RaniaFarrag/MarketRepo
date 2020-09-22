@@ -12,6 +12,7 @@ use App\Traits\logTrait;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationData;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -45,7 +46,8 @@ class PermissionRepository implements PermissionRepositoryInterface
 
         $this->addLog(auth()->id() , $permission->id , 'permissions' , 'تم اضافة صلاحية جديد' , 'New Permission has been added');
 
-        return redirect(route('permissions.index'))->with('success' , trans('dashboard.added successfully'));
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('permissions.index'));
 
     }
 
@@ -60,7 +62,8 @@ class PermissionRepository implements PermissionRepositoryInterface
 
         $this->addLog(auth()->id() , $permission->id , 'permissions' , 'تم تعديل صلاحية ' , 'Permission has been updated');
 
-        return redirect(route('permissions.index'))->with('success' , trans('dashboard.updated successfully'));
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('permissions.index'));
 
     }
 
@@ -69,7 +72,8 @@ class PermissionRepository implements PermissionRepositoryInterface
         $permission->delete();
         $this->addLog(auth()->id() , $permission->id , 'permissions' , 'تم حذف صلاحية' , 'Permission has been deleted');
 
-        return redirect(route('permissions.index'))->with('success' , trans('dashboard.deleted successfully'));
+        Alert::success('success', trans('dashboard. deleted successfully'));
+        return redirect(route('permissions.index'));
     }
 
 }
