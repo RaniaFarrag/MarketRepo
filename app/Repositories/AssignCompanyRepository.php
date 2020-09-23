@@ -7,7 +7,7 @@
  */
 
 namespace App\Repositories;
-use App\Interfaces\CompanyRepresentativeRepositoryInterface;
+use App\Interfaces\AssignCompanyRepositoryInterface;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Sector;
@@ -25,7 +25,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
 
-class CompanyRepresentativeRepository implements CompanyRepresentativeRepositoryInterface
+class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 {
     use LogTrait;
     use UploadTrait;
@@ -49,12 +49,15 @@ class CompanyRepresentativeRepository implements CompanyRepresentativeRepository
     /** Assign Company To Representative Form */
     public function assignCompanyToRepresentative(){
         $data = array();
-        $data['representatives'] = $this->user_model::where();
-        $data['sectors'] = $this->sector_model::all();
-        $data['countries'] = $this->country_model::all();
-        $data['sectors'] = $this->sector_model::all();
-    }
 
+        $data['representatives'] = $this->user_model::where('parent_id' , auth()->id())->get();
+        $data['countries'] = $this->country_model::all();
+        $user = $this->user_model::findOrFail(auth()->id());
+        $data['sectors'] = $user->sectors;
+        $data['countries'] = $this->country_model::all();
+
+        return $data;
+    }
 
 
 }

@@ -44,7 +44,7 @@ class UserRepository implements UserRepositoryInterface
         $data = array();
 
         $data['sectors'] = $this->sector_model::all();
-        $data['users'] = $this->user_model::all();
+        $data['managers'] = $this->user_model::where('parent_id' , null)->get();
         $data['roles'] = $this->role_model::all();
 
         return $data;
@@ -53,14 +53,39 @@ class UserRepository implements UserRepositoryInterface
     /** Store User */
     public function store($request)
     {
-        $user = $this->user_model::create([
-            'name' => $request->name,
-            'name_en' => $request->name_en,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'active' => 1
-        ]);
-
+        if ($request->role == 'Sales Representative'){
+            $user = $this->user_model::create([
+                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'active' => 1,
+                'parent_id' => $request->parent_id,
+            ]);
+        }
+        elseif($request->role == 'Sales Manager'){
+            $user = $this->user_model::create([
+                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'active' => 1,
+            ]);
+            $user->sectors()->sync($request->sector_ids);
+//            foreach ($request->sector_ids as $sector_id) {
+//                $sector = $this->sector_model::findOrFail($sector_id);
+//                $user->sectors()->attach($sector);
+//            }
+        }
+        else{
+            $user = $this->user_model::create([
+                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'active' => 1,
+            ]);
+        }
         $user->assignRole($request->role);
 
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم اضافة مستخدم جديد' , 'New User has been added');
@@ -73,23 +98,53 @@ class UserRepository implements UserRepositoryInterface
     /** Edit User */
     public function edit()
     {
-        return $this->role_model::all();
+        $data = array();
+
+        $data['sectors'] = $this->sector_model::all();
+        $data['managers'] = $this->user_model::where('parent_id' , null)->get();
+        $data['roles'] = $this->role_model::all();
+
+        return $data;
     }
 
 
     /** Submit Edit User */
     public function update($request , $user){
 
-        $user->update([
-            'name' => $request->name,
-            'name_en' => $request->name_en,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'active' => 1
-        ]);
+        if ($user->hasRole('Sales Representative')){
+            $user->update([
+                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'active' => 1,
+                'parent_id' => $request->parent_id,
+            ]);
+        }
 
-        $user->removeRole($user->roles->first()->name);
-        $user->assignRole($request->role);
+        elseif($user->hasRole('Sales Manager')){
+            //dd($request->sector_ids);
+            $user->update([
+                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'active' => 1,
+            ]);
+            $user->sectors()->sync($request->sector_ids);
+        }
+
+        else{
+            $user->update([
+                'name' => $request->name,
+                'name_en' => $request->name_en,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'active' => 1
+            ]);
+        }
+        //$user->removeRole($user->roles->first()->name);
+        //$user->assignRole($request->role);
 
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم تعديل مستخدم ' , 'User has been updated');
 
