@@ -62,15 +62,19 @@
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Representative') }} :</label>
                                             <select name="" class="form-control select2" required>
-                                                <option value="0">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="1">{{ trans('dashboard.BABU ANSARI') }}</option>
+                                                <option>{{ trans('dashboard.Select one') }}</option>
+                                                @foreach($data['representatives'] as $representative)
+                                                    <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name_en : $representative->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Country') }} :</label>
-                                            <select name="" class="form-control select2" required>
-                                                <option value="0">{{ trans('dashboard.Select All') }}</option>
-
+                                            <select id="countries" name="country" class="form-control select2" >
+                                                <option value="">{{ trans('dashboard.Select All') }}</option>
+                                                    @foreach($data['countries'] as $country)
+                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                    @endforeach
                                             </select>
                                         </div>
 
@@ -78,40 +82,34 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Sectors') }} :</label>
-                                            <select class="form-control select2" required>
-                                                <option value=""
-                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select name="sector_id" id="sector" class="form-control select2" required>
+                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                @foreach($data['sectors'] as $sector)
+                                                    <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                                @endforeach
 
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.City') }} :</label>
-                                            <select class="form-control select2" required>
-                                                <option value=""
-                                                        selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select id="cities" name="city" class="form-control select2" >
+                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                             </select>
                                         </div>
-
 
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Company Type') }}:</label>
-                                            <select class="form-control select2" required>
-                                                <option value=""
-                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-
+                                            <select id="subSector" name="sub_sector_id" class="form-control select2" >
+                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Companies') }} :</label>
-                                            <select id="subSector" multiple class="form-control select2"
-                                                    name="sub_sector_id"
-                                                    required>
-                                                <option value=""
-                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="">{{ trans('dashboard.Male') }}</option>
-                                                <option value="" selected="">{{ trans('dashboard.Female') }}</option>
+                                            <select id="companies" multiple class="form-control select2"
+                                                    name="company_id">
+                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                             </select>
                                         </div>
 
@@ -120,7 +118,6 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
@@ -149,5 +146,107 @@
 
 @section('script')
 
+    <script>
+        {{-- GET ALL SUB-SECTORS OF SECTOR AND CITIES OF COUNTRY--}}
+
+        $(document).ready(function() {
+
+            $("#sector").on('change' , function () {
+                var sector_id = $(this).val();
+                if (sector_id){
+                    $.ajax({
+                        type: "get",
+                        url: "{{ url('/get/sub/sectors/of/sector/') }}" + '/' + sector_id,
+                        dataType: "json",
+                        success: function (response) {
+                            var sub_sectors = response.sub_sectors;
+                            if (sub_sectors.length){
+                                console.log(sub_sectors);
+                                var html = '<option value="">{{ trans('dashboard.Select All') }}</option>'
+                                for (let i = 0; i < sub_sectors.length; i++) {
+                                    html+= '<option value="'+ sub_sectors[i].id +'">' + sub_sectors[i].name +'</option>';
+                                }
+                            }
+                            else {
+                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                            }
+                            $("#subSector").html(html);
+
+                        }
+                    });
+                }
+                else {
+                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
+                    $("#subSector").html(html);
+                }
+
+            })
+
+
+            $("#countries").on('change' , function () {
+                var country_id = $(this).val();
+                if (country_id){
+                    $.ajax({
+                        type: "get",
+                        url: "{{ url('/get/cities/of/country/') }}" + '/' + country_id,
+                        dataType: "json",
+                        success: function (response) {
+                            var cities = response.cities;
+                            if (cities.length){
+                                console.log(cities);
+                                var html = ''
+                                for (let i = 0; i < cities.length; i++) {
+                                    html+= '<option value="'+ cities[i].id +'">' + cities[i].name +'</option>';
+                                }
+                            }
+                            else {
+                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                            }
+                            $("#cities").html(html);
+
+                        }
+                    });
+                }
+                else {
+                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
+                    $("#cities").html(html);
+                }
+
+            })
+
+            $("#companies").on('change' , function () {
+                var sub_sector_id = $(this).val();
+                if (sub_sector_id){
+                    $.ajax({
+                        type: "get",
+                        url: "{{ url('/get/cities/of/country/') }}" + '/' + sub_sector_id,
+                        dataType: "json",
+                        success: function (response) {
+                            var cities = response.cities;
+                            if (cities.length){
+                                console.log(cities);
+                                var html = ''
+                                for (let i = 0; i < cities.length; i++) {
+                                    html+= '<option value="'+ cities[i].id +'">' + cities[i].name +'</option>';
+                                }
+                            }
+                            else {
+                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                            }
+                            $("#cities").html(html);
+
+                        }
+                    });
+                }
+                else {
+                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
+                    $("#cities").html(html);
+                }
+
+            })
+
+        });
+
+    </script>
 
 @endsection

@@ -80,9 +80,12 @@ class UserController extends Controller
     /** Edit User */
     public function edit(User $user)
     {
-        $roles = $this->userRepositoryinterface->edit();
-
-        return view('system.users.edit')->with(['user'=>$user , 'roles'=>$roles]);
+        //dd($user->sectors);
+        $data = $this->userRepositoryinterface->edit();
+        //$sectors_ids = $user->sectors()->pluck('sector_id')->toArray();
+        //dd($sectors_ids[1]['id']);
+        //dd($sectors_ids);
+        return view('system.users.edit')->with(['user'=>$user , 'data'=>$data ]);
     }
 
     /**

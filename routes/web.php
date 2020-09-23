@@ -82,8 +82,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
     /** Assign Company To Representative Form */
-    Route::get('assign/company/representative' , 'RepresentativeCompanyController@assignCompanyToRepresentative')
-        ->name('assign_company_representative');
+    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentative')
+        ->name('assign_company_to_representative');
 
     /*********************************************MANAGE CHECK BOXES****************************************************/
     /** Confirm Connected */
@@ -106,10 +106,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('needs' , function (){
         return view('system.companies.needs.index');
     })->name('companies_needs');
-
-    Route::get('assign_companies_to_representatives' , function (){
-        return view('system.corporate_assignment.assign_companies_to_representatives');
-    })->name('assign_companies_to_representatives');
 
 
 

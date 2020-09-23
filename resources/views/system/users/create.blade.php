@@ -136,23 +136,29 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6 col-xs-6">
-                                            <label>{{ trans('dashboard.Select Group') }}</label>
+                                            <label>{{ trans('dashboard.Select Manager') }}</label>
                                             <select class="form-control select2" name="parent_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($data['roles'] as $role)
-                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @foreach($data['managers'] as $manager)
+                                                    <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('parent_id')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Sector') }}</label>
-                                            <select class="form-control select2" name="sector_id">
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select class="form-control select2" name="sector_ids[]" multiple>
+                                                <option disabled>{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['sectors'] as $sector)
                                                     <option value="{{ $sector->id }}">{{ $sector->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('sector_ids')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
