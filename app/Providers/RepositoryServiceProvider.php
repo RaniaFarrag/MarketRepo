@@ -60,8 +60,8 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\Interfaces\CompanyRepresentativeRepositoryInterface',
-            'App\Repositories\CompanyRepresentativeRepository'
+            'App\Interfaces\AssignCompanyRepositoryInterface',
+            'App\Repositories\AssignCompanyRepository'
         );
 
     }

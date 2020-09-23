@@ -9,7 +9,7 @@
 namespace App\Interfaces;
 
 
-interface CompanyRepresentativeRepositoryInterface
+interface AssignCompanyRepositoryInterface
 {
 
     /** Assign Company To Representative Form */

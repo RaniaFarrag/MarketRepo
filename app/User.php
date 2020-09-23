@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\CompanyMeeting;
+use App\Models\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'name_en' , 'email', 'password', 'active'
+        'name', 'name_en' , 'email', 'password', 'active' , 'parent_id' ,
     ];
 
     /**
@@ -51,5 +52,9 @@ class User extends Authenticatable
 
     public function companyMeetings(){
         return $this->hasMany(CompanyMeeting::class);
+    }
+
+    public function sectors(){
+        return $this->belongsToMany(Sector::class);
     }
 }

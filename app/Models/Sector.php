@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,6 +23,10 @@ class Sector extends Model
 
     public function companies(){
         return $this->hasMany(Company::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
 
