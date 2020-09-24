@@ -22,13 +22,13 @@
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
-                            <a href="#" class="opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Representative companies') }}
                             </a>
                             <!--end::Item-->
@@ -40,9 +40,6 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
-
                 </div>
 
             </div>
@@ -94,48 +91,25 @@
 
                                         <tbody>
 
+                                        @foreach($companies_of_representative as $k=>$company_of_representative)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>{{ app()->getLocale()=='ar' ?  $company_of_representative->representative->name : $company_of_representative->representative->name_en }}</td>
+                                                <td>{{ $company_of_representative->name }}</td>
+                                                <td>{{ $company_of_representative->city->name }}</td>
+                                                <td>{{ $company_of_representative->sector->name }}</td>
+                                                <td>{{ $company_of_representative->subSector->name }}</td>
 
-                                        <tr>
-
-                                            <td>1</td>
-                                            <td>BABU ANSARI</td>
-                                            <td>Specialized Experts Center</td>
-                                            <td>Al Riyad	</td>
-                                            <td>Health Care	</td>
-                                            <td>medical clinic</td>
-
-                                            <td>
-
-                                                <form method="post" action="#">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
-                                                </form>
-                                            </td>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>2</td>
-                                            <td>BABU ANSARI</td>
-                                            <td>Specialized Experts Center</td>
-                                            <td>Al Riyad	</td>
-                                            <td>Health Care	</td>
-                                            <td>medical clinic</td>
-
-                                            <td>
-
-                                                <form method="post" action="#">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
-                                                </form>
-                                            </td>
-
-                                            </td>
-                                        </tr>
-
+                                                <td>
+                                                    <a href="{{ route('cancel_company_assignment' , $company_of_representative->id) }}" onclick="return confirm('Are you sure?')"  class="btn btn-danger mr-2"><i class="fa fa-trash p-0"></i></a>
+                                                    {{--<form method="post" action="#">--}}
+                                                        {{--@method('DELETE')--}}
+                                                        {{--@csrf--}}
+                                                        {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>--}}
+                                                    {{--</form>--}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
                                         </tbody>
 

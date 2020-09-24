@@ -92,6 +92,17 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::post('assign/company' , 'AssignCompanyController@submitAssignCompanyToRepresentative')
         ->name('assign_company');
 
+    /** Get All Representatives */
+    Route::get('get/all/representatives' , 'AssignCompanyController@getAllRepresentatives')
+        ->name('get_all_representatives');
+
+    /** Get Companies Of Representative */
+    Route::get('get/companies/of/representative/{representative_id}' , 'AssignCompanyController@getCompaniesofRepresentative')
+        ->name('get_companies_of_representative');
+
+    /** Cancel The Company Assignment */
+    Route::get('cancel/company/assignment/{company_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
+
 
 
 

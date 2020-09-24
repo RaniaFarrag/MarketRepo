@@ -163,6 +163,31 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
         return redirect(route('assign_company_to_representative'));
     }
 
+    /** Get All Representatives */
+    public function getAllRepresentatives(){
+        return $this->user_model::where('parent_id' , '<>' , null)->get();
+    }
+
+    /** Get Companies Of Representative */
+    public function getCompaniesofRepresentative($representative_id){
+        return $this->company_model::where('representative_id' , $representative_id)->get();
+    }
+
+    /** Cancel The Company Assignment */
+    public function cancelCompanyassignment($company_id){
+        //dd($this->company_model::where('id' , $company_id)->get());
+        $company = $this->company_model::findOrFail($company_id);
+
+        $company::where('id', $company_id)
+            ->update(['representative_id' => null]);
+
+        Alert::success('success', trans('dashboard.Company assignment has been canceled successfully'));
+
+        return redirect(route('get_companies_of_representative' , $company->representative_id));
+
+    }
+
+
 
 
 }

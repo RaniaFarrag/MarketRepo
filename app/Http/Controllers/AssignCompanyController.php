@@ -35,5 +35,26 @@ class AssignCompanyController extends Controller
         return $this->assignCompanyRepositoryinterface->submitAssignCompanyToRepresentative($request);
     }
 
+    /** Get All Representatives */
+    public function getAllRepresentatives(){
+        //return view('system.corporate_assignment.representatives_companies');
+        $representatives =  $this->assignCompanyRepositoryinterface->getAllRepresentatives();
+
+        return view('system.corporate_assignment.representatives_companies')->with('representatives' , $representatives);
+    }
+
+    /** Get Companies Of Representative */
+    public function getCompaniesofRepresentative($representative_id){
+        $companies_of_representative =  $this->assignCompanyRepositoryinterface->getCompaniesofRepresentative($representative_id);
+
+        return view('system.corporate_assignment.companies_of_one_representative')
+            ->with('companies_of_representative' , $companies_of_representative);
+    }
+
+    /** Cancel The Company Assignment */
+    public function cancelCompanyassignment($company_id){
+        return $this->assignCompanyRepositoryinterface->cancelCompanyassignment($company_id);
+
+    }
 
 }

@@ -21,4 +21,17 @@ interface AssignCompanyRepositoryInterface
     /** Submit Assign Company To Representative */
     public function submitAssignCompanyToRepresentative($request);
 
+    /** Get All Representatives */
+    public function getAllRepresentatives();
+
+    /** Get Companies Of Representative */
+    public function getCompaniesofRepresentative($representative_id);
+
+    /** Cancel The Company Assignment */
+    public function cancelCompanyassignment($company_id);
+
+
+
+
+
 }
