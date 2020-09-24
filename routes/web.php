@@ -82,8 +82,18 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
     /** Assign Company To Representative Form */
-    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentative')
+    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentativeForm')
         ->name('assign_company_to_representative');
+
+    /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
+    Route::get('fetch/company/data' , 'AssignCompanyController@fetchCompanyData')->name('fetch_company_data');
+
+    /** Submit Assign Company To Representative */
+    Route::post('assign/company' , 'AssignCompanyController@submitAssignCompanyToRepresentative')
+        ->name('assign_company');
+
+
+
 
     /*********************************************MANAGE CHECK BOXES****************************************************/
     /** Confirm Connected */
@@ -106,8 +116,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('needs' , function (){
         return view('system.companies.needs.index');
     })->name('companies_needs');
-
-
 
 
     Route::get('company_report' , function (){

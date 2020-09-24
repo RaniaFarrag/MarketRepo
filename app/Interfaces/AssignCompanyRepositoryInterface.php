@@ -13,7 +13,12 @@ interface AssignCompanyRepositoryInterface
 {
 
     /** Assign Company To Representative Form */
-    public function assignCompanyToRepresentative();
+    public function assignCompanyToRepresentativeForm();
 
+    /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
+    public function fetchCompanyData($request);
+
+    /** Submit Assign Company To Representative */
+    public function submitAssignCompanyToRepresentative($request);
 
 }
