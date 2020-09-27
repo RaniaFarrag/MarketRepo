@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\CompanyMeeting;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +28,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('system.home');
+        $meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
+            ->with('company' , 'user')
+            ->get();
+
+        $company_registered_today_created_by_me = Company::where('user_id' , Auth::user()->id)
+            ->whereDate('created_at' , Carbon::today())->count();
+        $total_companies = Company::where('representative_id' , Auth::user()->id)->count();
+
+        $total_users_under_me = User::where('parent_id' , Auth::user()->id)->count();
+
+        $today_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
+            ->whereDate('date' , Carbon::today())->count();
+
+        $coming_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
+            ->whereDate('date' , '>=' , Carbon::today())
+            ->where('time' , '>' , Carbon::now())
+            ->count();
+
+        return view('system.home')->with(['meetings'=>$meetings ,
+            'company_registered_today_created_by_me'=>$company_registered_today_created_by_me,
+            'total_companies'=>$total_companies,
+            'total_users_under_me'=>$total_users_under_me,
+            'today_meetings'=>$today_meetings,
+            'coming_meetings'=>$coming_meetings]);
     }
 }

@@ -19,6 +19,7 @@ use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -68,7 +69,14 @@ class CompanyRepository implements CompanyRepositoryInterface
 
     /** View All companies */
     public function index(){
-        return $this->company_model->with('subSector')->orderBy('created_at' , 'desc')->paginate(20);
+        if(Auth::user()->hasRole('Representative')){
+            return $this->company_model->where('representative_id' , Auth::user()->id)->with('subSector')
+                ->orderBy('created_at' , 'desc')->paginate(20);
+        }
+        elseif (Auth::user()->hasRole('Sales Manager')){
+            return $this->company_model->where('user_id' , Auth::user()->id)->with('subSector')
+                ->orderBy('created_at' , 'desc')->paginate(20);
+        }
     }
 
     /** Store Company */
@@ -78,6 +86,16 @@ class CompanyRepository implements CompanyRepositoryInterface
         //dd(count($request->designated_contact_name));
 //        dd(Storage::disk('local')->path('/'));
 //        dd(storage_path('app') .'/'. $logo);
+
+        if(Auth::user()->parent_id){
+            $representative_id = Auth::user()->id;
+            if (! Auth::user()->sectors()->find($request->sector_id)){
+                Auth::user()->sectors()->attach($request->sector_id);
+            }
+        }
+        else{
+            $representative_id = null;
+        }
 
         $logo = $this->verifyAndStoreFile($request , 'logo');
         $first_business_card = $this->verifyAndStoreFile($request , 'first_business_card');
@@ -130,6 +148,7 @@ class CompanyRepository implements CompanyRepositoryInterface
             'evaluation_status' => $request->evaluation_status,
             'evaluation_status_user_id' => auth()->id(),
             'notes' => $request->notes,
+            'representative_id' => $representative_id,
         ]);
 
 

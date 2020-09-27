@@ -96,7 +96,7 @@
                                                 <td>{{ $k+1 }}</td>
                                                 <td>{{ app()->getLocale()=='ar' ?  $company_of_representative->representative->name : $company_of_representative->representative->name_en }}</td>
                                                 <td>{{ $company_of_representative->name }}</td>
-                                                <td>{{ $company_of_representative->city->name }}</td>
+                                                <td>{{ $company_of_representative->city ? $company_of_representative->city->name : '-' }}</td>
                                                 <td>{{ $company_of_representative->sector->name }}</td>
                                                 <td>{{ $company_of_representative->subSector->name }}</td>
 

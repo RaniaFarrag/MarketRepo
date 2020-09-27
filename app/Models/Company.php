@@ -56,6 +56,7 @@ class Company extends Model
         'user_id',
         'client_status',
         'client_status_user_id',
+        'representative_id',
 
         'evaluation_status',
         'evaluation_status_user_id',
