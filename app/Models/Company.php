@@ -56,7 +56,7 @@ class Company extends Model
         'user_id',
         'client_status',
         'client_status_user_id',
-
+        'representative_id',
         'evaluation_status',
         'evaluation_status_user_id',
         'confirm_connected',
@@ -120,5 +120,9 @@ class Company extends Model
 
     public function assigned_to(){
         return $this->belongsTo(User::class,'user_id'); //change user_id to rep_id after migration
+    }
+
+    public function representative(){
+        return $this->belongsTo(User::class , 'representative_id' , 'id');
     }
 }

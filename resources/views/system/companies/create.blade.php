@@ -357,7 +357,7 @@
                                                 <div data-repeater-item class="form-group row align-items-center">
                                                     <div class="col-lg-6">
                                                         <label>{{ trans('dashboard.Date') }} :</label>
-                                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_3"
+                                                        <div class="input-group input-group-solid date"
                                                              data-target-input="nearest">
                                                             {{--<input value="{{ old('date') }}" name="date" type="text" arr-name="item"--}}
                                                                    {{--class="form-control form-control-solid datetimepicker-input"--}}

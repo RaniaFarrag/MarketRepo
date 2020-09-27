@@ -20,8 +20,8 @@ use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use Carbon\Carbon;
 use DateTime;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
+use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationData;
@@ -69,10 +69,16 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** View All companies */
-    public function index($request ,$all = null)
+    public function index($request, $all = null)
     {
 
-        $query = $this->company_model::query()->with('subSector')->orderBy('created_at', 'desc');
+        if (Auth::user()->hasRole('Representative')) {
+            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector')
+                ->orderBy('created_at', 'desc');
+        } elseif (Auth::user()->hasRole('Sales Manager')) {
+            $query = $this->company_model->where('user_id', Auth::user()->id)->with('subSector')
+                ->orderBy('created_at', 'desc');
+        }
 
         if ($request->city_id)
             $query->where('city_id', $request->city_id);
@@ -96,7 +102,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                     $query->where('confirm_need', null);
                     $query->where('confirm_contract', null);
                 }
-        if (isset($request->evaluation_ids) )
+        if (isset($request->evaluation_ids))
             $query->whereIn('evaluation_status', $request->evaluation_ids);
 
 
@@ -111,10 +117,20 @@ class CompanyRepository implements CompanyRepositoryInterface
 //        dd(Storage::disk('local')->path('/'));
 //        dd(storage_path('app') .'/'. $logo);
 
-        $logo = $this->verifyAndStoreFile($request, 'logo');
-        $first_business_card = $this->verifyAndStoreFile($request, 'first_business_card');
-        $second_business_card = $this->verifyAndStoreFile($request, 'second_business_card');
-        $third_business_card = $this->verifyAndStoreFile($request, 'third_business_card');
+        if(Auth::user()->parent_id){
+            $representative_id = Auth::user()->id;
+            if (! Auth::user()->sectors()->find($request->sector_id)){
+                Auth::user()->sectors()->attach($request->sector_id);
+            }
+        }
+        else{
+            $representative_id = null;
+        }
+
+        $logo = $this->verifyAndStoreFile($request , 'logo');
+        $first_business_card = $this->verifyAndStoreFile($request , 'first_business_card');
+        $second_business_card = $this->verifyAndStoreFile($request , 'second_business_card');
+        $third_business_card = $this->verifyAndStoreFile($request , 'third_business_card');
 
         $company = $this->company_model::create([
             'logo' => $logo,
@@ -162,6 +178,7 @@ class CompanyRepository implements CompanyRepositoryInterface
             'evaluation_status' => $request->evaluation_status,
             'evaluation_status_user_id' => auth()->id(),
             'notes' => $request->notes,
+            'representative_id' => $representative_id,
         ]);
 
 
