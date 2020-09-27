@@ -12,6 +12,7 @@ use App\Models\Sector;
 use App\Traits\logTrait;
 use App\User;
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
@@ -36,6 +37,12 @@ class UserRepository implements UserRepositoryInterface
     /** View All Users */
     public function index(){
         return  $this->user_model->paginate(20);
+    }
+
+    /** Get Representative*/
+    public function get_reps()
+    {
+        return $this->user_model->whereNotNull('parent_id')->get();
     }
 
     /** Create User */
@@ -162,4 +169,16 @@ class UserRepository implements UserRepositoryInterface
         return redirect(route('users.index'));
     }
 
+
+    public function rep_companies_report($request)
+    {
+        $data =[];
+        $data['rep'] = $this->user_model->findOrFail($request->rep_id);
+        $data['companies'] =  $data['rep']->companies()->paginate(20);
+        $data['confirm_connected'] =  $data['rep']->companies()->where('confirm_connected',1)->count();
+        $data['confirm_interview'] =  $data['rep']->companies()->where('confirm_interview',1)->count();
+        $data['confirm_need'] =  $data['rep']->companies()->where('confirm_need',1)->count();
+        $data['confirm_contract'] =  $data['rep']->companies()->where('confirm_contract',1)->count();
+        return $data;
+    }
 }

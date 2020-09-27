@@ -252,17 +252,17 @@
                                                     </a>
 
                                                 </li>
-                                                <li class="menu-item " data-menu-toggle="hover"
-                                                    aria-haspopup="true">
-                                                    <a href="{{ route('team_sales_lead_report')}}" class="menu-link ">
-                                                        <span class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
-                                                         <i class="fas fa-users-cog"></i>
-                                                            <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
-                                                    </a>
+                                                {{--<li class="menu-item " data-menu-toggle="hover"--}}
+                                                    {{--aria-haspopup="true">--}}
+                                                    {{--<a href="{{ route('companySalesTeamReports.index')}}" class="menu-link ">--}}
+                                                        {{--<span class="svg-icon menu-icon">--}}
+                                                            {{--<!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->--}}
+                                                         {{--<i class="fas fa-users-cog"></i>--}}
+                                                            {{--<!--end::Svg Icon--></span>--}}
+                                                        {{--<span class="menu-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>--}}
+                                                    {{--</a>--}}
 
-                                                </li>
+                                                {{--</li>--}}
 
 
                                             </ul>

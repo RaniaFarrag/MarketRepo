@@ -13,7 +13,7 @@ interface CompanyRepositoryInterface
 {
 
     /** View All companies */
-    public function index();
+    public function index($request);
 
     /** Create Company */
     public function create();
@@ -49,8 +49,7 @@ interface CompanyRepositoryInterface
     /** Confirm Contract */
     public function confirmContract($company_id);
 
-
-
-
+    /** companies Reports */
+    public function companiesReports($request);
 
 }
