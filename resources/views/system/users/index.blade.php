@@ -106,8 +106,12 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->name_en }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>  </td>
-                                            <td>  </td>
+                                            <td>{{ $user->roles[0]->name }}</td>
+                                            <td>
+                                                @foreach($user->sectors as $sector)
+                                                    {{ $sector->name }} -
+                                                @endforeach
+                                            </td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('users.edit' , $user->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
                                                 <form method="post" action="{{ route('users.destroy' , $user->id) }}">

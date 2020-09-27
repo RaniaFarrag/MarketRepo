@@ -9,7 +9,6 @@
             <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-1">
-
                     <!--begin::Heading-->
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
@@ -17,7 +16,6 @@
                             {{ trans('dashboard.dashboard') }}
                         </h2>
                         <!--end::Title-->
-
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
@@ -53,26 +51,22 @@
                 <div class="row">
 
                     <div class="col-xl-12">
-
-
                         <div class="row">
                             <div class="col-xl-12">
 
                                 <div class="row">
-
                                     <div class="col-xl-4">
-
                                         <!--begin::Callout-->
                                         <div class="card card-custom wave wave-animate-slow wave-primary  mb-8 gutter-b">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center p-5">
                                                     <!--begin::Icon-->
                                                     <div class="mr-6">
-                            <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-
+                                                        <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
                                                             <i class="fa fa-building fa-3x text-primary"></i>
-
-                                <!--end::Svg Icon--></span>                        </div>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                    </div>
                                                     <!--end::Icon-->
 
                                                     <!--begin::Content-->
@@ -80,11 +74,9 @@
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.COMPANIES REGISTERED TODAY') }}
                                                             <div class="text-dark-75">
-                                                                2
-
+                                                                {{ $company_registered_today_created_by_me }}
                                                             </div>
                                                         </a>
-
                                                     </div>
                                                     <!--end::Content-->
                                                 </div>
@@ -101,20 +93,17 @@
                                                 <div class="d-flex align-items-center p-5">
                                                     <!--begin::Icon-->
                                                     <div class="mr-6">
-                            <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-
+                                                        <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
                                                             <i class="fa fa-building fa-3x text-primary"></i>
-
-                                <!--end::Svg Icon--></span>                        </div>
+                                                        </span>
+                                                    </div>
                                                     <!--end::Icon-->
-
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL COMPANIES') }}
                                                             <div class="text-dark-75">
-                                                                1398
-
+                                                                {{ $total_companies }}
                                                             </div>
                                                         </a>
 
@@ -124,7 +113,6 @@
                                             </div>
                                         </div>
                                         <!--end::Callout-->
-
                                     </div>
                                     <div class="col-xl-4">
 
@@ -134,21 +122,18 @@
                                                 <div class="d-flex align-items-center p-5">
                                                     <!--begin::Icon-->
                                                     <div class="mr-6">
-                            <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-
+                                                        <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
                                                             <i class="fa fa-users fa-3x text-primary"></i>
-
-                                <!--end::Svg Icon--></span>                        </div>
+                                                        </span>
+                                                    </div>
                                                     <!--end::Icon-->
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL USERS') }}
-
                                                             <div class="text-dark-75">
-                                                                8
-
+                                                                {{ $total_users_under_me }}
                                                             </div>
                                                         </a>
 
@@ -174,7 +159,7 @@
 
                                                             <i class="far fa-chart-bar fa-3x text-primary"></i>
 
-                                <!--end::Svg Icon--></span>                        </div>
+                                </span>                        </div>
                                                     <!--end::Icon-->
 
                                                     <!--begin::Content-->
@@ -215,11 +200,8 @@
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TODAY MEETING') }}
-
                                                             <div class="text-dark-75">
-                                                                2
-
-
+                                                                {{ $today_meetings }}
                                                             </div>
                                                         </a>
 
@@ -250,12 +232,8 @@
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.COMING MEETING') }}
-
-
                                                             <div class="text-dark-75">
-                                                                1
-
-
+                                                                {{ $coming_meetings }}
                                                             </div>
                                                         </a>
 
@@ -305,49 +283,21 @@
                                     </thead>
 
                                     <tbody>
-                                    <tr>
-                                        <td> 173</td>
-
-                                        <td>  <a target="_blank" href="https://marketing-hc.com/acp/market/company/show/2731"> Adama Hospitals &amp; clinics </a></td>
-                                        <td><a target="_blank" href="https://marketing-hc.com/search/acp/companyData?jobRole=69">medical Center</a></td>
-                                        <td> 02:00 PM</td>
-                                        <td> 2020-07-19</td>
-                                        <td>
-                                            <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">Al Riyad</a>
-
-                                        </td>
-                                        <td> BABU ANSARI</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td> 173</td>
-
-                                        <td>  <a target="_blank" href="https://marketing-hc.com/acp/market/company/show/2731"> Adama Hospitals &amp; clinics </a></td>
-                                        <td><a target="_blank" href="https://marketing-hc.com/search/acp/companyData?jobRole=69">medical Center</a></td>
-                                        <td> 02:00 PM</td>
-                                        <td> 2020-07-19</td>
-                                        <td>
-                                            <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">Al Riyad</a>
-
-                                        </td>
-                                        <td> BABU ANSARI</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td> 173</td>
-
-                                        <td>  <a target="_blank" href="https://marketing-hc.com/acp/market/company/show/2731"> Adama Hospitals &amp; clinics </a></td>
-                                        <td><a target="_blank" href="https://marketing-hc.com/search/acp/companyData?jobRole=69">medical Center</a></td>
-                                        <td> 02:00 PM</td>
-                                        <td> 2020-07-19</td>
-                                        <td>
-                                            <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">Al Riyad</a>
-
-                                        </td>
-                                        <td> BABU ANSARI</td>
-
-                                    </tr>
-
+                                        @foreach($meetings as $k=>$meeting)
+                                            <tr>
+                                            <td>{{ $k+1 }}</td>
+                                            <td> <a target="_blank" href="{{ route('companies.show' , $meeting->company_id) }}">{{ $meeting->company->name }}</a></td>
+                                            <td><a target="_blank" href="#">{{ $meeting->company->subSector->name }}</a></td>
+                                            <td>{{ $meeting->time }}</td>
+                                            <td>{{ $meeting->date }}</td>
+                                            <td>
+                                                <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">
+                                                    {{ $meeting->company->city ? $meeting->company->city->name : '-' }}
+                                                </a>
+                                            </td>
+                                            <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
 
                                 </table>

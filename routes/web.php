@@ -85,6 +85,27 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentative')
         ->name('assign_company_to_representative');
 
+    /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
+    Route::get('fetch/company/data' , 'AssignCompanyController@fetchCompanyData')->name('fetch_company_data');
+
+    /** Submit Assign Company To Representative */
+    Route::post('assign/company' , 'AssignCompanyController@submitAssignCompanyToRepresentative')
+        ->name('assign_company');
+
+    /** Get All Representatives */
+    Route::get('get/all/representatives' , 'AssignCompanyController@getAllRepresentatives')
+        ->name('get_all_representatives');
+
+    /** Get Companies Of Representative */
+    Route::get('get/companies/of/representative/{representative_id}' , 'AssignCompanyController@getCompaniesofRepresentative')
+        ->name('get_companies_of_representative');
+
+    /** Cancel The Company Assignment */
+    Route::get('cancel/company/assignment/{company_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
+
+
+
+
     /*********************************************MANAGE CHECK BOXES****************************************************/
     /** Confirm Connected */
     Route::get('/confirm/connected/{company_id}' , 'CompanyController@confirmConnected')->name('confirm_connected');
@@ -98,6 +119,28 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Confirm Contract */
     Route::get('/confirm/contract/{company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
 
+
+
+
+
+    /**************************************************REPORTS******************************************************************/
+    /** Company Report */
+    Route::get('company/report','CompanyController@companiesReports')->name('company_report');
+    Route::get('export/company/report','CompanyController@extractCompanyReportExcel')->name('extract_company_report_excel');
+
+    /** Representative Report */
+
+    Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report');
+
+
+    /** sales Team Report */
+
+//    Route::resource('companySalesTeamReports' , 'SalesLeadReportController');
+    Route::get('companySalesTeamReports/{company}','SalesLeadReportController@index')->name('companySalesTeamReports.index');
+    Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')->name('companySalesTeamReports.create');
+    Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
+    Route::get('companySalesTeamReports/show/{company}/{report_id}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
+
     /**************************************************POST******************************************************************/
 
 
@@ -110,21 +153,14 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
 
-    Route::get('company_report' , function (){
-        return view('system.reports.company_report');
-    })->name('company_report');
-
-    Route::get('rep_report' , function (){
-        return view('system.reports.rep_report');
-    })->name('rep_report');
 
     Route::get('monitor_auth_report' , function (){
         return view('system.reports.monitor_auth_report');
     })->name('monitor_auth_report');
 
-    Route::get('team_sales_lead_report' , function (){
-        return view('system.reports.team_sales_lead_report');
-    })->name('team_sales_lead_report');
+//    Route::get('team_sales_lead_report' , function (){
+//        return view('system.reports.team_sales_lead_report');
+//    })->name('team_sales_lead_report');
 
     Route::get('whatsapp' , function (){
         return view('system.whatsapp.view');

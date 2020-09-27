@@ -22,13 +22,13 @@
                         <!--begin::Breadcrumb-->
                         <div class="d-flex align-items-center font-weight-bold my-2">
                             <!--begin::Item-->
-                            <a href="#" class="opacity-75 hover-opacity-100">
+                            <a href="{{ route('home') }}" class="opacity-75 hover-opacity-100">
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('home') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.All Representative') }}
                             </a>
                             <!--end::Item-->
@@ -40,8 +40,6 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
 
                 </div>
 
@@ -80,41 +78,20 @@
                                     <table id="myTable" class="table table-bordered text-center">
                                         <thead>
                                         <tr>
-
                                             <th>{{ trans('dashboard.Representative') }}</th>
                                             <th>{{ trans('dashboard.Representative companies') }}</th>
-
                                         </tr>
                                         </thead>
 
                                         <tbody>
-
-                                        <tr>
-
-                                            <td>BABU ANSARI</td>
-
-                                            <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Show Companies') }}</a></td>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>BABU ANSARI</td>
-
-                                            <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Show Companies') }}</a></td>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>BABU ANSARI</td>
-
-                                            <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Show Companies') }}</a></td>
-
-                                            </td>
-                                        </tr>
-
-
+                                            @foreach($representatives as $representative)
+                                                <tr>
+                                                    <td>{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</td>
+                                                    <td><a class="btn btn-success font-weight-bold"
+                                                           href="{{ route('get_companies_of_representative' , $representative->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
 
                                     </table>

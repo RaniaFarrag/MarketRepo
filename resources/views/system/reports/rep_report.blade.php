@@ -63,11 +63,6 @@
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            @if(Session::has('success'))
-                                <div class="alert alert-success">
-                                    {{ Session::get('success') }}
-                                </div>
-                            @endif
 
                             <div class="card-body">
 
@@ -78,19 +73,20 @@
                                                 {{ trans('dashboard.Rep Reports') }}
                                             </div>
                                         </div>
+                                        <form id="exportExcelForm" action="{{route('extract_company_report_excel')}}">
+
                                         <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
                                             <div class="card-body">
                                                 <div class="row fliter_serch">
                                                     <div class="col-md-6 col-xs-12">
                                                         <div class="form-group">
                                                             <label> {{ trans('dashboard.Company Representative name') }}  </label>
-                                                            <select class="form-control select2" name="param">
-                                                                <option value=""
-                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="13471" data-select2-id="94">BABU ANSARI
-                                                                </option>
-                                                                <option value="13473" data-select2-id="95">RAAFAT ALI
-                                                                </option>
+                                                            <select class="form-control select2" id="rep_id" name="rep_id">
+                                                                <option value="" disabled selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                @foreach($reps as $rep)
+                                                                    <option value="{{$rep->id}}">{{$rep->name}}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
 
@@ -99,85 +95,23 @@
 
                                                     <div class="col-md-6 col-xs-12">
                                                         <div class="form-group">
-                                                            <a href="#"
-                                                               class="btn btn-block btn-success font-weight-bold  py-3 px-6 mr-2">
+                                                            <button type="submit" class="btn btn-block btn-success font-weight-bold  py-3 px-6 mr-2">
                                                                 {{ trans('dashboard.Export Excel ') }}
-                                                            </a>
-                                                            <button type="button"
-                                                                    class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
+                                                            </button>
+                                                            <button type="button" id="searchBtn" class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
+                                <div class="renderTable">
 
-                                <div class="separator separator-dashed mt-8 mb-5"></div>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <tbody>
-                                        <tr>
-                                            <th>{{ trans('dashboard.Company Representative name') }}</th>
-                                            <th>{{ trans('dashboard.Total contacts') }} </th>
-                                            <th>{{ trans('dashboard.Total needs') }} </th>
-                                            <th>{{ trans('dashboard.Total contracts') }} </th>
-                                            <th>{{ trans('dashboard.Total interviews') }} </th>
-
-                                        </tr>
-                                        <tr>
-                                            <td> BABU ANSARI</td>
-
-                                            <td> 48</td>
-                                            <td> 12</td>
-                                            <td> 2</td>
-                                            <td> 29</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
-                                <div class="separator separator-dashed mt-8 mb-5"></div>
-                                <div class="table-responsive">
-                                    <!--begin: Datatable-->
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>{{ trans('dashboard.Company Representative name') }}</th>
-                                            <th> {{ trans('dashboard.Company Name') }}</th>
-                                            <th>{{ trans('dashboard.Confirm Connection') }}</th>
-                                            <th>{{ trans('dashboard.Confirm Interview') }}</th>
-                                            <th>{{ trans('dashboard.Confirm Need') }}</th>
-                                            <th>{{ trans('dashboard.Confirm Contract') }}</th>
 
-
-                                        </tr>
-
-                                        </thead>
-
-                                        <tbody>
-
-
-                                        <tr>
-                                            <td> 2371</td>
-                                            <td> BABU ANSARI</td>
-                                            <td><a href="#">Moodak Medical Clinics</a></td>
-                                            <td><i class="icon-xl far fa-check-circle text-success"></i></td>
-
-                                            <td></td>
-
-                                            <td></td>
-
-                                            <td><i class="icon-xl far fa-check-circle text-success"></i></td>
-                                        </tr>
-
-
-                                        </tbody>
-
-                                    </table>
-                                    <!--end: Datatable-->
-                                </div>
                             </div>
                         </div>
                         <!--end::Card-->
@@ -203,5 +137,21 @@
 
 @section('script')
 
+    <script>
+        $('body').on('click', '.pagination a, #searchBtn', function (e) {
+            e.preventDefault();
+            $.ajax({
+                dataType: 'html',
+                url: "{{ route('rep_report') }}",
+                "data": {
+                    "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
+                    "rep_id": $("#rep_id").val(),
+                },
+                success: function (data) {
+                    $('.renderTable').html(data);
+                }
+            });
+        });
+    </script>
 
 @endsection
