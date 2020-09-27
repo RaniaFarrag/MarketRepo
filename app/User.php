@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Company;
 use App\Models\CompanyMeeting;
 use App\Models\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -56,5 +57,18 @@ class User extends Authenticatable
 
     public function sectors(){
         return $this->belongsToMany(Sector::class);
+    }
+
+    public function childs()
+    {
+        return $this->hasMany(User::class, 'parent_id', 'id');
+    }
+
+    public function parent(){
+        return $this->belongsTo(User::class , 'parent_id', 'id');
+    }
+
+    public function assignedCompanies(){
+        return $this->hasMany(Company::class , 'representative_id' , 'id');
     }
 }

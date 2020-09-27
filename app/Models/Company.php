@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -55,6 +56,7 @@ class Company extends Model
         'user_id',
         'client_status',
         'client_status_user_id',
+        'representative_id',
 
         'evaluation_status',
         'evaluation_status_user_id',
@@ -96,5 +98,9 @@ class Company extends Model
 
     public function city(){
         return $this->belongsTo(City::class);
+    }
+
+    public function representative(){
+        return $this->belongsTo(User::class , 'representative_id' , 'id');
     }
 }

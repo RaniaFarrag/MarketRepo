@@ -53,7 +53,7 @@
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            <form method="post" action="{{ route('companies.store') }}" class="form"
+                            <form method="post" action="{{ route('assign_company') }}" class="form"
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
@@ -61,12 +61,15 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Representative') }} :</label>
-                                            <select name="" class="form-control select2" required>
-                                                <option>{{ trans('dashboard.Select one') }}</option>
+                                            <select name="representative_id" class="form-control select2" required>
+                                                <option value="">{{ trans('dashboard.Select one') }}</option>
                                                 @foreach($data['representatives'] as $representative)
                                                     <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name_en : $representative->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('representative_id')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Country') }} :</label>
@@ -82,13 +85,15 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Sectors') }} :</label>
-                                            <select name="sector_id" id="sector" class="form-control select2" required>
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select id="sectors" name="sector_id" class="form-control select2" required>
+                                                <option value="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['sectors'] as $sector)
                                                     <option value="{{ $sector->id }}">{{ $sector->name }}</option>
                                                 @endforeach
-
                                             </select>
+                                            @error('sector_id')
+                                            <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.City') }} :</label>
@@ -101,25 +106,22 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Company Type') }}:</label>
-                                            <select id="subSector" name="sub_sector_id" class="form-control select2" >
+                                            <select id="subSectors" name="subSector_id" class="form-control select2" >
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Companies') }} :</label>
-                                            <select id="companies" multiple class="form-control select2"
-                                                    name="company_id">
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                            <select id="companies" name="company_ids[]"  class="form-control select2" multiple>
+                                                <option value="" disabled >{{ trans('dashboard.Select All') }}</option>
                                             </select>
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12 text-center">
-                                            <button type="submit"
+                                            <button id="sub" type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
                                             <a href="{{ route('companies.index') }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
@@ -128,8 +130,6 @@
                                 </div>
                             </form>
                         </div>
-
-
                     </div>
                     <!--end::Card-->
                 </div>
@@ -147,42 +147,8 @@
 @section('script')
 
     <script>
-        {{-- GET ALL SUB-SECTORS OF SECTOR AND CITIES OF COUNTRY--}}
-
         $(document).ready(function() {
-
-            $("#sector").on('change' , function () {
-                var sector_id = $(this).val();
-                if (sector_id){
-                    $.ajax({
-                        type: "get",
-                        url: "{{ url('/get/sub/sectors/of/sector/') }}" + '/' + sector_id,
-                        dataType: "json",
-                        success: function (response) {
-                            var sub_sectors = response.sub_sectors;
-                            if (sub_sectors.length){
-                                console.log(sub_sectors);
-                                var html = '<option value="">{{ trans('dashboard.Select All') }}</option>'
-                                for (let i = 0; i < sub_sectors.length; i++) {
-                                    html+= '<option value="'+ sub_sectors[i].id +'">' + sub_sectors[i].name +'</option>';
-                                }
-                            }
-                            else {
-                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
-                            }
-                            $("#subSector").html(html);
-
-                        }
-                    });
-                }
-                else {
-                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
-                    $("#subSector").html(html);
-                }
-
-            })
-
-
+            {{-- GET ALL CITIES OF COUNTRY --}}
             $("#countries").on('change' , function () {
                 var country_id = $(this).val();
                 if (country_id){
@@ -214,36 +180,82 @@
 
             })
 
-            $("#companies").on('change' , function () {
-                var sub_sector_id = $(this).val();
-                if (sub_sector_id){
+            {{-- GET ALL SUB-SECTORS OF SECTOR --}}
+            $("#sectors").on('change' , function () {
+                var sector_id = $(this).val();
+                if (sector_id){
                     $.ajax({
                         type: "get",
-                        url: "{{ url('/get/cities/of/country/') }}" + '/' + sub_sector_id,
+                        url: "{{ url('/get/sub/sectors/of/sector/') }}" + '/' + sector_id,
                         dataType: "json",
                         success: function (response) {
-                            var cities = response.cities;
-                            if (cities.length){
-                                console.log(cities);
-                                var html = ''
-                                for (let i = 0; i < cities.length; i++) {
-                                    html+= '<option value="'+ cities[i].id +'">' + cities[i].name +'</option>';
+                            var sub_sectors = response.sub_sectors;
+                            if (sub_sectors.length){
+                                console.log(sub_sectors);
+                                var html = '<option value="">{{ trans('dashboard.Select All') }}</option>'
+                                for (let i = 0; i < sub_sectors.length; i++) {
+                                    html+= '<option value="'+ sub_sectors[i].id +'">' + sub_sectors[i].name +'</option>';
                                 }
                             }
                             else {
                                 var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
                             }
-                            $("#cities").html(html);
+                            $("#subSectors").html(html);
 
                         }
                     });
                 }
                 else {
                     var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
-                    $("#cities").html(html);
+                    $("#subSectors").html(html);
                 }
 
             })
+
+            {{--  GET ALL COMPANIES OF BASED ON SECTOR , SUB-SECTOR , COUNTRY AND CITY --}}
+            $(document).on('change', '#countries , #cities ,#sectors , #subSectors', function() {
+                var country_id = $('#countries').val()
+               var city_id = $('#cities').val()
+                var sector_id = $('#sectors').val()
+               var subSector_id = $('#subSectors').val()
+                if (sector_id){
+                    $.ajax({
+                        type: "get",
+                        url: "{{ route('fetch_company_data') }}",
+                        data:{
+                            country_id : country_id,
+                            city_id : city_id,
+                            sector_id : sector_id,
+                            subSector_id : subSector_id
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            //console.log(response)
+                            var companies = response.companies;
+                            if (companies.length){
+                                var html = '<option value="" disabled>{{ trans('dashboard.Select All') }}</option>'
+                                for (let i =0 ; i<companies.length ; i++){
+                                    html+= '<option value="' +companies[i].id+ '">' + companies[i].name + '</option>'
+                                }
+                            }
+                            else {
+                                var html = '<option value="" disabled selected>{{ trans('dashboard.Not Found') }}</option>'
+                                // $(':input[type="submit"]').prop('disabled', true);
+                            }
+                            $("#companies").html(html);
+
+                        }
+                    });
+
+                    console.log(city_id +"-"+ country_id  +"-"+ subSector_id  +"-"+ sector_id)
+                }
+
+                else {
+                    var html = '<option value="" disabled selected>{{ trans('dashboard.Select Sector') }}</option>'
+                    $("#companies").html(html);
+                }
+
+            });
 
         });
 

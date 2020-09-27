@@ -162,7 +162,7 @@
                                                     <option {{ in_array($sector->id , $user->sectors()->pluck('sector_id')->toArray()) ? 'selected' : '' }} value="{{ $sector->id }}">{{ $sector->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('sector_id')
+                                            @error('sector_ids')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
