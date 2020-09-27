@@ -57,6 +57,7 @@ class Company extends Model
         'client_status',
         'client_status_user_id',
         'representative_id',
+
         'evaluation_status',
         'evaluation_status_user_id',
         'confirm_connected',

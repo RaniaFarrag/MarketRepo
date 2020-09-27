@@ -82,7 +82,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
     /** Assign Company To Representative Form */
-    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentativeForm')
+    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentative')
         ->name('assign_company_to_representative');
 
     /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
@@ -142,6 +142,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('companySalesTeamReports/show/{company}/{report_id}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
 
     /**************************************************POST******************************************************************/
+
+
 
 
     Route::get('needs' , function (){

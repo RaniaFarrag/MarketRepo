@@ -7,7 +7,6 @@
  */
 
 namespace App\Repositories;
-
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\City;
 use App\Models\Company;
