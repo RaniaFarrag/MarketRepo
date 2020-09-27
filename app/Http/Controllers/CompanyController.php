@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\companiesReport;
 use App\Http\Requests\CompanyRequest;
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Company;
 use App\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class CompanyController extends Controller
 {
@@ -24,9 +27,9 @@ class CompanyController extends Controller
     }
 
     /** View All companies */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = $this->companyRepositoryinterface->index();
+        $companies = $this->companyRepositoryinterface->index($request);
 
         return view('system.companies.index')->with('companies' , $companies);
     }
@@ -158,6 +161,27 @@ class CompanyController extends Controller
     /** Confirm Contract */
     public function confirmContract($company_id){
         return $this->companyRepositoryinterface->confirmContract($company_id);
+    }
+
+
+    /** Company Report */
+    public function companiesReports(Request $request){
+
+        $companies= $this->companyRepositoryinterface->companiesReports($request)['companies'];
+        $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
+        $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
+
+        if ($request->ajax()) {
+            return view('system.reports.company_report_partial',compact('companies'))->render();
+        }
+        return view('system.reports.company_report',compact('companies','countries','sectors'));
+    }
+
+
+    public function extractCompanyReportExcel(Request $request)
+    {
+        $companies= $this->companyRepositoryinterface->companiesReports($request,true)['companies'];
+        return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
     }
 
 }

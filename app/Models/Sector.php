@@ -6,6 +6,7 @@ use App\User;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Sector extends Model
 {
@@ -30,5 +31,11 @@ class Sector extends Model
     }
 
 
+    public static function all($columns = Array())
+    {
+//        if (Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin'))
+//        return Auth::user()->sectors;
 
+        return self::get();
+    }
 }

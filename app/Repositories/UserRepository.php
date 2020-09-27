@@ -7,11 +7,13 @@
  */
 
 namespace App\Repositories;
+
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\Sector;
 use App\Traits\logTrait;
 use App\User;
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
@@ -26,7 +28,7 @@ class UserRepository implements UserRepositoryInterface
     protected $sector_model;
 
 
-    public function __construct(User $user , Role $role , Sector $sector)
+    public function __construct(User $user, Role $role, Sector $sector)
     {
         $this->user_model = $user;
         $this->role_model = $role;
@@ -34,8 +36,15 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /** View All Users */
-    public function index(){
-        return  $this->user_model->paginate(20);
+    public function index()
+    {
+        return $this->user_model->paginate(20);
+    }
+
+    /** Get Representative*/
+    public function get_reps()
+    {
+        return $this->user_model->whereNotNull('parent_id')->get();
     }
 
     /** Create User */
@@ -44,7 +53,7 @@ class UserRepository implements UserRepositoryInterface
         $data = array();
 
         $data['sectors'] = $this->sector_model::all();
-        $data['managers'] = $this->user_model::where('parent_id' , null)->get();
+        $data['managers'] = $this->user_model::where('parent_id', null)->get();
         $data['roles'] = $this->role_model::all();
 
         return $data;
@@ -53,7 +62,7 @@ class UserRepository implements UserRepositoryInterface
     /** Store User */
     public function store($request)
     {
-        if ($request->role == 'Sales Representative'){
+        if ($request->role == 'Sales Representative') {
             $user = $this->user_model::create([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -62,8 +71,7 @@ class UserRepository implements UserRepositoryInterface
                 'active' => 1,
                 'parent_id' => $request->parent_id,
             ]);
-        }
-        elseif($request->role == 'Sales Manager'){
+        } elseif ($request->role == 'Sales Manager') {
             $user = $this->user_model::create([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -76,8 +84,7 @@ class UserRepository implements UserRepositoryInterface
 //                $sector = $this->sector_model::findOrFail($sector_id);
 //                $user->sectors()->attach($sector);
 //            }
-        }
-        else{
+        } else {
             $user = $this->user_model::create([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -88,7 +95,7 @@ class UserRepository implements UserRepositoryInterface
         }
         $user->assignRole($request->role);
 
-        $this->addLog(auth()->id() , $user->id , 'users' , 'تم اضافة مستخدم جديد' , 'New User has been added');
+        $this->addLog(auth()->id(), $user->id, 'users', 'تم اضافة مستخدم جديد', 'New User has been added');
 
         Alert::success('success', trans('dashboard. added successfully'));
         return redirect(route('users.index'));
@@ -101,7 +108,7 @@ class UserRepository implements UserRepositoryInterface
         $data = array();
 
         $data['sectors'] = $this->sector_model::all();
-        $data['managers'] = $this->user_model::where('parent_id' , null)->get();
+        $data['managers'] = $this->user_model::where('parent_id', null)->get();
         $data['roles'] = $this->role_model::all();
 
         return $data;
@@ -109,9 +116,10 @@ class UserRepository implements UserRepositoryInterface
 
 
     /** Submit Edit User */
-    public function update($request , $user){
+    public function update($request, $user)
+    {
 
-        if ($user->hasRole('Sales Representative')){
+        if ($user->hasRole('Sales Representative')) {
             $user->update([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -120,9 +128,7 @@ class UserRepository implements UserRepositoryInterface
                 'active' => 1,
                 'parent_id' => $request->parent_id,
             ]);
-        }
-
-        elseif($user->hasRole('Sales Manager')){
+        } elseif ($user->hasRole('Sales Manager')) {
             //dd($request->sector_ids);
             $user->update([
                 'name' => $request->name,
@@ -132,9 +138,7 @@ class UserRepository implements UserRepositoryInterface
                 'active' => 1,
             ]);
             $user->sectors()->sync($request->sector_ids);
-        }
-
-        else{
+        } else {
             $user->update([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -146,7 +150,7 @@ class UserRepository implements UserRepositoryInterface
         //$user->removeRole($user->roles->first()->name);
         //$user->assignRole($request->role);
 
-        $this->addLog(auth()->id() , $user->id , 'users' , 'تم تعديل مستخدم ' , 'User has been updated');
+        $this->addLog(auth()->id(), $user->id, 'users', 'تم تعديل مستخدم ', 'User has been updated');
 
         Alert::success('success', trans('dashboard. updated successfully'));
         return redirect(route('users.index'));
@@ -154,12 +158,25 @@ class UserRepository implements UserRepositoryInterface
     }
 
     /** Delete User */
-    public function destroy($user){
+    public function destroy($user)
+    {
         $user->delete();
-        $this->addLog(auth()->id() , $user->id , 'users' , 'تم حذف مستخدم' , 'User has been deleted');
+        $this->addLog(auth()->id(), $user->id, 'users', 'تم حذف مستخدم', 'User has been deleted');
 
         Alert::success('success', trans('dashboard. deleted successfully'));
         return redirect(route('users.index'));
     }
 
+
+    public function rep_companies_report($request)
+    {
+        $data =[];
+        $data['rep'] = $this->user_model->findOrFail($request->rep_id);
+        $data['companies'] =  $data['rep']->companies()->paginate(20);
+        $data['confirm_connected'] =  $data['rep']->companies()->where('confirm_connected',1)->count();
+        $data['confirm_interview'] =  $data['rep']->companies()->where('confirm_interview',1)->count();
+        $data['confirm_need'] =  $data['rep']->companies()->where('confirm_need',1)->count();
+        $data['confirm_contract'] =  $data['rep']->companies()->where('confirm_contract',1)->count();
+        return $data;
+    }
 }

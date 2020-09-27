@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Company;
 use App\Models\CompanyMeeting;
 use App\Models\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -52,6 +53,10 @@ class User extends Authenticatable
 
     public function companyMeetings(){
         return $this->hasMany(CompanyMeeting::class);
+    }
+
+    public function companies(){
+        return $this->hasMany(Company::class,'user_id'); //change user_id to rep_id after migration
     }
 
     public function sectors(){

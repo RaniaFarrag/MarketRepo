@@ -15,6 +15,11 @@ interface UserRepositoryInterface
     /** View All Users */
     public function index();
 
+
+    /** Get Representative*/
+    public function get_reps();
+
+
     /** Create User */
     public function create();
 
@@ -29,5 +34,9 @@ interface UserRepositoryInterface
 
     /** Delete User */
     public function destroy($user);
+
+
+    /** Representative Report */
+    public function rep_companies_report($request);
 
 }

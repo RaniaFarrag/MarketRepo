@@ -43,7 +43,7 @@
 
 
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{route('companySalesTeamReports.create',$company->id)}}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Total Reports') }} (200)
                     </a>
                     <!--end::Button-->

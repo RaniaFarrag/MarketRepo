@@ -98,9 +98,29 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Confirm Contract */
     Route::get('/confirm/contract/{company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
 
+
+
+
+
+    /**************************************************REPORTS******************************************************************/
+    /** Company Report */
+    Route::get('company/report','CompanyController@companiesReports')->name('company_report');
+    Route::get('export/company/report','CompanyController@extractCompanyReportExcel')->name('extract_company_report_excel');
+
+    /** Representative Report */
+
+    Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report');
+
+
+    /** sales Team Report */
+
+//    Route::resource('companySalesTeamReports' , 'SalesLeadReportController');
+    Route::get('companySalesTeamReports/{company}','SalesLeadReportController@index')->name('companySalesTeamReports.index');
+    Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')->name('companySalesTeamReports.create');
+    Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
+    Route::get('companySalesTeamReports/show/{company}/{report_id}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
+
     /**************************************************POST******************************************************************/
-
-
 
 
     Route::get('needs' , function (){
@@ -110,21 +130,14 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
 
-    Route::get('company_report' , function (){
-        return view('system.reports.company_report');
-    })->name('company_report');
-
-    Route::get('rep_report' , function (){
-        return view('system.reports.rep_report');
-    })->name('rep_report');
 
     Route::get('monitor_auth_report' , function (){
         return view('system.reports.monitor_auth_report');
     })->name('monitor_auth_report');
 
-    Route::get('team_sales_lead_report' , function (){
-        return view('system.reports.team_sales_lead_report');
-    })->name('team_sales_lead_report');
+//    Route::get('team_sales_lead_report' , function (){
+//        return view('system.reports.team_sales_lead_report');
+//    })->name('team_sales_lead_report');
 
     Route::get('whatsapp' , function (){
         return view('system.whatsapp.view');

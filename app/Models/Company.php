@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -78,6 +79,25 @@ class Company extends Model
         return $this->belongsTo(SubSector::class);
     }
 
+    public function evaluator(){
+        return $this->belongsTo(User::class,'evaluation_status_user_id');
+    }
+
+    public function confirm_connected_user(){
+        return $this->belongsTo(User::class,'confirm_connected_user_id');
+    }
+    public function confirm_interview_user(){
+        return $this->belongsTo(User::class,'confirm_interview_user_id');
+    }
+
+    public function confirm_need_user(){
+        return $this->belongsTo(User::class,'confirm_need_user_id');
+    }
+
+    public function confirm_contract_user(){
+        return $this->belongsTo(User::class,'confirm_contract_user_id');
+    }
+
     public function companyDesignatedcontacts(){
         return $this->hasMany(CompanyDesignatedContact::class);
     }
@@ -96,5 +116,9 @@ class Company extends Model
 
     public function city(){
         return $this->belongsTo(City::class);
+    }
+
+    public function assigned_to(){
+        return $this->belongsTo(User::class,'user_id'); //change user_id to rep_id after migration
     }
 }

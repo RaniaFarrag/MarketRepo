@@ -28,7 +28,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userRepositoryinterface->index();
-        return view('system.users.index')->with('users' , $users);
+        return view('system.users.index')->with('users', $users);
     }
 
     /**
@@ -41,13 +41,13 @@ class UserController extends Controller
     public function create()
     {
         $data = $this->userRepositoryinterface->create();
-        return view('system.users.create')->with('data' , $data);
+        return view('system.users.create')->with('data', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
 
@@ -60,7 +60,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 
@@ -73,7 +73,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 
@@ -85,27 +85,27 @@ class UserController extends Controller
         //$sectors_ids = $user->sectors()->pluck('sector_id')->toArray();
         //dd($sectors_ids[1]['id']);
         //dd($sectors_ids);
-        return view('system.users.edit')->with(['user'=>$user , 'data'=>$data ]);
+        return view('system.users.edit')->with(['user' => $user, 'data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 
     /** Submit Edit User */
     public function update(Request $request, User $user)
     {
-        return $this->userRepositoryinterface->update($request , $user);
+        return $this->userRepositoryinterface->update($request, $user);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 
@@ -113,5 +113,21 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         return $this->userRepositoryinterface->destroy($user);
+    }
+
+    /** Representative Report */
+    public function rep_companies_report(Request $request)
+    {
+        $reps = $this->userRepositoryinterface->get_reps();
+        if ($request->ajax()) {
+            $companies = $this->userRepositoryinterface->rep_companies_report($request)['companies'];
+            $rep = $this->userRepositoryinterface->rep_companies_report($request)['rep'];
+            $confirm_connected = $this->userRepositoryinterface->rep_companies_report($request)['confirm_connected'];
+            $confirm_interview = $this->userRepositoryinterface->rep_companies_report($request)['confirm_interview'];
+            $confirm_need = $this->userRepositoryinterface->rep_companies_report($request)['confirm_need'];
+            $confirm_contract = $this->userRepositoryinterface->rep_companies_report($request)['confirm_contract'];
+            return view('system.reports.rep_report_partial',compact('companies','confirm_connected','confirm_contract','confirm_interview','confirm_need','rep'))->render();
+        }
+        return view('system.reports.rep_report', compact('reps'));
     }
 }
