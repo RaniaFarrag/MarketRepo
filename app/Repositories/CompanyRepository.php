@@ -7,7 +7,6 @@
  */
 
 namespace App\Repositories;
-
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\City;
 use App\Models\Company;
@@ -80,6 +79,10 @@ class CompanyRepository implements CompanyRepositoryInterface
                 ->orderBy('created_at', 'desc');
         } elseif (Auth::user()->hasRole('Sales Manager')) {
             $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
+                ->with('subSector')
+                ->orderBy('created_at', 'desc');
+        }else {
+            $query = $this->company_model
                 ->with('subSector')
                 ->orderBy('created_at', 'desc');
         }
