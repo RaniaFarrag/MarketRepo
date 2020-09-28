@@ -35,7 +35,7 @@ class SalesLeadReportController extends Controller
         if ($request->ajax())
             return view('system.reports.sales_lead_report_partial', compact('reports', 'checkAll', 'ids'))->render();
 
-        return view('system.reports.total_sales_lead_report', compact('company', 'reports', 'countries', 'sectors'));
+        return view('system.reports.total_sales_lead_report', compact( 'reports', 'countries', 'sectors'));
     }
 
     /**
@@ -72,7 +72,7 @@ class SalesLeadReportController extends Controller
         if ($request->ajax())
             return view('system.reports.sales_lead_report_partial', compact('reports'))->render();
 
-        return view('system.reports.team_sales_lead_report', compact('company', 'reports', 'countries', 'sectors'));
+        return view('system.reports.team_sales_lead_report', compact('company', 'reports'));
     }
 
     public function extractSalesLeadReportExcel(Request $request)
