@@ -484,7 +484,7 @@
                         type: "get",
                         // url: "/get/sub/sectors/of/sector/" + sector_id,
                         {{--url: "{{ route('get_sub' ) }}" + '/' + sector_id,--}}
-                                {{--url: "{{ route('get_sub' , ['sector_id'=>sector_id]) }}",--}}
+                            {{--url: "{{ route('get_sub' , ['sector_id'=>sector_id]) }}",--}}
                         url: "{{ url('/get/sub/sectors/of/sector/') }}" + '/' + sector_id,
                         dataType: "json",
                         success: function (response) {
