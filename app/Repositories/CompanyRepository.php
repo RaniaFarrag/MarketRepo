@@ -17,6 +17,7 @@ use App\Models\Sector;
 use App\Models\SubSector;
 use App\Traits\logTrait;
 use App\Traits\UploadTrait;
+use App\User;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
@@ -40,10 +41,11 @@ class CompanyRepository implements CompanyRepositoryInterface
     protected $company_model;
     protected $company_designated_contact_model;
     protected $company_meeting_model;
+    protected $user_model;
 
 
     public function __construct(Country $country, City $city, Sector $sector, SubSector $subSector, Company $company
-        , CompanyDesignatedContact $companyDesignatedContact, CompanyMeeting $companyMeeting)
+        , CompanyDesignatedContact $companyDesignatedContact, CompanyMeeting $companyMeeting, User $user)
     {
         $this->country_model = $country;
         $this->city_model = $city;
@@ -52,6 +54,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         $this->company_model = $company;
         $this->company_designated_contact_model = $companyDesignatedContact;
         $this->company_meeting_model = $companyMeeting;
+        $this->user_model = $user;
 
     }
 
@@ -70,29 +73,50 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** View All companies */
     public function index($request, $all = null)
     {
-
+        //dd($request->all());
         if (Auth::user()->hasRole('Representative')) {
             $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector')
                 ->orderBy('created_at', 'desc');
         } elseif (Auth::user()->hasRole('Sales Manager')) {
-            $query = $this->company_model->where('user_id', Auth::user()->id)->with('subSector')
+            $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
+                ->with('subSector')
                 ->orderBy('created_at', 'desc');
-        }else
-            $query = $this->company_model->with('subSector')
+        }else {
+            $query = $this->company_model
+                ->with('subSector')
                 ->orderBy('created_at', 'desc');
+        }
+        if ($request->created_at) {
+            $date = Carbon::parse($request->created_at);
+            $query->whereDate('created_at', $date);
+        }
 
-        if ($request->city_id)
-            $query->where('city_id', $request->city_id);
-        if ($request->rep_id)
-            $query->where('user_id', $request->rep_id); //change user_id with rep_id
-        if ($request->country_id)
-            $query->where('country_id', $request->country_id);
-        if ($request->sector_id)
-            $query->where('sector_id', $request->sector_id);
-        if ($request->subSector_id)
-            $query->where('sub_sector_id', $request->subSector_id);
-        if ($request->name)
-            $query->whereTranslationLike('name', '%' . $request->name . '%');
+        if ($request->interview_date) {
+            $date = Carbon::parse($request->interview_date);
+            $query->whereHas('companyMeetings', function ($q) use ($date) {
+                $q->whereDate('date', $date);
+            });
+        }
+
+        if ($request->location == 1)
+            $query->whereNotNull('location');
+
+        if($request->location == 2)
+            $query->whereNull('location');
+
+        if ($request->client_status)
+            $query->where('client_status', $request->client_status);
+
+        if ($request->representative_id)
+            $query->where('representative_id', $request->representative_id);
+
+        if ($request->representative == 1)
+            $query->whereNotNull('representative_id');
+
+        if($request->representative == 2)
+            $query->whereNull('representative_id');
+//            $query->whereNull('representative_id');
+
         if (isset($request->company_status) && count($request->company_status) > 0)
             foreach ($request->company_status as $val)
                 if ($val != 'no_meeting')
@@ -103,9 +127,28 @@ class CompanyRepository implements CompanyRepositoryInterface
                     $query->where('confirm_need', null);
                     $query->where('confirm_contract', null);
                 }
+
+        if (isset($request->communication_type) && count($request->communication_type) > 0)
+            foreach ($request->communication_type as $val)
+                $query->whereNotNull($val);
+
         if (isset($request->evaluation_ids))
             $query->whereIn('evaluation_status', $request->evaluation_ids);
 
+        if ($request->city_id)
+            $query->where('city_id', $request->city_id);
+
+        if ($request->country_id)
+            $query->where('country_id', $request->country_id);
+
+        if ($request->sector_id)
+            $query->where('sector_id', $request->sector_id);
+
+        if ($request->sub_sector_id)
+            $query->where('sub_sector_id', $request->sub_sector_id);
+
+        if ($request->name)
+            $query->whereTranslationLike('name', '%' . $request->name . '%');
 
         return $all ? $query->get() : $query->paginate(20);
     }
@@ -118,20 +161,19 @@ class CompanyRepository implements CompanyRepositoryInterface
 //        dd(Storage::disk('local')->path('/'));
 //        dd(storage_path('app') .'/'. $logo);
 
-        if(Auth::user()->parent_id){
+        if (Auth::user()->parent_id) {
             $representative_id = Auth::user()->id;
-            if (! Auth::user()->sectors()->find($request->sector_id)){
+            if (!Auth::user()->sectors()->find($request->sector_id)) {
                 Auth::user()->sectors()->attach($request->sector_id);
             }
-        }
-        else{
+        } else {
             $representative_id = null;
         }
 
-        $logo = $this->verifyAndStoreFile($request , 'logo');
-        $first_business_card = $this->verifyAndStoreFile($request , 'first_business_card');
-        $second_business_card = $this->verifyAndStoreFile($request , 'second_business_card');
-        $third_business_card = $this->verifyAndStoreFile($request , 'third_business_card');
+        $logo = $this->verifyAndStoreFile($request, 'logo');
+        $first_business_card = $this->verifyAndStoreFile($request, 'first_business_card');
+        $second_business_card = $this->verifyAndStoreFile($request, 'second_business_card');
+        $third_business_card = $this->verifyAndStoreFile($request, 'third_business_card');
 
         $company = $this->company_model::create([
             'logo' => $logo,
@@ -519,6 +561,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         $data['companies'] = $this->index($request);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
+        $data['representatives'] = $this->user_model::where('parent_id', Auth::user()->id)->get();
         return $data;
     }
 

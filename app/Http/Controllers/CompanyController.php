@@ -29,9 +29,19 @@ class CompanyController extends Controller
     /** View All companies */
     public function index(Request $request)
     {
-        $companies = $this->companyRepositoryinterface->index($request);
+        $companies = $this->companyRepositoryinterface->companiesReports($request)['companies'];
+        $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
+        $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
+        $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
 
-        return view('system.companies.index')->with('companies' , $companies);
+        if($request->ajax()){
+            $data['viewBlade']= view('system.companies.index_partial')->with(['companies' => $companies])->render();
+            $data['count']= count($companies);
+            return response()->json($data);
+        }
+
+        return view('system.companies.index')->with(['companies' => $companies ,
+            'sectors' => $sectors , 'countries' => $countries , 'representatives'=>$representatives]);
     }
 
     /**
