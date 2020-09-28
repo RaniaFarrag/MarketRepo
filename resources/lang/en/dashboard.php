@@ -254,6 +254,12 @@ return [
     'classification' => 'Classification',
     'International Experience' => 'International Experience',
     'Company Evaluation' => 'Company Evaluation',
+    'Quanity' => 'Quantity',
+    'Select one' => 'Select one',
+    'create Report' => 'Create Report',
+    'Updates' => 'Updates',
+    'Remarks' => 'Remarks',
+    'nextFollowUp' => 'nextFollowUp',
 
 
 
