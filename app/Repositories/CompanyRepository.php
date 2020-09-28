@@ -95,11 +95,10 @@ class CompanyRepository implements CompanyRepositoryInterface
             });
         }
 
-        if ($request->location)
+        if ($request->location == 1)
             $query->whereNotNull('location');
 
         if($request->location == 2)
-            //dd($request->location);
             $query->whereNull('location');
 
         if ($request->client_status)
@@ -108,11 +107,11 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->representative_id)
             $query->where('representative_id', $request->representative_id);
 
-        if ($request->representative)
+        if ($request->representative == 1)
             $query->whereNotNull('representative_id');
 
         if($request->representative == 2)
-            $query->where('representative_id' , null);
+            $query->whereNull('representative_id');
 //            $query->whereNull('representative_id');
 
         if (isset($request->company_status) && count($request->company_status) > 0)

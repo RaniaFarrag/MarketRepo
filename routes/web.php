@@ -104,6 +104,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('cancel/company/assignment/{company_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
 
 
+    Route::get('send/whatsapp/messages' , 'WhatsAppController@sendWhatsappMessages')->name('send_whatsapp_message');
 
 
     /*********************************************MANAGE CHECK BOXES****************************************************/
@@ -118,9 +119,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /** Confirm Contract */
     Route::get('/confirm/contract/{company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
-
-
-
 
 
     /**************************************************REPORTS******************************************************************/
@@ -144,8 +142,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /**************************************************POST******************************************************************/
 
 
-
-
     Route::get('needs' , function (){
         return view('system.companies.needs.index');
     })->name('companies_needs');
@@ -162,9 +158,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 //        return view('system.reports.team_sales_lead_report');
 //    })->name('team_sales_lead_report');
 
-    Route::get('whatsapp' , function (){
-        return view('system.whatsapp.view');
-    })->name('whatsapp');
+
 
 });
 
