@@ -77,7 +77,9 @@ class CompanyRepository implements CompanyRepositoryInterface
         } elseif (Auth::user()->hasRole('Sales Manager')) {
             $query = $this->company_model->where('user_id', Auth::user()->id)->with('subSector')
                 ->orderBy('created_at', 'desc');
-        }
+        }else
+            $query = $this->company_model->with('subSector')
+                ->orderBy('created_at', 'desc');
 
         if ($request->city_id)
             $query->where('city_id', $request->city_id);

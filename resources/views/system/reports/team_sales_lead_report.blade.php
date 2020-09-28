@@ -40,16 +40,13 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
                     <!--begin::Button-->
-                    <a href="{{route('companySalesTeamReports.create',$company->id)}}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Total Reports') }} (200)
+                    <a href="{{route('companySalesTeamReports.create',$company->id)}}"
+                       class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.create Report') }}
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
-
-
                 </div>
 
             </div>
@@ -89,200 +86,15 @@
                                                 {{ trans('dashboard.Companies Filters') }}
                                             </div>
                                         </div>
-                                        <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
-                                            <div class="card-body">
-                                                <div class="row fliter_serch">
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label> {{ trans('dashboard.Company Name') }}  </label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Company Name">
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>{{ trans('dashboard.Sectors') }}</label>
-                                                            <select class="form-control select2" name="param">
-                                                                <option value=""
-                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="">Health Care</option>
-                                                                <option value="">Oil & Gas</option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>{{ trans('dashboard.Company Type') }}</label>
-                                                            <select class="form-control select2" name="param">
-                                                                <option value=""
-                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="72" data-select2-id="23">Senior
-                                                                    management of
-                                                                    pharmacies
-                                                                </option>
-
-                                                                <option value="71" data-select2-id="24">Pharmaceutical
-                                                                    Company
-                                                                </option>
-
-                                                                <option value="70" data-select2-id="25">Medical complex
-                                                                </option>
-
-                                                                <option value="69" data-select2-id="26">medical Center
-                                                                </option>
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>{{ trans('dashboard.Country') }}</label>
-                                                            <select class="form-control select2" name="param">
-                                                                <option value=""
-                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="1" data-select2-id="58">Saudi Arabia
-                                                                </option>
-                                                                <option value="2" data-select2-id="59">United Arab
-                                                                    Emirates
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>{{ trans('dashboard.City') }}</label>
-                                                            <select class="form-control select2" name="param">
-                                                                <option value=""
-                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="1" data-select2-id="58">Saudi Arabia
-                                                                </option>
-                                                                <option value="2" data-select2-id="59">United Arab
-                                                                    Emirates
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>{{ trans('dashboard.Evaluation status') }}</label>
-                                                            <select class="form-control select2" name="param"
-                                                                    multiple="multiple">
-                                                                <option value="A" data-select2-id="287">A</option>
-                                                                <option value="B" data-select2-id="288">B</option>
-                                                                <option value="C" data-select2-id="289">C</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>{{ trans('dashboard.Company Status') }}</label>
-                                                            <select class="form-control select2" name="param"
-                                                                    multiple="multiple">
-                                                                <option value="is_called">Confirm Connection</option>
-                                                                <option value="is_verified">Confirm Interview</option>
-                                                                <option value="confirm_register">Confirm Need</option>
-                                                                <option value="is_registered">Confirm Contract</option>
-                                                                <option value="no_meeting">No Meeting</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-md-4 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label>&nbsp;</label>
-                                                            <button type="button"
-                                                                    class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
 
+
                                 <div class="separator separator-dashed mt-8 mb-5"></div>
-                                <div class="table-responsive">
+                                <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                        <tr>
-                                            <th style="padding-top: 30px;">
-                                                <div class="checkbox-inline">
-                                                    <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                        <input type="checkbox" name="Checkboxes15" checked="checked">
-                                                        <span class="m-0"></span>
-                                                    </label>
-                                                </div>
-                                            </th>
-                                            <th>{{ trans('dashboard.Sl.No') }}</th>
-                                            <th>{{ trans('dashboard.Date') }}</th>
-                                            <th>{{ trans('dashboard.Lead Source') }}</th>
-                                            <th>{{ trans('dashboard.Lead status') }}</th>
-                                            <th>{{ trans('dashboard.Company Name') }}</th>
-                                            <th>{{ trans('dashboard.Contact Person') }}</th>
-                                            <th>{{ trans('dashboard.Contact No') }}</th>
-                                            <th>{{ trans('dashboard.Whatsapp') }}</th>
-                                            <th>{{ trans('dashboard.Email') }}</th>
-                                            <th>{{ trans('dashboard.Brochure status') }}</th>
-                                            <th>{{ trans('dashboard.Category of Requirement') }}</th>
-                                            <th>{{ trans('dashboard.Quantity') }}</th>
-                                            <th>{{ trans('dashboard.Type of Service required') }}</th>
-                                            <th>{{ trans('dashboard.Company Representative name') }}</th>
-                                            <th>{{ trans('dashboard.Location') }}</th>
-                                            <th>{{ trans('dashboard.Client Feedback') }}</th>
-
-
-                                            <th>{{ trans('dashboard.Next FollowUp') }}</th>
-                                        </tr>
-
-                                        </thead>
-
-                                        <tbody>
-
-                                        <tr>
-                                            <td>  <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                    <input type="checkbox" name="Checkboxes15" checked="checked">
-                                                    <span class="m-0"></span>
-                                                </label>
-                                            </td>
-                                            <td>518</td>
-                                            <td>09/09/2020</td>
-                                            <td>Marketing-Hc</td>
-                                            <td>Cold</td>
-                                            <td><a target="_blank" href="https://marketing-hc.com/acp/market/company/show/2821">Ok Clinics</a></td>
-                                            <td>Mr. Adel Bin Ibrahim Al - warhi</td>
-                                            <td>0543394223</td>
-                                            <td>0543394223</td>
-                                            <td><a href="mailto:info@okclinics.com">info@okclinics.com</a></td>
-
-                                            <td>Yes</td>
-                                            <td>N/A</td>
-                                            <td>0</td>
-                                            <td>N/A</td>
-                                            <td>RAAFAT ALI</td>
-                                            <td>
-                                                Al Riyad
-
-                                            </td>
-                                            <td><span style="width: 500px !important;display: block;">08/09/2020: Client asked us to come and meet him at 5pm
-09/09/2020: I went their to meet him but there was some miscommunication the HR team has two HR and I met one of them the other was on a vacation. but they said they have already authorized the visas to an agency in Philippines. They said they will get back to us if they plan to change their mind.</span> </td>
-
-
-                                            <td>2020-10-20</td>
-                                        </tr>
-
-
-                                        </tbody>
-
-                                    </table>
-                                    <!--end: Datatable-->
+                                @include('system.reports.sales_lead_report_partial')
+                                <!--end: Datatable-->
                                 </div>
                             </div>
                         </div>
@@ -308,6 +120,148 @@
 
 
 @section('script')
+    <script>
+        function contains(arr, element) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === element) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+    <script>
+        var checkCvOriginal = [];
+        $(document).on('change', '.checkReports', function () {
+            if (contains(checkCvOriginal, $(this).val())) {
+                var index = checkCvOriginal.indexOf($(this).val());
+                checkCvOriginal.splice(index, 1);
+            } else {
+                checkCvOriginal.push($(this).val());
+
+            }
+            console.log(checkCvOriginal)
+            $('.ids').val(JSON.stringify(checkCvOriginal));
+            console.log($('.ids').val());
+        });
+        $(document).on('click', '.submitBtn', function (e) {
+            if (!$('#checkAll').is(':checked')) {
+                if (checkCvOriginal.length == 0) {
+                    e.preventDefault();
+                    alert("Please Select Any Data .")
+                }
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', '#checkAll', function (e) {
+            if ($('.items:checked').length == $('.items:checkbox').length) {
+                $('.items:checkbox').prop('checked', false);
+                $('.exportAll').val(0);
+            } else {
+                $('.items:checkbox').prop('checked', true);
+                $('.exportAll').val(1);
+
+            }
+            $('.ids').val(JSON.stringify(checkCvOriginal));
+            console.log(JSON.stringify(checkCvOriginal))
+        });
+
+    </script>
+    <script>
+        $('body').on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            var checked_val = 0;
+            $('#checkAll').is(':checked') ? checked_val = 1 : checked_val = 0;
+            $.ajax({
+                dataType: 'html',
+                url: '{{route("companySalesTeamReports.show",$company)}}',
+                data: {
+                    "checkAll": checked_val,
+                    "ids": checkCvOriginal,
+                    "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
+                    "company_status": $("#company_status").val(),
+                    "evaluation_ids": $("#evaluation_ids").val(),
+                    "city_id": $("#cities").val(),
+                    "country_id": $("#countries").val(),
+                    "subSector_id": $("#subSector").val(),
+                    "sector_id": $("#sector").val(),
+                    "name": $("#name").val(),
+                },
+                success: function (data) {
+                    $('.renderTable').html(data);
+                }
+            });
+        });
+    </script>
+    <script>
+        {{-- GET ALL SUB-SECTORS OF SECTOR AND CITIES OF COUNTRY--}}
+
+        $(document).ready(function () {
+
+            $("#sector").on('change', function () {
+                var sector_id = $(this).val();
+                if (sector_id) {
+                    $.ajax({
+                        type: "get",
+                        // url: "/get/sub/sectors/of/sector/" + sector_id,
+                        {{--url: "{{ route('get_sub' ) }}" + '/' + sector_id,--}}
+                            {{--url: "{{ route('get_sub' , ['sector_id'=>sector_id]) }}",--}}
+                        url: "{{ url('/get/sub/sectors/of/sector/') }}" + '/' + sector_id,
+                        dataType: "json",
+                        success: function (response) {
+                            var sub_sectors = response.sub_sectors;
+                            if (sub_sectors.length) {
+                                console.log(sub_sectors);
+                                var html = '<option value="">{{ trans('dashboard.Select All') }}</option>'
+                                for (let i = 0; i < sub_sectors.length; i++) {
+                                    html += '<option value="' + sub_sectors[i].id + '">' + sub_sectors[i].name + '</option>';
+                                }
+                            } else {
+                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                            }
+                            $("#subSector").html(html);
+
+                        }
+                    });
+                } else {
+                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
+                    $("#subSector").html(html);
+                }
+
+            })
 
 
+            $("#countries").on('change', function () {
+                var country_id = $(this).val();
+                if (country_id) {
+                    $.ajax({
+                        type: "get",
+                        url: "{{ url('/get/cities/of/country/') }}" + '/' + country_id,
+                        dataType: "json",
+                        success: function (response) {
+                            var cities = response.cities;
+                            if (cities.length) {
+                                console.log(cities);
+                                var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>';
+                                for (let i = 0; i < cities.length; i++) {
+                                    html += '<option value="' + cities[i].id + '">' + cities[i].name + '</option>';
+                                }
+                            } else {
+                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                            }
+                            $("#cities").html(html);
+
+                        }
+                    });
+                } else {
+                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
+                    $("#cities").html(html);
+                }
+
+            })
+
+        });
+
+    </script>
 @endsection

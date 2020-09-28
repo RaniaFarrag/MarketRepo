@@ -136,10 +136,11 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** sales Team Report */
 
 //    Route::resource('companySalesTeamReports' , 'SalesLeadReportController');
-    Route::get('companySalesTeamReports/{company}','SalesLeadReportController@index')->name('companySalesTeamReports.index');
+    Route::get('companySalesTeamReports','SalesLeadReportController@index')->name('companySalesTeamReports.index');
+    Route::get('companySalesTeamReports/{company}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
     Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')->name('companySalesTeamReports.create');
     Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
-    Route::get('companySalesTeamReports/show/{company}/{report_id}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
+    Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');
 
     /**************************************************POST******************************************************************/
 

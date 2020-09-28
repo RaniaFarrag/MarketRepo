@@ -441,7 +441,7 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="navi-item">
-                                                                        <a href="{{ route('companySalesTeamReports.index',$company->id) }}" class="navi-link">
+                                                                        <a href="{{ route('companySalesTeamReports.show',$company->id) }}" class="navi-link">
                                                                     <span class="navi-icon"><i
                                                                                 class="flaticon-graph"></i></span>
                                                                             <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }} </span>
