@@ -2,7 +2,6 @@
 
 @section('body')
 
-
     <!--begin::Content-->
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -105,118 +104,37 @@
                                         </thead>
 
                                         <tbody>
+                                            @foreach($companies as $company)
+                                                <tr>
+                                                    <td>
+                                                        <div class="checkbox-inline">
+                                                            <label class="checkbox checkbox-outline checkbox-success m-auto">
+                                                                <input type="checkbox" name="company_ids[]">
+                                                                <span class="m-0"></span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
 
+                                                    <td style="width: 34px;"><a href="#" target="_blank">{{ $company->id }}</a></td>
 
-                                        <tr>
-                                            <td>
-                                                <div class="checkbox-inline">
-                                                    <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                        <input type="checkbox" name="Checkboxes15">
-                                                        <span class="m-0"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
+                                                    <td><a href="#">{{ $company->name }}</a></td>
+                                                    <td>{{ $company->sector ? $company->sector->name : '-' }}</td>
+                                                    <td>{{ $company->subSector ? $company->subSector->name : '-'}}</td>
 
-                                            <td style="width: 34px;"><a href="#" target="_blank">2959</a></td>
+                                                    <td>{{ $company->email ? $company->email : '-' }}</td>
+                                                    <td>{{ $company->whatsapp ? $company->whatsapp : '-' }}</td>
 
-                                            <td><a href="#">ADVANCED DENTAL CARE</a></td>
-                                            <td>Food &amp; Beverage</td>
-                                            <td>Food &amp; Beverage</td>
-
-                                            <td>maen@operationfalafel.ae</td>
-                                            <td>0536888399</td>
-
-
-                                            <td>
-                                                <a data-id="0536888399" href="#exampleModal" data-toggle="modal">
-                                                    <i class="fab fa-2x text-success fa-whatsapp"></i>
-                                                </a>
-                                            </td>
+                                                    <td>
+                                                        <a data-id="{{ $company->whatsapp }}" href="#exampleModal" data-toggle="modal">
+                                                            <i class="fab fa-2x text-success fa-whatsapp"></i>
+                                                        </a>
+                                                    </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="checkbox-inline">
-                                                    <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                        <input type="checkbox" name="Checkboxes15">
-                                                        <span class="m-0"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-
-                                            <td style="width: 34px;"><a href="#" target="_blank">2959</a></td>
-
-                                            <td><a href="#">ADVANCED DENTAL CARE</a></td>
-                                            <td>Food &amp; Beverage</td>
-                                            <td>Food &amp; Beverage</td>
-
-                                            <td>maen@operationfalafel.ae</td>
-                                            <td>0536888399</td>
-
-
-                                            <td>
-                                                <a data-id="0536888399" href="#exampleModal" data-toggle="modal">
-                                                    <i class="fab fa-2x text-success fa-whatsapp"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="checkbox-inline">
-                                                    <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                        <input type="checkbox" name="Checkboxes15">
-                                                        <span class="m-0"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-
-                                            <td style="width: 34px;"><a href="#" target="_blank">2959</a></td>
-
-                                            <td><a href="#">ADVANCED DENTAL CARE</a></td>
-                                            <td>Food &amp; Beverage</td>
-                                            <td>Food &amp; Beverage</td>
-
-                                            <td>maen@operationfalafel.ae</td>
-                                            <td>0536888399</td>
-
-
-                                            <td>
-                                                <a data-id="0536888399" href="#exampleModal" data-toggle="modal">
-                                                    <i class="fab fa-2x text-success fa-whatsapp"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="checkbox-inline">
-                                                    <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                        <input type="checkbox" name="Checkboxes15">
-                                                        <span class="m-0"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-
-                                            <td style="width: 34px;"><a href="#" target="_blank">2959</a></td>
-
-                                            <td><a href="#">ADVANCED DENTAL CARE</a></td>
-                                            <td>Food &amp; Beverage</td>
-                                            <td>Food &amp; Beverage</td>
-
-                                            <td>maen@operationfalafel.ae</td>
-                                            <td>0536888399</td>
-
-
-                                            <td>
-                                                <a data-id="0536888399" href="#exampleModal" data-toggle="modal">
-                                                    <i class="fab fa-2x text-success fa-whatsapp"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-
-
+                                            @endforeach
                                         </tbody>
 
                                     </table>
+                                    {{ $companies->links() }}
                                     <!--end: Datatable-->
                                 </div>
                             </div>

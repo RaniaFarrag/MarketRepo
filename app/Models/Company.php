@@ -126,4 +126,8 @@ class Company extends Model
     public function representative(){
         return $this->belongsTo(User::class , 'representative_id' , 'id');
     }
+
+    public function salesLeadReports(){
+        return $this->hasMany(Company_sales_lead_report::class);
+    }
 }
