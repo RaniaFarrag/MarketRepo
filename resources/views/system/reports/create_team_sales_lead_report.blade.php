@@ -62,7 +62,8 @@
                         <!--begin::Card-->
                         <div class="card card-custom">
 
-                            <form method="post" action="{{ route('companySalesTeamReports.store',$company->id) }}" class="form">
+                            <form method="post" action="{{ route('companySalesTeamReports.store',$company->id) }}"
+                                  class="form">
                                 @csrf
                                 <div class="card-body">
                                     <h3 class="card-label text-center border-bottom pb-2">
@@ -84,7 +85,6 @@
                                             <input type="text" class="form-control" required="" name="cat_of_req"
                                                    value="" placeholder="{{__('dashboard.Category of Requirement')}}">
                                         </div>
-
                                         <div class="col-lg-3">
                                             <label for="name">{{__('dashboard.Quanity')}}</label>
                                             <input type="number" class="form-control" required="" name="quanity"
@@ -98,33 +98,33 @@
                                                    value=""
                                                    placeholder="{{__('dashboard.Type of Service required')}}">
                                         </div>
-
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label for="name">{{__('dashboard.Client Feedback')}}</label>
                                             <textarea name="client_feeback" id="" class="form-control"
                                                       style="width: 100%"
                                                       rows="5"> </textarea>
                                         </div>
-
-
                                         <div class="col-lg-6">
                                             <label for="name">{{__('dashboard.Updates')}}</label>
                                             <textarea name="updates" id="" class="form-control" style="width: 100%"
                                                       rows="5"> </textarea>
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label for="name">{{__('dashboard.Remarks')}}</label>
                                             <textarea name="remarks" id="" class="form-control" style="width: 100%"
                                                       rows="5"> </textarea>
                                         </div>
-
                                         <div class="col-lg-6">
                                             <label for="name">{{__('dashboard.Notes')}}</label>
                                             <textarea name="notes" id="" class="form-control" style="width: 100%"
                                                       rows="5"></textarea>
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label for="name">{{__('dashboard.Lead status')}}</label>
                                             <select name="statue" class="form-control">
@@ -155,6 +155,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </form>
                         </div>
 

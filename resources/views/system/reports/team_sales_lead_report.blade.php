@@ -79,18 +79,7 @@
                             </div>
                             <div class="card-body">
 
-                                <div class="accordion accordion-toggle-arrow" id="accordionExample1">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <div class="card-title" data-toggle="collapse" data-target="#collapseOne1">
-                                                {{ trans('dashboard.Companies Filters') }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-
-                                <div class="separator separator-dashed mt-8 mb-5"></div>
                                 <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
                                 @include('system.reports.sales_lead_report_partial')

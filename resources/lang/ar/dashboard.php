@@ -256,6 +256,12 @@ return [
     'Add a New Meeting' => 'اضافة موعد جديد',
     'International Experience' => 'مجموع الخبرات',
     'Company Evaluation' => 'تقييم الشركة',
+    'Quanity' => 'العدد',
+    'Select one' => 'اختر',
+    'create Report' => 'اضافة تقرير جديد',
+    'Updates' => 'التحديثات',
+    'Remarks' => 'ملاحظات',
+    'nextFollowUp' => 'المتابعة القادمة',
 
 
 
