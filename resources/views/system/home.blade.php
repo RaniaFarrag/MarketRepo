@@ -168,7 +168,7 @@
                                                             {{ trans('dashboard.REP DAILY REPORT') }}
 
                                                             <div class="text-dark-75">
-                                                                0
+                                                                {{ $rep_reports }}
 
                                                             </div>
                                                         </a>

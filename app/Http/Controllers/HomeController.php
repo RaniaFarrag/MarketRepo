@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
 use App\User;
 use Carbon\Carbon;
@@ -46,6 +47,8 @@ class HomeController extends Controller
                 ->whereDate('date' , '>=' , Carbon::today())
                 ->where('time' , '>' , Carbon::now())
                 ->count();
+
+            $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
@@ -67,6 +70,9 @@ class HomeController extends Controller
                                                 $q->where('user_id' , Auth::user()->id)
                                                     ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
                                             })->count();
+
+            $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
+                ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
         }
 
         $total_users_under_me = User::where('parent_id' , Auth::user()->id)->count();
@@ -77,6 +83,7 @@ class HomeController extends Controller
             'total_companies'=>$total_companies,
             'total_users_under_me'=>$total_users_under_me,
             'today_meetings'=>$today_meetings,
-            'coming_meetings'=>$coming_meetings]);
+            'coming_meetings'=>$coming_meetings,
+            'rep_reports'=>$rep_reports,]);
     }
 }

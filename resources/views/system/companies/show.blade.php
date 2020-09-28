@@ -45,15 +45,15 @@
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('company_needs.index' , $company->id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.View Company Needs') }}
                     </a>
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('company_needs.create' , $company->id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Need') }}
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
+                    <a href="{{ route('companies.edit' , $company->id) }}" class="btn btn-white font-weight-bold py-3 px-6">
                         {{ trans('dashboard.Modifying Company Data') }}
                     </a>
                     <!--end::Button-->

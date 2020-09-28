@@ -82,7 +82,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/get/cities/of/country/{country_id}' , 'CityController@getCitiesOfcountry')->name('get_cities_of_country');
 
     /** Assign Company To Representative Form */
-    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentative')
+    Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentativeForm')
         ->name('assign_company_to_representative');
 
     /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
