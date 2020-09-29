@@ -36,7 +36,7 @@ class UserRepository implements UserRepositoryInterface
 
     /** View All Users */
     public function index(){
-        return  $this->user_model->paginate(20);
+        return  $this->user_model->with('roles')->paginate(20);
     }
 
     /** Get Representative*/

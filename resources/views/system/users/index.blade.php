@@ -48,8 +48,6 @@
                     </a>
                     <!--end::Button-->
 
-
-
                 </div>
 
             </div>
@@ -106,7 +104,7 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->name_en }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>{{ $user->roles[0]->name }}</td>
+                                            <td>{{ $user->roles[0]->name ?? "-" }}</td>
                                             <td>
                                                 @foreach($user->sectors as $sector)
                                                     {{ $sector->name }} -

@@ -329,7 +329,7 @@
 
                                     <li class="menu-item   menu-item"
                                         data-menu-toggle="click" aria-haspopup="true">
-                                        <a href="{{ route('send_whatsapp_message') }}" class="menu-link ">
+                                        <a href="{{ route('whatsapp_message') }}" class="menu-link ">
                                             <span class="menu-text">{{ trans('dashboard.WhatsApp') }}</span>
                                         </a>
 

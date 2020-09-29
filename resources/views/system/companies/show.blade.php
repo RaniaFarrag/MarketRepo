@@ -165,7 +165,7 @@
 
                                     <!--begin::Actions-->
                                     <div class="mb-10">
-                                        <a href="#"
+                                        <a target="_blank" href="{{ route('print_show_company') }}"
                                            class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">{{ trans('dashboard.Print') }}</a>
 
                                     </div>

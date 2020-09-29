@@ -52,7 +52,7 @@ class HomeController extends Controller
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
-            $total_companies = Company::where('user_id' , Auth::user()->id)->count();
+            $total_companies = Company::WhereIn('sector_id' , Auth::user()->sectors->pluck('id'))->count();
 
 //            $today_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
 //                                    ->orWhereIn('user_id' ,Auth::user()->childs->pluck('id'))
@@ -73,6 +73,18 @@ class HomeController extends Controller
 
             $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
                 ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
+        }
+
+        else{
+            $total_companies = Company::all()->count();
+
+            $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())->count();
+
+            $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                ->where('time' , '>' , Carbon::now())
+                ->count();
+
+            $rep_reports = Company_sales_lead_report::all()->count();
         }
 
         $total_users_under_me = User::where('parent_id' , Auth::user()->id)->count();

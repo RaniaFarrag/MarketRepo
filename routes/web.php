@@ -104,7 +104,15 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('cancel/company/assignment/{company_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
 
 
-    Route::get('send/whatsapp/messages' , 'WhatsAppController@sendWhatsappMessages')->name('send_whatsapp_message');
+    /** Whatsapp Messages */
+    Route::get('whatsapp/messages' , 'WhatsAppController@WhatsappMessages')->name('whatsapp_message');
+
+    /** Send Whatsapp Messages */
+    Route::post('send/whatsapp/message','WhatsAppController@sendWhatsappMessage')->name('send_whatsapp_message');
+
+    Route::get('print/show/company' , function (){
+        return view('system.companies.company_pdf');
+    })->name('print_show_company');
 
 
     /*********************************************MANAGE CHECK BOXES****************************************************/

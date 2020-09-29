@@ -39,16 +39,12 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
                     <!--begin::Button-->
                     <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Send WhatsApp Message') }}
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
-
-
                 </div>
 
             </div>
@@ -85,14 +81,7 @@
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">
-                                                <div class="checkbox-inline">
-                                                    <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                        <input type="checkbox" name="Checkboxes15" checked="checked">
-                                                        <span class="m-0"></span>
-                                                    </label>
-                                                </div>
-                                            </th>
+                                            <th>#</th>
                                             <th>#</th>
                                             <th> {{ trans('dashboard.Company Name') }}</th>
                                             <th>{{ trans('dashboard.Sector') }}</th>
@@ -109,7 +98,7 @@
                                                     <td>
                                                         <div class="checkbox-inline">
                                                             <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                                <input type="checkbox" name="company_ids[]">
+                                                                <input type="checkbox" name="company_ids[]" value="{{ $company->whatsapp }}">
                                                                 <span class="m-0"></span>
                                                             </label>
                                                         </div>
@@ -125,7 +114,7 @@
                                                     <td>{{ $company->whatsapp ? $company->whatsapp : '-' }}</td>
 
                                                     <td>
-                                                        <a data-id="{{ $company->whatsapp }}" href="#exampleModal" data-toggle="modal">
+                                                        <a data-id="{{ $company->whatsapp }}" href="#btnModal" data-toggle="modal">
                                                             <i class="fab fa-2x text-success fa-whatsapp"></i>
                                                         </a>
                                                     </td>
@@ -150,7 +139,7 @@
 
 
             <!-- Modal-->
-            <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog"
+            <div class="modal fade" id="btnModal" data-backdrop="static" tabindex="-1" role="dialog"
                  aria-labelledby="staticBackdrop" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -160,45 +149,49 @@
                                 <i aria-hidden="true" class="ki ki-close"></i>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>{{ trans('dashboard.WhatsApp Number') }}</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="3">9660536888399
-9660536888399
-9660536888399
-9660536888399
-9660536888399</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ trans('dashboard.Message Type') }}</label>
-                                <select name="client_status" class="form-control">
-                                    <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
-                                    <option value="1">{{ trans('dashboard.text') }}</option>
-                                    <option value="2">{{ trans('dashboard.image') }}</option>
-                                    <option value="3">{{ trans('dashboard.document') }}</option>
-                                    <option value="4">{{ trans('dashboard.Video') }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>{{ trans('dashboard.attachment') }}</label>
-                                <div></div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">{{ trans('dashboard.Choose file') }}</label>
+                        <form class="form-group form-horizontal" action="{{ route('send_whatsapp_message') }}" method="POST"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label>{{ trans('dashboard.WhatsApp Number') }}</label>
+                                    <textarea id="mobile_val" type="text" name="whatsapp" value="" class="form-control" rows="3">
+
+                                </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ trans('dashboard.Message Type') }}</label>
+                                    <select id="msg_type" name="type" class="form-control">
+                                        <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                        <option value="text">{{ trans('dashboard.text') }}</option>
+                                        <option value="image">{{ trans('dashboard.image') }}</option>
+                                        <option value="document">{{ trans('dashboard.document') }}</option>
+                                        <option value="video">{{ trans('dashboard.Video') }}</option>
+                                    </select>
+                                </div>
+                                <div id="file" style="display:none;" class="form-group">
+                                    <label>{{ trans('dashboard.attachment') }}</label>
+                                    <div></div>
+                                    <div  class="custom-file">
+                                        <input type="file" name="document" class="custom-file-input" >
+                                        <label class="custom-file-label" for="customFile">{{ trans('dashboard.Choose file') }}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ trans('dashboard.Message') }}</label>
+                                    <textarea name="messagetxt" class="form-control" id="exampleTextarea" rows="2"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>{{ trans('dashboard.Message') }}</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="2"></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button"
-                                    class="btn btn-primary font-weight-bold">{{ trans('dashboard.Send Message') }}</button>
-                            <button type="button" class="btn btn-light-primary font-weight-bold"
-                                    data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
+                            <div class="modal-footer">
+                                <button type="submit"
+                                        class="btn btn-primary font-weight-bold">{{ trans('dashboard.Send Message') }}</button>
+                                <button type="button" class="btn btn-light-primary font-weight-bold"
+                                        data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
 
-                        </div>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -215,5 +208,25 @@
 
 @section('script')
 
+    <script>
+        $('a[href="#btnModal"]').on('click',function(){
+            var id = $(this).attr('data-id');
+            //console.log(id);
+            $('textarea[name="whatsapp"]').val(id);
+        });
+
+        $('#msg_type').on('change',function(){
+            var selection = $(this).val();
+            switch(selection){
+                case "image":
+                case "document":
+                case "video":
+                    $("#file").show()
+                    break;
+                default:
+                    $("#file").hide()
+            }
+        });
+    </script>
 
 @endsection
