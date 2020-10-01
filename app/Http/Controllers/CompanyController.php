@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 
 class CompanyController extends Controller
@@ -192,6 +193,23 @@ class CompanyController extends Controller
     {
         $companies= $this->companyRepositoryinterface->companiesReports($request,true)['companies'];
         return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
+    }
+
+    public function print_show_company()
+    {
+        $pdf = Pdf::loadView('system.companies.company_pdf');
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "company.pdf'"]);
+    }
+
+    /** Send Email To Company */
+    public function sendEmail(Request $request){
+        return $this->companyRepositoryinterface->sendEmail($request);
     }
 
 }

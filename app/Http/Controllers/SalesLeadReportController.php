@@ -26,6 +26,7 @@ class SalesLeadReportController extends Controller
      */
     public function index(Request $request)
     {
+//        dd($request->all());
         $reports = $this->salesReportRepositoryInterface->index($request)['reports'];
         $countries = $this->salesReportRepositoryInterface->index($request)['countries'];
         $sectors = $this->salesReportRepositoryInterface->index($request)['sectors'];

@@ -110,9 +110,10 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Send Whatsapp Messages */
     Route::post('send/whatsapp/message','WhatsAppController@sendWhatsappMessage')->name('send_whatsapp_message');
 
-    Route::get('print/show/company' , function (){
-        return view('system.companies.company_pdf');
-    })->name('print_show_company');
+    Route::get('print/show/company' , 'CompanyController@print_show_company')->name('print_show_company');
+
+    /** Send Email To Company */
+    Route::post('send/email','CompanyController@sendEmail')->name('send_email');
 
 
     /*********************************************MANAGE CHECK BOXES****************************************************/
@@ -138,6 +139,9 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report');
 
+    /** Monitor Report */
+    Route::get('monitor/report' , 'LogController@monitorReport')->name('monitor_report');
+
 
     /** sales Team Report */
 
@@ -147,26 +151,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')->name('companySalesTeamReports.create');
     Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');
-
-    /**************************************************POST******************************************************************/
-
-
-    Route::get('needs' , function (){
-        return view('system.companies.needs.index');
-    })->name('companies_needs');
-
-
-
-
-
-    Route::get('monitor_auth_report' , function (){
-        return view('system.reports.monitor_auth_report');
-    })->name('monitor_auth_report');
-
-//    Route::get('team_sales_lead_report' , function (){
-//        return view('system.reports.team_sales_lead_report');
-//    })->name('team_sales_lead_report');
-
 
 
 });

@@ -288,12 +288,14 @@ class WhatsAppController extends Controller
 
     /** Send Whatsapp Messages */
     public function sendWhatsappMessage(Request $request){
-        if(isset($request->ids[0])) {
-            //dd(5);
-            $mobiles = json_decode($request->ids[0], true);
+        $whatsapp = preg_split("/\\r\\n|\\r|\\n/",  $request->whatsapp);
+
+        if(count($whatsapp) > 1) {
+            //dd(preg_split("/\\r\\n|\\r|\\n/",  $request->whatsapp));
+            //$mobiles = json_decode($request->ids[0], true);
 
             if ($request->type == 'text') {
-                return $this->send_text2($request, $mobiles);
+                return $this->send_text2($request, $whatsapp);
             }
             elseif ($request->type == 'image') {
                 //dd(22);
@@ -306,7 +308,7 @@ class WhatsAppController extends Controller
 
                     $image = asset("/files/". $fileName);
                 }
-                return $this->send_image2($request , $image , $mobiles);
+                return $this->send_image2($request , $image , $whatsapp);
             }
             elseif ($request->type == 'document') {
                 if($request->hasFile('document')){
@@ -320,7 +322,7 @@ class WhatsAppController extends Controller
                     $file = asset("/files/". $fileName);
 
                 }
-                return $this->send_document2($request , $file , $mobiles , $original_name);
+                return $this->send_document2($request , $file , $whatsapp , $original_name);
             }
             elseif ($request->type == 'video'){
                 if($request->hasFile('document')){
@@ -332,11 +334,12 @@ class WhatsAppController extends Controller
                     $video = asset("/files/". $fileName);
 
                 }
-                return $this->send_video2($request , $video , $mobiles);
+                return $this->send_video2($request , $video , $whatsapp);
             }
         }
 
         else{
+            //dd(55);
             if ($request->type == 'text'){
                 return $this->send_text($request);
             }

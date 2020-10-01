@@ -260,6 +260,7 @@ return [
     'Updates' => 'Updates',
     'Remarks' => 'Remarks',
     'nextFollowUp' => 'nextFollowUp',
+    'sendemail' => 'Send Email',
 
 
 

@@ -52,4 +52,7 @@ interface CompanyRepositoryInterface
     /** companies Reports */
     public function companiesReports($request);
 
+    /** Send Email To Company */
+    public function sendEmail($request);
+
 }

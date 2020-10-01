@@ -40,8 +40,6 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
                     <!--begin::Button-->
                     <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Export Excel ') }}
@@ -95,19 +93,26 @@
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label> {{ trans('dashboard.Name') }}  </label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Company Name">
-                                                        </div>
+                                                            <select id="user_id" class="form-control select2" name="user_id">
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                @foreach($users as $user)
+                                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                                @endforeach
 
+                                                            </select>
+                                                            {{--<input id="name" name="name" type="text" class="form-control"--}}
+                                                                   {{--placeholder="{{ trans('dashboard.Name') }}">--}}
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.User Roles') }}</label>
-                                                            <select class="form-control select2" name="param">
-                                                                <option value=""
-                                                                        selected="">{{ trans('dashboard.Select All') }}</option>
-                                                                <option value="">Health Care</option>
-                                                                <option value="">Oil & Gas</option>
+                                                            <select id="role" class="form-control select2" name="role">
+                                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                @foreach($roles as $role)
+                                                                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                                                @endforeach
+
                                                             </select>
                                                         </div>
 
@@ -115,26 +120,23 @@
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Date From') }}</label>
-                                                            <input type="date" class="form-control"
-                                                                   placeholder="Company Name">
+                                                            <input id="from_date" name="from_date" type="date" class="form-control"
+                                                                   placeholder="{{ trans('dashboard.Date From') }}">
                                                         </div>
 
                                                     </div>
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Date To') }}</label>
-                                                            <input type="date" class="form-control"
-                                                                   placeholder="Company Name">
+                                                            <input id="to_date" name="to_date" type="date" class="form-control"
+                                                                   placeholder="{{ trans('dashboard.Date To') }}">
                                                         </div>
                                                     </div>
-
-
-
 
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>&nbsp;</label>
-                                                            <button type="button"
+                                                            <button id="searchFilter" type="button"
                                                                     class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
                                                             </button>
                                                         </div>
@@ -146,38 +148,8 @@
                                 </div>
 
                                 <div class="separator separator-dashed mt-8 mb-5"></div>
-                                <div class="table-responsive">
-                                    <!--begin: Datatable-->
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th> {{ trans('dashboard.User Name') }}</th>
-                                            <th>{{ trans('dashboard.User Roles') }}</th>
-                                            <th>{{ trans('dashboard.User status') }}</th>
-                                            <th>{{ trans('dashboard.Time') }}</th>
-                                            <th>{{ trans('dashboard.Date') }}</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-
-                                        <tr>
-                                            <td> 5640</td>
-                                            <td> Admin</td>
-                                            <td>
-
-                                                سوبر أدمن
-
-                                            </td>
-                                            <td>  قام بتسجيل دخوله   </td>
-                                            <td> 06:09:16</td>
-                                            <td> 20/09/10</td>
-                                        </tr>
-                                        </tbody>
-
-                                    </table>
-                                    <!--end: Datatable-->
+                                <div class="table-responsive renderTable">
+                                    @include('system.reports.monitor_auth_report_partial')
                                 </div>
                             </div>
                         </div>
@@ -185,11 +157,8 @@
                     </div>
                 </div>
                 <!--end::Row-->
-
-
                 <!--end::Dashboard-->
             </div>
-
 
             <!--end::Container-->
         </div>
@@ -203,6 +172,28 @@
 
 
 @section('script')
+
+    <script>
+        $('body').on('click', '.pagination a, #searchFilter', function (e) {
+            console.log($("#role").val());
+            e.preventDefault();
+            $.ajax({
+                dataType: 'html',
+                url: "{{ route('monitor_report') }}",
+                "data": {
+                    "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
+                    "user_id": $("#user_id").val(),
+                    "role": $("#role").val(),
+                    "from_date": $("#from_date").val(),
+                    "to_date": $("#to_date").val(),
+                },
+                success: function (data) {
+                    $('.renderTable').html(data);
+
+                }
+            });
+        });
+    </script>
 
 
 @endsection

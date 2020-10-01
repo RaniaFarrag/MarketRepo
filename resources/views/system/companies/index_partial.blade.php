@@ -61,13 +61,11 @@
                                         </a>
                                     </li>
                                     <li class="navi-item">
-                                        <a href="#" class="navi-link"
-                                           data-toggle="modal"
-                                           data-target="#exampleModal">
-                                    <span class="navi-icon"><i
+                                        <a data-id="{{ $company->email ?? '-' }}" href="#mail_Modal" class="navi-link"
+                                           data-toggle="modal">
+                                            <span class="navi-icon"><i
                                                 class="flaticon2-rocket-1"></i></span>
                                             <span class="navi-text">{{ trans('dashboard.Send Email') }}</span>
-
                                         </a>
                                     </li>
                                     <li class="navi-item">
@@ -282,9 +280,11 @@
             </div>
             <!--end::Card-->
         </div>
-    @endforeach
 
-{{ $companies->links() }}
+    @endforeach
+    {{ $companies->links() }}
+
+
 
 
 

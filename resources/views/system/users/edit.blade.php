@@ -111,7 +111,7 @@
                                             <select class="form-control select2" name="role" disabled>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['roles'] as $k=>$role)
-                                                    <option value="{{ $role->id }}" {{ $role->id == $user->roles[0]->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
+                                                    <option value="{{ $role->id }}" {{ isset($user->roles[0] )&& $role->id == $user->roles[0]->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('role_id')

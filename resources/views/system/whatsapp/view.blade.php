@@ -40,7 +40,7 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="#btnModal" data-toggle="modal" class="btn btn-success font-weight-bold sendMessage py-3 px-6 mr-2">
                         {{ trans('dashboard.Send WhatsApp Message') }}
                     </a>
                     <!--end::Button-->
@@ -93,38 +93,41 @@
                                         </thead>
 
                                         <tbody>
-                                            @foreach($companies as $company)
-                                                <tr>
-                                                    <td>
-                                                        <div class="checkbox-inline">
-                                                            <label class="checkbox checkbox-outline checkbox-success m-auto">
-                                                                <input type="checkbox" name="company_ids[]" value="{{ $company->whatsapp }}">
-                                                                <span class="m-0"></span>
-                                                            </label>
-                                                        </div>
-                                                    </td>
+                                        @foreach($companies as $company)
+                                            <tr>
+                                                <td>
+                                                    <div class="checkbox-inline">
+                                                        <label class="checkbox checkbox-outline checkbox-success m-auto ">
+                                                            <input type="checkbox" name="company_ids[]" class="checkPhones"
+                                                                   value="{{ $company->whatsapp }}">
+                                                            <span class="m-0"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
 
-                                                    <td style="width: 34px;"><a href="#" target="_blank">{{ $company->id }}</a></td>
+                                                <td style="width: 34px;"><a href="#"
+                                                                            target="_blank">{{ $company->id }}</a></td>
 
-                                                    <td><a href="#">{{ $company->name }}</a></td>
-                                                    <td>{{ $company->sector ? $company->sector->name : '-' }}</td>
-                                                    <td>{{ $company->subSector ? $company->subSector->name : '-'}}</td>
+                                                <td><a href="#">{{ $company->name }}</a></td>
+                                                <td>{{ $company->sector ? $company->sector->name : '-' }}</td>
+                                                <td>{{ $company->subSector ? $company->subSector->name : '-'}}</td>
 
-                                                    <td>{{ $company->email ? $company->email : '-' }}</td>
-                                                    <td>{{ $company->whatsapp ? $company->whatsapp : '-' }}</td>
+                                                <td>{{ $company->email ? $company->email : '-' }}</td>
+                                                <td>{{ $company->whatsapp ? $company->whatsapp : '-' }}</td>
 
-                                                    <td>
-                                                        <a data-id="{{ $company->whatsapp }}" href="#btnModal" data-toggle="modal">
-                                                            <i class="fab fa-2x text-success fa-whatsapp"></i>
-                                                        </a>
-                                                    </td>
-                                        </tr>
-                                            @endforeach
+                                                <td>
+                                                    <a data-id="{{ $company->whatsapp }}" href="#btnModal" class="singlePhone"
+                                                       data-toggle="modal">
+                                                        <i class="fab fa-2x text-success fa-whatsapp"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
 
                                     </table>
-                                    {{ $companies->links() }}
-                                    <!--end: Datatable-->
+                                {{ $companies->links() }}
+                                <!--end: Datatable-->
                                 </div>
                             </div>
                         </div>
@@ -132,7 +135,6 @@
                     </div>
                 </div>
                 <!--end::Row-->
-
 
                 <!--end::Dashboard-->
             </div>
@@ -149,20 +151,22 @@
                                 <i aria-hidden="true" class="ki ki-close"></i>
                             </button>
                         </div>
-                        <form class="form-group form-horizontal" action="{{ route('send_whatsapp_message') }}" method="POST"
+                        <form class="form-group form-horizontal" action="{{ route('send_whatsapp_message') }}"
+                              method="POST"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
 
                                 <div class="form-group">
                                     <label>{{ trans('dashboard.WhatsApp Number') }}</label>
-                                    <textarea id="mobile_val" type="text" name="whatsapp" value="" class="form-control" rows="3">
+                                    <textarea id="mobile_val"  name="whatsapp"  class="form-control"
+                                              rows="3">
 
-                                </textarea>
+                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>{{ trans('dashboard.Message Type') }}</label>
-                                    <select id="msg_type" name="type" class="form-control">
+                                    <select id="msg_type" name="type" class="form-control" required>
                                         <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
                                         <option value="text">{{ trans('dashboard.text') }}</option>
                                         <option value="image">{{ trans('dashboard.image') }}</option>
@@ -173,14 +177,16 @@
                                 <div id="file" style="display:none;" class="form-group">
                                     <label>{{ trans('dashboard.attachment') }}</label>
                                     <div></div>
-                                    <div  class="custom-file">
-                                        <input type="file" name="document" class="custom-file-input" >
-                                        <label class="custom-file-label" for="customFile">{{ trans('dashboard.Choose file') }}</label>
+                                    <div class="custom-file">
+                                        <input type="file" name="document" class="custom-file-input">
+                                        <label class="custom-file-label"
+                                               for="customFile">{{ trans('dashboard.Choose file') }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>{{ trans('dashboard.Message') }}</label>
-                                    <textarea name="messagetxt" class="form-control" id="exampleTextarea" rows="2"></textarea>
+                                    <textarea name="messagetxt" class="form-control" id="exampleTextarea" rows="2"
+                                              required></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -207,17 +213,64 @@
 
 
 @section('script')
+    <script>
+        function contains(arr, element) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === element) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+
 
     <script>
-        $('a[href="#btnModal"]').on('click',function(){
-            var id = $(this).attr('data-id');
-            //console.log(id);
-            $('textarea[name="whatsapp"]').val(id);
+        var phones = [];
+        $(document).on('change', '.checkPhones', function () {
+            if (contains(phones, $(this).val())) {
+                var index = phones.indexOf($(this).val());
+                phones.splice(index, 1);
+            } else {
+                phones.push($(this).val());
+
+            }
+
+
+            console.log(phones)
+            // $('.ids').val(JSON.stringify(phones));
+            // console.log($('.ids').val());
+        });
+        $(document).on('click', '.sendMessage', function (e) {
+
+            var phonesText="";
+
+            for (var i = 0 ; i<phones.length ;i++)
+            {
+                phonesText+=phones[i];
+                phonesText+="\n";
+            }
+            $('#mobile_val').html("");
+            $('#mobile_val').html(phonesText);
+
+
+            if (phones.length == 0) {
+                e.preventDefault();
+                alert("Please Select Any Data .")
+            }
+
+        });
+    </script>
+
+    <script>
+        $('.singlePhone').on('click', function () {
+            var phone = $(this).attr('data-id');
+            $('textarea[name="whatsapp"]').html(phone);
         });
 
-        $('#msg_type').on('change',function(){
+        $('#msg_type').on('change', function () {
             var selection = $(this).val();
-            switch(selection){
+            switch (selection) {
                 case "image":
                 case "document":
                 case "video":
@@ -228,5 +281,7 @@
             }
         });
     </script>
+
+
 
 @endsection

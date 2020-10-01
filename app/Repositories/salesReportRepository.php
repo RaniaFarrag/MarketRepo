@@ -38,10 +38,9 @@ class salesReportRepository implements salesReportRepositoryInterface
     /** View All Roles */
     public function index($request , $all = null)
     {
-
         $ids = $request->ids;
         $checkAll = $request->checkAll;
-        if ((!isset($ids[0]) &&is_null($ids[0])) || $checkAll == 1)
+        if ((!isset($ids) &&is_null($ids)) || $checkAll == 1)
         {
             $query = $request->company ? $request->company->salesLeadReports() : $this->sales_lead_report_model::query();
 

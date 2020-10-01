@@ -75,4 +75,8 @@ class User extends Authenticatable
     public function assignedCompanies(){
         return $this->hasMany(Company::class , 'representative_id' , 'id');
     }
+
+    public function logs(){
+        return $this->hasMany(Log::class);
+    }
 }

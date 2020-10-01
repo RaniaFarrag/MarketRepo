@@ -262,6 +262,7 @@ return [
     'Updates' => 'التحديثات',
     'Remarks' => 'ملاحظات',
     'nextFollowUp' => 'المتابعة القادمة',
+    'sendemail' => 'ارسال بريد الكتروني',
 
 
 

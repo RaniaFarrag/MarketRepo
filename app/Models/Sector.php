@@ -33,8 +33,8 @@ class Sector extends Model
 
     public static function all($columns = Array())
     {
-//        if (Auth::user()->hasRole('Super Admin') || Auth::user()->hasRole('Admin'))
-//        return Auth::user()->sectors;
+        if (Auth::user()->hasRole('Sales Manager') || Auth::user()->hasRole('Sales Representative'))
+            return Auth::user()->sectors;
 
         return self::get();
     }

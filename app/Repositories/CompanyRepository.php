@@ -22,9 +22,7 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationData;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
@@ -563,6 +561,19 @@ class CompanyRepository implements CompanyRepositoryInterface
         $data['countries'] = $this->country_model::all();
         $data['representatives'] = $this->user_model::where('parent_id', Auth::user()->id)->get();
         return $data;
+    }
+
+    /** Send Email To Company */
+    public function sendEmail($request){
+        //dd($request->message);
+        Mail::send([],[], function ($message) use ($request) {
+            $message->to('eng19956@gmail.com');
+            $message->subject('Mail Sysytem');
+            $message->setBody($request->message);
+        });
+
+        Alert::success('success', trans('dashboard. sent successfully'));
+        return redirect(route('companies.index'));
     }
 
 }
