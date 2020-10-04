@@ -168,15 +168,15 @@ Route::get('update/database/companies',function (){
     {
         $company= \App\Models\Company::create([
             'id' => $value->id , // add id in fillable
-            'logo' => $value->com_photo ,
             'name:ar' => $value->com_name_ar , // Make name null in phpMyAdmin
             'name:en' => $value->com_name_en , // Make name null in phpMyAdmin
+            'logo' => $value->com_photo ,
             'whatsapp' => $value->com_mobile ,
             'phone' => $value->com_phone ,
             'sector_id' => $value->sector_id ,
             'sub_sector_id' => $value->com_job_category ,
             'country_id' => $value->com_country ,
-            'com_city' => $value->city_id ,
+            'city_id' => $value->city_id ,
             'district' => $value->district ,
             'location' => $value->com_district ,
             'branch_number' => $value->com_branches,
@@ -284,11 +284,6 @@ Route::get('update/database/users',function (){
             'email' => $value->email ,
             'password' => $value->password ,
             'active' => $value->active ,
-            'country_id' => $value->com_country ,
-            'com_city' => $value->city_id ,
-            'district' => $value->district ,
-            'location' => $value->com_district ,
-            'branch_number' => $value->com_branches,
         ]);
     }
 });

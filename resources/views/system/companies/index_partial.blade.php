@@ -131,7 +131,7 @@
                                 @if($company->first_business_card)
                                     <a class="business_card" data-toggle="modal"
                                        href="#myModal" data-name="{{ $company->name }}" data-img-url="{{ asset('storage/images/'.$company->first_business_card) }}">
-                                        <img style="width: 60px;"
+                                        <img style="width: 60px;height: 30px;"
                                              src="{{ asset('storage/images/'.$company->first_business_card) }}">
                                     </a>
                                 @endif
@@ -139,7 +139,7 @@
                                 @if($company->second_business_card)
                                     <a class="business_card" data-toggle="modal"
                                        href="#myModal" data-name="{{ $company->name }}" data-img-url="{{ asset('storage/images/'.$company->second_business_card) }}">
-                                        <img style="width: 60px;"
+                                        <img style="width: 60px;height: 30px;"
                                              src="{{ asset('storage/images/'.$company->second_business_card) }}">
                                     </a>
                                 @endif
@@ -147,7 +147,7 @@
                                 @if($company->third_business_card)
                                     <a class="business_card" data-toggle="modal"
                                        href="#myModal" data-name="{{ $company->name }}" data-img-url="{{ asset('storage/images/'.$company->third_business_card) }}">
-                                        <img style="width: 60px;"
+                                        <img style="width: 60px;height: 30px;"
                                              src="{{ asset('storage/images/'.$company->third_business_card) }}">
                                     </a>
                                 @endif

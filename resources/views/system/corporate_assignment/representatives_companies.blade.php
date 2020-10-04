@@ -78,14 +78,16 @@
                                     <table id="myTable" class="table table-bordered text-center">
                                         <thead>
                                         <tr>
+                                            <th>{{ trans('dashboard.Sl.No') }}</th>
                                             <th>{{ trans('dashboard.Representative') }}</th>
                                             <th>{{ trans('dashboard.Representative companies') }}</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @foreach($representatives as $representative)
+                                            @foreach($representatives as $k=>$representative)
                                                 <tr>
+                                                    <td>{{ $k+1 }}</td>
                                                     <td>{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</td>
                                                     <td><a class="btn btn-success font-weight-bold"
                                                            href="{{ route('get_companies_of_representative' , $representative->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>

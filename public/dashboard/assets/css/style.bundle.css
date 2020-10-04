@@ -62716,3 +62716,12 @@ button.navi-link {
     margin: 0;
 }
 .table th, .table td {vertical-align: middle;}
+
+
+
+table thead {
+    background:#f0f8ff;
+}
+table tbody tr td:first-child {
+    background: #f0f8ff;
+}

@@ -50,7 +50,7 @@
                     <!--begin:Aside Content-->
                     <div class="text-dark-75">
                         <a href="#">
-                            <img src="{{ asset('dashboard/assets/media/logos/logo-letter-13.png') }}" class="max-h-75px"
+                            <img src="{{ asset('dashboard/assets/media/logos/logo-letter-13.png') }}" class="max-h-75px img-fluid"
                                  alt=""/>
                         </a>
                         <h3 class="mb-8 mt-22 font-weight-bold">Welcome In Marketing system</h3>
