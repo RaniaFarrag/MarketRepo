@@ -10,6 +10,7 @@ class CompanyNeed extends Model
 {
     use SoftDeletes;
     protected $fillable = [
+        'id',
         'employment_type_id',
         'required_position',
         'job_description',

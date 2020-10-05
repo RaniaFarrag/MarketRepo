@@ -40,7 +40,7 @@ class CompanyController extends Controller
             $data['count']= count($companies);
             return response()->json($data);
         }
-
+        //dd($companies);
         return view('system.companies.index')->with(['companies' => $companies ,
             'sectors' => $sectors , 'countries' => $countries , 'representatives'=>$representatives]);
     }
@@ -80,16 +80,21 @@ class CompanyController extends Controller
     /** Show One Company */
     public function show(Company $company)
     {
+//        dd($company);
         $evaluation_status_user = '';
         $client_status_user = '';
-
+//        dd(555);
         if ($company->client_status){
-            $client_status_user = User::findOrFail($company->client_status_user_id);
+            if ($company->client_status_user){
+                $client_status_user = User::findOrFail($company->client_status_user_id);
+            }
             //return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
         }
 
         if ($company->evaluation_status){
-            $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
+            if ($company->evaluator){
+                $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
+            }
             //dd($evaluation_status_user);
         }
 

@@ -148,7 +148,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->name)
             $query->whereTranslationLike('name', '%' . $request->name . '%');
 
-        return $all ? $query->get() : $query->paginate(20);
+        return $all ? $query->get() : $query->paginate(18);
     }
 
     /** Store Company */

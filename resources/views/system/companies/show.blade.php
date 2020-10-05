@@ -99,15 +99,12 @@
                                                 @elseif($company->evaluation_status == 3)
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">C</span>
                                                 @endif
-                                                <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
-                                                    @if(app()->getLocale() == 'ar')
-                                                        {{ $evaluation_status_user->name }}
-                                                    @else
-                                                        {{ $evaluation_status_user->name_en }}
+                                                    @if($evaluation_status_user)
+                                                        <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
+                                                            {{ $evaluation_status_user->name }}
+                                                        </span>
                                                     @endif
-                                                </span>
                                             @endif
-
 
                                             <!--end::Name-->
                                             @if($company->client_status)
@@ -122,13 +119,12 @@
                                                     {{ trans('dashboard.By User') }}
                                                 @endif
                                                 {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
-                                                <span class="label  label-dark label-inline font-weight-bolder ml-1">
-                                                    @if (app()->getLocale() == 'ar')
-                                                        {{ $client_status_user->name }}
-                                                    @else
-                                                        {{ $client_status_user->name_en }}
+                                                    @if($client_status_user)
+                                                        <span class="label  label-dark label-inline font-weight-bolder ml-1">
+                                                            {{ $client_status_user->name }}
+
+                                                        </span>
                                                     @endif
-                                                </span>
                                             @endif
                                         </div>
 
@@ -145,11 +141,10 @@
                                 <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1"> <i class="fa fa-suitcase text-primary"></i></span>
                                                 {{ $company->subSector->name ? $company->subSector->name : '-' }}
                                             </a>
-                                            <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
-                               <i
-                                       class="fas far fa-map-marker text-primary"></i>
-                                </span> {{ $company->location ? $company->location : '-' }}
+                                            <a href="{{ $company->location }}" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
+                                                    <i class="fas far fa-map-marker text-primary"></i>
+                                                </span>
                                             </a>
 
                                             <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">

@@ -173,8 +173,24 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Location') }}
                                 :</span>
-                            <a href="#"> <span class="text-muted font-weight-bold">
-                                    <i class="fas far fa-compass text-primary fa-spin"></i> {{ $company->location ? $company->location : '-' }}</span></a>
+                            @if($company->location)
+                                <a target="_blank" href="{{ $company->location }}">
+                                    <span class="text-muted font-weight-bold">
+                                        <i class="fas far fa-compass text-primary fa-spin"></i>
+                                        {{ $company->city->name }}
+                                    </span>
+                                </a>
+
+                            @elseif($company->city)
+                                <a target="_blank" href="#">
+                                    <span class="text-muted font-weight-bold">
+                                    {{ $company->city->name }}
+                                    </span>
+                                </a>
+                            @else
+                                -
+                            @endif
+
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}
@@ -183,16 +199,17 @@
                         </div>
                         {{--@if($company->company_representative_name)--}}
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Representative name') }}
+                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Representative name') }}
                                     :</span>
-                                <span class="text-muted font-weight-bold">{{ $company->company_representative_name ? $company->company_representative_name : '-' }}</span>
+
+                                <span title="{{ $company->representative ? $company->representative->name : '' }}" class="text-muted font-weight-bold">
+                                    {{--{{ $company->representative->name ? \Illuminate\Support\Str::limit($company->representative->name , 150, $end = '.') : '-' }}--}}
+                                    {!! $company->representative ? Str::limit($company->representative->name, 15) : '-' !!}
+                                </span>
                             </div>
                         {{--@endif--}}
                         <div class="d-flex justify-content-between align-items-center">
-                            {{--@if($company->email || $company->twitter || $company->linkedin || $company->whatsapp)--}}
-                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }}
-                                    :</span>
-                            {{--@endif--}}
+                            <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }}:</span>
                             <span class="text-muted font-weight-bold">
                                 @if($company->email)
                                     <a class="md-effect sociall" data-toggle="modal"
@@ -225,6 +242,10 @@
                                         <img class="img-responsive"
                                              src="https://marketing-hc.com/system/assets/img/icon/whats.png">
                                     </a>
+                                @endif
+
+                                @if(!$company->email && !$company->twitter && !$company->linkedin && !$company->whatsapp)
+                                    -
                                 @endif
                             </span>
                         </div>

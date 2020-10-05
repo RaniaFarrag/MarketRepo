@@ -146,7 +146,7 @@
                                             <select id="data_flow" class="form-control select2" name="data_flow"
                                                     required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option {{ $companyneed->data_flow == 0 ? 'selected' : '' }} value="0">{{ trans('dashboard.Not required') }}</option>
+                                                <option {{ $companyneed->data_flow == 3 ? 'selected' : '' }} value="3">{{ trans('dashboard.Not required') }}</option>
                                                 <option {{ $companyneed->data_flow == 1 ? 'selected' : '' }} value="1" >{{ trans('dashboard.Required from inside the Kingdom') }}</option>
                                                 <option {{ $companyneed->data_flow == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Required from outside the Kingdom') }}</option>
                                             </select>

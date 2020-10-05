@@ -19,7 +19,7 @@ class CreateCompanyNeedsTable extends Migration
             $table->foreign('employment_type_id')->references('id')->on('employment_types')->onDelete('cascade');
             $table->string('required_position')->nullable();
             $table->text('job_description')->nullable();
-            $table->integer('candidates_number')->nullable();
+            $table->string('candidates_number')->nullable();
             $table->bigInteger('country_id')->unsigned()->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->integer('gender');
@@ -41,8 +41,8 @@ class CreateCompanyNeedsTable extends Migration
             $table->string('area_of_experience')->nullable();
             $table->string('other_skills')->nullable();
 
-            $table->bigInteger('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->bigInteger('company_id');
+            //$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 
             $table->bigInteger('sector_id')->unsigned()->nullable();
             $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');

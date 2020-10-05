@@ -68,6 +68,8 @@ class Company extends Model
         'confirm_need_user_id',
         'confirm_contract',
         'confirm_contract_user_id',
+        'created_at',
+        'updated_at',
     ];
 
     protected $dates = ['deleted_at'];
@@ -97,6 +99,10 @@ class Company extends Model
 
     public function confirm_contract_user(){
         return $this->belongsTo(User::class,'confirm_contract_user_id');
+    }
+
+    public function client_status_user(){
+        return $this->belongsTo(User::class,'client_status_user_id');
     }
 
     public function companyDesignatedcontacts(){

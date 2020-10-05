@@ -146,7 +146,7 @@
                                             <select id="data_flow" class="form-control select2" name="data_flow"
                                                     required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="0">{{ trans('dashboard.Not required') }}</option>
+                                                <option value="3">{{ trans('dashboard.Not required') }}</option>
                                                 <option value="1" >{{ trans('dashboard.Required from inside the Kingdom') }}</option>
                                                 <option value="2">{{ trans('dashboard.Required from outside the Kingdom') }}</option>
                                             </select>

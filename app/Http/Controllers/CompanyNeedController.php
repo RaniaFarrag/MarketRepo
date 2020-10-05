@@ -86,15 +86,16 @@ class CompanyNeedController extends Controller
     public function edit(CompanyNeed $companyNeed)
     {
         $countries = $this->companyNeedRepositoryinterface->create($companyNeed->company_id);
-        $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($companyNeed->sector_id);
+        $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($companyNeed->company->sector_id);
 
-        if ($companyNeed->sector_id == 1){
-            //dd($company->sector_id);
+        //dd($companyNeed->company->sector_id);
+        if ($companyNeed->company->sector_id == 1){
+            //dd($companyNeed->company->sector_id);
             return view('system.companies.needs.healthcare.edit')->with(['companyneed' => $companyNeed , 'countries' => $countries , 'employeement_types' => $employeement_types ,
-                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->sector_id]);
+                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->company->sector_id]);
         }
         return view('system.companies.needs.edit')->with(['companyneed' => $companyNeed ,'countries' => $countries , 'employeement_types' => $employeement_types ,
-                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->sector_id]);
+                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->company->sector_id]);
     }
 
     /**

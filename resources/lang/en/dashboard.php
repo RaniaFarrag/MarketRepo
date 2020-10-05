@@ -88,7 +88,7 @@ return [
     'Edit Sub-Sector' => 'Edit Sub-Sector',
     'All permissions' => 'All permissions',
     'Add New permission' => 'Add New permission',
-    'Permission Name Arabic' => 'Add New permission',
+    'Permission Name Arabic' => 'Permission Name Arabic',
     'Permission Name English' => 'Permission Name English',
     'Edit permission' => 'Edit permission',
 
@@ -136,7 +136,7 @@ return [
     'Communication Type' => 'Communication Type',
     'Company Status' => 'Company Status',
     'Representative' => 'Representative',
-    'Company Representative name' => 'Company Representative name',
+    'Representative name' => 'Representative name',
     'Confirm the interview' => 'Confirm the interview',
     'Company Date' => 'Company Date',
     'Client Status' => 'Client Status',
@@ -261,16 +261,5 @@ return [
     'Remarks' => 'Remarks',
     'nextFollowUp' => 'nextFollowUp',
     'sendemail' => 'Send Email',
-
-
-
-
-
-
-
-
-
-
-
 
 ];

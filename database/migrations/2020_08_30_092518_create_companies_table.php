@@ -60,7 +60,7 @@ class CreateCompaniesTable extends Migration
 
             $table->text('notes')->nullable();
 
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();

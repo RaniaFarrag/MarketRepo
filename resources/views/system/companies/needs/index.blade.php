@@ -106,7 +106,7 @@
                                                     <td>{{ $k+1 }}</td>
                                                     <td>{{ $need->required_position }}</td>
                                                     <td>{{ $need->created_at }}</td>
-                                                    <td>{{ $need->user->name }}</td>
+                                                    <td>{{ $need->user ? $need->user->name : '-' }}</td>
                                                     <td><a class="btn btn-success font-weight-bold" href="#">{{ trans('dashboard.Needs Details') }}</a></td>
                                                     <td><a class="btn btn-success font-weight-bold" href="{{ route('company_needs.edit' , $need->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                                     <td>

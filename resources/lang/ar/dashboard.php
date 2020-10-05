@@ -138,7 +138,7 @@ return [
     'Communication Type' => 'نوع التواصل',
     'Company Status' => 'حالة الشركة',
     'Representative' => 'المسؤول',
-    'Company Representative name' => 'اسم المسؤول',
+    'Representative name' => 'اسم المسؤول',
     'Confirm the interview' => 'تأكيد المقابلة',
     'Company Date' => 'تاريخ الشركة',
     'Client Status' => 'حالة العميل',
@@ -263,11 +263,6 @@ return [
     'Remarks' => 'ملاحظات',
     'nextFollowUp' => 'المتابعة القادمة',
     'sendemail' => 'ارسال بريد الكتروني',
-
-
-
-
-
 
 
 
