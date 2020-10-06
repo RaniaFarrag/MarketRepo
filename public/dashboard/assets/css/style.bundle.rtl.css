@@ -63220,3 +63220,7 @@ table thead {
 table tbody tr td:first-child {
     background: #f0f8ff;
 }
+
+
+.phone {  direction: ltr;
+    unicode-bidi: embed;}

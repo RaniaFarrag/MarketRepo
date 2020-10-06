@@ -91,6 +91,7 @@
                                         <th>{{ trans('dashboard.User E-mail') }}</th>
                                         <th>{{ trans('dashboard.User Roles') }}</th>
                                         <th>{{ trans('dashboard.Sector') }}</th>
+                                        <th>{{ trans('dashboard.active') }}</th>
                                         <th>{{ trans('dashboard.edit') }}</th>
                                         <th>{{ trans('dashboard.delete') }}</th>
 
@@ -109,6 +110,15 @@
                                                 @foreach($user->sectors as $sector)
                                                     {{ $sector->name }} -
                                                 @endforeach
+                                            </td>
+                                            <td>
+                                                <span class="switch switch-icon">
+                                                     <label>
+                                                        <input data-id="{{ $user->id }}" id="active" name="active" value="1" type="checkbox"
+                                                                {{ $user->active == 1 ? 'checked' : '' }}/>
+                                                        <span></span>
+                                                    </label>
+                                                </span>
                                             </td>
                                             <td><a class="btn btn-success font-weight-bold" href="{{ route('users.edit' , $user->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                             <td>
@@ -142,5 +152,50 @@
     </div>
     <!--end::Content-->
 
+@endsection
+
+@section('script')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
+    <script>
+        // $("#active").on('change' , function () {
+            $('body').on('click', '#active', function (e) {
+                var user_id =  $(this).attr('data-id') ;
+                var active = this.checked ? this.value : '';
+                if(active) {
+                    $.ajax({
+                        type: "get",
+                        data: {
+                            'user_id' : user_id
+                        },
+                        url: "{{ route('active_user') }}",
+                        success:function (response) {
+                            swal('Success' , response , 'success');
+                        },
+                        error:function () {
+                            swal('Faild' , response , 'failed');
+                        }
+                    });
+                }
+                else {
+                    $.ajax({
+                        type: "get",
+                        data: {
+                            'user_id' : user_id
+                        },
+                        url: "{{ route('deactivate_user') }}" ,
+                        success:function (response) {
+                            swal('Success' , response , 'success');
+                        },
+                        error:function () {
+                            swal('Faild' , response , 'failed');
+                        }
+                    });
+                }
+
+        })
+    </script>
 
 @endsection

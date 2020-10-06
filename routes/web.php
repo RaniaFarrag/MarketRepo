@@ -41,6 +41,11 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Users */
     Route::resource('users' , 'UserController');
 
+    /** Active User */
+    Route::get('active' , 'UserController@activeUser')->name('active_user');
+    /** Deactivate User */
+    Route::get('deactivate' , 'UserController@deactivateUser')->name('deactivate_user');
+
     /** Manage Sectors */
     Route::resource('sectors' , 'SectorController');
 

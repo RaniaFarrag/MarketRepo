@@ -130,4 +130,15 @@ class UserController extends Controller
         }
         return view('system.reports.rep_report', compact('reps'));
     }
+
+    /** Active User */
+    public function activeUser(Request $request){
+        return $this->userRepositoryinterface->activeUser($request);
+    }
+
+    /** Deactivate User */
+    public function deactivateUser(Request $request){
+        //dd($request->all());
+        return $this->userRepositoryinterface->deactivateUser($request);
+    }
 }

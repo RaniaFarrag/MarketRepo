@@ -181,4 +181,24 @@ class UserRepository implements UserRepositoryInterface
         $data['confirm_contract'] =  $data['rep']->companies()->where('confirm_contract',1)->count();
         return $data;
     }
+
+    /** Active User */
+    public function activeUser($request){
+        $this->user_model::where('id', $request->user_id)
+                ->update([
+                    'active' => 1
+                ]);
+        $this->addLog(auth()->id(), $request->user_id , 'users', 'تم تنشيط مستخدم ', 'user has been actived');
+        return trans('dashboard.Activation completed successfully');
+    }
+
+    /** Deactivate User */
+    public function deactivateUser($request){
+        $this->user_model::where('id', $request->user_id)
+            ->update([
+                'active' => 0
+            ]);
+        $this->addLog(auth()->id(), $request->user_id , 'users', 'تم تعطيل مستخدم ', 'user has been deactivate');
+        return trans('dashboard.DeActivation completed successfully');
+    }
 }

@@ -39,4 +39,12 @@ interface UserRepositoryInterface
     /** Representative Report */
     public function rep_companies_report($request);
 
+    /** Active User */
+    public function activeUser($request);
+
+    /** Deactivate User */
+    public function deactivateUser($request);
+
+
+
 }

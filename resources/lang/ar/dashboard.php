@@ -139,6 +139,7 @@ return [
     'Company Status' => 'حالة الشركة',
     'Representative' => 'المسؤول',
     'Representative name' => 'اسم المسؤول',
+    'Company Representative name' => 'اسم المسؤول',
     'Confirm the interview' => 'تأكيد المقابلة',
     'Company Date' => 'تاريخ الشركة',
     'Client Status' => 'حالة العميل',
@@ -263,6 +264,15 @@ return [
     'Remarks' => 'ملاحظات',
     'nextFollowUp' => 'المتابعة القادمة',
     'sendemail' => 'ارسال بريد الكتروني',
+    'Not required' => 'ارسال بريد الكتروني',
+    'Not required' => 'غير مطلوبه',
+    'Required from inside the Kingdom' => 'مطلوبه من داخل المملكة',
+    'Required from outside the Kingdom' => 'مطلوبه من خارج المملكة',
+    'yes' => 'نعم',
+    'No' => 'لا',
+    'updated successfully' => 'تم التحديث بنجاح',
+    'DeActivation completed successfully' => 'تم التعطيل بنجاح',
+    'Activation completed successfully' => 'تم التنشيط بنجاح',
 
 
 

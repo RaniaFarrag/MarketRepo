@@ -99,14 +99,15 @@
                                                 @elseif($company->evaluation_status == 3)
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">C</span>
                                                 @endif
-                                                    @if($evaluation_status_user)
-                                                        <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
+                                                @if($evaluation_status_user)
+                                                        {{ trans('dashboard.By User') }}
+                                                    <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
                                                             {{ $evaluation_status_user->name }}
                                                         </span>
-                                                    @endif
+                                                @endif
                                             @endif
 
-                                            <!--end::Name-->
+                                        <!--end::Name-->
                                             @if($company->client_status)
                                                 @if($company->client_status == 1)
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Hot') }}</span>
@@ -116,15 +117,15 @@
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Cold') }}</span>
                                                 @elseif($company->client_status == 4)
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Awarded') }}</span>
-                                                    {{ trans('dashboard.By User') }}
+
                                                 @endif
                                                 {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
-                                                    @if($client_status_user)
-                                                        <span class="label  label-dark label-inline font-weight-bolder ml-1">
+                                                @if($client_status_user)
+                                                        {{ trans('dashboard.By User') }}
+                                                    <span class="label  label-dark label-inline font-weight-bolder ml-1">
                                                             {{ $client_status_user->name }}
-
-                                                        </span>
-                                                    @endif
+                                                    </span>
+                                                @endif
                                             @endif
                                         </div>
 
@@ -138,12 +139,13 @@
                                             </a>
                                             <a href="#"
                                                class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1"> <i class="fa fa-suitcase text-primary"></i></span>
+                                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1"> <i class="fa fa-suitcase text-primary"></i></span>
                                                 {{ $company->subSector->name ? $company->subSector->name : '-' }}
                                             </a>
                                             <a href="{{ $company->location }}" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
                                                 <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
                                                     <i class="fas far fa-map-marker text-primary"></i>
+                                                    {{ $company->city ? $company->city->name : '-' }}
                                                 </span>
                                             </a>
 
@@ -255,9 +257,18 @@
                                 <div class="form-group row my-2">
                                     <label class="col-4 col-form-label">{{ trans('dashboard.Location') }}:</label>
                                     <div class="col-8">
+                                        {{--<span class="form-control-plaintext font-weight-bolder">--}}
+                                        {{--<i class="fas far fa-compass text-primary fa-spin"></i>--}}
+                                        {{--{{ $company->location }}--}}
+                                        {{--</span>--}}
                                         <span class="form-control-plaintext font-weight-bolder">
-                                           {{ $company->location }}
-                                        </span>
+                                        <a target="_blank" href="{{ $company->location }}">
+                                            <span class="text-muted font-weight-bold">
+                                                <i class="fas far fa-compass text-primary fa-spin"></i>
+                                                {{ $company->city->name }}
+                                            </span>
+                                        </a>
+                                            </span>
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">
@@ -280,7 +291,7 @@
                                     <label class="col-4 col-form-label">{{ trans('dashboard.Website') }}:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
-                                          <a href="{{ $company->website }}" target="_blank">{{ $company->website }}</a>
+                                          <a href="{{ $company->website }}" target="_blank"><i class="icon-xl fas fa-link"></i></a>
                                         </span>
                                     </div>
                                 </div>
@@ -288,7 +299,9 @@
                                     <label class="col-4 col-form-label">{{ trans('dashboard.Linkedin') }}:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
-                                          <a href="{{ $company->linkedin }}" target="_blank">{{ $company->linkedin }}</a>
+                                          <a href="{{ $company->linkedin }}" target="_blank">
+                                             <i class="fab fa-linkedin-in linkedincolor"></i>
+                                              </a>
                                         </span>
                                     </div>
                                 </div>
@@ -296,7 +309,7 @@
                                     <label class="col-4 col-form-label">{{ trans('dashboard.Twitter') }}:</label>
                                     <div class="col-8">
                                         <span class="form-control-plaintext font-weight-bolder">
-                                          <a href="{{ $company->twitter }}" target="_blank">{{ $company->twitter }}</a>
+                                          <a href="{{ $company->twitter }}" target="_blank"><i class="fab fa-twitter twittercolor"></i></a>
                                         </span>
                                     </div>
                                 </div>
@@ -356,9 +369,9 @@
                                                                              <a target="_blank" href="{{ $company->companyDesignatedcontacts[$i]->linkedin ? $company->companyDesignatedcontacts[$i]->linkedin : '-' }}">
                                                                                 <i class="fab fa-linkedin  text-primary"></i>
                                                                              </a>
-                                                                          @else
-                                                                              -
-                                                                          @endif
+                                                                         @else
+                                                                             -
+                                                                         @endif
                                                                     </span>
 
                                                                 </div>
@@ -366,7 +379,7 @@
 
                                                             <div class="form-group row my-2">
                                                                 <label class="col-5 col-form-label">{{ trans('dashboard.Whatsapp') }}:</label>
-                                                                    <div class="col-7">
+                                                                <div class="col-7">
                                                                         <span class="form-control-plaintext font-weight-bolder">
                                                                             @if($company->companyDesignatedcontacts[$i]->whatsapp)
                                                                                 <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->companyDesignatedcontacts[$i]->whatsapp }}">
@@ -375,7 +388,7 @@
                                                                             @else -
                                                                             @endif
                                                                       </span>
-                                                                  </div>
+                                                                </div>
                                                             </div>
 
                                                             <div class="form-group row my-2">
@@ -389,7 +402,7 @@
                                                                         @else -
                                                                         @endif
                                                                   </span>
-                                                              </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     @else
@@ -452,7 +465,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                     @endif
+                                                    @endif
                                                 @endfor
                                             </div>
 
@@ -488,94 +501,94 @@
 
 
                                             <div class="separator separator-dashed my-5"></div>
-                                                <div class="row">
-                                                    <div class="col-md-4 border">
-                                                <div class="card-header h-auto p-5">
-                                                    <div class="card-title m-0">
-                                                        <h3 class="card-label  m-0">
-                                                            {{ trans('dashboard.Company Representative') }}
+                                            <div class="row">
+                                                <div class="col-md-4 border">
+                                                    <div class="card-header h-auto p-5">
+                                                        <div class="card-title m-0">
+                                                            <h5 class="card-label  m-0">
+                                                                {{ trans('dashboard.Company Representative') }}
 
-                                                        </h3>
-                                                    </div>
+                                                            </h5>
+                                                        </div>
 
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_name ? $company->company_representative_name : '-' }}</span>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Job Title') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_job_title ? $company->company_representative_job_title : '-' }}</span>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_name ? $company->company_representative_name : '-' }}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                    <div class="col-8">
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Job Title') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_job_title ? $company->company_representative_job_title : '-' }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext">
                                                             <span class="font-weight-bolder">{{ $company->company_representative_job_mobile ? $company->company_representative_job_mobile : '-' }} </span>
                                                         </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_job_email ? $company->company_representative_job_email : '-' }}</span>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->company_representative_job_email ? $company->company_representative_job_email : '-' }}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
-                                                    <div class="col-8">
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext font-weight-bolder">
                                                           {{ $company->company_representative_job_phone ? $company->company_representative_job_phone : '-' }}
 
                                                         </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                                    <div class="col-md-4 border">
+                                                <div class="col-md-4 border">
                                                     <div class="card-header h-auto p-5">
                                                         <div class="card-title m-0">
-                                                            <h3 class="card-label  m-0">
+                                                            <h5 class="card-label  m-0">
                                                                 {{ trans('dashboard.HR Director') }}
 
-                                                            </h3>
+                                                            </h5>
                                                         </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</span>
                                                     </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
-                                                    <div class="col-8">
-                                                        <span class="form-control-plaintext font-weight-bolder">{{ $company->hr_director_job_email ? $company->hr_director_job_email : '-' }}</span>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                    <div class="col-8">
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->hr_director_job_email ? $company->hr_director_job_email : '-' }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext">
                                                             <span class="font-weight-bolder"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</span>
                                                         </span>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
-                                                    <div class="col-8">
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext font-weight-bolder">
                                                          {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}
                                                         </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                        <div class="form-group row my-2">
-                                                    <label class="col-4 col-form-label">{{ trans('dashboard.HR Whatsapp') }}:</label>
-                                                    <div class="col-8">
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.HR Whatsapp') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext font-weight-bolder">
                                                             @if($company->hr_director_job_whatsapp)
                                                                 <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->hr_director_job_whatsapp }}">
@@ -585,50 +598,50 @@
                                                                 -
                                                             @endif
                                                         </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                    </div>
 
-                                                    <div class="col-md-4 border">
-                                                        <div class="card-header h-auto p-5">
-                                                            <div class="card-title m-0">
-                                                                <h3 class="card-label  m-0">
-                                                                    {{ trans('dashboard.Contract Manager') }}
-                                                                </h3>
-                                                            </div>
+                                                <div class="col-md-4 border">
+                                                    <div class="card-header h-auto p-5">
+                                                        <div class="card-title m-0">
+                                                            <h5 class="card-label  m-0">
+                                                                {{ trans('dashboard.Contract Manager') }}
+                                                            </h5>
                                                         </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
-                                                            <div class="col-8">
-                                                                <span class="form-control-plaintext font-weight-bolder">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }}</span>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Name') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }}</span>
                                                         </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
-                                                            <div class="col-8">
-                                                                <span class="form-control-plaintext font-weight-bolder">{{ $company->contract_manager_email ? $company->contract_manager_email : '-' }}</span>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Email') }}:</label>
+                                                        <div class="col-8">
+                                                            <span class="form-control-plaintext font-weight-bolder">{{ $company->contract_manager_email ? $company->contract_manager_email : '-' }}</span>
                                                         </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
-                                                            <div class="col-8">
+                                                    </div>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Mobile') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext">
                                                             <span class="font-weight-bolder"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</span>
                                                         </span>
-                                                            </div>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
-                                                            <div class="col-8">
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.Phone') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext font-weight-bolder">
                                                          {{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}
                                                         </span>
-                                                            </div>
                                                         </div>
-                                                        <div class="form-group row my-2">
-                                                            <label class="col-4 col-form-label">{{ trans('dashboard.HR Whatsapp') }}:</label>
-                                                            <div class="col-8">
+                                                    </div>
+                                                    <div class="form-group row my-2">
+                                                        <label class="col-4 col-form-label">{{ trans('dashboard.HR Whatsapp') }}:</label>
+                                                        <div class="col-8">
                                                         <span class="form-control-plaintext font-weight-bolder">
                                                             @if($company->contract_manager_whatsapp)
                                                                 <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->contract_manager_whatsapp }}">
@@ -638,10 +651,10 @@
                                                                 -
                                                             @endif
                                                         </span>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             <div class="separator separator-dashed my-5"></div>
 
                                             <form class="form">
@@ -678,15 +691,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">
+                    <h6 class="modal-title" id="modalTitle">
 
-                    </h5>
+                    </h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="">
+                    <img class="img-fluid"  src="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close
@@ -712,7 +725,7 @@
 
             $('#myModal img').attr('src', $(this).attr('data-img-url'));
             //$("#myModal").dialog("option","title", name);
-            $("#myModal h5").html(name);
+            $("#myModal h6").html(name);
         });
     </script>
 

@@ -137,6 +137,7 @@ return [
     'Company Status' => 'Company Status',
     'Representative' => 'Representative',
     'Representative name' => 'Representative name',
+    'Company Representative name' => 'Company Representative name',
     'Confirm the interview' => 'Confirm the interview',
     'Company Date' => 'Company Date',
     'Client Status' => 'Client Status',
@@ -261,5 +262,13 @@ return [
     'Remarks' => 'Remarks',
     'nextFollowUp' => 'nextFollowUp',
     'sendemail' => 'Send Email',
+    'Not required' => 'Not required',
+    'Required from inside the Kingdom' => 'Required from inside the Kingdom',
+    'Required from outside the Kingdom' => 'Required from outside the Kingdom',
+    'yes' => 'yes',
+    'No' => 'No',
+    'updated successfully' => 'Updated Successfully',
+    'DeActivation completed successfully' => 'DeActivation completed successfully',
+    'Activation completed successfully' => 'Activation completed successfully',
 
 ];

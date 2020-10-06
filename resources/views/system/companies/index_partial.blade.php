@@ -112,7 +112,7 @@
                         <!--begin::Pic-->
                         <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                             <div class="symbol symbol-circle symbol-lg-75 border">
-                                <img src="{{ $company->logo ? asset('storage/images/'.$company->logo) :  'https://marketing-hc.com/photos/5f154b2c6de301595231020.png'}}"
+                                <img src="{{ $company->logo ? asset('storage/images/'.$company->logo) :  'https://fintechng.org/portal/assets/img/logo-default.svg'}}"
                                      alt="image">
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                         <!--begin::Title-->
                         <div class="d-flex flex-column">
                             <a href="{{ route('companies.show' , $company->id) }}"
-                               class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">
+                               class="text-dark font-weight-bold text-hover-primary font-size-h6 mb-0">
                                 {{ $company->name }}
                             </a>
                             <span class="text-muted font-weight-bold">
@@ -163,7 +163,7 @@
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Contact Information') }}
                                 :</span>
                             <a href="#"
-                               class="text-hover-primary">{{ $company->phone ? $company->phone : '-' }}</a>
+                               class="text-hover-primary phone">{{ $company->phone ? $company->phone : '-' }}</a>
                         </div>
                         <div class="d-flex justify-content-between align-items-cente my-1">
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Number of Employees') }}
@@ -216,7 +216,7 @@
                                        href="#btnMail-2863"
                                        data-effect="md-flipHor" req_id="1248">
                                         <img class="img-responsive"
-                                             src="https://marketing-hc.com/system/assets/img/icon/mail.png">
+                                             src="{{ asset('dashboard/assets/media/mail.png') }}">
                                     </a>
                                 @endif
 
@@ -224,7 +224,7 @@
                                     <a class="sociall" href="{{ $company->twitter }}"
                                        target="_blank">
                                         <img class="img-responsive"
-                                             src="https://marketing-hc.com/system/assets/img/icon/twit.png">
+                                             src="{{ asset('dashboard/assets/media/twit.png') }}">
                                     </a>
                                 @endif
 
@@ -232,7 +232,7 @@
                                     <a class="sociall" href="{{ $company->linkedin }}"
                                        target="_blank">
                                         <img class="img-responsive"
-                                             src="https://marketing-hc.com/system/assets/img/icon/linked.png">
+                                             src="{{ asset('dashboard/assets/media/linked.png') }}">
                                     </a>
                                 @endif
                                 @if($company->whatsapp)
@@ -240,7 +240,7 @@
                                        href="https://api.whatsapp.com/send?phone=+{{ $company->whatsapp }}&amp;text=Hi,"
                                        target="_blank">
                                         <img class="img-responsive"
-                                             src="https://marketing-hc.com/system/assets/img/icon/whats.png">
+                                             src="{{ asset('dashboard/assets/media/whats.png') }}">
                                     </a>
                                 @endif
 
