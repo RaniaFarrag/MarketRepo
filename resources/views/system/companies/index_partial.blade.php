@@ -112,7 +112,7 @@
                         <!--begin::Pic-->
                         <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                             <div class="symbol symbol-circle symbol-lg-75 border">
-                                <img src="{{ $company->logo ? asset('storage/images/'.$company->logo) :  'https://fintechng.org/portal/assets/img/logo-default.svg'}}"
+                                <img src="{{ $company->logo ? asset('storage/images/'.$company->logo) :  asset('dashboard/assets/media/logo-default.svg')}}"
                                      alt="image">
                             </div>
                         </div>

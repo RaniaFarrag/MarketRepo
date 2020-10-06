@@ -7,6 +7,7 @@ use App\Interfaces\CompanyNeedRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use Illuminate\Http\Request;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class CompanyNeedController extends Controller
 {
@@ -124,5 +125,25 @@ class CompanyNeedController extends Controller
     public function destroy(CompanyNeed $companyNeed)
     {
         return $this->companyNeedRepositoryinterface->destroy($companyNeed);
+    }
+
+    public function printNeed($need_id){
+
+        $need = CompanyNeed::findOrFail($need_id);
+//        dd($need->company->sector_id);
+        if($need->company->sector_id == 1){
+            $pdf = Pdf::loadView('system.companies.needs.healthcare.healthcare_need_pdf' , compact('need'));
+        }
+        else{
+            $pdf = Pdf::loadView('system.companies.needs.need_pdf' , compact('need'));
+        }
+
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "company_need.pdf'"]);
     }
 }

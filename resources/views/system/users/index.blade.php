@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
-
+<style>
+    .switch label {
+        margin: auto;
+    }
+</style>
 @section('body')
 
 

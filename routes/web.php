@@ -78,6 +78,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         'uses' => 'CompanyNeedController@create'
     ]);
 
+    Route::get('print/need/{need_id}' , 'CompanyNeedController@printNeed')->name('print_need');
+
     /**************************************************GET******************************************************/
 
     /** Get Sub-Sectors Of Sector */

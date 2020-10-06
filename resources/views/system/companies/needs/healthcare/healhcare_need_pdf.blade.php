@@ -87,6 +87,16 @@
         }
     </style>
 
+
+    @if(app()->getLocale() == 'en')
+
+
+        @elseif(app()->getLocale() == 'ar')
+
+
+
+    @endif
+
 </head>
 
 
