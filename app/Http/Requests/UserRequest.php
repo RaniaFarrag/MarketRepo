@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required',
                 'email' => 'required | email | max:255 | unique:users',
-                'password' => 'required | min:8 | confirmed',
+                //'password' => 'required | min:8 | confirmed',
                 'role' => 'required',
                 'parent_id' => 'required',
             ];
@@ -38,7 +38,7 @@ class UserRequest extends FormRequest
            return [
                'name' => 'required',
                'email' => 'required | email | max:255 | unique:users',
-               'password' => 'required | min:8 | confirmed',
+               //'password' => 'required | min:8 | confirmed',
                'role' => 'required',
                'sector_ids' => 'required',
             ];
@@ -47,7 +47,7 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required',
                 'email' => 'required | email | max:255 | unique:users',
-                'password' => 'required | min:8 | confirmed',
+                //'password' => 'required | min:8 | confirmed',
                 'role' => 'required',
             ];
         }

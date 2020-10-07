@@ -270,5 +270,11 @@ return [
     'updated successfully' => 'Updated Successfully',
     'DeActivation completed successfully' => 'DeActivation completed successfully',
     'Activation completed successfully' => 'Activation completed successfully',
+    'active' => 'Active',
+    'Client Name' => 'Client Name',
+    'Educational Qualification' => 'Educational Qualification',
+    'Existing' => 'Existing',
+    'Not Exist' => 'Not Exist',
+    'Select Manager' => 'Select Manager',
 
 ];

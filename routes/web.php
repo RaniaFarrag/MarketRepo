@@ -309,6 +309,7 @@ Route::get('update/database/company/needs' , function (){
         if (!$value->delated_at){
             $Company_need = \App\Models\CompanyNeed::create([
                 'id' => $value->id , // add id in fillable
+                'employment_type_id' => $value->Manpower ,
                 'required_position' => $value->RequiredPosition ,
                 'job_description' => $value->JobDescription ,
                 'candidates_number' => $value->candidates ,
@@ -330,6 +331,7 @@ Route::get('update/database/company/needs' , function (){
                 'area_of_experience' => $value->AreaOfExpertise ,
                 'other_skills' => $value->OtherSkills ,
                 'company_id' => $value->company_id ,
+                'user_id' => $value->user ,
                 'created_at' => $value->created_at ,
                 'updated_at' => $value->updated_at ,
 

@@ -264,7 +264,6 @@ return [
     'Remarks' => 'ملاحظات',
     'nextFollowUp' => 'المتابعة القادمة',
     'sendemail' => 'ارسال بريد الكتروني',
-    'Not required' => 'ارسال بريد الكتروني',
     'Not required' => 'غير مطلوبه',
     'Required from inside the Kingdom' => 'مطلوبه من داخل المملكة',
     'Required from outside the Kingdom' => 'مطلوبه من خارج المملكة',
@@ -273,6 +272,12 @@ return [
     'updated successfully' => 'تم التحديث بنجاح',
     'DeActivation completed successfully' => 'تم التعطيل بنجاح',
     'Activation completed successfully' => 'تم التنشيط بنجاح',
+    'active' => 'تفعيل',
+    'Client Name' => 'اسم العميل',
+    'Educational Qualification' => 'المؤهل العلمي',
+    'Existing' => 'موجود',
+    'Not Exist' => 'لا يوجد',
+    'Select Manager' => 'اختر مدير',
 
 
 

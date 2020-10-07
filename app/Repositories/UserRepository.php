@@ -119,36 +119,68 @@ class UserRepository implements UserRepositoryInterface
     public function update($request , $user){
 
         if ($user->hasRole('Sales Representative')){
-            $user->update([
-                'name' => $request->name,
-                'name_en' => $request->name_en,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'active' => 1,
-                'parent_id' => $request->parent_id,
-            ]);
+            if ($request->password){
+                $user->update([
+                    'name' => $request->name,
+                    'name_en' => $request->name_en,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'active' => 1,
+                    'parent_id' => $request->parent_id,
+                ]);
+            }
+            else{
+                $user->update([
+                    'name' => $request->name,
+                    'name_en' => $request->name_en,
+                    'email' => $request->email,
+                    'active' => 1,
+                    'parent_id' => $request->parent_id,
+                ]);
+            }
         }
 
         elseif($user->hasRole('Sales Manager')){
-            //dd($request->sector_ids);
-            $user->update([
-                'name' => $request->name,
-                'name_en' => $request->name_en,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'active' => 1,
-            ]);
+            if ($request->password){
+                $user->update([
+                    'name' => $request->name,
+                    'name_en' => $request->name_en,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'active' => 1,
+                ]);
+            }
+            else{
+                $user->update([
+                    'name' => $request->name,
+                    'name_en' => $request->name_en,
+                    'email' => $request->email,
+                    'active' => 1,
+                ]);
+            }
+
             $user->sectors()->sync($request->sector_ids);
         }
 
         else{
-            $user->update([
-                'name' => $request->name,
-                'name_en' => $request->name_en,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'active' => 1
-            ]);
+            if ($request->password){
+                $user->update([
+                    'name' => $request->name,
+                    'name_en' => $request->name_en,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'active' => 1
+                ]);
+            }
+            else{
+                $user->update([
+                    'name' => $request->name,
+                    'name_en' => $request->name_en,
+                    'email' => $request->email,
+                    'active' => 1
+                ]);
+            }
+
         }
         //$user->removeRole($user->roles->first()->name);
         //$user->assignRole($request->role);
