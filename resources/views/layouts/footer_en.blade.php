@@ -119,9 +119,13 @@
 
     <script>
         $(document).ready(function () {
-              $('.select2').select2();
+            $('.select2').select2({
+                // options
+                placeholder: "Select a state"
 
+            });
         });
+
     </script>
 @elseif(app()->getLocale() == 'ar')
 
@@ -129,6 +133,7 @@
         $(document).ready(function () {
             $('.select2').select2({
                 // options
+                placeholder: "اختر",
                 searchInputPlaceholder: 'بحث ...',
                 dir: "rtl",
                 language: {

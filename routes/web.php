@@ -374,6 +374,43 @@ Route::get('update/database/meetings',function (){
 
 });
 
+/** Export Sales-Report Data */
+Route::get('update/database/sales/report',function (){
+    $oldData = \App\Models\Company_sales_lead_report_old::all();
+
+    try {
+        \Illuminate\Support\Facades\DB::beginTransaction();
+        foreach ($oldData as $value)
+        {
+            //dd($value->by);
+            $company_sales_report= \App\Models\Company_sales_lead_report::create([
+                'id' => $value->id  , // add id in fillable
+                'company_id' => $value->company_id  ,
+                'brochurs_status' => $value->brochurs_status ,
+                'cat_of_req' => $value->cat_of_req ,
+                'quanity' => $value->quanity ,
+                'type_of_serves' => $value->type_of_serves ,
+                'client_feeback' => $value->client_feeback ,
+                'updates' => $value->updates ,
+                'remarks' => $value->remarks ,
+                'nextFollowUp' => $value->nextFollowUp ,
+                'statue' => $value->statue ,
+                'user_id' => $value->user_id ,
+                'created_at' => $value->created_at ,
+                'updated_at' => $value->updated_at ,
+            ]);
+        }
+        \Illuminate\Support\Facades\DB::commit();
+    }
+
+    catch (\Exception $e) {
+        \Illuminate\Support\Facades\DB::rollback();
+        throw $e;
+    }
+
+
+});
+
 /** Export Users Data */
 Route::get('update/database/users',function (){
     $oldData = \App\Models\users_old::all();

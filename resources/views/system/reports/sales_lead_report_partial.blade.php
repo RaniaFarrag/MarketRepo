@@ -43,7 +43,21 @@
         <td>{{$report->id}}</td>
         <td>{{$report->created_at->format('d/m/Y')}}</td>
         <td>Marketing-Hc</td>
-        <td>{{$report->statue?? '-'}}</td>
+        <td>
+            @if($report->statue)
+                @if($report->statue == 1)
+                    {{ trans('dashboard.Hot') }}
+                @elseif($report->statue == 2)
+                    {{ trans('dashboard.Warm') }}
+                @elseif($report->statue == 3)
+                    {{ trans('dashboard.Cold') }}
+                @elseif($report->statue == 4)
+                    {{ trans('dashboard.Awarded') }}
+                @endif
+            @else
+                -
+            @endif
+        </td>
         <td><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>
         <td>{{$report->company->company_representative_name ?? '-'}}</td>
         <td>{{$report->company->company_representative_job_phone?? '-'}}</td>
@@ -56,7 +70,7 @@
         <td>{{$report->user->name}}</td>
 
         <td>{{$report->company->city->name ?? '-'}}</td>
-        <td>{{$report->client_feeback?? '-'}}</td>
+        <td><span style="width: 500px !important;display: block;">{{$report->client_feeback?? '-'}}</span></td>
         <td>{{$report->nextFollowUp?? '-'}}</td>
 
     </tr>

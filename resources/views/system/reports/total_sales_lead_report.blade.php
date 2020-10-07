@@ -188,10 +188,14 @@
                                                                 <select class="form-control select2"
                                                                         name="statue"
                                                                         id="statue" multiple="multiple">
-                                                                    <option value="Hot">Hot</option>
-                                                                    <option value="Warm">Warm</option>
-                                                                    <option value="Cold">Cold</option>
-                                                                    <option value="CLOSED-WON">CLOSED-WON</option>
+                                                                    {{--<option value="Hot">{{ trans('dashboard.Hot') }}</option>--}}
+                                                                    {{--<option value="Warm">Warm</option>--}}
+                                                                    {{--<option value="Cold">Cold</option>--}}
+                                                                    {{--<option value="CLOSED-WON">CLOSED-WON</option>--}}
+                                                                    <option value="1">{{ trans('dashboard.Hot') }}</option>
+                                                                    <option value="2">{{ trans('dashboard.Warm') }}</option>
+                                                                    <option value="3">{{ trans('dashboard.Cold') }}</option>
+                                                                    <option value="4">{{ trans('dashboard.Awarded') }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>

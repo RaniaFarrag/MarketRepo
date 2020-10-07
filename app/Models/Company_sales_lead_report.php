@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company_sales_lead_report extends Model
 {
-    protected $fillable =['cat_of_req','brochurs_status','quanity','type_of_serves','client_feeback','remarks','updates','nextFollowUp',
-        'statue','user_id','company_id',
+    protected $fillable =['id' ,'company_id' , 'cat_of_req','brochurs_status',
+        'quanity','type_of_serves',
+        'client_feeback','remarks',
+        'updates','nextFollowUp',
+        'statue','user_id',
+        'created_at' , 'updated_at'
         ];
 
     public function company(){

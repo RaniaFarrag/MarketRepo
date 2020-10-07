@@ -71,11 +71,14 @@ class salesReportRepository implements salesReportRepositoryInterface
                 $query->whereDate('nextFollowUp', $request->nextFollowUp);
             if (isset($request->statue) && count($request->statue) > 0)
                 $query->where(function ($q) use ($request) {
-                    $q->where('statue','like','%'.$request->statue[0].'%');
+                    $q->where('statue',$request->statue[0]);
                     foreach ($request->statue as $key => $val)
-                        if ($key==1)
+                    {
+                        if ($key==0)
                             continue;
-                    $q->where('statue','like','%'.$val.'%');
+                        $q->orWhere('statue',$val);
+                    }
+
                 });
         }else
             $query =$this->sales_lead_report_model::query()->whereIn('id',json_decode($request->ids, true));
