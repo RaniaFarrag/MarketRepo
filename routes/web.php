@@ -347,6 +347,33 @@ Route::get('update/database/company/needs' , function (){
     }
 });
 
+/** Export Meetings Data */
+Route::get('update/database/meetings',function (){
+    $oldData = \App\Models\CompanyMeetingOld::all();
+
+    try {
+        \Illuminate\Support\Facades\DB::beginTransaction();
+        foreach ($oldData as $value)
+        {
+            //dd($value->by);
+            $company_meeting= \App\Models\CompanyMeeting::create([
+                'date' => $value->verified_date , // add id in fillable
+                'time' => $value->verified_time ,
+                'company_id' => $value->company_id ,
+                'user_id' => $value->by ,
+            ]);
+        }
+        \Illuminate\Support\Facades\DB::commit();
+    }
+
+    catch (\Exception $e) {
+        \Illuminate\Support\Facades\DB::rollback();
+        throw $e;
+    }
+
+
+});
+
 /** Export Users Data */
 Route::get('update/database/users',function (){
     $oldData = \App\Models\users_old::all();

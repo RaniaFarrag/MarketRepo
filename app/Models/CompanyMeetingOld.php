@@ -8,22 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CompanyMeetingOld extends Model
 {
-    use SoftDeletes;
+    protected $table = "company_meetings_old";
 
-    protected $fillable = [
-        'date',
-        'time',
-        'company_id',
-        'user_id',
-    ];
 
-    protected $dates = ['deleted_at'];
-
-    public function company(){
-        return $this->belongsTo(Company::class);
-    }
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 }
