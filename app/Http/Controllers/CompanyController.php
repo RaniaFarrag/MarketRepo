@@ -80,10 +80,9 @@ class CompanyController extends Controller
     /** Show One Company */
     public function show(Company $company)
     {
-//        dd($company);
         $evaluation_status_user = '';
         $client_status_user = '';
-//        dd(555);
+
         if ($company->client_status){
             if ($company->client_status_user){
                 $client_status_user = User::findOrFail($company->client_status_user_id);
@@ -98,8 +97,10 @@ class CompanyController extends Controller
             //dd($evaluation_status_user);
         }
 
-        return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user ,
-            'evaluation_status_user' => $evaluation_status_user]);
+//        return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user ,
+//            'evaluation_status_user' => $evaluation_status_user]);
+
+        return view ('system.companies.show')->with(['company' => $company]);
     }
 
     /**
@@ -197,6 +198,7 @@ class CompanyController extends Controller
     public function extractCompanyReportExcel(Request $request)
     {
         $companies= $this->companyRepositoryinterface->companiesReports($request,true)['companies'];
+        //dd($companies);
         return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
     }
 

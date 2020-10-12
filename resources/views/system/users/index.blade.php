@@ -85,37 +85,39 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                <!--begin: Datatable-->
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>{{ trans('dashboard.Name Arabic') }}</th>
-                                        <th>{{ trans('dashboard.Name English') }}</th>
-                                        <th>{{ trans('dashboard.User E-mail') }}</th>
-                                        <th>{{ trans('dashboard.User Roles') }}</th>
-                                        <th>{{ trans('dashboard.Sector') }}</th>
-                                        <th>{{ trans('dashboard.active') }}</th>
-                                        <th>{{ trans('dashboard.edit') }}</th>
-                                        <th>{{ trans('dashboard.delete') }}</th>
-
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    @foreach($users as $k=>$user)
+                                    <!--begin: Datatable-->
+                                    <table class="table table-bordered text-center">
+                                        <thead>
                                         <tr>
-                                            <td>{{ $k+1 }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->name_en }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->roles[0]->name ?? "-" }}</td>
-                                            <td>
-                                                @foreach($user->sectors as $sector)
-                                                    {{ $sector->name }} -
-                                                @endforeach
-                                            </td>
-                                            <td>
+                                            <th>#</th>
+                                            <th>{{ trans('dashboard.Name Arabic') }}</th>
+                                            <th>{{ trans('dashboard.Name English') }}</th>
+                                            <th>{{ trans('dashboard.User E-mail') }}</th>
+                                            <th>{{ trans('dashboard.User Roles') }}</th>
+                                            <th>{{ trans('dashboard.Manager') }}</th>
+                                            <th>{{ trans('dashboard.Sector') }}</th>
+                                            <th>{{ trans('dashboard.active') }}</th>
+                                            <th>{{ trans('dashboard.edit') }}</th>
+                                            <th>{{ trans('dashboard.delete') }}</th>
+
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($users as $k=>$user)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->name_en }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->roles[0]->name ? (app()->getLocale() == 'ar' ? $user->roles[0]->name_ar : $user->roles[0]->name) : '-' }}</td>
+                                                <td>{{ $user->parent ? (app()->getLocale() == 'ar' ? $user->parent->name : $user->parent->name_en) : '-' }}</td>
+                                                <td>
+                                                    @foreach($user->sectors as $sector)
+                                                        {{ $sector->name }} -
+                                                    @endforeach
+                                                </td>
+                                                <td>
                                                 <span class="switch switch-icon">
                                                      <label>
                                                         <input data-id="{{ $user->id }}" id="active" name="active" value="1" type="checkbox"
@@ -123,24 +125,24 @@
                                                         <span></span>
                                                     </label>
                                                 </span>
-                                            </td>
-                                            <td><a class="btn btn-success font-weight-bold" href="{{ route('users.edit' , $user->id) }}">{{ trans('dashboard.edit') }}</a></td>
-                                            <td>
-                                                <form method="post" action="{{ route('users.destroy' , $user->id) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                </td>
+                                                <td><a class="btn btn-success font-weight-bold" href="{{ route('users.edit' , $user->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                                <td>
+                                                    <form method="post" action="{{ route('users.destroy' , $user->id) }}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
-                                    </tbody>
+                                        </tbody>
 
-                                </table>
+                                    </table>
                                 {{ $users->links() }}
                                 <!--end: Datatable-->
-                            </div>
+                                </div>
                             </div>
                         </div>
                         <!--end::Card-->
@@ -165,39 +167,39 @@
 
     <script>
         // $("#active").on('change' , function () {
-            $('body').on('click', '#active', function (e) {
-                var user_id =  $(this).attr('data-id') ;
-                var active = this.checked ? this.value : '';
-                if(active) {
-                    $.ajax({
-                        type: "get",
-                        data: {
-                            'user_id' : user_id
-                        },
-                        url: "{{ route('active_user') }}",
-                        success:function (response) {
-                            swal('Success' , response , 'success');
-                        },
-                        error:function () {
-                            swal('Faild' , response , 'failed');
-                        }
-                    });
-                }
-                else {
-                    $.ajax({
-                        type: "get",
-                        data: {
-                            'user_id' : user_id
-                        },
-                        url: "{{ route('deactivate_user') }}" ,
-                        success:function (response) {
-                            swal('Success' , response , 'success');
-                        },
-                        error:function () {
-                            swal('Faild' , response , 'failed');
-                        }
-                    });
-                }
+        $('body').on('click', '#active', function (e) {
+            var user_id =  $(this).attr('data-id') ;
+            var active = this.checked ? this.value : '';
+            if(active) {
+                $.ajax({
+                    type: "get",
+                    data: {
+                        'user_id' : user_id
+                    },
+                    url: "{{ route('active_user') }}",
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    },
+                    error:function () {
+                        swal('Faild' , response , 'failed');
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "get",
+                    data: {
+                        'user_id' : user_id
+                    },
+                    url: "{{ route('deactivate_user') }}" ,
+                    success:function (response) {
+                        swal('Success' , response , 'success');
+                    },
+                    error:function () {
+                        swal('Faild' , response , 'failed');
+                    }
+                });
+            }
 
         })
     </script>

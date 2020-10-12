@@ -242,7 +242,8 @@
         <tr>
             <td>{{ __('dashboard.Recruitment Type') }} :</td>
             <td>
-                {{--{{ $employeement_type->id }}--}}Manpower
+
+                {{--{{ $employeement_type->id }}--}}Manpower   {{--{{ employeement type Here }}--}}
             </td>
         </tr>
         <tr>
@@ -265,12 +266,19 @@
         </tr>
         <tr>
             <td>{{ __('dashboard.Nationality') }}</td>
-            <td>{{ $need->company->country->name }}</td>
+            <td>{{ $need->country->name }}</td>
         </tr>
         <tr>
             <td>{{ __('dashboard.Gender') }}</td>
             <td>
-                {{ $need->gender == 1 ? trans('dashboard.Male') : trans('dashboard.Female')  }}</td>
+                @if($need->gender == 1)
+                    {{ trans('dashboard.Male') }}
+                @elseif($need->gender == 2)
+                    {{ trans('dashboard.Female') }}
+                @else
+                    {{ trans('dashboard.Both') }}
+                @endif
+            </td>
         </tr>
         <tr>
             <td>{{ __('dashboard.Age Limit') }}</td>
@@ -282,7 +290,15 @@
         </tr>
         <tr>
             <td>{{ trans('dashboard.DataFlow') }}</td>
-            <td>  {{ $need->data_flow == 1 ? trans('dashboard.Required from inside the Kingdom') : trans('dashboard.Required from outside the Kingdom')  }}</td>
+            <td>
+                @if($need->data_flow == 1)
+                    {{ trans('dashboard.Required from inside the Kingdom') }}
+                @elseif($need->data_flow == 2)
+                    {{ trans('dashboard.Required from outside the Kingdom') }}
+                @else
+                    {{ trans('dashboard.Not required') }}
+                @endif
+            </td>
         </tr>
         <tr>
             <td>{{ trans('dashboard.classification') }}</td>

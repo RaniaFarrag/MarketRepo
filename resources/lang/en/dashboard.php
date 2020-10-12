@@ -123,6 +123,7 @@ return [
     'Time' => 'Time',
     'name of Confirmed' => 'Name of Confirmed',
     'Add a new Meeting' => 'Add a New Meeting',
+    'Add a New Meeting' => 'Add a New Meeting',
     'Company Representative' => 'Company Representative',
     'Email' => 'Email',
     'Phone' => 'Phone',
@@ -267,7 +268,8 @@ return [
     'Required from outside the Kingdom' => 'Required from outside the Kingdom',
     'yes' => 'yes',
     'No' => 'No',
-    'updated successfully' => 'Updated Successfully',
+    ' updated successfully' => 'Updated Successfully',
+    ' added successfully' => 'Added successfully',
     'DeActivation completed successfully' => 'DeActivation completed successfully',
     'Activation completed successfully' => 'Activation completed successfully',
     'active' => 'Active',
@@ -276,5 +278,9 @@ return [
     'Existing' => 'Existing',
     'Not Exist' => 'Not Exist',
     'Select Manager' => 'Select Manager',
+    'Sign Out' => 'Sign Out',
+    'Manager' => 'Manager',
+    'Company contact confirmed' => 'Company contact confirmed',
+    'The Company contact confirmation has been canceled' => 'The Company contact confirmation has been canceled',
 
 ];

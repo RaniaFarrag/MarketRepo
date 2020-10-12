@@ -1,6 +1,5 @@
 
 
-
     @foreach($companies as $company)
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <!--begin::Card-->
@@ -177,7 +176,7 @@
                                 <a target="_blank" href="{{ $company->location }}">
                                     <span class="text-muted font-weight-bold">
                                         <i class="fas far fa-compass text-primary fa-spin"></i>
-                                        {{ $company->city->name }}
+                                        {{ $company->city ? $company->city->name : '' }}
                                     </span>
                                 </a>
 
@@ -202,9 +201,9 @@
                                 <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Representative name') }}
                                     :</span>
 
-                                <span title="{{ $company->representative ? $company->representative->name : '' }}" class="text-muted font-weight-bold">
+                                <span title="{{ $company->representative ? (app()->getLocale() == 'ar' ? $company->representative->name : $company->representative->name_en) : '' }}" class="text-muted font-weight-bold">
                                     {{--{{ $company->representative->name ? \Illuminate\Support\Str::limit($company->representative->name , 150, $end = '.') : '-' }}--}}
-                                    {!! $company->representative ? Str::limit($company->representative->name, 15) : '-' !!}
+                                    {!! $company->representative ? (app()->getLocale() == 'ar' ? Str::limit($company->representative->name, 15) : Str::limit($company->representative->name_en, 15) )  : '-' !!}
                                 </span>
                             </div>
                         {{--@endif--}}

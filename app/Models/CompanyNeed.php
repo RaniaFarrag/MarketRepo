@@ -49,7 +49,15 @@ class CompanyNeed extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function employmentType(){
+        return $this->belongsTo(EmploymentType::class , 'employment_type_id');
     }
 }

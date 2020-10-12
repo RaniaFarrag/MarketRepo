@@ -310,6 +310,7 @@
         </div>
         <!--end::Container-->
         <!-- Modal-->
+
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -355,7 +356,8 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>{{ trans('dashboard.sendemail') }}</label>
-                                <input id="email" type="text" name="message" value="" class="form-control">
+                                {{--<input id="email" type="text" name="message" value="" class="form-control">--}}
+                                <textarea id="email" rows="3" name="message" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -379,7 +381,8 @@
 @section('script')
     {{--VIEW BUSINESS CARDS IN MODAL--}} {{--RANIA--}}
     <script>
-        $('.business_card').on('click', function() {
+        $(document).on('click', '.business_card', function() {
+            // $('.business_card').on('click', function() {
             //$('#myModal').html('<img src="' + $(this).data('userphoto') + '"/>')
             $('#myModal img').attr('src', $(this).attr('data-img-url'));
             $("#myModal h5").html($(this).attr('data-name'));
@@ -622,8 +625,8 @@
 
         $('a[href="#mail_Modal"]').on('click',function(){
             var email = $(this).attr('data-id');
-            console.log(email)
-            if (email){
+            if (email != '-'){
+                //console.log(email)
                 $('input[name="email"]').val(email);
             }
 

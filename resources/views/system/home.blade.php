@@ -293,7 +293,7 @@
                                                     <td>{{ $meeting->date }}</td>
                                                     <td>
                                                         <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">
-                                                            {{ $meeting->company ? $meeting->company->city->name : '-' }}
+                                                            {{ $meeting->company->city ? $meeting->company->city->name : '-' }}
                                                         </a>
                                                     </td>
                                                     <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
@@ -302,6 +302,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                    {{ $meetings->links() }}
                                 <!--end: Datatable-->
                                 </div>
                             </div>

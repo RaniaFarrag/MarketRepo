@@ -118,6 +118,7 @@ class UserRepository implements UserRepositoryInterface
     /** Submit Edit User */
     public function update($request , $user){
 
+        //$user->assignRole('Sales Representative');
         if ($user->hasRole('Sales Representative')){
             if ($request->password){
                 $user->update([

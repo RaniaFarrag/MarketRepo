@@ -140,7 +140,7 @@
                                             <select class="form-control select2" name="parent_id">
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['managers'] as $manager)
-                                                    <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                                    <option value="{{ $manager->id }}">{{ app()->getLocale() == 'ar' ? $manager->name : $manager->name_en }}</option>
                                                 @endforeach
                                             </select>
                                             @error('parent_id')

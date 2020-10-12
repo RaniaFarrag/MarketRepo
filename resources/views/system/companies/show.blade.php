@@ -99,11 +99,11 @@
                                                 @elseif($company->evaluation_status == 3)
                                                     <span class="label label-light-danger label-inline font-weight-bolder mr-1">C</span>
                                                 @endif
-                                                @if($evaluation_status_user)
-                                                        {{ trans('dashboard.By User') }}
+                                                @if($company->evaluator) :
+                                                        {{--{{ trans('dashboard.By User') }}--}}
                                                     <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
-                                                            {{ $evaluation_status_user->name }}
-                                                        </span>
+                                                        {{ app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en }}
+                                                    </span>
                                                 @endif
                                             @endif
 
@@ -120,10 +120,10 @@
 
                                                 @endif
                                                 {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
-                                                @if($client_status_user)
-                                                        {{ trans('dashboard.By User') }}
+                                                @if($company->client_status_user) :
+                                                        {{--{{ trans('dashboard.By User') }}--}}
                                                     <span class="label  label-dark label-inline font-weight-bolder ml-1">
-                                                            {{ $client_status_user->name }}
+                                                            {{ app()->getLocale() == 'ar' ? $company->client_status_user->name : $company->client_status_user->name_en }}
                                                     </span>
                                                 @endif
                                             @endif
@@ -150,10 +150,11 @@
                                             </a>
 
                                             <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
-                                <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
-                               <i
-                                       class="fab fa-whatsapp text-primary"></i>
-                                </span>{{ $company->whatsapp }}
+                                                @if($company->whatsapp)
+                                                    <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
+                                                        <i class="fab fa-whatsapp text-primary"></i>
+                                                    </span>{{ $company->whatsapp }}
+                                                @endif
                                             </a>
                                         </div>
                                         <!--end::Contacts-->
@@ -265,7 +266,7 @@
                                         <a target="_blank" href="{{ $company->location }}">
                                             <span class="text-muted font-weight-bold">
                                                 <i class="fas far fa-compass text-primary fa-spin"></i>
-                                                {{ $company->city->name }}
+                                                {{ $company->city ? $company->city->name : '-' }}
                                             </span>
                                         </a>
                                             </span>

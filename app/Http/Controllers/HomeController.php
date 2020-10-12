@@ -32,8 +32,8 @@ class HomeController extends Controller
         $meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
                                     ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))
                                     ->with('company' , 'user')
-                                    ->get();
-        //dd($meetings);
+                                    ->paginate(10);
+//        dd($meetings);
         $company_registered_today_created_by_me = Company::where('user_id' , Auth::user()->id)
             ->whereDate('created_at' , Carbon::today())->count();
 

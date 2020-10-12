@@ -269,7 +269,8 @@ return [
     'Required from outside the Kingdom' => 'مطلوبه من خارج المملكة',
     'yes' => 'نعم',
     'No' => 'لا',
-    'updated successfully' => 'تم التحديث بنجاح',
+    ' updated successfully' => 'تم التحديث بنجاح',
+    ' added successfully' => 'تم التحديث بنجاح',
     'DeActivation completed successfully' => 'تم التعطيل بنجاح',
     'Activation completed successfully' => 'تم التنشيط بنجاح',
     'active' => 'تفعيل',
@@ -278,6 +279,11 @@ return [
     'Existing' => 'موجود',
     'Not Exist' => 'لا يوجد',
     'Select Manager' => 'اختر مدير',
+    'Sign Out' => 'تسجيل خروج',
+    'Manager' => 'المدير',
+    'Company contact confirmed' => 'تم تأكيد اتصال الشركة بنجاح',
+    'The Company contact confirmation has been canceled' => 'تم إالغاء اتصال الشركة بنجاح',
+
 
 
 

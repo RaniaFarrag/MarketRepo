@@ -131,6 +131,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                 $query->whereNotNull($val);
 
         if (isset($request->evaluation_ids))
+            //dd(44);
             $query->whereIn('evaluation_status', $request->evaluation_ids);
 
         if ($request->city_id)

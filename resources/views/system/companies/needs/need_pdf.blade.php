@@ -251,7 +251,7 @@
                         <tr>
                             <td>{{ __('dashboard.Recruitment Type') }} :</td>
                             <td>
-                                {{--{{ $employeement_type->id }}--}}local
+                                {{--{{ $employeement_type->id }}--}}local                   {{--{{ employeement type Here }}--}}
                             </td>
                         </tr>
                         <tr>
@@ -273,11 +273,11 @@
                         </tr>
                         <tr>
                             <td>{{ __('dashboard.Nationality') }}</td>
-                            <td>{{ $need->company->country->name }}</td>
+                            <td>{{ $need->country->name }}</td>
                         </tr>
                         <tr>
                             <td>{{ __('dashboard.Gender') }}</td>
-                            <td>
+                            <td>                     {{--{{ Add 3 options }}--}} {{--{{ Add both }}--}}
                                 {{ $need->gender == 1 ? trans('dashboard.Male') : trans('dashboard.Female')  }}</td>
                         </tr>
                         <tr>
