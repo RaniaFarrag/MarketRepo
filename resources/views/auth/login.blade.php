@@ -107,10 +107,10 @@
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
-                                @if (Route::has('password.request'))
-                                    <a href="javascript:;" id="kt_login_forgot"
-                                       class="text-muted text-hover-primary font-weight-bold">Forget Password ?</a>
-                                @endif
+                                {{--@if (Route::has('password.request'))--}}
+                                    {{--<a href="javascript:;" id="kt_login_forgot"--}}
+                                       {{--class="text-muted text-hover-primary font-weight-bold">Forget Password ?</a>--}}
+                                {{--@endif--}}
                             </div>
                             <div class="text-center mt-15">
                                 <button type="submit" id="kt_login_signin_submit"

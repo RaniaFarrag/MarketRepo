@@ -30,18 +30,21 @@ class CompanyController extends Controller
     /** View All companies */
     public function index(Request $request)
     {
-        $companies = $this->companyRepositoryinterface->companiesReports($request)['companies'];
+        $data = $this->companyRepositoryinterface->companiesReports($request)['companies'];
+        //dd($data['companies']);
+        //dd($data['count']);
         $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
 
         if($request->ajax()){
-            $data['viewBlade']= view('system.companies.index_partial')->with(['companies' => $companies])->render();
-            $data['count']= count($companies);
-            return response()->json($data);
+            //dd($data['companies']);
+            $data_json['viewBlade']= view('system.companies.index_partial')->with(['data' => $data])->render();
+            $data_json['count']= $data['count'];
+            return response()->json($data_json);
         }
         //dd($companies);
-        return view('system.companies.index')->with(['companies' => $companies ,
+        return view('system.companies.index')->with(['data' => $data ,
             'sectors' => $sectors , 'countries' => $countries , 'representatives'=>$representatives]);
     }
 
@@ -184,21 +187,20 @@ class CompanyController extends Controller
     /** Company Report */
     public function companiesReports(Request $request){
 
-        $companies= $this->companyRepositoryinterface->companiesReports($request)['companies'];
+        $data= $this->companyRepositoryinterface->companiesReports($request)['companies'];
         $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
 
         if ($request->ajax()) {
-            return view('system.reports.company_report_partial',compact('companies'))->render();
+            return view('system.reports.company_report_partial',compact('data'))->render();
         }
-        return view('system.reports.company_report',compact('companies','countries','sectors'));
+        return view('system.reports.company_report',compact('data','countries','sectors'));
     }
 
 
     public function extractCompanyReportExcel(Request $request)
     {
         $companies= $this->companyRepositoryinterface->companiesReports($request,true)['companies'];
-        //dd($companies);
         return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
     }
 

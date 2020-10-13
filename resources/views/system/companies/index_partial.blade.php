@@ -1,6 +1,6 @@
 
 
-    @foreach($companies as $company)
+    @foreach($data['companies'] as $company)
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
             <!--begin::Card-->
             <div class="card card-custom gutter-b card-stretch border-1 border-primary border">
@@ -302,7 +302,7 @@
         </div>
 
     @endforeach
-    {{ $companies->links() }}
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12"> {{ $data['companies']->links() }}</div>
 
 
 

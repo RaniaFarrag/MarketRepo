@@ -154,18 +154,21 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-6 col-xs-6">
-                                            <label>{{ trans('dashboard.Select Sector') }}</label>
-                                            <select class="form-control select2" name="sector_ids[]" multiple>
-                                                <option disabled>{{ trans('dashboard.Select All') }}</option>
-                                                @foreach($data['sectors'] as $sector)
-                                                    <option {{ in_array($sector->id , $user->sectors()->pluck('sector_id')->toArray()) ? 'selected' : '' }} value="{{ $sector->id }}">{{ $sector->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('sector_ids')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                        @if($user->roles[0]->name == 'Sales Manager')
+                                            <div class="col-md-6 col-xs-6">
+                                                <label>{{ trans('dashboard.Select Sector') }}</label>
+                                                <select class="form-control select2" name="sector_ids[]" multiple>
+                                                    <option disabled>{{ trans('dashboard.Select All') }}</option>
+                                                    @foreach($data['sectors'] as $sector)
+                                                        <option {{ in_array($sector->id , $user->sectors()->pluck('sector_id')->toArray()) ? 'selected' : '' }} value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('sector_ids')
+                                                <div class="error">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        @endif
+
                                     </div>
 
                                 </div>

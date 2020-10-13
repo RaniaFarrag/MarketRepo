@@ -39,6 +39,7 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
+                    {{--CLASS sendMessage TO MAKE ACTION WHEN CLIKC ON BUTTON--}}
                     <!--begin::Button-->
                     <a href="#btnModal" data-toggle="modal" class="btn btn-success font-weight-bold sendMessage py-3 px-6 mr-2">
                         {{ trans('dashboard.Send WhatsApp Message') }}
@@ -254,10 +255,10 @@
             $('#mobile_val').html(phonesText);
 
 
-            if (phones.length == 0) {
-                e.preventDefault();
-                alert("Please Select Any Data .")
-            }
+            // if (phones.length == 0) {
+            //     e.preventDefault();
+            //     alert("Please Select Any Data .")
+            // }
 
         });
     </script>

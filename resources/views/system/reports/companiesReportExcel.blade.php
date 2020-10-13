@@ -4,26 +4,39 @@
         text-align: center;
     }
 </style>
+<br/>
+<table>
+    <tbody>
+    <tr>
+        <th style="text-align: center; font-weight: bold; border: 1px solid #000000; font-size: 24px; " colspan="10"> <h1 style="width: 100%; text-align: center"> {{ trans('dashboard.Company Report') }}</h1>
+        </th>
+    </tr>
+    </tbody>
+</table>
+ <br/>
+
+
+
 <table style="text-align: center; border: 1px solid #000000">
     <thead>
     <tr>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">#</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Company Name') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Sector') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Company Type') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Evaluation status') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Evaluator')}}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Confirm Connection') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Confirm Interview') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Confirm Need') }}</th>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000">{{ trans('dashboard.Confirm Contract') }}</th>
+        <th style="text-align: center; font-weight: bold; border: 1px solid #000000; background-color:#ffc50c; ">#</th>
+        <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Company Name') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Sector') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Company Type') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Evaluation status') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Evaluator')}}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Confirm Connection') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Confirm Interview') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Confirm Need') }}</th>
+         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;">{{ trans('dashboard.Confirm Contract') }}</th>
     </tr>
     </thead>
 
     <tbody>
     @foreach($companies as $company)
         <tr>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->id}}</td>
+            <td style="text-align: center; border: 1px solid #000000;background-color:#ffc50c; ">{{$company->id}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$company->name}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$company->sector ? $company->sector->name : "-"}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$company->subSector ? $company->subSector->name : "-"}}</td>

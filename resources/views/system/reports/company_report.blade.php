@@ -143,11 +143,11 @@
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>{{ trans('dashboard.Evaluation status') }}</label>
-                                                                <select class="form-control select2" name="evaluation_ids"
+                                                                <select class="form-control select2" name="evaluation_ids[]"
                                                                         id="evaluation_ids" multiple="multiple">
-                                                                    <option value="1" data-select2-id="287">A</option>
-                                                                    <option value="2" data-select2-id="288">B</option>
-                                                                    <option value="3" data-select2-id="289">C</option>
+                                                                    <option value="1">A</option>
+                                                                    <option value="2">B</option>
+                                                                    <option value="3">C</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -156,7 +156,7 @@
                                                             <div class="form-group">
                                                                 <label>{{ trans('dashboard.Company Status') }}</label>
                                                                 <select class="form-control select2" id="company_status"
-                                                                        name="company_status" multiple="multiple">
+                                                                        name="company_status[]" multiple="multiple">
                                                                     <option value="confirm_connected">Confirm Connection
                                                                     </option>
                                                                     <option value="confirm_interview">Confirm Interview

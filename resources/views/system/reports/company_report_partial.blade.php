@@ -14,28 +14,28 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($companies as $company)
-        <tr>
-            <td style="width: 34px;"><a href="{{route('companies.show',$company)}}" target="_blank">{{$company->id}}</a></td>
-            <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
-            <td>{{$company->sector ? $company->sector->name : "-"}}</td>
-            <td>{{$company->subSector ? $company->subSector->name : "-"}}</td>
-            @if($company->evaluation_status ==1)
-                <td>A</td>
-            @elseif($company->evaluation_status ==2)
-                <td>B</td>
-            @elseif($company->evaluation_status ==3)
-                <td>C</td>
-            @else
-                <td>-</td>
-            @endif
-            <td>{{$company->evaluator ? $company->evaluator->name :"-"}}</td>
-            <td>{{$company->confirm_connected_user ? $company->confirm_connected_user->name :"-"}}</td>
-            <td>{{$company->confirm_interview_user ? $company->confirm_interview_user->name :"-"}}</td>
-            <td>{{$company->confirm_need_user ? $company->confirm_need_user->name :"-"}}</td>
-            <td>{{$company->confirm_contract_user ? $company->confirm_contract_user->name :"-"}}</td>
-        </tr>
-    @endforeach
+        @foreach($data['companies'] as $company)
+            <tr>
+                <td style="width: 34px;"><a href="{{route('companies.show',$company)}}" target="_blank">{{$company->id}}</a></td>
+                <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
+                <td>{{$company->sector ? $company->sector->name : "-"}}</td>
+                <td>{{$company->subSector ? $company->subSector->name : "-"}}</td>
+                @if($company->evaluation_status ==1)
+                    <td>A</td>
+                @elseif($company->evaluation_status ==2)
+                    <td>B</td>
+                @elseif($company->evaluation_status ==3)
+                    <td>C</td>
+                @else
+                    <td>-</td>
+                @endif
+                <td>{{$company->evaluator ? $company->evaluator->name :"-"}}</td>
+                <td>{{$company->confirm_connected_user ? $company->confirm_connected_user->name :"-"}}</td>
+                <td>{{$company->confirm_interview_user ? $company->confirm_interview_user->name :"-"}}</td>
+                <td>{{$company->confirm_need_user ? $company->confirm_need_user->name :"-"}}</td>
+                <td>{{$company->confirm_contract_user ? $company->confirm_contract_user->name :"-"}}</td>
+            </tr>
+        @endforeach
     </tbody>
 </table>
-{!! $companies->links() !!}
+{!! $data['companies']->links() !!}

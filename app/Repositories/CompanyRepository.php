@@ -7,6 +7,7 @@
  */
 
 namespace App\Repositories;
+
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\City;
 use App\Models\Company;
@@ -75,11 +76,13 @@ class CompanyRepository implements CompanyRepositoryInterface
         if (Auth::user()->hasRole('Representative')) {
             $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector')
                 ->orderBy('created_at', 'desc');
-        } elseif (Auth::user()->hasRole('Sales Manager')) {
+        }
+        elseif (Auth::user()->hasRole('Sales Manager')) {
             $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
                 ->with('subSector')
                 ->orderBy('created_at', 'desc');
-        }else {
+        }
+        else {
             $query = $this->company_model
                 ->with('subSector')
                 ->orderBy('created_at', 'desc');
@@ -99,7 +102,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->location == 1)
             $query->whereNotNull('location');
 
-        if($request->location == 2)
+        if ($request->location == 2)
             $query->whereNull('location');
 
         if ($request->client_status)
@@ -111,7 +114,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->representative == 1)
             $query->whereNotNull('representative_id');
 
-        if($request->representative == 2)
+        if ($request->representative == 2)
             $query->whereNull('representative_id');
 //            $query->whereNull('representative_id');
 
@@ -131,7 +134,6 @@ class CompanyRepository implements CompanyRepositoryInterface
                 $query->whereNotNull($val);
 
         if (isset($request->evaluation_ids))
-            //dd(44);
             $query->whereIn('evaluation_status', $request->evaluation_ids);
 
         if ($request->city_id)
@@ -143,13 +145,23 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->sector_id)
             $query->where('sector_id', $request->sector_id);
 
-        if ($request->sub_sector_id)
-            $query->where('sub_sector_id', $request->sub_sector_id);
+        if ($request->subSector_id)
+            $query->where('sub_sector_id', $request->subSector_id);
 
         if ($request->name)
             $query->whereTranslationLike('name', '%' . $request->name . '%');
+        if ($all)
+          return  $query->get();
+        else
+        {
+            $data = array();
+            $data['count'] = $query->count();
+            $data['companies'] = $query->paginate(18);
+            return  $data;
+        }
 
-        return $all ? $query->get() : $query->paginate(18);
+        //dd($data['companies']);
+//        return $all ? $query->get() : $query->paginate(18);
     }
 
     /** Store Company */
@@ -555,9 +567,9 @@ class CompanyRepository implements CompanyRepositoryInterface
 
 
     /** companies Reports */
-    public function companiesReports($request)
+    public function companiesReports($request,$all=false)
     {
-        $data['companies'] = $this->index($request);
+        $data['companies'] = $this->index($request, $all);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
         $data['representatives'] = $this->user_model::where('parent_id', Auth::user()->id)->get();
@@ -565,9 +577,10 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** Send Email To Company */
-    public function sendEmail($request){
+    public function sendEmail($request)
+    {
         //dd($request->message);
-        Mail::send([],[], function ($message) use ($request) {
+        Mail::send([], [], function ($message) use ($request) {
             $message->to('eng19956@gmail.com');
             $message->subject('Mail Sysytem');
             $message->setBody($request->message);
