@@ -29,50 +29,54 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-                                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))
+        $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                                    ->where(function ($q){
+                                        $q->where('user_id' , Auth::user()->id)
+                                            ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                                    })
                                     ->with('company' , 'user')
                                     ->paginate(10);
+
+//        $meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
+//                                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))
+//                                    ->with('company' , 'user')
+//                                    ->paginate(10);
 //        dd($meetings);
         $company_registered_today_created_by_me = Company::where('user_id' , Auth::user()->id)
             ->whereDate('created_at' , Carbon::today())->count();
 
+        $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
+            ->where(function ($q){
+                $q->where('user_id' , Auth::user()->id)
+                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
+            })->count();
+
+        $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+            ->where('time' , '>' , Carbon::now())
+            ->where(function ($q){
+                $q->where('user_id' , Auth::user()->id)
+                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
+            })->count();
+
+        $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
+            ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
+
         if (Auth::user()->hasRole('Representative')){
             $total_companies = Company::where('representative_id' , Auth::user()->id)->count();
 
-            $today_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-                ->whereDate('date' , Carbon::today())->count();
-
-            $coming_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-                ->whereDate('date' , '>=' , Carbon::today())
-                ->where('time' , '>' , Carbon::now())
-                ->count();
-
-            $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
+//            $today_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
+//                ->whereDate('date' , Carbon::today())->count();
+//
+//            $coming_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
+//                ->whereDate('date' , '>=' , Carbon::today())
+//                ->where('time' , '>' , Carbon::now())
+//                ->count();
+//
+//            $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
             $total_companies = Company::WhereIn('sector_id' , Auth::user()->sectors->pluck('id'))->count();
-
-//            $today_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-//                                    ->orWhereIn('user_id' ,Auth::user()->childs->pluck('id'))
-//                                    ->whereDate('date' , Carbon::today())->count();
-
-            $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
-                                            ->where(function ($q){
-                                                $q->where('user_id' , Auth::user()->id)
-                                                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
-                                            })->count();
-
-            $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
-                                            ->where('time' , '>' , Carbon::now())
-                                            ->where(function ($q){
-                                                $q->where('user_id' , Auth::user()->id)
-                                                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
-                                            })->count();
-
-            $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
-                ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
         }
 
         else{

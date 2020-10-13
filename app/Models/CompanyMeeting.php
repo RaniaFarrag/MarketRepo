@@ -11,6 +11,7 @@ class CompanyMeeting extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'id',
         'date',
         'time',
         'company_id',

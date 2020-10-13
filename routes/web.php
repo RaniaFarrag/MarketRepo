@@ -359,7 +359,8 @@ Route::get('update/database/meetings',function (){
         {
             //dd($value->by);
             $company_meeting= \App\Models\CompanyMeeting::create([
-                'date' => $value->verified_date , // add id in fillable
+                'id' => $value->id , // add id in fillable
+                'date' => $value->verified_date ,
                 'time' => $value->verified_time ,
                 'company_id' => $value->company_id ,
                 'user_id' => $value->by ,
