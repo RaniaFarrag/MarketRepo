@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\representativeReport;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -129,6 +131,13 @@ class UserController extends Controller
             return view('system.reports.rep_report_partial',compact('companies','confirm_connected','confirm_contract','confirm_interview','confirm_need','rep'))->render();
         }
         return view('system.reports.rep_report', compact('reps'));
+    }
+
+    /** Export Representative Company Report */
+    public function export_representative_company_report(Request $request){
+        $companies = $this->userRepositoryinterface->rep_companies_report($request , true)['companies'];
+
+        return Excel::download(new representativeReport($companies), 'RepresentativeReportExcel.xlsx');
     }
 
     /** Active User */

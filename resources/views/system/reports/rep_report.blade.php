@@ -73,9 +73,9 @@
                                                 {{ trans('dashboard.Rep Reports') }}
                                             </div>
                                         </div>
-                                        <form id="exportExcelForm" action="{{route('extract_company_report_excel')}}">
+                                        <form id="exportExcelForm" action="{{route('export_representative_company_report')}}">
 
-                                        <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
+                                            <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
                                             <div class="card-body">
                                                 <div class="row fliter_serch">
                                                     <div class="col-md-6 col-xs-12">

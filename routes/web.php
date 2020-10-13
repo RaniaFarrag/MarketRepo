@@ -145,6 +145,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Representative Report */
 
     Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report');
+    Route::get('export/representative/company/report','UserController@export_representative_company_report')->name('export_representative_company_report');
 
     /** Monitor Report */
     Route::get('monitor/report' , 'LogController@monitorReport')->name('monitor_report');

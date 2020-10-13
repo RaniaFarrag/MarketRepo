@@ -55,8 +55,9 @@ class User extends Authenticatable
         return $this->hasMany(CompanyMeeting::class);
     }
 
+    /** Crated By */
     public function companies(){
-        return $this->hasMany(Company::class,'user_id'); //change user_id to rep_id after migration
+        return $this->hasMany(Company::class,'user_id');
     }
 
     public function sectors(){
@@ -72,6 +73,7 @@ class User extends Authenticatable
         return $this->belongsTo(User::class , 'parent_id', 'id');
     }
 
+    //change user_id to rep_id after migration
     public function assignedCompanies(){
         return $this->hasMany(Company::class , 'representative_id' , 'id');
     }

@@ -12,7 +12,7 @@
 
         </tr>
         <tr>
-            <td> {{$rep->name}}</td>
+            <td> {{app()->getLocale() == 'ar' ? $rep->name : $rep->name_en}}</td>
 
             <td> {{$confirm_connected}}</td>
             <td> {{$confirm_interview}}</td>
@@ -46,7 +46,8 @@
         @foreach($companies as $company)
             <tr>
                 <td> {{$company->id}}</td>
-                <td> {{$company->assigned_to ? $company->assigned_to->name :"-" }}</td>
+                <td> {{ app()->getLocale() == 'ar' ? $rep->name : $rep->name_en }}</td>
+                {{--<td> {{$company->assigned_to ? $company->assigned_to->name :"-" }}</td>--}}
                 <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
 
                 <td>
@@ -78,6 +79,7 @@
         </tbody>
 
     </table>
+{{ $companies->links() }}
     <!--end: Datatable-->
 </div>
 @endif

@@ -203,15 +203,22 @@ class UserRepository implements UserRepositoryInterface
     }
 
 
-    public function rep_companies_report($request)
+    public function rep_companies_report($request, $all = null)
     {
         $data =[];
         $data['rep'] = $this->user_model->findOrFail($request->rep_id);
-        $data['companies'] =  $data['rep']->companies()->paginate(20);
-        $data['confirm_connected'] =  $data['rep']->companies()->where('confirm_connected',1)->count();
-        $data['confirm_interview'] =  $data['rep']->companies()->where('confirm_interview',1)->count();
-        $data['confirm_need'] =  $data['rep']->companies()->where('confirm_need',1)->count();
-        $data['confirm_contract'] =  $data['rep']->companies()->where('confirm_contract',1)->count();
+
+        if ($all){
+            $data['companies'] = $data['rep']->assignedCompanies()->get();
+        }
+        else{
+            $data['companies'] =  $data['rep']->assignedCompanies()->paginate(20);
+        }
+
+        $data['confirm_connected'] =  $data['rep']->assignedCompanies()->where('confirm_connected',1)->count();
+        $data['confirm_interview'] =  $data['rep']->assignedCompanies()->where('confirm_interview',1)->count();
+        $data['confirm_need'] =  $data['rep']->assignedCompanies()->where('confirm_need',1)->count();
+        $data['confirm_contract'] =  $data['rep']->assignedCompanies()->where('confirm_contract',1)->count();
         return $data;
     }
 
