@@ -204,9 +204,11 @@ class CompanyController extends Controller
         return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
     }
 
-    public function print_show_company()
+    public function print_show_company($company_id)
     {
-        $pdf = Pdf::loadView('system.companies.company_pdf');
+        $company = Company::findOrFail($company_id);
+
+        $pdf = Pdf::loadView('system.companies.company_pdf' , compact('company'));
 
         $output = $pdf->output();
 

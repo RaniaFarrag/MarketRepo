@@ -84,7 +84,7 @@
                                                             <select class="form-control select2" id="rep_id" name="rep_id">
                                                                 <option value="" disabled selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 @foreach($reps as $rep)
-                                                                    <option value="{{$rep->id}}">{{$rep->name}}
+                                                                    <option value="{{$rep->id}}">{{app()->getLocale() == 'ar' ? $rep->name : $rep->name_en}}
                                                                     </option>
                                                                 @endforeach
                                                             </select>

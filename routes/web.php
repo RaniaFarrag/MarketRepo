@@ -117,7 +117,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Send Whatsapp Messages */
     Route::post('send/whatsapp/message','WhatsAppController@sendWhatsappMessage')->name('send_whatsapp_message');
 
-    Route::get('print/show/company' , 'CompanyController@print_show_company')->name('print_show_company');
+    Route::get('print/show/company/{company_id}' , 'CompanyController@print_show_company')->name('print_show_company');
 
     /** Send Email To Company */
     Route::post('send/email','CompanyController@sendEmail')->name('send_email');
