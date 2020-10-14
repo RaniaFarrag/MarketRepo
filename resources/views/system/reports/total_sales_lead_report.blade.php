@@ -45,11 +45,10 @@
                     <!--begin::Button-->
                     <a href="#"
                        class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Total Reports') }} (200)
+                        {{ trans('dashboard.Total Reports') }} <span id="counter" >{{ $reports_count }} </span>
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->
-
 
                 </div>
 
@@ -167,6 +166,25 @@
                                                                         name="city_id">
                                                                     <option value=""
                                                                             selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>{{ trans('dashboard.Company Representative name') }}</label>
+                                                                <select class="form-control select2" id="representative_id" name="representative_id">
+                                                                    <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                    @foreach($representatives as $representative)
+                                                                        <option value="{{ $representative->id }}" >
+                                                                            {{ app()->getLocale()=='ar' ? $representative->name : $representative->name_en }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                    @if(auth()->user()->roles[0]->name = 'Sales Manager')
+                                                                        <option value="{{ auth()->user()->id }}" >
+                                                                            {{ app()->getLocale()=='ar' ? auth()->user()->name : auth()->user()->name_en }}
+                                                                        </option>
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -370,12 +388,14 @@
                     "type_of_serves": $("#type_of_serves").val(),
                     "brochurs_status": $("#brochurs_status").val(),
                     "cat_of_req": $("#cat_of_req").val(),
+                    "representative_id": $("#representative_id").val(),
                     "statue": $("#statue").val(),
                     "created_at": $("#created_at").val(),
                     "nextFollowUp": $("#nextFollowUp").val(),
                 },
                 success: function (data) {
-                    $('.renderTable').html(data);
+                    $('.renderTable').html(JSON.parse(data).viewBlade);
+                    $('#counter').html(JSON.parse(data).count)
                 }
             });
         });
@@ -384,39 +404,6 @@
         {{-- GET ALL SUB-SECTORS OF SECTOR AND CITIES OF COUNTRY--}}
 
         $(document).ready(function () {
-
-            $("#sector").on('change', function () {
-                var sector_id = $(this).val();
-                if (sector_id) {
-                    $.ajax({
-                        type: "get",
-                        // url: "/get/sub/sectors/of/sector/" + sector_id,
-                        {{--url: "{{ route('get_sub' ) }}" + '/' + sector_id,--}}
-                            {{--url: "{{ route('get_sub' , ['sector_id'=>sector_id]) }}",--}}
-                        url: "{{ url('/get/sub/sectors/of/sector/') }}" + '/' + sector_id,
-                        dataType: "json",
-                        success: function (response) {
-                            var sub_sectors = response.sub_sectors;
-                            if (sub_sectors.length) {
-                                console.log(sub_sectors);
-                                var html = '<option value="">{{ trans('dashboard.Select All') }}</option>'
-                                for (let i = 0; i < sub_sectors.length; i++) {
-                                    html += '<option value="' + sub_sectors[i].id + '">' + sub_sectors[i].name + '</option>';
-                                }
-                            } else {
-                                var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
-                            }
-                            $("#subSector").html(html);
-
-                        }
-                    });
-                } else {
-                    var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
-                    $("#subSector").html(html);
-                }
-
-            })
-
 
             $("#countries").on('change', function () {
                 var country_id = $(this).val();

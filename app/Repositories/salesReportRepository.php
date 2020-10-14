@@ -25,13 +25,15 @@ class salesReportRepository implements salesReportRepositoryInterface
     protected $sales_lead_report_model;
     protected $sector_model;
     protected $country_model;
+    protected $user_model;
 
 
-    public function __construct(Company_sales_lead_report $sales_lead_report_model, Sector $sector, Country $country)
+    public function __construct(Company_sales_lead_report $sales_lead_report_model, Sector $sector, Country $country , User $user)
     {
         $this->sales_lead_report_model = $sales_lead_report_model;
         $this->country_model = $country;
         $this->sector_model = $sector;
+        $this->user_model = $user;
 
     }
 
@@ -65,6 +67,8 @@ class salesReportRepository implements salesReportRepositoryInterface
                 $query->where('brochurs_status', $request->brochurs_status);
             if ($request->cat_of_req)
                 $query->where('cat_of_req', $request->cat_of_req);
+            if ($request->representative_id)
+                $query->where('user_id' , $request->representative_id);
             if ($request->created_at)
                 $query->whereDate('created_at', $request->created_at);
             if ($request->nextFollowUp)
@@ -83,8 +87,18 @@ class salesReportRepository implements salesReportRepositoryInterface
         }else
             $query =$this->sales_lead_report_model::query()->whereIn('id',json_decode($request->ids, true));
 
-        $data['reports'] = $all ? $query->get() : $query->paginate(5);
+//        if ($all){
+//            $data['reports'] = $query->get();
+//        }
+//        else{
+//            $data['count'] = $query->count();
+//            $data['reports'] = $query->paginate(15);
+//        }
+
+        $data['count'] = $query->count();
+        $data['reports'] = $all ? $query->get() : $query->paginate(15);
         $data['sectors'] = $this->sector_model::all();
+        $data['representatives'] = $this->user_model::where('parent_id' , Auth::user()->id)->get();
         $data['countries'] = $this->country_model::all();
         $data['ids'] = $ids;
         $data['checkAll'] = $checkAll;

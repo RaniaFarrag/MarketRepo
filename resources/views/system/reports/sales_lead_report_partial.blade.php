@@ -67,7 +67,7 @@
         <td>{{$report->cat_of_req?? '-'}}</td>
         <td>{{$report->quanity?? '-'}}</td>
         <td>{{$report->type_of_serves?? '-'}}</td>
-        <td>{{$report->user->name}}</td>
+        <td>{{app()->getLocale() == 'ar' ? $report->user->name : $report->user->name_en}}</td>
 
         <td>{{$report->company->city->name ?? '-'}}</td>
         <td><span style="width: 500px !important;display: block;">{{$report->client_feeback?? '-'}}</span></td>

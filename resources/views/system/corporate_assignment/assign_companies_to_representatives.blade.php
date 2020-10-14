@@ -64,8 +64,9 @@
                                             <select name="representative_id" class="form-control select2" required>
                                                 <option value="">{{ trans('dashboard.Select one') }}</option>
                                                 @foreach($data['representatives'] as $representative)
-                                                    <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name_en : $representative->name }}</option>
+                                                    <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</option>
                                                 @endforeach
+                                                <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
                                             </select>
                                             @error('representative_id')
                                             <div class="error">{{ $message }}</div>

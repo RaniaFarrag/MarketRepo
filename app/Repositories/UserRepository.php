@@ -42,7 +42,7 @@ class UserRepository implements UserRepositoryInterface
     /** Get Representative*/
     public function get_reps()
     {
-        return $this->user_model->whereNotNull('parent_id')->get();
+        return $this->user_model->where('parent_id' , Auth::user()->id)->get();
     }
 
     /** Create User */

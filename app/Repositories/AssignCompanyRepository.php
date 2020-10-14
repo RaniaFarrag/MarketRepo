@@ -96,6 +96,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
     /** Submit Assign Company To Representative */
     public function submitAssignCompanyToRepresentative($request){
         $representative = $this->user_model::findOrFail($request->representative_id);
+        //dd($representative);
 
         if ($request->sector_id){
             if (Auth::user()->sectors()->find($request->sector_id)){
@@ -165,7 +166,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
     /** Get All Representatives */
     public function getAllRepresentatives(){
-        return $this->user_model::where('parent_id' , '<>' , null)->get();
+        return $this->user_model::where('parent_id' , Auth::user()->id)->get();
     }
 
     /** Get Companies Of Representative */

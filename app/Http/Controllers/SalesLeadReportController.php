@@ -26,17 +26,26 @@ class SalesLeadReportController extends Controller
      */
     public function index(Request $request)
     {
-//        dd($request->all());
+
         $reports = $this->salesReportRepositoryInterface->index($request)['reports'];
+        $reports_count = $this->salesReportRepositoryInterface->index($request)['count'];
+        //dd($reports_count);
         $countries = $this->salesReportRepositoryInterface->index($request)['countries'];
-        $sectors = $this->salesReportRepositoryInterface->index($request)['sectors'];
+        $representatives = $this->salesReportRepositoryInterface->index($request)['representatives'];
         $checkAll = $this->salesReportRepositoryInterface->index($request)['checkAll'];
         $ids = $this->salesReportRepositoryInterface->index($request)['ids'];
 
-        if ($request->ajax())
-            return view('system.reports.sales_lead_report_partial', compact('reports', 'checkAll', 'ids'))->render();
+        if ($request->ajax()){
+            $data_json['viewBlade']= view('system.reports.sales_lead_report_partial'
+                , compact('reports', 'checkAll', 'ids' , 'reports_count'))->render();
+            $data_json['count']= $reports_count;
+            return response()->json($data_json);
 
-        return view('system.reports.total_sales_lead_report', compact( 'reports', 'countries', 'sectors'));
+//            return view('system.reports.sales_lead_report_partial', compact('reports', 'checkAll', 'ids' , 'reports_count'))->render();
+        }
+            //dd($reports_count);
+
+        return view('system.reports.total_sales_lead_report', compact( 'reports', 'countries' , 'representatives' , 'reports_count'));
     }
 
     /**

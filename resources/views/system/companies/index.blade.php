@@ -213,6 +213,8 @@
                                                                         {{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}
                                                                     </option>
                                                                 @endforeach
+                                                                <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+
                                                             </select>
                                                         </div>
 

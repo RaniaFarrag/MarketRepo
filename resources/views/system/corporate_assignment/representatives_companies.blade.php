@@ -87,13 +87,20 @@
                                         <tbody>
                                             @foreach($representatives as $k=>$representative)
                                                 <tr>
-                                                    <td>{{ $k+1 }}</td>
+                                                    <td>{{ $representative->id }}</td>
                                                     <td>{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</td>
                                                     <td><a class="btn btn-success font-weight-bold"
                                                            href="{{ route('get_companies_of_representative' , $representative->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td>{{ auth()->user()->id }}</td>
+                                                <td>{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</td>
+                                                <td><a class="btn btn-success font-weight-bold"
+                                                       href="{{ route('get_companies_of_representative' , auth()->user()->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
+                                                </td>
+                                            </tr>
                                         </tbody>
 
                                     </table>
