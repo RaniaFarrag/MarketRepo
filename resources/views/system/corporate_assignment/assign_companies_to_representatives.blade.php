@@ -216,9 +216,9 @@
             {{--  GET ALL COMPANIES OF BASED ON SECTOR , SUB-SECTOR , COUNTRY AND CITY --}}
             $(document).on('change', '#countries , #cities ,#sectors , #subSectors', function() {
                 var country_id = $('#countries').val()
-               var city_id = $('#cities').val()
+                var city_id = $('#cities').val()
                 var sector_id = $('#sectors').val()
-               var subSector_id = $('#subSectors').val()
+                var subSector_id = $('#subSectors').val()
                 if (sector_id){
                     $.ajax({
                         type: "get",
@@ -234,6 +234,7 @@
                             //console.log(response)
                             var companies = response.companies;
                             if (companies.length){
+                                console.log(companies.length)
                                 var html = '<option value="" disabled>{{ trans('dashboard.Select All') }}</option>'
                                 for (let i =0 ; i<companies.length ; i++){
                                     html+= '<option value="' +companies[i].id+ '">' + companies[i].name + '</option>'

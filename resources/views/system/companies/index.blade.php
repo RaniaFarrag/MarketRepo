@@ -397,12 +397,14 @@
 
     <script>
 
-        $('input.confirm_connected_checked').on('change', function() {
+        //$('input.confirm_connected_checked').on('change', function() {
+        $('body').on('click', '.pagination a, .confirm_connected_checked', function (e) {
+            //alert( this.value );
             if ( this.checked ) {
                 // if checked ...
                 //alert( this.value );
                 var company_id = $(this).attr('data-id');
-                //console.log(company_id);
+                console.log(company_id);
                 $.ajax({
                     type: "get",
                     url: "{{ url('/confirm/connected/') }}" + '/' + company_id,
@@ -426,7 +428,8 @@
             }
         });
 
-        $('input.confirm_interview_checked').on('change' , function () {
+        $('body').on('click', '.pagination a, .confirm_interview_checked', function (e) {
+        //$('input.confirm_interview_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
                 console.log(company_id);
@@ -454,7 +457,8 @@
             }
         });
 
-        $('input.confirm_need_checked').on('change' , function () {
+        $('body').on('click', '.pagination a, .confirm_need_checked', function (e) {
+        // $('input.confirm_need_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
                 console.log(company_id);
@@ -482,7 +486,8 @@
             }
         });
 
-        $('input.confirm_contract_checked').on('change' , function () {
+        $('body').on('click', '.pagination a, .confirm_contract_checked', function (e) {
+        // $('input.confirm_contract_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
                 console.log(company_id);

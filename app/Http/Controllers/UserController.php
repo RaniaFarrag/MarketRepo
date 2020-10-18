@@ -123,12 +123,22 @@ class UserController extends Controller
         $reps = $this->userRepositoryinterface->get_reps();
         if ($request->ajax()) {
             $companies = $this->userRepositoryinterface->rep_companies_report($request)['companies'];
+            $count = $this->userRepositoryinterface->rep_companies_report($request)['count'];
             $rep = $this->userRepositoryinterface->rep_companies_report($request)['rep'];
             $confirm_connected = $this->userRepositoryinterface->rep_companies_report($request)['confirm_connected'];
             $confirm_interview = $this->userRepositoryinterface->rep_companies_report($request)['confirm_interview'];
             $confirm_need = $this->userRepositoryinterface->rep_companies_report($request)['confirm_need'];
             $confirm_contract = $this->userRepositoryinterface->rep_companies_report($request)['confirm_contract'];
-            return view('system.reports.rep_report_partial',compact('companies','confirm_connected','confirm_contract','confirm_interview','confirm_need','rep'))->render();
+
+
+            $data_json['viewBlade']= view('system.reports.rep_report_partial' , compact('companies','confirm_connected',
+                'confirm_contract','confirm_interview','confirm_need','rep'))->render();
+            $data_json['count']= $count;
+
+            return response()->json($data_json);
+
+//            return view('system.reports.rep_report_partial',compact('companies','confirm_connected',
+//                'confirm_contract','confirm_interview','confirm_need','rep' , 'count'))->render();
         }
         return view('system.reports.rep_report', compact('reps'));
     }

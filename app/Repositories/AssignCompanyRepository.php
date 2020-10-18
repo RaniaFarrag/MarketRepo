@@ -73,20 +73,22 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
             $companies = $this->company_model::query();
 
             if ($request->subSector_id){
-                $companies->where('sub_sector_id' , $request->subSector_id)->get();
+                $companies->where('sub_sector_id' , $request->subSector_id);
             }
             else{
-                $companies->where('sector_id' , $request->sector_id)->get();
+                $companies->where('sector_id' , $request->sector_id);
             }
 
             if ($request->city_id){
-                $companies->where('city_id' , $request->city_id)->get();
+                $companies->where('city_id' , $request->city_id);
             }
 
             elseif($request->country_id){
-                $companies->where('country_id' , $request->country_id)->get();
+                $companies->where('country_id' , $request->country_id);
             }
-            //dd($companies);
+
+            $companies->whereNull('representative_id');
+
             return $companies->get();
 
         }

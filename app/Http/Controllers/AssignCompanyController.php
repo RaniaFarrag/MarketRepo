@@ -27,6 +27,7 @@ class AssignCompanyController extends Controller
     public function fetchCompanyData(Request $request)
     {
         $companies =  $this->assignCompanyRepositoryinterface->fetchCompanyData($request);
+        //dd($companies);
         return response()->json(['companies' => $companies]);
     }
 

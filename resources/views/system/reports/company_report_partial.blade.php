@@ -29,11 +29,11 @@
                 @else
                     <td>-</td>
                 @endif
-                <td>{{$company->evaluator ? $company->evaluator->name :"-"}}</td>
-                <td>{{$company->confirm_connected_user ? $company->confirm_connected_user->name :"-"}}</td>
-                <td>{{$company->confirm_interview_user ? $company->confirm_interview_user->name :"-"}}</td>
-                <td>{{$company->confirm_need_user ? $company->confirm_need_user->name :"-"}}</td>
-                <td>{{$company->confirm_contract_user ? $company->confirm_contract_user->name :"-"}}</td>
+                <td>{{$company->evaluator ? app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en : "-"}}</td>
+                <td>{{$company->confirm_connected_user ? app()->getLocale() == 'ar' ? $company->confirm_connected_user->name : $company->confirm_connected_user->name_en :"-"}}</td>
+                <td>{{$company->confirm_interview_user ? app()->getLocale() == 'ar' ? $company->confirm_interview_user->name : $company->confirm_interview_user->name_en :"-"}}</td>
+                <td>{{$company->confirm_need_user ? app()->getLocale() == 'ar' ? $company->confirm_need_user->name : $company->confirm_need_user->name_en : "-" }}</td>
+                <td>{{$company->confirm_contract_user ? app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en :"-"}}</td>
             </tr>
         @endforeach
     </tbody>

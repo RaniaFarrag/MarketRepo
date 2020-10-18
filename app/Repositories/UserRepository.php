@@ -212,6 +212,7 @@ class UserRepository implements UserRepositoryInterface
             $data['companies'] = $data['rep']->assignedCompanies()->get();
         }
         else{
+            $data['count'] = $data['rep']->assignedCompanies()->count();
             $data['companies'] =  $data['rep']->assignedCompanies()->paginate(20);
         }
 

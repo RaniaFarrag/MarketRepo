@@ -192,7 +192,11 @@ class CompanyController extends Controller
         $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
 
         if ($request->ajax()) {
-            return view('system.reports.company_report_partial',compact('data'))->render();
+            $data_json['viewBlade']= view('system.reports.company_report_partial')->with(['data' => $data])->render();
+            $data_json['count']= $data['count'];
+            return response()->json($data_json);
+
+            //return view('system.reports.company_report_partial',compact('data'))->render();
         }
         return view('system.reports.company_report',compact('data','countries','sectors'));
     }

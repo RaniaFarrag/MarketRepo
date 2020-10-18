@@ -40,10 +40,9 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
-
-                    <!--begin::Button-->
-
+                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
+                        {{ trans('dashboard.Companies') }} <span id="counter"></span>
+                    </a>
 
                 </div>
 
@@ -152,7 +151,9 @@
                     "rep_id": $("#rep_id").val(),
                 },
                 success: function (data) {
-                    $('.renderTable').html(data);
+                    // $('.renderTable').html(data);
+                    $('.renderTable').html(JSON.parse(data).viewBlade);
+                    $('#counter').html(JSON.parse(data).count)
                 }
             });
         });

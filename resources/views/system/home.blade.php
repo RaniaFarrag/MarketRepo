@@ -133,7 +133,7 @@
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL USERS') }}
                                                             <div class="text-dark-75">
-                                                                {{ $total_users_under_me }}
+                                                                {{ $total_users_under_me ? $total_users_under_me : '-'  }}
                                                             </div>
                                                         </a>
 
@@ -168,7 +168,7 @@
                                                             {{ trans('dashboard.REP DAILY REPORT') }}
 
                                                             <div class="text-dark-75">
-                                                                {{ $rep_reports }}
+                                                                {{ $rep_daily_reports }}
 
                                                             </div>
                                                         </a>
@@ -254,8 +254,8 @@
                 </div>
                 <!--begin::Row-->
                 <div class="row">
-
-                    <div class="col-md-12">
+                    @if($meetings)
+                        <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
                             <div class="card-header flex-wrap">
@@ -266,7 +266,7 @@
                                 </div>
 
                             </div>
-                            <div class="card-body">
+                                <div class="card-body">
                                 <div class="table-responsive">
                                 <!--begin: Datatable-->
                                 <table class="table table-bordered text-center">
@@ -275,6 +275,7 @@
                                         <th>#</th>
                                         <th> {{ trans('dashboard.Company Name') }}</th>
                                         <th>{{ trans('dashboard.Company Type') }}	</th>
+                                        <th>{{ trans('dashboard.Company Status') }}	</th>
                                         <th>{{ trans('dashboard.Interview Time') }}</th>
                                         <th>{{ trans('dashboard.Interview Date') }}</th>
                                         <th>{{ trans('dashboard.City') }}</th>
@@ -284,31 +285,47 @@
 
                                     <tbody>
                                         @foreach($meetings as $k=>$meeting)
-                                            @if($meeting->company)
-                                                <tr>
-                                                    <td>{{ $k+1 }}</td>
-                                                    <td> <a target="_blank" href="{{ route('companies.show' , $meeting->company_id) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
-                                                    <td><a target="_blank" href="#">{{ $meeting->company ? $meeting->company->subSector->name : '-' }}</a></td>
-                                                    <td>{{ $meeting->time }}</td>
-                                                    <td>{{ $meeting->date }}</td>
-                                                    <td>
-                                                        <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">
-                                                            {{ $meeting->company->city ? $meeting->company->city->name : '-' }}
-                                                        </a>
-                                                    </td>
-                                                    <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
+                                                @if($meeting->company)
+                                                    <tr>
+                                                        <td>{{ $k+1 }}</td>
+                                                        <td> <a target="_blank" href="{{ route('companies.show' , $meeting->company_id) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
+                                                        <td>{{ $meeting->company ? $meeting->company->subSector->name : '-' }}</td>
+                                                        <td>
+                                                            @if($meeting->company->client_status == 1)
+                                                                {{ trans('dashboard.Hot') }}
+                                                            @elseif($meeting->company->client_status == 2)
+                                                                {{ trans('dashboard.Warm') }}
+                                                            @elseif($meeting->company->client_status == 3)
+                                                                {{ trans('dashboard.Cold') }}
+                                                            @elseif($meeting->company->client_status == 4)
+                                                                {{ trans('dashboard.Awarded') }}
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $meeting->time }}</td>
+                                                        <td>{{ $meeting->date }}</td>
+                                                        <td>
+                                                            <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">
+                                                                {{ $meeting->company->city ? $meeting->company->city->name : '-' }}
+                                                            </a>
+                                                        </td>
+                                                        <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
                                     </tbody>
                                 </table>
+
                                     {{ $meetings->links() }}
+
                                 <!--end: Datatable-->
                                 </div>
                             </div>
                         </div>
                         <!--end::Card-->
                     </div>
+                    @endif
                 </div>
                 <!--end::Row-->
 

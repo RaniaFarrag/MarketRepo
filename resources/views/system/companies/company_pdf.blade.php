@@ -2,7 +2,7 @@
 <html lang="en" dir="rtl">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Business Detail Report</title>
+    <title>Business Detail {{ $company->name }}</title>
     <style>
         @page {
             margin: 110px 20px;
@@ -106,13 +106,26 @@
 
         <tbody>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Vendor No: 70000</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Vendor No: {{ $company->id }}</td>
 
         </tr>
         <tr>
             <td  class="en ltr" style="width: 50%;font-size: 12px; vertical-align: middle; border: none">General information about the company</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;border: none;text-align: right;">Evaluation status:</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">A</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
+                @if($company->evaluation_status)
+                    @if($company->evaluation_status == 1)
+                        A
+                    @elseif($company->evaluation_status == 2)
+                       B
+                    @elseif($company->evaluation_status == 3)
+                       C
+                    @endif
+                    @else
+                    -
+
+                @endif
+            </td>
         </tr>
         </tbody>
     </table>
@@ -124,46 +137,46 @@
 
         <tr>
             <td colspan="1" class="en ltr" style="font-size: 12px; vertical-align: middle;width: 25%; border: none;">Company Name English :</td>
-            <td colspan="3" class="en ltr" style="font-size: 12px;vertical-align: middle;width: 75%;">FNRCO FNRCO</td>
+            <td colspan="3" class="en ltr" style="font-size: 12px;vertical-align: middle;width: 75%;">{{ $company->translate('en')->name }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Company Name Arabic :</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">الشركة الوطنية الاولى </td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Tel :</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966138872020</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->translate('ar')->name }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Tel--whatsapp :</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->whatsapp }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">ECN :</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">ADC</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax :</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966138872020</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;background: #e6e6e6">ADC</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax-- Tel :</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">{{ $company->phone }}</td>
         </tr>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Vendor No:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">10005493</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;">Vendor No:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">{{ $company->id }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Web :</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">https://fnrco.com.sa/en</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->website }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">CR:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">10005493</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">10005493</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Activity:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Engineering</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->sector->name ? $company->sector->name : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Primary Country:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">France</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->country ? $company->country->name : '-' }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Ksa Bransh:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Yes</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">Yes</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Social Media Info
                 <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">www.linkedin.com</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->linkedin }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
                 <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
             </td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">https://www.facebook.com/</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;background: #e6e6e6">{{ $company->facebook }}</td>
         </tr>
         </tbody>
     </table>
@@ -258,19 +271,28 @@
 
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; width: 20%">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }} </td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">-</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">-</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; width: 20%">
+                @if($company->contract_manager_whatsapp)
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->contract_manager_whatsapp }}">
+                        <i class="fab fa-whatsapp  text-success"></i>
+                    </a>
+                @else
+-
+                @endif
+
+            </td>
         </tr>
         </tbody>
     </table>
@@ -283,19 +305,25 @@
 
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left"> {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6"></td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;"><img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6"> </td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right; width: 20%"><img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png" width="20" alt="whatsapp"></td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">@if($company->hr_director_job_whatsapp)
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone={{ $company->hr_director_job_whatsapp }}">
+                        <i class="fab fa-whatsapp  text-success"></i>
+                    </a>
+                @else
+                    -
+                @endif</td>
         </tr>
         </tbody>
     </table>

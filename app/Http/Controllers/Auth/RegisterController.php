@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+//        $this->middleware(['auth','role:ADMIN']);
     }
 
     /**
@@ -47,6 +48,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    /** TO SHOW LOGIN FORM  WHEN WRITE  REGISTER ROUTE*/
+    public function showRegistrationForm()
+    {
+        return view('auth.login');
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

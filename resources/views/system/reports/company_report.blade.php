@@ -44,6 +44,10 @@
                     <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Export Excel ') }}
                     </button>
+
+                    <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
+                        {{ trans('dashboard.Companies') }} <span id="counter">{{ $data['count'] }}</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -295,7 +299,9 @@
                     "name": $("#name").val(),
                 },
                 success: function (data) {
-                    $('.renderTable').html(data);
+                    // $('.renderTable').html(data);
+                    $('.renderTable').html(JSON.parse(data).viewBlade);
+                    $('#counter').html(JSON.parse(data).count)
                 }
             });
         });

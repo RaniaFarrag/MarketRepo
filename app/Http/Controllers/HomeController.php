@@ -29,77 +29,112 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
-                                    ->where(function ($q){
-                                        $q->where('user_id' , Auth::user()->id)
-                                            ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
-                                    })
-                                    ->with('company' , 'user')
-                                    ->paginate(10);
+        $total_companies = Company::all()->count();
+        $total_users_under_me = User::all()->count();
 
-//        $meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-//                                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))
-//                                    ->with('company' , 'user')
-//                                    ->paginate(10);
-//        dd($meetings);
-        $company_registered_today_created_by_me = Company::where('user_id' , Auth::user()->id)
-            ->whereDate('created_at' , Carbon::today())->count();
+        if (Auth::user()->hasRole('ADMIN')){
+            $company_registered_today = Company::whereDate('created_at' , Carbon::today())->count();
+            //All Companies
+            $rep_daily_reports = Company_sales_lead_report::all()->count();
+            $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())->count();
+            $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())->count();
 
-        $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
-            ->where(function ($q){
-                $q->where('user_id' , Auth::user()->id)
-                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
-            })->count();
+            $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                                        ->with('company' , 'user')
+                                        ->paginate(10);
 
-        $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
-            ->where('time' , '>' , Carbon::now())
-            ->where(function ($q){
-                $q->where('user_id' , Auth::user()->id)
-                    ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
-            })->count();
-
-        $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
-            ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
-
-        if (Auth::user()->hasRole('Representative')){
-            $total_companies = Company::where('representative_id' , Auth::user()->id)->count();
-
-//            $today_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-//                ->whereDate('date' , Carbon::today())->count();
-//
-//            $coming_meetings = CompanyMeeting::where('user_id' , Auth::user()->id)
-//                ->whereDate('date' , '>=' , Carbon::today())
-//                ->where('time' , '>' , Carbon::now())
-//                ->count();
-//
-//            $rep_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
+            $company_registered_today = Company::whereDate('created_at' , Carbon::today())
+                ->where(function ($q){
+                    $q->where('user_id' , Auth::user()->id)
+                        ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                })->count();
+            //Companies in my sectors
             $total_companies = Company::WhereIn('sector_id' , Auth::user()->sectors->pluck('id'))->count();
+            $total_users_under_me = User::where('parent_id' , Auth::user()->id)->count();
+            $rep_daily_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
+                ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
+            $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
+                ->where(function ($q){
+                    $q->where('user_id' , Auth::user()->id)
+                        ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                })->count();
+            $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                ->where(function ($q){
+                    $q->where('user_id' , Auth::user()->id)
+                        ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
+                })->count();
+
+            $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                ->where(function ($q){
+                    $q->where('user_id' , Auth::user()->id)
+                        ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                })
+                ->with('company' , 'user')
+                ->paginate(10);
+
         }
+
+        elseif (Auth::user()->hasRole('Sales Representative')){
+            //All Companies created by me
+            $company_registered_today = Company::whereDate('created_at' , Carbon::today())
+                ->where('user_id' , Auth::user()->id)->count();
+
+            //Assign to me
+            $total_companies = Company::where('representative_id' , Auth::user()->id)->count();
+            $total_users_under_me = 0;
+            $rep_daily_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
+            $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
+                ->where('user_id' , Auth::user()->id)->count();
+            $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                //->where('time' , '>' , Carbon::now())
+                ->where('user_id' , Auth::user()->id)->count();
+
+
+            $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
+                ->where(function ($q){
+                    $q->where('user_id' , Auth::user()->id)
+                        ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                })
+                ->with('company' , 'user')
+                ->paginate(10);
+
+        }
+
+        elseif (Auth::user()->hasRole('Data Entry')){
+            //All Companies created by me
+            $company_registered_today = Company::whereDate('created_at' , Carbon::today())
+                ->where('user_id' , Auth::user()->id)->count();
+
+            $rep_daily_reports = 0 ;
+            $today_meetings = 0 ;
+            $coming_meetings = 0 ;
+            $meetings = 0 ;
+
+        }
+
 
         else{
-            $total_companies = Company::all()->count();
+            //All Companies created by me
+            $company_registered_today = Company::whereDate('created_at' , Carbon::today())
+                ->where('user_id' , Auth::user()->id)->count();
 
-            $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())->count();
+            $rep_daily_reports = 0 ;
+            $today_meetings = 0 ;
+            $coming_meetings = 0 ;
+            $meetings = 0 ;
 
-            $coming_meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
-                ->where('time' , '>' , Carbon::now())
-                ->count();
-
-            $rep_reports = Company_sales_lead_report::all()->count();
         }
 
-        $total_users_under_me = User::where('parent_id' , Auth::user()->id)->count();
-
-
         return view('system.home')->with(['meetings'=>$meetings ,
-            'company_registered_today_created_by_me'=>$company_registered_today_created_by_me,
+            'company_registered_today_created_by_me'=>$company_registered_today,
             'total_companies'=>$total_companies,
             'total_users_under_me'=>$total_users_under_me,
+            'rep_daily_reports'=>$rep_daily_reports,
             'today_meetings'=>$today_meetings,
             'coming_meetings'=>$coming_meetings,
-            'rep_reports'=>$rep_reports,]);
+            ]);
     }
 }
