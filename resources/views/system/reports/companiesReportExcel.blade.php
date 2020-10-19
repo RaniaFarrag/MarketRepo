@@ -49,11 +49,11 @@
             @else
                 <td style="text-align: center; border: 1px solid #000000">-</td>
             @endif
-            <td style="text-align: center; border: 1px solid #000000">{{$company->evaluator ? $company->evaluator->name :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_connected_user ? $company->confirm_connected_user->name :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_interview_user ? $company->confirm_interview_user->name :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_need_user ? $company->confirm_need_user->name :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_contract_user ? $company->confirm_contract_user->name :"-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->evaluator ? app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en : "-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_connected_user ? app()->getLocale() == 'ar' ? $company->confirm_connected_user->name : $company->confirm_connected_user->name_en :"-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_interview_user ? app()->getLocale() == 'ar' ? $company->confirm_interview_user->name : $company->confirm_interview_user->name_en :"-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_need_user ? app()->getLocale() == 'ar' ? $company->confirm_need_user->name : $company->confirm_need_user->name_en : "-" }}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_contract_user ? app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en :"-"}}</td>
         </tr>
     @endforeach
     </tbody>

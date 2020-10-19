@@ -17,8 +17,9 @@
         @foreach($logs as $log)
             <tr>
                 <td>{{ $log->user_id }}</td>
-                <td>{{ $log->user->name }}</td>
-                <td>{{ $log->user->roles[0]->name ?? "-" }}</td>
+                <td>{{$log->user->name ? app()->getLocale() == 'ar' ? $log->user->name : $log->user->name_en :"-"}}</td>
+                <td>{{$log->user->roles[0]->name ? app()->getLocale() == 'ar' ? $log->user->roles[0]->name_ar : $log->user->roles[0]->name :"-"}}</td>
+
                 <td>{{ $log->content }}</td>
                 <td>{{$log->model_name}}</td>
                 {{--<td> <a href="{{route($log->model_name.'.edit',$log->row_id)}}">{{$log->row_id}}</a></td>--}}

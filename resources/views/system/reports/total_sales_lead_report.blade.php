@@ -180,7 +180,7 @@
                                                                             {{ app()->getLocale()=='ar' ? $representative->name : $representative->name_en }}
                                                                         </option>
                                                                     @endforeach
-                                                                    @if(auth()->user()->roles[0]->name = 'Sales Manager')
+                                                                    @if(auth()->user()->roles[0]->name == 'Sales Manager')
                                                                         <option value="{{ auth()->user()->id }}" >
                                                                             {{ app()->getLocale()=='ar' ? auth()->user()->name : auth()->user()->name_en }}
                                                                         </option>
@@ -204,7 +204,7 @@
                                                                 <label
                                                                     for="name">{{__('dashboard.Lead status')}}</label>
                                                                 <select class="form-control select2"
-                                                                        name="statue"
+                                                                        name="statue[]"
                                                                         id="statue" multiple="multiple">
                                                                     {{--<option value="Hot">{{ trans('dashboard.Hot') }}</option>--}}
                                                                     {{--<option value="Warm">Warm</option>--}}

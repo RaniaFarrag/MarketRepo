@@ -117,11 +117,11 @@
                     @if($company->evaluation_status == 1)
                         A
                     @elseif($company->evaluation_status == 2)
-                       B
+                        B
                     @elseif($company->evaluation_status == 3)
-                       C
+                        C
                     @endif
-                    @else
+                @else
                     -
 
                 @endif
@@ -142,13 +142,13 @@
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Company Name Arabic :</td>
             <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->translate('ar')->name }}</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Tel--whatsapp :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">whatsapp :</td>
             <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->whatsapp }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">ECN :</td>
             <td  style="font-size: 12px;vertical-align: middle;text-align: left;background: #e6e6e6">ADC</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax-- Tel :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Tel :</td>
             <td  style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">{{ $company->phone }}</td>
         </tr>
         <tr>
@@ -197,9 +197,9 @@
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi </td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->name : '-' }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Full Name:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Ali Hamid Al Ghamdi</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->name : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Citizenship :</td>
@@ -209,36 +209,36 @@
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Position:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Manger Director Administrator</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->title ? $company->companyDesignatedcontacts[0]->title : '-' : '-' }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Position:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">Manger Director Techincal</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->title ? $company->companyDesignatedcontacts[1]->title : '-' : '-'}}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Email:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">genral-adc@slb.con</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->email ? $company->companyDesignatedcontacts[0]->email : '-' : '-'}}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Email:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">genral-adc@slb.con</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->email ? $company->companyDesignatedcontacts[1]->email : '-' : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->mobile ? $company->companyDesignatedcontacts[0]->mobile : '-' : '-'}}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Mobile:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->mobile ? $company->companyDesignatedcontacts[1]->mobile : '-' : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->whatsapp ? $company->companyDesignatedcontacts[0]->whatsapp : '-' : '-'}}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Telephone:</td>
             </td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->whatsapp ? $company->companyDesignatedcontacts[1]->whatsapp : '-' : '-'}}</td>
         </tr>
-        <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Fax:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax:</td>
-            </td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>
-        </tr>
+        {{--<tr>--}}
+        {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Fax:</td>--}}
+        {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>--}}
+        {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax:</td>--}}
+        {{--</td>--}}
+        {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>--}}
+        {{--</tr>--}}
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
             <td  style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
@@ -270,12 +270,12 @@
         <tbody>
 
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; width: 20%">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }} </td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">Full Name:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left; width: 20%;">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }} </td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%;text-align: right">Mobile:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%;"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%;text-align: right;">Telephone:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%;">{{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
@@ -289,7 +289,7 @@
                         <i class="fab fa-whatsapp  text-success"></i>
                     </a>
                 @else
--
+                    -
                 @endif
 
             </td>
@@ -304,12 +304,12 @@
         <tbody>
 
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left;">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left"> {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">Full Name:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%; text-align: right">Mobile:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: nonel;width: 13.3%;text-align: right">Telephone:</td>
+            <td  style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%"> {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}</td>
         </tr>
         <tr>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin"></td>
@@ -328,56 +328,37 @@
         </tbody>
     </table>
     <hr style="margin: 5px;"/>
-    <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
-        border-spacing: 0 2px; margin-top: 5px">
-        <tbody>
-        <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">1</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">Feedback: </td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: right; border: none">Next Feedback</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
-        </tr>
-        <tr>
-            <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: none; text-align: left;">
-                Client Said To Call Them Again For Next Calling Client Said To Call Them Again For Next Calling
-            </td>
-        </tr>
-        <tr>
-            <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6; text-align: left; padding: 0px"></td>
-        </tr>
-        <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">2</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">Feedback: </td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: right; border: none">Next Feedback</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">27-Dec-2017</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>
-            <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>
-        </tr>
+    @if(count($sales_team_lead_reports))
+        <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+            border-spacing: 0 2px; margin-top: 5px">
+            <tbody>
+            @foreach($sales_team_lead_reports as $k=>$salesLeadReport)
+                <tr>
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ $k+1 }}</td>
+                    <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">Feedback: </td>
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
+                    <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">{{ $salesLeadReport->created_at }}</td>
+                    {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>--}}
+                    {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>--}}
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: right; border: none">Next Feedback</td>
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
+                    <td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">{{ $salesLeadReport->nextFollowUp }}</td>
+                    {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>--}}
+                    {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>--}}
+                </tr>
+                <tr>
+                    <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: none; text-align: left;">
+                        {{ $salesLeadReport->client_feeback }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6; text-align: left; padding: 0px"></td>
+                </tr>
+            @endforeach
 
-        <tr>
-            <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: none; text-align: left;">
-                Client Said To Call Them Again For Next Calling Client Said To Call Them Again For Next Calling
-            </td>
-        </tr>
-        <tr>
-            <td colspan="11" style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6; text-align: left; padding: 0px"></td>
-        </tr>
-
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    @endif
 
 
 </main>

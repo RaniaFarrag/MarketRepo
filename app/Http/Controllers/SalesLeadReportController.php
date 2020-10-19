@@ -87,6 +87,7 @@ class SalesLeadReportController extends Controller
 
     public function extractSalesLeadReportExcel(Request $request)
     {
+//        dd($request->all());
         if ($request->type == 1) {
             $reports = $this->salesReportRepositoryInterface->index($request, true)['reports'];
             return Excel::download(new salesLeadReport($reports), 'salesLeadReportExcel.xlsx');

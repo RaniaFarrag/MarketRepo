@@ -281,8 +281,16 @@ return [
     'Select Manager' => 'اختر مدير',
     'Sign Out' => 'تسجيل خروج',
     'Manager' => 'المدير',
+    'Company Menu' => 'القائمة',
+    'Quotation' => 'عرض اسعار',
+    'Quotation Details' => 'تفاصيل عرض الاسعار',
+    'Company Quotations' => 'عرض اسعار الشركة',
+    'Add New Quotation' => 'اضافة عرض سعر جديد',
     'Company contact confirmed' => 'تم تأكيد اتصال الشركة بنجاح',
     'The Company contact confirmation has been canceled' => 'تم إالغاء اتصال الشركة بنجاح',
+    'Model num' => 'رقم الشركة',
+    'Model' => 'النوع',
+
 
 
 

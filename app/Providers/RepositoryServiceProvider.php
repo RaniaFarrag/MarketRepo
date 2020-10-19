@@ -69,6 +69,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\salesReportRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\CompanyQuotationRepositoryInterface',
+            'App\Repositories\CompanyQuotationRepository'
+        );
+
     }
 
     /**

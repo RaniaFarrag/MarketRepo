@@ -280,7 +280,14 @@ return [
     'Select Manager' => 'Select Manager',
     'Sign Out' => 'Sign Out',
     'Manager' => 'Manager',
+    'Company Menu' => 'Company Menu',
+    'Quotation' => 'Quotation',
+    'Quotation Details' => 'Quotation Details',
+    'Company Quotations' => 'Company Quotations',
+    'Add New Quotation' => 'Add New Quotation',
     'Company contact confirmed' => 'Company contact confirmed',
     'The Company contact confirmation has been canceled' => 'The Company contact confirmation has been canceled',
+    'Model num' => 'Company ID',
+    'Model' => 'Model',
 
 ];

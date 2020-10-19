@@ -643,16 +643,16 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.By User') }} :</label>
-                                                <input class="form-control" type="text" value="{{ app()->getLocale() == 'ar' ? $evaluation_status_user->name : $evaluation_status_user->name_en }}" readonly>
+                                                <input class="form-control" type="text" value="{{ $company->evaluator ? app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en : '-'}}" readonly>
                                             </div>
                                         @else
                                             <div class="col-lg-12">
                                                 <label>{{ trans('dashboard.Company Evaluation') }} :</label>
                                                 <select name="evaluation_status" class="form-control select2">
                                                     <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
-                                                    <option {{ $company->evaluation_status == 1 ? 'selected' : '' }} value="1">A</option>
-                                                    <option {{ $company->evaluation_status == 2 ? 'selected' : '' }} value="2">B</option>
-                                                    <option {{ $company->evaluation_status == 3 ? 'selected' : '' }} value="3">C</option>
+                                                    <option value="1">A</option>
+                                                    <option value="2">B</option>
+                                                    <option value="3">C</option>
                                                 </select>
                                             </div>
                                         @endif
@@ -672,17 +672,17 @@
 
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.By User') }} :</label>
-                                                <input class="form-control" type="text" value="{{ app()->getLocale() == 'ar' ? $client_status_user->name : $client_status_user->name_en }}" readonly>
+                                                <input class="form-control" type="text" value="{{ $company->client_status_user ? app()->getLocale() == 'ar' ? $company->client_status_user->name : $company->client_status_user->name_en : '-'}}" readonly>
                                             </div>
                                         @else
                                             <div class="col-lg-12">
                                                 <label>{{ trans('dashboard.Client Status') }} :</label>
                                                 <select name="client_status" class="form-control select2">
                                                     <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
-                                                    <option {{ $company->client_status == 1 ? 'selected' : '' }} value="1">{{ trans('dashboard.Hot') }}</option>
-                                                    <option {{ $company->client_status == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Warm') }}</option>
-                                                    <option {{ $company->client_status == 3 ? 'selected' : '' }} value="3">{{ trans('dashboard.Cold') }}</option>
-                                                    <option {{ $company->client_status == 4 ? 'selected' : '' }} value="4">{{ trans('dashboard.Awarded') }}</option>
+                                                    <option value="1">{{ trans('dashboard.Hot') }}</option>
+                                                    <option value="2">{{ trans('dashboard.Warm') }}</option>
+                                                    <option value="3">{{ trans('dashboard.Cold') }}</option>
+                                                    <option value="4">{{ trans('dashboard.Awarded') }}</option>
                                                 </select>
                                             </div>
                                         @endif

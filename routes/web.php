@@ -80,6 +80,25 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('print/need/{need_id}' , 'CompanyNeedController@printNeed')->name('print_need');
 
+
+    /** Manage Company Quotation */
+    Route::resource('company_quotations' , 'CompanyQuotationController');
+
+    /** Custom index route */
+    Route::get('company_quotations/index/{company_id}', [
+        'as' =>   'company_quotations.index',
+        'uses' => 'CompanyQuotationController@index'
+    ]);
+
+    /** Custom create route */
+    Route::get('company_quotations/create/{company_id}', [
+        'as' => 'company_quotations.create',
+        'uses' => 'CompanyQuotationController@create'
+    ]);
+
+    Route::get('print/quotation' , 'CompanyQuotationController@printQuotation')->name('print_quotation');
+
+
     /**************************************************GET******************************************************/
 
     /** Get Sub-Sectors Of Sector */

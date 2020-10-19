@@ -115,22 +115,18 @@ class CompanyController extends Controller
     /** Edit Company */
     public function edit(Company $company)
     {
+//        dd($company);
         $data = $this->companyRepositoryinterface->edit($company);
-        $evaluation_status_user = '';
-        $client_status_user = '';
 
-        if ($company->client_status){
-            $client_status_user = User::findOrFail($company->client_status_user_id);
-            //return view('system.companies.edit')->with(['company' => $company , 'data' => $data , 'client_status_user' => $client_status_user]);
-        }
+//        if ($company->client_status){
+//            $client_status_user = $company->client_status_user_id;
+//        }
+//
+//        if ($company->evaluation_status){
+//            $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
+//        }
 
-        if ($company->evaluation_status){
-            $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
-            //dd($evaluation_status_user);
-        }
-
-        return view('system.companies.edit')->with(['company' => $company , 'data' => $data ,
-            'client_status_user' => $client_status_user , 'evaluation_status_user' => $evaluation_status_user]);
+        return view('system.companies.edit')->with(['company' => $company , 'data' => $data ]);
     }
 
     /**
@@ -211,8 +207,10 @@ class CompanyController extends Controller
     public function print_show_company($company_id)
     {
         $company = Company::findOrFail($company_id);
+        $sales_team_lead_reports = $company->salesLeadReports()->limit(3)->orderBy('created_at' , 'desc')->get();
+        //dd($sales_team_lead_reports);
 
-        $pdf = Pdf::loadView('system.companies.company_pdf' , compact('company'));
+        $pdf = Pdf::loadView('system.companies.company_pdf' , compact('company' , 'sales_team_lead_reports'));
 
         $output = $pdf->output();
 

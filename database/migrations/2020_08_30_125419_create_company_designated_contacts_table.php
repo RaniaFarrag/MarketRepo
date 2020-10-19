@@ -18,6 +18,7 @@ class CreateCompanyDesignatedContactsTable extends Migration
             $table->string('name')->nullable();
             $table->string('job_title')->nullable();
             $table->string('mobile')->nullable();
+            $table->string('citizenship')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('email')->nullable();

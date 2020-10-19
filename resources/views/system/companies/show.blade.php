@@ -44,6 +44,66 @@
                 <!--end::Info-->
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
+
+
+                    <a target="_blank" href="{{ route('print_show_company' , $company->id) }}" class="btn btn-light btn-hover-primary  mr-2">
+                        <i class="flaticon2-fax text-muted"></i> {{ trans('dashboard.Print') }}
+                    </a>
+
+                    <!--end::Actions-->
+
+                    <!--begin::Dropdowns-->
+                    <div class="dropdown dropdown-inline" >
+                        <a href="#" class="btn   btn-light-primary  " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ki ki-plus icon-1x"></i> {{ trans('dashboard.Company Menu') }}
+                        </a>
+                        <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
+                            <!--begin::Navigation-->
+                            <ul class="navi navi-hover">
+                                {{--<li class="navi-header pb-1">
+                                    <span class="text-primary text-uppercase font-weight-bold font-size-sm">{{ trans('dashboard.Company Menu') }}:</span>
+                                </li>--}}
+                                <li class="navi-item">
+                                    <a href="{{ route('companies.edit' , $company->id) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon-edit"></i></span>
+                                        <span class="navi-text"> {{ trans('dashboard.Modifying Company Data') }}</span>
+                                    </a>
+                                </li>
+                                <li class="navi-item">
+
+                                    <a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-list-3"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="navi-item">
+                                    <a href="{{ route('company_needs.create' , $company->id) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon-file-1"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.Add New Need') }}</span>
+                                    </a>
+                                </li>
+                                <li class="navi-item">
+                                    <a href="{{ route('company_quotations.index' , $company->id) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.Quotation') }}</span>
+                                    </a>
+                                </li>
+                                <li class="navi-item">
+                                    <a href="#" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                        <span class="navi-text">File</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--end::Navigation-->
+                        </div>
+                    </div>
+                    <!--end::Dropdowns-->
+                </div>
+
+
+                {{--<div class="d-flex align-items-center">
                     <!--begin::Button-->
                     <a href="{{ route('company_needs.index' , $company->id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.View Company Needs') }}
@@ -57,7 +117,7 @@
                         {{ trans('dashboard.Modifying Company Data') }}
                     </a>
                     <!--end::Button-->
-                </div>
+                </div>--}}
                 <!--end::Toolbar-->
             </div>
         </div>
@@ -162,11 +222,11 @@
                                     <!--begin::User-->
 
                                     <!--begin::Actions-->
-                                    <div class="mb-10">
+                                  {{--  <div class="mb-10">
                                         <a target="_blank" href="{{ route('print_show_company' , $company->id) }}"
                                            class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">{{ trans('dashboard.Print') }}</a>
 
-                                    </div>
+                                    </div>--}}
                                     <!--end::Actions-->
                                 </div>
                                 <!--end::Title-->
