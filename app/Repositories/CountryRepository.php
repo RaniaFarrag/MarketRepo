@@ -73,7 +73,7 @@ class CountryRepository implements CountryRepositoryInterface
         $country->delete();
         $this->addLog(auth()->id() , $country->id , 'countries' , 'تم حذف دولة' , 'Country has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('countries.index'));
     }
 

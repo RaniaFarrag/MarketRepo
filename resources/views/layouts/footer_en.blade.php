@@ -119,11 +119,17 @@
 
     <script>
         $(document).ready(function () {
+
             $('.select2').select2({
                 // options
+                allowClear: true,
                 placeholder: "Select a state"
 
             });
+
+
+            
+            
         });
 
     </script>
@@ -134,6 +140,7 @@
             $('.select2').select2({
                 // options
                 placeholder: "اختر",
+                allowClear: true,
                 searchInputPlaceholder: 'بحث ...',
                 dir: "rtl",
                 language: {

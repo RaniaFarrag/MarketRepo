@@ -70,7 +70,7 @@ class SubSectorRepository implements SubSectorRepositoryInterface
 
         $this->addLog(auth()->id() , $subSector->id , 'sub_sectors' , 'تم حذف قطاع فرعي' , 'Sub-Sector has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('sub_sectors.index' , $subSector->sector_id));
     }
 

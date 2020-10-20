@@ -88,7 +88,7 @@ class CityRepository implements CityRepositoryInterface
         $city->delete();
         $this->addLog(auth()->id() , $city->id , 'cities' , 'تم حذف مدينة' , 'City has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('cities.index'));
     }
 

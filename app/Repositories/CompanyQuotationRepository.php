@@ -151,7 +151,7 @@ class CompanyQuotationRepository implements CompanyQuotationRepositoryInterface
 
         $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم حذف احتياج للشركة ' , 'CompanyNeed has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('company_needs.index' , $companyNeed->company_id));
     }
 

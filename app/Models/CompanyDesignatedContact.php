@@ -13,6 +13,7 @@ class CompanyDesignatedContact extends Model
         'name',
         'job_title',
         'mobile',
+        'citizenship',
         'linkedin',
         'whatsapp',
         'email',

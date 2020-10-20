@@ -242,6 +242,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                     'name' => $request->designated_contact_name[$i],
                     'job_title' => $request->designated_contact_job_title[$i],
                     'mobile' => $request->designated_contact_mobile[$i],
+                    'citizenship' => $request->designated_contact_citizenship[$i],
                     'linkedin' => $request->designated_contact_linkedin[$i],
                     'whatsapp' => $request->designated_contact_whatsapp[$i],
                     'email' => $request->designated_contact_email[$i],
@@ -388,6 +389,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                     'name' => $request->designated_contact_name[$i],
                     'job_title' => $request->designated_contact_job_title[$i],
                     'mobile' => $request->designated_contact_mobile[$i],
+                    'citizenship' => $request->designated_contact_citizenship[$i],
                     'linkedin' => $request->designated_contact_linkedin[$i],
                     'whatsapp' => $request->designated_contact_whatsapp[$i],
                     'email' => $request->designated_contact_email[$i],
@@ -401,6 +403,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                         'name' => $request->designated_contact_name[$i],
                         'job_title' => $request->designated_contact_job_title[$i],
                         'mobile' => $request->designated_contact_mobile[$i],
+                        'citizenship' => $request->designated_contact_citizenship[$i],
                         'linkedin' => $request->designated_contact_linkedin[$i],
                         'whatsapp' => $request->designated_contact_whatsapp[$i],
                         'email' => $request->designated_contact_email[$i],
@@ -453,7 +456,7 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         $this->addLog(auth()->id(), $company->id, 'companies', 'تم حذف شركة', 'Company has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('companies.index'));
     }
 

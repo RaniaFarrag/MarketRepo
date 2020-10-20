@@ -105,84 +105,80 @@
                                         </div>
 
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.TRADE') }}:</label>
-                                            <input value=" " name="minimum_age" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.TRADE') }}" required/>
 
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Gender') }} :</label>
-                                            <select id="gender" class="form-control select2" name="gender"
-                                                    required>
-                                                <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
-                                                <option value="1" >{{ trans('dashboard.Male') }}</option>
-                                                <option value="2">{{ trans('dashboard.Female') }}</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Qualification') }}:</label>
-                                            <input value="{{ old('educational_qualification') }}" name="educational_qualification" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
-                                            @error('educational_qualification')
-                                           
-                                            @enderror
-                                        </div>
 
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.QTY') }}:</label>
-                                            <input value="" name="minimum_age" type="number"
-                                                   class="form-control" placeholder="{{ trans('dashboard.QTY') }}" required/>
-                                            
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Contract Duration') }}:</label>
-                                            <input value="{{ old('contract_duration') }}" name="contract_duration" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Contract Duration') }}" required/>
-                                            @error('contract_duration')
-                                           
-                                            @enderror
-                                        </div>
 
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Experience Range') }}:</label>
-                                            <input value="{{ old('experience_range') }}" name="experience_range" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Work Location') }}" required/>
+                                    <div id="kt_repeater_1">
+                                        <div id="kt_repeater_1" class="form-group row">
+                                            <div data-repeater-list="" class="col-lg-12">
+                                                <div data-repeater-item class="form-group row align-items-center">
+
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.TRADE') }}:</label>
+                                                        <input value=" " name="minimum_age" type="text"
+                                                               class="form-control" placeholder="{{ trans('dashboard.TRADE') }}" required/>
+
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Gender') }} :</label>
+                                                        <select id="gender" class="form-control select2" name="gender"
+                                                                required>
+                                                            <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                            <option value="1" >{{ trans('dashboard.Male') }}</option>
+                                                            <option value="2">{{ trans('dashboard.Female') }}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Qualification') }}:</label>
+                                                        <input value="{{ old('educational_qualification') }}" name="educational_qualification" type="text"
+                                                               class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
+
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.QTY') }}:</label>
+                                                        <input value="" name="minimum_age" type="number"
+                                                               class="form-control" placeholder="{{ trans('dashboard.QTY') }}" required/>
+
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Nationality') }}:</label>
+                                                        <select  class="form-control select2" name=" "
+                                                                 required>
+                                                            <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+
+                                                        </select>
+
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
+                                                        <input value=" " name="experience_range" type="text"
+                                                               class="form-control" placeholder="{{ trans('dashboard.SALARY (SAR)') }}" required/>
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}:</label>
+                                                        <input value=" " name=" " type="text"
+                                                               class="form-control" placeholder="{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}" required/>
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}:</label>
+                                                        <input value=" " name=" " type="text"
+                                                               class="form-control" placeholder="{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row align-items-center" >
+
+                                            <div class="col-lg-3 float-right" style="float: none !important;margin: 0 auto;">
+                                                <a href="javascript:;" data-repeater-create="" class="btn btn-block font-weight-bolder btn-light-primary">
+                                                    <i class="la la-plus"></i> {{ trans('dashboard.Add a new Title') }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Work Location') }}:</label>
-                                            <input value="{{ old('work_location') }}" name="work_location" type="text"
-                                                   class="form-control"
-                                                   placeholder="{{ trans('dashboard.Work Location') }}" required/>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Working Hours') }}:</label>
-                                            <input value="{{ old('work_hours') }}" name="work_hours" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Working Hours') }}" required/>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Total Salary') }}:</label>
-                                            <input value="{{ old('total_salary') }}" name="total_salary" type="text"
-                                                   class="form-control"
-                                                   placeholder="{{ trans('dashboard.Total Salary') }}" required/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-3">
-                                            <label>{{ trans('dashboard.Deadline') }}:</label>
-                                            <input value="{{ old('deadline') }}" name="deadline" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Deadline') }}"/>
-                                        </div>
-                                        <div class="col-lg-9">
-                                            <label>{{ trans('dashboard.Special Remarks') }}:</label>
-                                            <input name="special_note" type="text" class="form-control"
-                                                   placeholder="{{ trans('dashboard.Special Remarks') }}"/>
-                                        </div>
 
-                                    </div>
+
+
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
@@ -211,6 +207,43 @@
 
 
 @section('script')
+    <script>
+        
+        // Class definition
+        var KTFormRepeater = function() {
 
+            // Private functions
+            var demo1 = function() {
+                $('#kt_repeater_1').repeater({
+                    initEmpty: false,
+
+                    defaultValues: {
+                        'text-input': 'foo'
+                    },
+
+                    show: function () {
+                        $(this).slideDown();
+                    },
+
+                    hide: function (deleteElement) {
+                        $(this).slideUp(deleteElement);
+                    }
+                });
+            }
+
+            return {
+                // public functions
+                init: function() {
+                    demo1();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            KTFormRepeater.init();
+        });
+
+
+    </script>
 
 @endsection

@@ -198,7 +198,7 @@ class UserRepository implements UserRepositoryInterface
         $user->delete();
         $this->addLog(auth()->id() , $user->id , 'users' , 'تم حذف مستخدم' , 'User has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('users.index'));
     }
 

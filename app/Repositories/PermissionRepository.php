@@ -72,7 +72,7 @@ class PermissionRepository implements PermissionRepositoryInterface
         $permission->delete();
         $this->addLog(auth()->id() , $permission->id , 'permissions' , 'تم حذف صلاحية' , 'Permission has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('permissions.index'));
     }
 

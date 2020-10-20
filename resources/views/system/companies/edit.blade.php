@@ -310,7 +310,10 @@
                                                     <div class="form-group">
                                                         <label>{{ trans('dashboard.Mobile') }}:</label>
                                                         <input value="{{ $company->companyDesignatedcontacts[$i]->mobile }}" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
-
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>{{ trans('dashboard.citizenship') }}:</label>
+                                                        <input value="{{ $company->companyDesignatedcontacts[$i]->citizenship }}" name="designated_contact_citizenship[]" type="text" class="form-control" placeholder="{{ trans('dashboard.citizenship') }}"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{ trans('dashboard.Linkedin') }}:</label>

@@ -90,7 +90,7 @@ class RoleRepository implements RoleRepositoryInterface
         $role->delete();
         $this->addLog(auth()->id() , $role->id , 'roles' , 'تم حذف الدور' , 'Role has been deleted');
 
-        Alert::success('success', trans('dashboard. deleted successfully'));
+        Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('roles.index'));
     }
 
