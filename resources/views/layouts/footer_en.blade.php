@@ -21,9 +21,59 @@
 <!--end::Page-->
 </div>
 <!--end::Main-->
+{{--
+
+    <a href="https://chat.whatsapp.com/FtHmNI9XriVD60ja1u95q3" class="float singlePhone" target="_blank" title="Support Group">
+    <i class="fab fa-whatsapp text-white icon-xl my-float"></i>
+</a>
+--}}
 
 
 
+<!-- Start WhatsChat Layout Section -->
+<div class="wc-style7">
+
+    <!-- Floating Button-->
+    <a class="wc-button">
+        <i id="wc-whatsapp" class="fab fa-whatsapp" aria-hidden="true"></i>
+        <i id="wc-times" class="far fa-minus-square" aria-hidden="true"></i>
+    </a>
+
+    <!-- Chat Panel -->
+    <div class="wc-panel">
+        <!-- Panel Header Content -->
+        <div class="wc-header">
+            <!-- Profile Picture -->
+            <div class="wc-img-cont">
+                <img class="wc-user-img" src="{{ asset('dashboard/assets/whats_chat_jquery_plugin/img/profile_01.jpg') }}"/>
+            </div>
+            <!-- Display Name & Last Seen -->
+            <div class="wc-user-info">
+                <strong>Support Team</strong>
+                <p>Customer Support</p>
+            </div>
+        </div>
+        <!-- Panel Body Content -->
+        <div class="wc-body">
+            <div class="wc-content">
+                <div class="wc-bubble tri-right left-top">
+                    <span>Support Team</span>
+                    <br>
+                    <p>Hello there 👋</p>
+                    <p>How can I help you?</p>
+                </div>
+            </div>
+        </div>
+        <!-- Panel Footer Content -->
+        <div class="wc-footer">
+            <!-- Start Single Contact List -->
+            <a class="wc-list">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i><p>Chat</p>
+            </a>
+        </div>
+    </div>
+</div>
+<!--/ End WhatsChat Layout Section -->
 
 
 
@@ -106,7 +156,10 @@
 <script src="{{ asset('dashboard/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}"></script>
 <script src="{{ asset('dashboard/assets/js/scripts.bundle.js?v=7.0.6') }}"></script>
 <!--end::Global Theme Bundle-->
-
+{{--
+<script src="{{ asset('dashboard/assets/whats_chat_jquery_plugin/js/whatschat-layout.js') }}"></script>
+--}}
+<script src="{{ asset('dashboard/assets/whats_chat_jquery_plugin/js/whatschat-style7.js') }}"></script>
 
 
 

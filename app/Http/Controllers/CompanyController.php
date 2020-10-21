@@ -186,6 +186,7 @@ class CompanyController extends Controller
         $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies'];
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
+        $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
 
         if ($request->ajax()) {
             $data_json['viewBlade'] = view('system.reports.company_report_partial')->with(['data' => $data])->render();
@@ -194,7 +195,7 @@ class CompanyController extends Controller
 
             //return view('system.reports.company_report_partial',compact('data'))->render();
         }
-        return view('system.reports.company_report',compact('data','countries','sectors'));
+        return view('system.reports.company_report',compact('data','countries','sectors' , 'representatives'));
     }
 
 

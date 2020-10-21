@@ -1,0 +1,111 @@
+/*======================================================
+
+Project: WhatsChat - WhatsApp Chat Widget jQuery Plugin
+Author: Black Theme
+Released On: 10, Aug 2019
+@version: 1.0
+
+========================================================*/
+
+/* WhatsChat Main Panel */ 
+.wc-style5{
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Slide Contact List */
+.wc-style5 .wc-contacts .wc-list{
+	position: fixed;
+    right: -135px;
+    text-align: left;
+    width: 185px;
+    font-size: 20px;
+    text-decoration: none;
+}
+.wc-style5 .wc-contacts .wc-list:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+.wc-style5 .wc-contacts .wc-list li{
+	display: flex;
+	padding: 0;
+	list-style-type: none;
+}
+
+/* User Profile */
+.wc-style5 .wc-list .wc-img-cont{
+	position: relative;
+}
+.wc-style5 .wc-list .wc-user-img{
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+.wc-style5 .wc-list .wc-status-icon{
+	position: absolute;
+	height: 12px;
+    width: 12px;
+    bottom: 1px;
+    right: 0px;
+    border-radius: 10px 0 0 0;
+}
+.wc-style5 .wc-list .wc-user-info{
+	padding-left: 25px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: -15px;
+	width: 100%;
+	line-height: 25px;
+}
+.wc-style5 .wc-list:hover .wc-user-info{
+	border-radius: 15px 0 0 15px;
+	box-shadow: 0px 0px 10px #ccc;
+}
+.wc-style5 .wc-user-info .wc-user-name{
+	font-size: 14px;
+    font-weight: bold;
+    color: transparent;
+}
+.wc-style5 .wc-user-info p{
+	padding-top: 5px;
+	font-size: 11px;
+	line-height: 0px;
+	color: transparent;
+}
+
+/* CSS For Each Slide From Top */
+.wc-style5 .wc-contacts .user-1{
+  	top: 140px;
+}
+.wc-style5 .wc-contacts .user-2{
+  	top: 192px;
+}
+.wc-style5 .wc-contacts .user-3{
+  	top: 244px;
+}
+.wc-style5 .wc-contacts .user-4{
+  	top: 296px;
+}
+.wc-style5 .wc-contacts .user-5{
+  	top: 348px;
+}
+
+/* Common CSS */
+.wc-style5 .wc-contacts .wc-list,
+.wc-style5 .wc-list:hover .wc-user-img,
+.wc-style5 .wc-list .wc-user-info,
+.wc-style5 .wc-user-info .wc-user-name,
+.wc-style5 .wc-user-info p{
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+/* Media Css for Smaller Device */
+@media(min-width: 576px){
+
+	.wc-style5 .wc-contacts .wc-list:hover{
+	    right: 0;
+	}
+}

@@ -1,0 +1,238 @@
+/*=====================================================
+
+Project: WhatsChat - WhatsApp Chat Widget jQuery Plugin
+Author: Black Theme
+Released On: 10, Aug 2019
+@version: 1.0
+
+=======================================================*/
+
+/* WhatsChat Main Panel */
+.wc-style4{
+	position: fixed;
+  	bottom: 20px;
+  	right: 20px;
+  	letter-spacing: 0.1px;
+  	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* WhatsChat Floating Button */
+.wc-style4 .wc-button{
+	display: inline-block;
+  	width: 50px;
+  	height: 50px;
+	font-size: 25px;  	
+  	line-height: 48px;
+  	text-align: center;
+  	border: 1px solid #fff;
+	border-radius: 100%;
+	box-shadow: 0 0 10px rgba(12, 12, 12, 0.3);
+  	cursor: pointer;
+}
+.wc-style4 .wc-button:hover{
+	box-shadow: 0px 0px 10px rgba(12, 12, 12, 0.5);
+}
+
+/*  WhatsChat Modal Window */
+.wc-style4 .wc-modal{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 25%;
+	height: auto;
+	max-width: 630px;
+	min-width: 320px;
+	border-radius: 5px;
+	visibility: hidden;
+    box-shadow: 0 4px 8px 1px rgba(43,43,43,.15);
+	z-index: 2000;
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+	
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+}
+.wc-style4 .wc-show{
+	visibility: visible;
+}
+.wc-style4 .wc-overlay{
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 1000;
+}
+.wc-style4 .wc-show ~ .wc-overlay{
+	opacity: 1;
+	visibility: visible;
+} 
+.wc-style4 .wc-modal .wc-content{
+	position: relative;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+/* Modal Header */
+.wc-style4 .wc-content .wc-header{
+	padding: 12px 15px 15px;
+	text-align: center;
+	border-radius: 8px;
+}
+.wc-style4 .wc-header strong{
+	font-size: 15px;
+	line-height: 20px;
+}
+.wc-style4 .wc-header p{
+	margin-bottom: 0;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+/* Modal Body Contact List */
+.wc-style4 .wc-content .wc-body{
+	padding: 10px 20px;
+	height: 320px;
+	overflow: auto;
+}
+.wc-style4 .wc-body .wc-list{
+	padding: 10px 0;
+    text-align: left;
+	overflow: auto;
+}
+.wc-style4 .wc-body .wc-list:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+.wc-style4 .wc-list li{
+	padding: 0 10px;
+	margin-bottom: 5px;	
+	list-style-type: none;
+	border-radius: 5px;
+}
+.wc-style4 .wc-list:hover li{
+	box-shadow: 0 2px 5px rgba(43, 43, 43, 0.26);
+}
+
+/* Contact Profile & Name & Last Seen Status */
+.wc-style4 .wc-list .d-flex{
+    display: flex;
+    padding: 5px 5px;
+}
+.wc-style4 .wc-list:hover .d-flex{
+    border-radius: 5px;
+}
+.wc-style4 .wc-list .wc-img-cont{
+	position: relative;
+}
+.wc-style4 .wc-list .wc-user-img{
+    display: block;
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.wc-style4 .wc-list .wc-user-info{
+	margin-top: -5px;
+	margin-bottom: auto;
+	margin-left: 15px;
+	width: 100%;
+}
+.wc-style4 .wc-user-info .wc-user-name{
+	font-size: 14px;
+    font-weight: bold;
+}
+.wc-style4 .wc-user-info p{
+	margin-bottom: 0;
+	font-size: 11px;
+    line-height: 11px;
+}
+.wc-style4 .wc-user-info .wc-status{
+    display: inline-block;
+    padding: 1px 5px;
+    vertical-align: middle;
+	font-size: 10px;
+    border-radius: 5px;
+}
+.wc-style4 .wc-contacts .wc-list .wc-chat-icon{
+	position: relative;
+	margin-top: 0;
+	text-align: right;
+}
+.wc-style4 .wc-contacts .wc-list .wc-chat-icon i{
+	position: absolute;
+	margin-top: 17px;
+	margin-left: -25px;
+	font-size: 25px;
+}
+
+/* Footer Close Button */
+.wc-style4 .wc-footer{
+	text-align: center;
+	padding: 0 5px 15px;
+}
+.wc-style4 .wc-footer .wc-close{
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 3px 2px;
+	font-size: 13px;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;	
+}
+
+/* 3D Flip Vertical with Animations */
+.wc-flip-y.wc-modal{
+	-webkit-perspective: 1300px;
+	-moz-perspective: 1300px;
+	-ms-perspective: 1300px;
+	-o-perspective: 1300px;
+	perspective: 1300px;
+}
+.wc-flip-y .wc-content{
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	
+	-webkit-transform: rotateX(-70deg);
+	-moz-transform: rotateX(-70deg);
+	-ms-transform: rotateX(-70deg);
+	-o-transform: rotateX(-70deg);
+	transform: rotateX(-70deg);
+
+	opacity: 0;
+}
+.wc-show.wc-flip-y .wc-content{
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg);
+	-ms-transform: rotateX(0deg);
+	-o-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+	opacity: 1;
+}
+
+/* Common CSS */
+.wc-style4,
+.wc-style4 .wc-button:hover,
+.wc-style4 .wc-overlay,
+.wc-style4 .wc-list:hover li,
+.wc-style4 .wc-list:hover .wc-user-img,
+.wc-flip-y .wc-content{
+    -webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+}

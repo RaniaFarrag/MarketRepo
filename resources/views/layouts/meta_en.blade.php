@@ -25,6 +25,16 @@
     <link href="{{ asset('dashboard/assets/css/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
 @endif
 
+<!-- WhatsChat Layout CSS  (required) -->
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard/assets/whats_chat_jquery_plugin/css/animate.min.css') }}"/>
+{{--
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard/assets/whats_chat_jquery_plugin/css/whatschat-layout.css') }}"/>
+--}}
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard/assets/whats_chat_jquery_plugin/css/style/whatschat-style7.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('dashboard/assets/whats_chat_jquery_plugin/css/colors/color-green.css') }}"/>
+
+
+
 @yield('css')
 <!--end::Global Theme Styles-->
 

@@ -1,0 +1,232 @@
+/*========================================================
+
+Project: WhatsChat - WhatsApp Chat Widget jQuery Plugin
+Author: Black Theme
+Released On: 10, Aug 2019
+@version: 1.0
+
+==========================================================*/
+
+/* WhatsChat Main Container */
+.wc-style1{
+	display: inline-block;
+	position: fixed;
+	letter-spacing: 0.1px;
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	z-index: 9999;
+}
+.wc-right-bottom{
+	bottom: 1em;
+	right: 1em;
+	float: right;
+}
+
+/* Right Bottom Floating Button */
+.wc-style1 .wc-button{
+	width: 50px;
+    height: 50px;
+	border-radius: 100%;
+	border: 1px solid #fff;
+	box-shadow: 0 0 10px rgba(12, 12, 12, 0.3);
+}
+.wc-style1 .wc-button:hover{
+	box-shadow: 0px 0px 10px rgba(12, 12, 12, 0.5);
+}
+.wc-style1 .wc-button i{
+	display: table;
+	height: 100%;
+	width: 100%;	
+	margin-right: 0px;
+	font-size: 25px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+/* Floating Panel Container */
+.wc-style1 .wc-panel{
+	display: none;
+	margin-bottom: 5%;
+	width: 300px;
+	border-radius: 10px;
+	box-shadow: 0px 3px 7px rgba(12, 12, 12, 0.18);
+}
+
+/* Panel Header Content */
+.wc-style1 .wc-panel .wc-header{
+	padding: 12px 15px 15px;
+	text-align: center;
+	border-radius: 8px;
+}
+.wc-style1 .wc-header strong{
+	font-size: 15px;
+	line-height: 20px;
+}
+.wc-style1 .wc-header p{
+	margin-bottom: 0;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+/* Panel Body Content */
+.wc-style1 .wc-panel .wc-body{
+	padding: 20px 20px 15px;
+	min-width: 250px;
+	white-space: nowrap;
+	list-style: none;
+	overflow-y: auto;
+}
+.wc-style1 .wc-body .wc-list:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+.wc-style1 .wc-body .wc-list li{
+	padding: 5px 10px;
+	margin-bottom: 5px;	
+	list-style-type: none;
+    border-radius: 10px;
+}
+
+/* User Contact Profile */
+.wc-style1 .wc-list .d-flex{
+    display: flex;
+}
+.wc-style1 .wc-list .wc-img-cont{
+	position: relative;
+}
+.wc-style1 .wc-list .wc-user-img{
+	height: 55px;
+	width: 55px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+.wc-style1 .wc-list .wc-status-icon{
+	position: absolute;
+	bottom: 5px;
+    right: 1px;
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+}
+.wc-style1 .wc-list .wc-user-info{
+	margin-top: 0;
+	margin-bottom: auto;
+	margin-left: 15px;
+}
+.wc-style1 .wc-list .wc-user-info span{
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 35px;
+}
+.wc-style1 .wc-list .wc-user-info p{
+	margin-top: -5px;
+	margin-bottom: 0;
+	font-size: 11px;
+	line-height: 15px;
+}
+.wc-style1 .wc-list .wc-chat-icon{
+	position: absolute;
+	margin-top: 15px;
+	right: 30px;
+}
+.wc-style1 .wc-list .wc-chat-icon i{
+	display: none;
+	font-size: 25px;
+}
+.wc-style1 .wc-list li:hover .wc-chat-icon i{
+	display: block;
+	-webkit-animation: wc-fadein 1s;
+    -moz-animation: wc-fadein 1s;
+    -ms-animation: wc-fadein 1s;
+    -o-animation: wc-fadein 1s;
+    animation: wc-fadein 1s;
+}
+
+@keyframes wc-fadein{
+    from{ opacity: 0; }
+    to { opacity: 1; }
+}
+@-moz-keyframes wc-fadein{
+    from{ opacity: 0; }
+    to { opacity: 1; }
+}
+@-webkit-keyframes wc-fadein{
+    from{ opacity: 0; }
+    to { opacity: 1; }
+}
+@-ms-keyframes wc-fadein{
+    from{ opacity: 0; }
+    to { opacity: 1; }
+}
+@-o-keyframes wc-fadein{
+    from{ opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Common CSS */
+.wc-style1 .wc-body .wc-list li:hover,
+.wc-style1 .wc-body .wc-list:hover .wc-user-img,
+.wc-style1 .wc-body .wc-list .wc-chat-icon i,
+.wc-style1 .wc-body .wc-list li:hover .wc-chat-icon i,
+.wc-style1 .wc-button:hover{
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+/* Floating Button Forward Rotation */
+.rotateForward{
+    animation-name: rotateF;
+    animation-duration: 0.65s;
+    animation-iteration-count: 1;
+}
+@keyframes rotateF{
+  	from{
+        transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+  	}
+  	to{
+        transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+  	}
+}
+
+/* Floating Button Backward Rotation */
+.rotateBackward{
+    animation-name: rotateB;
+    animation-duration: 0.65s;
+    animation-iteration-count: 1;
+}
+
+@keyframes rotateB{
+  	from{
+        transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+  	}
+  	to{
+        transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+  	}
+}
+
+/* Media Css for Smaller Device */
+@media(max-width: 576px){
+
+	.wc-style1 .wc-panel{
+	    width: 290px;
+	}
+}

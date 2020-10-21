@@ -144,6 +144,26 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-md-4 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>{{ trans('dashboard.Company Representative name') }}  </label>
+                                                                <select id="representative_id" class="form-control select2" name="representative_id">
+                                                                    <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                    @foreach($representatives as $representative)
+                                                                        <option value="{{ $representative->id }}">
+                                                                            {{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}
+                                                                        </option>
+                                                                    @endforeach
+
+                                                                    @if(auth()->user()->hasRole('Sales Manager'))
+                                                                        <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+                                                                    @endif
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>{{ trans('dashboard.Evaluation status') }}</label>
@@ -305,6 +325,7 @@
                     "company_status": $("#company_status").val(),
                     "evaluation_ids": $("#evaluation_ids").val(),
                     "city_id": $("#cities").val(),
+                    "representative_id": $("#representative_id").val(),
                     "country_id": $("#countries").val(),
                     "subSector_id": $("#subSector").val(),
                     "sector_id": $("#sector").val(),
