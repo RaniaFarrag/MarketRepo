@@ -63,12 +63,15 @@
                                 {{--<li class="navi-header pb-1">
                                     <span class="text-primary text-uppercase font-weight-bold font-size-sm">{{ trans('dashboard.Company Menu') }}:</span>
                                 </li>--}}
-                                <li class="navi-item">
+                                @can('Edit Company')
+                                <li class="navi-item pb-1">
                                     <a href="{{ route('companies.edit' , $company->id) }}" class="navi-link">
                                         <span class="navi-icon"><i class="flaticon-edit"></i></span>
                                         <span class="navi-text"> {{ trans('dashboard.Modifying Company Data') }}</span>
                                     </a>
                                 </li>
+                                @endcan
+                                @can('Add Company Need')
                                 <li class="navi-item">
 
                                     <a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">
@@ -76,25 +79,23 @@
                                         <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
                                     </a>
                                 </li>
+                                @endcan
 
                                 <li class="navi-item">
-                                    <a href="{{ route('company_needs.create' , $company->id) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon-file-1"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.Add New Need') }}</span>
+                                    <a href="{{ route('companySalesTeamReports.show',$company->id) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon-graph"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
                                     </a>
                                 </li>
+
+
                                 <li class="navi-item">
                                     <a href="{{ route('company_quotations.index' , $company->id) }}" class="navi-link">
                                         <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
                                         <span class="navi-text">{{ trans('dashboard.Quotation') }}</span>
                                     </a>
                                 </li>
-                                <li class="navi-item">
-                                    <a href="#" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
-                                        <span class="navi-text">File</span>
-                                    </a>
-                                </li>
+
                             </ul>
                             <!--end::Navigation-->
                         </div>

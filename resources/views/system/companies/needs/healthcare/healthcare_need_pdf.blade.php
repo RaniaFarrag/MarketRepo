@@ -48,7 +48,7 @@
 
             td {
                 padding: 2px 5px;
-                text-align: center;
+                text-align: right;
                 border: 1px solid #77697a;
                 border-collapse: collapse;
                 font-size: 14px !important;
@@ -133,7 +133,7 @@
 
             td {
                 padding: 2px 5px;
-                text-align: center;
+                text-align: left;
                 border: 1px solid #77697a;
                 border-collapse: collapse;
                 font-size: 14px !important;
@@ -228,48 +228,48 @@
     <table class="table_need" style="line-height: 24px; border: none;">
         <tbody>
         <tr>
-            <td>{{ __('dashboard.Ref No') }} :</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Ref No') }} :</td>
             <td>{{ $need->id}}</td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Date') }}:</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Date') }}:</td>
             <td>{{ $need->created_at->format('d-m-Y')}}</td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Client Name') }}:</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Client Name') }}:</td>
             <td>{{ $need->company->name }}</td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Recruitment Type') }} :</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Recruitment Type') }} :</td>
             <td>
 
                 {{--{{ $employeement_type->id }}--}}Manpower   {{--{{ employeement type Here }}--}}
             </td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Sector') }} :</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Sector') }} :</td>
             <td>{{ $need->company->sector->name }}</td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Required Position') }} </td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Required Position') }} </td>
             <td>{{ $need->required_position }}</td>
         </tr>
 
         <tr>
-            <td>{{ __('dashboard.Job Description') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Job Description') }}</td>
             <td>{!! $need->job_description !!}</td>
         </tr>
 
         <tr>
-            <td>{{ __('dashboard.No of candidates') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.No of candidates') }}</td>
             <td>{{ $need->candidates_number }}</td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Nationality') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Nationality') }}</td>
             <td>{{ $need->country->name }}</td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Gender') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Gender') }}</td>
             <td>
                 @if($need->gender == 1)
                     {{ trans('dashboard.Male') }}
@@ -281,15 +281,15 @@
             </td>
         </tr>
         <tr>
-            <td>{{ __('dashboard.Age Limit') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Age Limit') }}</td>
             <td>{{ $need->minimum_age }}</td>
         </tr>
         <tr>
-            <td>{{ trans('dashboard.Qualification') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.Qualification') }}</td>
             <td>{{$need->educational_qualification }}</td>
         </tr>
         <tr>
-            <td>{{ trans('dashboard.DataFlow') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.DataFlow') }}</td>
             <td>
                 @if($need->data_flow == 1)
                     {{ trans('dashboard.Required from inside the Kingdom') }}
@@ -301,35 +301,35 @@
             </td>
         </tr>
         <tr>
-            <td>{{ trans('dashboard.classification') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.classification') }}</td>
             <td>  {{$need->classification }}</td>
         </tr>
         <tr>
-            <td>{{ trans('dashboard.prometric') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.prometric') }}</td>
             <td>  {{ $need->prometric == 1 ? trans('dashboard.yes') : trans('dashboard.No')  }}</td>
         </tr>
         <tr>
-            <td>{{ trans('dashboard.International Experience') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.International Experience') }}</td>
             <td>{{$need->total_experience }}</td>
         </tr>
        <tr>
-            <td>{{ trans('dashboard.area_of_experience') }}</td>
+           <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.area_of_experience') }}</td>
             <td>{{$need->area_of_experience }}</td>
         </tr>
 
         <tr>
-            <td>{{ __('dashboard.Total Salary') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Total Salary') }}</td>
             <td>{{ $need->total_salary }}</td>
         </tr>
 
         <tr>
-            <td>{{ trans('dashboard.other_skills') }}</td>
+            <td style="width: 30%; background-color: #d7d7d7;">{{ trans('dashboard.other_skills') }}</td>
             <td>{{$need->other_skills }}</td>
         </tr>
 
 
         <tr>
-            <td><strong>{{ __('dashboard.Special Remarks') }}</strong></td>
+            <td style="width: 30%; background-color: #d7d7d7;"><strong>{{ __('dashboard.Special Remarks') }}</strong></td>
             <td>{{ $need->special_note }}</td>
         </tr>
         </tbody>
@@ -345,7 +345,13 @@
     <table style="line-height: 24px; border: none; text-align: center ">
         <tbody>
         <tr>
-            <td style="border: none;text-align: center">{{ __('dashboard.BY') }} : {{ $need->user ? $need->user->name : '-' }}</td>
+            <td style="border: none;text-align: center">{{ __('dashboard.BY') }} :
+                @if($need->user)
+                    {{ app()->getLocale() == 'ar' ? $need->user->name : $need->user->name_en }}
+                @else
+                    -
+                @endif
+            </td>
             <td style="border: none;text-align: center">{{ __('dashboard.Date') }} : {{ $need->created_at->format('d-m-Y')}}</td>
         </tr>
         </tbody>

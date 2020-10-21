@@ -9,11 +9,11 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end">
 
-                        <div class="dropdown dropdown-inline" data-toggle="tooltip"
+                        <div class="dropdown dropdown-inline" data-toggle="tooltip" data-trigger="focus"
                              title=""
                              data-placement="left"
                              data-original-title="{{count($company->companyMeetings) ?  $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time : ''  }}">
-                            <a href="#"
+                            <a href="javascript:;"
                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                 <i class="far fa-bell text-primary"></i>
                                 @if(count($company->companyMeetings))
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="dropdown dropdown-inline">
-                            <a href="#"
+                            <a href="javascript:;"
                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
                                data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
@@ -42,7 +42,7 @@
                                             <span class="navi-text">{{ trans('dashboard.View Company Data') }}</span>
                                         </a>
                                     </li>
-
+                                    @can('Show Company Needs')
                                     <li class="navi-item">
                                         <a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">
                                     <span class="navi-icon"><i
@@ -50,7 +50,8 @@
                                             <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
                                         </a>
                                     </li>
-
+                                    @endcan
+                                    @can('Edit Company')
                                     <li class="navi-item">
                                         <a href="{{ route('companies.edit' , $company->id) }}"
                                            class="navi-link">
@@ -59,6 +60,8 @@
                                             <span class="navi-text">{{ trans('dashboard.Modifying Company Data') }}</span>
                                         </a>
                                     </li>
+                                    @endcan
+                                    @can('Send Mail')
                                     <li class="navi-item">
                                         <a data-id="{{ $company->email ?? '-' }}" href="#mail_Modal" class="navi-link"
                                            data-toggle="modal">
@@ -67,6 +70,8 @@
                                             <span class="navi-text">{{ trans('dashboard.Send Email') }}</span>
                                         </a>
                                     </li>
+                                    @endcan
+                                    @can('Delete Company')
                                     <li class="navi-item">
                                         <form id="del" method="post"
                                               action="{{ route('companies.destroy' , $company->id) }}">
@@ -85,6 +90,8 @@
                                         {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
                                         {{--</a>--}}
                                     </li>
+                                    @endcan
+                                    @can('Corporate Assignment')
                                     <li class="navi-item">
                                         <a href="{{ route('assign_company_to_representative') }}" class="navi-link">
                                     <span class="navi-icon"><i
@@ -92,6 +99,7 @@
                                             <span class="navi-text">{{ trans('dashboard.Assign companies to a representative') }} </span>
                                         </a>
                                     </li>
+                                    @endcan
                                     <li class="navi-item">
                                         <a href="{{ route('companySalesTeamReports.show',$company->id) }}" class="navi-link">
                                     <span class="navi-icon"><i
@@ -161,7 +169,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Contact Information') }}
                                 :</span>
-                            <a href="#"
+                            <a href="javascript:;"
                                class="text-hover-primary phone">{{ $company->phone ? $company->phone : '-' }}</a>
                         </div>
                         <div class="d-flex justify-content-between align-items-cente my-1">
@@ -181,7 +189,7 @@
                                 </a>
 
                             @elseif($company->city)
-                                <a target="_blank" href="#">
+                                <a target="_blank" href="javascript:;">
                                     <span class="text-muted font-weight-bold">
                                     {{ $company->city->name }}
                                     </span>
@@ -259,6 +267,7 @@
                                 {{--RANIA--}}
                                 {{--data-id :: ATT TO ADD company_id IN INPUT FIELD--}}
                                 {{--class confirm_interview_checked :: CLASS TO CALL THE INPUT FIELD IN JS--}}
+                                @can('Confirm Connection')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1"
                                            {{ $company->confirm_connected == 1 ? 'checked' : '' }}
@@ -267,6 +276,7 @@
                                     <span></span>
                                     {{ trans('dashboard.Confirm Connection') }}
                                 </label>
+                                @endcan
 
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_interview_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_interview"
@@ -276,7 +286,7 @@
                                     <span></span>
                                     {{ trans('dashboard.Confirm Interview') }}
                                 </label>
-
+                                @can('Confirm Need')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_need_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_need"
                                             {{ $company->confirm_need == 1 ? ' checked' : '' }}
@@ -285,13 +295,15 @@
                                     <span></span>
                                     {{ trans('dashboard.Confirm Need') }}
                                 </label>
-
+                                @endcan
+                                @can('Confirm Contract')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_contract_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_contract"
                                             {{ $company->confirm_contract == 1 ? ' checked' : '' }}
                                             {{ $company->confirm_contract == 1 && $company->confirm_contract_user_id != auth()->id() ? 'disabled' : '' }}/>
                                     <span></span>{{ trans('dashboard.Confirm Contract') }}
                                 </label>
+                                @endcan
                             </div>
                         </div>
                     </div>

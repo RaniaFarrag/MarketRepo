@@ -95,10 +95,16 @@ class salesReportRepository implements salesReportRepositoryInterface
 //            $data['reports'] = $query->paginate(15);
 //        }
 
+        if (Auth::user()->hasRole('ADMIN')){
+            $data['representatives'] = $this->user_model::whereNotNull('parent_id')->get();
+        }
+        else{
+            $data['representatives'] = $this->user_model::where('parent_id' , Auth::user()->id)->get();
+        }
+
         $data['count'] = $query->count();
-        $data['reports'] = $all ? $query->get() : $query->paginate(15);
+        $data['reports'] = $all ? $query->orderBy('created_at' , 'desc')->get() : $query->orderBy('created_at' , 'desc')->paginate(15);
         $data['sectors'] = $this->sector_model::all();
-        $data['representatives'] = $this->user_model::where('parent_id' , Auth::user()->id)->get();
         $data['countries'] = $this->country_model::all();
         $data['ids'] = $ids;
         $data['checkAll'] = $checkAll;

@@ -94,13 +94,15 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                            <tr>
-                                                <td>{{ auth()->user()->id }}</td>
-                                                <td>{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</td>
-                                                <td><a class="btn btn-success font-weight-bold"
-                                                       href="{{ route('get_companies_of_representative' , auth()->user()->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
-                                                </td>
-                                            </tr>
+                                            @if(auth()->user()->hasRole('Sales Manager'))
+                                                <tr>
+                                                    <td>{{ auth()->user()->id }}</td>
+                                                    <td>{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</td>
+                                                    <td><a class="btn btn-success font-weight-bold"
+                                                           href="{{ route('get_companies_of_representative' , auth()->user()->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         </tbody>
 
                                     </table>

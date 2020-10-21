@@ -180,6 +180,16 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');
 
 
+    Route::get('agreement' , 'CompanyController@agreement')->name('agreement');
+
+    Route::get('agreement/service/fnrco' , 'CompanyController@agreement_service_fnrco')->name('agreement_service_fnrco');
+
+    Route::get('invoice' , 'CompanyController@invoice')->name('invoice');
+
+    Route::get('sales/quotation' , 'CompanyController@sales_quotation')->name('sales_quotation');
+
+    Route::get('undertakeing/opal' , 'CompanyController@undertakeing_opal')->name('undertakeing_opal');
+
 });
 
 //-------------------------------------EXPORT OLD DATA--------------------------------------------------

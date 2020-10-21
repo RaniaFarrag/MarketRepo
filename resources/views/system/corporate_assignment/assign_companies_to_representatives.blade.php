@@ -66,7 +66,9 @@
                                                 @foreach($data['representatives'] as $representative)
                                                     <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</option>
                                                 @endforeach
-                                                <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+                                                @if(auth()->user()->hasRole('Sales Manager'))
+                                                    <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+                                                @endif
                                             </select>
                                             @error('representative_id')
                                             <div class="error">{{ $message }}</div>

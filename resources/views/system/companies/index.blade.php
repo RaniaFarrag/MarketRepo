@@ -171,11 +171,11 @@
                                                             <label>{{ trans('dashboard.Communication Type') }}</label>
                                                             <select id="communication_type" class="form-control select2" name="communication_type"
                                                                     multiple="multiple">
-                                                                <option value="whatsapp" data-select2-id="71">Whatsapp</option>
-                                                                <option value="email" data-select2-id="72">Email</option>
-                                                                <option value="phone" data-select2-id="73">Phone</option>
-                                                                <option value="twitter" data-select2-id="74">Twitter</option>
-                                                                <option value="linkedin" data-select2-id="75">Linkedin</option>
+                                                                <option value="whatsapp" >Whatsapp</option>
+                                                                <option value="email" >Email</option>
+                                                                <option value="phone" >Phone</option>
+                                                                <option value="twitter" >Twitter</option>
+                                                                <option value="linkedin" >Linkedin</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -213,7 +213,10 @@
                                                                         {{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}
                                                                     </option>
                                                                 @endforeach
-                                                                <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+
+                                                                @if(auth()->user()->hasRole('Sales Manager'))
+                                                                    <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+                                                                @endif
 
                                                             </select>
                                                         </div>
@@ -622,6 +625,7 @@
                 success: function (data) {
                     $('.renderTable').html(JSON.parse(data).viewBlade);
                     $('#counter').html(JSON.parse(data).count)
+                    KTApp.initComponents();
 
                 }
             });

@@ -203,12 +203,12 @@
 
 
 <htmlpageheader name="page-header">
-    <header><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg"></header>
+    <header><img style="width: 100%" src="{{ asset('dashboard/assets/head.jpg') }}"></header>
 </htmlpageheader>
 
 <htmlpagefooter name="page-footer">
 
-    <footer><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg"></footer>
+    <footer><img style="width: 100%" src="{{ asset('dashboard/assets/foot.jpg') }}"></footer>
 </htmlpagefooter>
 
 <main>
@@ -287,46 +287,46 @@
 
 
 
-    <table class="en ltr" style="line-height: 24px; border: none;">
+    <table class="en ltr" style="line-height: 16px; border: none;">
 
         <tbody>
         <tr class="en ltr">
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.TRADE') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.Gender') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.Qualification') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.QTY') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.Nationality') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.SALARY (SAR)') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                 {{ __('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}
             </td>
-            <td class="en ltr" style="background: #999;font-size: 12px; vertical-align: middle; text-align: center">
+            <td class="en ltr" style="background: #d7d7d7;font-size: 11px; vertical-align: middle; text-align: center;line-height: 16px; width: 170px;">
                 {{ __('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}
             </td>
         </tr>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">GENERAL NURSES</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">FEMALE</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">BACHELOR</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">15</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">PHILIPPINES</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">3500+300+ Transport &
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">GENERAL NURSES</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">FEMALE</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">BACHELOR</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">15</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">PHILIPPINES</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">3500+300+ Transport &
                 Accommodation
             </td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">ONE MONTH SALARY</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">$750</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">ONE MONTH SALARY</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle;text-align: center;">$750</td>
         </tr>
         </tbody>
     </table>
@@ -346,7 +346,7 @@
             <span class="en">•</span>	عرض السعر المرسل صالح لمدة <span class="en">7</span> أيام من تاريخ إصداره<span class="en">.</span><br/>
 
 
-            <strong>شركة التوظيف <span class="en">-</span> ليناركو</strong>
+            <strong style="font-size: 16px">شركة ليناركو للتوظيف</strong>
 
                 @else
 
@@ -363,7 +363,7 @@
                     • VAT and any Additional Government Taxes and Government Fee will be applicable.<br/>
                     • This quotation is Valid for 7 Days from the issued date.<br/>
 
-                    For <strong>LEADING INTERNATIONAL RECRUITMENT CORPORATION</strong>
+                    For <strong>INTERNATIONAL RECRUITMENT CORPORATION</strong>
 
 
 

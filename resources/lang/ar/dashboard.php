@@ -312,7 +312,11 @@ return [
     'Business Detail Report' => 'تقرير تفاصيل الأعمال',
     'Business Detail' => 'تفاصيل العمل',
     'Vendor No' => 'المورد رقم',
-
+    'ECN' => 'ECN',
+    'CR' => 'سجل تجاري',
+    'Social Media Info' => 'Social Media Info',
+    'Ksa Branch' => 'فروع فى المملكة',
+    'The contract has been confirmed with the company' => 'تم تأكيد العقد مع الشركة',
 
 
 

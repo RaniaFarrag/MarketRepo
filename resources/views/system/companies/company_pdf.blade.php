@@ -54,6 +54,9 @@
                         direction: rtl;
                         text-align: right;
                     }
+                    .rtl {
+                       text-align: left;
+                    }
 
                     h4 {
                         font-size: 24px;
@@ -129,7 +132,7 @@
 
                     td {
                         padding: 2px 5px;
-                        text-align: center;
+                        text-align: left;
                         border: 1px solid #77697a;
                         border-collapse: collapse;
                         font-size: 14px !important;
@@ -138,6 +141,9 @@
                     .ltr {
                         direction: ltr;
                         text-align: left
+                    }
+                    .rtl {
+                        text-align: right;
                     }
 
                     h4 {
@@ -235,8 +241,7 @@
                 </tr>
                 </tbody>
             </table>
-            <table class="en ltr"
-                   style="line-height: 14px; border: none;border-collapse: separate;border-spacing: 0 2px;">
+            <table class="en ltr" style="line-height: 14px; border: none;border-collapse: separate;border-spacing: 0 2px;">
 
                 <tbody>
 
@@ -245,126 +250,127 @@
                     <td colspan="1" class="en ltr"
                         style="font-size: 12px; vertical-align: middle;width: 25%; border: none;"> {{ trans('dashboard.Company Name English') }} :
                     </td>
-                    <td colspan="3" class="en ltr"
-                        style="font-size: 12px;vertical-align: middle;width: 75%;">{{ $company->translate('en')->name }}</td>
+                    <td colspan="3" class="en ltr" style="font-size: 12px;vertical-align: middle;width: 75%;">{{ $company->translate('en')->name }}</td>
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.Company Name Arabic') }}
                         :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->translate('ar')->name }}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;">{{ $company->translate('ar')->name }}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         {{ trans('dashboard.Whatsapp') }}  :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->whatsapp }}</td>
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;">{{ $company->whatsapp }}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">ECN :</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;background: #e6e6e6">ADC</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.ECN') }} :</td>
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;background: #e6e6e6">ADC</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         {{ trans('dashboard.Tel') }}  :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">{{ $company->phone }}</td>
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;">{{ $company->phone }}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;">Vendor No:</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">{{ $company->id }}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        {{ trans('dashboard.Website') }} :
-                    </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->website }}</td>
-                </tr>
-                <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">CR:</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">10005493
-                    </td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        {{ trans('dashboard.sector') }} :
-                    </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->sector->name ? $company->sector->name : '-' }}</td>
-                </tr>
-                <tr>
+
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.Country') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle">{{ $company->country ? $company->country->name : '-' }}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        Ksa Bransh:
+                    <td class="ltr" style="font-size: 12px;vertical-align: middle">{{ $company->country ? $company->country->name : '-' }}</td>
+
+
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
+                        {{ trans('dashboard.Website') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">Yes</td>
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;">{{ $company->website }}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Social Media Info
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;"> {{ trans('dashboard.Location') }}  :</td>
+                    <td class="ltr" style="font-size: 12px;vertical-align: middle;"> {{ $company->city ? $company->city->name : '-' }}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
+                        {{ trans('dashboard.Sector') }} :
+                    </td>
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;">{{ $company->sector->name ? $company->sector->name : '-' }}</td>
+                </tr>
+                <tr>
+
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.CR') }}:</td>
+                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle; background: #e6e6e6">10005493
+                    </td>
+
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
+                        {{ trans('dashboard.Ksa Branch') }} :
+                    </td>
+                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle;background: #e6e6e6">{{ trans('dashboard.yes') }}</td>
+                </tr>
+                <tr>
+                    <td class=""  style="font-size: 12px; vertical-align: middle; border: none">
                         <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->linkedin }}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook">
+                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle;">{{ $company->linkedin }}</td>
+                    <td class="rtl"  style="font-size: 12px; vertical-align: middle; border: none; ">
+                        <img src="https://picklefeetgames.com/wp-content/uploads/2018/12/twitter-app-icon-transparent-17-2-300x300.png" width="20" alt="twitter">
                     </td>
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;background: #e6e6e6">{{ $company->facebook }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->facebook }}</td>
                 </tr>
                 </tbody>
             </table>
             <hr style="margin: 5px;"/>
-            <h3 class="en ltr" style="margin: 5px;">Designated Contacts</h3>
+            <h3 class="en ltr" style="margin: 5px;">{{ trans('dashboard.Designated contact') }}</h3>
 
-            <table class="en ltr"
-                   style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;border-spacing: 0 2px;">
+            <table style="line-height: 14px; border: none;  border-collapse: separate;border-spacing: 0 2px;">
 
                 <tbody>
 
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"><span
-                                style="padding: 10px; border: 1px solid;">&nbsp;1&nbsp;</span>
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"><span style="padding: 10px; border: 1px solid;">&nbsp;1&nbsp;</span>
                     </td>
                     <td style="font-size: 12px; vertical-align: middle; border: none"></td>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none; text-align: center; text-indent: 50px">
+                    <td class="rtl"  style="font-size: 12px; vertical-align: middle; border: none; text-align: center; text-indent: 50px">
                         <span style="padding: 10px; border: 1px solid; padding: 5px !important;">&nbsp;2&nbsp;</span>
                     </td>
                     <td style="font-size: 12px; vertical-align: middle; border: none"></td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Full Name:</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->name ? $company->companyDesignatedcontacts[0]->name : '-' : '-'}}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        Full Name:
+                    <td class="" style="font-size: 12px; vertical-align: middle; border: none; width: 20% ">{{ trans('dashboard.Name') }}:</td>
+                    <td class="" style="font-size: 12px;vertical-align: middle;width: 30% ">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->name ? $company->companyDesignatedcontacts[0]->name : '-' : '-'}}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;width: 20% ">
+                        {{ trans('dashboard.Name') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->name ? $company->companyDesignatedcontacts[1]->name : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 30% ">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->name ? $company->companyDesignatedcontacts[1]->name : '-' : '-'}}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Citizenship :</td>
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> {{ trans('dashboard.citizenship') }} :</td>
                     <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->citizenship ? $company->companyDesignatedcontacts[0]->citizenship : '-' : '-'}}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        Citizenship :
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
+                        {{ trans('dashboard.citizenship') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->citizenship ? $company->companyDesignatedcontacts[1]->citizenship : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->citizenship ? $company->companyDesignatedcontacts[1]->citizenship : '-' : '-'}}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Position:</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->job_title ? $company->companyDesignatedcontacts[0]->job_title : '-' : '-' }}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        Position:
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> {{ trans('dashboard.Job Title') }} :</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->job_title ? $company->companyDesignatedcontacts[0]->job_title : '-' : '-' }}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
+                        {{ trans('dashboard.Job Title') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->job_title ? $company->companyDesignatedcontacts[1]->job_title : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->job_title ? $company->companyDesignatedcontacts[1]->job_title : '-' : '-'}}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Email:</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->email ? $company->companyDesignatedcontacts[0]->email : '-' : '-'}}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        Email:
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.Email') }} :</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->email ? $company->companyDesignatedcontacts[0]->email : '-' : '-'}}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
+                        {{ trans('dashboard.Email') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->email ? $company->companyDesignatedcontacts[1]->email : '-' : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->email ? $company->companyDesignatedcontacts[1]->email : '-' : '-' }}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Mobile:</td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->mobile ? $company->companyDesignatedcontacts[0]->mobile : '-' : '-'}}</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
-                        Mobile:
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> {{ trans('dashboard.Mobile') }} :</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->mobile ? $company->companyDesignatedcontacts[0]->mobile : '-' : '-'}}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
+                        {{ trans('dashboard.Mobile') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->mobile ? $company->companyDesignatedcontacts[1]->mobile : '-' : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->mobile ? $company->companyDesignatedcontacts[1]->mobile : '-' : '-' }}</td>
                 </tr>
-                <tr>
+            {{--    <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
                     <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->whatsapp ? $company->companyDesignatedcontacts[0]->whatsapp : '-' : '-'}}</td>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
@@ -372,87 +378,77 @@
                     </td>
                     </td>
                     <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->whatsapp ? $company->companyDesignatedcontacts[1]->whatsapp : '-' : '-'}}</td>
-                </tr>
-                {{--<tr>--}}
-                {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Fax:</td>--}}
-                {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>--}}
-                {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">Fax:</td>--}}
-                {{--</td>--}}
-                {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left">00966559913188</td>--}}
-                {{--</tr>--}}
+                </tr>--}}
+
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"><img
                                 src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
+                    <td style="font-size: 12px;vertical-align: middle;">-</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
                         <img src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+                    <td style="font-size: 12px;vertical-align: middle;">-</td>
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"><img
                                 src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
+                    <td style="font-size: 12px;vertical-align: middle;">-</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook">
                     </td>
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+                    <td style="font-size: 12px;vertical-align: middle;">-</td>
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"><img
                                 src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
                                 width="20" alt="whatsapp"></td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none; text-align: right">
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[0] ? $company->companyDesignatedcontacts[0]->whatsapp ? $company->companyDesignatedcontacts[0]->whatsapp : '-' : '-'}}</td>
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
                         <img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
                              width="20" alt="whatsapp"></td>
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">-</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ $company->companyDesignatedcontacts[1] ? $company->companyDesignatedcontacts[1]->whatsapp ? $company->companyDesignatedcontacts[1]->whatsapp : '-' : '-'}}</td>
                 </tr>
                 </tbody>
             </table>
             <hr style="margin: 5px;"/>
-            <h3 class="en ltr" style="margin: 5px;">Contract Manger</h3>
+            <h3 class="en ltr" style="margin: 5px;">{{ trans('dashboard.Contract Manager') }}</h3>
 
-            <table class="en ltr"
-                   style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;border-spacing: 0 2px;">
+            <table style="line-height: 14px; border: none; border-collapse: separate;border-spacing: 0 2px;">
 
                 <tbody>
 
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">Full
-                        Name:
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">
+                        {{ trans('dashboard.Name') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; width: 20%;">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }} </td>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%;text-align: right">
-                        Mobile:
+                    <td style="font-size: 12px;vertical-align: middle; width: 20%;">{{ $company->contract_manager_name ? $company->contract_manager_name : '-' }} </td>
+                    <td class="rtl"
+                        style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%;">
+                        {{ trans('dashboard.Mobile') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%;"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</td>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%;text-align: right;">
-                        Telephone:
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%;"> {{ $company->contract_manager_mobile ? $company->contract_manager_mobile : '-' }}</td>
+                    <td class="rtl"
+                        style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%;">
+                        {{ trans('dashboard.Phone') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%;">{{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%;">{{ $company->contract_manager_phone ? $company->contract_manager_phone : '-' }}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img
+                    <td class="rtl"
+                        style="font-size: 12px; vertical-align: middle; border: none;"><img
                                 src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">-</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;">
-                        <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook">
-                    </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6">-</td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;">
+                    <td style="font-size: 12px;vertical-align: middle; background: #e6e6e6">-</td>
+
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         <img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
                              width="20" alt="whatsapp"></td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; width: 20%">
+                    <td style="font-size: 12px;vertical-align: middle; width: 20%">
                         @if($company->contract_manager_whatsapp)
                             <a target="_blank"
                                href="https://api.whatsapp.com/send?phone={{ $company->contract_manager_whatsapp }}">
@@ -466,44 +462,40 @@
                 </tr>
                 </tbody>
             </table>
-            <h3 class="en ltr" style="margin: 5px;">HR Manger</h3>
+            <h3 class="en ltr" style="margin: 5px;"> {{ trans('dashboard.HR Director') }}</h3>
 
-            <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+            <table style="line-height: 14px; border: none; border-collapse: separate;
         border-spacing: 0 2px;">
 
                 <tbody>
 
                 <tr>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">Full
-                        Name:
+                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">
+                        {{ trans('dashboard.Name') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</td>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%; text-align: right">
-                        Mobile:
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</td>
+                    <td class="rtl"
+                        style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%; ">
+                        {{ trans('dashboard.Mobile') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</td>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: nonel;width: 13.3%;text-align: right">
-                        Telephone:
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</td>
+                    <td class="rtl"
+                        style="font-size: 12px; vertical-align: middle; border: nonel;width: 13.3%;">
+                        {{ trans('dashboard.Phone') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left;width: 20%"> {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%"> {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}</td>
                 </tr>
                 <tr>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none; text-align: right;"><img
+                    <td class="rtl"
+                        style="font-size: 12px; vertical-align: middle; border: none;"><img
                                 src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6"></td>
-                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;text-align: right;">
-                        <img src="https://image.flaticon.com/icons/png/512/124/124010.png" width="20" alt="Facebook">
-                    </td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left; background: #e6e6e6"></td>
-                    <td class="en ltr"
-                        style="font-size: 12px; vertical-align: middle; border: none;text-align: right; width: 20%"><img
+                    <td style="font-size: 12px;vertical-align: middle; background: #e6e6e6"></td>
+
+                    <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;width: 20%"><img
                                 src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
                                 width="20" alt="whatsapp"></td>
-                    <td style="font-size: 12px;vertical-align: middle;text-align: left">@if($company->hr_director_job_whatsapp)
+                    <td style="font-size: 12px;vertical-align: middle;">@if($company->hr_director_job_whatsapp)
                             <a target="_blank"
                                href="https://api.whatsapp.com/send?phone={{ $company->hr_director_job_whatsapp }}">
                                 <i class="fab fa-whatsapp  text-success"></i>
@@ -516,38 +508,37 @@
             </table>
             <hr style="margin: 5px;"/>
             @if(count($sales_team_lead_reports))
-                <table class="en ltr" style="line-height: 14px; border: none; direction: ltr;  border-collapse: separate;
+                <table style="line-height: 14px; border: none; border-collapse: separate;
             border-spacing: 0 2px; margin-top: 5px">
                     <tbody>
                     @foreach($sales_team_lead_reports as $k=>$salesLeadReport)
                         <tr>
                             <td class="en ltr"
                                 style="font-size: 12px; vertical-align: middle; border: none">{{ $k+1 }}</td>
-                            <td style="font-size: 12px;vertical-align: middle;text-align: left; border: none">
-                                Feedback:
+                            <td style="font-size: 12px;vertical-align: middle;border: none">
+                                {{ trans('dashboard.Client Feedback') }}:
                             </td>
-                            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
-                            <td style="font-size: 12px;vertical-align: middle;text-align: left; border: none">{{ $salesLeadReport->created_at }}</td>
+                            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.Date') }}:</td>
+                            <td style="font-size: 12px;vertical-align: middle; border: none">{{ $salesLeadReport->created_at }}</td>
                             {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>--}}
                             {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>--}}
-                            <td class="en ltr"
-                                style="font-size: 12px; vertical-align: middle;text-align: right; border: none">Next
-                                Feedback
+                            <td class="rtl"
+                                style="font-size: 12px; vertical-align: middle;border: none">{{ trans('dashboard.nextFollowUp') }}
                             </td>
-                            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Date:</td>
-                            <td style="font-size: 12px;vertical-align: middle;text-align: left; border: none">{{ $salesLeadReport->nextFollowUp }}</td>
+                            <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.Date') }}:</td>
+                            <td style="font-size: 12px;vertical-align: middle; border: none">{{ $salesLeadReport->nextFollowUp }}</td>
                             {{--<td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Time:</td>--}}
                             {{--<td  style="font-size: 12px;vertical-align: middle;text-align: left; border: none">11:00</td>--}}
                         </tr>
                         <tr>
                             <td colspan="11"
-                                style="font-size: 11px; vertical-align: middle;  border: none; text-align: left;">
+                                style="font-size: 11px; vertical-align: middle;  border: none; ">
                                 {{ $salesLeadReport->client_feeback }}
                             </td>
                         </tr>
                         <tr>
                             <td colspan="11"
-                                style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6; text-align: left; padding: 0px"></td>
+                                style="font-size: 11px; vertical-align: middle;  border: 1px solid #d6d6d6;  padding: 0px"></td>
                         </tr>
                     @endforeach
 

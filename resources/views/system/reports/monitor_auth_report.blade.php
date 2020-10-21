@@ -96,7 +96,7 @@
                                                             <select id="user_id" class="form-control select2" name="user_id">
                                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                                 @foreach($users as $user)
-                                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                                    <option value="{{ $user->id }}"> {{ app()->getLocale() == 'ar' ? $user->name : $user->name_en }}</option>
                                                                 @endforeach
 
                                                             </select>

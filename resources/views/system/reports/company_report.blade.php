@@ -81,7 +81,7 @@
                                                 {{ trans('dashboard.Companies Filters') }}
                                             </div>
                                         </div>
-                                        <form id="exportExcelForm" action="{{route('extract_company_report_excel')}}">
+                                        <form autocomplete="off" id="exportExcelForm" action="{{route('extract_company_report_excel')}}">
 
                                             <div id="collapseOne1" class="collapse show"
                                                  data-parent="#accordionExample1">
@@ -90,8 +90,8 @@
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label> {{ trans('dashboard.Company Name') }}  </label>
-                                                                <input type="text" class="form-control" id="name" name="name"
-                                                                       placeholder="Company Name">
+                                                                <input type="text" class="form-control" id="name" name="name" autocomplete="off"
+                                                                       placeholder="{{ trans('dashboard.Company Name') }} ">
                                                             </div>
 
                                                         </div>
@@ -159,19 +159,31 @@
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>{{ trans('dashboard.Company Status') }}</label>
-                                                                <select class="form-control select2" id="company_status"
+                                                                <select class="form-control select2" id="company_status" autocomplete="off"
                                                                         name="company_status[]" multiple="multiple">
-                                                                    <option value="confirm_connected">Confirm Connection
-                                                                    </option>
-                                                                    <option value="confirm_interview">Confirm Interview
-                                                                    </option>
-                                                                    <option value="confirm_need">Confirm Need</option>
-                                                                    <option value="confirm_contract">Confirm Contract
-                                                                    </option>
-                                                                    <option value="no_meeting">No Meeting</option>
+                                                                    <option value="confirm_connected">{{ trans('dashboard.Confirm Connection') }}</option>
+                                                                    <option value="confirm_interview">{{ trans('dashboard.Confirm Interview') }}</option>
+                                                                    <option value="confirm_need">{{ trans('dashboard.Confirm Need') }}</option>
+                                                                    <option value="confirm_contract">{{ trans('dashboard.Confirm Contract') }}</option>
+                                                                    <option value="no_meeting">{{ trans('dashboard.No Meeting') }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                {{--        <div class="col-md-4 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>{{ trans('dashboard.Company Representative name') }}  </label>
+                                                                <select id="representative_id" class="form-control select2" name="representative_id">
+                                                                    <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
+                                                                    @foreach($representatives as $representative)
+                                                                        <option value="{{ $representative->id }}">
+                                                                            {{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                    <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>--}}
 
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">

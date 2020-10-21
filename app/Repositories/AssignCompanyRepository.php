@@ -53,11 +53,16 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
     /** Assign Company To Representative Form */
     public function assignCompanyToRepresentativeForm(){
         $data = array();
+        if (Auth::user()->hasRole('ADMIN')){
+            $data['representatives'] = $this->user_model::whereNotNull('parent_id')->get();
+        }
+        else{
+            $data['representatives'] = $this->user_model::where('parent_id' , auth()->id())->get();
+        }
 
-        $data['representatives'] = $this->user_model::where('parent_id' , auth()->id())->get();
         $data['countries'] = $this->country_model::all();
         $user = $this->user_model::findOrFail(auth()->id());
-        $data['sectors'] = $user->sectors;
+        $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
 
         return $data;
@@ -111,6 +116,9 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                         foreach ($request->company_ids as $company_id) {
                             $this->company_model::where('id', $company_id)
                                 ->update(['representative_id' => $request->representative_id]);
+
+                            $this->addLog(auth()->id() , $request->representative_id , 'companies_num'.$company_id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
+
                         }
                     }
                     /** CASE 2 */
@@ -123,6 +131,8 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                             foreach ($companies as $company) {
                                 $this->company_model::where('id', $company->id)
                                      ->update(['representative_id' => $request->representative_id]);
+
+                                $this->addLog(auth()->id() , $request->representative_id , 'companies_num '.$company->id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
                             }
                         }
                         else{
@@ -140,6 +150,8 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                             foreach ($companies as $company) {
                                 $this->company_model::where('id', $company->id)
                                     ->update(['representative_id' => $request->representative_id]);
+
+                                $this->addLog(auth()->id() , $request->representative_id , 'companies_num '.$company->id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
                             }
                         }
                         else{
@@ -168,7 +180,13 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
     /** Get All Representatives */
     public function getAllRepresentatives(){
-        return $this->user_model::where('parent_id' , Auth::user()->id)->get();
+        if (Auth::user()->hasRole('ADMIN')){
+            return $this->user_model::whereNotNull('parent_id')->get();
+        }
+        else{
+            return $this->user_model::where('parent_id' , Auth::user()->id)->get();
+        }
+
     }
 
     /** Get Companies Of Representative */

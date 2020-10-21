@@ -13,7 +13,6 @@
             <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
             <title>{{ $need->id}} NEED {{ $need->company->name }}</title>
 
-
             @if (app()->getLocale() == 'ar')
 
                 <style>
@@ -25,8 +24,7 @@
 
                     body {
                         font-size: 13px;
-                        letter-spacing: 0px;
-                        position: relative;
+                        letter-spacing: 0px; position: relative;
                         text-align: right;
                         font-family: 'examplefont3', sans-serif;
                     }
@@ -48,15 +46,12 @@
 
                     td {
                         padding: 2px 5px;
-                        text-align: center;
+                        text-align: right;
                         border: 1px solid #77697a;
                         border-collapse: collapse;
                         font-size: 14px !important;
                     }
-
-                    tr td:first-child {
-                        text-align: right !important;
-                    }
+                    tr td:first-child {text-align: right !important;}
 
                     h4 {
                         font-size: 24px;
@@ -95,9 +90,9 @@
                         width: 100%;
                     }
 
+
                     table.table_need tr td:first-child {
-                        text-align: right;
-                        background: #000;
+                        text-align: right; background: #000;
                         width: 40%;
                     }
 
@@ -114,8 +109,7 @@
 
                     body {
                         font-size: 13px;
-                        letter-spacing: 0px;
-                        position: relative;
+                        letter-spacing: 0px; position: relative;
                         text-align: right;
                         font-family: 'examplefont2', sans-serif;
                     }
@@ -137,15 +131,12 @@
 
                     td {
                         padding: 2px 5px;
-                        text-align: center;
+                        text-align: left;
                         border: 1px solid #77697a;
                         border-collapse: collapse;
                         font-size: 14px !important;
                     }
-
-                    tr td:first-child {
-                        text-align: right !important;
-                    }
+                    tr td:first-child {text-align: right !important;}
 
                     .ltr {
                         direction: ltr;
@@ -193,9 +184,9 @@
                         width: 100%;
                     }
 
-                    .first {
-                        text-align: right;
-                        background: #000;
+
+                    .first{
+                        text-align: right; background: #000;
                         width: 40%;
                     }
 
@@ -233,80 +224,80 @@
                     <table style="line-height: 24px; border: none;">
                         <tbody>
                         <tr>
-                            <td>{{ __('dashboard.Ref No') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Ref No') }} :</td>
                             <td>{{ $need->id}}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Date') }}:</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Date') }}:</td>
                             <td>{{ $need->created_at->format('d-m-Y')}}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Client Name') }}:</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Client Name') }}:</td>
                             <td>{{ $need->company->name }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Sector') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Sector') }} :</td>
                             <td>{{ $need->company->sector->name }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Recruitment Type') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Recruitment Type') }} :</td>
                             <td>
                                 {{--{{ $employeement_type->id }}--}}local                   {{--{{ employeement type Here }}--}}
                             </td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Contract Duration') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Contract Duration') }} :</td>
                             <td>{{ $need->contract_duration }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Required Position') }} </td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Required Position') }} </td>
                             <td>{{ $need->required_position }}</td>
                         </tr>
 
                         <tr>
-                            <td>{{ __('dashboard.Job Description') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Job Description') }}</td>
                             <td>{!! $need->job_description !!}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.No of candidates') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.No of candidates') }}</td>
                             <td>{{ $need->candidates_number }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Nationality') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Nationality') }}</td>
                             <td>{{ $need->country->name }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Gender') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Gender') }}</td>
                             <td>                     {{--{{ Add 3 options }}--}} {{--{{ Add both }}--}}
                                 {{ $need->gender == 1 ? trans('dashboard.Male') : trans('dashboard.Female')  }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Age Limit') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Age Limit') }}</td>
                             <td>{{ $need->minimum_age }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Experience Range') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Experience Range') }}</td>
                             <td>{{ $need->experience_range }}</td>
                         </tr>
 
                         <tr>
-                            <td>{{ __('dashboard.Total Salary') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Total Salary') }}</td>
                             <td>{{ $need->total_salary }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Work Location') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Work Location') }}</td>
                             <td>{{ $need->work_location }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Working Hours') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Working Hours') }}</td>
                             <td>{{ $need->work_hours }}</td>
                         </tr>
                         <tr>
-                            <td>{{ __('dashboard.Deadline') }}</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Deadline') }}</td>
                             <td>{{ $need->deadline }}</td>
                         </tr>
                         <tr>
-                            <td><strong>{{ __('dashboard.Special Remarks') }}</strong></td>
+                            <td style="width: 30%; background-color: #d7d7d7;"><strong>{{ __('dashboard.Special Remarks') }}</strong></td>
                             <td>{{ $need->special_note }}</td>
                         </tr>
                         </tbody>
@@ -319,7 +310,13 @@
         <tbody>
         <tr>
             <td style="border: none;text-align: center">{{ __('dashboard.BY') }}
-                : {{ $need->user ? $need->user->name : '-' }}</td>
+                :
+                @if($need->user)
+                {{ app()->getLocale() == 'ar' ? $need->user->name : $need->user->name_en }}
+                @else
+                    -
+                @endif
+            </td>
             <td style="border: none;text-align: center">{{ __('dashboard.Date') }}
                 : {{ $need->created_at->format('d-m-Y')}}</td>
         </tr>

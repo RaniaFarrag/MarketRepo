@@ -311,6 +311,11 @@ return [
     'Business Detail Report' => 'Business Detail Report',
     'Business Detail' => 'Business Detail',
     'Vendor No' => 'Vendor No',
+    'ECN' => 'ECN',
+    'CR' => 'CR',
+    'Social Media Info' => 'Social Media Info',
+    'Ksa Branch' => 'Ksa Branch',
+    'The contract has been confirmed with the company' => 'The contract has been confirmed with the company',
 
 
 

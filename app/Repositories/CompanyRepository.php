@@ -20,12 +20,11 @@ use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use App\User;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Support\Facades\Auth;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
+use function GuzzleHttp\Promise\all;
 
 
 class CompanyRepository implements CompanyRepositoryInterface
@@ -70,23 +69,21 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** View All companies */
-    public function index($request, $all = null)
+    public function index($request, $all = null , $orderBy = null)
     {
         //dd($request->all());
         if (Auth::user()->hasRole('Representative')) {
-            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector')
-                ->orderBy('created_at', 'desc');
+            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
         }
         elseif (Auth::user()->hasRole('Sales Manager')) {
             $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
-                ->with('subSector')
-                ->orderBy('created_at', 'desc');
+                ->with('subSector');
+
         }
         else {
-            $query = $this->company_model
-                ->with('subSector')
-                ->orderBy('created_at', 'desc');
+            $query = $this->company_model->with('subSector');
         }
+
         if ($request->created_at) {
             $date = Carbon::parse($request->created_at);
             $query->whereDate('created_at', $date);
@@ -123,10 +120,12 @@ class CompanyRepository implements CompanyRepositoryInterface
                 if ($val != 'no_meeting')
                     $query->where($val, 1);
                 else {
-                    $query->where('confirm_connected', null);
-                    $query->where('confirm_interview', null);
-                    $query->where('confirm_need', null);
-                    $query->where('confirm_contract', null);
+                    //dd(57);
+                    //$query->where('confirm_connected', null);
+                    $query->whereNull('confirm_interview');
+                    $query->orWhere('confirm_interview', 0);
+                    //$query->where('confirm_need', null);
+                    //$query->where('confirm_contract', null);
                 }
 
         if (isset($request->communication_type) && count($request->communication_type) > 0)
@@ -150,15 +149,40 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         if ($request->name)
             $query->whereTranslationLike('name', '%' . $request->name . '%');
-        if ($all)
-          return  $query->get();
-        else
-        {
+
+        if($orderBy){
+             $query
+                ->orderBy('confirm_connected','desc')
+                ->orderBy('confirm_interview','desc')
+                ->orderBy('confirm_need','desc')
+                ->orderBy('confirm_contract','desc')
+                ->orderBy('created_at','desc');
+            if ($all){
+                return $query->get();
+            }
+
+            else {
+                $data = array();
+                $data['count'] = $query->count();
+                $data['companies'] = $query->paginate(18);
+                return $data;
+            }
+        }
+        else{
             $data = array();
             $data['count'] = $query->count();
-            $data['companies'] = $query->paginate(18);
-            return  $data;
+            $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
+            return $data;
         }
+
+//        if ($all)
+//            return $query->get();
+//        else {
+//            $data = array();
+//            $data['count'] = $query->count();
+//            $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
+//            return $data;
+//        }
 
         //dd($data['companies']);
 //        return $all ? $query->get() : $query->paginate(18);
@@ -570,12 +594,15 @@ class CompanyRepository implements CompanyRepositoryInterface
 
 
     /** companies Reports */
-    public function companiesReports($request,$all=false)
+    public function companiesReports($request, $all = false , $orderBy = false)
     {
-        $data['companies'] = $this->index($request, $all);
+        $data['companies'] = $this->index($request, $all , $orderBy);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
-        $data['representatives'] = $this->user_model::where('parent_id', Auth::user()->id)->get();
+        if (Auth::user()->hasRole('ADMIN'))
+            $data['representatives'] = $this->user_model::whereNotNull('parent_id')->get();
+        else
+            $data['representatives'] = $this->user_model::where('parent_id', Auth::user()->id)->get();
         return $data;
     }
 

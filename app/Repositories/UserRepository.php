@@ -42,7 +42,12 @@ class UserRepository implements UserRepositoryInterface
     /** Get Representative*/
     public function get_reps()
     {
-        return $this->user_model->where('parent_id' , Auth::user()->id)->get();
+        if (Auth::user()->hasRole('ADMIN')){
+            return $this->user_model::whereNotNull('parent_id')->get();
+        }
+        else{
+            return $this->user_model::where('parent_id' , Auth::user()->id)->get();
+        }
     }
 
     /** Create User */
@@ -209,11 +214,23 @@ class UserRepository implements UserRepositoryInterface
         $data['rep'] = $this->user_model->findOrFail($request->rep_id);
 
         if ($all){
-            $data['companies'] = $data['rep']->assignedCompanies()->get();
+            $data['companies'] = $data['rep']->assignedCompanies()
+                ->orderBy('confirm_connected','desc')
+                ->orderBy('confirm_interview','desc')
+                ->orderBy('confirm_need','desc')
+                ->orderBy('confirm_contract','desc')
+                //->orderBy('created_at','desc')
+                ->get();
         }
         else{
             $data['count'] = $data['rep']->assignedCompanies()->count();
-            $data['companies'] =  $data['rep']->assignedCompanies()->paginate(20);
+            $data['companies'] =  $data['rep']->assignedCompanies()
+                ->orderBy('confirm_connected','desc')
+                ->orderBy('confirm_interview','desc')
+                ->orderBy('confirm_need','desc')
+                ->orderBy('confirm_contract','desc')
+                //->orderBy('created_at','desc')
+                ->paginate(20);
         }
 
         $data['confirm_connected'] =  $data['rep']->assignedCompanies()->where('confirm_connected',1)->count();
@@ -225,8 +242,7 @@ class UserRepository implements UserRepositoryInterface
 
     /** Active User */
     public function activeUser($request){
-        $this->user_model::where('id', $request->user_id)
-                ->update([
+        $this->user_model::where('id', $request->user_id)->update([
                     'active' => 1
                 ]);
         $this->addLog(auth()->id(), $request->user_id , 'users', 'تم تنشيط مستخدم ', 'user has been actived');

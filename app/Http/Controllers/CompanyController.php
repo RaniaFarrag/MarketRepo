@@ -31,7 +31,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $data = $this->companyRepositoryinterface->companiesReports($request)['companies'];
-        //dd($data['companies']);
+        //dd($data);
         //dd($data['count']);
         $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
@@ -183,13 +183,13 @@ class CompanyController extends Controller
     /** Company Report */
     public function companiesReports(Request $request){
 
-        $data= $this->companyRepositoryinterface->companiesReports($request)['companies'];
-        $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
-        $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
+        $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies'];
+        $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
+        $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
 
         if ($request->ajax()) {
-            $data_json['viewBlade']= view('system.reports.company_report_partial')->with(['data' => $data])->render();
-            $data_json['count']= $data['count'];
+            $data_json['viewBlade'] = view('system.reports.company_report_partial')->with(['data' => $data])->render();
+            $data_json['count'] = $data['count'];
             return response()->json($data_json);
 
             //return view('system.reports.company_report_partial',compact('data'))->render();
@@ -223,6 +223,63 @@ class CompanyController extends Controller
     /** Send Email To Company */
     public function sendEmail(Request $request){
         return $this->companyRepositoryinterface->sendEmail($request);
+    }
+
+
+
+    public function agreement(){
+        $pdf = pdf::loadView('system.pdf.agreement');
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "agreement.pdf'"]);
+    }
+
+    public function agreement_service_fnrco(){
+        $pdf = pdf::loadView('system.pdf.Agreement_Service_fnrco');
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "agreement_service_fnrco.pdf'"]);
+    }
+
+    public function invoice(){
+        $pdf = pdf::loadView('system.pdf.invoice');
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "invoice.pdf'"]);
+    }
+
+    public function sales_quotation(){
+        $pdf = pdf::loadView('system.pdf.Sales_Quotation');
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "sales/quotation.pdf'"]);
+    }
+
+    public function undertakeing_opal(){
+        $pdf = pdf::loadView('system.pdf.Undertakeing-OPAL');
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "undertakeing_opal.pdf'"]);
     }
 
 }
