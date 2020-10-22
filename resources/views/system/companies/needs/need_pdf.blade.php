@@ -195,7 +195,7 @@
 
             @endif
 
- 
+
         </head>
 
 
@@ -224,29 +224,32 @@
                     <table style="line-height: 24px; border: none;">
                         <tbody>
                         <tr>
-                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Ref No') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Ref No') }}</td>
                             <td>{{ $need->id}}</td>
                         </tr>
                         <tr>
-                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Date') }}:</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Date') }}</td>
                             <td>{{ $need->created_at->format('d-m-Y')}}</td>
                         </tr>
                         <tr>
-                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Client Name') }}:</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Client Name') }}</td>
                             <td>{{ $need->company->name }}</td>
                         </tr>
                         <tr>
-                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Sector') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Sector') }} </td>
                             <td>{{ $need->company->sector->name }}</td>
                         </tr>
                         <tr>
-                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Recruitment Type') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Recruitment Type') }}</td>
                             <td>
-                                {{--{{ $employeement_type->id }}--}}local                   {{--{{ employeement type Here }}--}}
+                                @if($need->employment_type_id)
+                                    {{ app()->getLocale() == 'ar' ? $need->employmentType->name : $need->employmentType->name_en }}
+                                @endif
+                                {{--{{ $employeement_type->id }}--}}                   {{--{{ employeement type Here }}--}}
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Contract Duration') }} :</td>
+                            <td style="width: 30%; background-color: #d7d7d7;">{{ __('dashboard.Contract Duration') }}</td>
                             <td>{{ $need->contract_duration }}</td>
                         </tr>
                         <tr>
@@ -312,7 +315,7 @@
             <td style="border: none;text-align: center">{{ __('dashboard.BY') }}
                 :
                 @if($need->user)
-                {{ app()->getLocale() == 'ar' ? $need->user->name : $need->user->name_en }}
+                    {{ app()->getLocale() == 'ar' ? $need->user->name : $need->user->name_en }}
                 @else
                     -
                 @endif

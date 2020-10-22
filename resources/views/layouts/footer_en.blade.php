@@ -45,7 +45,7 @@
         <div class="wc-header">
             <!-- Profile Picture -->
             <div class="wc-img-cont">
-                <img class="wc-user-img" src="{{ asset('dashboard/assets/whats_chat_jquery_plugin/img/profile_01.jpg') }}"/>
+                <img class="wc-user-img" src="{{ asset('dashboard/assets/media/logos/logo-letter-9.png') }}"/>
             </div>
             <!-- Display Name & Last Seen -->
             <div class="wc-user-info">

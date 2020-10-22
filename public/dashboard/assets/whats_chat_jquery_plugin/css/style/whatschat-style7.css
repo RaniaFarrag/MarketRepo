@@ -17,7 +17,7 @@ Released On: 10, Aug 2019
 	position: fixed;
 	width: 50px;
 	height: 50px;
-	bottom: 20px;
+	bottom: 90px;
 	right: 20px;
 	border: 1px solid #fff;
 	border-radius: 50px;
@@ -29,7 +29,7 @@ Released On: 10, Aug 2019
 	box-shadow: 0px 0px 10px rgba(12, 12, 12, 0.5);
 }
 .wc-style7 .wc-button i{
-	margin-top: 13px;
+	margin-top: 13px;display: block;
 	font-size: 25px;
 }
 
@@ -38,7 +38,7 @@ Released On: 10, Aug 2019
   	display: none;
   	position: fixed;
   	width: 300px;
-  	bottom: 85px;
+  	bottom: 145px;
 	right: 30px;
 	border-radius: 10px;
   	box-shadow: 0 3px 6px #b4b4b4;

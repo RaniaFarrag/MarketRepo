@@ -39,8 +39,8 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-                    {{--CLASS sendMessage TO MAKE ACTION WHEN CLIKC ON BUTTON--}}
-                    <!--begin::Button-->
+                {{--CLASS sendMessage TO MAKE ACTION WHEN CLIKC ON BUTTON--}}
+                <!--begin::Button-->
                     <a href="#btnModal" data-toggle="modal" class="btn btn-success font-weight-bold sendMessage py-3 px-6 mr-2">
                         {{ trans('dashboard.Send WhatsApp Message') }}
                     </a>
@@ -84,12 +84,12 @@
                                         <tr>
                                             <th>#</th>
                                             <th>#</th>
-                                            <th> {{ trans('dashboard.Company Name') }}</th>
+                                            <th style="max-width: 350px;">{{ trans('dashboard.Company Name') }}</th>
                                             <th>{{ trans('dashboard.Sector') }}</th>
                                             <th>{{ trans('dashboard.Company Type') }}</th>
                                             <th>{{ trans('dashboard.E-mail') }}</th>
                                             <th>{{ trans('dashboard.Mobile / WhatsApp number') }}</th>
-                                            <th>{{ trans('dashboard.Send Message') }}</th>
+                                            <th style="width: 200px;">{{ trans('dashboard.Send Message') }}</th>
                                         </tr>
                                         </thead>
 
@@ -117,9 +117,17 @@
                                                 <td>{{ $company->whatsapp ? $company->whatsapp : '-' }}</td>
 
                                                 <td>
-                                                    <a data-id="{{ $company->whatsapp }}" href="#btnModal" class="singlePhone"
+                                                    <a data-id="{{ $company->whatsapp }}" href="#btnModal" class="singlePhone mr-2"
                                                        data-toggle="modal">
                                                         <i class="fab fa-2x text-success fa-whatsapp"></i>
+                                                    </a>
+                                                    <a href="mailto:{{ $company->email }}" class="mr-2" >
+                                                        <i class="fab fa-2x text-primary far fa-envelope"></i>
+                                                    </a>
+                                                    <a href="sms:{{ $company->whatsapp }}" class="mr-2"><i class="fab fa-2x text-warning  fas fa-sms"></i>
+                                                    </a>
+                                                    <a href="{{ $company->website }}" class="mr-2" target="_blank">
+                                                        <i class="fab fa-2x text-info  fas fa-globe"></i>
                                                     </a>
                                                 </td>
                                             </tr>

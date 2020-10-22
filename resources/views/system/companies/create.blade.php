@@ -1,5 +1,19 @@
 @extends('layouts.dashboard')
 
+
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.0/css/intlTelInput.css" />
+
+
+@endsection
+<style>
+    .iti {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+
 @section('body')
 
     <!--begin::Content-->
@@ -177,19 +191,22 @@
                                             <label>{{ trans('dashboard.Company Name Arabic') }} :</label>
                                             <input value="{{ old('name_ar') }}" name="name_ar" type="text" class="form-control" placeholder="{{ trans('dashboard.Company Name Arabic') }}" required/>
                                             @error('name_ar')
-                                                <div class="error">{{ $message }}</div>
+                                            <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company Name English') }} :</label>
                                             <input value="{{ old('name_en') }}" name="name_en" type="text" class="form-control" placeholder="{{ trans('dashboard.Company Name English') }} " required/>
                                             @error('name_en')
-                                                <div class="error">{{ $message }}</div>
+                                            <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Mobile / WhatsApp number') }} :</label>
-                                            <input value="{{ old('whatsapp') }}" name="whatsapp" type="number" class="form-control"
+
+                                            <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp" inputmode="tel" value="{{ old('whatsapp') }}" />
+
+                                            <input value="{{ old('whatsapp') }}" name="whatsapp" type="hidden" class="form-control whatsapp"
                                                    placeholder="Mobile / WhatsApp number"/>
 
                                         </div>
@@ -197,9 +214,11 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.phone number') }} :</label>
-                                            <input value="{{ old('phone') }}" name="phone" type="number" class="form-control" placeholder="phone number" required/>
+                                            <input value="{{ old('phone') }}" name="phone" type="tel" class="form-control tel leyka_donor_phone"  required/>
+
+                                            <input class="form-control phone" type="hidden" name="phone"  value="{{ old('phone') }}" />
                                             @error('phone')
-                                                <div class="error">{{ $message }}</div>
+                                            <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
@@ -283,69 +302,69 @@
                                         @for($i = 0 ; $i<3 ; $i++)
                                             <div class="col-md-4 border">
                                                 <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
-                                            <div class="form-group">
-                                                {{--@if(old('designated_contact_name'))--}}
+                                                <div class="form-group">
+                                                    {{--@if(old('designated_contact_name'))--}}
                                                     {{--@for( $i =0; $i < count(old('designated_contact_name')); $i++)--}}
-                                                        <label>{{ trans('dashboard.Name') }}:</label>
-                                                        <input value="" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
+                                                    <label>{{ trans('dashboard.Name') }}:</label>
+                                                    <input value="" name="designated_contact_name[]"  type="text" class="form-control" placeholder="{{ trans('dashboard.Name') }}"/>
                                                     {{--@endfor--}}
-                                                {{--@endif--}}
+                                                    {{--@endif--}}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ trans('dashboard.Job Title') }}:</label>
+                                                    <input value="" name="designated_contact_job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ trans('dashboard.Mobile') }}:</label>
+                                                    <input value="" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ trans('dashboard.citizenship') }}:</label>
+                                                    <input value="" name="designated_contact_citizenship[]" type="text" class="form-control" placeholder="{{ trans('dashboard.citizenship') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ trans('dashboard.Linkedin') }}:</label>
+                                                    <input value="" name="designated_contact_linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ trans('dashboard.Whatsapp') }}:</label>
+                                                    <input value="" name="designated_contact_whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ trans('dashboard.E-Mail') }}:</label>
+                                                    <input value="" name="designated_contact_email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label>{{ trans('dashboard.Job Title') }}:</label>
-                                                <input value="" name="designated_contact_job_title[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Job Title') }}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{ trans('dashboard.Mobile') }}:</label>
-                                                <input value="" name="designated_contact_mobile[]" type="number" class="form-control" placeholder="{{ trans('dashboard.Mobile') }}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{ trans('dashboard.citizenship') }}:</label>
-                                                <input value="" name="designated_contact_citizenship[]" type="text" class="form-control" placeholder="{{ trans('dashboard.citizenship') }}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{ trans('dashboard.Linkedin') }}:</label>
-                                                <input value="" name="designated_contact_linkedin[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Linkedin') }}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{ trans('dashboard.Whatsapp') }}:</label>
-                                                <input value="" name="designated_contact_whatsapp[]" type="text" class="form-control" placeholder="{{ trans('dashboard.Whatsapp') }}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>{{ trans('dashboard.E-Mail') }}:</label>
-                                                <input value="" name="designated_contact_email[]" type="email" class="form-control" placeholder="{{ trans('dashboard.E-Mail') }}"/>
-                                            </div>
-                                        </div>
                                         @endfor
-                                            {{--<div class="col-md-4 border">--}}
+                                        {{--<div class="col-md-4 border">--}}
 
-                                                {{--<span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">3</span>--}}
-                                                {{--<div class="form-group">--}}
-                                                    {{--<label>Name:</label>--}}
-                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Name"/>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="form-group">--}}
-                                                    {{--<label>Job Title:</label>--}}
-                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Job Title"/>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="form-group">--}}
-                                                    {{--<label>Mobile:</label>--}}
-                                                    {{--<input value={{ old('') }} type="number" class="form-control" placeholder="Mobile"/>--}}
+                                        {{--<span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">3</span>--}}
+                                        {{--<div class="form-group">--}}
+                                        {{--<label>Name:</label>--}}
+                                        {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Name"/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                        {{--<label>Job Title:</label>--}}
+                                        {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Job Title"/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                        {{--<label>Mobile:</label>--}}
+                                        {{--<input value={{ old('') }} type="number" class="form-control" placeholder="Mobile"/>--}}
 
-                                                {{--</div>--}}
-                                                {{--<div class="form-group">--}}
-                                                    {{--<label>Linkedin:</label>--}}
-                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Linkedin"/>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="form-group">--}}
-                                                    {{--<label>Whatsapp:</label>--}}
-                                                    {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Whatsapp"/>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="form-group">--}}
-                                                    {{--<label>E-mail:</label>--}}
-                                                    {{--<input value={{ old('') }} type="email" class="form-control" placeholder="E-mail"/>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                        {{--<label>Linkedin:</label>--}}
+                                        {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Linkedin"/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                        {{--<label>Whatsapp:</label>--}}
+                                        {{--<input value={{ old('') }} type="text" class="form-control" placeholder="Whatsapp"/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="form-group">--}}
+                                        {{--<label>E-mail:</label>--}}
+                                        {{--<input value={{ old('') }} type="email" class="form-control" placeholder="E-mail"/>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
 
 
@@ -363,42 +382,42 @@
                                                         <div class="input-group input-group-solid date"
                                                              data-target-input="nearest">
                                                             {{--<input value="{{ old('date') }}" name="date" type="text" arr-name="item"--}}
-                                                                   {{--class="form-control form-control-solid datetimepicker-input"--}}
-                                                                   {{--placeholder="Select date" data-target="#kt_datetimepicker_3"/> --}}
+                                                            {{--class="form-control form-control-solid datetimepicker-input"--}}
+                                                            {{--placeholder="Select date" data-target="#kt_datetimepicker_3"/> --}}
 
                                                             <input value="{{ old('date') }}" name="date" type="date" arr-name="item"
                                                                    class="form-control form-control-solid "
                                                                    placeholder="Select date" />
                                                             {{--<div class="input-group-append" data-target="#kt_datetimepicker_3"--}}
-                                                                 {{--data-toggle="datetimepicker">--}}
-                                                                {{--<span class="input-group-text">--}}
-                                                                    {{--<i class="ki ki-calendar"></i>--}}
-                                                                {{--</span>--}}
+                                                            {{--data-toggle="datetimepicker">--}}
+                                                            {{--<span class="input-group-text">--}}
+                                                            {{--<i class="ki ki-calendar"></i>--}}
+                                                            {{--</span>--}}
                                                             {{--</div>--}}
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>{{ trans('dashboard.Time') }} :</label>
-                                                            {{--<div class="input-group input-group-solid date" id="kt_datetimepicker_4"--}}
-                                                                 {{--data-target-input="nearest">--}}
-                                                                {{--<input name="time" type="text" arr-name="item"--}}
-                                                                       {{--class="form-control form-control-solid datetimepicker-input"--}}
-                                                                       {{--placeholder="Select time" data-target="#kt_datetimepicker_4"/>--}}
-                                                                {{--<div class="input-group-append" data-target="#kt_datetimepicker_4"--}}
-                                                                     {{--data-toggle="datetimepicker">--}}
-                                                                    {{--<span class="input-group-text">--}}
-                                                                        {{--<i class="ki ki-clock"></i>--}}
-                                                                    {{--</span>--}}
-                                                                {{--</div>--}}
-                                                            {{--</div>--}}
+                                                        {{--<div class="input-group input-group-solid date" id="kt_datetimepicker_4"--}}
+                                                        {{--data-target-input="nearest">--}}
+                                                        {{--<input name="time" type="text" arr-name="item"--}}
+                                                        {{--class="form-control form-control-solid datetimepicker-input"--}}
+                                                        {{--placeholder="Select time" data-target="#kt_datetimepicker_4"/>--}}
+                                                        {{--<div class="input-group-append" data-target="#kt_datetimepicker_4"--}}
+                                                        {{--data-toggle="datetimepicker">--}}
+                                                        {{--<span class="input-group-text">--}}
+                                                        {{--<i class="ki ki-clock"></i>--}}
+                                                        {{--</span>--}}
+                                                        {{--</div>--}}
+                                                        {{--</div>--}}
 
                                                         <div class="input-group timepicker">
                                                             {{--<input value="{{ old('time') }}" name="time" arr-name="item" class="form-control" id="kt_timepicker_2" readonly placeholder="Select time" type="text"/>--}}
                                                             <input value="{{ old('time') }}" name="time" arr-name="item" class="form-control"  placeholder="Select time" type="time"/>
                                                             {{--<div class="input-group-append">--}}
-                                                                {{--<span class="input-group-text">--}}
-                                                                    {{--<i class="la la-clock-o"></i>--}}
-                                                                {{--</span>--}}
+                                                            {{--<span class="input-group-text">--}}
+                                                            {{--<i class="la la-clock-o"></i>--}}
+                                                            {{--</span>--}}
                                                             {{--</div>--}}
                                                         </div>
                                                     </div>
@@ -450,9 +469,9 @@
                                             <div class="input-group">
                                                 <input value="{{ old('company_representative_job_phone') }}" name="company_representative_job_phone" type="number" class="form-control" placeholder="{{ trans('dashboard.Phone') }}" aria-describedby="basic-addon2">
                                                 {{--<div class="input-group-append" style="width: 20%">--}}
-                                                    {{--<span class="input-group-text p-0">--}}
-                                                        {{--<input name="company_representative_job_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
-                                                    {{--</span>--}}
+                                                {{--<span class="input-group-text p-0">--}}
+                                                {{--<input name="company_representative_job_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
+                                                {{--</span>--}}
                                                 {{--</div>--}}
                                             </div>
 
@@ -603,6 +622,60 @@
 @section('script')
     <script src="{{ asset('dashboard/assets/js/pages/crud/forms/widgets/bootstrap-timepicker.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js">
+    </script>
+
+    <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+
+    <script>
+        $(function () {
+
+            var input =$('.leyka_donor_phone');
+            var arr =[];
+            for(var i = 0; i < input.length; i++){
+                console.log( input.eq(i).val());
+                var iti_el =input.eq(i).parent();
+                if(iti_el.hasClass('.iti.iti--allow-dropdown.iti--separate-dial-code')){
+                    iti.destroy();
+                }
+                arr[input.eq(i).attr('name')] = intlTelInput(input[i], {
+                    autoHideDialCode: false,
+                    autoPlaceholder: "aggressive" ,
+                    initialCountry: "auto",
+                    separateDialCode: true,
+                    preferredCountries: ['ru','th'],
+                    customPlaceholder:function(selectedCountryPlaceholder,selectedCountryData){
+                        return ''+selectedCountryPlaceholder.replace(/[0-9]/g,'X');
+                    },
+                    geoIpLookup: function(callback) {
+                        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            callback(countryCode);
+                        });
+                    },
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.0/js/utils.js" // just for
+                });
+                $('.leyka_donor_phone').on("focus click countrychange", function(e, countryData) {
+                    var pl = $(this).attr('placeholder') + '';
+                    var res = pl.replace( /X/g ,'9');
+                    if(res != 'undefined'){
+                        $(this).inputmask(res, {placeholder: "X", clearMaskOnLostFocus: true});
+                    }
+                });
+
+                $('.leyka_donor_phone').on("focusout", function(e, countryData) {
+                    var intlNumber =  arr[$(this).attr('name')].getNumber();
+                    $('.'+$(this).attr('name')).val(intlNumber);
+                    console.log(intlNumber);
+                });
+
+            }
+
+
+        })
+
+    </script>
     <!--begin::Page add company-->
     <script>
         var avatar5 = new KTImageInput('kt_image_5');

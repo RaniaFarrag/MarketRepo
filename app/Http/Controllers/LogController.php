@@ -49,7 +49,7 @@ class LogController extends Controller
             $query->whereDate('created_at', '<=', Carbon::parse($request->to_date));
         }
 
-        return $query->paginate(15);
+        return $query->orderBy('created_at' , 'desc')->paginate(15);
 
     }
 }

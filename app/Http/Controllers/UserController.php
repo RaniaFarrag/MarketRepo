@@ -146,8 +146,14 @@ class UserController extends Controller
     /** Export Representative Company Report */
     public function export_representative_company_report(Request $request){
         $companies = $this->userRepositoryinterface->rep_companies_report($request , true)['companies'];
+        $rep = $this->userRepositoryinterface->rep_companies_report($request)['rep'];
+        $confirm_connected = $this->userRepositoryinterface->rep_companies_report($request)['confirm_connected'];
+        $confirm_interview = $this->userRepositoryinterface->rep_companies_report($request)['confirm_interview'];
+        $confirm_need = $this->userRepositoryinterface->rep_companies_report($request)['confirm_need'];
+        $confirm_contract = $this->userRepositoryinterface->rep_companies_report($request)['confirm_contract'];
 
-        return Excel::download(new representativeReport($companies), 'RepresentativeReportExcel.xlsx');
+        return Excel::download(new representativeReport($companies , $rep , $confirm_connected , $confirm_interview ,
+            $confirm_need , $confirm_contract), 'RepresentativeReportExcel.xlsx');
     }
 
     /** Active User */

@@ -1,5 +1,17 @@
 @extends('layouts.dashboard')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.0/css/intlTelInput.css" />
+
+
+@endsection
+<style>
+    .iti {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+</style>
 @section('body')
 
     <!--begin::Content-->
@@ -96,7 +108,7 @@
                                             <label style="width: 100%;">{{ trans('dashboard.business card 1') }}</label>
                                             <div class="image-input image-input-empty image-input-outline" id="kt_image_6"
                                                  style="background-image: url({{ $company->first_business_card ? asset('storage/images/'.$company->first_business_card) : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
-                                                    max-height: 120px;">
+                                                         max-height: 120px;">
                                                 <div class="image-input-wrapper"
                                                      style="width: 100%;display: inline-block;"></div>
 
@@ -123,7 +135,7 @@
                                             <label style="width: 100%;">{{ trans('dashboard.business card 2') }}</label>
                                             <div class="image-input image-input-empty image-input-outline" id="kt_image_7"
                                                  style="background-image: url({{ $company->second_business_card ?  asset('storage/images/'.$company->second_business_card) : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
-                                                    max-height: 120px;">
+                                                         max-height: 120px;">
                                                 <div class="image-input-wrapper"
                                                      style="width: 100%;display: inline-block;"></div>
                                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
@@ -149,7 +161,7 @@
                                             <label style="width: 100%;">{{ trans('dashboard.business card 3') }}</label>
                                             <div class="image-input image-input-empty image-input-outline" id="kt_image_8"
                                                  style="background-image: url({{ $company->third_business_card ?  asset('storage/images/'.$company->third_business_card) : 'https://www.printlinkonline.com/images/products_gallery_images/business-cards-premium-picture-data.jpg' }});width: 100%;
-                                                    max-height: 120px;">
+                                                         max-height: 120px;">
                                                 <div class="image-input-wrapper"
                                                      style="width: 100%;display: inline-block;"></div>
 
@@ -191,7 +203,8 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Mobile / WhatsApp number') }} :</label>
-                                            <input value="{{ $company->whatsapp }}" name="whatsapp" type="number" class="form-control"
+                                            <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp" inputmode="tel" value="{{ $company->whatsapp }}" />
+                                            <input value="{{ $company->whatsapp }}" name="whatsapp" type="hidden" class="form-control whatsapp"
                                                    placeholder="Mobile / WhatsApp number"/>
 
                                         </div>
@@ -199,7 +212,10 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.phone number') }} :</label>
-                                            <input value="{{ $company->phone }}" name="phone" type="number" class="form-control" placeholder="phone number" required/>
+
+
+                                            <input value="{{ $company->phone }}" name="phone" type="tel" class="form-control tel leyka_donor_phone"  required/>
+                                            <input value="{{ $company->phone }}" name="phone" type="hidden" class="form-control phone"                                                    placeholder="phone number" required/>
                                             @error('phone')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
@@ -455,7 +471,7 @@
                                                                     <input value="{{ $companyMeeting->date ?  $companyMeeting->user->name : ''}}" name="user_id" arr-name="item" class="form-control"  placeholder="{{ trans('dashboard.By User') }}" type="text" readonly/>
                                                                 </div>
                                                             </div>
-                                                    </div>
+                                                        </div>
                                                     @endforeach
                                                 @else
                                                     <div data-repeater-item class="form-group row align-items-center">
@@ -642,7 +658,7 @@
                                                     <option {{ $company->evaluation_status == 1 ? 'selected' : '' }} value="1">A</option>
                                                     <option {{ $company->evaluation_status == 2 ? 'selected' : '' }} value="2">B</option>
                                                     <option {{ $company->evaluation_status == 3 ? 'selected' : '' }} value="3">C</option>
-                                                 </select>
+                                                </select>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.By User') }} :</label>
@@ -708,8 +724,8 @@
 
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-4"></div>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-12 text-center">
+
                                             <button type="submit" class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
                                             <a href="{{ route('companies.index') }}" class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
@@ -735,7 +751,59 @@
 
 @section('script')
     <script src="{{ asset('dashboard/assets/js/pages/crud/forms/widgets/bootstrap-timepicker.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.0/js/intlTelInput.min.js">
+    </script>
 
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.8/jquery.inputmask.bundle.min.js"></script>
+
+    <script>
+        $(function () {
+
+            var input =$('.leyka_donor_phone');
+            var arr =[];
+            for(var i = 0; i < input.length; i++){
+                console.log( input.eq(i).val());
+                var iti_el =input.eq(i).parent();
+                if(iti_el.hasClass('.iti.iti--allow-dropdown.iti--separate-dial-code')){
+                    iti.destroy();
+                }
+                arr[input.eq(i).attr('name')] = intlTelInput(input[i], {
+                    autoHideDialCode: false,
+                    autoPlaceholder: "aggressive" ,
+                    initialCountry: "auto",
+                    separateDialCode: true,
+                    preferredCountries: ['ru','th'],
+                    customPlaceholder:function(selectedCountryPlaceholder,selectedCountryData){
+                        return ''+selectedCountryPlaceholder.replace(/[0-9]/g,'X');
+                    },
+                    geoIpLookup: function(callback) {
+                        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            callback(countryCode);
+                        });
+                    },
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/16.0.0/js/utils.js" // just for
+                });
+                $('.leyka_donor_phone').on("focus click countrychange", function(e, countryData) {
+                    var pl = $(this).attr('placeholder') + '';
+                    var res = pl.replace( /X/g ,'9');
+                    if(res != 'undefined'){
+                        $(this).inputmask(res, {placeholder: "X", clearMaskOnLostFocus: true});
+                    }
+                });
+
+                $('.leyka_donor_phone').on("focusout", function(e, countryData) {
+                    var intlNumber =  arr[$(this).attr('name')].getNumber();
+                    $('.'+$(this).attr('name')).val(intlNumber);
+                    console.log(intlNumber);
+                });
+
+            }
+
+
+        })
+
+    </script>
     <!--begin::Page add company-->
     <script>
         var avatar5 = new KTImageInput('kt_image_5');

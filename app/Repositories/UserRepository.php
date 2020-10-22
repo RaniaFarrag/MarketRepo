@@ -42,8 +42,23 @@ class UserRepository implements UserRepositoryInterface
     /** Get Representative*/
     public function get_reps()
     {
+        if (Auth::user()->hasRole('ADMIN'))
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->whereNotNull('parent_id')
+                        ->orWhereHas('childs');
+                })->get();
+        else
+            $data['representatives'] = $this->user_model::where('active' , 1)->where('parent_id', Auth::user()->id)->get();
+
+
         if (Auth::user()->hasRole('ADMIN')){
-            return $this->user_model::whereNotNull('parent_id')->get();
+//            return $this->user_model::whereNotNull('parent_id')->get();
+            return $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->whereNotNull('parent_id')
+                        ->orWhereHas('childs');
+                })->get();
         }
         else{
             return $this->user_model::where('parent_id' , Auth::user()->id)->get();

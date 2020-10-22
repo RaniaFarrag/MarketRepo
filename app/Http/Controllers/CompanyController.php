@@ -201,7 +201,8 @@ class CompanyController extends Controller
 
     public function extractCompanyReportExcel(Request $request)
     {
-        $companies= $this->companyRepositoryinterface->companiesReports($request,true)['companies'];
+        $companies= $this->companyRepositoryinterface->companiesReports($request,true , true)['companies'];
+
         return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
     }
 

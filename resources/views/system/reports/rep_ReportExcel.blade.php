@@ -8,14 +8,14 @@
 <table>
     <tbody>
     <tr>
-        <th style="text-align: center; font-weight: bold; border: 1px solid #000000; font-size: 24px; " colspan="10"> <h1 style="width: 100%; text-align: center"> {{ trans('dashboard.Rep Reports') }}</h1>
+        <th style="text-align: center; font-weight: bold; border: 1px solid #000000; font-size: 24px; " colspan="10"> <h1 style="width: 100%; text-align: center"> {{ trans('dashboard.Rep Reports') }} {{ app()->getLocale() == 'ar' ? $rep->name : $rep->name_en }}</h1>
         </th>
     </tr>
     </tbody>
 </table>
 <br/>
 
-{{--
+
 
 
 <table style="text-align: center; border: 1px solid #000000">
@@ -40,7 +40,7 @@
     </tbody>
 </table>
 
---}}
+
 
 <table style="text-align: center; border: 1px solid #000000">
     <thead>
@@ -62,10 +62,11 @@
             <td style="text-align: center; border: 1px solid #000000;">{{ app()->getLocale() == 'ar' ?
             $company->representative->name : $company->representative->name_en }}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$company->name}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_connected_user ? (app()->getLocale() == 'ar' ? $company->confirm_connected_user->name : $company->confirm_connected_user->name_en)  :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_interview_user ? (app()->getLocale() == 'ar' ? $company->confirm_interview_user->name : $company->confirm_interview_user->name_en) :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_need_user ? (app()->getLocale() == 'ar' ? $company->confirm_need_user->name : $company->confirm_need_user->name_en) :"-"}}</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_contract_user ? (app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en) : "-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_connected_user ? '√' :"-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_interview_user ? '√' :"-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_need_user ? '√' :"-"}}</td>
+            <td style="text-align: center; border: 1px solid #000000">{{$company->confirm_contract_user ? '√' : "-"}}</td>
+            {{--<td style="text-align: center; border: 1px solid #000000">{{$company->confirm_contract_user ? (app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en) : "-"}}</td>--}}
         </tr>
     @endforeach
     </tbody>

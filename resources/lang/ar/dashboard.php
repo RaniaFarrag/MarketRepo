@@ -316,6 +316,7 @@ return [
     'CR' => 'سجل تجاري',
     'Social Media Info' => 'Social Media Info',
     'Ksa Branch' => 'فروع فى المملكة',
+    'sent successfully' => 'تم الارسال بنجاح',
     'The contract has been confirmed with the company' => 'تم تأكيد العقد مع الشركة',
 
 

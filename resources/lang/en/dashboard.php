@@ -315,6 +315,7 @@ return [
     'CR' => 'CR',
     'Social Media Info' => 'Social Media Info',
     'Ksa Branch' => 'Ksa Branch',
+    'sent successfully' => 'Sent Successfully',
     'The contract has been confirmed with the company' => 'The contract has been confirmed with the company',
 
 

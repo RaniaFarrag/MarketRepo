@@ -621,7 +621,7 @@ class CompanyRepository implements CompanyRepositoryInterface
             $message->setBody($request->message);
         });
 
-        Alert::success('success', trans('dashboard. sent successfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('companies.index'));
     }
 
