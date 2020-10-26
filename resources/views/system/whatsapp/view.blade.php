@@ -14,7 +14,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.WhatsApp') }}
+                            {{ trans('dashboard.Send Message') }}
                         </h2>
                         <!--end::Title-->
 
@@ -28,7 +28,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.WhatsApp') }}
+                                {{ trans('dashboard.Send Message') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -72,7 +72,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.WhatsApp') }}
+                                        {{ trans('dashboard.Send Message') }}
                                     </h3>
                                 </div>
                             </div>
@@ -106,29 +106,38 @@
                                                     </div>
                                                 </td>
 
-                                                <td style="width: 34px;"><a href="#"
-                                                                            target="_blank">{{ $company->id }}</a></td>
+                                                <td style="width: 34px;"><a href="#" target="_blank">{{ $company->id }}</a></td>
+                                                <td><a href="{{ route('companies.show' , $company->id) }}">{{ $company->name }}</a></td>
+                                                <td>{{ $company->sector ? $company->sector->name : trans('dashboard.non') }}</td>
+                                                <td>{{ $company->subSector ? $company->subSector->name : trans('dashboard.non') }}</td>
 
-                                                <td><a href="#">{{ $company->name }}</a></td>
-                                                <td>{{ $company->sector ? $company->sector->name : '-' }}</td>
-                                                <td>{{ $company->subSector ? $company->subSector->name : '-'}}</td>
-
-                                                <td>{{ $company->email ? $company->email : '-' }}</td>
-                                                <td>{{ $company->whatsapp ? $company->whatsapp : '-' }}</td>
+                                                <td>{{ $company->email ? $company->email : trans('dashboard.non') }}</td>
+                                                <td>{{ $company->whatsapp ? $company->whatsapp : trans('dashboard.non') }}</td>
 
                                                 <td>
-                                                    <a data-id="{{ $company->whatsapp }}" href="#btnModal" class="singlePhone mr-2"
-                                                       data-toggle="modal">
-                                                        <i class="fab fa-2x text-success fa-whatsapp"></i>
-                                                    </a>
-                                                    <a href="mailto:{{ $company->email }}" class="mr-2" >
-                                                        <i class="fab fa-2x text-primary far fa-envelope"></i>
-                                                    </a>
-                                                    <a href="sms:{{ $company->whatsapp }}" class="mr-2"><i class="fab fa-2x text-warning  fas fa-sms"></i>
-                                                    </a>
-                                                    <a href="{{ $company->website }}" class="mr-2" target="_blank">
-                                                        <i class="fab fa-2x text-info  fas fa-globe"></i>
-                                                    </a>
+                                                    @if($company->whatsapp)
+                                                        <a data-id="{{ $company->whatsapp }}" href="#btnModal" class="singlePhone mr-2"
+                                                           data-toggle="modal">
+                                                            <i class="fab fa-2x text-success fa-whatsapp"></i>
+                                                        </a>
+                                                    @endif
+
+                                                    @if($company->email)
+                                                        <a href="mailto:{{ $company->email }}" class="mr-2" >
+                                                            <i class="fab fa-2x text-primary far fa-envelope"></i>
+                                                        </a>
+                                                    @endif
+
+                                                    @if($company->whatsapp)
+                                                        <a href="sms:{{ $company->whatsapp }}" class="mr-2"><i class="fab fa-2x text-warning  fas fa-sms"></i>
+                                                        </a>
+                                                    @endif
+
+                                                    @if($company->website)
+                                                        <a href="{{ $company->website }}" class="mr-2" target="_blank">
+                                                            <i class="fab fa-2x text-info  fas fa-globe"></i>
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

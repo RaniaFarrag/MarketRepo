@@ -312,11 +312,15 @@ return [
     'Business Detail' => 'Business Detail',
     'Vendor No' => 'Vendor No',
     'ECN' => 'ECN',
+    'ksa_branch' => 'ksa_branch',
     'CR' => 'CR',
     'Social Media Info' => 'Social Media Info',
     'Ksa Branch' => 'Ksa Branch',
     'sent successfully' => 'Sent Successfully',
     'The contract has been confirmed with the company' => 'The contract has been confirmed with the company',
+    'non' => 'Non',
+    'HR Linkedin' => 'Linkedin',
+    'deleted successfully' => 'Deleted Successfully',
 
 
 

@@ -361,7 +361,7 @@
                                     <li class="menu-item   {{\Request::route()->getName() == 'whatsapp_message' ? 'menu-item-here' :"" }} "
                                         data-menu-toggle="click" aria-haspopup="true">
                                         <a href="{{ route('whatsapp_message') }}" class="menu-link ">
-                                            <span class="menu-text">{{ trans('dashboard.WhatsApp') }}</span>
+                                            <span class="menu-text">{{ trans('dashboard.Send Message') }}</span>
                                         </a>
 
                                     </li>

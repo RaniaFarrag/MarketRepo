@@ -38,25 +38,31 @@ class CreateCompaniesTable extends Migration
             $table->string('linkedin')->nullable();
             $table->string('twitter')->nullable();
 
+            $table->string('ecn')->nullable();
+            $table->string('cr')->nullable();
+            $table->string('ksa_branch')->nullable();
+
 
             $table->string('company_representative_name')->nullable();
-            $table->string('company_representative_job_title')->nullable();
-            $table->string('company_representative_job_mobile')->nullable();
-            $table->string('company_representative_job_phone')->nullable();
-            $table->string('company_representative_job_email')->nullable();
+            $table->string('company_representative_title')->nullable();
+            $table->string('company_representative_mobile')->nullable();
+            $table->string('company_representative_phone')->nullable();
+            $table->string('company_representative_email')->nullable();
 
 
-            $table->string('hr_director_job_name')->nullable();
-            $table->string('hr_director_job_email')->nullable();
-            $table->string('hr_director_job_mobile')->nullable();
-            $table->string('hr_director_job_phone')->nullable();
-            $table->string('hr_director_job_whatsapp')->nullable();
+            $table->string('hr_director_name')->nullable();
+            $table->string('hr_director_email')->nullable();
+            $table->string('hr_director_mobile')->nullable();
+            $table->string('hr_director_phone')->nullable();
+            $table->string('hr_director_whatsapp')->nullable();
+            $table->string('hr_director_linkedin')->nullable();
 
             $table->string('contract_manager_name')->nullable();
             $table->string('contract_manager_email')->nullable();
             $table->string('contract_manager_mobile')->nullable();
             $table->string('contract_manager_phone')->nullable();
             $table->string('contract_manager_whatsapp')->nullable();
+            $table->string('contract_manager_linkedin')->nullable();
 
             $table->text('notes')->nullable();
 

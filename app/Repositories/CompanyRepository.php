@@ -232,22 +232,29 @@ class CompanyRepository implements CompanyRepositoryInterface
             'website' => $request->website,
             'linkedin' => $request->linkedin,
             'twitter' => $request->twitter,
+            'ecn' => $request->ecn,
+            'cr' => $request->cr,
+            'ksa_branch' => $request->ksa_branch,
+
             'company_representative_name' => $request->company_representative_name,
             'company_representative_job_title' => $request->company_representative_job_title,
             'company_representative_job_mobile' => $request->company_representative_job_mobile,
             'company_representative_job_phone' => $request->company_representative_job_phone,
             'company_representative_job_email' => $request->company_representative_job_email,
-            'hr_director_job_name' => $request->hr_director_job_name,
-            'hr_director_job_email' => $request->hr_director_job_email,
-            'hr_director_job_mobile' => $request->hr_director_job_mobile,
-            'hr_director_job_phone' => $request->hr_director_job_phone,
-            'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+
+            'hr_director_name' => $request->hr_director_name,
+            'hr_director_email' => $request->hr_director_email,
+            'hr_director_mobile' => $request->hr_director_mobile,
+            'hr_director_phone' => $request->hr_director_phone,
+            'hr_director_whatsapp' => $request->hr_director_whatsapp,
+            'hr_director_linkedin' => $request->hr_director_linkedin,
 
             'contract_manager_name' => $request->contract_manager_name,
             'contract_manager_email' => $request->contract_manager_email,
             'contract_manager_mobile' => $request->contract_manager_mobile,
             'contract_manager_phone' => $request->contract_manager_phone,
             'contract_manager_whatsapp' => $request->contract_manager_whatsapp,
+            'contract_manager_linkedin' => $request->contract_manager_linkedin,
 
             'user_id' => auth()->id(),
 
@@ -378,22 +385,29 @@ class CompanyRepository implements CompanyRepositoryInterface
             'website' => $request->website,
             'linkedin' => $request->linkedin,
             'twitter' => $request->twitter,
+            'ecn' => $request->ecn,
+            'cr' => $request->cr,
+            'ksa_branch' => $request->ksa_branch,
+
             'company_representative_name' => $request->company_representative_name,
             'company_representative_job_title' => $request->company_representative_job_title,
             'company_representative_job_mobile' => $request->company_representative_job_mobile,
             'company_representative_job_phone' => $request->company_representative_job_phone,
             'company_representative_job_email' => $request->company_representative_job_email,
-            'hr_director_job_name' => $request->hr_director_job_name,
-            'hr_director_job_email' => $request->hr_director_job_email,
-            'hr_director_job_mobile' => $request->hr_director_job_mobile,
-            'hr_director_job_phone' => $request->hr_director_job_phone,
-            'hr_director_job_whatsapp' => $request->hr_director_job_whatsapp,
+
+            'hr_director_name' => $request->hr_director_name,
+            'hr_director_email' => $request->hr_director_email,
+            'hr_director_mobile' => $request->hr_director_mobile,
+            'hr_director_phone' => $request->hr_director_phone,
+            'hr_director_whatsapp' => $request->hr_director_whatsapp,
+            'hr_director_linkedin' => $request->hr_director_linkedin,
 
             'contract_manager_name' => $request->contract_manager_name,
             'contract_manager_email' => $request->contract_manager_email,
             'contract_manager_mobile' => $request->contract_manager_mobile,
             'contract_manager_phone' => $request->contract_manager_phone,
             'contract_manager_whatsapp' => $request->contract_manager_whatsapp,
+            'contract_manager_linkedin' => $request->contract_manager_linkedin,
 
             'user_id' => auth()->id(),
 
@@ -614,9 +628,9 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Send Email To Company */
     public function sendEmail($request)
     {
-        //dd($request->message);
+        //dd($request->email);
         Mail::send([], [], function ($message) use ($request) {
-            $message->to('eng19956@gmail.com');
+            $message->to($request->email);
             $message->subject('Mail Sysytem');
             $message->setBody($request->message);
         });

@@ -24,16 +24,31 @@ class WhatsAppController extends Controller
     /** Whatsapp Messages */
     public function WhatsappMessages(){
         if (Auth::user()->hasRole('ADMIN')) {
-            $companies = $this->company_model::whereNotNull('whatsapp')->with(['sector' , 'subSector'])
-                ->orderBy('created_at', 'desc')->paginate(20);
+//            $companies = $this->company_model::whereNotNull('whatsapp')->with(['sector' , 'subSector'])
+//                ->orderBy('created_at', 'desc')->paginate(20);
+            $companies = $this->company_model
+                ::orderBy('whatsapp' , 'desc')
+                ->orderBy('website' , 'desc')
+                ->orderBy('email' , 'desc')
+                ->with(['sector' , 'subSector'])
+                ->paginate(20);
         }
 
         else{
-            $companies = $this->company_model::whereNotNull('whatsapp')
-                ->where(function ($q){
+//            $companies = $this->company_model::whereNotNull('whatsapp')
+//                ->where(function ($q){
+//                    $q->where('user_id' , Auth::user()->id)
+//                        ->orWhereIn('representative_id' , Auth::user()->childs()->pluck('id'));
+//                })->with(['sector' , 'subSector'])->orderBy('created_at', 'desc')->paginate(20);
+
+            $companies = $this->company_model::where(function ($q){
                     $q->where('user_id' , Auth::user()->id)
                         ->orWhereIn('representative_id' , Auth::user()->childs()->pluck('id'));
-                })->with(['sector' , 'subSector'])->orderBy('created_at', 'desc')->paginate(20);
+                        })
+                    ->orderBy('whatsapp' , 'desc')
+                    ->orderBy('website' , 'desc')
+                    ->orderBy('email' , 'desc')
+                    ->with(['sector' , 'subSector'])->paginate(20);
         }
 
         return view('system.whatsapp.view')->with('companies' , $companies);

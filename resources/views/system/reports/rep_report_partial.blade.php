@@ -2,7 +2,8 @@
 <div class="separator separator-dashed mt-8 mb-5"></div>
 <div class="table-responsive">
     <table class="table table-bordered text-center">
-        <tbody>
+
+        <thead>
         <tr>
             <th>{{ trans('dashboard.Company Representative name') }}</th>
             <th>{{ trans('dashboard.Total contacts') }} </th>
@@ -11,6 +12,8 @@
             <th>{{ trans('dashboard.Total contracts') }} </th>
 
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td> {{app()->getLocale() == 'ar' ? $rep->name : $rep->name_en}}</td>
 

@@ -313,11 +313,15 @@ return [
     'Business Detail' => 'تفاصيل العمل',
     'Vendor No' => 'المورد رقم',
     'ECN' => 'ECN',
+    'ksa_branch' => 'ksa_branch',
     'CR' => 'سجل تجاري',
     'Social Media Info' => 'Social Media Info',
     'Ksa Branch' => 'فروع فى المملكة',
     'sent successfully' => 'تم الارسال بنجاح',
     'The contract has been confirmed with the company' => 'تم تأكيد العقد مع الشركة',
+    'non' => 'لا يوجد',
+    'HR Linkedin' => 'لينكد ان',
+    'deleted successfully' => 'تم الحذف بنجاح',
 
 
 

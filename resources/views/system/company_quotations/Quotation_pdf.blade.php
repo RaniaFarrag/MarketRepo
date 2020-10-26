@@ -228,33 +228,33 @@
 
         <tbody>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.To') }} :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.To') }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">RABIA HOSPITAL</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Ref: No') }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Ref: No') }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">LINRCO / HO / 051 – 2020</td>
         </tr>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Attn') }}:</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Attn') }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">DR. MOHAMED YAMANI</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Date') }} :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Date') }} </td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">17th AUGUST 2020</td>
         </tr>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Tel') }} :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Tel') }} </td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">+966 - 114 - 999 - 000</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Industry') }} :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Industry') }} </td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">HEALTH CARE INDUSTRY</td>
         </tr>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Mobile') }} :</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Mobile') }} </td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">+966 - 541 - 454 - 967</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Quotation No.') }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Quotation No.') }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">051</td>
         </tr>
         <tr>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.E-mail') }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.E-mail') }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">Yamani2@yahoo.com</td>
-            <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ __('dashboard.Page No.') }}</td>
+            <td class="en ltr" style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Page No.') }}</td>
             <td class="en ltr" style="font-size: 12px; vertical-align: middle;">1</td>
         </tr>
         </tbody>

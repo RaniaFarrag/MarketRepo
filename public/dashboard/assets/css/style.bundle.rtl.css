@@ -63244,3 +63244,16 @@ table tbody tr td:first-child {
 .my-float{
     line-height: 60px;
 }
+
+.iti__country-list {
+    position: absolute;
+    z-index: 2;
+    list-style: none;
+    text-align: left;
+    left: 0 !important;}
+
+input[type=tel] {
+    direction: ltr;
+    unicode-bidi: embed;
+    text-align: right;
+}

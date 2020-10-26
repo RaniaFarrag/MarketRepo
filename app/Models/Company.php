@@ -34,23 +34,29 @@ class Company extends Model
         'linkedin' ,
         'twitter' ,
 
+        'ecn' ,
+        'cr' ,
+        'ksa_branch' ,
+
         'company_representative_name' ,
-        'company_representative_job_title',
-        'company_representative_job_mobile',
-        'company_representative_job_phone',
-        'company_representative_job_email',
+        'company_representative_title',
+        'company_representative_mobile',
+        'company_representative_phone',
+        'company_representative_email',
 
         'hr_director_job_name',
         'hr_director_job_email',
         'hr_director_job_mobile',
         'hr_director_job_phone',
         'hr_director_job_whatsapp',
+        'hr_director_linkedin',
 
         'contract_manager_name',
         'contract_manager_email',
         'contract_manager_mobile',
         'contract_manager_phone',
         'contract_manager_whatsapp',
+        'contract_manager_linkedin',
 
         'notes',
         'user_id',

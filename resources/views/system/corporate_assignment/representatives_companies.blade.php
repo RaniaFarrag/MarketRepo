@@ -75,12 +75,13 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <!--begin: Datatable-->
-                                    <table id="myTable" class="table table-bordered text-center">
+                                    <table id="myTable" class="table  text-center">
                                         <thead>
                                         <tr>
                                             <th>{{ trans('dashboard.Sl.No') }}</th>
                                             <th>{{ trans('dashboard.Representative') }}</th>
                                             <th>{{ trans('dashboard.Representative companies') }}</th>
+                                            <th>{{ trans('dashboard.TOTAL COMPANIES') }}</th>
                                         </tr>
                                         </thead>
 
@@ -89,9 +90,11 @@
                                                 <tr>
                                                     <td>{{ $representative->id }}</td>
                                                     <td>{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</td>
-                                                    <td><a class="btn btn-success font-weight-bold"
-                                                           href="{{ route('get_companies_of_representative' , $representative->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
+                                                    <td>
+                                                        <a class="btn btn-success font-weight-bold"
+                                                           href="{{ route('get_companies_of_representative' , $representative->id) }}">{{ trans('dashboard.Show Companies') }}</a>
                                                     </td>
+                                                    <td>{{ count($representative->assignedCompanies) }}</td>
                                                 </tr>
                                             @endforeach
                                             @if(auth()->user()->hasRole('Sales Manager'))
@@ -100,7 +103,7 @@
                                                     <td>{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</td>
                                                     <td><a class="btn btn-success font-weight-bold"
                                                            href="{{ route('get_companies_of_representative' , auth()->user()->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>
-                                                    </td>
+                                                    <td>{{ count(auth()->user()->assignedCompanies) }}</td>
                                                 </tr>
                                             @endif
                                         </tbody>
@@ -140,8 +143,12 @@
 
 
     <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
+        $('#myTable').DataTable({
+           // dom: 'Bfrtip',
+            "responsive": true,
+            "ordering": false,
+            "info": false, "bAutoWidth": true, "autoWidth": false
+        });
+
     </script>
 @endsection
