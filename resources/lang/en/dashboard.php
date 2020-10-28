@@ -321,6 +321,9 @@ return [
     'non' => 'Non',
     'HR Linkedin' => 'Linkedin',
     'deleted successfully' => 'Deleted Successfully',
+    'Total meetings' => 'Total Meetings',
+    'Role' => 'Role',
+    'Status' => 'Status',
 
 
 

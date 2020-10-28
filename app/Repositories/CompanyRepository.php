@@ -259,9 +259,9 @@ class CompanyRepository implements CompanyRepositoryInterface
             'user_id' => auth()->id(),
 
             'client_status' => $request->client_status,
-            'client_status_user_id' => auth()->id(),
+            'client_status_user_id' =>  $request->client_status ? auth()->id() : Null,
             'evaluation_status' => $request->evaluation_status,
-            'evaluation_status_user_id' => auth()->id(),
+            'evaluation_status_user_id' => $request->evaluation_status ? auth()->id() : Null,
             'notes' => $request->notes,
             'representative_id' => $representative_id,
         ]);
@@ -333,9 +333,6 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Submit Edit company */
     public function update($request, $company)
     {
-
-        //dd(count($request->designated_contact_name));
-//        dd($request->item);
         if ($request->hasFile('logo')) {
             $logo = $this->verifyAndStoreFile($request, 'logo');
         } else {
@@ -385,6 +382,7 @@ class CompanyRepository implements CompanyRepositoryInterface
             'website' => $request->website,
             'linkedin' => $request->linkedin,
             'twitter' => $request->twitter,
+
             'ecn' => $request->ecn,
             'cr' => $request->cr,
             'ksa_branch' => $request->ksa_branch,
@@ -412,9 +410,9 @@ class CompanyRepository implements CompanyRepositoryInterface
             'user_id' => auth()->id(),
 
             'client_status' => $request->client_status,
-            'client_status_user_id' => auth()->id(),
+            'client_status_user_id' => $request->client_status ? $request->client_status == $company->client_status ? $company->client_status_user_id : auth()->id() : Null,
             'evaluation_status' => $request->evaluation_status,
-            'evaluation_status_user_id' => auth()->id(),
+            'evaluation_status_user_id' => $request->evaluation_status ? $request->evaluation_status == $company->evaluation_status ? $company->evaluation_status_user_id : auth()->id() : Null,
             'notes' => $request->notes,
         ]);
 
@@ -457,7 +455,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                     'date' => $item['date'],
                     'time' => $item['time'],
                     'company_id' => $company->id,
-                    'user_id' => auth()->id(),
+                    //'user_id' => auth()->id(),
                 ]);
             } else {
                 if ($item['date']) {

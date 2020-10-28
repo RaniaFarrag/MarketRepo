@@ -322,6 +322,9 @@ return [
     'non' => 'لا يوجد',
     'HR Linkedin' => 'لينكد ان',
     'deleted successfully' => 'تم الحذف بنجاح',
+    'Total meetings' => 'إجمالي المقابلات',
+    'Role' => 'Role',
+    'Status' => 'الحالة',
 
 
 

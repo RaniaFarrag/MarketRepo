@@ -129,10 +129,12 @@ class UserController extends Controller
             $confirm_interview = $this->userRepositoryinterface->rep_companies_report($request)['confirm_interview'];
             $confirm_need = $this->userRepositoryinterface->rep_companies_report($request)['confirm_need'];
             $confirm_contract = $this->userRepositoryinterface->rep_companies_report($request)['confirm_contract'];
+            $count_meetings = $this->userRepositoryinterface->rep_companies_report($request)['count_meetings'];
+            $user_log = $this->userRepositoryinterface->rep_companies_report($request)['user_log'];
 
 
             $data_json['viewBlade']= view('system.reports.rep_report_partial' , compact('companies','confirm_connected',
-                'confirm_contract','confirm_interview','confirm_need','rep'))->render();
+                'confirm_contract','confirm_interview','confirm_need','rep', 'count_meetings' , 'user_log'))->render();
             $data_json['count']= $count;
 
             return response()->json($data_json);

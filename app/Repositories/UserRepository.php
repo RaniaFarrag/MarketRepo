@@ -8,6 +8,8 @@
 
 namespace App\Repositories;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\CompanyMeeting;
+use App\Models\Log;
 use App\Models\Sector;
 use App\Traits\logTrait;
 use App\User;
@@ -25,13 +27,15 @@ class UserRepository implements UserRepositoryInterface
     protected $user_model;
     protected $role_model;
     protected $sector_model;
+    protected $company_meetings_model;
 
 
-    public function __construct(User $user , Role $role , Sector $sector)
+    public function __construct(User $user , Role $role , Sector $sector , CompanyMeeting $companyMeeting)
     {
         $this->user_model = $user;
         $this->role_model = $role;
         $this->sector_model = $sector;
+        $this->company_meetings_model = $companyMeeting;
     }
 
     /** View All Users */
@@ -227,6 +231,8 @@ class UserRepository implements UserRepositoryInterface
     {
         $data =[];
         $data['rep'] = $this->user_model->findOrFail($request->rep_id);
+        $data['count_meetings'] = $this->company_meetings_model->where('user_id' , $request->rep_id)->count();
+        $data['user_log'] = Log::where('user_id' , $request->rep_id)->where('model_name' , 'users_login')->get();
 
         if ($all){
             $data['companies'] = $data['rep']->assignedCompanies()

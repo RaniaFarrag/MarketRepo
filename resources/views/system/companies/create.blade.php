@@ -204,10 +204,10 @@
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Mobile / WhatsApp number') }} :</label>
 
-                                            <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp" inputmode="tel" value="{{ old('whatsapp') }}" />
+                                            <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp" inputmode="tel" value="{{ old('whatsapp') }}" required/>
 
                                             <input value="{{ old('whatsapp') }}" name="whatsapp" type="hidden" class="form-control whatsapp"
-                                                   placeholder="Mobile / WhatsApp number"/>
+                                                   placeholder="Mobile / WhatsApp number" required/>
 
                                         </div>
                                     </div>
@@ -288,7 +288,7 @@
 
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.ksa_branch') }}:</label>
-                                            <select id="countries" class="form-control select2" name="ksa_branch">
+                                            <select class="form-control select2" name="ksa_branch">
                                                 <option value="" selected="">{{ trans('dashboard.Select') }}</option>
                                                 <option value="1">{{ trans('dashboard.yes') }}</option>
                                                 <option value="2">{{ trans('dashboard.No') }}</option>
@@ -299,11 +299,11 @@
                                     <div class="form-group row">
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Website') }}:</label>
-                                            <input value="{{ old('website') }}" name="website" type="url" class="form-control" placeholder="{{ trans('dashboard.Website') }}"/>
+                                            <input value="{{ old('website') }}" name="website" type="url" class="form-control" placeholder="{{ trans('dashboard.Website') }}" required/>
                                         </div>
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.E-mail') }}:</label>
-                                            <input value="{{ old('email') }}" name="email" type="email" class="form-control" placeholder="{{ trans('dashboard.E-mail') }}"/>
+                                            <input value="{{ old('email') }}" name="email" type="email" class="form-control" placeholder="{{ trans('dashboard.E-mail') }}" required/>
                                         </div>
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Linkedin') }}:</label>

@@ -203,7 +203,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Mobile / WhatsApp number') }} :{{ $company->whatsapp }}</label>
-                                            <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp" inputmode="tel" value="{{ $company->whatsapp }}" />
+                                            <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp" inputmode="tel" value="{{ $company->whatsapp }}" required/>
                                             <input value="{{ $company->whatsapp }}" name="whatsapp" type="hidden" class="form-control whatsapp"
                                                    placeholder="Mobile / WhatsApp number"/>
 
@@ -292,7 +292,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.ksa_branch') }}:</label>
-                                            <select id="countries" class="form-control select2" name="ksa_branch">
+                                            <select class="form-control select2" name="ksa_branch">
                                                 <option value="" selected="">{{ trans('dashboard.Select') }}</option>
                                                 <option {{ $company->ksa_branch == 1 ? 'selected' : '-' }} value="{{ 1 }}">{{ trans('dashboard.yes') }}</option>
                                                 <option {{ $company->ksa_branch == 2 ? 'selected' : '-' }} value="{{ 2 }}">{{ trans('dashboard.No') }}</option>
@@ -305,11 +305,11 @@
                                     <div class="form-group row">
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Website') }}:</label>
-                                            <input value="{{ $company->website }}" name="website" type="url" class="form-control" placeholder="{{ trans('dashboard.Website') }}"/>
+                                            <input value="{{ $company->website }}" name="website" type="url" class="form-control" placeholder="{{ trans('dashboard.Website') }}" required/>
                                         </div>
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.E-mail') }}:</label>
-                                            <input value="{{ $company->email }}" name="email" type="email" class="form-control" placeholder="{{ trans('dashboard.E-mail') }}"/>
+                                            <input value="{{ $company->email }}" name="email" type="email" class="form-control" placeholder="{{ trans('dashboard.E-mail') }}" required/>
                                         </div>
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Linkedin') }}:</label>
@@ -490,7 +490,7 @@
                                                                 <label>{{ trans('dashboard.By User') }} :</label>
 
                                                                 <div class="input-group timepicker">
-                                                                    <input value="{{ $companyMeeting->date ?  $companyMeeting->user->name : ''}}" name="user_id" arr-name="item" class="form-control"  placeholder="{{ trans('dashboard.By User') }}" type="text" readonly/>
+                                                                    <input value="{{ $companyMeeting->date ?  app()->getLocale() == 'ar' ? $companyMeeting->user->name : $companyMeeting->user->name_en : ''}}" name="user_id" arr-name="item" class="form-control"  placeholder="{{ trans('dashboard.By User') }}" type="text" readonly/>
                                                                 </div>
                                                             </div>
                                                     </div>

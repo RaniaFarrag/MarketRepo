@@ -264,7 +264,7 @@
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.ECN') }} :</td>
-                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;background: #e6e6e6">{{ $company->ecn }}</td>
+                    <td class="en ltr" style="font-size: 12px;vertical-align: middle;">{{ $company->ecn }}</td>
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         {{ trans('dashboard.Tel') }}  :
                     </td>
@@ -293,13 +293,13 @@
                 <tr>
 
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.CR') }}:</td>
-                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle; background: #e6e6e6">{{ $company->cr }}
+                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle;">{{ $company->cr }}
                     </td>
 
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
                         {{ trans('dashboard.Ksa Branch') }} :
                     </td>
-                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle;background: #e6e6e6">
+                    <td class="en ltr"  style="font-size: 12px;vertical-align: middle;">
                         @if($company->ksa_branch == 1)
                             {{ trans('dashboard.yes') }}
                         @else
@@ -449,7 +449,7 @@
                         style="font-size: 12px; vertical-align: middle; border: none;"><img
                                 src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle; background: #e6e6e6">{{ $company->contract_manager_linkedin }}</td>
+                    <td style="font-size: 12px;vertical-align: middle; ">{{ $company->contract_manager_linkedin }}</td>
 
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         <img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
@@ -496,7 +496,7 @@
                         style="font-size: 12px; vertical-align: middle; border: none;"><img
                                 src="https://image.flaticon.com/icons/png/512/174/174857.png" width="20" alt="linkedin">
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle; background: #e6e6e6">{{ $company->contract_manager_linkedin }}</td>
+                    <td style="font-size: 12px;vertical-align: middle; ">{{ $company->contract_manager_linkedin }}</td>
 
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;width: 20%"><img
                                 src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
