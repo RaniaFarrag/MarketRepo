@@ -59,8 +59,6 @@
                                   enctype="multipart/form-data">
                                 @csrf
 
-                              
-
                                 <div class="card-body">
 
                                     <div class="form-group row">
@@ -92,7 +90,7 @@
                                             <input value=" " name="candidates_number" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.E-mail') }}" required/>
 
-                                                   
+
 
                                         </div>
                                         <div class="col-lg-4">
@@ -100,7 +98,7 @@
                                             <input value=" " name="candidates_number" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Quotation No.') }}" required/>
 
-                                                   
+
 
                                         </div>
 
@@ -208,7 +206,7 @@
 
 @section('script')
     <script>
-        
+
         // Class definition
         var KTFormRepeater = function() {
 

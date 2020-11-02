@@ -23,10 +23,10 @@ class CompanyQuotationController extends Controller
 
     public function index($company_id)
     {
-        //return $this->companyQuotationRepositoryinterface->index($company_id);
         $company = Company::findOrFail($company_id);
-        //dd($company);
-        return view('system.company_quotations.index')->with(['company' => $company]);
+        $quotations  = $this->companyQuotationRepositoryinterface->index($company_id);
+
+        return view('system.company_quotations.index')->with(['company' => $company , 'quotations'=>$quotations]);
     }
 
     /**

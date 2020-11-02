@@ -102,16 +102,18 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>01</td>
-                                            <td>051</td>
-                                            <td>DR. MOHAMED YAMANI</td>
-                                            <td>15/06/2020	</td>
-                                            <td>BABU ANSARI</td>
-                                            <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_quotation') }}">{{ trans('dashboard.Quotation Details') }}</a></td>
-                                            <td>{{ trans('dashboard.edit') }}</td>
-                                            <td>{{ trans('dashboard.delete') }}</td>
-                                        </tr>
+                                        @foreach($quotations as $k=>$quotation)
+                                            <tr>
+                                                <td>{{ $k+1 }}</td>
+                                                <td>{{ $quotation->id }}</td>
+                                                <td>{{ $quotation->attn }}</td>
+                                                <td>{{ $quotation->created_at }}</td>
+                                                <td>{{ $quotation->user->name }}</td>
+                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_quotation') }}">{{ trans('dashboard.Quotation Details') }}</a></td>
+                                                <td><a class="btn btn-success font-weight-bold" href="{{ route('cities.edit' , $city->id) }}">{{ trans('dashboard.edit') }}</a></td>
+                                                <td>{{ trans('dashboard.delete') }}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                     <!--end: Datatable-->

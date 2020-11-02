@@ -100,6 +100,7 @@
                                         </a>
                                     </li>
                                     @endcan
+                                    @can('TEAM SALES LEAD REPORT')
                                     <li class="navi-item">
                                         <a href="{{ route('companySalesTeamReports.show',$company->id) }}" class="navi-link">
                                     <span class="navi-icon"><i
@@ -107,7 +108,7 @@
                                             <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }} </span>
                                         </a>
                                     </li>
-
+                                    @endcan
                                 </ul>
                                 <!--end::Navigation-->
                             </div>

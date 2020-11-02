@@ -7,35 +7,41 @@
  */
 
 namespace App\Repositories;
-use App\Interfaces\CompanyQuotationRepositoryInterface;
+use App\Interfaces\LinrcoQuotationRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use App\Models\Country;
 use App\Models\EmploymentType;
-use App\Models\LinrcoQuotation;
 use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationData;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-class CompanyQuotationRepository implements CompanyQuotationRepositoryInterface
+class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
 {
     use LogTrait;
     use UploadTrait;
 
-    protected $company_quotation_model;
+    protected $company_need_model;
+    protected $company_model;
+    protected $country_model;
 
-    public function __construct(LinrcoQuotation $linrcoQuotation)
+    public function __construct(CompanyNeed $companyNeed , Country $country , Company $company)
     {
-        $this->company_quotation_model = $linrcoQuotation;
-
+        $this->company_model = $company;
+        $this->company_need_model = $companyNeed;
+        $this->country_model = $country;
+        $this->employment_type_model = $country;
     }
 
 
     /** View All CompanyNeeds */
     public function index($company_id){
-        return $this->company_quotation_model::where('company_id' , $company_id)->with('company')->paginate(20);
+        return $this->company_need_model::where('company_id' , $company_id)->with('company')->paginate(20);
     }
 
     /** Get Employee Types */
