@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CompanyNeedRequest;
-use App\Interfaces\CompanyNeedRepositoryInterface;
+use App\Interfaces\FnrcoNeedRepositoryInterface;
+use App\Interfaces\LinrcoNeedRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class CompanyNeedController extends Controller
 {
-    protected $companyNeedRepositoryinterface;
+    protected $linrcoNeedRepositoryinterface;
+    protected $fnrcoNeedRepositoryinterface;
 
-    public function __construct(CompanyNeedRepositoryInterface $companyNeedRepositoryinterface)
+    public function __construct(LinrcoNeedRepositoryInterface $linrcoNeedRepositoryinterface , FnrcoNeedRepositoryInterface $fnrcoNeedRepositoryinterface)
     {
-        $this->companyNeedRepositoryinterface = $companyNeedRepositoryinterface;
+        $this->linrcoNeedRepositoryinterface = $linrcoNeedRepositoryinterface;
+        $this->fnrcoNeedRepositoryinterface = $fnrcoNeedRepositoryinterface;
     }
 
     /**
@@ -25,11 +29,38 @@ class CompanyNeedController extends Controller
      */
 
     /** View All CompanyNeed */
-    public function index($company_id)
+    public function index($company_id , $mother_company_id)
     {
-        $needs = $this->companyNeedRepositoryinterface->index($company_id);
+//        $needs = $this->companyNeedRepositoryinterface->index($company_id);
+//        $company = Company::findOrFail($company_id);
+//        return view('system.companies.needs.index')->with(['needs' => $needs , 'company_id' => $company_id , 'company'=>$company]);
+        //dd($mother_company_id);
         $company = Company::findOrFail($company_id);
-        return view('system.companies.needs.index')->with(['needs' => $needs , 'company_id' => $company_id , 'company'=>$company]);
+        if (Auth::user()->hasRole('ADMIN')){
+            if ($mother_company_id == 1){
+                $linrco_needs = $this->linrcoNeedRepositoryinterface->index($company_id);
+                return view('system.companies.needs.linrco_needs.index')->with(['needs' => $linrco_needs , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => $mother_company_id]);
+            }
+            elseif (Auth::user()->mother_company_id == 2){
+                $fnrco_needs = $this->fnrcoNeedRepositoryinterface->index($company_id);
+                return view('system.companies.needs.fnrco_needs.index')->with(['needs' => $fnrco_needs , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => $mother_company_id]);
+            }
+        }
+
+        else{
+            if (Auth::user()->mother_company_id == 1){
+                $linrco_needs = $this->linrcoNeedRepositoryinterface->index($company_id);
+                return view('system.companies.needs.linrco_needs.index')->with(['needs' => $linrco_needs , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => Auth::user()->mother_company_id]);
+            }
+            elseif (Auth::user()->mother_company_id == 2){
+                $fnrco_needs = $this->fnrcoNeedRepositoryinterface->index($company_id);
+                return view('system.companies.needs.fnrco_needs.index')->with(['needs' => $fnrco_needs , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => Auth::user()->mother_company_id]);
+            }
+        }
     }
 
     /**
@@ -39,7 +70,7 @@ class CompanyNeedController extends Controller
      */
 
     /** Create CompanyNeed */
-    public function create($company_id)
+    public function create($company_id , $mother_company_id)
     {
         $countries = $this->companyNeedRepositoryinterface->create($company_id);
         $company = Company::findOrFail($company_id);

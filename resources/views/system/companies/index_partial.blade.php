@@ -9,6 +9,8 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end">
 
+
+
                         <div class="dropdown dropdown-inline" data-toggle="tooltip" data-trigger="focus"
                              title=""
                              data-placement="left"
@@ -42,15 +44,17 @@
                                             <span class="navi-text">{{ trans('dashboard.View Company Data') }}</span>
                                         </a>
                                     </li>
+
                                     @can('Show Company Needs')
-                                    <li class="navi-item">
-                                        <a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">
-                                    <span class="navi-icon"><i
-                                                class="flaticon2-list-3"></i></span>
-                                            <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
-                                        </a>
-                                    </li>
+                                        <li class="navi-item">
+                                            <a href="{{ route('company_needs.index' , [$company->id , $hidden_mother_company_id]) }}" class="navi-link">
+                                        <span class="navi-icon"><i
+                                                    class="flaticon2-list-3"></i></span>
+                                                <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
+                                            </a>
+                                        </li>
                                     @endcan
+
                                     @can('Edit Company')
                                     <li class="navi-item">
                                         <a href="{{ route('companies.edit' , $company->id) }}"
@@ -203,16 +207,16 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Company Type') }}
                                 :</span>
-                            <span class="text-muted font-weight-bold">{{ $company->subSector->name ? $company->subSector->name : '-' }}</span>
+                            <span class="text-muted font-weight-bold">{{ $company->subSector ? $company->subSector->name : '-' }}</span>
                         </div>
                         {{--@if($company->company_representative_name)--}}
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Representative name') }}
                                     :</span>
 
-                                <span title="{{ $company->representative ? (app()->getLocale() == 'ar' ? $company->representative->name : $company->representative->name_en) : '' }}" class="text-muted font-weight-bold">
-                                    {{--{{ $company->representative->name ? \Illuminate\Support\Str::limit($company->representative->name , 150, $end = '.') : '-' }}--}}
-                                    {!! $company->representative ? (app()->getLocale() == 'ar' ? Str::limit($company->representative->name, 15) : Str::limit($company->representative->name_en, 15) )  : '-' !!}
+                                <span title="{{ count($company->representative) ? (app()->getLocale() == 'ar' ? $company->representative[0]->name : $company->representative[0]->name_en) : '' }}" class="text-muted font-weight-bold">
+                                    {{--{{ count($company->representative) ? \Illuminate\Support\Str::limit($company->representative[0]->name , 150, $end = '.') : '-' }}--}}
+                                    {!! count($company->representative) ? (app()->getLocale() == 'ar' ? Str::limit($company->representative[0]->name, 15) : Str::limit($company->representative[0]->name_en, 15) )  : '-' !!}
                                 </span>
                             </div>
                         {{--@endif--}}
@@ -269,30 +273,30 @@
                                 {{--data-id :: ATT TO ADD company_id IN INPUT FIELD--}}
                                 {{--class confirm_interview_checked :: CLASS TO CALL THE INPUT FIELD IN JS--}}
                                 @can('Confirm Connection')
-                                <label class="checkbox checkbox-success">
-                                    <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1"
-                                           {{ $company->confirm_connected == 1 ? 'checked' : '' }}
-                                           {{ $company->confirm_connected == 1 && $company->confirm_connected_user_id != auth()->id() ? 'disabled' : '' }}
-                                           type="checkbox" name="confirm_connected"/>
-                                    <span></span>
-                                    {{ trans('dashboard.Confirm Connection') }}
-                                </label>
+                                    <label class="checkbox checkbox-success">
+                                        <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1"
+                                               {{ count($company->representative) ? $company->representative[0]->pivot->confirm_connected == 1 ? 'checked' : ' ' : ' '}}
+                                               {{ count($company->representative) ? $company->representative[0]->pivot->confirm_connected == 1 && $company->representative[0]->pivot->confirm_connected_user_id != auth()->id() ? 'disabled' : ' ' : ' ' }}
+                                               type="checkbox" name="confirm_connected" />
+                                        <span></span>
+                                        {{ trans('dashboard.Confirm Connection') }}
+                                    </label>
                                 @endcan
 
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_interview_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_interview"
-                                            {{ $company->confirm_interview == 1 ? 'checked' : '' }}
+                                            {{ count($company->representative) ? $company->representative[0]->pivot->confirm_interview == 1 ? 'checked' : '' : ''}}
                                             {{ count($company->companyMeetings) ? '' : 'disabled' }}
-                                            {{ $company->confirm_interview == 1 && $company->confirm_interview_user_id != auth()->id() ? 'disabled' : '' }}/>
+                                            {{ count($company->representative) ? $company->representative[0]->pivot->confirm_interview == 1 && $company->representative[0]->pivot->confirm_interview_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
                                     <span></span>
                                     {{ trans('dashboard.Confirm Interview') }}
                                 </label>
                                 @can('Confirm Need')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_need_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_need"
-                                            {{ $company->confirm_need == 1 ? ' checked' : '' }}
+                                            {{ count($company->representative) ? $company->representative[0]->pivot->confirm_need == 1 ? ' checked' : '' : ''}}
                                             {{ count($company->companyNeeds) ? '' : 'disabled' }}
-                                            {{ $company->confirm_need == 1 && $company->confirm_need_user_id != auth()->id() ? 'disabled' : '' }}/>
+                                            {{ count($company->representative) ? $company->representative[0]->pivot->confirm_need == 1 && $company->representative[0]->pivot->confirm_need_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
                                     <span></span>
                                     {{ trans('dashboard.Confirm Need') }}
                                 </label>
@@ -300,8 +304,8 @@
                                 @can('Confirm Contract')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_contract_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_contract"
-                                            {{ $company->confirm_contract == 1 ? ' checked' : '' }}
-                                            {{ $company->confirm_contract == 1 && $company->confirm_contract_user_id != auth()->id() ? 'disabled' : '' }}/>
+                                            {{ count($company->representative) ? $company->representative[0]->pivot->confirm_contract == 1 ? ' checked' : '' : ''}}
+                                            {{ count($company->representative) ? $company->representative[0]->pivot->confirm_contract == 1 && $company->representative[0]->pivot->confirm_contract_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
                                     <span></span>{{ trans('dashboard.Confirm Contract') }}
                                 </label>
                                 @endcan

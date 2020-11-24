@@ -10,6 +10,7 @@ namespace App\Repositories;
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\CompanyMeeting;
 use App\Models\Log;
+use App\Models\MotherCompany;
 use App\Models\Sector;
 use App\Traits\logTrait;
 use App\User;
@@ -28,14 +29,16 @@ class UserRepository implements UserRepositoryInterface
     protected $role_model;
     protected $sector_model;
     protected $company_meetings_model;
+    protected $motherCompany;
 
 
-    public function __construct(User $user , Role $role , Sector $sector , CompanyMeeting $companyMeeting)
+    public function __construct(User $user , Role $role , Sector $sector , CompanyMeeting $companyMeeting , MotherCompany $motherCompany)
     {
         $this->user_model = $user;
         $this->role_model = $role;
         $this->sector_model = $sector;
         $this->company_meetings_model = $companyMeeting;
+        $this->motherCompany = $motherCompany;
     }
 
     /** View All Users */
@@ -77,6 +80,7 @@ class UserRepository implements UserRepositoryInterface
         $data['sectors'] = $this->sector_model::all();
         $data['managers'] = $this->user_model::where('parent_id' , null)->get();
         $data['roles'] = $this->role_model::all();
+        $data['motherCompanies'] = $this->motherCompany::all();
 
         return $data;
     }
@@ -92,6 +96,7 @@ class UserRepository implements UserRepositoryInterface
                 'password' => Hash::make($request->password),
                 'active' => 1,
                 'parent_id' => $request->parent_id,
+                'mother_company_id' => $request->mother_company_id,
             ]);
         }
         elseif($request->role == 'Sales Manager'){
@@ -101,6 +106,7 @@ class UserRepository implements UserRepositoryInterface
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'active' => 1,
+                'mother_company_id' => $request->mother_company_id,
             ]);
             $user->sectors()->sync($request->sector_ids);
 //            foreach ($request->sector_ids as $sector_id) {
@@ -115,6 +121,7 @@ class UserRepository implements UserRepositoryInterface
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'active' => 1,
+                'mother_company_id' => $request->mother_company_id,
             ]);
         }
         $user->assignRole($request->role);
@@ -134,6 +141,7 @@ class UserRepository implements UserRepositoryInterface
         $data['sectors'] = $this->sector_model::all();
         $data['managers'] = $this->user_model::where('parent_id' , null)->get();
         $data['roles'] = $this->role_model::all();
+        $data['motherCompanies'] = $this->motherCompany::all();
 
         return $data;
     }
@@ -152,6 +160,7 @@ class UserRepository implements UserRepositoryInterface
                     'password' => Hash::make($request->password),
                     'active' => 1,
                     'parent_id' => $request->parent_id,
+                    'mother_company_id' => $request->mother_company_id,
                 ]);
             }
             else{
@@ -161,6 +170,7 @@ class UserRepository implements UserRepositoryInterface
                     'email' => $request->email,
                     'active' => 1,
                     'parent_id' => $request->parent_id,
+                    'mother_company_id' => $request->mother_company_id,
                 ]);
             }
         }
@@ -173,6 +183,7 @@ class UserRepository implements UserRepositoryInterface
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'active' => 1,
+                    'mother_company_id' => $request->mother_company_id,
                 ]);
             }
             else{
@@ -181,6 +192,7 @@ class UserRepository implements UserRepositoryInterface
                     'name_en' => $request->name_en,
                     'email' => $request->email,
                     'active' => 1,
+                    'mother_company_id' => $request->mother_company_id,
                 ]);
             }
 
@@ -194,7 +206,9 @@ class UserRepository implements UserRepositoryInterface
                     'name_en' => $request->name_en,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'active' => 1
+                    'active' => 1,
+                    'mother_company_id' => $request->mother_company_id,
+
                 ]);
             }
             else{
@@ -202,7 +216,8 @@ class UserRepository implements UserRepositoryInterface
                     'name' => $request->name,
                     'name_en' => $request->name_en,
                     'email' => $request->email,
-                    'active' => 1
+                    'active' => 1,
+                    'mother_company_id' => $request->mother_company_id,
                 ]);
             }
 

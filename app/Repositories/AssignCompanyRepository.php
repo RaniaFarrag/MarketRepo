@@ -10,6 +10,7 @@ namespace App\Repositories;
 use App\Interfaces\AssignCompanyRepositoryInterface;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\CompanyUser;
 use App\Models\Country;
 use App\Models\Sector;
 use App\Models\SubSector;
@@ -62,11 +63,12 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                 })->get();
         }
         else{
-            $data['representatives'] = $this->user_model::where('parent_id' , auth()->id())->get();
+            $data['representatives'] = $this->user_model::where('parent_id' , auth()->id())
+                ->orWhere('id' , auth()->id())->get();
         }
 
-        $data['countries'] = $this->country_model::all();
-        $user = $this->user_model::findOrFail(auth()->id());
+        //$data['countries'] = $this->country_model::all();
+        //$user = $this->user_model::findOrFail(auth()->id());
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
 
@@ -76,10 +78,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
     /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector (Ajax)*/
     public function fetchCompanyData($request)
     {
-        //dd($request->all());
-        $user = $this->user_model::findOrFail(auth()->id());
-
-        if (in_array($request->sector_id , $user->sectors()->pluck('sector_id')->toArray())){
+        if (in_array($request->sector_id , Auth::user()->sectors()->pluck('sector_id')->toArray())){
             $companies = $this->company_model::query();
 
             if ($request->subSector_id){
@@ -90,14 +89,18 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
             }
 
             if ($request->city_id){
-                $companies->where('city_id' , $request->city_id);
+                $companies->where('city_id' , $request->city_id)->get();
+
+                //dd($companies);
             }
 
             elseif($request->country_id){
                 $companies->where('country_id' , $request->country_id);
             }
 
-            $companies->whereNull('representative_id');
+//            $companies->whereNull('representative_id');
+
+            $companies->whereDoesntHave('representative');
 
             return $companies->get();
 
@@ -112,15 +115,17 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
         if ($request->sector_id){
             if (Auth::user()->sectors()->find($request->sector_id)){
-                if (Auth::user()->childs()->find($request->representative_id)){
+                if (Auth::user()->childs()->find($request->representative_id) || $request->representative_id == Auth::user()->id){
                     /** CASE 1 */
                     if ($request->company_ids) {
                         if (! $representative->sectors()->find($request->sector_id)){
                             $representative->sectors()->attach($request->sector_id);
                         }
                         foreach ($request->company_ids as $company_id) {
-                            $this->company_model::where('id', $company_id)
-                                ->update(['representative_id' => $request->representative_id]);
+//                            $this->company_model::where('id', $company_id)
+//                                ->update(['representative_id' => $request->representative_id]);
+                            $company = $this->company_model::findOrFail($company_id);
+                            $company->representative()->sync($request->representative_id , array("mother_company_id" => $representative->mother_company_id , 'created_at' => Carbon::now()));
 
                             $this->addLog(auth()->id() , $request->representative_id , 'companies_num'.$company_id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
 
@@ -128,14 +133,15 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                     }
                     /** CASE 2 */
                     elseif ($request->subSector_id){
-                        $companies = $this->company_model::where('sub_sector_id', $request->subSector_id)->get();
+                        $companies = $this->company_model::where('sub_sector_id', $request->subSector_id)->whereDoesntHave('representative')->get();
                         if(count($companies)){
                             if (! $representative->sectors()->find($request->sector_id)){
                                 $representative->sectors()->attach($request->sector_id);
                             }
                             foreach ($companies as $company) {
-                                $this->company_model::where('id', $company->id)
-                                     ->update(['representative_id' => $request->representative_id]);
+                                $company->representative()->attach($request->representative_id , array("mother_company_id" => $representative->mother_company_id , 'created_at' => Carbon::now()));
+//                                $this->company_model::where('id', $company->id)
+//                                    ->update(['representative_id' => $request->representative_id]);
 
                                 $this->addLog(auth()->id() , $request->representative_id , 'companies_num '.$company->id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
                             }
@@ -147,14 +153,16 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                     }
                     /** CASE 3 */
                     else{
-                        $companies = $this->company_model::where('sector_id', $request->sector_id)->get();
+                        $companies = $this->company_model::where('sector_id', $request->sector_id)->whereDoesntHave('representative')->get();
                         if(count($companies)){
                             if (! $representative->sectors()->find($request->sector_id)){
                                 $representative->sectors()->attach($request->sector_id);
                             }
                             foreach ($companies as $company) {
-                                $this->company_model::where('id', $company->id)
-                                    ->update(['representative_id' => $request->representative_id]);
+                                $company->representative()->attach($request->representative_id , array("mother_company_id" => $representative->mother_company_id , 'created_at' => Carbon::now()));
+
+//                                $this->company_model::where('id', $company->id)
+//                                    ->update(['representative_id' => $request->representative_id]);
 
                                 $this->addLog(auth()->id() , $request->representative_id , 'companies_num '.$company->id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
                             }
@@ -193,27 +201,36 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                 })->get();
         }
         else{
-            return $this->user_model::where('parent_id' , Auth::user()->id)->get();
+            return $this->user_model::where('parent_id' , Auth::user()->id)->orWhere('id' , auth()->id())->get();
         }
 
     }
 
     /** Get Companies Of Representative */
     public function getCompaniesofRepresentative($representative_id){
-        return $this->company_model::where('representative_id' , $representative_id)->get();
+//        return $this->company_model::where('representative_id' , $representative_id)->get();
+        //dd($representative_id);
+        $data = array();
+        $data['representative'] = $this->user_model::findOrFail($representative_id);
+
+        $data['rep_companies'] = $this->company_model::whereHas('representative' , function ($q) use ($representative_id , $data){
+                                                        $q ->where('user_id' , $representative_id)
+                                                            ->where('company_user.mother_company_id' , $data['representative']->mother_company_id);
+                                                        })->orderBy('created_at' , 'desc')->get();
+
+        return $data;
     }
 
     /** Cancel The Company Assignment */
-    public function cancelCompanyassignment($company_id){
-        //dd($this->company_model::where('id' , $company_id)->get());
-        $company = $this->company_model::findOrFail($company_id);
+    public function cancelCompanyassignment($company_id , $rep_id){
+//        $company = $this->company_model::findOrFail($company_id);
 
-        $company::where('id', $company_id)
-            ->update(['representative_id' => null]);
+        $company = CompanyUser::where('company_id' , $company_id)->where('user_id' , $rep_id )->first();
+        $company->delete();
 
         Alert::success('success', trans('dashboard.Company assignment has been canceled successfully'));
 
-        return redirect(route('get_companies_of_representative' , $company->representative_id));
+        return redirect(route('get_companies_of_representative' , $rep_id));
 
     }
 

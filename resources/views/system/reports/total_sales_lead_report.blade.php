@@ -239,7 +239,7 @@
                                                             <div class="form-group">
                                                                 <label>&nbsp;</label>
                                                                 <button type="button" id="searchBtn"
-                                                                        class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
+                                                                        class="btn btn-block btn-success spinner-white spinner-right">{{ trans('dashboard.Search') }}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -377,6 +377,15 @@
             $.ajax({
                 dataType: 'html',
                 url: '{{route("companySalesTeamReports.index")}}',
+                beforeSend: function () {
+                    $('#searchFilter').addClass('spinner');
+                    $('#searchFilter').attr('disabled', 'true');
+                },
+                complete: function () {
+                    $('#searchFilter').removeClass('spinner');
+                    $('#searchFilter').removeAttr('disabled');
+
+                },
                 data: {
                     "checkAll": checked_val,
                     "ids": checkCvOriginal,

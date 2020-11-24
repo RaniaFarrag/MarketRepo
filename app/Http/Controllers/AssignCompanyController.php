@@ -46,15 +46,19 @@ class AssignCompanyController extends Controller
 
     /** Get Companies Of Representative */
     public function getCompaniesofRepresentative($representative_id){
-        $companies_of_representative =  $this->assignCompanyRepositoryinterface->getCompaniesofRepresentative($representative_id);
-
+        $representative =  $this->assignCompanyRepositoryinterface->getCompaniesofRepresentative($representative_id)['representative'];
+        $companies_of_representative =  $this->assignCompanyRepositoryinterface->getCompaniesofRepresentative($representative_id)['rep_companies'];
+        //dd($representative->id);
+        //dd(count($companies_of_representative));
+//        dd($companies_of_representative[0]->representative);
         return view('system.corporate_assignment.companies_of_one_representative')
-            ->with('companies_of_representative' , $companies_of_representative);
+            ->with(['companies_of_representative' => $companies_of_representative , 'representative' => $representative]);
     }
 
     /** Cancel The Company Assignment */
-    public function cancelCompanyassignment($company_id){
-        return $this->assignCompanyRepositoryinterface->cancelCompanyassignment($company_id);
+    public function cancelCompanyassignment($company_id , $rep_id){
+        //dd($company_id);
+        return $this->assignCompanyRepositoryinterface->cancelCompanyassignment($company_id , $rep_id);
 
     }
 

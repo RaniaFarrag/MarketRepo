@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class marking_companies_old extends Model
 {
-    protected $table = "marking_companies_old";
+    protected $table = "companies_old";
 
     public function images(){
         return $this->hasMany(company_images::class , 'company_id');

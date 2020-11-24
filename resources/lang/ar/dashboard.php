@@ -325,6 +325,15 @@ return [
     'Total meetings' => 'إجمالي المقابلات',
     'Role' => 'Role',
     'Status' => 'الحالة',
+    'Mother Company Name Arabic' => 'اسم الشركة الام بالعربية',
+    'Mother Company Name English' => 'اسم الشركة الام بالانجليزية',
+    'All Mother Companies' => 'كل الشركات',
+    'Mother Companies' => 'الشركات الام',
+    'Add New Mother Company' => 'اضف شركة',
+    'Header' => 'هيدر',
+    'Footer' => 'فوتر',
+    'Mother Company' => 'الشركة الام',
+    'Successful Assignment Of Companies' => 'تم الاسناذ بنجاح',
 
 
 

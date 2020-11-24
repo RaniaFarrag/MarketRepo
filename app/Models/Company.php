@@ -6,6 +6,7 @@ use App\User;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Company extends Model
 {
@@ -14,7 +15,7 @@ class Company extends Model
 
     protected $translatedAttributes = ['name'];
     protected $fillable = [
-        'id' ,
+        //'id' ,
         'logo' ,
         'first_business_card' ,
         'second_business_card' ,
@@ -44,11 +45,11 @@ class Company extends Model
         'company_representative_phone',
         'company_representative_email',
 
-        'hr_director_job_name',
-        'hr_director_job_email',
-        'hr_director_job_mobile',
-        'hr_director_job_phone',
-        'hr_director_job_whatsapp',
+        'hr_director_name',
+        'hr_director_email',
+        'hr_director_mobile',
+        'hr_director_phone',
+        'hr_director_whatsapp',
         'hr_director_linkedin',
 
         'contract_manager_name',
@@ -88,29 +89,6 @@ class Company extends Model
         return $this->belongsTo(SubSector::class);
     }
 
-    public function evaluator(){
-        return $this->belongsTo(User::class,'evaluation_status_user_id');
-    }
-
-    public function confirm_connected_user(){
-        return $this->belongsTo(User::class,'confirm_connected_user_id');
-    }
-    public function confirm_interview_user(){
-        return $this->belongsTo(User::class,'confirm_interview_user_id');
-    }
-
-    public function confirm_need_user(){
-        return $this->belongsTo(User::class,'confirm_need_user_id');
-    }
-
-    public function confirm_contract_user(){
-        return $this->belongsTo(User::class,'confirm_contract_user_id');
-    }
-
-    public function client_status_user(){
-        return $this->belongsTo(User::class,'client_status_user_id');
-    }
-
     public function companyDesignatedcontacts(){
         return $this->hasMany(CompanyDesignatedContact::class);
     }
@@ -135,9 +113,53 @@ class Company extends Model
         return $this->belongsTo(User::class,'user_id'); //change user_id to rep_id after migration
     }
 
+    /** Changed */
     public function representative(){
-        return $this->belongsTo(User::class , 'representative_id' , 'id');
+        return $this->belongsToMany(User::class)->withPivot(['mother_company_id','client_status',
+            'client_status_user_id','evaluation_status','evaluation_status_user_id','confirm_connected'
+            ,'confirm_connected_user_id','confirm_interview','confirm_interview_user_id','confirm_need' ,
+            'confirm_need_user_id' , 'confirm_contract' , 'confirm_contract_user_id'])->whereNull('company_user.deleted_at');
+//        return $this->belongsToMany(User::class , 'company_user' , 'user_id' , 'company_id')
+//            ->where('mother_company_id' , 1);
     }
+
+    /** Changed */
+    public function evaluator(){
+        return $this->belongsToMany(User::class,'company_user' ,'evaluation_status_user_id');
+    }
+
+    /** Changed */
+    public function confirm_connected_user(){
+        return $this->belongsToMany(User::class,'company_user' ,'confirm_connected_user_id' , 'user_id');
+    }
+
+    /** Changed */
+    public function confirm_interview_user(){
+        return $this->belongsToMany(User::class,'company_user' ,'confirm_interview_user_id');
+    }
+
+    /** Changed */
+    public function confirm_need_user(){
+        return $this->belongsToMany(User::class,'company_user' ,'confirm_need_user_id');
+    }
+
+    /** Changed */
+    public function confirm_contract_user(){
+        return $this->belongsToMany(User::class,'company_user' ,'confirm_contract_user_id');
+    }
+
+    /** Changed */
+    public function client_status_user(){
+        return $this->belongsToMany(User::class,'company_user' ,'client_status_user_id' , 'user_id');
+    }
+
+
+    /** NEW */
+    /** NEW */
+    /** NEW */
+    /** NEW */
+    /** NEW */
+
 
     public function salesLeadReports(){
         return $this->hasMany(Company_sales_lead_report::class);

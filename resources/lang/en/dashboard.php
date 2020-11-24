@@ -324,6 +324,15 @@ return [
     'Total meetings' => 'Total Meetings',
     'Role' => 'Role',
     'Status' => 'Status',
+    'Mother Company Name Arabic' => 'Mother Company Name Arabic',
+    'Mother Company Name English' => 'Mother Company Name English',
+    'All Mother Companies' => 'All Mother Companies',
+    'Mother Companies' => 'Mother Companies',
+    'Add New Mother Company' => 'Add New Mother Company',
+    'Header' => 'Header',
+    'Footer' => 'Footer',
+    'Mother Company' => 'Mother Company',
+    'Successful Assignment Of Companies' => 'Successful Assignment Of Companies',
 
 
 

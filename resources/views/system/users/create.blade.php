@@ -69,6 +69,20 @@
                                     <h3 class="card-label text-center border-bottom pb-2">
                                       {{ trans('dashboard.Add New user') }}
                                     </h3>
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label>{{ trans('dashboard.Mother Company') }} :</label>
+                                            <select class="form-control select2" name="mother_company_id" required>
+                                                <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                                @foreach($data['motherCompanies'] as $motherCompany)
+                                                    <option value="{{ $motherCompany->id }}">{{ app()->getLocale() == 'ar' ? $motherCompany->name : $motherCompany->name_en }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('mother_company')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <div class="col-lg-6">

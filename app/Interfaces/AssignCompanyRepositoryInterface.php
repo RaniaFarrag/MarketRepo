@@ -28,7 +28,7 @@ interface AssignCompanyRepositoryInterface
     public function getCompaniesofRepresentative($representative_id);
 
     /** Cancel The Company Assignment */
-    public function cancelCompanyassignment($company_id);
+    public function cancelCompanyassignment($company_id , $rep_id);
 
 
 

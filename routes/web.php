@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+/** Add This before upload */
+//Route::get('login',array('as'=>'login',function(){
+//    return redirect('https://marketing-hc.com/');
+//}));
+
 Route::get('locale/{locale}' , function ($locale){
     \Session::put('locale' , $locale);
 
@@ -26,6 +31,11 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('/' , 'HomeController@index')->name('home');
 
     /***********************************************RESOURCES***************************************************/
+
+    /** Manage Mother Company */
+    Route::resource('motherCompany' , 'MotherCompanyController');
+
+
     /** Manage Roles */
     Route::resource('roles' , 'RoleController');
 
@@ -68,12 +78,12 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Company Needs */
     Route::resource('company_needs' , 'CompanyNeedController');
     /** Custom index route */
-    Route::get('company_needs/index/{company_id}', [
+    Route::get('company_needs/index/{company_id}/{mother_company_id}', [
         'as' => 'company_needs.index',
         'uses' => 'CompanyNeedController@index'
     ]);
     /** Custom create route */
-    Route::get('company_needs/create/{company_id}', [
+    Route::get('company_needs/create/{company_id}/{mother_company_id}', [
         'as' => 'company_needs.create',
         'uses' => 'CompanyNeedController@create'
     ]);
@@ -127,8 +137,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         ->name('get_companies_of_representative');
 
     /** Cancel The Company Assignment */
-    Route::get('cancel/company/assignment/{company_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
-
+    Route::get('cancel/company/assignment/{company_id}/{rep_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
 
     /** Whatsapp Messages */
     Route::get('whatsapp/messages' , 'WhatsAppController@WhatsappMessages')->name('whatsapp_message');
@@ -144,16 +153,16 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /*********************************************MANAGE CHECK BOXES****************************************************/
     /** Confirm Connected */
-    Route::get('/confirm/connected/{company_id}' , 'CompanyController@confirmConnected')->name('confirm_connected');
+    Route::get('/confirm/connected/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmConnected')->name('confirm_connected');
 
     /** Confirm Interview */
-    Route::get('/confirm/interview/{company_id}' , 'CompanyController@confirmInterview')->name('confirm_interview');
+    Route::get('/confirm/interview/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmInterview')->name('confirm_interview');
 
     /** Confirm Need */
-    Route::get('/confirm/need/{company_id}' , 'CompanyController@confirmNeed')->name('confirm_need');
+    Route::get('/confirm/need/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmNeed')->name('confirm_need');
 
     /** Confirm Contract */
-    Route::get('/confirm/contract/{company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
+    Route::get('/confirm/contract/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
 
 
     /**************************************************REPORTS******************************************************************/
@@ -315,6 +324,51 @@ Route::get('update/database/companies',function (){
                         'representative_id' => $oldRepCompany->rep_id ,
                     ]);
                 }
+            }
+
+        }
+        \Illuminate\Support\Facades\DB::commit();
+    }
+
+    catch (\Exception $e) {
+        \Illuminate\Support\Facades\DB::rollback();
+        throw $e;
+    }
+
+});
+
+
+
+/** Divide Table Companies To Two Tables */
+Route::get('update/database/companies/to',function (){
+    $oldData = \App\Models\marking_companies_old::all();
+
+    try{
+        \Illuminate\Support\Facades\DB::beginTransaction();
+        foreach ($oldData as $value)
+        {
+            if (!$value->deleted_at){
+                if ($value->representative_id){
+                    //dd($value->representative_id);
+                    $company_user = \App\Models\CompanyUser::create([
+                        'company_id' => $value->id ,
+                        'user_id' => $value->representative_id ,
+                        'mother_company_id' => null ,
+                        'client_status' => $value->client_status ,
+                        'client_status_user_id' => $value->client_status_user_id ,
+                        'evaluation_status' => $value->evaluation_status ,
+                        'evaluation_status_user_id' => $value->evaluation_status_user_id ,
+                        'confirm_connected' => $value->confirm_connected ,
+                        'confirm_connected_user_id' => $value->confirm_connected_user_id ,
+                        'confirm_interview' => $value->confirm_interview ,
+                        'confirm_interview_user_id' => $value->confirm_interview_user_id ,
+                        'confirm_need' => $value->confirm_need ,
+                        'confirm_need_user_id' => $value->confirm_need_user_id ,
+                        'confirm_contract' => $value->confirm_contract ,
+                        'confirm_contract_user_id' => $value->confirm_contract_user_id ,
+                    ]);
+                }
+
             }
 
         }

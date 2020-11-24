@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Company;
 use App\Models\CompanyMeeting;
+use App\Models\Log;
 use App\Models\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id','name', 'name_en' , 'email', 'password', 'active' , 'parent_id' ,
+        'id','name', 'name_en' , 'email', 'password', 'active' , 'parent_id' , 'mother_company_id',
     ];
 
     /**
@@ -73,10 +74,14 @@ class User extends Authenticatable
         return $this->belongsTo(User::class , 'parent_id', 'id');
     }
 
-    //change user_id to rep_id after migration
     public function assignedCompanies(){
-        return $this->hasMany(Company::class , 'representative_id' , 'id');
+        return $this->belongsToMany(Company::class)->withPivot(['mother_company_id','client_status',
+            'client_status_user_id','evaluation_status','evaluation_status_user_id','confirm_connected'
+        ,'confirm_connected_user_id','confirm_interview','confirm_interview_user_id','confirm_need' ,
+            'confirm_need_user_id' , 'confirm_contract' , 'confirm_contract_user_id'])->whereNull('company_user.deleted_at');
     }
+
+
 
     public function logs(){
         return $this->hasMany(Log::class);

@@ -79,6 +79,7 @@
                                         <tr>
 
                                             <th>#</th>
+                                            <th>#</th>
                                             <th>{{ trans('dashboard.Representative') }}</th>
                                             <th>{{ trans('dashboard.Company Name') }}</th>
                                             <th>{{ trans('dashboard.City') }}</th>
@@ -93,19 +94,29 @@
 
                                         @foreach($companies_of_representative as $k=>$company_of_representative)
                                             <tr>
+                                                <td><div class="checkbox-inline">
+                                                        <label class="checkbox checkbox-outline checkbox-success m-auto ">
+                                                            <input type="checkbox" name="company_ids[]" class="checkPhones"
+                                                                   value="{{ $company_of_representative->id }}">
+                                                            <span class="m-0"></span>
+                                                        </label>
+                                                    </div>
+                                                </td>
                                                 <td>{{ $k+1 }}</td>
-                                                <td>{{ app()->getLocale()=='ar' ?  $company_of_representative->representative->name : $company_of_representative->representative->name_en }}</td>
+                                                <td>{{ app()->getLocale()=='ar' ?  $representative->name : $representative->name_en }}</td>
                                                 <td>{{ $company_of_representative->name }}</td>
                                                 <td>{{ $company_of_representative->city ? $company_of_representative->city->name : '-' }}</td>
-                                                <td>{{ $company_of_representative->sector->name }}</td>
-                                                <td>{{ $company_of_representative->subSector->name }}</td>
+                                                <td>{{ $company_of_representative->sector ? $company_of_representative->sector->name : '-'}}</td>
+                                                <td>{{ $company_of_representative->subSector ? $company_of_representative->subSector->name : '-'}}</td>
+
 
                                                 <td>
-                                                    <a href="{{ route('cancel_company_assignment' , $company_of_representative->id) }}" onclick="return confirm('Are you sure?')"  class="btn btn-danger mr-2"><i class="fa fa-trash p-0"></i></a>
+                                                    <a href="{{ route('cancel_company_assignment' , [$company_of_representative->id , $representative->id])  }}"
+                                                       onclick="return confirm('Are you sure?')"  class="btn btn-danger mr-2"><i class="fa fa-trash p-0"></i></a>
                                                     {{--<form method="post" action="#">--}}
-                                                        {{--@method('DELETE')--}}
-                                                        {{--@csrf--}}
-                                                        {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>--}}
+                                                    {{--@method('DELETE')--}}
+                                                    {{--@csrf--}}
+                                                    {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>--}}
                                                     {{--</form>--}}
                                                 </td>
                                             </tr>

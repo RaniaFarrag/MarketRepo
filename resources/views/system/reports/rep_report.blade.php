@@ -101,7 +101,7 @@
                                                             <button type="submit" class="btn btn-block btn-success font-weight-bold  py-3 px-6 mr-2">
                                                                 {{ trans('dashboard.Export Excel ') }}
                                                             </button>
-                                                            <button type="button" id="searchBtn" class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
+                                                            <button type="button" id="searchBtn" class="btn btn-block btn-success spinner-white spinner-right">{{ trans('dashboard.Search') }}
                                                             </button>
                                                         </div>
                                                     </div>
@@ -146,6 +146,15 @@
             $.ajax({
                 dataType: 'html',
                 url: "{{ route('rep_report') }}",
+                beforeSend: function () {
+                    $('#searchFilter').addClass('spinner');
+                    $('#searchFilter').attr('disabled', 'true');
+                },
+                complete: function () {
+                    $('#searchFilter').removeClass('spinner');
+                    $('#searchFilter').removeAttr('disabled');
+
+                },
                 "data": {
                     "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
                     "rep_id": $("#rep_id").val(),

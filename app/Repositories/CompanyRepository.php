@@ -13,7 +13,9 @@ use App\Models\City;
 use App\Models\Company;
 use App\Models\CompanyDesignatedContact;
 use App\Models\CompanyMeeting;
+use App\Models\CompanyUser;
 use App\Models\Country;
+use App\Models\MotherCompany;
 use App\Models\Sector;
 use App\Models\SubSector;
 use App\Traits\logTrait;
@@ -21,6 +23,7 @@ use App\Traits\UploadTrait;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
@@ -71,17 +74,38 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** View All companies */
     public function index($request, $all = null , $orderBy = null)
     {
-        //dd($request->all());
-        if (Auth::user()->hasRole('Representative')) {
-            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
+//        dd($request->mother_company_id);
+        if (Auth::user()->hasRole('Sales Representative')) {
+//            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
+
+            //$query =  Auth::user()->assignedCompanies()->where('mother_company_id' , Auth::user()->mother_company_id)
+//                            ->with('representative');
+            $query = $this->company_model::whereHas('representative' ,function ($q){
+                $q->where('user_id' , Auth::user()->id)
+                    ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+            })->with('representative');
+            //dd($query->get());
         }
+
         elseif (Auth::user()->hasRole('Sales Manager')) {
             $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
-                ->with('subSector');
+                ->with(["representative" =>  function($q){
+                    $q->where(function ($q2){
+                        $q2->where('user_id' , Auth::user()->id)
+                            ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                    })
+                    ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+                }]);
+            //dd($query->get()[0]->representative[0]->pivot->confirm_connected);
 
         }
         else {
-            $query = $this->company_model->with('subSector');
+//            $query = $this->company_model->with('subSector');
+            $query = $this->company_model::with(["representative" =>  function($q) use ($request){
+                $q->where('company_user.mother_company_id' , $request->mother_company_id);
+            }]);
+//           dd($query->get()[1579]);
+           //dd($request->mother_company_id);
         }
 
         if ($request->created_at) {
@@ -94,6 +118,7 @@ class CompanyRepository implements CompanyRepositoryInterface
             $query->whereHas('companyMeetings', function ($q) use ($date) {
                 $q->whereDate('date', $date);
             });
+            //dd($query->get());
         }
 
         if ($request->location == 1)
@@ -102,38 +127,87 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->location == 2)
             $query->whereNull('location');
 
-        if ($request->client_status)
-            $query->where('client_status', $request->client_status);
+        if (isset($request->client_status) && count($request->client_status) > 0){
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->whereIn('company_user.client_status' , $request->client_status);
+            });
+        }
 
-        if ($request->representative_id)
-            $query->where('representative_id', $request->representative_id);
+        if ($request->representative_id){
+//            $query->where('representative_id', $request->representative_id);
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->where('user_id' , $request->representative_id);
+
+            });
+        }
 
         if ($request->representative == 1)
-            $query->whereNotNull('representative_id');
+//            $query->whereNotNull('representative_id');
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->whereNotNull('user_id');
 
-        if ($request->representative == 2)
-            $query->whereNull('representative_id');
-//            $query->whereNull('representative_id');
+            });
 
-        if (isset($request->company_status) && count($request->company_status) > 0)
-            foreach ($request->company_status as $val)
-                if ($val != 'no_meeting')
-                    $query->where($val, 1);
+        if ($request->representative == 2){
+            //$query->whereNull('representative_id');
+            $query->whereDoesntHave('representative');
+        }
+
+        if (isset($request->company_status) && count($request->company_status) > 0) {
+//            dd($request->company_status);
+            foreach ($request->company_status as $key=>$val){
+                if ($val != 'no_meeting'){
+                    $query->whereHas('representative' , function ($q) use ($val){
+                        $q->where($val, 1);
+                    });
+                }
                 else {
                     //dd(57);
                     //$query->where('confirm_connected', null);
-                    $query->whereNull('confirm_interview');
-                    $query->orWhere('confirm_interview', 0);
+                    $query->whereHas('representative' , function ($q) use ($val){
+                        $q->whereNull('confirm_interview');
+                        $q->orWhere('confirm_interview', 0);
+
+                    });
+
                     //$query->where('confirm_need', null);
                     //$query->where('confirm_contract', null);
                 }
+            }
 
-        if (isset($request->communication_type) && count($request->communication_type) > 0)
+//            $query->whereHas('representative' , function ($q) use ($request){
+//                foreach ($request->company_status as $key=>$val) {
+//                    if ($val != 'no_meeting') {
+//                        $q->where($request->company_status[0],1);
+//                        if ($key == 0)
+//                            continue;
+//                        $q->orWhere($val,1);
+//                    }
+//                    else{
+//                        $q->whereNull('confirm_interview');
+//                        $q->orWhere('confirm_interview', 0);
+//                    }
+//
+//                }
+//            });
+
+
+        }
+
+        if (isset($request->communication_type) && count($request->communication_type) > 0){
             foreach ($request->communication_type as $val)
-                $query->whereNotNull($val);
+                $query->whereNotNull($val)
+                        ;
 
-        if (isset($request->evaluation_ids))
-            $query->whereIn('evaluation_status', $request->evaluation_ids);
+            //dd($query->get());
+        }
+
+        if (isset($request->evaluation_ids) && count($request->evaluation_ids) > 0){
+//            $query->whereIn('evaluation_status', $request->evaluation_ids);
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->whereIn('company_user.evaluation_status' , $request->evaluation_ids);
+            });
+        }
 
         if ($request->city_id)
             $query->where('city_id', $request->city_id);
@@ -144,8 +218,8 @@ class CompanyRepository implements CompanyRepositoryInterface
         if ($request->sector_id)
             $query->where('sector_id', $request->sector_id);
 
-        if ($request->subSector_id)
-            $query->where('sub_sector_id', $request->subSector_id);
+        if ($request->subSector)
+            $query->where('sub_sector_id', $request->subSector);
 
         if ($request->name)
             $query->whereTranslationLike('name', '%' . $request->name . '%');
@@ -196,15 +270,6 @@ class CompanyRepository implements CompanyRepositoryInterface
 //        dd(Storage::disk('local')->path('/'));
 //        dd(storage_path('app') .'/'. $logo);
 
-        if (Auth::user()->parent_id) {
-            $representative_id = Auth::user()->id;
-            if (!Auth::user()->sectors()->find($request->sector_id)) {
-                Auth::user()->sectors()->attach($request->sector_id);
-            }
-        } else {
-            $representative_id = null;
-        }
-
         $logo = $this->verifyAndStoreFile($request, 'logo');
         $first_business_card = $this->verifyAndStoreFile($request, 'first_business_card');
         $second_business_card = $this->verifyAndStoreFile($request, 'second_business_card');
@@ -237,10 +302,10 @@ class CompanyRepository implements CompanyRepositoryInterface
             'ksa_branch' => $request->ksa_branch,
 
             'company_representative_name' => $request->company_representative_name,
-            'company_representative_job_title' => $request->company_representative_job_title,
-            'company_representative_job_mobile' => $request->company_representative_job_mobile,
-            'company_representative_job_phone' => $request->company_representative_job_phone,
-            'company_representative_job_email' => $request->company_representative_job_email,
+            'company_representative_title' => $request->company_representative_title,
+            'company_representative_mobile' => $request->company_representative_mobile,
+            'company_representative_phone' => $request->company_representative_phone,
+            'company_representative_email' => $request->company_representative_email,
 
             'hr_director_name' => $request->hr_director_name,
             'hr_director_email' => $request->hr_director_email,
@@ -258,13 +323,22 @@ class CompanyRepository implements CompanyRepositoryInterface
 
             'user_id' => auth()->id(),
 
-            'client_status' => $request->client_status,
-            'client_status_user_id' =>  $request->client_status ? auth()->id() : Null,
-            'evaluation_status' => $request->evaluation_status,
-            'evaluation_status_user_id' => $request->evaluation_status ? auth()->id() : Null,
+//            'client_status' => $request->client_status,
+//            'client_status_user_id' =>  $request->client_status ? auth()->id() : Null,
+//            'evaluation_status' => $request->evaluation_status,
+//            'evaluation_status_user_id' => $request->evaluation_status ? auth()->id() : Null,
             'notes' => $request->notes,
-            'representative_id' => $representative_id,
+            //'representative_id' => $representative_id,
         ]);
+
+        if (Auth::user()->parent_id) {
+            $representative_id = Auth::user()->id;
+            if (!Auth::user()->sectors()->find($request->sector_id)) {
+                Auth::user()->sectors()->attach($request->sector_id);
+            }
+
+            $company->representative()->attach( Auth::user()->id , array("mother_company_id" => Auth::user()->mother_company_id));
+        }
 
 
         for ($i = 0; $i < count($request->designated_contact_name); $i++) {
@@ -388,10 +462,10 @@ class CompanyRepository implements CompanyRepositoryInterface
             'ksa_branch' => $request->ksa_branch,
 
             'company_representative_name' => $request->company_representative_name,
-            'company_representative_job_title' => $request->company_representative_job_title,
-            'company_representative_job_mobile' => $request->company_representative_job_mobile,
-            'company_representative_job_phone' => $request->company_representative_job_phone,
-            'company_representative_job_email' => $request->company_representative_job_email,
+            'company_representative_title' => $request->company_representative_title,
+            'company_representative_mobile' => $request->company_representative_mobile,
+            'company_representative_phone' => $request->company_representative_phone,
+            'company_representative_email' => $request->company_representative_email,
 
             'hr_director_name' => $request->hr_director_name,
             'hr_director_email' => $request->hr_director_email,
@@ -409,10 +483,10 @@ class CompanyRepository implements CompanyRepositoryInterface
 
             'user_id' => auth()->id(),
 
-            'client_status' => $request->client_status,
-            'client_status_user_id' => $request->client_status ? $request->client_status == $company->client_status ? $company->client_status_user_id : auth()->id() : Null,
-            'evaluation_status' => $request->evaluation_status,
-            'evaluation_status_user_id' => $request->evaluation_status ? $request->evaluation_status == $company->evaluation_status ? $company->evaluation_status_user_id : auth()->id() : Null,
+//            'client_status' => $request->client_status,
+//            'client_status_user_id' => $request->client_status ? $request->client_status == $company->client_status ? $company->client_status_user_id : auth()->id() : Null,
+//            'evaluation_status' => $request->evaluation_status,
+//            'evaluation_status_user_id' => $request->evaluation_status ? $request->evaluation_status == $company->evaluation_status ? $company->evaluation_status_user_id : auth()->id() : Null,
             'notes' => $request->notes,
         ]);
 
@@ -478,6 +552,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** Delete Company */
+    /** STOP THIS FUNCTION*/
     public function destroy($company)
     {
 //        dd($company->companyDesignatedcontacts);
@@ -488,6 +563,20 @@ class CompanyRepository implements CompanyRepositoryInterface
         foreach ($company->companyMeetings as $companyMeeting) {
             $companyMeeting->delete();
         }
+
+//        $company->representative()->detach();
+//        $company->representative()->pivot()->delete();
+        if (count($company->representative)){
+            DB::table('company_user')
+                ->where('user_id', $company->representative[0]->id)
+                ->where('company_id', $company->id)
+                ->update(array('deleted_at' => DB::raw('NOW()')));
+        }
+        else{
+            dd(7);
+        }
+
+
         $company->delete();
 
         $this->addLog(auth()->id(), $company->id, 'companies', 'تم حذف شركة', 'Company has been deleted');
@@ -497,26 +586,40 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** Confirm Connected */
-    public function confirmConnected($company_id)
+    public function confirmConnected($company_id , $user_mother_company_id)
     {
-        $company = $this->company_model::findOrFail($company_id);
+        //$company = $this->company_model::findOrFail($company_id);
+        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
+            $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
 
-        if ($company->confirm_connected == 0) {
-            $company->update([
-                'confirm_connected' => 1,
-                'confirm_connected_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد اتصال الشركة   ', 'Company contact confirmed');
-            return trans('dashboard.Company contact confirmed');
-        } elseif ($company->confirm_connected == 1) {
-            $company->update([
-                'confirm_connected' => 0,
-                'confirm_connected_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء تأكيد اتصال الشركة  ', 'The Company contact confirmation has been canceled');
-            return trans('dashboard.The Company contact confirmation has been canceled');
+            if ($company){
+                if (! $company->confirm_connected) {
+                    $company->update([
+                        'confirm_connected' => 1,
+                        'confirm_connected_user_id' => auth()->id(),
+                    ]);
+                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد اتصال الشركة   ', 'Company contact confirmed');
+                    return trans('dashboard.Company contact confirmed');
+                }
+                elseif ($company->confirm_connected == 1 && Auth::user()->id == $company->confirm_connected_user_id) {
+                    $company->update([
+                        'confirm_connected' => 0,
+                        'confirm_connected_user_id' => auth()->id(),
+                    ]);
+                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء تأكيد اتصال الشركة  ', 'The Company contact confirmation has been canceled');
+                    return trans('dashboard.The Company contact confirmation has been canceled');
+                }
+                else{
+                    return trans('dashboard.You do not have permission');
+                }
+            }
+            else{
+                return trans('dashboard.This company has not been assigned');
+            }
         }
-
+        else{
+            return trans('dashboard.You do not have permission');
+        }
     }
 
 //    /** Cancel Confirm Connected */
@@ -532,76 +635,135 @@ class CompanyRepository implements CompanyRepositoryInterface
 //    }
 
     /** Confirm Interview */
-    public function confirmInterview($company_id)
+    public function confirmInterview($company_id , $user_mother_company_id)
     {
-        $company = $this->company_model::findOrFail($company_id);
+        $main_company = $this->company_model::findOrFail($company_id);
 
-        if ($company->confirm_interview == 0) {
-            if (count($company->companyMeetings)) {
-                $company->update([
-                    'confirm_interview' => 1,
-                    'confirm_interview_user_id' => auth()->id(),
-                ]);
-                $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد مقابلة الشركة', 'The company interview was confirmed');
-                return trans('dashboard.The company interview was confirmed');
+        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
+            $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
+
+            if ($company){
+                if (! $company->confirm_interview) {
+                    if (count($main_company->companyMeetings)) {
+                        $company->update([
+                            'confirm_interview' => 1,
+                            'confirm_interview_user_id' => auth()->id(),
+                        ]);
+                        $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد مقابلة الشركة', 'The company interview was confirmed');
+                        return trans('dashboard.The company interview was confirmed');
+                    }
+                    return trans('dashboard.No interview has been added');
+                }
+
+                elseif ($company->confirm_interview == 1 && Auth::user()->id == $company->confirm_interview_user_id) {
+                    $company->update([
+                        'confirm_interview' => 0,
+                        'confirm_interview_user_id' => auth()->id(),
+                    ]);
+                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء  مقابلة الشركة', 'Company interview canceled');
+                    return trans('dashboard.Company interview canceled');
+                }
+
+                else{
+                    return trans('dashboard.You do not have permission');
+                }
             }
-            return trans('dashboard.No interview has been added');
-        } elseif ($company->confirm_interview == 1) {
-            $company->update([
-                'confirm_interview' => 0,
-                'confirm_interview_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء  مقابلة الشركة', 'Company interview canceled');
-            return trans('dashboard.Company interview canceled');
+            else{
+                return trans('dashboard.This company has not been assigned');
+            }
+        }
+
+        else{
+            return trans('dashboard.You do not have permission');
         }
 
     }
 
     /** Confirm Need */
-    public function confirmNeed($company_id)
+    public function confirmNeed($company_id , $user_mother_company_id)
     {
-        $company = $this->company_model::findOrFail($company_id);
+        $main_company = $this->company_model::findOrFail($company_id);
 
-        if ($company->confirm_need == 0) {
-            if (count($company->companyNeeds)) {
-                $company->update([
-                    'confirm_need' => 1,
-                    'confirm_need_user_id' => auth()->id(),
-                ]);
-                $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
-                return trans('dashboard.The company needs was confirmed');
+        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
+            $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
+
+            if ($company){
+                if (! $company->confirm_need) {
+                    if (count($main_company->companyNeeds)) {
+                        $company->update([
+                            'confirm_need' => 1,
+                            'confirm_need_user_id' => auth()->id(),
+                        ]);
+                        $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
+                        return trans('dashboard.The company needs was confirmed');
+                    }
+                    return trans('dashboard.No Need has been added');
+                }
+
+                elseif ($company->confirm_need == 1 && Auth::user()->id == $company->confirm_need_user_id) {
+                    $company->update([
+                        'confirm_need' => 0,
+                        'confirm_need_user_id' => auth()->id(),
+                    ]);
+                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء احتياج الشركة', 'Company need canceled');
+                    return trans('dashboard.Company need canceled');
+                }
+
+                else{
+                    return trans('dashboard.You do not have permission');
+                }
             }
-            return trans('dashboard.No Needs has been added');
-        } elseif ($company->confirm_need == 1) {
-            $company->update([
-                'confirm_need' => 0,
-                'confirm_need_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء احتياج الشركة', 'Company need canceled');
-            return trans('dashboard.Company need canceled');
+            else{
+                return trans('dashboard.This company has not been assigned');
+            }
         }
+
+        else{
+            return trans('dashboard.You do not have permission');
+        }
+
     }
 
     /** Confirm Contract */
-    public function confirmContract($company_id)
+    public function confirmContract($company_id , $user_mother_company_id)
     {
-        $company = $this->company_model::findOrFail($company_id);
+        //$main_company = $this->company_model::findOrFail($company_id);
 
-        if ($company->confirm_contract == 0) {
-            $company->update([
-                'confirm_contract' => 1,
-                'confirm_contract_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد التعاقد مع الشركة ', 'The contract has been confirmed with the company');
-            return trans('dashboard.The contract has been confirmed with the company');
-        } elseif ($company->confirm_contract == 1) {
-            $company->update([
-                'confirm_contract' => 0,
-                'confirm_contract_user_id' => auth()->id(),
-            ]);
-            $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء التعاقد مع الشركة  ', 'The contract with the company has been canceled');
-            return trans('dashboard.The contract with the company has been canceled');
+        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
+            $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
+
+            if ($company){
+                if (! $company->confirm_contract) {
+                    $company->update([
+                        'confirm_contract' => 1,
+                        'confirm_contract_user_id' => auth()->id(),
+                    ]);
+                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد التعاقد مع الشركة ', 'The contract has been confirmed with the company');
+                    return trans('dashboard.The contract has been confirmed with the company');
+                }
+
+                elseif ($company->confirm_contract == 1 && Auth::user()->id == $company->confirm_contract_user_id) {
+                    $company->update([
+                        'confirm_contract' => 0,
+                        'confirm_contract_user_id' => auth()->id(),
+                    ]);
+                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء التعاقد مع الشركة  ', 'The contract with the company has been canceled');
+                    return trans('dashboard.The contract with the company has been canceled');
+                }
+
+                else{
+                    return trans('dashboard.You do not have permission');
+                }
+            }
+            else{
+                return trans('dashboard.This company has not been assigned');
+            }
         }
+
+        else{
+            return trans('dashboard.You do not have permission');
+        }
+
     }
 
 
@@ -611,6 +773,8 @@ class CompanyRepository implements CompanyRepositoryInterface
         $data['companies'] = $this->index($request, $all , $orderBy);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
+        $data['mother_companies'] = MotherCompany::all();
+
         if (Auth::user()->hasRole('ADMIN'))
             $data['representatives'] = $this->user_model::where('active' , 1)
                                             ->where(function ($q){

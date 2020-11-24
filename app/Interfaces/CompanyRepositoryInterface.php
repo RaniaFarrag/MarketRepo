@@ -35,19 +35,19 @@ interface CompanyRepositoryInterface
 
 
     /** Confirm Connected */
-    public function confirmConnected($company_id);
+    public function confirmConnected($company_id , $user_mother_company_id);
 
 //    /** Cancel Confirm Connected */
 //    public function cancelConfirmConnected($company_id);
 
     /** Confirm Interview */
-    public function confirmInterview($company_id);
+    public function confirmInterview($company_id , $user_mother_company_id);
 
     /** Confirm Need */
-    public function confirmNeed($company_id);
+    public function confirmNeed($company_id , $user_mother_company_id);
 
     /** Confirm Contract */
-    public function confirmContract($company_id);
+    public function confirmContract($company_id , $user_mother_company_id);
 
     /** companies Reports */
     public function companiesReports($request);

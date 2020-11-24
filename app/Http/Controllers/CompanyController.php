@@ -8,6 +8,7 @@ use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Company;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
@@ -31,21 +32,30 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $data = $this->companyRepositoryinterface->companiesReports($request)['companies'];
-        //dd($data);
+//        dd($request->mother_company_id);
         //dd($data['count']);
-        $sectors= $this->companyRepositoryinterface->companiesReports($request)['sectors'];
-        $countries= $this->companyRepositoryinterface->companiesReports($request)['countries'];
-        $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
+        $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
+        $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
+        $representatives = $this->companyRepositoryinterface->companiesReports($request)['representatives'];
+        $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
 
         if($request->ajax()){
+//            dd($request->mother_company_id);
             //dd($data['companies']);
-            $data_json['viewBlade']= view('system.companies.index_partial')->with(['data' => $data])->render();
+            if (Auth::user()->hasRole('ADMIN')){
+                $mother_company_id = $request->mother_company_id;
+            }
+            else{
+                $mother_company_id = Auth::user()->mother_company_id;
+            }
+            $data_json['viewBlade']= view('system.companies.index_partial')
+                ->with(['data' => $data , 'hidden_mother_company_id' => $mother_company_id])->render();
             $data_json['count']= $data['count'];
             return response()->json($data_json);
         }
         //dd($companies);
-        return view('system.companies.index')->with(['data' => $data ,
-            'sectors' => $sectors , 'countries' => $countries , 'representatives'=>$representatives]);
+        return view('system.companies.index')->with(['data' => $data , 'sectors' => $sectors , 'mother_companies' => $mother_companies,
+            'countries' => $countries , 'representatives'=>$representatives]);
     }
 
     /**
@@ -155,8 +165,8 @@ class CompanyController extends Controller
     }
 
     /** Confirm Connected */
-    public function confirmConnected($company_id){
-        return $this->companyRepositoryinterface->confirmConnected($company_id);
+    public function confirmConnected($company_id , $user_mother_company_id){
+        return $this->companyRepositoryinterface->confirmConnected($company_id , $user_mother_company_id);
     }
 
 //    /** Cancel Confirm Connected */
@@ -165,18 +175,18 @@ class CompanyController extends Controller
 //    }
 
     /** Confirm Interview */
-    public function confirmInterview($company_id){
-        return $this->companyRepositoryinterface->confirmInterview($company_id);
+    public function confirmInterview($company_id , $user_mother_company_id){
+        return $this->companyRepositoryinterface->confirmInterview($company_id , $user_mother_company_id);
     }
 
     /** Confirm Need */
-    public function confirmNeed($company_id){
-        return $this->companyRepositoryinterface->confirmNeed($company_id);
+    public function confirmNeed($company_id , $user_mother_company_id){
+        return $this->companyRepositoryinterface->confirmNeed($company_id , $user_mother_company_id);
     }
 
     /** Confirm Contract */
-    public function confirmContract($company_id){
-        return $this->companyRepositoryinterface->confirmContract($company_id);
+    public function confirmContract($company_id , $user_mother_company_id){
+        return $this->companyRepositoryinterface->confirmContract($company_id , $user_mother_company_id);
     }
 
 

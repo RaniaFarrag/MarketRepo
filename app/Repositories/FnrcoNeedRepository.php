@@ -7,11 +7,12 @@
  */
 
 namespace App\Repositories;
-use App\Interfaces\CompanyNeedRepositoryInterface;
+use App\Interfaces\FnrcoNeedRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use App\Models\Country;
 use App\Models\EmploymentType;
+use App\Models\LinrcoNeed;
 use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use function GuzzleHttp\Promise\all;
@@ -21,27 +22,27 @@ use Illuminate\Validation\ValidationData;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-class CompanyNeedRepository implements CompanyNeedRepositoryInterface
+class FnrcoNeedRepository implements FnrcoNeedRepositoryInterface
 {
     use LogTrait;
     use UploadTrait;
 
-    protected $company_need_model;
+    protected $linrco_need_model;
     protected $company_model;
     protected $country_model;
 
-    public function __construct(CompanyNeed $companyNeed , Country $country , Company $company)
+    public function __construct(LinrcoNeed $linrcoNeed , Country $country , Company $company)
     {
         $this->company_model = $company;
-        $this->company_need_model = $companyNeed;
+        $this->linrco_need_model = $linrcoNeed;
         $this->country_model = $country;
         $this->employment_type_model = $country;
     }
 
 
-    /** View All CompanyNeeds */
+    /** View All LinrcoNeeds */
     public function index($company_id){
-        return $this->company_need_model::where('company_id' , $company_id)->with('company')->paginate(20);
+        return $this->linrco_need_model::where('company_id' , $company_id)->with('company')->paginate(20);
     }
 
     /** Get Employee Types */
@@ -54,15 +55,15 @@ class CompanyNeedRepository implements CompanyNeedRepositoryInterface
         }
     }
 
-    /** Create CompanyNeed Form */
+    /** Create LinrcoNeed Form */
     public function create($company_id){
         return  $this->country_model::all();
     }
 
-    /** Store CompanyNeed */
+    /** Store LinrcoNeed */
     public function store($request)
     {
-        $company_need = $this->company_need_model::create([
+        $company_need = $this->linrco_need_model::create([
             // Common Inputs
             'employment_type_id' => $request->employment_type_id,
             'required_position' => $request->required_position,

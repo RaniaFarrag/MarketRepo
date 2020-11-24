@@ -685,8 +685,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.Job Title') }}:</label>
-                                                <input value="{{ $company->company_representative_job_title }}"
-                                                       name="company_representative_job_title" type="text"
+                                                <input value="{{ $company->company_representative_title }}"
+                                                       name="company_representative_title" type="text"
                                                        class="form-control"
                                                        placeholder="{{ trans('dashboard.Job Title') }}"/>
                                             </div>
@@ -697,18 +697,18 @@
                                             <div class="col-lg-4">
                                                 <label>{{ trans('dashboard.Mobile') }}:</label>
                                                 <input class="form-control tel leyka_donor_phone" type="tel"
-                                                       name="company_representative_job_mobile" inputmode="tel"
-                                                       value="{{ $company->company_representative_job_mobile }}"/>
-                                                <input value="{{ $company->company_representative_job_mobile }}"
-                                                       name="company_representative_job_mobile" type="hidden"
-                                                       class="form-control company_representative_job_mobile"
+                                                       name="company_representative_mobile" inputmode="tel"
+                                                       value="{{ $company->company_representative_mobile }}"/>
+                                                <input value="{{ $company->company_representative_mobile }}"
+                                                       name="company_representative_mobile" type="hidden"
+                                                       class="form-control company_representative_mobile"
                                                        placeholder="{{ trans('dashboard.Mobile') }}"/>
 
                                             </div>
                                             <div class="col-lg-4">
                                                 <label>{{ trans('dashboard.Email') }}:</label>
-                                                <input value="{{ $company->company_representative_job_email }}"
-                                                       name="company_representative_job_email" type="email"
+                                                <input value="{{ $company->company_representative_email }}"
+                                                       name="company_representative_email" type="email"
                                                        class="form-control"
                                                        placeholder="{{ trans('dashboard.Email') }}"/>
 
@@ -717,16 +717,16 @@
                                                 <label>{{ trans('dashboard.Phone') }}:</label>
                                                 <div class="input-group">
                                                     <input class="form-control tel leyka_donor_phone" type="tel"
-                                                           name="company_representative_job_phone" inputmode="tel"
-                                                           value="{{ $company->company_representative_job_phone }}"/>
-                                                    <input value="{{ $company->company_representative_job_phone }}"
-                                                           name="company_representative_job_phone" type="hidden"
-                                                           class="form-control company_representative_job_phone"
+                                                           name="company_representative_phone" inputmode="tel"
+                                                           value="{{ $company->company_representative_phone }}"/>
+                                                    <input value="{{ $company->company_representative_phone }}"
+                                                           name="company_representative_phone" type="hidden"
+                                                           class="form-control company_representative_phone"
                                                            placeholder="{{ trans('dashboard.Phone') }}"
                                                            aria-describedby="basic-addon2">
                                                     {{--<div class="input-group-append" style="width: 20%">--}}
                                                     {{--<span class="input-group-text p-0">--}}
-                                                    {{--<input name="company_representative_job_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
+                                                    {{--<input name="company_representative_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
                                                     {{--</span>--}}
                                                     {{--</div>--}}
                                                 </div>
@@ -745,14 +745,14 @@
                                         <div class="form-group row">
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.Name') }}:</label>
-                                                <input value="{{ $company->hr_director_job_name }}"
-                                                       name="hr_director_job_name" type="text" class="form-control"
+                                                <input value="{{ $company->hr_director_name }}"
+                                                       name="hr_director_name" type="text" class="form-control"
                                                        placeholder="{{ trans('dashboard.Name') }}"/>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.Email') }}:</label>
-                                                <input value="{{ $company->hr_director_job_email }}"
-                                                       name="hr_director_job_email" type="text" class="form-control"
+                                                <input value="{{ $company->hr_director_email }}"
+                                                       name="hr_director_email" type="text" class="form-control"
                                                        placeholder="Mobile"/>
                                             </div>
                                         </div>
@@ -761,7 +761,7 @@
                                                 <label>{{ trans('dashboard.Mobile') }}:</label>
                                                 <input class="form-control tel leyka_donor_phone" type="tel"
                                                        name="hr_director_mobile" inputmode="tel"
-                                                       value="{{ old('hr_director_mobile') }}"/>
+                                                       value="{{ $company->hr_director_mobile }}"/>
                                                 <input value="{{ $company->hr_director_mobile }}"
                                                        name="hr_director_mobile" type="hidden"
                                                        class="form-control hr_director_mobile"
@@ -772,9 +772,9 @@
                                                 <label>{{ trans('dashboard.Phone') }}:</label>
                                                 <input class="form-control tel leyka_donor_phone" type="tel"
                                                        name="hr_director_phone" inputmode="tel"
-                                                       value="{{ old('hr_director_phone') }}"/>
+                                                       value="{{ $company->hr_director_phone }}"/>
 
-                                                <input value="{{ old('hr_director_phone') }}" name="hr_director_phone"
+                                                <input value="{{ $company->hr_director_phone }}" name="hr_director_phone"
                                                        type="hidden" class="form-control hr_director_phone"
                                                        placeholder="{{ trans('dashboard.Phone') }}"/>
 
@@ -786,7 +786,7 @@
                                                 <label>{{ trans('dashboard.HR Whatsapp') }}:</label>
                                                 <input class="form-control tel leyka_donor_phone" type="tel"
                                                        name="hr_director_whatsapp" inputmode="tel"
-                                                       value="{{ old('hr_director_whatsapp') }}"/>
+                                                       value="{{ $company->hr_director_whatsapp }}"/>
 
                                                 <input value="{{ $company->hr_director_whatsapp }}"
                                                        name="hr_director_whatsapp" type="hidden"
@@ -1085,7 +1085,7 @@
             });
         });
 
-       @can('Upload Business card')
+                @can('Upload Business card')
 
 
         var avatar6 = new KTImageInput('kt_image_6');

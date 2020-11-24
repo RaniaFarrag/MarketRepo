@@ -106,6 +106,25 @@
                                         <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
                                             <div class="card-body">
                                                 <div class="row fliter_serch">
+
+                                                    <input type="hidden" id="user_mother_company_id" value="{{ auth()->user()->mother_company_id }}">
+
+                                                    <div class="col-md-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label> {{ trans('dashboard.Mother Company') }}  </label>
+                                                            {{--<input name="mother_company_id" value="1" type="hidden">--}}
+                                                            <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
+                                                                {{--<option value="" selected="">{{ trans('dashboard.Select One') }}</option>--}}
+                                                                @foreach($mother_companies as $key=> $mother_company)
+                                                                    <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
+                                                                        {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label> {{ trans('dashboard.Company Name') }}  </label>
@@ -122,7 +141,6 @@
                                                                 @foreach($sectors as $sector)
                                                                     <option value="{{ $sector->id }}">{{ $sector->name }}</option>
                                                                 @endforeach
-
                                                             </select>
                                                         </div>
 
@@ -225,8 +243,7 @@
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Client Status') }}</label>
-                                                            <select id="client_status" name="client_status" class="form-control select2">
-                                                                <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
+                                                            <select id="client_status" name="client_status" class="form-control select2" multiple="multiple">
                                                                 <option value="1">{{ trans('dashboard.Hot') }}</option>
                                                                 <option value="2">{{ trans('dashboard.Warm') }}</option>
                                                                 <option value="3">{{ trans('dashboard.Cold') }}</option>
@@ -290,7 +307,7 @@
                                                         <div class="form-group">
                                                             <label>&nbsp;</label>
                                                             <button type="button" id="searchFilter"
-                                                                    class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
+                                                                    class="btn btn-block btn-success spinner-white spinner-right">{{ trans('dashboard.Search') }}
                                                             </button>
                                                         </div>
                                                     </div>
@@ -302,7 +319,7 @@
 
                                 <div class="separator separator-dashed mt-8 mb-5"></div>
                                 <div class="row renderTable">
-                                    @include('system.companies.index_partial')
+                                    {{--@include('system.companies.index_partial')--}}
                                 </div>
 
                             </div>
@@ -407,10 +424,12 @@
                 // if checked ...
                 //alert( this.value );
                 var company_id = $(this).attr('data-id');
-                console.log(company_id);
+                var user_mother_company_id = $("#user_mother_company_id").val();
+
+                console.log(mother_company_id);
                 $.ajax({
                     type: "get",
-                    url: "{{ url('/confirm/connected/') }}" + '/' + company_id,
+                    url: "{{ url('/confirm/connected/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     //dataType: "json",
                     success: function (response) {
                         // swal("Our First Alert", "With some body text and success icon!", "success");
@@ -421,9 +440,10 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
+                var user_mother_company_id = $("#user_mother_company_id").val();
                 $.ajax({
                     type: "get",
-                    url: "{{ url('/confirm/connected/') }}" + '/' + company_id,
+                    url: "{{ url('/confirm/connected/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success: function (response) {
                         swal( 'Cancel', response, "success");
                     }
@@ -435,10 +455,11 @@
         //$('input.confirm_interview_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
+                var user_mother_company_id = $("#user_mother_company_id").val();
                 console.log(company_id);
                 $.ajax({
                     type : "get",
-                    url : "{{ url('/confirm/interview/') }}" + '/' + company_id,
+                    url : "{{ url('/confirm/interview/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
                     },
@@ -449,10 +470,11 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
+                var user_mother_company_id = $("#user_mother_company_id").val();
 
                 $.ajax({
                     type : "get",
-                    url : "{{ url('/confirm/interview/') }}" + '/' + company_id,
+                    url : "{{ url('/confirm/interview/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
                     }
@@ -464,10 +486,11 @@
         // $('input.confirm_need_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
-                console.log(company_id);
+                var user_mother_company_id = $("#user_mother_company_id").val();
+                console.log(mother_company_id);
                 $.ajax({
                     type : "get",
-                    url : "{{ url('/confirm/need/') }}" + '/' + company_id,
+                    url : "{{ url('/confirm/need/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
                     },
@@ -478,10 +501,10 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
-
+                var user_mother_company_id = $("#user_mother_company_id").val();
                 $.ajax({
                     type : "get",
-                    url : "{{ url('/confirm/need/') }}" + '/' + company_id,
+                    url : "{{ url('/confirm/need/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
                     }
@@ -493,10 +516,11 @@
         // $('input.confirm_contract_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
+                var user_mother_company_id = $("#user_mother_company_id").val();
                 console.log(company_id);
                 $.ajax({
                     type : "get",
-                    url : "{{ url('/confirm/contract/') }}" + '/' + company_id,
+                    url : "{{ url('/confirm/contract/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
                     },
@@ -507,10 +531,11 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
+                var user_mother_company_id = $("#user_mother_company_id").val();
 
                 $.ajax({
                     type : "get",
-                    url : "{{ url('/confirm/contract/') }}" + '/' + company_id,
+                    url : "{{ url('/confirm/contract/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
                     }
@@ -597,16 +622,24 @@
 
     </script>
 
-
     <script>
-        $('body').on('click', '.pagination a, #searchFilter', function (e) {
-            //console.log($("#company_status").val());
-            e.preventDefault();
+        function filter(btn) {
             $.ajax({
                 dataType: 'html',
                 url: "{{ route('companies.index') }}",
+
+                beforeSend: function () {
+                    $('#searchFilter').addClass('spinner');
+                    $('#searchFilter').attr('disabled', 'true');
+                },
+                complete: function () {
+                    $('#searchFilter').removeClass('spinner');
+                    $('#searchFilter').removeAttr('disabled');
+
+                },
+
                 "data": {
-                    "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
+                    "page": btn.is("a") ? btn.attr('href').split('page=')[1] : "",
                     "created_at": $("#created_at").val(),
                     "interview_date": $("#interview_date").val(),
                     "location": $("#location").val(),
@@ -618,18 +651,32 @@
                     "evaluation_ids": $("#evaluation_ids").val(),
                     "city_id": $("#cities").val(),
                     "country_id": $("#countries").val(),
-                    "sub_sector_id": $("#subSector").val(),
+                    "subSector": $("#subSector").val(),
                     "sector_id": $("#sector").val(),
                     "name": $("#name").val(),
+                    "mother_company_id": $("#mother_company_id").val(),
                 },
                 success: function (data) {
                     $('.renderTable').html(JSON.parse(data).viewBlade);
                     $('#counter').html(JSON.parse(data).count)
                     KTApp.initComponents();
-
                 }
             });
+
+        }
+    </script>
+
+    <script>
+        $('body').on('click', '.pagination a, #searchFilter', function (e) {
+            //console.log($("#company_status").val());
+            e.preventDefault();
+            filter($(this))
         });
+
+        $(document).ready(function() {
+            filter($(this));
+        })
+
     </script>
 
     <script>

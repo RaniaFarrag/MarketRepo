@@ -83,7 +83,7 @@ class HomeController extends Controller
                 ->where('user_id' , Auth::user()->id)->count();
 
             //Assign to me
-            $total_companies = Company::where('representative_id' , Auth::user()->id)->count();
+            $total_companies = Auth::user()->assignedCompanies()->where('mother_company_id' , Auth::user()->mother_company_id)->count();
             $total_users_under_me = 0;
             $rep_daily_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
             $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())

@@ -9,7 +9,7 @@
 namespace App\Interfaces;
 
 
-interface CompanyNeedRepositoryInterface
+interface LinrcoNeedRepositoryInterface
 {
 
     /** View All CompanyNeed */

@@ -100,17 +100,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <label for="name">{{__('dashboard.Client Feedback')}}</label>
                                             <textarea name="client_feeback" id="" class="form-control"
                                                       style="width: 100%"
                                                       rows="5"> </textarea>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <label for="name">{{__('dashboard.Updates')}}</label>
-                                            <textarea name="updates" id="" class="form-control" style="width: 100%"
-                                                      rows="5"> </textarea>
-                                        </div>
+                                        {{-- <div class="col-lg-6">
+                                             <label for="name">{{__('dashboard.Updates')}}</label>
+                                             <textarea name="updates" id="" class="form-control" style="width: 100%"
+                                                       rows="5"> </textarea>
+                                         </div>--}}
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
@@ -150,7 +150,7 @@
                                             <div class="col-lg-12 text-center">
                                                 <button type="submit"
                                                         class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                                <a href="{{ route('countries.index') }}"
+                                                <a href="{{ route('companySalesTeamReports.show' , $company->id) }}"
                                                    class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                             </div>
                                         </div>

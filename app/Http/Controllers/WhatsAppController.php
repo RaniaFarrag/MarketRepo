@@ -41,14 +41,18 @@ class WhatsAppController extends Controller
 //                        ->orWhereIn('representative_id' , Auth::user()->childs()->pluck('id'));
 //                })->with(['sector' , 'subSector'])->orderBy('created_at', 'desc')->paginate(20);
 
-            $companies = $this->company_model::where(function ($q){
-                    $q->where('user_id' , Auth::user()->id)
-                        ->orWhereIn('representative_id' , Auth::user()->childs()->pluck('id'));
-                        })
-                    ->orderBy('whatsapp' , 'desc')
-                    ->orderBy('website' , 'desc')
-                    ->orderBy('email' , 'desc')
-                    ->with(['sector' , 'subSector'])->paginate(20);
+            $companies = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
+                ->orderBy('whatsapp' , 'desc')
+                ->orderBy('website' , 'desc')
+                ->orderBy('email' , 'desc')
+                ->with(['sector' , 'subSector'])->paginate(20);
+//                $this->company_model::where(function ($q){
+//                    $q->where('user_id' , Auth::user()->id)
+//                        ->orWhereIn('representative_id' , Auth::user()->childs()->pluck('id'));
+//                        })
+
+
+            //dd($companies);
         }
 
         return view('system.whatsapp.view')->with('companies' , $companies);

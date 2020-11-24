@@ -209,7 +209,7 @@
                                                             <div class="form-group">
                                                                 <label>&nbsp;</label>
                                                                 <button type="button" id="searchBtn"
-                                                                        class="btn btn-block btn-success">{{ trans('dashboard.Search') }}
+                                                                        class="btn btn-block btn-success spinner-white spinner-right">{{ trans('dashboard.Search') }}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -320,6 +320,15 @@
             $.ajax({
                 dataType: 'html',
                 url: "{{ route('company_report') }}",
+                beforeSend: function () {
+                    $('#searchFilter').addClass('spinner');
+                    $('#searchFilter').attr('disabled', 'true');
+                },
+                complete: function () {
+                    $('#searchFilter').removeClass('spinner');
+                    $('#searchFilter').removeAttr('disabled');
+
+                },
                 "data": {
                     "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
                     "company_status": $("#company_status").val(),
@@ -327,7 +336,7 @@
                     "city_id": $("#cities").val(),
                     "representative_id": $("#representative_id").val(),
                     "country_id": $("#countries").val(),
-                    "subSector_id": $("#subSector").val(),
+                    "subSector": $("#subSector").val(),
                     "sector_id": $("#sector").val(),
                     "name": $("#name").val(),
                 },

@@ -34,47 +34,48 @@
 
     <tbody>
     @foreach($reports as $report)
-    <tr>
-        <td>  <label class="checkbox checkbox-outline checkbox-success m-auto">
-                <input type="checkbox" class=" checkReports items " value="{{$report->id}}" name="ids[]"  {{isset($ids)&& in_array($report->id,$ids) || isset($checkAll)&&$checkAll==1 ? "checked" :"" }}>
-                <span class="m-0"></span>
-            </label>
-        </td>
-        <td>{{$report->id}}</td>
-        <td>{{$report->created_at->format('d/m/Y')}}</td>
-        <td>Marketing-Hc</td>
-        <td>
-            @if($report->statue)
-                @if($report->statue == 1)
-                    {{ trans('dashboard.Hot') }}
-                @elseif($report->statue == 2)
-                    {{ trans('dashboard.Warm') }}
-                @elseif($report->statue == 3)
-                    {{ trans('dashboard.Cold') }}
-                @elseif($report->statue == 4)
-                    {{ trans('dashboard.Awarded') }}
+        <tr>
+            <td>  <label class="checkbox checkbox-outline checkbox-success m-auto">
+                    <input type="checkbox" class=" checkReports items " value="{{$report->id}}" name="ids[]"  {{isset($ids)&& in_array($report->id,$ids) || isset($checkAll)&&$checkAll==1 ? "checked" :"" }}>
+                    <span class="m-0"></span>
+                </label>
+            </td>
+            <td>{{$report->id}}</td>
+            <td>{{$report->created_at->format('d/m/Y')}}</td>
+            <td>Marketing-Hc</td>
+            <td>
+                @if($report->statue)
+                    @if($report->statue == 1)
+                        {{ trans('dashboard.Hot') }}
+                    @elseif($report->statue == 2)
+                        {{ trans('dashboard.Warm') }}
+                    @elseif($report->statue == 3)
+                        {{ trans('dashboard.Cold') }}
+                    @elseif($report->statue == 4)
+                        {{ trans('dashboard.Awarded') }}
+                    @endif
+                @else
+                    -
                 @endif
-            @else
-                -
-            @endif
-        </td>
-        <td><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>
-        <td>{{$report->company->company_representative_name ?? '-'}}</td>
-        <td>{{$report->company->company_representative_job_phone?? '-'}}</td>
-        <td>{{$report->company->company_representative_job_mobile?? '-'}}</td>
-        <td><a href="mailto:{{$report->company->company_representative_job_email}}">{{$report->company->company_representative_job_email?? '-'}}</a></td>
-        <td>{{$report->brochurs_status?? '-'}}</td>
-        <td>{{$report->cat_of_req?? '-'}}</td>
-        <td>{{$report->quanity?? '-'}}</td>
-        <td>{{$report->type_of_serves?? '-'}}</td>
-        <td>{{app()->getLocale() == 'ar' ? $report->user->name : $report->user->name_en}}</td>
+            </td>
+            <td><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>
+            <td>{{$report->company->company_representative_name ?? '-'}}</td>
+            <td>{{$report->company->company_representative_phone?? '-'}}</td>
+            <td>{{$report->company->company_representative_mobile?? '-'}}</td>
+            <td><a href="mailto:{{$report->company->company_representative_email}}">{{$report->company->company_representative_email?? '-'}}</a></td>
+            <td>{{$report->brochurs_status?? '-'}}</td>
+            <td>{{$report->type_of_serves?? '-'}}</td>
 
-        <td>{{$report->company->city->name ?? '-'}}</td>
-        <td><span style="width: 500px !important;display: block;">{{$report->client_feeback?? '-'}}</span></td>
-        <td>{{$report->nextFollowUp?? '-'}}</td>
+            <td>{{$report->quanity?? '-'}}</td>
+            <td>{{$report->cat_of_req?? '-'}}</td>
+            <td>{{app()->getLocale() == 'ar' ? $report->user->name : $report->user->name_en}}</td>
 
-    </tr>
-@endforeach
+            <td>{{$report->company->city->name ?? '-'}}</td>
+            <td><span style="width: 500px !important;display: block;">{{$report->client_feeback?? '-'}}</span></td>
+            <td>{{$report->nextFollowUp?? '-'}}</td>
+
+        </tr>
+    @endforeach
 
     </tbody>
 

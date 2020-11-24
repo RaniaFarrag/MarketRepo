@@ -119,6 +119,8 @@
             return false;
         }
     </script>
+
+
     <script>
         var checkCvOriginal = [];
         $(document).on('change', '.checkReports', function () {
@@ -129,8 +131,9 @@
                 checkCvOriginal.push($(this).val());
 
             }
-            console.log(checkCvOriginal)
-            $('.ids').val(JSON.stringify(checkCvOriginal));
+            //console.log(checkCvOriginal)
+             $('.ids').val(JSON.stringify(checkCvOriginal));
+            //$('.ids').val((checkCvOriginal));
             console.log($('.ids').val());
         });
         $(document).on('click', '.submitBtn', function (e) {
@@ -142,6 +145,7 @@
             }
         });
     </script>
+
     <script>
         $(document).on('click', '#checkAll', function (e) {
             if ($('.items:checked').length == $('.items:checkbox').length) {
@@ -157,9 +161,11 @@
         });
 
     </script>
+
     <script>
         $('body').on('click', '.pagination a', function (e) {
             e.preventDefault();
+            //console.log(checkCvOriginal);
             var checked_val = 0;
             $('#checkAll').is(':checked') ? checked_val = 1 : checked_val = 0;
             $.ajax({

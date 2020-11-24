@@ -15,7 +15,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.All Representative') }}
+                            {{ trans('dashboard.Fnrco Needs') }} - {{ $company->name }}
                         </h2>
                         <!--end::Title-->
 
@@ -26,10 +26,18 @@
                                 <i class="flaticon2-shelter text-white icon-1x"></i>
                             </a>
                             <!--end::Item-->
+
+                            <!--begin::Item-->
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="{{ route('companies.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Companies Data') }}
+                            </a>
+                            <!--end::Item-->
+
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.All Representative') }}
+                                {{ trans('dashboard.Fnrco Needs') }} - {{ $company->name }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -40,7 +48,11 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-
+                    <!--begin::Button-->
+                    <a href="{{ route('company_needs.create' , [$company_id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Add New Need') }}
+                    </a>
+                    <!--end::Button-->
                 </div>
 
             </div>
@@ -67,7 +79,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.All Representative') }}
+                                        {{ trans('dashboard.Needs') }} {{ $company->name }}
                                     </h3>
                                 </div>
 
@@ -75,39 +87,39 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <!--begin: Datatable-->
-                                    <table id="myTable" class="table  text-center">
+                                    <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
-                                            <th>{{ trans('dashboard.Sl.No') }}</th>
-                                            <th>{{ trans('dashboard.Representative') }}</th>
-                                            <th>{{ trans('dashboard.Representative companies') }}</th>
-                                            <th>{{ trans('dashboard.TOTAL COMPANIES') }}</th>
+                                            <th>{{ trans('dashboard.Ref No') }}</th>
+                                            <th>{{ trans('dashboard.Required Position') }}</th>
+                                            <th>{{ trans('dashboard.Date') }}</th>
+                                            <th>{{ trans('dashboard.By') }}</th>
+                                            <th>{{ trans('dashboard.Company Needs') }}</th>
+                                            <th>{{ trans('dashboard.edit') }}</th>
+                                            <th>{{ trans('dashboard.delete') }}</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @foreach($representatives as $k=>$representative)
+                                            @foreach($needs as $k=>$need)
                                                 <tr>
-                                                    <td>{{ $representative->id }}</td>
-                                                    <td>{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</td>
+                                                    <td>{{ $k+1 }}</td>
+                                                    <td>{{ $need->required_position }}</td>
+                                                    <td>{{ $need->created_at }}</td>
+                                                    <td>{{ $need->user ? (app()->getLocale() == 'ar' ? $need->user->name : $need->user->name_en)  : '-' }}</td>
+                                                    <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_need' , $need->id) }}">{{ trans('dashboard.Needs Details') }}</a></td>
+                                                    <td><a class="btn btn-success font-weight-bold" href="{{ route('company_needs.edit' , $need->id) }}">{{ trans('dashboard.edit') }}</a></td>
                                                     <td>
-                                                        <a class="btn btn-success font-weight-bold"
-                                                           href="{{ route('get_companies_of_representative' , $representative->id) }}">{{ trans('dashboard.Show Companies') }}</a>
+                                                        {{--onsubmit = "return confirmDelete()"--}}
+                                                        <form onsubmit="return confirmDelete()" method="post" action="{{ route('company_needs.destroy' , $need->id) }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button  class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
+                                                        </form>
                                                     </td>
-                                                    <td>{{ count($representative->assignedCompanies) }}</td>
                                                 </tr>
                                             @endforeach
-                                            {{--@if(auth()->user()->hasRole('Sales Manager'))--}}
-                                                {{--<tr>--}}
-                                                    {{--<td>{{ auth()->user()->id }}</td>--}}
-                                                    {{--<td>{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</td>--}}
-                                                    {{--<td><a class="btn btn-success font-weight-bold"--}}
-                                                           {{--href="{{ route('get_companies_of_representative' , auth()->user()->id) }}">{{ trans('dashboard.Show Companies') }}</a></td>--}}
-                                                    {{--<td>{{ count(auth()->user()->assignedCompanies) }}</td>--}}
-                                                {{--</tr>--}}
-                                            {{--@endif--}}
                                         </tbody>
-
                                     </table>
                                     <!--end: Datatable-->
                                 </div>
@@ -126,29 +138,20 @@
     </div>
     <!--end::Content-->
 
-
 @endsection
 
-
 @section('script')
-    <link href="{{ asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6') }}" rel="stylesheet" type="text/css"/>
-
-    <!--begin::Page Vendors(used by this page)-->
-    <script src="{{ asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}"></script>
-    <!--end::Page Vendors-->
-
-    <!--begin::Page Scripts(used by this page)-->
-    <script src="{{ asset('dashboard/assets/js/pages/crud/datatables/basic/basic.js?v=7.0.6') }}"></script>
-
-
 
     <script>
-        $('#myTable').DataTable({
-           // dom: 'Bfrtip',
-            "responsive": true,
-            "ordering": false,
-            "info": false, "bAutoWidth": true, "autoWidth": false
-        });
+        {{--RANIA--}}
+        {{--CONFIRM TO DELETE NEED--}}
+        function confirmDelete() {
+            @if(app()->getLocale() == 'ar')
+                return confirm('هل متاكد انك تريد حذف هذا الاحتياج ؟ ');
+            @else
+                return confirm('Are you sure you want to delete?');
+            @endif
+        }
 
     </script>
 @endsection

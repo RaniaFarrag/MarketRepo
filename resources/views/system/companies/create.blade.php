@@ -110,7 +110,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                          @can('Upload Business card')
+                                        @can('Upload Business card')
                                             <div class="col-lg-3">
                                                 <label style="width: 100%;">{{ trans('dashboard.business card 1') }}</label>
                                                 <div class="image-input image-input-empty image-input-outline"
@@ -549,8 +549,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.Job Title') }}:</label>
-                                                <input value="{{ old('company_representative_job_title') }}"
-                                                       name="company_representative_job_title" type="text"
+                                                <input value="{{ old('company_representative_title') }}"
+                                                       name="company_representative_title" type="text"
                                                        class="form-control"
                                                        placeholder="{{ trans('dashboard.Job Title') }}"/>
                                             </div>
@@ -561,19 +561,19 @@
                                             <div class="col-lg-4">
                                                 <label>{{ trans('dashboard.Mobile') }}:</label>
                                                 <input class="form-control tel leyka_donor_phone" type="tel"
-                                                       name="company_representative_job_mobile" inputmode="tel"
-                                                       value="{{ old('company_representative_job_mobile') }}"/>
+                                                       name="company_representative_mobile" inputmode="tel"
+                                                       value="{{ old('company_representative_mobile') }}"/>
 
-                                                <input value="{{ old('company_representative_job_mobile') }}"
-                                                       name="company_representative_job_mobile" type="hidden"
-                                                       class="form-control company_representative_job_mobile"
+                                                <input value="{{ old('company_representative_mobile') }}"
+                                                       name="company_representative_mobile" type="hidden"
+                                                       class="form-control company_representative_mobile"
                                                        placeholder="{{ trans('dashboard.Mobile') }}"/>
 
                                             </div>
                                             <div class="col-lg-4">
                                                 <label>{{ trans('dashboard.Email') }}:</label>
-                                                <input value="{{ old('company_representative_job_email') }}"
-                                                       name="company_representative_job_email" type="email"
+                                                <input value="{{ old('company_representative_email') }}"
+                                                       name="company_representative_email" type="email"
                                                        class="form-control"
                                                        placeholder="{{ trans('dashboard.Email') }}"/>
 
@@ -582,16 +582,16 @@
                                                 <label>{{ trans('dashboard.Phone') }}:</label>
                                                 <div class="input-group">
                                                     <input class="form-control tel leyka_donor_phone" type="tel"
-                                                           name="company_representative_job_phone" inputmode="tel"
-                                                           value="{{ old('company_representative_job_phone') }}"/>
+                                                           name="company_representative_phone" inputmode="tel"
+                                                           value="{{ old('company_representative_phone') }}"/>
 
-                                                    <input value="{{ old('company_representative_job_phone') }}"
-                                                           name="company_representative_job_phone" type="hidden"
-                                                           class="form-control company_representative_job_phone"
+                                                    <input value="{{ old('company_representative_phone') }}"
+                                                           name="company_representative_phone" type="hidden"
+                                                           class="form-control company_representative_phone"
                                                            placeholder="{{ trans('dashboard.Phone') }}">
                                                     {{--<div class="input-group-append" style="width: 20%">--}}
                                                     {{--<span class="input-group-text p-0">--}}
-                                                    {{--<input name="company_representative_job_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
+                                                    {{--<input name="company_representative_phone" type="text" class="form-control" placeholder="EX." aria-describedby="basic-addon2" style="border-radius: 0px;height: calc(1.5em + 1.3rem + 0px); ">--}}
                                                     {{--</span>--}}
                                                     {{--</div>--}}
                                                 </div>
@@ -609,13 +609,13 @@
                                         <div class="form-group row">
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.Name') }}:</label>
-                                                <input value="{{ old('hr_director_job_name') }}" name="hr_director_name"
+                                                <input value="{{ old('hr_director_name') }}" name="hr_director_name"
                                                        type="text" class="form-control"
                                                        placeholder="{{ trans('dashboard.Name') }}"/>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label>{{ trans('dashboard.Email') }}:</label>
-                                                <input value="{{ old('hr_director_job_email') }}"
+                                                <input value="{{ old('hr_director_email') }}"
                                                        name="hr_director_email" type="text" class="form-control"
                                                        placeholder="Mobile"/>
                                             </div>
@@ -626,7 +626,7 @@
                                                 <input class="form-control tel leyka_donor_phone" type="tel"
                                                        name="hr_director_mobile" inputmode="tel"
                                                        value="{{ old('hr_director_mobile') }}"/>
-                                                <input value="{{ old('hr_director_job_mobile') }}"
+                                                <input value="{{ old('hr_director_mobile') }}"
                                                        name="hr_director_mobile" type="hidden"
                                                        class="form-control hr_director_mobile"
                                                        placeholder="{{ trans('dashboard.Mobile') }}"/>

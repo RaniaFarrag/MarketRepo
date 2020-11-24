@@ -39,8 +39,8 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-                    {{--CLASS sendMessage TO MAKE ACTION WHEN CLIKC ON BUTTON--}}
-                    <!--begin::Button-->
+                {{--CLASS sendMessage TO MAKE ACTION WHEN CLIKC ON BUTTON--}}
+                <!--begin::Button-->
                     <a href="#btnModal" data-toggle="modal" class="btn btn-success font-weight-bold sendMessage py-3 px-6 mr-2">
                         {{ trans('dashboard.Send WhatsApp Message') }}
                     </a>
@@ -115,8 +115,14 @@
                                                 <td>{{ $company->whatsapp ? $company->whatsapp : trans('dashboard.non') }}</td>
 
                                                 <td>
+
                                                     @if($company->whatsapp)
                                                         <a data-id="{{ $company->whatsapp }}" href="#btnModal" class="singlePhone mr-2"
+                                                           data-toggle="modal">
+                                                            <i class="fab fa-2x text-success fa-whatsapp"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="javascript:;" class="singlePhone mr-2"
                                                            data-toggle="modal">
                                                             <i class="fab fa-2x text-success fa-whatsapp"></i>
                                                         </a>
@@ -126,15 +132,26 @@
                                                         <a href="mailto:{{ $company->email }}" class="mr-2" >
                                                             <i class="fab fa-2x text-primary far fa-envelope"></i>
                                                         </a>
+                                                    @else
+                                                        <a href="javascript:;" class="mr-2" >
+                                                            <i class="fab fa-2x text-primary far fa-envelope"></i>
+                                                        </a>
                                                     @endif
 
                                                     @if($company->whatsapp)
                                                         <a href="sms:{{ $company->whatsapp }}" class="mr-2"><i class="fab fa-2x text-warning  fas fa-sms"></i>
                                                         </a>
+                                                    @else
+                                                        <a href="javascript:;" class="mr-2"><i class="fab fa-2x text-warning  fas fa-sms"></i>
+                                                        </a>
                                                     @endif
 
                                                     @if($company->website)
                                                         <a href="{{ $company->website }}" class="mr-2" target="_blank">
+                                                            <i class="fab fa-2x text-info  fas fa-globe"></i>
+                                                        </a>
+                                                    @else
+                                                        <a href="javascript:;" class="mr-2">
                                                             <i class="fab fa-2x text-info  fas fa-globe"></i>
                                                         </a>
                                                     @endif

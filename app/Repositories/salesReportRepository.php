@@ -37,13 +37,15 @@ class salesReportRepository implements salesReportRepositoryInterface
 
     }
 
-    /** View All Roles */
+    /** View All Reports */
     public function index($request , $all = null)
     {
+        //dd($request->company);
         $ids = $request->ids;
         $checkAll = $request->checkAll;
-        if ((!isset($ids) &&is_null($ids)) || $checkAll == 1)
+        if ((!isset($ids) && is_null($ids)) || $checkAll == 1)
         {
+            //dd(5);
             $query = $request->company ? $request->company->salesLeadReports() : $this->sales_lead_report_model::query();
 
             if ($request->name)
@@ -84,8 +86,12 @@ class salesReportRepository implements salesReportRepositoryInterface
                     }
 
                 });
-        }else
-            $query =$this->sales_lead_report_model::query()->whereIn('id',json_decode($request->ids, true));
+        }
+        else{
+//            dd(json_decode(json_encode($request->ids) , true));
+            //$query = $this->sales_lead_report_model::query()->whereIn('id',$request->ids);
+            $query = $this->sales_lead_report_model::query()->whereIn('id', json_decode((json_encode($request->ids)) , true));
+        }
 
 //        if ($all){
 //            $data['reports'] = $query->get();
