@@ -87,8 +87,20 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         'as' => 'company_needs.create',
         'uses' => 'CompanyNeedController@create'
     ]);
+    /** Custom edit route */
+    Route::get('company_needs/edit/{need_id}/{mother_company_id}', [
+        'as' => 'company_needs.edit',
+        'uses' => 'CompanyNeedController@edit'
+    ]);
 
-    Route::get('print/need/{need_id}' , 'CompanyNeedController@printNeed')->name('print_need');
+    /** Custom edit route */
+    Route::get('company_needs/destroy/{need_id}/{mother_company_id}', [
+        'as' => 'company_needs.destroy',
+        'uses' => 'CompanyNeedController@destroy'
+    ]);
+
+
+    Route::get('print/need/{need_id}/{mother_company_id}' , 'CompanyNeedController@printNeed')->name('print_need');
 
 
     /** Manage Company Quotation */

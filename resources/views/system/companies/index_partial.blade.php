@@ -274,7 +274,7 @@
                                 {{--class confirm_interview_checked :: CLASS TO CALL THE INPUT FIELD IN JS--}}
                                 @can('Confirm Connection')
                                     <label class="checkbox checkbox-success">
-                                        <input class="confirm_connected_checked" data-id="{{ $company->id }}" value="1"
+                                        <input class="confirm_connected_checked" data-id="{{ $company->id }}" data-id2="{{ $hidden_mother_company_id}}" value="1"
                                                {{ count($company->representative) ? $company->representative[0]->pivot->confirm_connected == 1 ? 'checked' : ' ' : ' '}}
                                                {{ count($company->representative) ? $company->representative[0]->pivot->confirm_connected == 1 && $company->representative[0]->pivot->confirm_connected_user_id != auth()->id() ? 'disabled' : ' ' : ' ' }}
                                                type="checkbox" name="confirm_connected" />
@@ -284,7 +284,7 @@
                                 @endcan
 
                                 <label class="checkbox checkbox-success">
-                                    <input class="confirm_interview_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_interview"
+                                    <input class="confirm_interview_checked" data-id="{{ $company->id }}" data-id2="{{ $hidden_mother_company_id}}" value="1" type="checkbox" name="confirm_interview"
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_interview == 1 ? 'checked' : '' : ''}}
                                             {{ count($company->companyMeetings) ? '' : 'disabled' }}
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_interview == 1 && $company->representative[0]->pivot->confirm_interview_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
@@ -293,9 +293,10 @@
                                 </label>
                                 @can('Confirm Need')
                                 <label class="checkbox checkbox-success">
-                                    <input class="confirm_need_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_need"
+                                    <input class="confirm_need_checked" data-id="{{ $company->id }}" data-id2="{{ $hidden_mother_company_id}}" value="1" type="checkbox" name="confirm_need"
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_need == 1 ? ' checked' : '' : ''}}
-                                            {{ count($company->companyNeeds) ? '' : 'disabled' }}
+                                            {{--{{ count($company->companyNeeds) ? '' : 'disabled' }}--}}
+                                            {{ $hidden_mother_company_id == 1 ?  (count($company->LinrcoNeed) ? '' : 'disabled') : (count($company->FnrcoNeed) ? '' : 'disabled') }}
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_need == 1 && $company->representative[0]->pivot->confirm_need_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
                                     <span></span>
                                     {{ trans('dashboard.Confirm Need') }}
@@ -303,7 +304,7 @@
                                 @endcan
                                 @can('Confirm Contract')
                                 <label class="checkbox checkbox-success">
-                                    <input class="confirm_contract_checked" data-id="{{ $company->id }}" value="1" type="checkbox" name="confirm_contract"
+                                    <input class="confirm_contract_checked" data-id="{{ $company->id }}"  data-id2="{{ $hidden_mother_company_id}}" value="1" type="checkbox" name="confirm_contract"
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_contract == 1 ? ' checked' : '' : ''}}
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_contract == 1 && $company->representative[0]->pivot->confirm_contract_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
                                     <span></span>{{ trans('dashboard.Confirm Contract') }}

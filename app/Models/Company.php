@@ -101,6 +101,14 @@ class Company extends Model
         return $this->hasMany(CompanyNeed::class);
     }
 
+    public function LinrcoNeed(){
+        return $this->hasMany(LinrcoNeed::class);
+    }
+
+    public function FnrcoNeed(){
+        return $this->hasMany(FnrcoNeed::class);
+    }
+
     public function country(){
         return $this->belongsTo(Country::class);
     }

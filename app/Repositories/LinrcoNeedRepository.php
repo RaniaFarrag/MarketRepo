@@ -56,14 +56,14 @@ class LinrcoNeedRepository implements LinrcoNeedRepositoryInterface
     }
 
     /** Create LinrcoNeed Form */
-    public function create($company_id){
+    public function create(){
         return  $this->country_model::all();
     }
 
     /** Store LinrcoNeed */
     public function store($request)
     {
-        $company_need = $this->linrco_need_model::create([
+        $linrco_need = $this->linrco_need_model::create([
             // Common Inputs
             'employment_type_id' => $request->employment_type_id,
             'required_position' => $request->required_position,
@@ -75,7 +75,7 @@ class LinrcoNeedRepository implements LinrcoNeedRepositoryInterface
             'total_salary' => $request->total_salary,
             'special_note' => $request->special_note,
             'company_id' => $request->company_id,
-            'sector_id' => $request->sector_id,
+            //'sector_id' => $request->sector_id,
             'user_id' => auth()->id(),
 
             // Medical Inputs
@@ -96,17 +96,17 @@ class LinrcoNeedRepository implements LinrcoNeedRepositoryInterface
 
         ]);
 
-        $this->addLog(auth()->id() , $company_need->id , 'company_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
+        $this->addLog(auth()->id() , $linrco_need->id , 'linrco_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
 
         Alert::success('success', trans('dashboard. added successfully'));
-        return redirect(route('company_needs.index' , $request->company_id));
+        return redirect(route('company_needs.index' , [$request->company_id , $request->mother_company_id]));
     }
 
 
     /** Submit Edit CompanyNeed */
-    public function update($request , $companyNeed){
+    public function update($request , $linrco_need){
         //dd($request->data_flow);
-        $companyNeed->update([
+        $linrco_need->update([
             // Common Inputs
             'employment_type_id' => $request->employment_type_id,
             'required_position' => $request->required_position,
@@ -118,7 +118,7 @@ class LinrcoNeedRepository implements LinrcoNeedRepositoryInterface
             'total_salary' => $request->total_salary,
             'special_note' => $request->special_note,
             'company_id' => $request->company_id,
-            'sector_id' => $request->sector_id,
+//            'sector_id' => $request->sector_id,
             'user_id' => auth()->id(),
 
             // Medical Inputs
@@ -139,24 +139,25 @@ class LinrcoNeedRepository implements LinrcoNeedRepositoryInterface
 
         ]);
 
-        $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
+        $this->addLog(auth()->id() , $linrco_need->id , 'linrco_needs' , 'تم تعديل احتياجات شركة ' , 'New Linrco Need has been updated');
 
 
         Alert::success('success', trans('dashboard. updated successfully'));
-        return redirect(route('company_needs.index' , $companyNeed->company_id));
+        return redirect(route('company_needs.index' , [$linrco_need->company_id, $request->mother_company_id]));
 
     }
 
 
     /** Delete CompanyNeed */
-    public function destroy($companyNeed){
+    public function destroy($need_id , $mother_company_id){
         //Alert::success('warning', trans('dashboard.Are You Sure ?'));
-        $companyNeed->delete();
+        $need = $this->linrco_need_model::findOrFail($need_id);
+        $need->delete();
 
-        $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم حذف احتياج للشركة ' , 'CompanyNeed has been deleted');
+        $this->addLog(auth()->id() , $need->id , 'linrco_needs' , 'تم حذف احتياج للشركة ' , 'LinrcoNeed has been deleted');
 
         Alert::success('success', trans('dashboard.deleted successfully'));
-        return redirect(route('company_needs.index' , $companyNeed->company_id));
+        return redirect(route('company_needs.index' , [$need->company_id , $mother_company_id]));
     }
 
 }

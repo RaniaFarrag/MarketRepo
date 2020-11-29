@@ -107,16 +107,18 @@
                                                     <td>{{ $need->required_position }}</td>
                                                     <td>{{ $need->created_at }}</td>
                                                     <td>{{ $need->user ? (app()->getLocale() == 'ar' ? $need->user->name : $need->user->name_en)  : '-' }}</td>
-                                                    <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_need' , $need->id) }}">{{ trans('dashboard.Needs Details') }}</a></td>
-                                                    <td><a class="btn btn-success font-weight-bold" href="{{ route('company_needs.edit' , $need->id) }}">{{ trans('dashboard.edit') }}</a></td>
-                                                    <td>
+                                                    <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_need' , [$need->id , $mother_company_id]) }}">{{ trans('dashboard.Needs Details') }}</a></td>
+                                                    <td><a class="btn btn-success font-weight-bold" href="{{ route('company_needs.edit' , [$need->id , $mother_company_id]) }}">{{ trans('dashboard.edit') }}</a></td>
+                                                    <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" href="{{ route('company_needs.destroy' , [$need->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
+                                                    {{--<td>--}}
                                                         {{--onsubmit = "return confirmDelete()"--}}
-                                                        <form onsubmit="return confirmDelete()" method="post" action="{{ route('company_needs.destroy' , $need->id) }}">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <button  class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>
-                                                        </form>
-                                                    </td>
+                                                        {{--<form  method="post" action="{{ route('company_needs.destroy' , $need->id) }}">--}}
+                                                            {{--<input type="hidden" name="delete_mother_company_id" value="{{ $mother_company_id }}">--}}
+                                                            {{--@method('DELETE')--}}
+                                                            {{--@csrf--}}
+                                                            {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash"></i></button>--}}
+                                                        {{--</form>--}}
+                                                    {{--</td>--}}
                                                 </tr>
                                             @endforeach
                                         </tbody>

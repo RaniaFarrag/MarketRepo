@@ -107,7 +107,7 @@
                                             <div class="card-body">
                                                 <div class="row fliter_serch">
 
-                                                    <input type="hidden" id="user_mother_company_id" value="{{ auth()->user()->mother_company_id }}">
+                                                    {{--<input type="hidden" id="user_mother_company_id" value="{{ auth()->user()->mother_company_id }}">--}}
 
                                                     <div class="col-md-12 col-xs-12">
                                                         <div class="form-group">
@@ -424,7 +424,8 @@
                 // if checked ...
                 //alert( this.value );
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                // var user_mother_company_id = $("#user_mother_company_id").val();
 
                 console.log(mother_company_id);
                 $.ajax({
@@ -440,7 +441,8 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                // var user_mother_company_id = $("#user_mother_company_id").val();
                 $.ajax({
                     type: "get",
                     url: "{{ url('/confirm/connected/') }}" + '/' + company_id + '/' + user_mother_company_id,
@@ -455,7 +457,8 @@
         //$('input.confirm_interview_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                // var user_mother_company_id = $("#user_mother_company_id").val();
                 console.log(company_id);
                 $.ajax({
                     type : "get",
@@ -470,7 +473,8 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                // var user_mother_company_id = $("#user_mother_company_id").val();
 
                 $.ajax({
                     type : "get",
@@ -486,7 +490,8 @@
         // $('input.confirm_need_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                //var user_mother_company_id = $("#user_mother_company_id").val();
                 console.log(mother_company_id);
                 $.ajax({
                     type : "get",
@@ -501,7 +506,8 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                //var user_mother_company_id = $("#user_mother_company_id").val();
                 $.ajax({
                     type : "get",
                     url : "{{ url('/confirm/need/') }}" + '/' + company_id + '/' + user_mother_company_id,
@@ -516,7 +522,8 @@
         // $('input.confirm_contract_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                // var user_mother_company_id = $("#user_mother_company_id").val();
                 console.log(company_id);
                 $.ajax({
                     type : "get",
@@ -531,7 +538,8 @@
             }
             else {
                 var company_id = $(this).attr('data-id');
-                var user_mother_company_id = $("#user_mother_company_id").val();
+                var user_mother_company_id = $(this).attr('data-id2');
+                // var user_mother_company_id = $("#user_mother_company_id").val();
 
                 $.ajax({
                     type : "get",

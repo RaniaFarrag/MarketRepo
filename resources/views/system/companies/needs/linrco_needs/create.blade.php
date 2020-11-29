@@ -14,7 +14,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Company Needs') }}
+                            {{ trans('dashboard.Linrco Company Needs') }}
                         </h2>
                         <!--end::Title-->
 
@@ -33,7 +33,7 @@
                                 {{ trans('dashboard.Companies Data') }}  </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Company Needs') }}
+                                {{ trans('dashboard.Linrco Company Needs') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -60,10 +60,10 @@
                                 @csrf
 
                                 <input type="hidden" name="company_id" value="{{ $company_id }}">
-                                <input type="hidden" name="sector_id" value="{{ $sector_id }}">
+                                <input type="hidden" name="mother_company_id" value="{{ $mother_company_id }}">
+                                {{--<input type="hidden" name="sector_id" value="{{ $sector_id }}">--}}
 
                                 <div class="card-body">
-
                                     <div class=" row">
                                         <div class="col-lg-6">
                                             <div class="form-group row">
@@ -154,13 +154,13 @@
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Working Hours') }}:</label>
                                             <input value="{{ old('work_hours') }}" name="work_hours" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Working Hours') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Working Hours') }}" />
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Total Salary') }}:</label>
                                             <input value="{{ old('total_salary') }}" name="total_salary" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Total Salary') }}" required/>
+                                                   placeholder="{{ trans('dashboard.Total Salary') }}" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -182,7 +182,7 @@
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                            <a href="{{ route('company_needs.index' , $company_id) }}"
+                                            <a href="{{ route('company_needs.index' , [$company_id , $mother_company_id]) }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>

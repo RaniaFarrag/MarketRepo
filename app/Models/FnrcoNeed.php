@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +15,7 @@ class FnrcoNeed extends Model
         'required_position',
         'job_description',
         'candidates_number',
-        'nationality_id',
+        'country_id',
         'gender',
         'minimum_age',
         'total_salary',
@@ -43,4 +44,20 @@ class FnrcoNeed extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
+
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function employmentType(){
+        return $this->belongsTo(EmploymentType::class , 'employment_type_id');
+    }
 }

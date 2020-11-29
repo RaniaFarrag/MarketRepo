@@ -7,6 +7,8 @@ use App\Interfaces\FnrcoNeedRepositoryInterface;
 use App\Interfaces\LinrcoNeedRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
+use App\Models\FnrcoNeed;
+use App\Models\LinrcoNeed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
@@ -72,17 +74,28 @@ class CompanyNeedController extends Controller
     /** Create CompanyNeed */
     public function create($company_id , $mother_company_id)
     {
-        $countries = $this->companyNeedRepositoryinterface->create($company_id);
+//        dd($mother_company_id);
+        $countries = $this->linrcoNeedRepositoryinterface->create();
         $company = Company::findOrFail($company_id);
 
-        $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($company->sector_id);
+        $employeement_types = $this->linrcoNeedRepositoryinterface->getEmployeementtypes($company->sector_id);
 
-        if ($company->sector_id == 1){
-            return view('system.companies.needs.healthcare.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types ,
-                'company_id' => $company_id , 'sector_id' => $company->sector_id]);
+        if ($mother_company_id == 1){
+            if ($company->sector_id == 1){
+                return view('system.companies.needs.linrco_needs.healthcare.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types ,
+                    'company_id' => $company_id ,'mother_company_id' => $mother_company_id ,'sector_id' => $company->sector_id]);
+            }
+            return view('system.companies.needs.linrco_needs.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types,
+                'company_id' => $company_id ,'mother_company_id' => $mother_company_id , 'sector_id' => $company->sector_id]);
         }
-        return view('system.companies.needs.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types,
-                'company_id' => $company_id , 'sector_id' => $company->sector_id]);
+        elseif ($mother_company_id == 2){
+            if ($company->sector_id == 1){
+                return view('system.companies.needs.fnrco_needs.healthcare.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types ,
+                    'company_id' => $company_id , 'mother_company_id' => $mother_company_id, 'sector_id' => $company->sector_id]);
+            }
+            return view('system.companies.needs.fnrco_needs.create')->with(['countries' => $countries , 'employeement_types' => $employeement_types,
+                'company_id' => $company_id , 'mother_company_id' => $mother_company_id , 'sector_id' => $company->sector_id]);
+        }
     }
 
     /**
@@ -95,7 +108,13 @@ class CompanyNeedController extends Controller
     /** Store CompanyNeed */
     public function store(CompanyNeedRequest $request)
     {
-        return $this->companyNeedRepositoryinterface->store($request);
+        if ($request->mother_company_id == 1){
+            return $this->linrcoNeedRepositoryinterface->store($request);
+        }
+        elseif ($request->mother_company_id == 2){
+            return $this->fnrcoNeedRepositoryinterface->store($request);
+        }
+
     }
 
     /**
@@ -115,19 +134,33 @@ class CompanyNeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanyNeed $companyNeed)
+    public function edit($need_id , $mother_company_id)
     {
-        $countries = $this->companyNeedRepositoryinterface->create($companyNeed->company_id);
-        $employeement_types = $this->companyNeedRepositoryinterface->getEmployeementtypes($companyNeed->company->sector_id);
+        $countries = $this->linrcoNeedRepositoryinterface->create();
 
-        //dd($companyNeed->company->sector_id);
-        if ($companyNeed->company->sector_id == 1){
-            //dd($companyNeed->company->sector_id);
-            return view('system.companies.needs.healthcare.edit')->with(['companyneed' => $companyNeed , 'countries' => $countries , 'employeement_types' => $employeement_types ,
-                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->company->sector_id]);
+        if ($mother_company_id == 1){
+            $need = LinrcoNeed::findOrFail($need_id);
+            $employeement_types = $this->linrcoNeedRepositoryinterface->getEmployeementtypes($need->company->sector_id);
+
+            if ($need->company->sector_id == 1){
+                return view('system.companies.needs.linrco_needs.healthcare.edit')->with(['need' => $need , 'countries' => $countries , 'employeement_types' => $employeement_types ,
+                    'company_id' => $need->company_id ,'mother_company_id' => $mother_company_id ,'sector_id' => $need->company->sector_id]);
+            }
+            return view('system.companies.needs.linrco_needs.edit')->with(['need' => $need , 'countries' => $countries , 'employeement_types' => $employeement_types,
+                'company_id' => $need->company_id ,'mother_company_id' => $mother_company_id , 'sector_id' => $need->company->sector_id]);
         }
-        return view('system.companies.needs.edit')->with(['companyneed' => $companyNeed ,'countries' => $countries , 'employeement_types' => $employeement_types ,
-                'company_id' => $companyNeed->company_id , 'sector_id' => $companyNeed->company->sector_id]);
+
+        elseif ($mother_company_id == 2){
+            $need = FnrcoNeed::findOrFail($need_id);
+            $employeement_types = $this->linrcoNeedRepositoryinterface->getEmployeementtypes($need->company->sector_id);
+
+            if ($need->company->sector_id == 1){
+                return view('system.companies.needs.fnrco_needs.healthcare.edit')->with(['need' => $need , 'countries' => $countries , 'employeement_types' => $employeement_types ,
+                    'company_id' => $need->company_id , 'mother_company_id' => $mother_company_id, 'sector_id' => $need->company->sector_id]);
+            }
+            return view('system.companies.needs.fnrco_needs.edit')->with(['need' => $need , 'countries' => $countries , 'employeement_types' => $employeement_types,
+                'company_id' => $need->company_id , 'mother_company_id' => $mother_company_id , 'sector_id' => $need->company->sector_id]);
+        }
     }
 
     /**
@@ -139,10 +172,17 @@ class CompanyNeedController extends Controller
      */
 
     /** Submit Edit CompanyNeed */
-    public function update(CompanyNeedRequest $request, CompanyNeed $companyNeed)
+    public function update(CompanyNeedRequest $request, $need_id)
     {
-        //dd($companyNeed);
-        return $this->companyNeedRepositoryinterface->update($request , $companyNeed);
+        if ($request->mother_company_id == 1){
+            $linrco_need = LinrcoNeed::findOrFail($need_id);
+            return $this->linrcoNeedRepositoryinterface->update($request , $linrco_need);
+        }
+        elseif ($request->mother_company_id == 2){
+            $fnrco_need = FnrcoNeed::findOrFail($need_id);
+            return $this->fnrcoNeedRepositoryinterface->update($request , $fnrco_need);
+        }
+       ;
     }
 
     /**
@@ -153,22 +193,36 @@ class CompanyNeedController extends Controller
      */
 
     /** Delete CompanyNeed */
-    public function destroy(CompanyNeed $companyNeed)
+    public function destroy($need_id , $mother_company_id)
     {
-        return $this->companyNeedRepositoryinterface->destroy($companyNeed);
+        if ($mother_company_id == 1){
+            return $this->linrcoNeedRepositoryinterface->destroy($need_id , $mother_company_id);
+        }
+        elseif ($mother_company_id == 2){
+            return $this->fnrcoNeedRepositoryinterface->destroy($need_id , $mother_company_id);
+        }
     }
 
-    public function printNeed($need_id){
+    public function printNeed($need_id , $mother_company_id){
 
-        $need = CompanyNeed::findOrFail($need_id);
-//        dd($need->company->sector_id);
-        if($need->company->sector_id == 1){
-            $pdf = Pdf::loadView('system.companies.needs.healthcare.healthcare_need_pdf' , compact('need'));
+        if ($mother_company_id == 1){
+            $need = LinrcoNeed::findOrFail($need_id);
+            if($need->company->sector_id == 1){
+                $pdf = Pdf::loadView('system.companies.needs.linrco_needs.healthcare.healthcare_need_pdf' , compact('need'));
+            }
+            else{
+                $pdf = Pdf::loadView('system.companies.needs.linrco_needs.need_pdf' , compact('need'));
+            }
         }
-        else{
-            $pdf = Pdf::loadView('system.companies.needs.need_pdf' , compact('need'));
+        elseif ($mother_company_id == 2){
+            $need = FnrcoNeed::findOrFail($need_id);
+            if($need->company->sector_id == 1){
+                $pdf = Pdf::loadView('system.companies.needs.fnrco_needs.healthcare.healthcare_need_pdf' , compact('need'));
+            }
+            else{
+                $pdf = Pdf::loadView('system.companies.needs.fnrco_needs.need_pdf' , compact('need'));
+            }
         }
-
 
         $output = $pdf->output();
 

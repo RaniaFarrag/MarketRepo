@@ -100,7 +100,9 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
 //            $companies->whereNull('representative_id');
 
-            $companies->whereDoesntHave('representative');
+            $companies->whereDoesntHave('representative' , function ($q){
+                $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+            });
 
             return $companies->get();
 
@@ -111,13 +113,14 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
     /** Submit Assign Company To Representative */
     public function submitAssignCompanyToRepresentative($request){
         $representative = $this->user_model::findOrFail($request->representative_id);
-        //dd($representative);
+        //dd($representative->mother_company_id);
 
         if ($request->sector_id){
             if (Auth::user()->sectors()->find($request->sector_id)){
                 if (Auth::user()->childs()->find($request->representative_id) || $request->representative_id == Auth::user()->id){
                     /** CASE 1 */
                     if ($request->company_ids) {
+//                        dd($representative->mother_company_id);
                         if (! $representative->sectors()->find($request->sector_id)){
                             $representative->sectors()->attach($request->sector_id);
                         }
@@ -125,7 +128,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 //                            $this->company_model::where('id', $company_id)
 //                                ->update(['representative_id' => $request->representative_id]);
                             $company = $this->company_model::findOrFail($company_id);
-                            $company->representative()->sync($request->representative_id , array("mother_company_id" => $representative->mother_company_id , 'created_at' => Carbon::now()));
+                            $company->representative()->attach($request->representative_id , array("mother_company_id" => $representative->mother_company_id , 'created_at' => Carbon::now()));
 
                             $this->addLog(auth()->id() , $request->representative_id , 'companies_num'.$company_id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
 

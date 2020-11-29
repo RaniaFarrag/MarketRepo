@@ -19,15 +19,15 @@ interface LinrcoNeedRepositoryInterface
     public function getEmployeementtypes($sector_id);
 
     /** Create CompanyNeed */
-    public function create($company_id);
+    public function create();
 
     /** Store CompanyNeed */
     public function store($request);
 
     /** Submit Edit CompanyNeed */
-    public function update($request , $companyNeed);
+    public function update($request , $linrco_need);
 
     /** Delete CompanyNeed */
-    public function destroy($companyNeed);
+    public function destroy($need_id , $mother_company_id);
 
 }

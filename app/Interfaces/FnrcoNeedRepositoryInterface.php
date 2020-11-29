@@ -19,7 +19,7 @@ interface FnrcoNeedRepositoryInterface
     public function getEmployeementtypes($sector_id);
 
     /** Create FnrcoNeed */
-    public function create($company_id);
+    public function create();
 
     /** Store FnrcoNeed */
     public function store($request);
@@ -28,6 +28,6 @@ interface FnrcoNeedRepositoryInterface
     public function update($request , $companyNeed);
 
     /** Delete FnrcoNeed */
-    public function destroy($companyNeed);
+    public function destroy($need_id , $mother_company_id);
 
 }

@@ -684,19 +684,32 @@ class CompanyRepository implements CompanyRepositoryInterface
     {
         $main_company = $this->company_model::findOrFail($company_id);
 
-        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
+        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative' , 'ADMIN'])){
             $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
 
             if ($company){
                 if (! $company->confirm_need) {
-                    if (count($main_company->companyNeeds)) {
-                        $company->update([
-                            'confirm_need' => 1,
-                            'confirm_need_user_id' => auth()->id(),
-                        ]);
-                        $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
-                        return trans('dashboard.The company needs was confirmed');
+                    if($user_mother_company_id == 1){
+                        if (count($main_company->LinrcoNeed)) {
+                            $company->update([
+                                'confirm_need' => 1,
+                                'confirm_need_user_id' => auth()->id(),
+                            ]);
+                            $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
+                            return trans('dashboard.The company needs was confirmed');
+                        }
                     }
+                    elseif ($user_mother_company_id == 2){
+                        if (count($main_company->FnrcoNeed)) {
+                            $company->update([
+                                'confirm_need' => 1,
+                                'confirm_need_user_id' => auth()->id(),
+                            ]);
+                            $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
+                            return trans('dashboard.The company needs was confirmed');
+                        }
+                    }
+
                     return trans('dashboard.No Need has been added');
                 }
 
