@@ -9,8 +9,6 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end">
 
-
-
                         <div class="dropdown dropdown-inline" data-toggle="tooltip" data-trigger="focus"
                              title=""
                              data-placement="left"

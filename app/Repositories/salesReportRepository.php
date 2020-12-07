@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\salesReportRepositoryInterface;
+use App\Models\Company;
 use App\Models\Company_sales_lead_report;
 use App\Models\Country;
 use App\Models\Sector;
@@ -40,13 +41,42 @@ class salesReportRepository implements salesReportRepositoryInterface
     /** View All Reports */
     public function index($request , $all = null)
     {
-        //dd($request->company);
+//        dd($request->all());
         $ids = $request->ids;
         $checkAll = $request->checkAll;
         if ((!isset($ids) && is_null($ids)) || $checkAll == 1)
         {
-            //dd(5);
-            $query = $request->company ? $request->company->salesLeadReports() : $this->sales_lead_report_model::query();
+            if (Auth::user()->hasRole('ADMIN')){
+                $data['representatives'] = $this->user_model::where('active' , 1)
+                    ->where(function ($q){
+                        $q->whereNotNull('parent_id')
+                            ->orWhereHas('childs');
+                    })->get();
+                $query = $request->company ? $request->company->salesLeadReports() : $this->sales_lead_report_model::query();
+            }
+            elseif(Auth::user()->hasRole('Sales Manager')){
+                $data['representatives'] = $this->user_model::where('active' , 1)
+                    ->where(function ($q){
+                        $q->where('parent_id' , Auth::user()->id)
+                            ->orWhere('id' , Auth::user()->id);
+                    })->get();
+
+                $query = $this->sales_lead_report_model::whereHas('company' , function ($q){
+                    $q->whereIn('sector_id' , Auth::user()->sectors->pluck('id'));
+                });
+            }
+            else{
+                $data['representatives'] = $this->user_model::where('active' , 1)
+                    ->where(function ($q){
+                        $q->where('parent_id' , Auth::user()->id)
+                            ->orWhere('id' , Auth::user()->id);
+                    })->get();
+                $query = Auth::user()->company_sales_lead_report();
+
+            }
+
+//            $query = Company::WhereIn('sector_id', Auth::user()->sectors->pluck('id'))->with('salesLeadReports');
+            //dd($query->get());
 
             if ($request->name)
                 $query->whereHas('company', function ($q) use ($request) {
@@ -101,16 +131,16 @@ class salesReportRepository implements salesReportRepositoryInterface
 //            $data['reports'] = $query->paginate(15);
 //        }
 
-        if (Auth::user()->hasRole('ADMIN')){
-            $data['representatives'] = $this->user_model::where('active' , 1)
-                ->where(function ($q){
-                    $q->whereNotNull('parent_id')
-                        ->orWhereHas('childs');
-                })->get();
-        }
-        else{
-            $data['representatives'] = $this->user_model::where('parent_id' , Auth::user()->id)->get();
-        }
+//        if (Auth::user()->hasRole('ADMIN')){
+//            $data['representatives'] = $this->user_model::where('active' , 1)
+//                ->where(function ($q){
+//                    $q->whereNotNull('parent_id')
+//                        ->orWhereHas('childs');
+//                })->get();
+//        }
+//        else{
+//            $data['representatives'] = $this->user_model::where('parent_id' , Auth::user()->id)->get();
+//        }
 
         $data['count'] = $query->count();
         $data['reports'] = $all ? $query->orderBy('created_at' , 'desc')->get() : $query->orderBy('created_at' , 'desc')->paginate(15);

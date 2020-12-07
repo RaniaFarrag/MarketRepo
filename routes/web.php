@@ -189,6 +189,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /** Monitor Report */
     Route::get('monitor/report' , 'LogController@monitorReport')->name('monitor_report');
+    Route::get('export/monitor/report' , 'LogController@exportMonitorReport')->name('export_monitor_report');
 
 
     /** sales Team Report */

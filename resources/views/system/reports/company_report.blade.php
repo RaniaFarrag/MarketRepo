@@ -87,6 +87,22 @@
                                                  data-parent="#accordionExample1">
                                                 <div class="card-body">
                                                     <div class="row fliter_serch">
+                                                        @can('Show Mother Company')
+                                                            <div class="col-md-12 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label> {{ trans('dashboard.Mother Company') }}  </label>
+                                                                    <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
+                                                                        @foreach($mother_companies as $key=>$mother_company)
+                                                                            <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
+                                                                                {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        @endcan
+
+
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label> {{ trans('dashboard.Company Name') }}  </label>
@@ -223,8 +239,8 @@
                                 <div class="separator separator-dashed mt-8 mb-5"></div>
                                 <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
-                                @include('system.reports.company_report_partial')
-                                <!--end: Datatable-->
+                                        {{--@include('system.reports.company_report_partial')--}}
+                                    <!--end: Datatable-->
                                 </div>
                             </div>
                         </div>
@@ -314,23 +330,24 @@
         });
 
     </script>
+
     <script>
-        $('body').on('click', '.pagination a, #searchBtn', function (e) {
-            e.preventDefault();
+        function filter(btn) {
             $.ajax({
                 dataType: 'html',
                 url: "{{ route('company_report') }}",
                 beforeSend: function () {
-                    $('#searchFilter').addClass('spinner');
-                    $('#searchFilter').attr('disabled', 'true');
+                    $('#searchBtn').addClass('spinner');
+                    $('#searchBtn').attr('disabled', 'true');
                 },
                 complete: function () {
-                    $('#searchFilter').removeClass('spinner');
-                    $('#searchFilter').removeAttr('disabled');
+                    $('#searchBtn').removeClass('spinner');
+                    $('#searchBtn').removeAttr('disabled');
 
                 },
                 "data": {
-                    "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
+                    // "page": $(this).is("a") ? $(this).attr('href').split('page=')[1] : "",
+                    "page": btn.is("a") ? btn.attr('href').split('page=')[1] : "",
                     "company_status": $("#company_status").val(),
                     "evaluation_ids": $("#evaluation_ids").val(),
                     "city_id": $("#cities").val(),
@@ -339,14 +356,28 @@
                     "subSector": $("#subSector").val(),
                     "sector_id": $("#sector").val(),
                     "name": $("#name").val(),
+                    "mother_company_id": $("#mother_company_id").val(),
                 },
                 success: function (data) {
                     // $('.renderTable').html(data);
                     $('.renderTable').html(JSON.parse(data).viewBlade);
                     $('#counter').html(JSON.parse(data).count)
+                    KTApp.initComponents();
                 }
             });
+        }
+    </script>
+
+    <script>
+        $('body').on('click', '.pagination a, #searchBtn', function (e) {
+            e.preventDefault();
+            filter($(this))
         });
+
+        $(document).ready(function() {
+            filter($(this));
+        })
+
     </script>
 
 

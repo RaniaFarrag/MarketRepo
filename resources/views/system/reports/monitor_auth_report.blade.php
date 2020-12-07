@@ -41,13 +41,15 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="#" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    {{--<a href="{{ route('export_monitor_report') }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">--}}
+                        {{--{{ trans('dashboard.Export Excel ') }}--}}
+                    {{--</a>--}}
+
+                    <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Export Excel ') }}
-                    </a>
+                    </button>
                     <!--end::Button-->
                     <!--begin::Button-->
-
-
                 </div>
 
             </div>
@@ -87,7 +89,8 @@
                                                 {{ trans('dashboard.Filters') }}
                                             </div>
                                         </div>
-                                        <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
+                                        <form autocomplete="off" id="exportExcelForm" action="{{route('export_monitor_report')}}">
+                                            <div id="collapseOne1" class="collapse show" data-parent="#accordionExample1">
                                             <div class="card-body">
                                                 <div class="row fliter_serch">
                                                     <div class="col-md-4 col-xs-12">
@@ -144,6 +147,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
 

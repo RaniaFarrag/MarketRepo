@@ -56,25 +56,25 @@
                 <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
 
                 <td>
-                    @if($company->confirm_connected)
+                    @if($company->representative[0]->pivot->confirm_connected)
                         <i class="icon-xl far fa-check-circle text-success"></i>
                     @endif
                 </td>
 
                 <td>
-                    @if($company->confirm_interview)
+                    @if($company->representative[0]->pivot->confirm_interview)
                         <i class="icon-xl far fa-check-circle text-success"></i>
                     @endif
                 </td>
 
                 <td>
-                    @if($company->confirm_need)
+                    @if($company->representative[0]->pivot->confirm_need)
                         <i class="icon-xl far fa-check-circle text-success"></i>
                     @endif
                 </td>
 
                 <td>
-                    @if($company->confirm_contract)
+                    @if($company->representative[0]->pivot->confirm_contract)
                         <i class="icon-xl far fa-check-circle text-success"></i>
                     @endif
                 </td>
@@ -127,7 +127,6 @@
                    {{ $log->created_at->format('H:i:s') }}
 
                 </td>
-
             </tr>
         @endforeach
 

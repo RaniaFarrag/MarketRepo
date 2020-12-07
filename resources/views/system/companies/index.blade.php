@@ -109,21 +109,22 @@
 
                                                     {{--<input type="hidden" id="user_mother_company_id" value="{{ auth()->user()->mother_company_id }}">--}}
 
-                                                    <div class="col-md-12 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label> {{ trans('dashboard.Mother Company') }}  </label>
-                                                            {{--<input name="mother_company_id" value="1" type="hidden">--}}
-                                                            <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
-                                                                {{--<option value="" selected="">{{ trans('dashboard.Select One') }}</option>--}}
-                                                                @foreach($mother_companies as $key=> $mother_company)
-                                                                    <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
-                                                                        {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
+                                                    @can('Show Mother Company')
+                                                        <div class="col-md-12 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label> {{ trans('dashboard.Mother Company') }}  </label>
+                                                                {{--<input name="mother_company_id" value="1" type="hidden">--}}
+                                                                <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
+                                                                    {{--<option value="" selected="">{{ trans('dashboard.Select One') }}</option>--}}
+                                                                    @foreach($mother_companies as $key=> $mother_company)
+                                                                        <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
+                                                                            {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-
+                                                    @endcan
 
                                                     <div class="col-md-4 col-xs-12">
                                                         <div class="form-group">

@@ -79,7 +79,6 @@
                             </div>
                             <div class="card-body">
 
-
                                 <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
                                 @include('system.reports.sales_lead_report_partial')
@@ -91,7 +90,6 @@
                     </div>
                 </div>
                 <!--end::Row-->
-
 
                 <!--end::Dashboard-->
             </div>

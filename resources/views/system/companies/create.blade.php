@@ -1016,7 +1016,6 @@
 
         // Class definition
         var KTFormRepeater = function () {
-
             // Private functions
             var demo1 = function () {
                 $('#kt_repeater_1').repeater({

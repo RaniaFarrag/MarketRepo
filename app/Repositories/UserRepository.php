@@ -49,27 +49,31 @@ class UserRepository implements UserRepositoryInterface
     /** Get Representative*/
     public function get_reps()
     {
-        if (Auth::user()->hasRole('ADMIN'))
-            $data['representatives'] = $this->user_model::where('active' , 1)
-                ->where(function ($q){
-                    $q->whereNotNull('parent_id')
-                        ->orWhereHas('childs');
-                })->get();
-        else
-            $data['representatives'] = $this->user_model::where('active' , 1)->where('parent_id', Auth::user()->id)->get();
-
-
         if (Auth::user()->hasRole('ADMIN')){
-//            return $this->user_model::whereNotNull('parent_id')->get();
+//            $x = User::whereHas('roles' , function ($q){
+////                $q->whereIn('name' , ['Sales Manager' , 'Sales Representative'])->get();
+//                $q->where('name' , 'Sales Manager')->orWhere('name' , 'Sales Representative')->get();
+//            });
+
             return $this->user_model::where('active' , 1)
                 ->where(function ($q){
                     $q->whereNotNull('parent_id')
                         ->orWhereHas('childs');
                 })->get();
         }
-        else{
-            return $this->user_model::where('parent_id' , Auth::user()->id)->get();
+        elseif(Auth::user()->hasRole('Sales Manager')){
+            return $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->where('parent_id' , Auth::user()->id)
+                        ->orWhere('id' , Auth::user()->id);
+                })->get();
+            //dd($data['representatives']);
         }
+        elseif (Auth::user()->hasRole('Sales Representative')){
+            //dd($this->user_model::findOrFail(Auth::user()->id));
+            return $this->user_model::where('id' , Auth::user()->id)->get();
+        }
+
     }
 
     /** Create User */
@@ -267,6 +271,7 @@ class UserRepository implements UserRepositoryInterface
                 ->orderBy('confirm_contract','desc')
                 //->orderBy('created_at','desc')
                 ->paginate(20);
+            //dd($data['companies'][0]);
         }
 
         $data['confirm_connected'] =  $data['rep']->assignedCompanies()->where('confirm_connected',1)->count();

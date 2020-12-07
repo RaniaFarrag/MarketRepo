@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Company;
+use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
 use App\Models\Log;
 use App\Models\Sector;
@@ -82,8 +83,11 @@ class User extends Authenticatable
     }
 
 
-
     public function logs(){
         return $this->hasMany(Log::class);
+    }
+
+    public function company_sales_lead_report(){
+        return $this->hasMany(Company_sales_lead_report::class);
     }
 }

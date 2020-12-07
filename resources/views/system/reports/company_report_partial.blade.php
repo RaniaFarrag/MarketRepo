@@ -15,25 +15,34 @@
     </thead>
     <tbody>
         @foreach($data['companies'] as $company)
+            {{--{{ dd(count($company->evaluator)) }}--}}
             <tr>
                 <td style="width: 34px;"><a href="{{route('companies.show',$company)}}" target="_blank">{{$company->id}}</a></td>
                 <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
                 <td>{{$company->sector ? $company->sector->name : "-"}}</td>
                 <td>{{$company->subSector ? $company->subSector->name : "-"}}</td>
-                @if($company->evaluation_status ==1)
-                    <td>A</td>
-                @elseif($company->evaluation_status ==2)
-                    <td>B</td>
-                @elseif($company->evaluation_status ==3)
-                    <td>C</td>
+
+                @if(count($company->representative))
+                    @if( $company->representative[0]->pivot->evaluation_status == 1 )
+                        <td>A</td>
+                    @elseif( $company->representative[0]->pivot->evaluation_status == 2 )
+                        <td>B</td>
+                    @elseif( $company->representative[0]->pivot->evaluation_status == 3 )
+                        <td>C</td>
+                    @else
+                        <td>-</td>
+                    @endif
+                @endif
+
+                <td>{{ count($company->representative) ? app()->getLocale() == 'ar' ? $company->representative[0]->pivot->evaluation_status_user_id : $company->representative[0]->pivot->evaluation_status_user_id : "-"}}</td>
+                @if(count($company->representative))
+                    <td>{{ app()->getLocale() == 'ar' ? $company->representative[0]->confirm_connected_user : $company->representative[0]->confirm_connected_user}}</td>
                 @else
                     <td>-</td>
                 @endif
-                <td>{{$company->evaluator ? app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en : "-"}}</td>
-                <td>{{$company->confirm_connected_user ? app()->getLocale() == 'ar' ? $company->confirm_connected_user->name : $company->confirm_connected_user->name_en :"-"}}</td>
-                <td>{{$company->confirm_interview_user ? app()->getLocale() == 'ar' ? $company->confirm_interview_user->name : $company->confirm_interview_user->name_en :"-"}}</td>
-                <td>{{$company->confirm_need_user ? app()->getLocale() == 'ar' ? $company->confirm_need_user->name : $company->confirm_need_user->name_en : "-" }}</td>
-                <td>{{$company->confirm_contract_user ? app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en :"-"}}</td>
+                <td>{{ count($company->confirm_interview_user) ? app()->getLocale() == 'ar' ? $company->confirm_interview_user->name : $company->confirm_interview_user->name_en : "-"}}</td>
+                <td>{{ count($company->confirm_need_user) ? app()->getLocale() == 'ar' ? $company->confirm_need_user->name : $company->confirm_need_user->name_en : "-" }}</td>
+                <td>{{ count($company->confirm_contract_user) ? app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en : "-"}}</td>
             </tr>
         @endforeach
     </tbody>

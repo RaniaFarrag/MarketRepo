@@ -72,9 +72,9 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** View All companies */
-    public function index($request, $all = null , $orderBy = null)
+    public function index($request, $all = null , $orderBy = 1)
     {
-//        dd($request->mother_company_id);
+        //dd($request->mother_company_id);
         if (Auth::user()->hasRole('Sales Representative')) {
 //            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
 
@@ -100,12 +100,29 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         }
         else {
+            //dd($request->mother_company_id);
 //            $query = $this->company_model->with('subSector');
-            $query = $this->company_model::with(["representative" =>  function($q) use ($request){
-                $q->where('company_user.mother_company_id' , $request->mother_company_id);
+//            $data=  $this->company_model::where(function ($query) {
+//                $query->whereHas('representative',function ($q){
+//                    $q->where('company_user.mother_company_id',2);
+//                });
+//                $query->orWhereDoesntHave('representative')
+//                ;
+//            })->get();
+//
+//            dd($data);
+
+            $query = $this->company_model::with(["representative" =>  function($q) use ($request , $orderBy) {
+                $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+//                if ($orderBy)
+//                {
+//                    $q->orderBy('company_user.confirm_connected','desc');
+//                    $q->orderBy('company_user.confirm_interview','desc');
+//                    $q->orderBy('company_user.confirm_need','desc');
+//                    $q->orderBy('company_user.confirm_contract','desc');
+//                    $q->orderBy('created_at','desc');
+//                }
             }]);
-//           dd($query->get()[1579]);
-           //dd($request->mother_company_id);
         }
 
         if ($request->created_at) {
@@ -196,11 +213,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         if (isset($request->communication_type) && count($request->communication_type) > 0){
             foreach ($request->communication_type as $val)
-                $query->whereNotNull($val)
-                        ;
-
-            //dd($query->get());
-        }
+                $query->whereNotNull($val);
+            }
 
         if (isset($request->evaluation_ids) && count($request->evaluation_ids) > 0){
 //            $query->whereIn('evaluation_status', $request->evaluation_ids);
@@ -223,14 +237,24 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         if ($request->name)
             $query->whereTranslationLike('name', '%' . $request->name . '%');
-
+//dd($query->paginate(10));
         if($orderBy){
-             $query
-                ->orderBy('confirm_connected','desc')
-                ->orderBy('confirm_interview','desc')
-                ->orderBy('confirm_need','desc')
-                ->orderBy('confirm_contract','desc')
-                ->orderBy('created_at','desc');
+//            $query->whereHas('representative' , function ($q){
+//                $q->orderBy('confirm_connected','desc')
+//                    ->orderBy('confirm_interview','desc')
+//                    ->orderBy('confirm_need','desc')
+//                    ->orderBy('confirm_contract','desc')
+//                    ->orderBy('company_id','desc');
+//            });
+
+//            $query->with('representative' , function ($q){
+//                $q->orderBy('confirm_connected','desc')
+//                    ->orderBy('confirm_interview','desc')
+//                    ->orderBy('confirm_need','desc')
+//                    ->orderBy('confirm_contract','desc');
+//                    //->orderBy('company_id','desc');
+//            });
+
             if ($all){
                 return $query->get();
             }
@@ -265,7 +289,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Store Company */
     public function store($request)
     {
-        //dd($request->client_status);
+        //dd($request->all());
         //dd(count($request->designated_contact_name));
 //        dd(Storage::disk('local')->path('/'));
 //        dd(storage_path('app') .'/'. $logo);
@@ -407,6 +431,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Submit Edit company */
     public function update($request, $company)
     {
+        //dd($request->all());
         if ($request->hasFile('logo')) {
             $logo = $this->verifyAndStoreFile($request, 'logo');
         } else {
@@ -541,14 +566,12 @@ class CompanyRepository implements CompanyRepositoryInterface
                     ]);
                 }
             }
-
         }
 
         $this->addLog(auth()->id(), $company->id, 'companies', 'تم تعديل شركة ', 'Company has been updated');
 
         Alert::success('success', trans('dashboard. updated successfully'));
         return redirect(route('companies.index'));
-
     }
 
     /** Delete Company */
@@ -783,10 +806,13 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** companies Reports */
     public function companiesReports($request, $all = false , $orderBy = false)
     {
+        //dd($request->all());
         $data['companies'] = $this->index($request, $all , $orderBy);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
         $data['mother_companies'] = MotherCompany::all();
+
+        //dd( $data['companies']);
 
         if (Auth::user()->hasRole('ADMIN'))
             $data['representatives'] = $this->user_model::where('active' , 1)

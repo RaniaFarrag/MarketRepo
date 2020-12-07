@@ -26,6 +26,7 @@ class SalesLeadReportController extends Controller
      */
     public function index(Request $request)
     {
+//        dd($request->all());
         $reports = $this->salesReportRepositoryInterface->index($request)['reports'];
         $reports_count = $this->salesReportRepositoryInterface->index($request)['count'];
         //dd($reports_count);
@@ -33,7 +34,7 @@ class SalesLeadReportController extends Controller
         $representatives = $this->salesReportRepositoryInterface->index($request)['representatives'];
         $checkAll = $this->salesReportRepositoryInterface->index($request)['checkAll'];
         $ids = $this->salesReportRepositoryInterface->index($request)['ids'];
-
+        //dd($reports);
         if ($request->ajax()){
             //dd(55);
             $data_json['viewBlade']= view('system.reports.sales_lead_report_partial'

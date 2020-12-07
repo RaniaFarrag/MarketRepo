@@ -127,13 +127,13 @@ class Company extends Model
             'client_status_user_id','evaluation_status','evaluation_status_user_id','confirm_connected'
             ,'confirm_connected_user_id','confirm_interview','confirm_interview_user_id','confirm_need' ,
             'confirm_need_user_id' , 'confirm_contract' , 'confirm_contract_user_id'])->whereNull('company_user.deleted_at');
-//        return $this->belongsToMany(User::class , 'company_user' , 'user_id' , 'company_id')
-//            ->where('mother_company_id' , 1);
+
     }
 
     /** Changed */
     public function evaluator(){
-        return $this->belongsToMany(User::class,'company_user' ,'evaluation_status_user_id');
+        return $this->belongsToMany(User::class,'company_user' ,'evaluation_status_user_id' , 'user_id')
+            ->whereNull('company_user.deleted_at');
     }
 
     /** Changed */

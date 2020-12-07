@@ -86,10 +86,7 @@
                                                                     <option value="{{$rep->id}}">{{app()->getLocale() == 'ar' ? $rep->name : $rep->name_en}}
                                                                     </option>
                                                                 @endforeach
-                                                                @if(auth()->user()->roles[0]->name == 'Sales Manager')
-                                                                    <option value="{{auth()->user()->id}}">{{app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en}}
-                                                                    </option>
-                                                                @endif
+
                                                             </select>
                                                         </div>
 
@@ -121,7 +118,6 @@
                     </div>
                 </div>
                 <!--end::Row-->
-
 
                 <!--end::Dashboard-->
             </div>

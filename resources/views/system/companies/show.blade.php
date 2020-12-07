@@ -44,8 +44,6 @@
                 <!--end::Info-->
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
-
-
                     <a target="_blank" href="{{ route('print_show_company' , $company->id) }}" class="btn btn-light btn-hover-primary  mr-2">
                         <i class="flaticon2-fax text-muted"></i> {{ trans('dashboard.Print') }}
                     </a>
@@ -72,13 +70,13 @@
                                 </li>
                                 @endcan
                                 @can('Add Company Need')
-                                <li class="navi-item">
+                                {{--<li class="navi-item">--}}
 
-                                    <a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon2-list-3"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
-                                    </a>
-                                </li>
+                                    {{--<a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">--}}
+                                        {{--<span class="navi-icon"><i class="flaticon2-list-3"></i></span>--}}
+                                        {{--<span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
                                 @endcan
 
                                 <li class="navi-item">
@@ -102,7 +100,6 @@
                     </div>
                     <!--end::Dropdowns-->
                 </div>
-
 
                 {{--<div class="d-flex align-items-center">
                     <!--begin::Button-->

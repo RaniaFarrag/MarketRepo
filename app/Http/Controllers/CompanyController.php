@@ -31,8 +31,9 @@ class CompanyController extends Controller
     /** View All companies */
     public function index(Request $request)
     {
+        //dd($request->mother_company_id);
         $data = $this->companyRepositoryinterface->companiesReports($request)['companies'];
-//        dd($request->mother_company_id);
+        //dd($request->mother_company_id);
         //dd($data['count']);
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
@@ -40,8 +41,6 @@ class CompanyController extends Controller
         $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
 
         if($request->ajax()){
-//            dd($request->mother_company_id);
-            //dd($data['companies']);
             if (Auth::user()->hasRole('ADMIN')){
                 $mother_company_id = $request->mother_company_id;
             }
@@ -53,7 +52,6 @@ class CompanyController extends Controller
             $data_json['count']= $data['count'];
             return response()->json($data_json);
         }
-        //dd($companies);
         return view('system.companies.index')->with(['data' => $data , 'sectors' => $sectors , 'mother_companies' => $mother_companies,
             'countries' => $countries , 'representatives'=>$representatives]);
     }
@@ -79,7 +77,6 @@ class CompanyController extends Controller
     /** Store Company */
     public function store(CompanyRequest $request)
     {
-        //dd($request->item[0]['date']);
         return $this->companyRepositoryinterface->store($request);
     }
 
@@ -192,20 +189,22 @@ class CompanyController extends Controller
 
     /** Company Report */
     public function companiesReports(Request $request){
-
         $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies'];
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
+        $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
 
         if ($request->ajax()) {
-            $data_json['viewBlade'] = view('system.reports.company_report_partial')->with(['data' => $data])->render();
+            //dd($request->mother_company_id);
+            $data_json['viewBlade'] = view('system.reports.company_report_partial')
+                ->with(['data' => $data])->render();
             $data_json['count'] = $data['count'];
             return response()->json($data_json);
 
             //return view('system.reports.company_report_partial',compact('data'))->render();
         }
-        return view('system.reports.company_report',compact('data','countries','sectors' , 'representatives'));
+        return view('system.reports.company_report',compact('data','countries','sectors' , 'representatives' , 'mother_companies'));
     }
 
 

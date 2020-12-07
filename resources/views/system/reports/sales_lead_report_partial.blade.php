@@ -58,7 +58,7 @@
                     -
                 @endif
             </td>
-            <td><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>
+            <td><a target="_blank" href="{{route('companies.show',$report->company->id)}}">{{$report->company->name ?? '-'}}</a></td>
             <td>{{$report->company->company_representative_name ?? '-'}}</td>
             <td>{{$report->company->company_representative_phone?? '-'}}</td>
             <td>{{$report->company->company_representative_mobile?? '-'}}</td>
