@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
 use App\Models\Log;
+use App\Models\MotherCompany;
 use App\Models\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -52,6 +53,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function motherCompany(){
+        return $this->belongsTo(MotherCompany::class , 'mother_company-id' , 'id');
+    }
 
     public function companyMeetings(){
         return $this->hasMany(CompanyMeeting::class);

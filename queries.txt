@@ -1,0 +1,99 @@
+﻿  /** change user from string to user_ids in table company_need_old **/
+
+UPDATE `company_needs_old` SET `user` = 13481 WHERE `user` = 'Jayson Fajardo Santos'
+
+
+
+
+/** change dataflow need table :: 
+UPDATE `company_needs_old` SET `DataFlow` = 2 WHERE `DataFlow` = 'مطلوبه من خارج المملكة'
+
+UPDATE `company_needs_old` SET `DataFlow` = 1 WHERE `DataFlow` = 'مطلوبه من داخل المملكة'
+
+UPDATE `company_needs_old` SET `DataFlow` = 3 WHERE `DataFlow` = 'غير مطلوبه'
+
+
+
+/** change manpower need table :: 
+UPDATE `company_needs_old` SET `Manpower` = 1 WHERE `Manpower` = 'Manpower'
+
+UPDATE `company_needs_old` SET `Manpower` = 2 WHERE `Manpower` = 'نقل كفاله على العميل'
+
+
+/** change Pro_metric col in need table ::
+UPDATE `company_needs_old` SET `Pro_metric`= 1 WHERE `Pro_metric` = 'Yes'
+
+UPDATE `company_needs_old` SET `Pro_metric`= 2 WHERE `Pro_metric` = 'No'
+
+UPDATE `company_needs_old` SET `Pro_metric`= 1 WHERE `Pro_metric` = 'نعم'
+
+
+UPDATE `company_needs` SET `employment_type_id` = 2 WHERE `id` = 8
+
+UPDATE `company_needs` SET `employment_type_id` = 2 WHERE `id` = 10
+
+
+
+/** change evaluation_status_user_id col in companies table ::
+
+UPDATE `companies` SET `evaluation_status_user_id` = 57 WHERE `evaluation_status_user_id` = 'Admin'
+
+
+UPDATE `companies` SET `evaluation_status_user_id` = 13471 WHERE `evaluation_status_user_id` = 'BABU ANSARI'
+
+UPDATE `companies` SET `evaluation_status_user_id` = 13473 WHERE `evaluation_status_user_id` = 'RAAFAT ALI'
+
+
+UPDATE `companies` SET `evaluation_status_user_id` = 13470 WHERE `evaluation_status_user_id` = 'syed basha'
+
+UPDATE `companies` SET `evaluation_status_user_id` = 13474 WHERE `evaluation_status_user_id` = 'Renan'
+
+UPDATE `companies` SET `evaluation_status_user_id` = 13479 WHERE `evaluation_status_user_id` = 'hussein.saleh'
+
+UPDATE `companies` SET `evaluation_status_user_id` = 13481 WHERE `evaluation_status_user_id` = 'Jayson Fajardo Santos'
+
+
+
+UPDATE `companies` SET `evaluation_status_user_id` = null WHERE `evaluation_status_user_id` = 'Haseeb Nazir'
+
+UPDATE `companies` SET `evaluation_status_user_id` = null WHERE `evaluation_status_user_id` = 'Michael Relente'
+
+
+UPDATE `companies` SET `client_status` = 3 WHERE `client_status` = 'Cold'
+UPDATE `companies` SET `client_status` = 2 WHERE `client_status` = 'Warm'
+UPDATE `companies` SET `client_status` = 4 WHERE `client_status` = 'Awarded'
+UPDATE `companies` SET `client_status` = 1 WHERE `client_status` = 'Hot'
+
+
+UPDATE `companies` SET `evaluation_status` = 1 WHERE `evaluation_status` = 'A'
+UPDATE `companies` SET `evaluation_status` = 3 WHERE `evaluation_status` = 'C'
+UPDATE `companies` SET `evaluation_status` = 2 WHERE `evaluation_status` = 'B'
+
+
+
+UPDATE `company_meetings_old` SET `by` = 13464 WHERE `by` = 'فؤاد'
+UPDATE `company_meetings_old` SET `by` = 13474 WHERE `by` = 'Renan'
+UPDATE `company_meetings_old` SET `by` = 57 WHERE `by` = 'Admin'
+UPDATE `company_meetings_old` SET `by` = 13471 WHERE `by` = 'BABU ANSARI'
+UPDATE `company_meetings_old` SET `by` = 13470 WHERE `by` = 'syed basha'
+UPDATE `company_meetings_old` SET `by` = 13473 WHERE `by` = 'RAAFAT ALI'
+UPDATE `company_meetings_old` SET `by` = 13481 WHERE `by` = 'Jayson Fajardo Santos'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

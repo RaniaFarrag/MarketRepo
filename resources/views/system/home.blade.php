@@ -48,8 +48,24 @@
             <div class=" container ">
                 <!--begin::Dashboard-->
                 <!--begin::Row-->
-                <div class="row">
+                @can('Show Mother Company')
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="form-group">
+                                <h6 class="text-white font-weight-bold my-2 mr-5"> {{ trans('dashboard.Mother Company') }}  </h6>
+                                <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
+                                    @foreach($mother_companies as $key=> $mother_company)
+                                        <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
+                                            {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                @endcan
 
+                <div class="row">
                     <div class="col-xl-12">
                         <div class="row">
                             <div class="col-xl-12">
@@ -73,7 +89,7 @@
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.COMPANIES REGISTERED TODAY') }}
-                                                            <div class="text-dark-75">
+                                                            <div class="text-dark-75 company_registered_today">
                                                                 {{ $company_registered_today_created_by_me }}
                                                             </div>
                                                         </a>
@@ -102,7 +118,7 @@
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL COMPANIES') }}
-                                                            <div class="text-dark-75">
+                                                            <div class="text-dark-75 TOTAL_COMPANIES">
                                                                 {{ $total_companies }}
                                                             </div>
                                                         </a>
@@ -132,8 +148,8 @@
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL USERS') }}
-                                                            <div class="text-dark-75">
-                                                                {{ $total_users_under_me ? $total_users_under_me : '-'  }}
+                                                            <div  class="text-dark-75 total_users_under_me">
+
                                                             </div>
                                                         </a>
 
@@ -155,20 +171,18 @@
                                                 <div class="d-flex align-items-center p-5">
                                                     <!--begin::Icon-->
                                                     <div class="mr-6">
-                            <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-
+                                                        <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
                                                             <i class="far fa-chart-bar fa-3x text-primary"></i>
-
-                                </span>                        </div>
+                                                        </span>
+                                                    </div>
                                                     <!--end::Icon-->
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
+                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3 REP_DAILY_REPORT">
                                                             {{ trans('dashboard.REP DAILY REPORT') }}
 
-                                                            <div class="text-dark-75">
-                                                                {{ $rep_daily_reports }}
+                                                            <div class="text-dark-75 rep_daily_reports">
 
                                                             </div>
                                                         </a>
@@ -189,19 +203,18 @@
                                                 <div class="d-flex align-items-center p-5">
                                                     <!--begin::Icon-->
                                                     <div class="mr-6">
-                            <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-
+                                                        <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
                                                             <i class="fas fa-user-clock fa-3x text-primary"></i>
-
-                                <!--end::Svg Icon--></span>                        </div>
+                                                        </span>
+                                                    </div>
                                                     <!--end::Icon-->
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TODAY MEETING') }}
-                                                            <div class="text-dark-75">
-                                                                {{ $today_meetings }}
+                                                            <div class="text-dark-75 today_meetings">
+
                                                             </div>
                                                         </a>
 
@@ -221,19 +234,20 @@
                                                 <div class="d-flex align-items-center p-5">
                                                     <!--begin::Icon-->
                                                     <div class="mr-6">
-                            <span class="svg-icon svg-icon-primary  svg-icon-4x"><!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
-
+                                                        <span class="svg-icon svg-icon-primary  svg-icon-4x">
+                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/General/Thunder-move.svg-->
                                                             <i class="far fa-clock fa-3x text-primary"></i>
 
-                                <!--end::Svg Icon--></span>                        </div>
+                                                         </span>
+                                                    </div>
                                                     <!--end::Icon-->
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
                                                         <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.COMING MEETING') }}
-                                                            <div class="text-dark-75">
-                                                                {{ $coming_meetings }}
+                                                            <div class="text-dark-75 coming_meetings">
+
                                                             </div>
                                                         </a>
 
@@ -267,58 +281,9 @@
 
                             </div>
                                 <div class="card-body">
-                                <div class="table-responsive">
+                                <div class="table-responsive renderTable">
                                 <!--begin: Datatable-->
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th> {{ trans('dashboard.Company Name') }}</th>
-                                        <th>{{ trans('dashboard.Company Type') }}	</th>
-                                        <th>{{ trans('dashboard.Company Status') }}	</th>
-                                        <th>{{ trans('dashboard.Interview Time') }}</th>
-                                        <th>{{ trans('dashboard.Interview Date') }}</th>
-                                        <th>{{ trans('dashboard.City') }}</th>
-                                        <th>{{ trans('dashboard.BY') }}</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        @foreach($meetings as $k=>$meeting)
-                                                @if($meeting->company)
-                                                    <tr>
-                                                        <td>{{ $k+1 }}</td>
-                                                        <td> <a target="_blank" href="{{ route('companies.show' , $meeting->company_id) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
-                                                        <td>{{ $meeting->company ? $meeting->company->subSector->name : '-' }}</td>
-                                                        <td>
-                                                            @if($meeting->company->client_status == 1)
-                                                                {{ trans('dashboard.Hot') }}
-                                                            @elseif($meeting->company->client_status == 2)
-                                                                {{ trans('dashboard.Warm') }}
-                                                            @elseif($meeting->company->client_status == 3)
-                                                                {{ trans('dashboard.Cold') }}
-                                                            @elseif($meeting->company->client_status == 4)
-                                                                {{ trans('dashboard.Awarded') }}
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ $meeting->time }}</td>
-                                                        <td>{{ $meeting->date }}</td>
-                                                        <td>
-                                                            <a target="_blank" href="https://marketing-hc.com/search/acp/companyData?city=3083">
-                                                                {{ $meeting->company->city ? $meeting->company->city->name : '-' }}
-                                                            </a>
-                                                        </td>
-                                                        <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
-                                                    </tr>
-                                                @endif
-                                            @endforeach
-                                    </tbody>
-                                </table>
-
-                                    {{ $meetings->links() }}
-
+                                    <!-- @include('system.home_meetings_table') -->
                                 <!--end: Datatable-->
                                 </div>
                             </div>
@@ -336,6 +301,48 @@
         <!--end::Entry-->
     </div>
     <!--end::Content-->
+
+@endsection
+
+
+@section('script')
+
+    <script>
+        function filter() {
+            $.ajax({
+                dataType: 'html',
+                url: "{{ route('home') }}",
+
+                "data": {
+                    "mother_company_id": $("#mother_company_id").val(),
+                },
+                // console.log($("#mother_company_id").val());
+                success: function (data) {
+                    $('.total_users_under_me').html(JSON.parse(data).total_users_under_me)
+                    $('.rep_daily_reports').html(JSON.parse(data).rep_daily_reports)
+                    $('.today_meetings').html(JSON.parse(data).today_meetings)
+                    $('.coming_meetings').html(JSON.parse(data).coming_meetings)
+
+                    $('.renderTable').html(JSON.parse(data).meetings);
+
+                }
+            });
+
+        }
+    </script>
+
+
+    <script>
+        $("#mother_company_id").on('change' , function () {
+            filter($(this))
+        });
+
+
+        $(document).ready(function() {
+            filter($(this));
+        });
+
+    </script>
 
 @endsection
 

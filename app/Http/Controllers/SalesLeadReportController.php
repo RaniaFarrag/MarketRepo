@@ -32,6 +32,7 @@ class SalesLeadReportController extends Controller
         //dd($reports_count);
         $countries = $this->salesReportRepositoryInterface->index($request)['countries'];
         $representatives = $this->salesReportRepositoryInterface->index($request)['representatives'];
+//        dd($representatives);
         $checkAll = $this->salesReportRepositoryInterface->index($request)['checkAll'];
         $ids = $this->salesReportRepositoryInterface->index($request)['ids'];
         //dd($reports);

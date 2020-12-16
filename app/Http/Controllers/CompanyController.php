@@ -31,10 +31,11 @@ class CompanyController extends Controller
     /** View All companies */
     public function index(Request $request)
     {
-        //dd($request->mother_company_id);
+
         $data = $this->companyRepositoryinterface->companiesReports($request)['companies'];
-        //dd($request->mother_company_id);
-        //dd($data['count']);
+
+        //dd($data);
+
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $representatives = $this->companyRepositoryinterface->companiesReports($request)['representatives'];
@@ -77,6 +78,7 @@ class CompanyController extends Controller
     /** Store Company */
     public function store(CompanyRequest $request)
     {
+        //dd($request->all());
         return $this->companyRepositoryinterface->store($request);
     }
 
@@ -219,7 +221,7 @@ class CompanyController extends Controller
     {
         $company = Company::findOrFail($company_id);
         $sales_team_lead_reports = $company->salesLeadReports()->limit(3)->orderBy('created_at' , 'desc')->get();
-        //dd($sales_team_lead_reports);
+//        dd($company);
 
         $pdf = Pdf::loadView('system.companies.company_pdf' , compact('company' , 'sales_team_lead_reports'));
 

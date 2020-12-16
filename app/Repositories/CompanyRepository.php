@@ -74,7 +74,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** View All companies */
     public function index($request, $all = null , $orderBy = 1)
     {
-        //dd($request->mother_company_id);
+//        dd($request->mother_company_id);
         if (Auth::user()->hasRole('Sales Representative')) {
 //            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
 
@@ -113,7 +113,7 @@ class CompanyRepository implements CompanyRepositoryInterface
 //            dd($data);
 
             $query = $this->company_model::with(["representative" =>  function($q) use ($request , $orderBy) {
-                $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+                $q->where('company_user.mother_company_id' , $request->mother_company_id);
 //                if ($orderBy)
 //                {
 //                    $q->orderBy('company_user.confirm_connected','desc');
@@ -355,14 +355,37 @@ class CompanyRepository implements CompanyRepositoryInterface
             //'representative_id' => $representative_id,
         ]);
 
+/** IF USER IS REPRESENTATIVE : COMPANY WILL ASSIGNED TO HIM AUTOMATIC */
         if (Auth::user()->parent_id) {
-            $representative_id = Auth::user()->id;
+//            $representative_id = Auth::user()->id;
             if (!Auth::user()->sectors()->find($request->sector_id)) {
                 Auth::user()->sectors()->attach($request->sector_id);
             }
+            $company->representative()->attach( Auth::user()->id , 
+                array("mother_company_id" => Auth::user()->mother_company_id));
+            
+            if($request->client_status){
+                $rep = $company->representative()->first();
+                $company->representative()->save($rep , 
+                    array("mother_company_id" => Auth::user()->mother_company_id, "client_status"=>$request->client_status,
+                    "client_status_user_id"=>Auth::user()->id));
+            }
+        
 
-            $company->representative()->attach( Auth::user()->id , array("mother_company_id" => Auth::user()->mother_company_id));
+            if($request->evaluation_status){
+                $rep = $company->representative()->first();
+                $company->representative()->save($rep , 
+                    array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
+                    "evaluation_status_user_id"=>Auth::user()->id));
+            }
         }
+
+//        else{
+//            $company->representative()->attach(
+//                array("mother_company_id" => Auth::user()->mother_company_id ,"client_status"=>$request->client_status,
+//                "client_status_user_id"=>Auth::user()->id , "evaluation_status"=>$request->evaluation_status ,
+//                "evaluation_status_user_id"=>Auth::user()->id));
+//        }
 
 
         for ($i = 0; $i < count($request->designated_contact_name); $i++) {
@@ -515,7 +538,14 @@ class CompanyRepository implements CompanyRepositoryInterface
             'notes' => $request->notes,
         ]);
 
-        //dd(count($company->companyDesignatedcontacts));
+        $rep = $company->representative()->first();
+        if ($rep){
+            $company->representative()->save($rep ,
+                array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
+                    "evaluation_status_user_id"=>Auth::user()->id , "client_status"=>$request->client_status ,
+                    "client_status_user_id"=>Auth::user()->id));
+        }
+
 
         for ($i = 0; $i < count($request->designated_contact_name); $i++) {
             if (isset($company->companyDesignatedcontacts[$i])) {
@@ -803,11 +833,223 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
 
+
+    public function companyReport_index($request, $all = null , $orderBy = 1)
+    {
+        if (Auth::user()->hasRole('Sales Representative')) {
+            $query = $this->company_model::whereHas('representative' ,function ($q){
+                $q->where('user_id' , Auth::user()->id)
+                    ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+            })->with('representative');
+
+            $query = CompanyUser::where('user_id' , Auth::user()->id)
+                        ->where('mother_company_id' , Auth::user()->mother_company_id)->with('company');
+            dd($query->get());
+        }
+
+        elseif (Auth::user()->hasRole('Sales Manager')) {
+            $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
+                ->with(["representative" =>  function($q){
+                    $q->where(function ($q2){
+                        $q2->where('user_id' , Auth::user()->id)
+                            ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+                    })
+                        ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+                }]);
+
+        }
+        else {
+            //dd($request->mother_company_id);
+//            $query = $this->company_model->with('subSector');
+//            $data=  $this->company_model::where(function ($query) {
+//                $query->whereHas('representative',function ($q){
+//                    $q->where('company_user.mother_company_id',2);
+//                });
+//                $query->orWhereDoesntHave('representative')
+//                ;
+//            })->get();
+//
+//            dd($data);
+
+            $query = $this->company_model::with(["representative" =>  function($q) use ($request , $orderBy) {
+                $q->where('company_user.mother_company_id' , $request->mother_company_id);
+//                if ($orderBy)
+//                {
+//                    $q->orderBy('company_user.confirm_connected','desc');
+//                    $q->orderBy('company_user.confirm_interview','desc');
+//                    $q->orderBy('company_user.confirm_need','desc');
+//                    $q->orderBy('company_user.confirm_contract','desc');
+//                    $q->orderBy('created_at','desc');
+//                }
+            }]);
+        }
+
+        if ($request->created_at) {
+            $date = Carbon::parse($request->created_at);
+            $query->whereDate('created_at', $date);
+        }
+
+        if ($request->interview_date) {
+            $date = Carbon::parse($request->interview_date);
+            $query->whereHas('companyMeetings', function ($q) use ($date) {
+                $q->whereDate('date', $date);
+            });
+            //dd($query->get());
+        }
+
+        if ($request->location == 1)
+            $query->whereNotNull('location');
+
+        if ($request->location == 2)
+            $query->whereNull('location');
+
+        if (isset($request->client_status) && count($request->client_status) > 0){
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->whereIn('company_user.client_status' , $request->client_status);
+            });
+        }
+
+        if ($request->representative_id){
+//            $query->where('representative_id', $request->representative_id);
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->where('user_id' , $request->representative_id);
+
+            });
+        }
+
+        if ($request->representative == 1)
+//            $query->whereNotNull('representative_id');
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->whereNotNull('user_id');
+
+            });
+
+        if ($request->representative == 2){
+            //$query->whereNull('representative_id');
+            $query->whereDoesntHave('representative');
+        }
+
+        if (isset($request->company_status) && count($request->company_status) > 0) {
+//            dd($request->company_status);
+            foreach ($request->company_status as $key=>$val){
+                if ($val != 'no_meeting'){
+                    $query->whereHas('representative' , function ($q) use ($val){
+                        $q->where($val, 1);
+                    });
+                }
+                else {
+                    //dd(57);
+                    //$query->where('confirm_connected', null);
+                    $query->whereHas('representative' , function ($q) use ($val){
+                        $q->whereNull('confirm_interview');
+                        $q->orWhere('confirm_interview', 0);
+
+                    });
+
+                    //$query->where('confirm_need', null);
+                    //$query->where('confirm_contract', null);
+                }
+            }
+
+//            $query->whereHas('representative' , function ($q) use ($request){
+//                foreach ($request->company_status as $key=>$val) {
+//                    if ($val != 'no_meeting') {
+//                        $q->where($request->company_status[0],1);
+//                        if ($key == 0)
+//                            continue;
+//                        $q->orWhere($val,1);
+//                    }
+//                    else{
+//                        $q->whereNull('confirm_interview');
+//                        $q->orWhere('confirm_interview', 0);
+//                    }
+//
+//                }
+//            });
+
+
+        }
+
+        if (isset($request->communication_type) && count($request->communication_type) > 0){
+            foreach ($request->communication_type as $val)
+                $query->whereNotNull($val);
+        }
+
+        if (isset($request->evaluation_ids) && count($request->evaluation_ids) > 0){
+//            $query->whereIn('evaluation_status', $request->evaluation_ids);
+            $query->whereHas('representative' , function ($q) use ($request){
+                $q->whereIn('company_user.evaluation_status' , $request->evaluation_ids);
+            });
+        }
+
+        if ($request->city_id)
+            $query->where('city_id', $request->city_id);
+
+        if ($request->country_id)
+            $query->where('country_id', $request->country_id);
+
+        if ($request->sector_id)
+            $query->where('sector_id', $request->sector_id);
+
+        if ($request->subSector)
+            $query->where('sub_sector_id', $request->subSector);
+
+        if ($request->name)
+            $query->whereTranslationLike('name', '%' . $request->name . '%');
+//dd($query->paginate(10));
+        if($orderBy){
+//            $query->whereHas('representative' , function ($q){
+//                $q->orderBy('confirm_connected','desc')
+//                    ->orderBy('confirm_interview','desc')
+//                    ->orderBy('confirm_need','desc')
+//                    ->orderBy('confirm_contract','desc')
+//                    ->orderBy('company_id','desc');
+//            });
+
+//            $query->with('representative' , function ($q){
+//                $q->orderBy('confirm_connected','desc')
+//                    ->orderBy('confirm_interview','desc')
+//                    ->orderBy('confirm_need','desc')
+//                    ->orderBy('confirm_contract','desc');
+//                    //->orderBy('company_id','desc');
+//            });
+
+            if ($all){
+                return $query->get();
+            }
+
+            else {
+                $data = array();
+                $data['count'] = $query->count();
+                $data['companies'] = $query->paginate(18);
+                return $data;
+            }
+        }
+        else{
+            $data = array();
+            $data['count'] = $query->count();
+            $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
+            return $data;
+        }
+
+//        if ($all)
+//            return $query->get();
+//        else {
+//            $data = array();
+//            $data['count'] = $query->count();
+//            $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
+//            return $data;
+//        }
+
+        //dd($data['companies']);
+//        return $all ? $query->get() : $query->paginate(18);
+    }
+
     /** companies Reports */
     public function companiesReports($request, $all = false , $orderBy = false)
     {
         //dd($request->all());
-        $data['companies'] = $this->index($request, $all , $orderBy);
+        $data['companies'] = $this->companyReport_index($request, $all , $orderBy);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
         $data['mother_companies'] = MotherCompany::all();

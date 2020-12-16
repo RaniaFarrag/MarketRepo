@@ -72,7 +72,7 @@
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            <form method="post" action="{{ route('companies.store') }}" class="form"
+                            <form id="createForm" method="post" action="{{ route('companies.store') }}" class="form"
                                   enctype="multipart/form-data">
                                 @csrf
 
@@ -746,7 +746,7 @@
                                         <div class="form-group row">
                                             <div class="col-lg-12">
                                                 <label>{{ trans('dashboard.Company Evaluation') }} :</label>
-                                                <select name="evaluation_status" class="form-control select2">
+                                                <select name="evaluation_status" class="form-control select2" disabled>
                                                     <option value=""
                                                             selected="">{{ trans('dashboard.Select One') }}</option>
                                                     <option value="1">A</option>
@@ -759,7 +759,7 @@
                                         <div class="form-group row">
                                             <div class="col-lg-12">
                                                 <label>{{ trans('dashboard.Client Status') }} :</label>
-                                                <select name="client_status" class="form-control select2">
+                                                <select name="client_status" class="form-control select2" disabled>
                                                     <option value=""
                                                             selected="">{{ trans('dashboard.Select One') }}</option>
                                                     <option value="1">{{ trans('dashboard.Hot') }}</option>
@@ -1125,5 +1125,51 @@
         });
 
     </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#createForm").submit(function (m) {
+                m.preventDefault(); // avoid to execute the actual submit of the form momoomomomo.
+
+                url=$(this).attr('action')
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        $('#btnSubmit').addClass('kt-spinner');
+                    },
+                    complete: function () {
+                        $('#btnSubmit').removeClass('kt-spinner');
+                    },
+                    success: function (response) {
+                        if (response.errors) {
+                            jQuery.each(response.errors, function (key, value) {
+                                toastr.error(value);
+                            });
+                        } else {
+                            toastr.success('Saved.');
+                            // $('#createForm').trigger("reset");
+                            location.replace('{{route('users.index')}}')
+
+                        }
+                    },
+                    error: function (reject) {
+                        if (reject.status === 422) {
+                            var reponse = $.parseJSON(reject.responseText);
+                            jQuery.each(reponse.errors, function (key, value) {
+                                toastr.error(value);
+                            });
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+
 
 @endsection

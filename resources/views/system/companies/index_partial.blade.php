@@ -74,24 +74,19 @@
                                     </li>
                                     @endcan
                                     @can('Delete Company')
-                                    <li class="navi-item">
-                                        <form id="del" method="post"
-                                              action="{{ route('companies.destroy' , $company->id) }}">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button onclick="return confirm('Are you sure?')"
-                                                    class="navi-link" type="submit">
-                                                <span class="navi-icon"><i
-                                                            class="flaticon2-rubbish-bin"></i></span>
-                                                <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
-                                            </button>
-                                        </form>
-                                        {{--<a href="javascript:{}" class="navi-link">--}}
-                                        {{--<span class="navi-icon"><i--}}
-                                        {{--class="flaticon2-rubbish-bin"></i></span>--}}
-                                        {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
-                                        {{--</a>--}}
-                                    </li>
+                                    {{--<li class="navi-item">--}}
+                                        {{--<form id="del" method="post"--}}
+                                              {{--action="{{ route('companies.destroy' , $company->id) }}">--}}
+                                            {{--@method('DELETE')--}}
+                                            {{--@csrf--}}
+                                            {{--<button onclick="return confirm('Are you sure?')"--}}
+                                                    {{--class="navi-link" type="submit">--}}
+                                                {{--<span class="navi-icon"><i--}}
+                                                            {{--class="flaticon2-rubbish-bin"></i></span>--}}
+                                                {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
+                                            {{--</button>--}}
+                                        {{--</form>--}}
+                                    {{--</li>--}}
                                     @endcan
                                     @can('Corporate Assignment')
                                     <li class="navi-item">

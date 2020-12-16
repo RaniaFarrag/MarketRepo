@@ -342,15 +342,16 @@
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;width: 20% ">
                         {{ trans('dashboard.Name') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;width: 30% ">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[1]->name ? $company->companyDesignatedcontacts[1]->name : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 30% ">{{ count($company->companyDesignatedcontacts) > 1 ? $company->companyDesignatedcontacts[1]->name ? $company->companyDesignatedcontacts[1]->name : '-' : '-'}}</td>
                 </tr>
                 <tr>
+
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> {{ trans('dashboard.citizenship') }} :</td>
                     <td style="font-size: 12px;vertical-align: middle;text-align: left">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[0]->citizenship ? $company->companyDesignatedcontacts[0]->citizenship : '-' : '-'}}</td>
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
                         {{ trans('dashboard.citizenship') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[1]->citizenship ? $company->companyDesignatedcontacts[1]->citizenship : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) > 1 ? $company->companyDesignatedcontacts[1]->citizenship ? $company->companyDesignatedcontacts[1]->citizenship : '-' : '-'}}</td>
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> {{ trans('dashboard.Job Title') }} :</td>
@@ -358,7 +359,7 @@
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         {{ trans('dashboard.Job Title') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[1]->job_title ? $company->companyDesignatedcontacts[1]->job_title : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) > 1 ? $company->companyDesignatedcontacts[1]->job_title ? $company->companyDesignatedcontacts[1]->job_title : '-' : '-'}}</td>
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">{{ trans('dashboard.Email') }} :</td>
@@ -366,7 +367,7 @@
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none; ">
                         {{ trans('dashboard.Email') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[1]->email ? $company->companyDesignatedcontacts[1]->email : '-' : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) > 1 ? $company->companyDesignatedcontacts[1]->email ? $company->companyDesignatedcontacts[1]->email : '-' : '-' }}</td>
                 </tr>
                 <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none"> {{ trans('dashboard.Mobile') }} :</td>
@@ -374,7 +375,7 @@
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;">
                         {{ trans('dashboard.Mobile') }} :
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[1]->mobile ? $company->companyDesignatedcontacts[1]->mobile : '-' : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) > 1 ? $company->companyDesignatedcontacts[1]->mobile ? $company->companyDesignatedcontacts[1]->mobile : '-' : '-' }}</td>
                 </tr>
             {{--    <tr>
                     <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none">Telephone:</td>
@@ -417,7 +418,7 @@
                         <img src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
                              width="20" alt="whatsapp"></td>
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) ? $company->companyDesignatedcontacts[1]->whatsapp ? $company->companyDesignatedcontacts[1]->whatsapp : '-' : '-'}}</td>
+                    <td style="font-size: 12px;vertical-align: middle;">{{ count($company->companyDesignatedcontacts) > 1 ? $company->companyDesignatedcontacts[1]->whatsapp ? $company->companyDesignatedcontacts[1]->whatsapp : '-' : '-'}}</td>
                 </tr>
                 </tbody>
             </table>

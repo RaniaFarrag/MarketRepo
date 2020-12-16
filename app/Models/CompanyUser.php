@@ -32,4 +32,12 @@ class CompanyUser extends Model
         'confirm_contract' ,
         'confirm_contract_user_id' ,
     ];
+
+    public function confirmUser(){
+        return $this->belongsTo(User::class,'confirm_connected_user_id');
+    }
+
+     public function company(){
+        return $this->belongsTo(Company::class , 'company_id');
+     }
 }

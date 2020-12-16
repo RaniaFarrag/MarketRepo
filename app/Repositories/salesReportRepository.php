@@ -52,6 +52,7 @@ class salesReportRepository implements salesReportRepositoryInterface
                         $q->whereNotNull('parent_id')
                             ->orWhereHas('childs');
                     })->get();
+//                dd($data['representatives']);
                 $query = $request->company ? $request->company->salesLeadReports() : $this->sales_lead_report_model::query();
             }
             elseif(Auth::user()->hasRole('Sales Manager')){
