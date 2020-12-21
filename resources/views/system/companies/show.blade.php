@@ -87,12 +87,12 @@
                                 </li>
 
 
-                                <li class="navi-item">
-                                    <a href="{{ route('company_quotations.index' , $company->id) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.Quotation') }}</span>
-                                    </a>
-                                </li>
+                                {{--<li class="navi-item">--}}
+                                    {{--<a href="{{ route('company_quotations.index' , $company->id) }}" class="navi-link">--}}
+                                        {{--<span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>--}}
+                                        {{--<span class="navi-text">{{ trans('dashboard.Quotation') }}</span>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
 
                             </ul>
                             <!--end::Navigation-->

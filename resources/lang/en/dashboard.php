@@ -333,6 +333,8 @@ return [
     'Footer' => 'Footer',
     'Mother Company' => 'Mother Company',
     'Successful Assignment Of Companies' => 'Successful Assignment Of Companies',
+    'Linrco Quotations' => 'Linrco Quotations',
+    'Linrco Quotation' => 'Linrco Quotation',
 
 
 

@@ -104,17 +104,17 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
     /** Manage Company Quotation */
-    Route::resource('company_quotations' , 'CompanyQuotationController');
+    Route::resource('companyQuotation' , 'CompanyQuotationController');
 
     /** Custom index route */
-    Route::get('company_quotations/index/{company_id}', [
-        'as' =>   'company_quotations.index',
+    Route::get('companyQuotation/index/{company_id}/{mother_company_id}', [
+        'as' =>   'companyQuotation.index',
         'uses' => 'CompanyQuotationController@index'
     ]);
 
     /** Custom create route */
-    Route::get('company_quotations/create/{company_id}', [
-        'as' => 'company_quotations.create',
+    Route::get('companyQuotation/create/{company_id}/{mother_company_id}', [
+        'as' => 'companyQuotation.create',
         'uses' => 'CompanyQuotationController@create'
     ]);
 

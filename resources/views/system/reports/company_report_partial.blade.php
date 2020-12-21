@@ -14,37 +14,35 @@
     </tr>
     </thead>
     <tbody>
-        @foreach($data['companies'] as $company)
-            {{--{{ dd(count($company->evaluator)) }}--}}
+        @foreach($data['companies_user'] as $company_user)
+            {{--{{ dd($company_user->company->id) }}--}}
             <tr>
-                <td style="width: 34px;"><a href="{{route('companies.show',$company)}}" target="_blank">{{$company->id}}</a></td>
-                <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
-                <td>{{$company->sector ? $company->sector->name : "-"}}</td>
-                <td>{{$company->subSector ? $company->subSector->name : "-"}}</td>
+                <td style="width: 34px;"><a href="{{route('companies.show',$company_user->company->id)}}" target="_blank">{{$company_user->company->id}}</a></td>
+                <td><a target="_blank" href="{{route('companies.show',$company_user->company->id)}}">{{$company_user->company->name}}</a></td>
+                <td>{{$company_user->company ? $company_user->company->sector->name : "-"}}</td>
+                <td>{{$company_user->company ? $company_user->company->subSector->name : "-"}}</td>
 
-                @if(count($company->representative))
-                    @if( $company->representative[0]->pivot->evaluation_status == 1 )
-                        <td>A</td>
-                    @elseif( $company->representative[0]->pivot->evaluation_status == 2 )
-                        <td>B</td>
-                    @elseif( $company->representative[0]->pivot->evaluation_status == 3 )
-                        <td>C</td>
-                    @else
-                        <td>-</td>
-                    @endif
-                @endif
-
-                <td>{{ count($company->representative) ? app()->getLocale() == 'ar' ? $company->representative[0]->pivot->evaluation_status_user_id : $company->representative[0]->pivot->evaluation_status_user_id : "-"}}</td>
-                @if(count($company->representative))
-                    <td>{{ app()->getLocale() == 'ar' ? $company->representative[0]->confirm_connected_user : $company->representative[0]->confirm_connected_user}}</td>
+                @if( $company_user->evaluation_status == 1 )
+                    <td>A</td>
+                @elseif( $company_user->evaluation_status == 2 )
+                    <td>B</td>
+                @elseif( $company_user->evaluation_status == 3 )
+                    <td>C</td>
                 @else
                     <td>-</td>
                 @endif
-                <td>{{ count($company->confirm_interview_user) ? app()->getLocale() == 'ar' ? $company->confirm_interview_user->name : $company->confirm_interview_user->name_en : "-"}}</td>
-                <td>{{ count($company->confirm_need_user) ? app()->getLocale() == 'ar' ? $company->confirm_need_user->name : $company->confirm_need_user->name_en : "-" }}</td>
-                <td>{{ count($company->confirm_contract_user) ? app()->getLocale() == 'ar' ? $company->confirm_contract_user->name : $company->confirm_contract_user->name_en : "-"}}</td>
+
+                <td>{{ $company_user->evaluator ? app()->getLocale() == 'ar' ? $company_user->evaluator->name : $company_user->evaluator->name_en : '-'}}</td>
+                @if($company_user->confirmConnect)
+                    <td>{{ app()->getLocale() == 'ar' ? $company_user->confirmConnect->name : $company_user->confirmConnect->name_en}}</td>
+                @else
+                    <td>-</td>
+                @endif
+                <td>{{ $company_user->confirmInterview ? app()->getLocale() == 'ar' ? $company_user->confirmInterview->name : $company_user->confirmInterview->name_en : "-"}}</td>
+                <td>{{ $company_user->confirmNeed ? app()->getLocale() == 'ar' ? $company_user->confirmNeed->name : $company_user->confirmNeed->name_en : "-" }}</td>
+                <td>{{ $company_user->confirmContract ? app()->getLocale() == 'ar' ? $company_user->confirmContract->name : $company_user->confirmContract->name_en : "-"}}</td>
             </tr>
         @endforeach
     </tbody>
 </table>
-{!! $data['companies']->links() !!}
+{!! $data['companies_user']->links() !!}

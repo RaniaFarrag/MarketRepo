@@ -13,7 +13,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Quotation') }} {{ $company->name }}
+                            {{ trans('dashboard.Linrco Quotation') }} {{ $company->name }}
                         </h2>
                         <!--end::Title-->
 
@@ -35,7 +35,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Quotation') }} {{ $company->name }}
+                                {{ trans('dashboard.Linrco Quotation') }} {{ $company->name }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -47,7 +47,7 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="{{ route('company_quotations.create' , $company->id) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('companyQuotation.create' , [$company->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Quotation') }}
                     </a>
                     <!--end::Button-->
@@ -77,7 +77,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Company Quotations') }} {{ $company->name }}
+                                        {{ trans('dashboard.Linrco Quotations') }} {{ $company->name }}
                                     </h3>
                                 </div>
 
@@ -100,7 +100,7 @@
                                         </thead>
 
                                         <tbody>
-                                        @foreach($quotations as $k=>$quotation)
+                                        @foreach($linrco_quotations as $k=>$quotation)
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
                                                 <td>{{ $quotation->id }}</td>

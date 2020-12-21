@@ -31,15 +31,12 @@ class CompanyController extends Controller
     /** View All companies */
     public function index(Request $request)
     {
-
-        $data = $this->companyRepositoryinterface->companiesReports($request)['companies'];
-
+        $data = $this->companyRepositoryinterface->companiesReports_all($request)['companies'];
         //dd($data);
-
-        $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
-        $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
-        $representatives = $this->companyRepositoryinterface->companiesReports($request)['representatives'];
-        $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
+        $sectors = $this->companyRepositoryinterface->companiesReports_all($request)['sectors'];
+        $countries = $this->companyRepositoryinterface->companiesReports_all($request)['countries'];
+        $representatives = $this->companyRepositoryinterface->companiesReports_all($request)['representatives'];
+        $mother_companies = $this->companyRepositoryinterface->companiesReports_all($request)['mother_companies'];
 
         if($request->ajax()){
             if (Auth::user()->hasRole('ADMIN')){
@@ -127,14 +124,6 @@ class CompanyController extends Controller
 //        dd($company);
         $data = $this->companyRepositoryinterface->edit($company);
 
-//        if ($company->client_status){
-//            $client_status_user = $company->client_status_user_id;
-//        }
-//
-//        if ($company->evaluation_status){
-//            $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
-//        }
-
         return view('system.companies.edit')->with(['company' => $company , 'data' => $data ]);
     }
 
@@ -191,7 +180,7 @@ class CompanyController extends Controller
 
     /** Company Report */
     public function companiesReports(Request $request){
-        $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies'];
+        $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies_user'];
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];

@@ -15,10 +15,12 @@ class CreateLinrcoQuotationsTable extends Migration
     {
         Schema::create('linrco_quotations', function (Blueprint $table) {
             $table->id();
-            $table->string('attn');
-            $table->string('telephone');
-            $table->string('mobile');
-            $table->string('email');
+            $table->string('ref_no')->nullable();
+            $table->string('attn')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('email')->nullable();
+            $table->string('Quotation_No')->nullable();
             $table->bigInteger('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();

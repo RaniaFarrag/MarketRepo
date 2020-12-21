@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\CompanyQuotationRepositoryInterface;
+use App\Interfaces\FnrcoQuotationRepositoryInterface;
+use App\Interfaces\LinrcoQuotationRepositoryInterface;
 use App\Models\Company;
+use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class CompanyQuotationController extends Controller
@@ -14,19 +17,42 @@ class CompanyQuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected $companyQuotationRepositoryinterface;
+    protected $LinrcoQuotationRepositoryInterface;
 
-    public function __construct(CompanyQuotationRepositoryInterface $companyQuotationRepositoryinterface)
+    public function __construct(LinrcoQuotationRepositoryInterface $linrcoQuotationRepositoryinterface)
     {
-        $this->companyQuotationRepositoryinterface = $companyQuotationRepositoryinterface;
+        $this->LinrcoQuotationRepositoryInterface = $linrcoQuotationRepositoryinterface;
+        //$this->fnrcoNeedRepositoryinterface = $fnrcoNeedRepositoryinterface;
     }
 
-    public function index($company_id)
+    public function index($company_id , $mother_company_id)
     {
         $company = Company::findOrFail($company_id);
-        $quotations  = $this->companyQuotationRepositoryinterface->index($company_id);
+        if (Auth::user()->hasRole('ADMIN')) {
+            if ($mother_company_id == 1) {
+                $linrco_quotations = $this->LinrcoQuotationRepositoryInterface->index($company_id , $mother_company_id);
+                return view('system.company_quotations.linrco.index')->with(['linrco_quotations' => $linrco_quotations , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => $mother_company_id]);
+            }
+            elseif (Auth::user()->mother_company_id == 2){
+                $fnrco_quotation = $this->LinrcoQuotationRepositoryInterface->index($company_id , $mother_company_id);
+                return view('system.company_quotations.fnrco.index')->with(['fnrco_quotation' => $fnrco_quotation , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => $mother_company_id]);
+            }
+        }
 
-        return view('system.company_quotations.index')->with(['company' => $company , 'quotations'=>$quotations]);
+        else{
+            if (Auth::user()->mother_company_id == 1) {
+                $linrco_quotations = $this->LinrcoQuotationRepositoryInterface->index($company_id , $mother_company_id);
+                return view('system.company_quotations.linrco.index')->with(['linrco_quotations' => $linrco_quotations , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => Auth::user()->mother_company_id]);
+            }
+            elseif (Auth::user()->mother_company_id == 2){
+                $fnrco_quotation = $this->LinrcoQuotationRepositoryInterface->index($company_id , $mother_company_id);
+                return view('system.company_quotations.fnrco.index')->with(['fnrco_quotation' => $fnrco_quotation , 'company_id' => $company_id ,
+                    'company'=>$company , 'mother_company_id' => Auth::user()->mother_company_id]);
+            }
+        }
     }
 
     /**
@@ -34,9 +60,18 @@ class CompanyQuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($company_id)
+    public function create($company_id , $mother_company_id)
     {
-        return view('system.company_quotations.create')->with([]);
+        $countries = Country::all();
+
+        if ($mother_company_id == 1){
+            return view('system.company_quotations.linrco.create')->with(['countries' => $countries ,
+                'company_id' => $company_id ,'mother_company_id' => $mother_company_id]);
+        }
+        elseif ($mother_company_id == 2){
+            return view('system.company_quotations.fnrco.create')->with(['countries' => $countries ,
+                'company_id' => $company_id , 'mother_company_id' => $mother_company_id]);
+        }
     }
 
     /**
@@ -47,7 +82,14 @@ class CompanyQuotationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+        if ($request->mother_company_id == 1){
+            return $this->LinrcoQuotationRepositoryInterface->store($request);
+        }
+        elseif ($request->mother_company_id == 2){
+            return $this->FnrcoQuotationRepositoryInterface->store($request);
+        }
+
     }
 
     /**

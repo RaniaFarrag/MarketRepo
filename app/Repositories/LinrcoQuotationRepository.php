@@ -12,6 +12,7 @@ use App\Models\Company;
 use App\Models\CompanyNeed;
 use App\Models\Country;
 use App\Models\EmploymentType;
+use App\Models\LinrcoQuotation;
 use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use function GuzzleHttp\Promise\all;
@@ -30,34 +31,21 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
     protected $company_model;
     protected $country_model;
 
-    public function __construct(CompanyNeed $companyNeed , Country $country , Company $company)
+    public function __construct(LinrcoQuotation $linrcoQuotation , Country $country , Company $company)
     {
         $this->company_model = $company;
-        $this->company_need_model = $companyNeed;
+        $this->linrco_Quotation_model = $linrcoQuotation;
         $this->country_model = $country;
         $this->employment_type_model = $country;
     }
 
 
     /** View All CompanyNeeds */
-    public function index($company_id){
-        return $this->company_need_model::where('company_id' , $company_id)->with('company')->paginate(20);
+    public function index($company_id , $mother_company_id){
+        return $this->linrco_Quotation_model::where('company_id' , $company_id)->with('company')->paginate(20);
     }
 
-    /** Get Employee Types */
-    public function getEmployeementtypes($sector_id){
-        if ($sector_id == 1){
-            return $employeement_types = EmploymentType::where('sector_id' , 1)->get();
-        }
-        else{
-            return $employeement_types = EmploymentType::where('sector_id' , '<>' , 1)->get();
-        }
-    }
 
-    /** Create CompanyNeed Form */
-    public function create($company_id){
-        return  $this->country_model::all();
-    }
 
     /** Store CompanyNeed */
     public function store($request)

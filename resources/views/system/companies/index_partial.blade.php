@@ -53,6 +53,16 @@
                                         </li>
                                     @endcan
 
+                                    @can('Show Company Quotation')
+                                        <li class="navi-item">
+                                            <a href="{{ route('companyQuotation.index' , [$company->id , $hidden_mother_company_id]) }}" class="navi-link">
+                                        <span class="navi-icon"><i
+                                                    class="flaticon2-list-3"></i></span>
+                                                <span class="navi-text">{{ trans('dashboard.View Company Quotation') }}</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+
                                     @can('Edit Company')
                                     <li class="navi-item">
                                         <a href="{{ route('companies.edit' , $company->id) }}"

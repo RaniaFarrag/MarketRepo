@@ -7,7 +7,7 @@
  */
 
 namespace App\Repositories;
-use App\Interfaces\CompanyQuotationRepositoryInterface;
+use App\Interfaces\FnrcoQuotationRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use App\Models\Country;
@@ -19,7 +19,7 @@ use function GuzzleHttp\Promise\all;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-class CompanyQuotationRepository implements CompanyQuotationRepositoryInterface
+class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
 {
     use LogTrait;
     use UploadTrait;

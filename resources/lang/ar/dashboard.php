@@ -334,6 +334,8 @@ return [
     'Footer' => 'فوتر',
     'Mother Company' => 'الشركة الام',
     'Successful Assignment Of Companies' => 'تم الاسناذ بنجاح',
+    'Linrco Quotations' => 'عروض اسعار ليناركو',
+    'Linrco Quotation' => 'عرض اسعار ليناركو',
 
 
 

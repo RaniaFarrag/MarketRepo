@@ -9,11 +9,11 @@
 namespace App\Interfaces;
 
 
-interface CompanyQuotationRepositoryInterface
+interface FnrcoQuotationRepositoryInterface
 {
 
     /** View All CompanyQuotation */
-    public function index($company_id);
+    public function index($company_id , $mother_company_id);
 
     /** Get Employee Types */
     public function getEmployeementtypes($sector_id);

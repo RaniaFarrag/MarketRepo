@@ -33,8 +33,24 @@ class CompanyUser extends Model
         'confirm_contract_user_id' ,
     ];
 
-    public function confirmUser(){
+
+    public function evaluator(){
+        return $this->belongsTo(User::class,'evaluation_status_user_id');
+    }
+
+    public function confirmConnect(){
         return $this->belongsTo(User::class,'confirm_connected_user_id');
+    }
+
+    public function confirmInterview(){
+        return $this->belongsTo(User::class,'confirm_interview_user_id');
+    }
+
+    public function confirmNeed(){
+        return $this->belongsTo(User::class,'confirm_connected_user_id');
+    }
+    public function confirmContract(){
+        return $this->belongsTo(User::class,'confirm_contract_user_id');
     }
 
      public function company(){
