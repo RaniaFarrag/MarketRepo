@@ -62,27 +62,28 @@
                     <!--begin::Card-->
                     <!--begin::Card-->
                     <div class="card card-custom">
-                        <form method="post" action="{{ route('companyQuotation.store') }}" class="form"
+                        <form method="post" action="{{ route('companyQuotation.update' , $fnrco_quotation->id) }}" class="form"
                               enctype="multipart/form-data">
                               @csrf
+                              @method('PUT')
                                 <input value="{{ $mother_company_id }}" name="mother_company_id" type="hidden" />
-                                <input value="{{ $company_id }}" name="company_id" type="hidden" />
+                                <!-- <input value="{{ $company_id }}" name="company_id" type="hidden" /> -->
 
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-4">
                                         <label>{{ trans('dashboard.Ref: No') }} :</label>
-                                        <input value="{{ old('ref_no') }}" name="ref_no" type="text" class="form-control"
+                                        <input value="{{ $fnrco_quotation->ref_no }}" name="ref_no" type="text" class="form-control"
                                                placeholder="{{ trans('dashboard.Ref: No') }}" required/>
                                     </div>
                                     <div class="col-lg-4">
                                         <label>{{ trans('dashboard.Attn') }} :</label>
-                                        <input value="{{ old('attn') }}" name="attn" type="text" class="form-control"
+                                        <input value="{{ $fnrco_quotation->attn }}" name="attn" type="text" class="form-control"
                                                placeholder="{{ trans('dashboard.Attn') }}" required/>
                                     </div>
                                     <div class="col-lg-4">
                                         <label>{{ trans('dashboard.Tel') }} :</label>
-                                        <input value="{{ old('telephone') }}" name="telephone" type="text" class="form-control"
+                                        <input value="{{ $fnrco_quotation->telephone }}" name="telephone" type="text" class="form-control"
                                                placeholder="{{ trans('dashboard.Tel') }}" />
                                     </div>
 
@@ -90,20 +91,17 @@
                                 <div class="form-group row">
                                     <div class="col-lg-3">
                                         <label>{{ trans('dashboard.Mobile') }} :</label>
-                                        <input value="{{ old('mobile') }} " name="mobile" type="text" class="form-control"
+                                        <input value="{{ $fnrco_quotation->mobile }} " name="mobile" type="text" class="form-control"
                                                placeholder="{{ trans('dashboard.Mobile') }}" />
                                     </div>
                                     <div class="col-lg-3">
                                         <label>{{ trans('dashboard.E-mail') }} :</label>
-                                        <input value="{{ old('email') }}" name="email" type="text"
+                                        <input value="{{ $fnrco_quotation->email }}" name="email" type="text"
                                                class="form-control" placeholder="{{ trans('dashboard.E-mail') }}" required/>
-
-
-
                                     </div>
                                     <div class="col-lg-3">
                                         <label>{{ trans('dashboard.Quotation No') }} :</label>
-                                        <input value="{{ old('Quotation_No') }}" name="Quotation_No" type="text"
+                                        <input value="{{ $fnrco_quotation->Quotation_No }}" name="Quotation_No" type="text"
                                                class="form-control" placeholder="{{ trans('dashboard.Quotation No') }}" required/>
                                         @error('Quotation_No')
                                             <div class="error">{{ $message }}</div>
@@ -114,12 +112,13 @@
                                        <select class="form-control select2" id="period" name="Contract_period"
                                                             required>
                                             <option value="" selected="">Select All</option>
-                                            <option value="12"  iqama="1115.5" >12 {{ trans('dashboard.Month') }}</option>
-                                            <option value="24" iqama="1019.6">24 {{ trans('dashboard.Month') }}</option>
+                                            <option {{ $fnrco_quotation->Contract_period == 12 ? 'selected' : ''}} value="12"  iqama="1115.5" >12 {{ trans('dashboard.Month') }}</option>
+                                            <option {{ $fnrco_quotation->Contract_period == 24 ? 'selected' : ''}} value="24" iqama="1019.6">24 {{ trans('dashboard.Month') }}</option>
                                         </select>
                                         @error('Contract_period')
                                         <div class="error">{{ $message }}</div>
                                         @enderror
+
                                     </div>
 
                                 </div>
@@ -127,71 +126,73 @@
                                 <div id="kt_repeater_1">
                                     <div id="kt_repeater_1" class="form-group row">
                                         <div data-repeater-list="" class="col-lg-12">
-                                            <div data-repeater-item class="form-group row align-items-center">
+                                            @foreach($fnrco_quotation->fnrcoQuotationsRequest as $request)
+                                                <div data-repeater-item class="form-group row align-items-center">
+                                                <input arr-name="item" type="hidden" name="request_id" value={{ $request->id }}>
 
-                                                <div class="col-lg-4 mb-2">
-                                                    <label>{{ trans('dashboard.Category') }}:</label>
-                                                    <input arr-name="item" value="{{ old('category') }}" name="category" type="text"
-                                                           class="form-control" placeholder="Category" required/>
-                                                           @error('category')
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>{{ trans('dashboard.Category') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->category }}" name="category" type="text"
+                                                            class="form-control" placeholder="Category" required/>
+                                                            @error('category')
                                                                 <div class="error">{{ $message }}</div>
                                                             @enderror
-                                                </div>
-                                                   <div class="col-lg-4 mb-2">
-                                                    <label>{{ trans('dashboard.quantity') }}:</label>
-                                                    <input arr-name="item" value="{{ old('quantity') }}" name="quantity" type="number" id="qty"
-                                                           class="form-control qty" placeholder="QTY" required/>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>{{ trans('dashboard.quantity') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->quantity }}" name="quantity" type="number" id="qty"
+                                                            class="form-control qty" placeholder="QTY" required/>
 
-                                                </div>
-                                                <div class="col-lg-4 mb-2">
-                                                    <label>Nationality:</label>
-                                                    <select arr-name="item" class="form-control select" name="nationality"
-                                                             required>
-                                                        <option value="" selected="">Select All</option>
-                                                        @foreach($countries as $country)
-                                                            <option value="{{ $country->id }}" >{{ $country->name }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>Nationality:</label>
+                                                        <select arr-name="item" class="form-control select" name="nationality"
+                                                                required>
+                                                            <option value="" selected="">Select All</option>
+                                                            @foreach($countries as $country)
+                                                                <option {{ $country->id == $request->nationality ? 'selected' : ''}} value="{{ $country->id }}" >{{ $country->name }}</option>
+                                                            @endforeach
+                                                        </select>
 
-                                                </div>
-                                                <div class="col-lg-4 mb-2">
-                                                    <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
-                                                    <input arr-name="item" value="{{ old('salary') }}" name="salary" type="number"  id="basicSalary"
-                                                           class="form-control basicSalary" placeholder="Basic Salary"  required/>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->salary }}" name="salary" type="number"  id="basicSalary"
+                                                            class="form-control basicSalary" placeholder="Basic Salary"  required/>
 
-                                                </div>
-                                                <div class="col-lg-4 mb-2">
-                                                    <label>{{ trans('dashboard.Food allowance') }}:</label>
-                                                    <input arr-name="item" value="{{ old('Food_allowance') }}" name="Food_allowance" type="number" id="foodAllowance"
-                                                           class="form-control foodAllowance" placeholder="Food  Allowance" required/>
-                                                </div>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>{{ trans('dashboard.Food allowance') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->Food_allowance }}" name="Food_allowance" type="number" id="foodAllowance"
+                                                            class="form-control foodAllowance" placeholder="Food  Allowance" required/>
+                                                    </div>
 
-                                                <div class="col-lg-4 mb-2">
-                                                    <label>{{ trans('dashboard.FNRCO Charge')}}:</label>
-                                                    <input arr-name="item" value="{{ old('Fnrco_charge') }}" name="Fnrco_charge" type="text" id="fNRCOCharge" class="form-control fNRCOCharge" placeholder="FNRCO Charge" required/>
-                                                </div>
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>{{ trans('dashboard.FNRCO Charge')}}:</label>
+                                                        <input arr-name="item" value="{{ $request->Fnrco_charge }}" name="Fnrco_charge" type="text" id="fNRCOCharge" class="form-control fNRCOCharge" placeholder="FNRCO Charge" required/>
+                                                    </div>
 
-                                                <div class="col-lg-3 mb-2">
-                                                    <label>{{ trans('dashboard.Iqama + Visa') }}:</label>
-                                                    <input arr-name="item" value="{{ old('iqama_visa') }}"  id="iqamaVisa" name="iqama_visa" type="text" class="form-control iqamaVisa" readonly="true" placeholder="Iqama + Visa"/>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Iqama + Visa') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->iqama_visa }}"  id="iqamaVisa" name="iqama_visa" type="text" class="form-control iqamaVisa" readonly="true" placeholder="Iqama + Visa"/>
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Admin Fees') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->admin_fees }}"  id="adminFees" name="admin_fees" type="text" class="form-control adminFees" readonly="true" placeholder="Admin Fees "/>
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Value Per Employee / Month') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->value_per_employee_month }}"  id="PerEmployee" name="value_per_employee_month" type="text" class="form-control PerEmployee" readonly="true" placeholder="Value Per Employee / Month "/>
+                                                    </div>
+                                                    <div class="col-lg-3 mb-2">
+                                                        <label>{{ trans('dashboard.Total Value Per Month') }}:</label>
+                                                        <input arr-name="item" value="{{ $request->value_per_employee_month }}"  id="totalValue" name="total_value_per_month" type="text" class="form-control totalValue" readonly="true" placeholder="Total Value Per Month"/>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-3 mb-2">
-                                                    <label>{{ trans('dashboard.Admin Fees') }}:</label>
-                                                    <input arr-name="item" value="{{ old('dashboard.admin_fees') }}"  id="adminFees" name="admin_fees" type="text" class="form-control adminFees" readonly="true" placeholder="Admin Fees "/>
-                                                </div>
-                                                <div class="col-lg-3 mb-2">
-                                                    <label>{{ trans('dashboard.Value Per Employee / Month') }}:</label>
-                                                    <input arr-name="item" value="{{ old('dashboard.value_per_employee_month') }}"  id="PerEmployee" name="value_per_employee_month" type="text" class="form-control PerEmployee" readonly="true" placeholder="Value Per Employee / Month "/>
-                                                </div>
-                                                <div class="col-lg-3 mb-2">
-                                                    <label>{{ trans('dashboard.Total Value Per Month') }}:</label>
-                                                    <input arr-name="item" value="{{ old('dashboard.value_per_employee_month') }}"  id="totalValue" name="total_value_per_month" type="text" class="form-control totalValue" readonly="true" placeholder="Total Value Per Month"/>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="form-group row align-items-center" >
-
                                         <div class="col-lg-3 float-right" style="float: none !important;margin: 0 auto;">
                                             <a href="javascript:;" data-repeater-create="" class="btn btn-block font-weight-bolder btn-light-primary">
                                                 <i class="la la-plus"></i> {{ trans('dashboard.Add a new Category') }}
@@ -203,7 +204,7 @@
                                 <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label>{{ trans('dashboard.Saudization') }} :</label>
-                                        <input value="1" name="saudization" type="checkbox"/>
+                                        <input {{ $fnrco_quotation->saudization == 1 ? 'checked' : ''}} value="1" name="saudization" type="checkbox"/>
                                     </div>
                                 </div>
 

@@ -11,23 +11,12 @@ namespace App\Interfaces;
 
 interface FnrcoQuotationRepositoryInterface
 {
-
-    /** View All CompanyQuotation */
     public function index($company_id , $mother_company_id);
 
-    /** Get Employee Types */
-    public function getEmployeementtypes($sector_id);
-
-    /** Create CompanyQuotation */
-    public function create($company_id);
-
-    /** Store CompanyQuotation */
     public function store($request);
 
-    /** Submit Edit CompanyQuotation */
-    public function update($request , $companyQuotation);
+    public function update($request , $linrco_quotation);
 
-    /** Delete CompanyQuotation */
-    public function destroy($companyQuotation);
+    public function destroy($quotation_id , $mother_company_id);
 
 }

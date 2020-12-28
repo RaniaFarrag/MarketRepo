@@ -5,7 +5,7 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class LinrcoQuotation extends Model
+class FnrcoQuotation extends Model
 {
     protected $fillable = [
         'ref_no',
@@ -14,13 +14,14 @@ class LinrcoQuotation extends Model
         'mobile',
         'email',
         'Quotation_No',
+        'Contract_period',
         'saudization',
         'company_id',
         'user_id',
     ];
 
-    public function linrcoQuotationsRequest(){
-        return $this->hasMany(LinrcoQuotationRequest::class);
+    public function fnrcoQuotationsRequest(){
+        return $this->hasMany(FnrcoQuotationRequest::class);
     }
 
     public function company(){
@@ -30,5 +31,4 @@ class LinrcoQuotation extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
 }

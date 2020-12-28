@@ -11,13 +11,12 @@ namespace App\Interfaces;
 
 interface LinrcoQuotationRepositoryInterface
 {
-
     public function index($company_id , $mother_company_id);
 
     public function store($request);
 
-    public function update($request , $companyNeed);
+    public function update($request , $linrco_quotation);
 
-    public function destroy($companyNeed);
+    public function destroy($quotation_id , $mother_company_id);
 
 }

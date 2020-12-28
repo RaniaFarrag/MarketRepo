@@ -102,14 +102,14 @@
                                         <tbody>
                                         @foreach($linrco_quotations as $k=>$quotation)
                                             <tr>
-                                                <td>{{ $k+1 }}</td>
-                                                <td>{{ $quotation->id }}</td>
+                                                <td>{{ $quotation->ref_no }}</td>
+                                                <td>{{ $quotation->Quotation_No }}</td>
                                                 <td>{{ $quotation->attn }}</td>
                                                 <td>{{ $quotation->created_at }}</td>
-                                                <td>{{ $quotation->user->name }}</td>
-                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_quotation') }}">{{ trans('dashboard.Quotation Details') }}</a></td>
-                                                <td><a class="btn btn-success font-weight-bold" href="{{ route('cities.edit' , $city->id) }}">{{ trans('dashboard.edit') }}</a></td>
-                                                <td>{{ trans('dashboard.delete') }}</td>
+                                                <td>{{ app()->getLocale() == 'ar' ? $quotation->user->name : $quotation->user->name_en }}</td>
+                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Quotation Details') }}</a></td>
+                                                <td><a href={{ route('companyQuotation.edit' , [$quotation->id , $mother_company_id]) }} class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
+                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('companyQuotation.destroy' , [$quotation->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -135,15 +135,4 @@
 
 @section('script')
 
-    <script>
-        {{--RANIA--}}
-        {{--CONFIRM TO DELETE NEED--}}
-        function confirmDelete() {
-            @if(app()->getLocale() == 'ar')
-                return confirm('هل متاكد انك تريد حذف هذا الاحتياج ؟ ');
-            @else
-                return confirm('Are you sure you want to delete?');
-            @endif
-        }
-    </script>
 @endsection

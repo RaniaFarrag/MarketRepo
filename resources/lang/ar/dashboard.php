@@ -336,6 +336,22 @@ return [
     'Successful Assignment Of Companies' => 'تم الاسناذ بنجاح',
     'Linrco Quotations' => 'عروض اسعار ليناركو',
     'Linrco Quotation' => 'عرض اسعار ليناركو',
+    'Add New Company Quotations' => 'اضافة عرض اسعار جديد',
+    'Fnrco Quotations' => 'عروض اسعار فناركو',
+    'Fnrco Quotation' => 'عرض اسعار فناركو',
+    'Category' => 'التصنيف',
+    'Contract Period' => 'مدة العقد',
+    'quantity' => 'الكمية',
+    'Food allowance' => 'Food allowance',
+    'FNRCO Charge' => 'FNRCO Charge',
+    'Iqama + Visa' => 'الإقامة + الفيزا',
+    'Admin Fees' => 'Admin Fees',
+    'Value Per Employee / Month' => 'Value Per Employee / Month',
+    'Total Value Per Month' => 'Total Value Per Month',
+    'Add a new Category' => 'أضف تصنيف جديد',
+    'Saudization' => 'السعودة',
+    'View Company Quotation' => 'أضف عرض اسعار',
+
 
 
 

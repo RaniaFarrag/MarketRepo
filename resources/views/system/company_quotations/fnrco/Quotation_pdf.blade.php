@@ -4,16 +4,15 @@
     <html lang="ar" dir="rtl">
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title>عرض اسعار الى </title>
+        <title> {{$fnrco_quotation->company->name }} عرض اسعار الى </title>
         @else
 
             <html lang="en" dir="ltr">
             <head>
                 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-                <title>Quotation For </title>
+                <title>Quotation For {{$fnrco_quotation->company->name }} </title>
 
                 @endif
-
 
                 @if (app()->getLocale() == 'ar')
                     <style>
@@ -202,12 +201,12 @@
 
 
             <htmlpageheader name="page-header">
-                <header><img style="width: 100%" src="{{ asset('dashboard/assets/head.jpg') }}"></header>
+                <header><img style="width: 100%" src="{{ asset('dashboard/assets/fhead.jpg') }}"></header>
             </htmlpageheader>
 
             <htmlpagefooter name="page-footer">
 
-                <footer><img style="width: 100%" src="{{ asset('dashboard/assets/foot.jpg') }}"></footer>
+                <footer><img style="width: 100%" src="{{ asset('dashboard/assets/ffoot.jpg') }}"></footer>
             </htmlpagefooter>
 
             <main>
@@ -228,53 +227,53 @@
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.To') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">RABIA HOSPITAL
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->company->name }}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Ref: No') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">LINRCO / HO /
-                                        051 – 2020
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
+                                       {{ $fnrco_quotation->ref_no }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Attn') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">DR. MOHAMED
-                                        YAMANI
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->attn }}
+                                        
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Date') }} </td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">17th AUGUST
-                                        2020
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
+                                    {{ $fnrco_quotation->created_at }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Tel') }} </td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">+966 - 114 - 999
-                                        - 000
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
+                                    {{ $fnrco_quotation->telephone }}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Industry') }} </td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">HEALTH CARE
-                                        INDUSTRY
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
+                                        {{ $fnrco_quotation->company->sector->name }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Mobile') }} </td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">+966 - 541 - 454
-                                        - 967
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
+                                        {{ $fnrco_quotation->mobile }}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Quotation No.') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">051</td>
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->Quotation_No }}</td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.E-mail') }}</td>
                                     <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
-                                        Yamani2@yahoo.com
+                                        {{ $fnrco_quotation->email }}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Page No.') }}</td>
@@ -320,15 +319,11 @@
                                 <tr class="en ltr">
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
-                                        {{ __('dashboard.TRADE') }}
+                                        {{ __('dashboard.No') }}
                                     </td>
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
-                                        {{ __('dashboard.Gender') }}
-                                    </td>
-                                    <td class="en ltr"
-                                        style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
-                                        {{ __('dashboard.Qualification') }}
+                                        {{ __('dashboard.Category') }}
                                     </td>
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
@@ -340,47 +335,60 @@
                                     </td>
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
-                                        {{ __('dashboard.SALARY (SAR)') }}
+                                        {{ __('dashboardSALARY (SAR)') }}
                                     </td>
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
-                                        {{ __('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}
+                                        {{ __('dashboard.F&A') }}
                                     </td>
                                     <td class="en ltr"
-                                        style="background: #d7d7d7;font-size: 11px; vertical-align: middle; text-align: center;line-height: 16px; width: 170px;">
-                                        {{ __('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}
+                                        style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
+                                        {{ __('dashboard.Value Per Employee / Month') }}
                                     </td>
+                                    <td class="en ltr"
+                                        style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
+                                        {{ __('dashboard.Total Value Per Month') }}
+                                    </td>
+                                    
                                 </tr>
-                                <tr>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">GENERAL
-                                        NURSES
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">FEMALE
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">BACHELOR
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">15
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">PHILIPPINES
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">3500+300+
-                                        Transport &
-                                        Accommodation
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">ONE MONTH
-                                        SALARY
-                                    </td>
-                                    <td class="en ltr"
-                                        style="font-size: 12px; vertical-align: middle;text-align: center;">$750
-                                    </td>
-                                </tr>
+                                @foreach($fnrco_quotation->fnrcoQuotationsRequest as $fnrco_request)
+                                    <tr>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->id }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->category }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->quantity }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->country->name }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->salary }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->Food_allowance }}
+                                        </td>
+                                        
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->value_per_employee_month }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $fnrco_request->total_value_per_month }}
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <p class="en ltr" style="line-height: 24px;">

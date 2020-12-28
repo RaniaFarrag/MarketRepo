@@ -79,6 +79,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\LinrcoQuotationRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\FnrcoQuotationRepositoryInterface',
+            'App\Repositories\FnrcoQuotationRepository'
+        );
+
     }
 
     /**

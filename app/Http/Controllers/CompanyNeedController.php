@@ -44,7 +44,7 @@ class CompanyNeedController extends Controller
                 return view('system.companies.needs.linrco_needs.index')->with(['needs' => $linrco_needs , 'company_id' => $company_id ,
                     'company'=>$company , 'mother_company_id' => $mother_company_id]);
             }
-            elseif (Auth::user()->mother_company_id == 2){
+            elseif ($mother_company_id == 2){
                 $fnrco_needs = $this->fnrcoNeedRepositoryinterface->index($company_id);
                 return view('system.companies.needs.fnrco_needs.index')->with(['needs' => $fnrco_needs , 'company_id' => $company_id ,
                     'company'=>$company , 'mother_company_id' => $mother_company_id]);

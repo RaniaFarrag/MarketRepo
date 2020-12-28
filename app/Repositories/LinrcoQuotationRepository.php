@@ -11,8 +11,8 @@ use App\Interfaces\LinrcoQuotationRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use App\Models\Country;
-use App\Models\EmploymentType;
 use App\Models\LinrcoQuotation;
+use App\Models\LinrcoQuotationRequest;
 use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use function GuzzleHttp\Promise\all;
@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationData;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
@@ -27,123 +29,113 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
     use LogTrait;
     use UploadTrait;
 
-    protected $company_need_model;
-    protected $company_model;
-    protected $country_model;
+    protected $linrco_Quotation_model;
 
-    public function __construct(LinrcoQuotation $linrcoQuotation , Country $country , Company $company)
-    {
-        $this->company_model = $company;
+    public function __construct(LinrcoQuotation $linrcoQuotation)
+    {  
         $this->linrco_Quotation_model = $linrcoQuotation;
-        $this->country_model = $country;
-        $this->employment_type_model = $country;
     }
 
 
-    /** View All CompanyNeeds */
+    /** View All CompanyQuotations */
     public function index($company_id , $mother_company_id){
-        return $this->linrco_Quotation_model::where('company_id' , $company_id)->with('company')->paginate(20);
+        return $this->linrco_Quotation_model::where('company_id' , $company_id)
+            ->with(['company' , 'linrcoQuotationsRequest'])->paginate(20);
     }
 
 
-
-    /** Store CompanyNeed */
+    /** Store CompanyQuotation */
     public function store($request)
     {
-        $company_need = $this->company_need_model::create([
-            // Common Inputs
-            'employment_type_id' => $request->employment_type_id,
-            'required_position' => $request->required_position,
-            'job_description' => $request->job_description,
-            'candidates_number' => $request->candidates_number,
-            'country_id' => $request->country_id,
-            'gender' => $request->gender,
-            'minimum_age' => $request->minimum_age,
-            'total_salary' => $request->total_salary,
-            'special_note' => $request->special_note,
+        $validated = $request->validate([
+            'Quotation_No' => 'required',
+        ]);
+        $linrco_Quotation = $this->linrco_Quotation_model::create([
+            'ref_no' => $request->ref_no,
+            'attn' => $request->attn,
+            'telephone' => $request->telephone,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'Quotation_No' => $request->Quotation_No,
+            'saudization' => $request->saudization,
             'company_id' => $request->company_id,
-            'sector_id' => $request->sector_id,
-            'user_id' => auth()->id(),
-
-            // Medical Inputs
-            'educational_qualification' => $request->educational_qualification,
-            'data_flow' => $request->data_flow,
-            'prometric' => $request->prometric,
-            'classification' => $request->classification,
-            'total_experience' => $request->total_experience,
-            'area_of_experience' => $request->area_of_experience,
-            'other_skills' => $request->other_skills,
-
-            // Default Inputs
-            'contract_duration' => $request->contract_duration,
-            'experience_range' => $request->experience_range,
-            'work_location' => $request->work_location,
-            'work_hours' => $request->work_hours,
-            'deadline' => $request->deadline,
-
+            'user_id' => Auth::user()->id,
         ]);
 
-        $this->addLog(auth()->id() , $company_need->id , 'company_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
+        foreach ($request->item as $item) {
+            $linrco_Quotation->linrcoQuotationsRequest()->create([
+                'trade' => $item['trade'],
+                'gender' => $item['gender'],
+                'educational_qualification' => $item['educational_qualification'],
+                'quantity' => $item['quantity'],
+                'nationality' => $item['nationality'],
+                'salary' => $item['salary'],
+                'RECRUITMENT_CHARGES_PER_CANDIDATE' => $item['RECRUITMENT_CHARGES_PER_CANDIDATE'],
+                'VISA_PROCESSING_CHARGES_PER_CANDIDATE' => $item['VISA_PROCESSING_CHARGES_PER_CANDIDATE'],
+            ]);
+        }
+        
+        $this->addLog(auth()->id() , $linrco_Quotation->id , 'LinrcoQuotation' , 'تم اضافة عرض اسعار شركة ' , 'New Linrco Quotation has been added');
 
         Alert::success('success', trans('dashboard. added successfully'));
-        return redirect(route('company_needs.index' , $request->company_id));
+        return redirect(route('companyQuotation.index' , [$request->company_id , $request->mother_company_id]));
     }
 
 
-    /** Submit Edit CompanyNeed */
-    public function update($request , $companyNeed){
-        //dd($request->data_flow);
-        $companyNeed->update([
-            // Common Inputs
-            'employment_type_id' => $request->employment_type_id,
-            'required_position' => $request->required_position,
-            'job_description' => $request->job_description,
-            'candidates_number' => $request->candidates_number,
-            'country_id' => $request->country_id,
-            'gender' => $request->gender,
-            'minimum_age' => $request->minimum_age,
-            'total_salary' => $request->total_salary,
-            'special_note' => $request->special_note,
-            'company_id' => $request->company_id,
-            'sector_id' => $request->sector_id,
-            'user_id' => auth()->id(),
-
-            // Medical Inputs
-            'educational_qualification' => $request->educational_qualification,
-            'data_flow' => $request->data_flow,
-            'prometric' => $request->prometric,
-            'classification' => $request->classification,
-            'total_experience' => $request->total_experience,
-            'area_of_experience' => $request->area_of_experience,
-            'other_skills' => $request->other_skills,
-
-            // Default Inputs
-            'contract_duration' => $request->contract_duration,
-            'experience_range' => $request->experience_range,
-            'work_location' => $request->work_location,
-            'work_hours' => $request->work_hours,
-            'deadline' => $request->deadline,
-
+    /** Submit Edit CompanyQuotation */
+    public function update($request , $linrco_quotation){
+        $validated = $request->validate([
+            'Quotation_No' => 'required',
+        ]);
+        $linrco_quotation->update([
+            'ref_no' => $request->ref_no,
+            'attn' => $request->attn,
+            'telephone' => $request->telephone,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'Quotation_No' => $request->Quotation_No,
+            'saudization' => $request->saudization,
+            'company_id' => $linrco_quotation->company_id,
+            'user_id' => Auth::user()->id,
         ]);
 
-        $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
+        foreach ($request->item as $item) {
+            // dd($linrco_quotation->id);
+            LinrcoQuotationRequest::updateOrCreate(
+                ['linrco_quotation_requests.id' => $item['request_id']],
+                [
+                    'linrco_quotation_id' => $linrco_quotation->id,
+                    'trade' => $item['trade'],
+                    'gender' => $item['gender'],
+                    'educational_qualification' => $item['educational_qualification'],
+                    'quantity' => $item['quantity'],
+                    'nationality' => $item['nationality'],
+                    'salary' => $item['salary'],
+                    'RECRUITMENT_CHARGES_PER_CANDIDATE' => $item['RECRUITMENT_CHARGES_PER_CANDIDATE'],
+                    'VISA_PROCESSING_CHARGES_PER_CANDIDATE' => $item['VISA_PROCESSING_CHARGES_PER_CANDIDATE'],                    
+                ]
+            );
+        }
 
+        $this->addLog(auth()->id() , $linrco_quotation->id , 'LinrcoQuotation' , 'تم تعديل عرض اسعار شركة ' , 'New Linrco Quotation has been updated');
 
         Alert::success('success', trans('dashboard. updated successfully'));
-        return redirect(route('company_needs.index' , $companyNeed->company_id));
+        return redirect(route('companyQuotation.index' , [$linrco_quotation->company_id , $request->mother_company_id]));
 
     }
 
 
     /** Delete CompanyNeed */
-    public function destroy($companyNeed){
-        //Alert::success('warning', trans('dashboard.Are You Sure ?'));
-        $companyNeed->delete();
+    public function destroy($quotation_id , $mother_company_id){
+        Alert::success('warning', trans('dashboard.Are You Sure ?'));
+        $linrco_quotation = $this->linrco_Quotation_model::findOrFail($quotation_id);
+        $linrco_quotation->delete();
+        $linrco_quotation->linrcoQuotationsRequest()->delete();
 
-        $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم حذف احتياج للشركة ' , 'CompanyNeed has been deleted');
+        $this->addLog(auth()->id() , $linrco_quotation->id , 'company_needs' , 'تم حذف عرض اسعار لشركة ليناركو ' , 'Linrco Quotation has been deleted');
 
         Alert::success('success', trans('dashboard.deleted successfully'));
-        return redirect(route('company_needs.index' , $companyNeed->company_id));
+        return redirect(route('companyQuotation.index' , [$linrco_quotation->company_id , $mother_company_id]));
     }
 
 }

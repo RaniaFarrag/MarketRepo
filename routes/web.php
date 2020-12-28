@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*Route::get('link', function () {
+    \Artisan::call('storage:link');
+
+});*/
+
+//Route::get('link', function () {
+//    \Artisan::call('permission:cache-reset');
+//
+//});
+
+
 Auth::routes();
 
 /** Add This before upload */
@@ -118,7 +129,19 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         'uses' => 'CompanyQuotationController@create'
     ]);
 
-    Route::get('print/quotation' , 'CompanyQuotationController@printQuotation')->name('print_quotation');
+    /** Custom edit route */
+    Route::get('companyQuotation/edit/{quotation_id}/{mother_company_id}', [
+        'as' => 'companyQuotation.edit',
+        'uses' => 'CompanyQuotationController@edit'
+    ]);
+
+    /** Custom destroy route */
+    Route::get('companyQuotation/destroy/{quotation_id}/{mother_company_id}', [
+        'as' => 'companyQuotation.destroy',
+        'uses' => 'CompanyQuotationController@destroy'
+    ]);
+
+    Route::get('print/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printQuotation')->name('print_quotation');
 
 
     /**************************************************GET******************************************************/

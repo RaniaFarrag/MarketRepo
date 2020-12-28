@@ -11,12 +11,14 @@ use App\Interfaces\FnrcoQuotationRepositoryInterface;
 use App\Models\Company;
 use App\Models\CompanyNeed;
 use App\Models\Country;
-use App\Models\EmploymentType;
-use App\Models\LinrcoQuotation;
+use App\Models\FnrcoQuotation;
+use App\Models\FnrcoQuotationRequest;
 use App\Traits\logTrait;
 use App\Traits\UploadTrait;
 use function GuzzleHttp\Promise\all;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
@@ -24,132 +26,124 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
     use LogTrait;
     use UploadTrait;
 
-    protected $company_quotation_model;
+    protected $fnrco_quotation_model;
 
-    public function __construct(LinrcoQuotation $linrcoQuotation)
+    public function __construct(FnrcoQuotation $fnrcoQuotation)
     {
-        $this->company_quotation_model = $linrcoQuotation;
-
+        $this->fnrco_quotation_model = $fnrcoQuotation;
     }
 
 
-    /** View All CompanyNeeds */
-    public function index($company_id){
-        return $this->company_quotation_model::where('company_id' , $company_id)->with('company')->paginate(20);
+     /** View All FnrcoQuotations */
+     public function index($company_id , $mother_company_id){
+        return $this->fnrco_quotation_model::where('company_id' , $company_id)
+            ->with(['company' , 'fnrcoQuotationsRequest'])->paginate(20);
     }
 
-    /** Get Employee Types */
-    public function getEmployeementtypes($sector_id){
-        if ($sector_id == 1){
-            return $employeement_types = EmploymentType::where('sector_id' , 1)->get();
-        }
-        else{
-            return $employeement_types = EmploymentType::where('sector_id' , '<>' , 1)->get();
-        }
-    }
 
-    /** Create CompanyNeed Form */
-    public function create($company_id){
-        return  $this->country_model::all();
-    }
-
-    /** Store CompanyNeed */
+    /** Store FnrcoQuotation */
     public function store($request)
     {
-        $company_need = $this->company_need_model::create([
-            // Common Inputs
-            'employment_type_id' => $request->employment_type_id,
-            'required_position' => $request->required_position,
-            'job_description' => $request->job_description,
-            'candidates_number' => $request->candidates_number,
-            'country_id' => $request->country_id,
-            'gender' => $request->gender,
-            'minimum_age' => $request->minimum_age,
-            'total_salary' => $request->total_salary,
-            'special_note' => $request->special_note,
-            'company_id' => $request->company_id,
-            'sector_id' => $request->sector_id,
-            'user_id' => auth()->id(),
-
-            // Medical Inputs
-            'educational_qualification' => $request->educational_qualification,
-            'data_flow' => $request->data_flow,
-            'prometric' => $request->prometric,
-            'classification' => $request->classification,
-            'total_experience' => $request->total_experience,
-            'area_of_experience' => $request->area_of_experience,
-            'other_skills' => $request->other_skills,
-
-            // Default Inputs
-            'contract_duration' => $request->contract_duration,
-            'experience_range' => $request->experience_range,
-            'work_location' => $request->work_location,
-            'work_hours' => $request->work_hours,
-            'deadline' => $request->deadline,
-
+        $validated = $request->validate([
+            'Contract_period' => 'required',
+            'Quotation_No' => 'required',
+            'item.*.category' => 'required',
         ]);
 
-        $this->addLog(auth()->id() , $company_need->id , 'company_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
+        $fnrco_Quotation = $this->fnrco_quotation_model::create([
+            'ref_no' => $request->ref_no,
+            'attn' => $request->attn,
+            'telephone' => $request->telephone,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'Quotation_No' => $request->Quotation_No,
+            'Contract_period' => $request->Contract_period,
+            'saudization' => $request->saudization,
+            'company_id' => $request->company_id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        foreach ($request->item as $item) {
+            $fnrco_Quotation->fnrcoQuotationsRequest()->create([
+                'category' => $item['category'],
+                'quantity' => $item['quantity'],
+                'nationality' => $item['nationality'],
+                'salary' => $item['salary'],
+                'Food_allowance' => $item['Food_allowance'],
+                'Fnrco_charge' => $item['Fnrco_charge'],
+                'iqama_visa' => $item['iqama_visa'],
+                'admin_fees' => $item['admin_fees'],
+                'value_per_employee_month' => $item['value_per_employee_month'],
+                'total_value_per_month' => $item['total_value_per_month'],
+                'fnrco_quotation_id' => $fnrco_Quotation->id,
+            ]);
+        }
+        
+        $this->addLog(auth()->id() , $fnrco_Quotation->id , 'FnrcoQuotation' , 'تم اضافة عرض اسعار لشركة فناركو ' , 'New Fnrco Quotation has been added');
 
         Alert::success('success', trans('dashboard. added successfully'));
-        return redirect(route('company_needs.index' , $request->company_id));
+        return redirect(route('companyQuotation.index' , [$request->company_id , $request->mother_company_id]));
     }
 
 
-    /** Submit Edit CompanyNeed */
-    public function update($request , $companyNeed){
-        //dd($request->data_flow);
-        $companyNeed->update([
-            // Common Inputs
-            'employment_type_id' => $request->employment_type_id,
-            'required_position' => $request->required_position,
-            'job_description' => $request->job_description,
-            'candidates_number' => $request->candidates_number,
-            'country_id' => $request->country_id,
-            'gender' => $request->gender,
-            'minimum_age' => $request->minimum_age,
-            'total_salary' => $request->total_salary,
-            'special_note' => $request->special_note,
-            'company_id' => $request->company_id,
-            'sector_id' => $request->sector_id,
-            'user_id' => auth()->id(),
-
-            // Medical Inputs
-            'educational_qualification' => $request->educational_qualification,
-            'data_flow' => $request->data_flow,
-            'prometric' => $request->prometric,
-            'classification' => $request->classification,
-            'total_experience' => $request->total_experience,
-            'area_of_experience' => $request->area_of_experience,
-            'other_skills' => $request->other_skills,
-
-            // Default Inputs
-            'contract_duration' => $request->contract_duration,
-            'experience_range' => $request->experience_range,
-            'work_location' => $request->work_location,
-            'work_hours' => $request->work_hours,
-            'deadline' => $request->deadline,
-
+    /** Submit Edit CompanyQuotation */
+    public function update($request , $fnrco_quotation){
+        $validated = $request->validate([
+            'Contract_period' => 'required',
+            'Quotation_No' => 'required',
+            'item.*.category' => 'required',
+        ]);
+        $fnrco_quotation->update([
+            'ref_no' => $request->ref_no,
+            'attn' => $request->attn,
+            'telephone' => $request->telephone,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
+            'Quotation_No' => $request->Quotation_No,
+            'Contract_period' => $request->Contract_period,
+            'saudization' => $request->saudization,
+            'company_id' => $fnrco_quotation->company_id,
+            'user_id' => Auth::user()->id,
         ]);
 
-        $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم اضافة احتياجات شركة ' , 'New Company Need has been added');
+        foreach ($request->item as $item) {
+            FnrcoQuotationRequest::updateOrCreate(
+                ['fnrco_quotation_requests.id' => $item['request_id']],
+                [
+                    'category' => $item['category'],
+                    'quantity' => $item['quantity'],
+                    'nationality' => $item['nationality'],
+                    'salary' => $item['salary'],
+                    'Food_allowance' => $item['Food_allowance'],
+                    'Fnrco_charge' => $item['Fnrco_charge'],
+                    'iqama_visa' => $item['iqama_visa'],
+                    'admin_fees' => $item['admin_fees'],
+                    'value_per_employee_month' => $item['value_per_employee_month'],
+                    'total_value_per_month' => $item['total_value_per_month'],
+                    'fnrco_quotation_id' => $fnrco_quotation->id,    
+                ]
+            );
+        }
 
+        $this->addLog(auth()->id() , $fnrco_quotation->id , 'FnrcoQuotation' , 'تم تعديل عرض اسعار لشركة فناركو ' , 'New Fnrco Quotation has been updated');
 
         Alert::success('success', trans('dashboard. updated successfully'));
-        return redirect(route('company_needs.index' , $companyNeed->company_id));
+        return redirect(route('companyQuotation.index' , [$fnrco_quotation->company_id , $request->mother_company_id]));
 
     }
 
 
     /** Delete CompanyNeed */
-    public function destroy($companyNeed){
-        //Alert::success('warning', trans('dashboard.Are You Sure ?'));
-        $companyNeed->delete();
+    public function destroy($quotation_id , $mother_company_id){
+        Alert::success('warning', trans('dashboard.Are You Sure ?'));
+        $fnrco_quotation = $this->fnrco_quotation_model::findOrFail($quotation_id);
+        $fnrco_quotation->delete();
+        $fnrco_quotation->FnrcoQuotationsRequest()->delete();
 
-        $this->addLog(auth()->id() , $companyNeed->id , 'company_needs' , 'تم حذف احتياج للشركة ' , 'CompanyNeed has been deleted');
+        $this->addLog(auth()->id() , $fnrco_quotation->id , 'FnrcoQuotation' , 'تم حذف عرض اسعار لشركة فناركو ' , 'Fnrco Quotation has been deleted');
 
         Alert::success('success', trans('dashboard.deleted successfully'));
-        return redirect(route('company_needs.index' , $companyNeed->company_id));
+        return redirect(route('companyQuotation.index' , [$fnrco_quotation->company_id , $mother_company_id]));
     }
 
 }

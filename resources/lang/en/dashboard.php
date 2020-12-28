@@ -335,6 +335,21 @@ return [
     'Successful Assignment Of Companies' => 'Successful Assignment Of Companies',
     'Linrco Quotations' => 'Linrco Quotations',
     'Linrco Quotation' => 'Linrco Quotation',
+    'Add New Company Quotations' => 'Add New Company Quotations',
+    'Fnrco Quotations' => 'Fnrco Quotations',
+    'Fnrco Quotation' => 'Fnrco Quotation',
+    'Category' => 'Category',
+    'Contract Period' => 'Contract Period',
+    'quantity' => 'quantity',
+    'Food allowance' => 'Food allowance',
+    'FNRCO Charge' => 'FNRCO Charge',
+    'Iqama + Visa' => 'Iqama + Visa',
+    'Admin Fees' => 'Admin Fees',
+    'Value Per Employee / Month' => 'Value Per Employee / Month',
+    'Total Value Per Month' => 'Total Value Per Month',
+    'Add a new Category' => 'Add a new Category',
+    'Saudization' => 'Saudization',
+    'View Company Quotation' => 'View Company Quotation',
 
 
 

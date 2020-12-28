@@ -9,12 +9,11 @@
             <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-1">
-
                     <!--begin::Heading-->
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Company Quotations') }}
+                        {{ trans('dashboard.Add New Company Quotations') }}
                         </h2>
                         <!--end::Title-->
 
@@ -32,8 +31,8 @@
                                class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Companies Data') }}  </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Company Quotations') }}
+                            <a href="{{ route('companyQuotation.index' , [$company_id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Linrco Quotations') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -63,7 +62,6 @@
                                 <input value="{{ $company_id }}" name="company_id" type="hidden" />
 
                                 <div class="card-body">
-
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Ref: No') }} :</label>
@@ -92,17 +90,16 @@
                                             <label>{{ trans('dashboard.E-mail') }} :</label>
                                             <input value="{{ old('email') }}" name="email" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.E-mail') }}" required/>
-
-
-
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Quotation No.') }} :</label>
                                             <input value="{{ old('Quotation_No') }}" name="Quotation_No" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Quotation No.') }}" required/>
+                                            @error('Quotation_No')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
-
 
                                     <div id="kt_repeater_1">
                                         <div id="kt_repeater_1" class="form-group row">
@@ -111,14 +108,14 @@
 
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.TRADE') }}:</label>
-                                                        <input value="{{ old('trade') }}" name="trade" type="text"
+                                                        <input arr-name="item" value="{{ old('trade') }}" name="trade" type="text"
                                                                class="form-control" placeholder="{{ trans('dashboard.TRADE') }}" required/>
 
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.Gender') }} :</label>
-                                                        <select id="gender" class="form-control select2" name="gender"
-                                                                required>
+                                                        <select arr-name="item" id="gender" class="form-control select" name="gender"
+                                                                >
                                                             <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                             <option value="1" >{{ trans('dashboard.Male') }}</option>
                                                             <option value="2">{{ trans('dashboard.Female') }}</option>
@@ -126,20 +123,20 @@
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.Qualification') }}:</label>
-                                                        <input value="{{ old('educational_qualification') }}" name="educational_qualification" type="text"
+                                                        <input arr-name="item" value="{{ old('educational_qualification') }}" name="educational_qualification" type="text"
                                                                class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
 
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.QTY') }}:</label>
-                                                        <input value="{{ old('quantity') }}" name="quantity" type="number"
+                                                        <input arr-name="item" value="{{ old('quantity') }}" name="quantity" type="number"
                                                                class="form-control" placeholder="{{ trans('dashboard.QTY') }}" required/>
 
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.Nationality') }}:</label>
-                                                        <select  class="form-control select2" name="nationality"
-                                                                 required>
+                                                        <select arr-name="item" class="form-control select" name="nationality"
+                                                                 >
                                                             <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                             @foreach($countries as $country)
                                                                 <option value="{{ $country->id }}" >{{ $country->name }}</option>
@@ -150,17 +147,17 @@
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
-                                                        <input value="{{ old('salary') }}" name="salary" type="text"
+                                                        <input arr-name="item" value="{{ old('salary') }}" name="salary" type="text"
                                                                class="form-control" placeholder="{{ trans('dashboard.SALARY (SAR)') }}" required/>
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}:</label>
-                                                        <input value="{{ old('RECRUITMENT_CHARGES_PER_CANDIDATE') }}" name="RECRUITMENT_CHARGES_PER_CANDIDATE" type="text"
+                                                        <input arr-name="item" value="{{ old('RECRUITMENT_CHARGES_PER_CANDIDATE') }}" name="RECRUITMENT_CHARGES_PER_CANDIDATE" type="text"
                                                                class="form-control" placeholder="{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}" required/>
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}:</label>
-                                                        <input value="{{ old('VISA_PROCESSING_CHARGES_PER_CANDIDATE') }}" name="VISA_PROCESSING_CHARGES_PER_CANDIDATE" type="text"
+                                                        <input arr-name="item" value="{{ old('VISA_PROCESSING_CHARGES_PER_CANDIDATE') }}" name="VISA_PROCESSING_CHARGES_PER_CANDIDATE" type="text"
                                                                class="form-control" placeholder="{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}" required/>
                                                     </div>
                                                 </div>
@@ -175,7 +172,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label>{{ trans('dashboard.Saudization') }} :</label>
+                                            <input value="1" name="saudization" type="checkbox"/>
+                                        </div>
+                                    </div>
 
 
                                 </div>
@@ -184,7 +186,7 @@
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                            <a href="#"
+                                                    <a href="{{ route('companyQuotation.index' , [$company_id , $mother_company_id]) }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>
