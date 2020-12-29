@@ -350,7 +350,10 @@ return [
     'Total Value Per Month' => 'Total Value Per Month',
     'Add a new Category' => 'أضف تصنيف جديد',
     'Saudization' => 'السعودة',
+    'date' => 'التاريخ',
     'View Company Quotation' => 'أضف عرض اسعار',
+    'Company Agreements' => 'عقد التوظيف',
+    'Add New Agreement' => 'أضف عقد التوظيف',
 
 
 

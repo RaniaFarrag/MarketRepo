@@ -349,7 +349,10 @@ return [
     'Total Value Per Month' => 'Total Value Per Month',
     'Add a new Category' => 'Add a new Category',
     'Saudization' => 'Saudization',
+    'date' => 'Date',
     'View Company Quotation' => 'View Company Quotation',
+    'Company Agreements' => 'Company Agreements',
+    'Add New Agreement' => 'Add New Agreement',
 
 
 

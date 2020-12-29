@@ -206,7 +206,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('export/company/report','CompanyController@extractCompanyReportExcel')->name('extract_company_report_excel');
 
     /** Representative Report */
-
     Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report');
     Route::get('export/representative/company/report','UserController@export_representative_company_report')->name('export_representative_company_report');
 
@@ -234,6 +233,21 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('sales/quotation' , 'CompanyController@sales_quotation')->name('sales_quotation');
 
     Route::get('undertakeing/opal' , 'CompanyController@undertakeing_opal')->name('undertakeing_opal');
+
+    Route::resource('linrcoAgreement' , 'LinrcoAgreementController');
+
+    Route::get('linrcoAgreement/index/{company_id}', [
+        'as' => 'linrcoAgreement.index',
+        'uses' => 'LinrcoAgreementController@index'
+    ]);
+
+    Route::get('linrcoAgreement/create/{company_id}', [
+        'as' => 'linrcoAgreement.create',
+        'uses' => 'LinrcoAgreementController@create'
+    ]);
+
+    Route::get('linrcoAgreement/print/{agreement_id}' , 'LinrcoAgreementController@printAgreement')->name('linrco_agreement_print');
+
 
 });
 
