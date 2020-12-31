@@ -354,6 +354,22 @@ return [
     'View Company Quotation' => 'أضف عرض اسعار',
     'Company Agreements' => 'عقد التوظيف',
     'Add New Agreement' => 'أضف عقد التوظيف',
+    'Linrco Agreements' => 'عقود توظيف ليناركو',
+    'Linrco Agreement' => ' عقد توظيف ليناركو',
+    'Agreement Details' => 'تفاصيل العقد',
+    'linrco_email' => 'البريد الإلكتروني لشركة ليناركو',
+    'cr' => 'السجل التجاري',
+    'company_address' => 'عنون الشركة',
+    'mail_box' => 'ص.ب',
+    'postal_code' => 'الرمز البريدي',
+    'position' => 'المنصب',
+    'duration_of_commitment' => 'فترة الالتزام',
+    'Recruitment fee' => 'رسوم التوظيف',
+    'service_implementation_fee' => 'رسوم تقديم الخدمة',
+    'the_notice_period' => 'فترة الإخطار',
+    'Add New Agreement For ' => 'أضف عقد توظيف جديد لشركة',
+    'Edit Company Agreement' => 'تعديل عقد توظيف',
+    'Agreement' => 'عقد توظيف',
 
 
 

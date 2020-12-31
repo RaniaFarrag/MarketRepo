@@ -101,16 +101,15 @@ class LinrcoAgreementController extends Controller
     }
 
     public function printAgreement($agreement_id){
-
         $linrco_agreement = LinrcoAgreement::findOrFail($agreement_id);
-        $pdf = Pdf::loadView('system.contracts.linrco.agreement_pdf' ,compact('linrco_agreement'));
+        $pdf = Pdf::loadView('system.contracts.linrco.linrco_agreement_pdf' ,compact('linrco_agreement'));
 
         $output = $pdf->output();
 
         return new \Illuminate\Http\Response($output, 200, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline',
-            'filename' => "greement.pdf'"]);
+            'filename' => "agreement.pdf'"]);
     }
 
 }

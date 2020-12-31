@@ -353,6 +353,22 @@ return [
     'View Company Quotation' => 'View Company Quotation',
     'Company Agreements' => 'Company Agreements',
     'Add New Agreement' => 'Add New Agreement',
+    'Linrco Agreements' => 'Linrco Agreements',
+    'Linrco Agreement' => 'Linrco Agreement',
+    'Agreement Details' => 'Agreement Details',
+    'linrco_email' => 'Linrco Email',
+    'cr' => 'cr',
+    'company_address' => 'Company Address',
+    'mail_box' => 'Mail Box',
+    'postal_code' => 'Postal Code',
+    'position' => 'Position',
+    'duration_of_commitment' => 'Duration Of Commitment',
+    'Recruitment fee' => 'Recruitment fee',
+    'service_implementation_fee' => 'Service implementation fee',
+    'the_notice_period' => 'The Notice Period',
+    'Add New Agreement For ' => 'Add New Agreement For Company',
+    'Edit Company Agreement' => 'Edit Company Agreement',
+    'Agreement' => 'Agreement',
 
 
 

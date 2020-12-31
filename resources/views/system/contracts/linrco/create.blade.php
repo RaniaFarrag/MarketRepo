@@ -95,9 +95,9 @@
                                                    placeholder="{{ trans('dashboard.company_address') }}" />
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.phone') }} :</label>
+                                            <label>{{ trans('dashboard.Phone') }} :</label>
                                             <input value="{{ $company->phone }}" name="phone" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.phone') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Phone') }}" required/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.mail_box') }} :</label>
@@ -114,14 +114,14 @@
                                                    class="form-control" placeholder="{{ trans('dashboard.postal_code') }}" required/>
                                         </div>
                                         <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.email') }} :</label>
+                                            <label>{{ trans('dashboard.Email') }} :</label>
                                             <input value="{{ $company->email }}" name="email" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.email') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Email') }}" required/>
                                         </div>
                                         <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.company_representative') }}:</label>
+                                            <label>{{ trans('dashboard.Company Representative') }}:</label>
                                             <input value="{{ $company->contract_manager_name }}" name="company_representative" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.company_representative') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Company Representative') }}" required/>
                                         </div>
                                         <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.position') }}:</label>
@@ -136,9 +136,9 @@
 
                                         </div>
                                         <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.payment_of_fees') }}:</label>
+                                            <label>{{ trans('dashboard.Recruitment fee') }}:</label>
                                             <input value="{{ old('payment_of_fees') }}" name="payment_of_fees" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.payment_of_fees') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Recruitment fee') }}" required/>
                                         </div>
                                         <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.service_implementation_fee') }}:</label>
