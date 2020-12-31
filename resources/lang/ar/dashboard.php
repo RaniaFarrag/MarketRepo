@@ -193,7 +193,7 @@ return [
     'Export Excel ' => 'تحميل اكسيل',
     'Total contacts' => 'إجمـالي الإتصال',
     'Total needs' => 'إجمـالي الإحتياج',
-    'Total contracts' => 'إجمـالي التعاقد',
+    'Total agreement_contract' => 'إجمـالي التعاقد',
     'Total interviews' => 'إجمـالي المقابلة',
     'Total Reports' => 'إجمـالي التقارير',
     'Sl.No' => 'الرقم',

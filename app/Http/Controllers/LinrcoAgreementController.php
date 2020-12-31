@@ -27,7 +27,7 @@ class LinrcoAgreementController extends Controller
     {
         $linrco_agreements = $this->linrcoAgreementInterface->index($company_id);
         $company = Company::findOrFail($company_id);
-        return view('system.contracts.linrco.index')->with(['linrco_agreements' => $linrco_agreements , 'company_id' => $company_id ,
+        return view('system.agreement_contract.linrco.index')->with(['linrco_agreements' => $linrco_agreements , 'company_id' => $company_id ,
             'company' => $company]);
     }
 
@@ -39,7 +39,7 @@ class LinrcoAgreementController extends Controller
     public function create($company_id)
     {
         $company = Company::findOrFail($company_id);
-        return view('system.contracts.linrco.create')->with(['company_id' => $company_id , 'company' => $company]);
+        return view('system.agreement_contract.linrco.create')->with(['company_id' => $company_id , 'company' => $company]);
     }
 
     /**
@@ -72,7 +72,7 @@ class LinrcoAgreementController extends Controller
      */
     public function edit(LinrcoAgreement $linrcoAgreement)
     {
-       return view('system.contracts.linrco.edit')->with(['linrcoAgreement'=>$linrcoAgreement,'company_id' => $linrcoAgreement->company_id]);
+       return view('system.agreement_contract.linrco.edit')->with(['linrcoAgreement'=>$linrcoAgreement,'company_id' => $linrcoAgreement->company_id]);
 
     }
 
@@ -102,7 +102,7 @@ class LinrcoAgreementController extends Controller
 
     public function printAgreement($agreement_id){
         $linrco_agreement = LinrcoAgreement::findOrFail($agreement_id);
-        $pdf = Pdf::loadView('system.contracts.linrco.linrco_agreement_pdf' ,compact('linrco_agreement'));
+        $pdf = Pdf::loadView('system.agreement_contract.linrco.linrco_agreement_pdf' ,compact('linrco_agreement'));
 
         $output = $pdf->output();
 

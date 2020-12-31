@@ -94,6 +94,13 @@
                                     </a>
                                 </li>
 
+                                <li class="navi-item">
+                                    <a href="{{ route('linrcoAgreement.index' , $company->id) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.undertakeing') }}</span>
+                                    </a>
+                                </li>
+
                             </ul>
                             <!--end::Navigation-->
                         </div>

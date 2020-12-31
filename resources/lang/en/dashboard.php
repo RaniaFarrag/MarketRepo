@@ -193,7 +193,7 @@ return [
     'Export Excel ' => 'Export Excel ',
     'Total contacts' => 'Total contacts',
     'Total needs' => 'Total needs',
-    'Total contracts' => 'Total contracts',
+    'Total agreement_contract' => 'Total agreement_contract',
     'Total interviews' => 'Total interviews',
     'Total Reports' => 'Total Reports',
     'Sl.No' => 'Sl.No',
