@@ -31,7 +31,7 @@ class companiesReport implements FromView ,ShouldAutoSize
 
     public function view(): View
     {
-        return view('system.reports.companiesReportExcel', ['companies' => $this->companies]);
+        return view('system.reports.companiesReportExcel', ['companies_user' => $this->companies]);
     }
 
 

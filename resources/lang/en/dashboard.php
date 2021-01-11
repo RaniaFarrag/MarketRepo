@@ -369,6 +369,28 @@ return [
     'Add New Agreement For ' => 'Add New Agreement For Company',
     'Edit Company Agreement' => 'Edit Company Agreement',
     'Agreement' => 'Agreement',
+    'undertakeing' => 'Undertaking',
+    'Linrco Undertaking' => 'Linrco Undertaking',
+    'Linrco Undertakings' => 'Linrco Undertakings',
+    'Undertaking Details' => 'Undertaking Details',
+    'Add New Undertaking' => 'Add New Undertaking',
+    'linrco_mail_box' => 'Linrco Mail Box',
+    'company_representative' => 'Company Representative',
+    'linrco_representative' => 'Linrco Representative',
+    'linrco_cr' => 'Linrco CR',
+    'company_cr' => 'Company CR',
+    'Add Ready Manpower Quotation' => 'Add Ready Manpower Quotation',
+    'Ajeer' => 'Ajeer',
+    'Services' => 'Services',
+    'Add Visa Quotation' => 'Add Visa Quotation',
+    'Ajeer Cost Plus' => 'Ajeer Cost Plus',
+    'Ajeer Flat Red' => 'Ajeer Flat Red',
+    'Services Cost Plus' => 'Services Cost Plus',
+    'Services Flat Red' => 'Services Flat Red',
+    'Ageer' => 'Ageer',
+    'Services' => 'Services',
+    'Month' => 'Month',
+
 
 
 

@@ -101,7 +101,7 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
             'email' => $request->email,
             'Quotation_No' => $request->Quotation_No,
             'Contract_period' => $request->Contract_period,
-            'saudization' => $request->saudization,
+            'saudization' => $fnrco_quotation->saudization,
             'company_id' => $fnrco_quotation->company_id,
             'user_id' => Auth::user()->id,
         ]);

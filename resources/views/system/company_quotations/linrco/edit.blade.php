@@ -32,7 +32,7 @@
                                class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Companies Data') }}  </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('companyQuotation.index' , [$company_id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="{{ route('companyQuotation.index' , [$linrco_quotation->company_id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Linrco Quotations') }}
                             </a>
                             <!--end::Item-->
@@ -60,7 +60,7 @@
                                 @csrf
                                 @method('PUT')
                                 <input value="{{ $mother_company_id }}" name="mother_company_id" type="hidden" />
-                                <!-- <input value="{{ $company_id }}" name="company_id" type="hidden" /> -->
+                                <!-- <input value="{{ $linrco_quotation->company_id }}" name="company_id" type="hidden" /> -->
 
                                 <div class="card-body">
                                     <div class="form-group row">
@@ -232,12 +232,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label>{{ trans('dashboard.Saudization') }} :</label>
-                                            <input {{ $linrco_quotation->saudization == 1 ? 'checked' : ''}} value="1" name="saudization" type="checkbox"/>
-                                        </div>
-                                    </div>
+                                    {{--<div class="form-group row">--}}
+                                        {{--<div class="col-lg-12">--}}
+                                            {{--<label>{{ trans('dashboard.Saudization') }} :</label>--}}
+                                            {{--<input {{ $linrco_quotation->saudization == 1 ? 'checked' : ''}} value="1" name="saudization" type="checkbox"/>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
 
                                 </div>
                                 <div class="card-footer">

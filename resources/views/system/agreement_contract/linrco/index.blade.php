@@ -47,7 +47,7 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="{{ route('linrcoAgreement.create' , [$company->id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                    <a href="{{ route('CompanyAgreement.create' , [$company->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Add New Agreement') }}
                     </a>
                     <!--end::Button-->
@@ -88,6 +88,7 @@
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ trans('dashboard.date') }}</th>
                                             <th>{{ trans('dashboard.CR') }}</th>
                                             <th>{{ trans('dashboard.Phone') }}</th>
@@ -101,19 +102,21 @@
                                         <tbody>
                                         @foreach($linrco_agreements as $k=>$agreement)
                                             <tr>
+                                                <td>{{ $k+1 }}</td>
                                                 <td>{{ $agreement->date }}</td>
                                                 <td>{{ $agreement->cr }}</td>
                                                 <td>{{ $agreement->phone }}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>
-                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('linrco_agreement_print' , $agreement->id) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
-                                                <td><a href="{{ route('linrcoAgreement.edit' , $agreement->id) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
-                                                <td>
-                                                    <form method="post" action="{{ route('linrcoAgreement.destroy' , $agreement->id) }}">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>
-                                                    </form>
-                                                </td>
+                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('CompanyAgreement_print' , [$agreement->id , $mother_company_id]) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
+                                                <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
+                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyAgreement.destroy' , [$agreement->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
+                                                {{--<td>--}}
+                                                    {{--<form method="post" action="{{ route('CompanyAgreement.destroy' , [$agreement->id , $mother_company_id]) }}">--}}
+                                                        {{--@method('DELETE')--}}
+                                                        {{--@csrf--}}
+                                                        {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>--}}
+                                                    {{--</form>--}}
+                                                {{--</td>--}}
                                             </tr>
                                         @endforeach
                                         </tbody>

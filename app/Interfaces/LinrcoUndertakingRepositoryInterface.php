@@ -9,14 +9,14 @@
 namespace App\Interfaces;
 
 
-interface LinrcoAgreementRepositoryInterface
+interface LinrcoUndertakingRepositoryInterface
 {
     public function index($company_id , $mother_company_id);
 
     public function store($request);
 
-    public function update($request , $linrcoAgreement);
+    public function update($request , $linrco_undertaking);
 
-    public function destroy($linrcoAgreement , $mother_company_id);
+    public function destroy($linrco_undertaking , $mother_company_id);
 
 }

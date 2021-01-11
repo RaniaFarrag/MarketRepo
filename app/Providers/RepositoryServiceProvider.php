@@ -89,6 +89,16 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\LinrcoAgreementRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\FnrcoAgreementRepositoryInterface',
+            'App\Repositories\FnrcoAgreementRepository'
+        );
+
+        $this->app->bind(
+            'App\Interfaces\LinrcoUndertakingRepositoryInterface',
+            'App\Repositories\LinrcoUndertakingRepository'
+        );
+
 
     }
 

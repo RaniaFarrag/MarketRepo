@@ -2,7 +2,6 @@
 
 @section('body')
 
-
     <!--begin::Content-->
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -88,14 +87,14 @@
 
 
                                 <li class="navi-item">
-                                    <a href="{{ route('linrcoAgreement.index' , $company->id) }}" class="navi-link">
+                                    <a href="{{ route('CompanyAgreement.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
                                         <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
                                         <span class="navi-text">{{ trans('dashboard.Agreement') }}</span>
                                     </a>
                                 </li>
 
                                 <li class="navi-item">
-                                    <a href="{{ route('linrcoAgreement.index' , $company->id) }}" class="navi-link">
+                                    <a href="{{ route('CompanyUndertaking.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
                                         <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
                                         <span class="navi-text">{{ trans('dashboard.undertakeing') }}</span>
                                     </a>

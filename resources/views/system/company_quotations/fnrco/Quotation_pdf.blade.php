@@ -227,31 +227,33 @@
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.To') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->company->name }}
+                                    <td class="en ltr"
+                                        style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->company->name }}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Ref: No') }}</td>
                                     <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
-                                       {{ $fnrco_quotation->ref_no }}
+                                        {{ $fnrco_quotation->ref_no }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Attn') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->attn }}
-                                        
+                                    <td class="en ltr"
+                                        style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->attn }}
+
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Date') }} </td>
                                     <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
-                                    {{ $fnrco_quotation->created_at }}
+                                        {{ $fnrco_quotation->created_at }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Tel') }} </td>
                                     <td class="en ltr" style="font-size: 12px; vertical-align: middle;">
-                                    {{ $fnrco_quotation->telephone }}
+                                        {{ $fnrco_quotation->telephone }}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Industry') }} </td>
@@ -267,7 +269,8 @@
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Quotation No.') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->Quotation_No }}</td>
+                                    <td class="en ltr"
+                                        style="font-size: 12px; vertical-align: middle;">{{ $fnrco_quotation->Quotation_No }}</td>
                                 </tr>
                                 <tr>
                                     <td class="en ltr"
@@ -349,7 +352,7 @@
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                                         {{ __('dashboard.Total Value Per Month') }}
                                     </td>
-                                    
+
                                 </tr>
                                 @foreach($fnrco_quotation->fnrcoQuotationsRequest as $fnrco_request)
                                     <tr>
@@ -377,7 +380,7 @@
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
                                             {{ $fnrco_request->Food_allowance }}
                                         </td>
-                                        
+
                                         <td class="en ltr"
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
                                             {{ $fnrco_request->value_per_employee_month }}
@@ -386,116 +389,144 @@
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
                                             {{ $fnrco_request->total_value_per_month }}
                                         </td>
-                                        
+
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <p class="en ltr" style="line-height: 24px;">
+
+
+                            <p class="en ltr" style="line-height: 20px; font-size: 12px;">
+                                @if (app()->getLocale() == 'ar')
+                                    <strong>قامت فناركو بتطبيق نظام SAP & ISO QMS لتحسين العمليات.</strong>
+                                @else
+
+                                    <strong>FNRCO has implemented SAP & ISO QMS to optimize the Operations.</strong>
+                                @endif
+
+                                <br/>
+                                <br/>
+                            </p>
+
+                            <p class="en ltr" style="line-height: 18px;">
                                 <strong>{{ __('dashboard.Terms & Conditions') }}:-</strong><br/>
 
                                 @if (app()->getLocale() == 'ar')
 
 
-                                    •  تخضع جميع الشروط والأحكام للعقد الموقع.<br/>
-                                    •  يتم توفير الإقامة والنقل من جانب العميل.<br/>
-                                    •  يوفر العميل تذكرة التحاق الموظف للعمل.<br/>
-                                    •  مدة عقد الخدمة المقدمة عامان قابلة للتجديد حسب الشروط والأحكام المعمول بها.<br/>
-                                    •  ساعات العمل حسب قانون العمل السعودي.<br/>
-                                    • في البداية سيتحمل المرشحون رسوم الداتا فلو والبروميتريك ورسوم التصنيف وتصديق
-                                    المستندات في دولتهم، ثم يقوم العميل بسداد المبالغ مباشرة إلى المرشحين عند وصولهم إلى
-                                    المملكة العربية السعودية.<br/>
-                                    •    يجب أن يحصل العميل على أمر العمل الضروري من القنصليات المعنية.<br/>
-                                    •    يتم دفع 50٪ من المبلغ المثبت في الفاتورة بمجرد الانتهاء من ختم التأشيرة.<br/>
-                                    •    ويتم دفع 50٪ المتبقية عند إصدار وحجز تذكرة الانضمام للمرشح.<br/>
-                                    •    سيتم تطبيق ضريبة القيمة المضافة وأي ضرائب حكومية إضافية ورسوم حكومية.<br/>
-                                    •    عرض السعر المرسل صالح لمدة 7 أيام من تاريخ إصداره.<br/>
-
-
-
-
-
-{{--
-
-
-
-
-                                    <span class="en">•</span>    تخضع جميع الشروط والأحكام للعقد الموقع<span class="en">.</span>
+                                    1. تخضع جميع الشروط والأحكام للعقد الموقع.<br/>
+                                    2. تقوم فناركو بسداد كل ما يتعلق باستحقاقات رواتب الموظفين وفقًا لقانون العمل، وبدل
                                     <br/>
-                                    <span class="en">•</span>    يتم توفير الإقامة والنقل من جانب العميل<span
-                                            class="en">.</span><br/>
-                                    <span class="en">•</span>    يتم توفير تذاكر الطيران من جانب العميل<span class="en">.</span>
-                                    <br/>
-                                    <span class="en">•</span>    ساعات العمل حسب قانون العمل السعودي<span
-                                            class="en">.</span><br/>
-                                    <span class="en">•</span>    سيتم دفع رسوم الداتا فلو والتصنيف والبرومتريك من قبل
-                                    العميل قبل وصول المرشح<span class="en">.</span><br/>
-                                    <span class="en">•</span>    يتم تصديق العروض الوظيفية المقدمة من جانب العميل عبر
-                                    القنصليات المعنية<span class="en">.</span><br/>
-                                    <span class="en">•</span>    يتم دفع <span class="en">100%</span> من المبلغ المثبتفي
-                                    الفاتورة قبل وصول المرشح<span class="en">.</span><br/>
-                                    <span class="en">•</span>    سيتم تطبيق ضريبة القيمة المضافة وأي ضرائب حكومية إضافية
-                                    ورسوم حكومية<span class="en">.</span><br/>
-                                    <span class="en">•</span>    عرض السعر المرسل صالح لمدة <span class="en">7</span>
-                                    أيام من تاريخ إصداره<span class="en">.</span><br/>
---}}
+                                    الطعام، وتكلفة الإقامة، والرسوم الطبية ، ورسوم ماكينات الصراف الآلي ، ورسوم تحويل
+                                    الراتب ، ورسوم مكتب العمل ، والتأمينات الاجتماعية ، و EOS ، رسوم الخروج والعودة مرة
+                                    أخرى ، ودفع الإجازة ، والتأمين ، وتذاكر الطيران ، والرسوم الحكومية الأخرى.
+                                    3. توفر شركة جاش للخدمات التقنية ذ.م.م  ، إقامة الموظفين ونقلهم وتوطينهم.<br/>
+                                    4. مدة عقد القوى العاملة سنة واحدة قابلة للتجديد حسب معايير الشروط والأحكام
+                                    الموضوعة.<br/>
+                                    5. إيداع مبلغ شهرين مقدماً.  بمعنى: يتعين على شركة جاش للخدمات التقنية إيداع مبلغ
+                                    الفاتورة شهرين مقدمًا لدى FNRCO.<br/>
+                                    6. الدفع في غضون 30 يومًا بعد تقديم الفاتورة مقابل جدول ساعات العمل المعتمد.
+                                    7. ساعات العمل حسب نظام العمل السعودي.<br/>
+
+                                    الإطار الزمني المطلوب لتعيين الأفراد المرشحين وتوظيفهم<br/>
+                                    • إذا كان المرشح داخل المملكة ، تكون المدة القصوى للتعيين في الحال وفي أقرب وقت.
 
 
-                                    <strong style="font-size: 16px">الشركة الرائدة في مجال التوظيف الدولي – ليناركو</strong>
-                                    <br/>
-                                    المدير الاقليمي<br/>
-                                    المبيعات والتسويق<br/>
-                                    سيد رأفت علي
 
                                 @else
 
-                                    •    All Terms & Conditions are subjected to Signed Contract.<br/>
-                                    •    Accommodation & Transportation will be provided by the client.<br/>
-                                    •    Employee Joining Tickets will be provided by the client.<br/>
-                                    •    Service contract period is for 2 years and renewable as per the standard Terms&
-                                    Conditions.<br/>
-                                    •    Working hours as per Saudi Labor Law.<br/>
-                                    •    The Dataflow, Prometric, Classification and Document Attestation Fees will be
-                                    shouldered by the candidates initially in their home country and then the same will
-                                    be reimbursed by the Client directly to the Candidates upon their arrival in KSA.
+                                    1. All Terms & Conditions subject to Signed Contract.<br/>
+                                    2. Employees Payroll Benefits as per Labor Law, Food Allowance, Iqama Cost, Medical
+                                    (Iqama), ATM, Salary Transfer Fee, Labor Office Charges, GOSI,
+                                    EOS, Exit Re-Entry, Vacation Pay, Insurance,
+                                    @if($fnrco_quotation->saudization == 0)
+                                        <strong style="color:red;">Saudization </strong>,
+                                    @endif
+                                    Flight Tickets & Other Government Related Charges will be
+                                    provided by FNRCO.<br/>
+                                    3. Employee Accommodation, Transportation
+                                    @if($fnrco_quotation->saudization == 1)
+                                        <strong>and Saudization </strong>
+                                    @endif
+                                        will be
+                                    provided by Jash Technical Services LLC .<br/>
+                                    4. Manpower contract period is for
+                                    @if($fnrco_quotation->Contract_period == 12)
+                                        <strong>1 year</strong>
+                                    @elseif($fnrco_quotation->Contract_period == 24)
+                                        <strong>2 year</strong>
+                                    @endif
+                                        and renewable as per the
+                                    standard Terms & Conditions.<br/>
+                                    5.<strong> Two months advance depositie ie; Jash Technical Services LLC</strong> has
+                                    to deposit invoice amount of two months in advance with FNRCO .<br/>
+                                    6. Payment within 30 days after the invoice submitted against the approved
+                                    timesheet.<br/>
+                                    7. Working hours as per Saudi Labor<br/>
                                     <br/>
-                                    •    Necessary Job Order to be obtained by the client from the respective consulates
-                                    <br/>
-                                    •    50% of the invoice amount to be paid upon visa stamping.<br/>
-                                    •    Remaining 50% of the invoice amount to be paid upon the issuance of the joining
-                                    ticket.<br/>
-                                    •    VAT and any Additional Government Taxes and Government Fee will be applicable.
-                                    <br/>
-                                    •    This quotation is Valid for 7 Days from the issued date.<br/>
+                                    Time Frame required for the personnel mobilization<br/>
+                                    •   If the candidate is inside the kingdom, the maximum time period of mobilization
+                                    is immediately.<br/>
 
-
-
-
-                                    {{--  • All Terms & Conditions are subjected to Signed Contract.<br/>
-                                      • Accommodation & Transportation will be provided by the client.<br/>
-                                      • Employee Joining Tickets will be provided by the client.<br/>
-                                      • Service contract period is for 2 years and renewable as per the standard Terms &
-                                      Conditions.<br/>
-                                      • Working hours as per Saudi Labor Law.<br/>
-                                      • Dataflow, Pro-Metric & Classification charges will be reimbursed by the client
-                                      before candidate’s arrival
-                                      at Actuals<br/>
-                                      • Necessary Job Order to be obtained by the client from the respective consulates
-                                      <br/>
-                                      • 100 % of the invoiced amount to be paid before candidate’s arrival<br/>
-                                      • VAT and any Additional Government Taxes and Government Fee will be applicable.
-                                      <br/>
-                                      • This quotation is Valid for 7 Days from the issued date.<br/>--}}
-
-                                    For <strong>INTERNATIONAL RECRUITMENT CORPORATION</strong><br/>
-                                    Regional Manager<br/>
-                                    Sales & Marketing<br/>
-                                    SAYYED RAAFAT ALI
 
 
                                 @endif
 
                             </p>
+
+                            <table class="en ltr" style="line-height: 24px; border: none;">
+
+                                <tbody>
+                                <tr class="en ltr" style="width: 60%">
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle; border: none;">
+                                        @if (app()->getLocale() == 'ar')
+                                            <strong> معدل ساعات الوقت الاضافي هو 1.5 مرة من المعدل العادي<br/>
+                                                معدل الساعة للعطلة الرسمية هو 1.5 مرة من المعدل العادي<br/>
+                                                ساري لمدة 14 يومًا من تاريخ عرض السعر
+                                            </strong>
+                                        @else
+                                            <strong>Over Time hour rate is 1.5 times of the Normal Rate<br/>
+                                                Hourly Rate of Public Holiday is 1.5 times of the Normal Rate<br/>
+                                                Valid for 14 Days from the date of Quotation</strong>
+
+                                        @endif
+                                    </td>
+                                    <td rowspan="3" class="en ltr"
+                                        style="font-size: 12px; vertical-align: middle;width: 40%">
+                                        @if (app()->getLocale() == 'ar')
+                                            موافقة العميل<br/><br/><br/><br/>
+                                            ختم الشركة :
+                                        @else
+                                            Client Acceptance<br/><br/><br/><br/>
+                                            Company Stamp :
+                                        @endif
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="en ltr"
+                                        style="font-size: 12px; vertical-align: middle; text-align: left; border: none;">
+                                        <br></td>
+                                </tr>
+                                <tr>
+                                    <td class="en ltr" style="font-size: 12px; border: none;">
+
+                                        @if (app()->getLocale() == 'ar')
+                                            <strong> مدير المبيعات والتسويق<br/>
+                                                15٪ ضريبة القيمة المضافة المطبقة على القيمة الإجمالية شهريا. </strong>
+                                        @else
+                                            <strong> Sales & Marketing Manager<br/>
+                                                15% VAT applicable on Total Value Per Month.</strong>
+                                        @endif
+
+
+                                    </td>
+
+
+                                </tr>
+
+                                </tbody>
+                            </table>
             </main>
 
             </body>

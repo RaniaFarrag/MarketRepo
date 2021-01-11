@@ -36,9 +36,10 @@
                                 <!--begin::Navigation-->
                                 <ul class="navi navi-hover py-5">
                                     <li class="navi-item">
-                                        <a href="{{ route('companies.show' , $company->id) }}" class="navi-link">
-                                    <span class="navi-icon"><i
-                                                class="flaticon2-list-3"></i></span>
+                                        <a href="{{ route('show_company' , [$company->id , $hidden_mother_company_id]) }}" class="navi-link">
+                                            <span class="navi-icon"><i
+                                                class="flaticon2-list-3"></i>
+                                            </span>
                                             <span class="navi-text">{{ trans('dashboard.View Company Data') }}</span>
                                         </a>
                                     </li>
@@ -46,8 +47,9 @@
                                     @can('Show Company Needs')
                                         <li class="navi-item">
                                             <a href="{{ route('company_needs.index' , [$company->id , $hidden_mother_company_id]) }}" class="navi-link">
-                                        <span class="navi-icon"><i
-                                                    class="flaticon2-list-3"></i></span>
+                                                <span class="navi-icon">
+                                                    <i class="flaticon2-list-3"></i>
+                                                </span>
                                                 <span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>
                                             </a>
                                         </li>
@@ -56,7 +58,7 @@
                                     @can('Show Company Quotation')
                                         <li class="navi-item">
                                             <a href="{{ route('companyQuotation.index' , [$company->id , $hidden_mother_company_id]) }}" class="navi-link">
-                                        <span class="navi-icon"><i
+                                            <span class="navi-icon"><i
                                                     class="flaticon2-list-3"></i></span>
                                                 <span class="navi-text">{{ trans('dashboard.View Company Quotation') }}</span>
                                             </a>
@@ -134,7 +136,7 @@
                         <!--end::Pic-->
                         <!--begin::Title-->
                         <div class="d-flex flex-column">
-                            <a href="{{ route('companies.show' , $company->id) }}"
+                            <a href="{{ route('show_company' , [$company->id , $hidden_mother_company_id]) }}"
                                class="text-dark font-weight-bold text-hover-primary font-size-h6 mb-0">
                                 {{ $company->name }}
                             </a>

@@ -999,7 +999,7 @@
             <td class="rtl" style="width: 50%;line-height: 24px;">
                 <strong>5.1</strong>
                 يجب أن تكون اتفاقية التوظيف هذه سارية المفعول لمدة لا تقل عن سنتين من تاريخ البدء في هذه الاتفاقية ما لم
-                يتم إنهاؤها عاجلاً من قبل أي من الطرفين بعد {{ $linrco_agreement->the_notice_period }} يومًا قبل إشعار خطي. وعلى أي حال ، يجب أن تكون مسؤوليات
+                يتم إنهاؤها عاجلاً من قبل أي من الطرفين بعد 120 يومًا قبل إشعار خطي. وعلى أي حال ، يجب أن تكون مسؤوليات
                 الأطراف سارية المفعول حتى استكمال اتفاقية التوظيف الأخيرة الموقعة مع الموظف. ما لم يخطر أي من الطرفين
                 الطرف الآخر بإنهائه ، يتم تجديد هذه الاتفاقية تلقائيًا لمدد مماثلة.
 
@@ -1007,7 +1007,7 @@
             <td class="ltr" style="width: 50%;line-height: 24px;">
                 <strong>5.1</strong>
                 . This Recruitment Agreement shall be in effect for a period of 2 years from the date of appearing
-                herein unless sooner terminated by either party after {{ $linrco_agreement->the_notice_period }} days prior notice. In any case, the
+                herein unless sooner terminated by either party after 120 days prior notice. In any case, the
                 responsibilities of the parties shall be in effect up to the completion of the last Employment Agreement
                 signed with the Employee. Unless either party notifies the other of its termination, agreement shall be
                 automatically renewed annually.
@@ -1211,17 +1211,17 @@
 
         <tr>
             <td class="rtl" style="width: 50%;">
-                التاريخ:
+                 التاريخ : {{ $linrco_agreement->date }}
 
             </td>
             <td class="ltr" style="width: 50%;">
-                DATE:
+                DATE : {{ $linrco_agreement->date }}
 
             </td>
         </tr>
         <tr>
             <td class="rtl" style="width: 50%;">
-                الطرف الثاني
+                  الطرف الثاني
             </td>
             <td class="ltr" style="width: 50%;">
                 SECOND PARTY
@@ -1230,10 +1230,10 @@
         </tr>
         <tr>
             <td class="rtl" style="width: 50%;">
-                شركة
+                شركة :  {{ $linrco_agreement->company->translate('ar')->name }}
             </td>
             <td class="ltr" style="width: 50%;">
-                {{ $linrco_agreement->company->name }}
+                {{ $linrco_agreement->company->translate('en')->name }}
 
             </td>
         </tr>
@@ -1248,7 +1248,7 @@
         </tr>
         <tr>
             <td class="rtl" style="width: 50%;">
-                <br/>
+                <br/> {{ $linrco_agreement->company_representative }}
             </td>
             <td class="ltr" style="width: 50%;">
                 <br/>

@@ -27,7 +27,8 @@
 
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('companies.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="{{ route('companies.index') }}"
+                               class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Companies Data') }}
                             </a>
                             <!--end::Item-->
@@ -44,14 +45,80 @@
                     <!--end::Heading-->
                 </div>
                 <!--end::Info-->
+                <div class="d-flex align-items-center ">
 
-                <div class="d-flex align-items-center">
-                    <!--begin::Button-->
-                    <a href="{{ route('companyQuotation.create' , [$company->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Quotation') }}
-                    </a>
-                    <!--end::Button-->
+                    <!--begin::Dropdowns-->
+                    <div class="dropdown dropdown-inline  mr-2" >
+
+                        <a target="_blank"
+                           href="#"
+                           class="btn   btn-light-primary" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="ki ki-plus icon-1x"></i> {{ trans('dashboard.Add Ready Manpower Quotation') }}
+                        </a>
+                            <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
+                                <!--begin::Navigation-->
+                                <ul class="navi navi-hover">
+                                    <li class="navi-item pb-1">
+                                        <a href="{{ route('companyQuotation.create' , [$company->id , $mother_company_id , 1]) }}" class="navi-link">
+                                            <span class="navi-text"> {{ trans('dashboard.Ajeer') }}</span>
+                                        </a>
+                                    </li>
+                                    <li class="navi-item pb-1">
+                                        <a href="{{ route('companyQuotation.create' , [$company->id , $mother_company_id , 0]) }}" class="navi-link">
+                                            <span class="navi-text"> {{ trans('dashboard.Services') }}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--end::Navigation-->
+                            </div>
+                    </div>
+                    <div class="dropdown dropdown-inline">
+
+                        <a target="_blank"
+                           href="#"
+                           class="btn   btn-light-primary" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="ki ki-plus icon-1x"></i> {{ trans('dashboard.Add Visa Quotation') }}</a>
+
+                        <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right">
+                            <!--begin::Navigation-->
+                            <ul class="navi navi-hover">
+
+                                <li class="navi-item pb-1">
+                                    <a href="#" class="navi-link">
+
+                                        <span class="navi-text"> {{ trans('dashboard.Ajeer Cost Plus') }}</span>
+                                    </a>
+                                </li>
+                                <li class="navi-item pb-1">
+                                    <a href="#" class="navi-link">
+
+                                        <span class="navi-text"> {{ trans('dashboard.Ajeer Flat Red') }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="navi-item pb-1">
+                                    <a href="#" class="navi-link">
+
+                                        <span class="navi-text"> {{ trans('dashboard.Services Cost Plus') }}</span>
+                                    </a>
+                                </li>
+                                <li class="navi-item pb-1">
+                                    <a href="#" class="navi-link">
+
+                                        <span class="navi-text"> {{ trans('dashboard.Services Flat Red') }}</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                            <!--end::Navigation-->
+                        </div>
+                    </div>
+                    <!--end::Dropdowns-->
                 </div>
+
 
             </div>
         </div>
@@ -92,8 +159,9 @@
                                             <th>{{ trans('dashboard.Quotation No') }}</th>
                                             <th>{{ trans('dashboard.Attn') }}</th>
                                             <th>{{ trans('dashboard.Date') }}</th>
+                                            <th>{{ trans('dashboard.type') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
-                                            <!-- <th>{{ trans('dashboard.Contract Period') }}</th> -->
+                                        <!-- <th>{{ trans('dashboard.Contract Period') }}</th> -->
                                             <th>{{ trans('dashboard.Category') }}</th>
                                             <th>{{ trans('dashboard.Company Quotations') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>
@@ -107,13 +175,28 @@
                                                 <td>{{ $quotation->ref_no }}</td>
                                                 <td>{{ $quotation->Quotation_No }}</td>
                                                 <td>{{ $quotation->attn }}</td>
+                                                <td>
+                                                    @if($quotation->saudization == 1)
+                                                        {{ trans('dashboard.Ageer') }}
+                                                    @elseif($quotation->saudization == 0)
+                                                        {{ trans('dashboard.Services') }}
+                                                    @endif
+                                                </td>
                                                 <td>{{ $quotation->created_at }}</td>
                                                 <td>{{ $quotation->user->name }}</td>
-                                                <!-- <td>{{ $quotation->user->name }}</td> -->
+                                            <!-- <td>{{ $quotation->user->name }}</td> -->
                                                 <td>{{ $quotation->user->name }}</td>
-                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Quotation Details') }}</a></td>
-                                                <td><a href={{ route('companyQuotation.edit' , [$quotation->id , $mother_company_id]) }} class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
-                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('companyQuotation.destroy' , [$quotation->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
+                                                <td><a class="btn btn-success font-weight-bold" target="_blank"
+                                                       href="{{ route('print_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Quotation Details') }}</a>
+                                                </td>
+                                                <td>
+                                                    <a href={{ route('companyQuotation.edit' , [$quotation->id , $mother_company_id]) }} class="btn
+                                                       btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a>
+                                                </td>
+                                                <td><a onclick="return confirm('Are you sure?')"
+                                                       class="btn btn-danger font-weight-bold"
+                                                       href="{{ route('companyQuotation.destroy' , [$quotation->id , $mother_company_id]) }}"><i
+                                                                class="fa fa-trash"></i></a></td>
 
                                             </tr>
                                         @endforeach

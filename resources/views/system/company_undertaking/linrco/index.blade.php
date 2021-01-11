@@ -13,7 +13,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Linrco Quotation') }} {{ $company->name }}
+                            {{ trans('dashboard.Linrco Undertaking') }} {{ $company->name }}
                         </h2>
                         <!--end::Title-->
 
@@ -35,7 +35,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Linrco Quotation') }} {{ $company->name }}
+                                {{ trans('dashboard.Linrco Undertaking') }} {{ $company->name }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -47,8 +47,8 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="{{ route('companyQuotation.create' , [$company->id , $mother_company_id , 1]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Quotation') }}
+                    <a href="{{ route('CompanyUndertaking.create' , [$company->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Add New Undertaking') }}
                     </a>
                     <!--end::Button-->
                 </div>
@@ -77,7 +77,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Linrco Quotations') }} {{ $company->name }}
+                                        {{ trans('dashboard.Linrco Undertakings') }} {{ $company->name }}
                                     </h3>
                                 </div>
 
@@ -88,28 +88,32 @@
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
-                                            <th>{{ trans('dashboard.Ref No') }}</th>
-                                            <th>{{ trans('dashboard.Quotation No') }}</th>
-                                            <th>{{ trans('dashboard.Attn') }}</th>
-                                            <th>{{ trans('dashboard.Date') }}</th>
-                                            <th>{{ trans('dashboard.By') }}</th>
-                                            <th>{{ trans('dashboard.Company Quotations') }}</th>
+                                            <th>{{ trans('dashboard.date') }}</th>
+                                            <th>{{ trans('dashboard.Company Name') }}</th>
+                                            <th>{{ trans('dashboard.Company Representative') }}</th>
+                                            <th>{{ trans('dashboard.Undertaking Details') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>
                                             <th>{{ trans('dashboard.delete') }}</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        @foreach($linrco_quotations as $k=>$quotation)
+                                        @foreach($linrco_undertakings as $k=>$linrco_undertaking)
                                             <tr>
-                                                <td>{{ $quotation->ref_no }}</td>
-                                                <td>{{ $quotation->Quotation_No }}</td>
-                                                <td>{{ $quotation->attn }}</td>
-                                                <td>{{ $quotation->created_at }}</td>
-                                                <td>{{ app()->getLocale() == 'ar' ? $quotation->user->name : $quotation->user->name_en }}</td>
-                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Quotation Details') }}</a></td>
-                                                <td><a href={{ route('companyQuotation.edit' , [$quotation->id , $mother_company_id]) }} class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
-                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('companyQuotation.destroy' , [$quotation->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
+                                                <td>{{ $linrco_undertaking->date }}</td>
+                                                <td>{{ $linrco_undertaking->company->name }}</td>
+                                                <td>{{ $linrco_undertaking->company_representative }}</td>
+                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('undertaking_print' , [$linrco_undertaking->id , $mother_company_id]) }}">{{ trans('dashboard.Undertaking Details') }}</a></td>
+                                                <td><a href="{{ route('CompanyUndertaking.edit' , [$linrco_undertaking->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
+                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyUndertaking.destroy' , [$linrco_undertaking->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
+
+                                                {{--<td>--}}
+                                                    {{--<form method="post" action="{{ route('CompanyUndertaking.destroy' , [$linrco_undertaking->id , $mother_company_id]) }}">--}}
+                                                        {{--@method('DELETE')--}}
+                                                        {{--@csrf--}}
+                                                        {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>--}}
+                                                    {{--</form>--}}
+                                                {{--</td>--}}
                                             </tr>
                                         @endforeach
                                         </tbody>

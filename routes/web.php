@@ -23,6 +23,16 @@ use Illuminate\Support\Facades\Route;
 //
 //});
 
+//Route::get('link', function () {
+//    \Artisan::call('cache:clear');
+//
+//});
+
+Route::get('config/cache' , function (){
+    \Artisan::call('config:cache');
+});
+
+
 
 Auth::routes();
 
@@ -86,6 +96,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Company */
     Route::resource('companies' , 'CompanyController');
 
+    Route::get('show_company/{company_id}/{mother_company_id}' , 'CompanyController@showCompany')->name('show_company');
+
     /** Manage Company Needs */
     Route::resource('company_needs' , 'CompanyNeedController');
     /** Custom index route */
@@ -124,7 +136,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     ]);
 
     /** Custom create route */
-    Route::get('companyQuotation/create/{company_id}/{mother_company_id}', [
+    Route::get('companyQuotation/create/{company_id}/{mother_company_id}/{saudization}', [
         'as' => 'companyQuotation.create',
         'uses' => 'CompanyQuotationController@create'
     ]);
@@ -234,19 +246,61 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('undertakeing/opal' , 'CompanyController@undertakeing_opal')->name('undertakeing_opal');
 
-    Route::resource('linrcoAgreement' , 'LinrcoAgreementController');
 
-    Route::get('linrcoAgreement/index/{company_id}', [
-        'as' => 'linrcoAgreement.index',
-        'uses' => 'LinrcoAgreementController@index'
+    Route::resource('CompanyAgreement' , 'CompanyAgreementController');
+
+    Route::get('CompanyAgreement/index/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyAgreement.index',
+        'uses' => 'CompanyAgreementController@index'
     ]);
 
-    Route::get('linrcoAgreement/create/{company_id}', [
-        'as' => 'linrcoAgreement.create',
-        'uses' => 'LinrcoAgreementController@create'
+    Route::get('CompanyAgreement/create/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyAgreement.create',
+        'uses' => 'CompanyAgreementController@create'
     ]);
 
-    Route::get('linrcoAgreement/print/{agreement_id}' , 'LinrcoAgreementController@printAgreement')->name('linrco_agreement_print');
+    Route::get('CompanyAgreement/edit/{agreement_id}/{mother_company_id}', [
+        'as' => 'CompanyAgreement.edit',
+        'uses' => 'CompanyAgreementController@edit'
+    ]);
+
+    Route::get('CompanyAgreement/destroy/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyAgreement.destroy',
+        'uses' => 'CompanyAgreementController@destroy'
+    ]);
+
+    Route::get('CompanyAgreement/print/{agreement_id}/{mother_company_id}' , 'CompanyAgreementController@printAgreement')->name('CompanyAgreement_print');
+
+
+
+
+    Route::resource('CompanyUndertaking' , 'CompanyUndertakingController');
+
+    /** Custom index route */
+    Route::get('CompanyUndertaking/index/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.index',
+        'uses' => 'CompanyUndertakingController@index'
+    ]);
+
+    /** Custom create route */
+    Route::get('CompanyUndertaking/create/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.create',
+        'uses' => 'CompanyUndertakingController@create'
+    ]);
+
+    /** Custom edit route */
+    Route::get('CompanyUndertaking/edit/{undertaking_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.edit',
+        'uses' => 'CompanyUndertakingController@edit'
+    ]);
+
+    /** Custom destroy route */
+    Route::get('CompanyUndertaking/destroy/{undertaking_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.destroy',
+        'uses' => 'CompanyUndertakingController@destroy'
+    ]);
+
+    Route::get('CompanyUndertaking/print/{undertaking_id}/{mother_company_id}' , 'CompanyUndertakingController@printUndertaking')->name('undertaking_print');
 
 
 });

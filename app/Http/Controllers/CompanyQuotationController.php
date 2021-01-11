@@ -48,7 +48,7 @@ class CompanyQuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($company_id , $mother_company_id)
+    public function create($company_id , $mother_company_id , $saudization = null)
     {
         $countries = Country::all();
         if ($mother_company_id == 1){
@@ -57,7 +57,7 @@ class CompanyQuotationController extends Controller
         }
         elseif ($mother_company_id == 2){
             return view('system.company_quotations.fnrco.create')->with(['countries' => $countries ,
-                'company_id' => $company_id , 'mother_company_id' => $mother_company_id]);
+                'company_id' => $company_id , 'mother_company_id' => $mother_company_id , 'saudization' => $saudization]);
         }
     }
 
@@ -101,12 +101,12 @@ class CompanyQuotationController extends Controller
         if ($mother_company_id == 1){
             $linrco_quotation = LinrcoQuotation::where('id' , $quotation_id)->with('linrcoQuotationsRequest')->first();
             return view('system.company_quotations.linrco.edit')->with(['countries' => $countries ,
-                'linrco_quotation'=>$linrco_quotation,'company_id' => $linrco_quotation->company_id ,'mother_company_id' => $mother_company_id]);
+                'linrco_quotation'=>$linrco_quotation ,'mother_company_id' => $mother_company_id]);
         }
         elseif ($mother_company_id == 2){
             $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
             return view('system.company_quotations.fnrco.edit')->with(['countries' => $countries ,
-                'fnrco_quotation'=>$fnrco_quotation ,'company_id' => $fnrco_quotation->company_id , 'mother_company_id' => $mother_company_id]);
+                'fnrco_quotation'=>$fnrco_quotation , 'mother_company_id' => $mother_company_id]);
         }
     }
 

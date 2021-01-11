@@ -430,13 +430,6 @@ class CompanyRepository implements CompanyRepositoryInterface
         return redirect(route('companies.index'));
     }
 
-
-    /** Show One Company */
-    public function show($company)
-    {
-        return $this->companyRepositoryinterface->show($company);
-    }
-
     /** Edit Company */
     public function edit($company)
     {
@@ -954,7 +947,6 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** companies Reports */
     public function companiesReports($request, $all = false , $orderBy = false)
     {
-        //dd($request->all());
         $data['companies_user'] = $this->companyReport_index($request, $all , $orderBy);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();

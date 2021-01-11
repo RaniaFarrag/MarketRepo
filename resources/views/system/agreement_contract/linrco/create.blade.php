@@ -31,7 +31,7 @@
                                class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Companies Data') }}  </a>
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('linrcoAgreement.index' , [$company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                            <a href="{{ route('CompanyAgreement.index' , [$company_id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Linrco Agreements') }}
                             </a>
                             <!--end::Item-->
@@ -54,11 +54,12 @@
                     <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
-                            <form method="post" action="{{ route('linrcoAgreement.store') }}" class="form"
+                            <form method="post" action="{{ route('CompanyAgreement.store') }}" class="form"
                                   enctype="multipart/form-data">
                                 @csrf
 
                                 <input value="{{ $company_id }}" name="company_id" type="hidden" />
+                                <input value="{{ $mother_company_id }}" name="mother_company_id" type="hidden" />
 
                                 <div class="card-body">
                                     <div class="form-group row">
@@ -159,7 +160,7 @@
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
                                                     class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                                    <a href="{{ route('linrcoAgreement.index' , [$company_id]) }}"
+                                                    <a href="{{ route('CompanyAgreement.index' , [$company_id , $mother_company_id]) }}"
                                                class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                         </div>
                                     </div>

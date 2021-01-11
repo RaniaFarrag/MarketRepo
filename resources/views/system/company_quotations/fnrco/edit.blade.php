@@ -33,7 +33,7 @@
                             {{ trans('dashboard.Companies Data') }}
                         </a>
                         <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                        <a href="{{ route('companyQuotation.index' , [$company_id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                        <a href="{{ route('companyQuotation.index' , [$fnrco_quotation->company_id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
                             {{ trans('dashboard.Fnrco Quotations') }}
                         </a>
                         <!--end::Item-->
@@ -67,7 +67,7 @@
                               @csrf
                               @method('PUT')
                                 <input value="{{ $mother_company_id }}" name="mother_company_id" type="hidden" />
-                                <!-- <input value="{{ $company_id }}" name="company_id" type="hidden" /> -->
+                                <input value="" name="company_id" type="hidden" />
 
                             <div class="card-body">
                                 <div class="form-group row">
@@ -112,6 +112,8 @@
                                        <select class="form-control select2" id="period" name="Contract_period"
                                                             required>
                                             <option value="" selected="">Select All</option>
+                                            <option {{ $fnrco_quotation->Contract_period == 3 ? 'selected' : ''}} value="3"  iqama="1115.5" >3 {{ trans('dashboard.Month') }}</option>
+                                            <option {{ $fnrco_quotation->Contract_period == 6 ? 'selected' : ''}} value="6" iqama="1019.6">6 {{ trans('dashboard.Month') }}</option>
                                             <option {{ $fnrco_quotation->Contract_period == 12 ? 'selected' : ''}} value="12"  iqama="1115.5" >12 {{ trans('dashboard.Month') }}</option>
                                             <option {{ $fnrco_quotation->Contract_period == 24 ? 'selected' : ''}} value="24" iqama="1019.6">24 {{ trans('dashboard.Month') }}</option>
                                         </select>
@@ -201,12 +203,12 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <label>{{ trans('dashboard.Saudization') }} :</label>
-                                        <input {{ $fnrco_quotation->saudization == 1 ? 'checked' : ''}} value="1" name="saudization" type="checkbox"/>
-                                    </div>
-                                </div>
+                                {{--<div class="form-group row">--}}
+                                    {{--<div class="col-lg-12">--}}
+                                        {{--<label>{{ trans('dashboard.Saudization') }} :</label>--}}
+                                        {{--<input {{ $fnrco_quotation->saudization == 1 ? 'checked' : ''}} value="1" name="saudization" type="checkbox"/>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
                             </div>
                             <div class="card-footer">
@@ -214,7 +216,7 @@
                                     <div class="col-lg-12 text-center">
                                         <button type="submit"
                                                 class="btn btn-primary mr-2">{{ trans('dashboard.Submit') }}</button>
-                                                <a href="{{ route('companyQuotation.index' , [$company_id , $mother_company_id]) }}"
+                                                <a href="{{ route('companyQuotation.index' , [$fnrco_quotation->company_id , $mother_company_id]) }}"
                                             class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                     </div>
                                 </div>

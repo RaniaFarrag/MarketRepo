@@ -67,6 +67,7 @@
                               @csrf
                                 <input value="{{ $mother_company_id }}" name="mother_company_id" type="hidden" />
                                 <input value="{{ $company_id }}" name="company_id" type="hidden" />
+                                <input value="{{ $saudization }}" name="saudization" type="hidden" />
 
                             <div class="card-body">
                                 <div class="form-group row">
@@ -114,6 +115,8 @@
                                        <select class="form-control select2" id="period" name="Contract_period"
                                                             required>
                                             <option value="" selected="">Select All</option>
+                                           <option value="3"  iqama="1115.5" >3 {{ trans('dashboard.Month') }}</option>
+                                           <option value="6" iqama="1019.6">6 {{ trans('dashboard.Month') }}</option>
                                             <option value="12"  iqama="1115.5" >12 {{ trans('dashboard.Month') }}</option>
                                             <option value="24" iqama="1019.6">24 {{ trans('dashboard.Month') }}</option>
                                         </select>
@@ -200,12 +203,13 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <label>{{ trans('dashboard.Saudization') }} :</label>
-                                        <input value="1" name="saudization" type="checkbox"/>
-                                    </div>
-                                </div>
+
+                                {{--<div class="form-group row">--}}
+                                    {{--<div class="col-lg-12">--}}
+                                        {{--<label>{{ trans('dashboard.Saudization') }} :</label>--}}
+                                        {{--<input value="1" name="saudization" type="checkbox"/>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
                             </div>
                             <div class="card-footer">

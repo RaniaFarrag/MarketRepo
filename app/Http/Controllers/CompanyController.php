@@ -88,29 +88,16 @@ class CompanyController extends Controller
      */
 
     /** Show One Company */
-    public function show(Company $company)
+    public function show($company_id)
     {
-        $evaluation_status_user = '';
-        $client_status_user = '';
+       //
+    }
 
-        if ($company->client_status){
-            if ($company->client_status_user){
-                $client_status_user = User::findOrFail($company->client_status_user_id);
-            }
-            //return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user]);
-        }
+    public function showCompany($company_id , $mother_company_id)
+    {
+        $company = Company::findOrFail($company_id);
 
-        if ($company->evaluation_status){
-            if ($company->evaluator){
-                $evaluation_status_user = User::findOrFail($company->evaluation_status_user_id);
-            }
-            //dd($evaluation_status_user);
-        }
-
-//        return view ('system.companies.show')->with(['company' => $company , 'client_status_user' => $client_status_user ,
-//            'evaluation_status_user' => $evaluation_status_user]);
-
-        return view ('system.companies.show')->with(['company' => $company]);
+        return view ('system.companies.show')->with(['company' => $company , 'mother_company_id' => $mother_company_id]);
     }
 
     /**
@@ -122,7 +109,6 @@ class CompanyController extends Controller
     /** Edit Company */
     public function edit(Company $company)
     {
-//        dd($company);
         $data = $this->companyRepositoryinterface->edit($company);
 
         return view('system.companies.edit')->with(['company' => $company , 'data' => $data ]);
@@ -182,6 +168,7 @@ class CompanyController extends Controller
     /** Company Report */
     public function companiesReports(Request $request){
         $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies_user'];
+
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
@@ -202,7 +189,7 @@ class CompanyController extends Controller
 
     public function extractCompanyReportExcel(Request $request)
     {
-        $companies= $this->companyRepositoryinterface->companiesReports($request,true , true)['companies'];
+        $companies= $this->companyRepositoryinterface->companiesReports($request,true , true)['companies_user'];
 
         return Excel::download(new companiesReport($companies), 'CompanyReportExcel.xlsx');
     }

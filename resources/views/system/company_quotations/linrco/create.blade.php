@@ -172,12 +172,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label>{{ trans('dashboard.Saudization') }} :</label>
-                                            <input value="1" name="saudization" type="checkbox"/>
-                                        </div>
-                                    </div>
+
+
+                                    {{--<div class="form-group row">--}}
+                                        {{--<div class="col-lg-12">--}}
+                                            {{--<label>{{ trans('dashboard.Saudization') }} :</label>--}}
+                                            {{--<input value="1" name="saudization" type="checkbox"/>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
 
 
                                 </div>
