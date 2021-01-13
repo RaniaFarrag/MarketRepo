@@ -30,6 +30,38 @@ class CreateLinrcoAgreementsTable extends Migration
             $table->string('service_implementation_fee')->nullable();
             $table->string('the_notice_period')->nullable();
             $table->string('linrco_email')->nullable();
+
+            $table->integer('data_flow')->nullable();
+            $table->string('healthcare_fee_ar')->nullable();
+            $table->string('healthcare_visa_fee_ar')->nullable();
+
+            $table->string('whitecollar_fee_ar')->nullable();
+            $table->string('whitecollar_visa_fee_ar')->nullable();
+
+            $table->string('bluecollar_fee_ar')->nullable();
+            $table->string('bluecollar_visa_fee_ar')->nullable();
+
+            $table->string('labor_fee_ar')->nullable();
+            $table->string('labor_visa_fee_ar')->nullable();
+
+            $table->string('referred_candidates_fee_ar')->nullable();
+            $table->string('referred_candidates_visa_fee_ar')->nullable();
+
+            $table->string('healthcare_fee_en')->nullable();
+            $table->string('healthcare_visa_fee_en')->nullable();
+
+            $table->string('whitecollar_fee_en')->nullable();
+            $table->string('whitecollar_visa_fee_en')->nullable();
+
+            $table->string('bluecollar_fee_en')->nullable();
+            $table->string('bluecollar_visa_fee_en')->nullable();
+
+            $table->string('labor_fee_en')->nullable();
+            $table->string('labor_visa_fee_en')->nullable();
+
+            $table->string('referred_candidates_fee_en')->nullable();
+            $table->string('referred_candidates_visa_fee_en')->nullable();
+
             $table->bigInteger('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
 

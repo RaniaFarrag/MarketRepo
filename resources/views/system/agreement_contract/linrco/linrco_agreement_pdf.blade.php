@@ -99,11 +99,11 @@
 <body dir="rtl">
 
 <htmlpageheader name="page-header">
-    <header><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/head.jpg"></header>
+    <header><img style="width: 100%" src="{{ asset('dashboard/assets/head.jpg') }} "></header>
 </htmlpageheader>
 
 <htmlpagefooter name="page-footer">
-    <footer><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/foot.jpg"></footer>
+    <footer><img style="width: 100%" src="{{ asset('dashboard/assets/foot.jpg') }}"></footer>
 </htmlpagefooter>
 
 
@@ -147,14 +147,14 @@
             <td class="ltr" colspan="1">Omar Bin Abdulaziz Street Al-Malaz District</td>
             <td class="ltr" style="width: 10%;direction: ltr; border: none;"></td>
             <td class="ltr" colspan="1">Address</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->company ? $linrco_agreement->company->district : ''}}</td>
+            <td class="ltr" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
         </tr>
         <tr>
             <td class="ltr" colspan="1">CITY</td>
             <td class="ltr" colspan="1">Riyadh</td>
             <td class="ltr" style="width: 10%;border: none;"></td>
             <td class="ltr" colspan="1">CITY</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->company->city ? $linrco_agreement->company->city->name : '' }}</td>
+            <td class="ltr" colspan="1">{{ $linrco_agreement->company->city ?  $linrco_agreement->company->city->translate('en')->name : '-' }}</td>
         </tr>
         <tr>
             <td class="ltr" colspan="1">P.O Box</td>
@@ -222,7 +222,7 @@
             <td class="rtl" colspan="1"><strong>شركة ليناركو للتوظيف</strong></td>
             <td class="rtl" style="width: 10%;border: none;"></td>
             <td class="rtl" colspan="1">اسم الشركة</td>
-            <td class="rtl" colspan="1"><strong>{{ $linrco_agreement->company->name }}</strong></td>
+            <td class="rtl" colspan="1"><strong>{{ $linrco_agreement->company->translate('ar')->name }}</strong></td>
         </tr>
         <tr>
             <td class="rtl" colspan="1">رقم السجل</td>
@@ -236,14 +236,14 @@
             <td class="rtl" colspan="1">شارع عمر بن عبدالعزيز – حي الملز</td>
             <td class="rtl" style="width: 10%;border: none;"></td>
             <td class="rtl" colspan="1">العنوان</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->company ? $linrco_agreement->company->district : ''}}</td>
+            <td class="rtl" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
         </tr>
         <tr>
             <td class="rtl" colspan="1">المدينة</td>
             <td class="rtl" colspan="1">الرياض</td>
             <td class="rtl" style="width: 10%;border: none;"></td>
             <td class="rtl" colspan="1">المدينة</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->company->city ? $linrco_agreement->company->city->name : '' }}</td>
+            <td class="rtl" colspan="1">{{ $linrco_agreement->company->city ? $linrco_agreement->company->city->translate('ar')->name : '-' }}</td>
         </tr>
         <tr>
             <td class="rtl" colspan="1">ص. ب</td>
@@ -727,52 +727,52 @@
         </tr>
         <tr style=" vertical-align: middle;">
             <td class="rtl">الرعاية الصحية</td>
-            <td class="rtl">راتب شهر واحد</td>
-            <td class="rtl" style="width: 10%">750$</td>
+            <td class="rtl">{{ $linrco_agreement->healthcare_fee_ar }}</td>
+            <td class="rtl" style="width: 10%">{{ $linrco_agreement->healthcare_visa_fee_ar }}</td>
 
 
-            <td class="ltr" style="width: 10%">750$</td>
-            <td class="ltr">ONE MONTH SALARY</td>
+            <td class="ltr" style="width: 10%">{{ $linrco_agreement->healthcare_visa_fee_en }}</td>
+            <td class="ltr">{{ $linrco_agreement->healthcare_fee_en }}</td>
             <td class="ltr">HEALTHCARE</td>
         </tr>
         <tr style=" vertical-align: middle;">
             <td class="rtl">ياقة بيضاء</td>
-            <td class="rtl">راتب شهر واحد</td>
-            <td class="rtl" style="width: 10%">750$</td>
+            <td class="rtl">{{ $linrco_agreement->whitecollar_fee_ar }}</td>
+            <td class="rtl" style="width: 10%">{{ $linrco_agreement->whitecollar_visa_fee_ar }}</td>
 
 
-            <td class="ltr" style="width: 10%">750$</td>
-            <td class="ltr">ONE MONTH SALARY</td>
+            <td class="ltr" style="width: 10%">{{ $linrco_agreement->whitecollar_visa_fee_en }}</td>
+            <td class="ltr">{{ $linrco_agreement->whitecollar_fee_en }}</td>
             <td class="ltr">WHITE COLLAR</td>
         </tr>
         <tr style=" vertical-align: middle;">
             <td class="rtl">الياقات الزرقاء</td>
-            <td class="rtl">راتب شهر واحد</td>
-            <td class="rtl" style="width: 10%">550$</td>
+            <td class="rtl">{{ $linrco_agreement->bluecollar_fee_ar }}</td>
+            <td class="rtl" style="width: 10%">{{ $linrco_agreement->bluecollar_visa_fee_ar }}</td>
 
 
-            <td class="ltr" style="width: 10%">550$</td>
-            <td class="ltr">ONE MONTH SALARY</td>
+            <td class="ltr" style="width: 10%">{{ $linrco_agreement->bluecollar_visa_fee_en }}</td>
+            <td class="ltr">{{ $linrco_agreement->bluecollar_fee_en }}</td>
             <td class="ltr">BLUE COLLAR</td>
         </tr>
         <tr style=" vertical-align: middle;">
             <td class="rtl">العمال</td>
-            <td class="rtl">550$</td>
-            <td class="rtl" style="width: 10%">200$</td>
+            <td class="rtl">{{ $linrco_agreement->labor_fee_ar }}</td>
+            <td class="rtl" style="width: 10%">{{ $linrco_agreement->labor_visa_fee_ar }}</td>
 
 
-            <td class="ltr" style="width: 10%">200$</td>
-            <td class="ltr">550$</td>
+            <td class="ltr" style="width: 10%">{{ $linrco_agreement->labor_visa_fee_en }}</td>
+            <td class="ltr">{{ $linrco_agreement->labor_fee_en }}</td>
             <td class="ltr">LABOR</td>
         </tr>
         <tr style=" vertical-align: middle;">
-            <td class="rtl">المرشحون المُحالون</td>
-            <td class="rtl">شحن مجاني</td>
-            <td class="rtl" style="width: 10%">350$</td>
+            <td class="rtl">المرشحون المحالون</td>
+            <td class="rtl">{{ $linrco_agreement->referred_candidates_fee_ar }}</td>
+            <td class="rtl" style="width: 10%">{{ $linrco_agreement->referred_candidates_visa_fee_ar }}</td>
 
 
-            <td class="ltr" style="width: 10%">350$</td>
-            <td class="ltr">FREE OF CHARGE</td>
+            <td class="ltr" style="width: 10%">{{ $linrco_agreement->referred_candidates_visa_fee_en }}</td>
+            <td class="ltr">{{ $linrco_agreement->referred_candidates_fee_en }}</td>
             <td class="ltr">REFERRED CANDIDATES</td>
         </tr>
         <tr>
@@ -848,10 +848,13 @@
                 <strong>(ج)</strong> .تأمين إلزامي لجميع التعيينات الجديدة التي يتحملها الطرف الثاني.<br/>
                 <strong>(د)</strong>.يجب توفير تذاكر الطيران من قبل الطرف الثاني.<br/>
                 <strong>(ه)</strong>.ساعات العمل حسب قانون العمل السعودي.<br/>
-                <strong>(و)</strong>.سيتحمل المرشحون رسوم الداتا فلو Dataflowوالبرومترك Prometric والتصنيف
-                Classification والمصادقة على
-                المستندات مبدئيًا في بلدهم الأصلي، ومن ثم سيتم تعويضها من قبل الطرف الثاني مباشرةً إلى المرشحين بعد
-                وصولهم.
+
+                @if($linrco_agreement->data_flow == 1)
+                    <strong>(و)</strong>.سيتحمل المرشحون رسوم الداتا فلو Dataflowوالبرومترك Prometric والتصنيف
+                    Classification والمصادقة على
+                    المستندات مبدئيًا في بلدهم الأصلي، ومن ثم سيتم تعويضها من قبل الطرف الثاني مباشرةً إلى المرشحين بعد
+                    وصولهم.
+                @endif
 
             </td>
             <td class="ltr" style="width: 50%;">
@@ -862,9 +865,12 @@
                 <strong>(c)</strong>. Mandatory Insurance for all new hires to be borne by the Second party.<br/>
                 <strong>(d)</strong>. Air tickets shall be provided by the Second party.<br/>
                 <strong>(e)</strong>. Working hours as per the SAUDI LABOR LAW.<br/>
-                <strong>(f)</strong>. The Dataflow, Prometric, Classification and document attestation fees will be
-                shouldered by the candidates initially in their home country and then the same will be reimbursed by the
-                Second party directly to the Candidates after their Arrival.
+
+                @if($linrco_agreement->data_flow == 1)
+                    <strong>(f)</strong>. The Dataflow, Prometric, Classification and document attestation fees will be
+                    shouldered by the candidates initially in their home country and then the same will be reimbursed by the
+                    Second party directly to the Candidates after their Arrival.
+                @endif
             </td>
         </tr>
         <tr>

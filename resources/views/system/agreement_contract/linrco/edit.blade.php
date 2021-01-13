@@ -120,34 +120,151 @@
                                             <input arr-name="item" value="{{ $linrco_agreement->company_representative }}" name="company_representative" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Company Representative') }}" required/>
                                         </div>
-                                        <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.position') }}:</label>
-                                            <input value="{{ $linrco_agreement->position }}" name="position" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.position') }}" required/>
+                                        {{--<div class="col-lg-3 mb-2">--}}
+                                            {{--<label>{{ trans('dashboard.position') }}:</label>--}}
+                                            {{--<input value="{{ $linrco_agreement->position }}" name="position" type="text"--}}
+                                                   {{--class="form-control" placeholder="{{ trans('dashboard.position') }}" required/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-lg-3 mb-2">--}}
+                                            {{--<label>{{ trans('dashboard.duration_of_commitment') }}:</label>--}}
+                                            {{--<input value="{{ $linrco_agreement->duration_of_commitment }}" name="duration_of_commitment" type="number"--}}
+                                                   {{--class="form-control" placeholder="{{ trans('dashboard.duration_of_commitment') }}" required/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-lg-3 mb-2">--}}
+                                            {{--<label>{{ trans('dashboard.Recruitment fee') }}:</label>--}}
+                                            {{--<input arr-name="item" value="{{ $linrco_agreement->payment_of_fees }}" name="payment_of_fees" type="text"--}}
+                                                   {{--class="form-control" placeholder="{{ trans('dashboard.Recruitment fee') }}" required/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-lg-3 mb-2">--}}
+                                            {{--<label>{{ trans('dashboard.service_implementation_fee') }}:</label>--}}
+                                            {{--<input arr-name="item" value="{{ $linrco_agreement->service_implementation_fee }}" name="service_implementation_fee" type="text"--}}
+                                                   {{--class="form-control" placeholder="{{ trans('dashboard.service_implementation_fee') }}" required/>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-lg-3 mb-2">--}}
+                                            {{--<label>{{ trans('dashboard.the_notice_period') }}:</label>--}}
+                                            {{--<input arr-name="item" value="{{ $linrco_agreement->the_notice_period }}" name="the_notice_period" type="text"--}}
+                                                   {{--class="form-control" placeholder="{{ trans('dashboard.the_notice_period') }}" required/>--}}
+                                        {{--</div>--}}
+                                    </div>
 
+                                    <div class="form-group row">
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.healthcare_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->healthcare_fee_ar }}" name="healthcare_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.healthcare_fee_ar') }}" />
                                         </div>
-                                        <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.duration_of_commitment') }}:</label>
-                                            <input value="{{ $linrco_agreement->duration_of_commitment }}" name="duration_of_commitment" type="number"
-                                                   class="form-control" placeholder="{{ trans('dashboard.duration_of_commitment') }}" required/>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.healthcare_visa_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->healthcare_visa_fee_ar }}" name="healthcare_visa_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.healthcare_visa_fee_ar') }}" />
+                                        </div>
 
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.healthcare_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->healthcare_fee_en }}" name="healthcare_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.healthcare_fee_en') }}" />
                                         </div>
-                                        <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.Recruitment fee') }}:</label>
-                                            <input arr-name="item" value="{{ $linrco_agreement->payment_of_fees }}" name="payment_of_fees" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Recruitment fee') }}" required/>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.healthcare_visa_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->healthcare_visa_fee_en }}" name="healthcare_visa_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.healthcare_visa_fee_en') }}" />
                                         </div>
-                                        <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.service_implementation_fee') }}:</label>
-                                            <input arr-name="item" value="{{ $linrco_agreement->service_implementation_fee }}" name="service_implementation_fee" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.service_implementation_fee') }}" required/>
+
+
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.whitecollar_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->whitecollar_fee_ar }}" name="whitecollar_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.whitecollar_fee_ar') }}" />
                                         </div>
-                                        <div class="col-lg-3 mb-2">
-                                            <label>{{ trans('dashboard.the_notice_period') }}:</label>
-                                            <input arr-name="item" value="{{ $linrco_agreement->the_notice_period }}" name="the_notice_period" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.the_notice_period') }}" required/>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.whitecollar_visa_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->whitecollar_visa_fee_ar }}" name="whitecollar_visa_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.whitecollar_visa_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.whitecollar_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->whitecollar_fee_en }}" name="whitecollar_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.whitecollar_fee_en') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.whitecollar_visa_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->whitecollar_visa_fee_en }}" name="whitecollar_visa_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.whitecollar_visa_fee_en') }}" />
+                                        </div>
+
+
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.bluecollar_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->bluecollar_fee_ar }}" name="bluecollar_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.bluecollar_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.bluecollar_visa_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->bluecollar_visa_fee_ar }}" name="bluecollar_visa_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.bluecollar_visa_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.bluecollar_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->bluecollar_fee_en }}" name="bluecollar_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.bluecollar_fee_en') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.bluecollar_visa_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->bluecollar_visa_fee_en }}" name="bluecollar_visa_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.bluecollar_visa_fee_en') }}" />
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.labor_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->labor_fee_ar }}" name="labor_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.labor_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.labor_visa_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->labor_visa_fee_ar }}" name="labor_visa_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.labor_visa_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.labor_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->labor_fee_en }}" name="labor_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.labor_fee_en') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.labor_visa_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->labor_visa_fee_en }}" name="labor_visa_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.labor_visa_fee_en') }}" />
+                                        </div>
+
+
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.referred_candidates_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->referred_candidates_fee_ar }}" name="referred_candidates_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.referred_candidates_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.referred_candidates_visa_fee_ar') }} :</label>
+                                            <input value="{{ $linrco_agreement->referred_candidates_visa_fee_ar }}" name="referred_candidates_visa_fee_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.referred_candidates_visa_fee_ar') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.referred_candidates_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->referred_candidates_fee_en }}" name="referred_candidates_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.referred_candidates_fee_en') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.referred_candidates_visa_fee_en') }} :</label>
+                                            <input value="{{ $linrco_agreement->referred_candidates_visa_fee_en }}" name="referred_candidates_visa_fee_en" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.referred_candidates_visa_fee_en') }}" />
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <label>{{ trans('dashboard.DataFlow') }} :</label>
+                                            <input {{ $linrco_agreement->data_flow == 1 ? 'checked' : '' }} value="1" name="data_flow" type="checkbox"/>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
