@@ -73,10 +73,11 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.linrco_email') }}:</label>
-                                            <input value="{{ old('linrco_email') }}" name="linrco_email" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.linrco_email') }}" required/>
+                                            <label>{{ trans('dashboard.Phone') }} :</label>
+                                            <input value="{{ $company->phone }}" name="phone" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.Phone') }}" required/>
                                         </div>
+
                                         {{--<div class="col-lg-4">--}}
                                             {{--<label>{{ trans('dashboard.company_name') }} :</label>--}}
                                             {{--<input value="{{ $company->name }}" name="company_name" type="text" class="form-control"--}}
@@ -91,14 +92,14 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.company_address') }} :</label>
+                                            <label>{{ trans('dashboard.company_address_en') }} :</label>
                                             <input value="{{ $company->district }} " name="company_address" type="text" class="form-control"
-                                                   placeholder="{{ trans('dashboard.company_address') }}" />
+                                                   placeholder="{{ trans('dashboard.company_address_en') }}" />
                                         </div>
                                         <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Phone') }} :</label>
-                                            <input value="{{ $company->phone }}" name="phone" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Phone') }}" required/>
+                                            <label>{{ trans('dashboard.company_address_ar') }}:</label>
+                                            <input value="{{ old('linrco_email') }}" name="linrco_email" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.company_address_ar') }}" required/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.mail_box') }} :</label>
@@ -109,21 +110,27 @@
 
 
                                     <div class="form-group row">
-                                        <div class="col-lg-4 mb-2">
+                                        <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.postal_code') }}:</label>
                                             <input value="{{ old('postal_code') }}" name="postal_code" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.postal_code') }}" required/>
                                         </div>
-                                        <div class="col-lg-4 mb-2">
+                                        <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.Email') }} :</label>
                                             <input value="{{ $company->email }}" name="email" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Email') }}" required/>
                                         </div>
-                                        <div class="col-lg-4 mb-2">
-                                            <label>{{ trans('dashboard.Company Representative') }}:</label>
+                                        <div class="col-lg-3 mb-2">
+                                            <label>{{ trans('dashboard.Company Representative en') }}:</label>
                                             <input value="{{ $company->contract_manager_name }}" name="company_representative" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Company Representative') }}" required/>
+                                                   class="form-control" placeholder="{{ trans('dashboard.Company Representative en') }}" required/>
                                         </div>
+                                        <div class="col-lg-3 mb-2">
+                                            <label>{{ trans('dashboard.Company Representative Ar') }}:</label>
+                                            <input value="{{ $company->contract_manager_name }}" name="company_representative" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.Company Representative Ar') }}" required/>
+                                        </div>
+
                                         {{--<div class="col-lg-3 mb-2">--}}
                                             {{--<label>{{ trans('dashboard.position') }}:</label>--}}
                                             {{--<input value="{{ old('position') }}" name="position" type="text"--}}
@@ -163,7 +170,6 @@
                                             <input value="{{ old('healthcare_visa_fee_ar') }}" name="healthcare_visa_fee_ar" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.healthcare_visa_fee_ar') }}" />
                                         </div>
-
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.healthcare_fee_en') }} :</label>
                                             <input value="{{ old('healthcare_fee_en') }}" name="healthcare_fee_en" type="text"
@@ -174,7 +180,8 @@
                                             <input value="{{ old('healthcare_visa_fee_en') }}" name="healthcare_visa_fee_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.healthcare_visa_fee_en') }}" />
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
 
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.whitecollar_fee_ar') }} :</label>
@@ -196,7 +203,8 @@
                                             <input value="{{ old('whitecollar_visa_fee_en') }}" name="whitecollar_visa_fee_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.whitecollar_visa_fee_en') }}" />
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
 
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.bluecollar_fee_ar') }} :</label>
@@ -218,7 +226,8 @@
                                             <input value="{{ old('bluecollar_visa_fee_en') }}" name="bluecollar_visa_fee_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.bluecollar_visa_fee_en') }}" />
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.labor_fee_ar') }} :</label>
                                             <input value="{{ old('labor_fee_ar') }}" name="labor_fee_ar" type="text"
@@ -239,7 +248,8 @@
                                             <input value="{{ old('labor_visa_fee_en') }}" name="labor_visa_fee_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.labor_visa_fee_en') }}" />
                                         </div>
-
+                                    </div>
+                                    <div class="form-group row">
 
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.referred_candidates_fee_ar') }} :</label>

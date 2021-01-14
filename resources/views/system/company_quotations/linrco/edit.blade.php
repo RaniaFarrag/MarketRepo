@@ -238,6 +238,17 @@
                                             {{--<input {{ $linrco_quotation->saudization == 1 ? 'checked' : ''}} value="1" name="saudization" type="checkbox"/>--}}
                                         {{--</div>--}}
                                     {{--</div>--}}
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Terms & Conditions AR') }} :</label>
+                                            <textarea rows="6" class="form-control" name="terms_ar">@foreach(json_decode($linrco_quotation->terms_ar) as $term_ar){!!$term_ar."\n"!!}@endforeach</textarea>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Terms & Conditions EN') }} :</label>
+                                            <textarea rows="6" class="form-control" name="terms_en">@foreach(json_decode($linrco_quotation->terms_en) as $term_en){!!$term_en."\n"!!}@endforeach
+                                            </textarea>
+                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="card-footer">

@@ -47,6 +47,8 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
     /** Store CompanyQuotation */
     public function store($request)
     {
+
+//        dd( );
         $validated = $request->validate([
             'Quotation_No' => 'required',
         ]);
@@ -57,6 +59,8 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
             'mobile' => $request->mobile,
             'email' => $request->email,
             'Quotation_No' => $request->Quotation_No,
+            'terms_ar' => json_encode(explode("\r\n" ,$request->terms_ar)),
+            'terms_en' => json_encode(explode("\r\n" ,$request->terms_en)),
             'saudization' => $request->saudization,
             'company_id' => $request->company_id,
             'user_id' => Auth::user()->id,
@@ -94,6 +98,8 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
             'mobile' => $request->mobile,
             'email' => $request->email,
             'Quotation_No' => $request->Quotation_No,
+            'terms_ar' => json_encode(explode("\r\n" ,$request->terms_ar)),
+            'terms_en' => json_encode(explode("\r\n" ,$request->terms_en)),
             'saudization' => $request->saudization,
             'company_id' => $linrco_quotation->company_id,
             'user_id' => Auth::user()->id,

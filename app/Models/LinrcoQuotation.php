@@ -14,6 +14,8 @@ class LinrcoQuotation extends Model
         'mobile',
         'email',
         'Quotation_No',
+        'terms_ar',
+        'terms_en',
         'saudization',
         'company_id',
         'user_id',

@@ -21,6 +21,8 @@ class CreateLinrcoQuotationsTable extends Migration
             $table->string('mobile')->nullable();
             $table->string('email')->nullable();
             $table->string('Quotation_No')->nullable();
+            $table->text('terms_ar')->nullable();
+            $table->text('terms_en')->nullable();
             $table->integer('saudization')->nullabled();
             $table->bigInteger('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

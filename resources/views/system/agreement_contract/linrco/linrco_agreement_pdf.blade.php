@@ -119,86 +119,136 @@
         </tbody>
     </table>
     <br>
-    <table class="ltr" style="line-height: 22px;">
+    <div style="width: 100%; display: inline-block">
+    <div class="ltr" style="width: 47%; display: inline-block;float: left">
+        <table class="ltr" style="line-height: 22px;width: 100%;">
 
-        <tbody>
+            <tbody>
 
-        <tr>
-            <td class="ltr" style="width: 45%; font-weight: bold" colspan="2">FIRST PARTY</td>
-            <td class="ltr" style="width: 10%;border: none;" colspan="1"></td>
-            <td class="ltr" style="width: 45%;font-weight: bold" colspan="2">SECOND PARTY</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">Name</td>
-            <td class="ltr" colspan="1"><strong>LINRCO</strong></td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" colspan="1">Name</td>
-            <td class="ltr" colspan="1"><strong>{{ $linrco_agreement->company->name }}</strong></td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">CR NUMBER</td>
-            <td class="ltr" colspan="1">1010589658</td>
-            <td class="ltr" style="width: 10%; border: none;"></td>
-            <td class="ltr" colspan="1">CR NUMBER</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->cr }}</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">Address</td>
-            <td class="ltr" colspan="1">Omar Bin Abdulaziz Street Al-Malaz District</td>
-            <td class="ltr" style="width: 10%;direction: ltr; border: none;"></td>
-            <td class="ltr" colspan="1">Address</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">CITY</td>
-            <td class="ltr" colspan="1">Riyadh</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" colspan="1">CITY</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->company->city ?  $linrco_agreement->company->city->translate('en')->name : '-' }}</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">P.O Box</td>
-            <td class="ltr" colspan="1">32545</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" colspan="1">P.O Box</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->mail_box }}</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">POSTAL CODE</td>
-            <td class="ltr" colspan="1">11371</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" colspan="1">POSTAL CODE</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->postal_code }}</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">PH. NO.</td>
-            <td class="ltr" colspan="1">114764587</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" colspan="1">PH. NO.</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->phone }}</td>
-        </tr>
-        <tr>
-            <td class="ltr" colspan="1">Email</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->linrco_email }}</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" colspan="1">Email</td>
-            <td class="ltr" colspan="1">{{ $linrco_agreement->email }}</td>
-        </tr>
-        <tr>
-            <td class="ltr" style="border-bottom: none" colspan="2">REPRESENTED BY :</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" style="border-bottom: none" colspan="2">REPRESENTED BY :</td>
-        </tr>
-        <tr>
-            <td class="ltr" style="border-top: none" colspan="2">AYED TURKY ALI</td>
-            <td class="ltr" style="width: 10%;border: none;"></td>
-            <td class="ltr" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative }}</td>
-        </tr>
+            <tr>
+                <td class="ltr" style="font-weight: bold" colspan="2">FIRST PARTY</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">Name</td>
+                <td class="ltr" colspan="1"><strong>LINRCO</strong></td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">CR NUMBER</td>
+                <td class="ltr" colspan="1">1010589658</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">Address</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->company_address }}</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">CITY</td>
+                <td class="ltr" colspan="1">Riyadh</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">P.O Box</td>
+                <td class="ltr" colspan="1">32545</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">POSTAL CODE</td>
+                <td class="ltr" colspan="1">11371</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">PH. NO.</td>
+                <td class="ltr" colspan="1">114764587</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" colspan="1">Email</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->linrco_email }}</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" style="border-bottom: none" colspan="2">REPRESENTED BY :</td>
+
+            </tr>
+            <tr>
+                <td class="ltr" style="border-top: none" colspan="2">AYED TURKY ALI</td>
+
+            </tr>
 
 
-        </tbody>
-    </table>
-    <br>
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <div class="ltr" style="width: 6%; display: inline-block;float: left">
+    </div>
+    <div class="rtl" style="width: 47%; display: inline-block;float: right">
+        <table class="ltr" style="line-height: 22px;">
+
+            <tbody>
+
+            <tr>
+                <td class="ltr" style="font-weight: bold" colspan="2">SECOND PARTY</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">Name</td>
+                <td class="ltr" colspan="1"><strong>{{ $linrco_agreement->company->name }}</strong></td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">CR NUMBER</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->cr }}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">Address</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">CITY</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->company->city ?  $linrco_agreement->company->city->translate('en')->name : '-' }}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">P.O Box</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->mail_box }}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">POSTAL CODE</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->postal_code }}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">PH. NO.</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->phone }}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" colspan="1">Email</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->email }}</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" style="border-bottom: none" colspan="2">REPRESENTED BY :</td>
+            </tr>
+            <tr>
+
+                <td class="ltr" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative }}</td>
+            </tr>
+
+
+            </tbody>
+        </table>
+        <br>
+    </div>
+    </div>
+<br/>
     <table>
 
         <tbody>
@@ -208,87 +258,136 @@
         </tbody>
     </table>
     <br>
+    <div style="width: 100%;  display: inline-block">
+        <div class="rtl" style="width: 47%; display: inline-block; float: right">
     <table style="line-height: 22px;">
 
         <tbody>
 
         <tr>
-            <td class="rtl" style="width: 45%;" colspan="2"><strong>الطرف الأول</strong></td>
-            <td class="rtl" style="width: 10%; border: none;" colspan="1"></td>
-            <td class="rtl" style="width: 45%;" colspan="2"><strong>الطرف الثاني</strong></td>
+            <td class="rtl" colspan="2"><strong>الطرف الأول</strong></td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">اسم الشركة</td>
             <td class="rtl" colspan="1"><strong>شركة ليناركو للتوظيف</strong></td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">اسم الشركة</td>
-            <td class="rtl" colspan="1"><strong>{{ $linrco_agreement->company->translate('ar')->name }}</strong></td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">رقم السجل</td>
             <td class="rtl" colspan="1">1010589658</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">رقم السجل</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->cr }}</td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">العنوان</td>
             <td class="rtl" colspan="1">شارع عمر بن عبدالعزيز – حي الملز</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">العنوان</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">المدينة</td>
             <td class="rtl" colspan="1">الرياض</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">المدينة</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->company->city ? $linrco_agreement->company->city->translate('ar')->name : '-' }}</td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">ص. ب</td>
             <td class="rtl" colspan="1">32545</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">ص. ب</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->mail_box }}</td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">الرمز البريدي</td>
             <td class="rtl" colspan="1">11371</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">الرمز البريدي</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->postal_code }}</td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">هاتف</td>
             <td class="rtl" colspan="1">114764587</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">هاتف</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->phone }}</td>
+
         </tr>
         <tr>
             <td class="rtl" colspan="1">البريد الالكتروني</td>
             <td class="rtl" colspan="1">{{ $linrco_agreement->linrco_email }}</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" colspan="1">البريد الالكتروني</td>
-            <td class="rtl" colspan="1">{{ $linrco_agreement->email }}</td>
+
         </tr>
         <tr>
             <td class="rtl" style="border-bottom: none" colspan="2">الممثل عن الشركة في هذا العقد :</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" style="border-bottom: none" colspan="2">الممثل عن الشركة في هذا العقد :</td>
+
         </tr>
         <tr>
             <td class="rtl" style="border-top: none" colspan="2">عايض تركي علي</td>
-            <td class="rtl" style="width: 10%;border: none;"></td>
-            <td class="rtl" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative }}</td>
+
         </tr>
 
 
         </tbody>
 
     </table>
+        </div>
+        <div class="rtl" style="width: 6%; display: inline-block; float: left">
+        </div>
+        <div class="rtl" style="width: 47%; display: inline-block;  float: left">
+            <table style="line-height: 22px;">
 
+                <tbody>
+
+                <tr>
+
+                    <td class="rtl" colspan="2"><strong>الطرف الثاني</strong></td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">اسم الشركة</td>
+                    <td class="rtl" colspan="1"><strong>{{ $linrco_agreement->company->translate('ar')->name }}</strong></td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">رقم السجل</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->cr }}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">العنوان</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">المدينة</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->company->city ? $linrco_agreement->company->city->translate('ar')->name : '-' }}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">ص. ب</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->mail_box }}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">الرمز البريدي</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->postal_code }}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">هاتف</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->phone }}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" colspan="1">البريد الالكتروني</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->email }}</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" style="border-bottom: none" colspan="2">الممثل عن الشركة في هذا العقد :</td>
+                </tr>
+                <tr>
+
+                    <td class="rtl" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative }}</td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+        </div>
+       </div>
 
 </main>
 
@@ -1135,18 +1234,18 @@
         <tr>
             <td class="rtl" style="width: 50%;">
                 وإثباتًا على ذلك ، شرع الطرفان في تنفيذ هذه الاتفاقية والتوقيع على النسختين ، من قبل ممثل كل منهما بموجب
-                تفويض رسمي اعتبارًا من 10/08/2020 في المملكة العربية السعودية.
+                تفويض رسمي اعتبارًا من {{ $linrco_agreement->date }} في المملكة العربية السعودية.
 
             </td>
             <td class="ltr" style="width: 50%;">
                 In witness whereof, both the parties have caused this agreement to be executed in two copies, by their
-                respective representative thereunto duly authorized as of 10/08/2020 in the KINGDOM OF SAUDI ARABIA
+                respective representative thereunto duly authorized as of {{ $linrco_agreement->date }} in the KINGDOM OF SAUDI ARABIA
 
             </td>
         </tr>
         <tr>
             <td class="rtl" style="width: 50%;">
-                {{ $linrco_agreement->date }}  التاريخ :
+                التاريخ :{{ $linrco_agreement->date }}
 
             </td>
             <td class="ltr" style="width: 50%;">

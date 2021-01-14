@@ -4,13 +4,13 @@
     <html lang="ar" dir="rtl">
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title> {{ $linrco_quotation->company->name }} عرض اسعار الى </title>
+        <title> {{ $linrco_quotation->company->name ?? '' }} عرض اسعار الى </title>
         @else
 
             <html lang="en" dir="ltr">
             <head>
                 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-                <title>Quotation For {{ $linrco_quotation->company->name }}</title>
+                <title>Quotation For {{ $linrco_quotation->company->name ?? '' }}</title>
 
                 @endif
 
@@ -228,7 +228,7 @@
                                 <tr>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.To') }}</td>
-                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $linrco_quotation->company->name }}
+                                    <td class="en ltr" style="font-size: 12px; vertical-align: middle;">{{ $linrco_quotation->company->name  ?? ''}}
                                     </td>
                                     <td class="en ltr"
                                         style="font-size: 12px; vertical-align: middle; background-color: #d7d7d7;">{{ __('dashboard.Ref: No') }}</td>
@@ -375,7 +375,7 @@
                                         </td>
                                         <td class="en ltr"
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
-                                            {{ $linrco_request->country->name }}
+                                            {{ $linrco_request->country->name ?? '' }}
                                         </td>
                                         <td class="en ltr"
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
@@ -397,31 +397,23 @@
                                 <strong>{{ __('dashboard.Terms & Conditions') }}:-</strong><br/>
 
                                 @if (app()->getLocale() == 'ar')
-
-
-                                    •  تخضع جميع الشروط والأحكام للعقد الموقع.<br/>
-                                    •  يتم توفير الإقامة والنقل من جانب العميل.<br/>
-                                    •  يوفر العميل تذكرة التحاق الموظف للعمل.<br/>
-                                    •  مدة عقد الخدمة المقدمة عامان قابلة للتجديد حسب الشروط والأحكام المعمول بها.<br/>
-                                    •  ساعات العمل حسب قانون العمل السعودي.<br/>
-                                    • في البداية سيتحمل المرشحون رسوم الداتا فلو والبروميتريك ورسوم التصنيف وتصديق
-                                    المستندات في دولتهم، ثم يقوم العميل بسداد المبالغ مباشرة إلى المرشحين عند وصولهم إلى
-                                    المملكة العربية السعودية.<br/>
-                                    •    يجب أن يحصل العميل على أمر العمل الضروري من القنصليات المعنية.<br/>
-                                    •    يتم دفع 50٪ من المبلغ المثبت في الفاتورة بمجرد الانتهاء من ختم التأشيرة.<br/>
-                                    •    ويتم دفع 50٪ المتبقية عند إصدار وحجز تذكرة الانضمام للمرشح.<br/>
-                                    •    سيتم تطبيق ضريبة القيمة المضافة وأي ضرائب حكومية إضافية ورسوم حكومية.<br/>
-                                    •    عرض السعر المرسل صالح لمدة 7 أيام من تاريخ إصداره.<br/>
-
-
-
+                                    @foreach(json_decode($linrco_quotation->terms_ar) as $term_ar){!!$term_ar."<br>"!!}@endforeach
+                                    {{--•  تخضع جميع الشروط والأحكام للعقد الموقع.<br/>--}}
+                                    {{--•  يتم توفير الإقامة والنقل من جانب العميل.<br/>--}}
+                                    {{--•  يوفر العميل تذكرة التحاق الموظف للعمل.<br/>--}}
+                                    {{--•  مدة عقد الخدمة المقدمة عامان قابلة للتجديد حسب الشروط والأحكام المعمول بها.<br/>--}}
+                                    {{--•  ساعات العمل حسب قانون العمل السعودي.<br/>--}}
+                                    {{--• في البداية سيتحمل المرشحون رسوم الداتا فلو والبروميتريك ورسوم التصنيف وتصديق--}}
+                                    {{--المستندات في دولتهم، ثم يقوم العميل بسداد المبالغ مباشرة إلى المرشحين عند وصولهم إلى--}}
+                                    {{--المملكة العربية السعودية.<br/>--}}
+                                    {{--•    يجب أن يحصل العميل على أمر العمل الضروري من القنصليات المعنية.<br/>--}}
+                                    {{--•    يتم دفع 50٪ من المبلغ المثبت في الفاتورة بمجرد الانتهاء من ختم التأشيرة.<br/>--}}
+                                    {{--•    ويتم دفع 50٪ المتبقية عند إصدار وحجز تذكرة الانضمام للمرشح.<br/>--}}
+                                    {{--•    سيتم تطبيق ضريبة القيمة المضافة وأي ضرائب حكومية إضافية ورسوم حكومية.<br/>--}}
+                                    {{--•    عرض السعر المرسل صالح لمدة 7 أيام من تاريخ إصداره.<br/>--}}
 
 
 {{--
-
-
-
-
                                     <span class="en">•</span>    تخضع جميع الشروط والأحكام للعقد الموقع<span class="en">.</span>
                                     <br/>
                                     <span class="en">•</span>    يتم توفير الإقامة والنقل من جانب العميل<span
@@ -450,25 +442,26 @@
                                     سيد رأفت علي
 
                                 @else
+                                    @foreach(json_decode($linrco_quotation->terms_en) as $term_en){!!$term_en."<br>"!!}@endforeach
 
-                                    •    All Terms & Conditions are subjected to Signed Contract.<br/>
-                                    •    Accommodation & Transportation will be provided by the client.<br/>
-                                    •    Employee Joining Tickets will be provided by the client.<br/>
-                                    •    Service contract period is for 2 years and renewable as per the standard Terms&
-                                    Conditions.<br/>
-                                    •    Working hours as per Saudi Labor Law.<br/>
-                                    •    The Dataflow, Prometric, Classification and Document Attestation Fees will be
-                                    shouldered by the candidates initially in their home country and then the same will
-                                    be reimbursed by the Client directly to the Candidates upon their arrival in KSA.
-                                    <br/>
-                                    •    Necessary Job Order to be obtained by the client from the respective consulates
-                                    <br/>
-                                    •    50% of the invoice amount to be paid upon visa stamping.<br/>
-                                    •    Remaining 50% of the invoice amount to be paid upon the issuance of the joining
-                                    ticket.<br/>
-                                    •    VAT and any Additional Government Taxes and Government Fee will be applicable.
-                                    <br/>
-                                    •    This quotation is Valid for 7 Days from the issued date.<br/>
+                                    {{--•    All Terms & Conditions are subjected to Signed Contract.<br/>--}}
+                                    {{--•    Accommodation & Transportation will be provided by the client.<br/>--}}
+                                    {{--•    Employee Joining Tickets will be provided by the client.<br/>--}}
+                                    {{--•    Service contract period is for 2 years and renewable as per the standard Terms&--}}
+                                    {{--Conditions.<br/>--}}
+                                    {{--•    Working hours as per Saudi Labor Law.<br/>--}}
+                                    {{--•    The Dataflow, Prometric, Classification and Document Attestation Fees will be--}}
+                                    {{--shouldered by the candidates initially in their home country and then the same will--}}
+                                    {{--be reimbursed by the Client directly to the Candidates upon their arrival in KSA.--}}
+                                    {{--<br/>--}}
+                                    {{--•    Necessary Job Order to be obtained by the client from the respective consulates--}}
+                                    {{--<br/>--}}
+                                    {{--•    50% of the invoice amount to be paid upon visa stamping.<br/>--}}
+                                    {{--•    Remaining 50% of the invoice amount to be paid upon the issuance of the joining--}}
+                                    {{--ticket.<br/>--}}
+                                    {{--•    VAT and any Additional Government Taxes and Government Fee will be applicable.--}}
+                                    {{--<br/>--}}
+                                    {{--•    This quotation is Valid for 7 Days from the issued date.<br/>--}}
 
 
 

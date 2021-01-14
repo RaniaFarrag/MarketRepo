@@ -104,9 +104,9 @@ class CompanyQuotationController extends Controller
                 'linrco_quotation'=>$linrco_quotation ,'mother_company_id' => $mother_company_id]);
         }
         elseif ($mother_company_id == 2){
-            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
-            return view('system.company_quotations.fnrco.edit')->with(['countries' => $countries ,
-                'fnrco_quotation'=>$fnrco_quotation , 'mother_company_id' => $mother_company_id]);
+//            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
+//            return view('system.company_quotations.fnrco.edit')->with(['countries' => $countries ,
+//                'fnrco_quotation'=>$fnrco_quotation , 'mother_company_id' => $mother_company_id]);
         }
     }
 
@@ -148,7 +148,10 @@ class CompanyQuotationController extends Controller
     public function printQuotation($quotation_id , $mother_company_id){
         if ($mother_company_id == 1){
             $linrco_quotation = LinrcoQuotation::where('id' , $quotation_id)->with('linrcoQuotationsRequest')->first();
-            $pdf = Pdf::loadView('system.company_quotations.linrco.Quotation_pdf' ,compact('linrco_quotation'));
+            $terms_ar = explode("\n" , $linrco_quotation->terms_ar );
+//            dd($terms_ar);
+            $terms_en = explode("PHP_EOL" , $linrco_quotation->terms_en);
+            $pdf = Pdf::loadView('system.company_quotations.linrco.Quotation_pdf' ,compact('linrco_quotation' ,'terms_ar' , 'terms_en'));
         }
         elseif ($mother_company_id == 2){
             $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
