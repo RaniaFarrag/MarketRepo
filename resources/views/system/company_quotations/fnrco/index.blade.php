@@ -161,9 +161,10 @@
                                             <th>{{ trans('dashboard.Date') }}</th>
                                             <th>{{ trans('dashboard.type') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
-                                        <!-- <th>{{ trans('dashboard.Contract Period') }}</th> -->
-                                            <th>{{ trans('dashboard.Category') }}</th>
+                                             <th>{{ trans('dashboard.Contract Period') }}</th>
                                             <th>{{ trans('dashboard.Company Quotations') }}</th>
+                                            <th>{{ trans('dashboard.Convert To Contract') }}</th>
+                                            <th>{{ trans('dashboard.The Contract') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>
                                             <th>{{ trans('dashboard.delete') }}</th>
                                         </tr>
@@ -175,6 +176,7 @@
                                                 <td>{{ $quotation->ref_no }}</td>
                                                 <td>{{ $quotation->Quotation_No }}</td>
                                                 <td>{{ $quotation->attn }}</td>
+                                                <td>{{ $quotation->created_at }}</td>
                                                 <td>
                                                     @if($quotation->saudization == 1)
                                                         {{ trans('dashboard.Ageer') }}
@@ -182,22 +184,53 @@
                                                         {{ trans('dashboard.Services') }}
                                                     @endif
                                                 </td>
-                                                <td>{{ $quotation->created_at }}</td>
                                                 <td>{{ $quotation->user->name }}</td>
-                                            <!-- <td>{{ $quotation->user->name }}</td> -->
-                                                <td>{{ $quotation->user->name }}</td>
+                                                <td>{{ $quotation->Contract_period }} Month</td>
+                                                {{--<td>{{ $quotation->user->name }}</td>--}}
                                                 <td><a class="btn btn-success font-weight-bold" target="_blank"
-                                                       href="{{ route('print_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Quotation Details') }}</a>
+                                                       href="{{ route('print_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Details') }}</a>
+                                                </td>
+
+                                                <td>
+                                                    @if($quotation->fnrcoAgreement)
+                                                        <a  style="color: grey; pointer-events: none;
+                                                                  cursor: default;
+                                                                  text-decoration: none;
+                                                                  " class="btn btn-success font-weight-bold" >
+                                                            {{ trans('dashboard.Convert To Contract') }}
+                                                        </a>
+
+                                                    @else
+                                                        <a class="btn btn-success font-weight-bold"
+                                                           href="{{ route('convertToAgreement' , $quotation->id) }}">
+                                                            {{ trans('dashboard.Convert To Contract') }}
+                                                        </a>
+                                                    @endif
+                                                </td>
+
+                                                <td>
+                                                    @if($quotation->fnrcoAgreement)
+                                                        <a class="btn btn-success font-weight-bold"
+                                                           href="{{ route('openFnrcoAgreement' , $quotation->fnrcoAgreement->id) }}">
+                                                            {{ trans('dashboard.Contract') }}
+                                                        </a>
+                                                    @else
+                                                        <a  style="color: grey; pointer-events: none;
+                                                                  cursor: default;
+                                                                  text-decoration: none;
+                                                                  " class="btn btn-success font-weight-bold" >
+                                                            {{ trans('dashboard.Contract') }}
+                                                        </a>
+                                                    @endif
                                                 </td>
                                                 <td>
-                                                    <a href={{ route('companyQuotation.edit' , [$quotation->id , $mother_company_id]) }} class="btn
+                                                    <a href="{{ route('companyQuotation.edit' , [$quotation->id , $mother_company_id]) }}" class="btn
                                                        btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a>
                                                 </td>
                                                 <td><a onclick="return confirm('Are you sure?')"
                                                        class="btn btn-danger font-weight-bold"
                                                        href="{{ route('companyQuotation.destroy' , [$quotation->id , $mother_company_id]) }}"><i
                                                                 class="fa fa-trash"></i></a></td>
-
                                             </tr>
                                         @endforeach
                                         </tbody>

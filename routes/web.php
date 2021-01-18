@@ -271,7 +271,12 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('CompanyAgreement/print/{agreement_id}/{mother_company_id}' , 'CompanyAgreementController@printAgreement')->name('CompanyAgreement_print');
 
+    //Fnrco Agreement Route
+    Route::get('convertToAgreement/{quotation_id}' , 'CompanyAgreementController@convertFnrcoquotationToAgreement')->name('convertToAgreement');
 
+    Route::get('openFnrcoAgreement/{fnrco_agreement_id}' , 'CompanyAgreementController@openFnrcoAgreement')->name('openFnrcoAgreement');
+
+    Route::get('FnrcoAgreement/print/{fnrco_agreement_id}' , 'CompanyAgreementController@printFnrcoAgreement')->name('print_FnrcoAgreement');
 
 
     Route::resource('CompanyUndertaking' , 'CompanyUndertakingController');
@@ -301,6 +306,45 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     ]);
 
     Route::get('CompanyUndertaking/print/{undertaking_id}/{mother_company_id}' , 'CompanyUndertakingController@printUndertaking')->name('undertaking_print');
+
+
+    Route::resource('CompanyUndertaking' , 'CompanyUndertakingController');
+
+    /** Custom index route */
+    Route::get('CompanyUndertaking/index/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.index',
+        'uses' => 'CompanyUndertakingController@index'
+    ]);
+
+    /** Custom create route */
+    Route::get('CompanyUndertaking/create/{company_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.create',
+        'uses' => 'CompanyUndertakingController@create'
+    ]);
+
+    /** Custom edit route */
+    Route::get('CompanyUndertaking/edit/{undertaking_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.edit',
+        'uses' => 'CompanyUndertakingController@edit'
+    ]);
+
+    /** Custom destroy route */
+    Route::get('CompanyUndertaking/destroy/{undertaking_id}/{mother_company_id}', [
+        'as' => 'CompanyUndertaking.destroy',
+        'uses' => 'CompanyUndertakingController@destroy'
+    ]);
+
+    Route::get('CompanyUndertaking/print/{undertaking_id}/{mother_company_id}' , 'CompanyUndertakingController@printUndertaking')->name('undertaking_print');
+
+
+    Route::resource('companyInvoice' , 'CompanyUndertakingController');
+
+    /** Custom index route */
+    Route::get('companyInvoice/index/{company_id}/{mother_company_id}', [
+        'as' => 'companyInvoice.index',
+        'uses' => 'CompanyUndertakingController@index'
+    ]);
+
 
 
 });

@@ -11,12 +11,8 @@ namespace App\Interfaces;
 
 interface FnrcoAgreementRepositoryInterface
 {
-    public function index($company_id , $mother_company_id);
 
-    public function store($request);
+    public function convertFnrcoquotationToAgreement($quotation_id);
 
-    public function update($request , $linrco_quotation);
-
-    public function destroy($quotation_id , $mother_company_id);
 
 }

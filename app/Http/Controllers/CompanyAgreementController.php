@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Interfaces\FnrcoAgreementRepositoryInterface;
 use App\Interfaces\LinrcoAgreementRepositoryInterface;
 use App\Models\Company;
-use App\Models\Country;
+use App\Models\FnrcoAgreement;
 use App\Models\FnrcoQuotation;
 use App\Models\LinrcoAgreement;
-use App\Models\LinrcoQuotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CompanyAgreementController extends Controller
 {
@@ -36,11 +36,6 @@ class CompanyAgreementController extends Controller
             $linrco_agreements = $this->LinrcoAgreementRepositoryInterface->index($company_id , $mother_company_id);
             return view('system.agreement_contract.linrco.index')->with(['linrco_agreements' => $linrco_agreements , 'company_id' => $company_id ,
                 'company'=>$company , 'mother_company_id' => $mother_company_id]);
-        }
-        elseif ($mother_company_id == 2){
-//            $fnrco_agreement = $this->fnrcoQuotationRepositoryinterface->index($company_id , $mother_company_id);
-//            return view('system.company_agreement.fnrco.index')->with(['fnrco_agreement' => $fnrco_agreement , 'company_id' => $company_id ,
-//                'company'=>$company , 'mother_company_id' => $mother_company_id]);
         }
     }
 
@@ -152,11 +147,38 @@ class CompanyAgreementController extends Controller
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             $pdf = Pdf::loadView('system.agreement_contract.linrco.linrco_agreement_pdf' ,compact('linrco_agreement'));
         }
-        elseif ($mother_company_id == 2){
-//            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
-//
-//            $pdf = Pdf::loadView('system.company_quotations.fnrco.Quotation_pdf',compact('fnrco_quotation'));
-        }
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "agreement.pdf'"]);
+    }
+
+
+    /*********************************************FNRCO COMPANy*****************************************************/
+
+
+    public function convertFnrcoquotationToAgreement($quotation_id){
+        $quotation = FnrcoQuotation::findOrFail($quotation_id);
+        $this->fnrcoAgreementRepositoryinterface->convertFnrcoquotationToAgreement($quotation_id);
+//        dd($agreement->fnrcoQuotation);
+        Alert::success('success', trans('dashboard.The quotation has been converted to a contract successfully'));
+        return redirect(route('companyQuotation.index' , [$quotation->company_id , 2]));
+    }
+
+    public function openFnrcoAgreement($fnrco_agreement_id){
+        $agreement = FnrcoAgreement::where('id' , $fnrco_agreement_id)->with('fnrcoQuotation')->first();
+
+        return view('system.agreement_contract.fnrco.index')->with(['agreement' => $agreement]);
+    }
+
+    public function printFnrcoAgreement($fnrco_agreement_id){
+        $fnrco_agreement = FnrcoAgreement::where('id' , $fnrco_agreement_id)->with('company' , 'user' , 'fnrcoQuotation')->first();
+//        dd($fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest->sum('total_value_per_month'));
+        $total = $fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest->sum('total_value_per_month');
+        $pdf = Pdf::loadView('system.agreement_contract.fnrco.Agreement_Service_fnrco' ,compact('fnrco_agreement' , 'total'));
 
         $output = $pdf->output();
 

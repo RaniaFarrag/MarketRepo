@@ -24,6 +24,10 @@ class FnrcoQuotation extends Model
         return $this->hasMany(FnrcoQuotationRequest::class);
     }
 
+    public function fnrcoAgreement(){
+        return $this->hasOne(FnrcoAgreement::class , 'fnrco_quotation_id' , 'id');
+    }
+
     public function company(){
         return $this->belongsTo(Company::class);
     }

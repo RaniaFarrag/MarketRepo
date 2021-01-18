@@ -336,10 +336,10 @@
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                                         {{ __('dashboard.Nationality') }}
                                     </td>
-                                    <td class="en ltr"
-                                        style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
-                                        {{ __('dashboardSALARY (SAR)') }}
-                                    </td>
+                                    {{--  <td class="en ltr"
+                                          style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
+                                          {{ __('dashboard.SALARY (SAR)') }}
+                                      </td>--}}
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                                         {{ __('dashboard.F&A') }}
@@ -372,10 +372,10 @@
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
                                             {{ $fnrco_request->country->name }}
                                         </td>
-                                        <td class="en ltr"
-                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
-                                            {{ $fnrco_request->salary }}
-                                        </td>
+                                        {{--  <td class="en ltr"
+                                              style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                              {{ $fnrco_request->salary }}
+                                          </td>--}}
                                         <td class="en ltr"
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
                                             {{ $fnrco_request->Food_allowance }}
@@ -413,23 +413,35 @@
 
                                 @if (app()->getLocale() == 'ar')
 
-
                                     1. تخضع جميع الشروط والأحكام للعقد الموقع.<br/>
                                     2. تقوم فناركو بسداد كل ما يتعلق باستحقاقات رواتب الموظفين وفقًا لقانون العمل، وبدل
-                                    <br/>
                                     الطعام، وتكلفة الإقامة، والرسوم الطبية ، ورسوم ماكينات الصراف الآلي ، ورسوم تحويل
                                     الراتب ، ورسوم مكتب العمل ، والتأمينات الاجتماعية ، و EOS ، رسوم الخروج والعودة مرة
-                                    أخرى ، ودفع الإجازة ، والتأمين ، وتذاكر الطيران ، والرسوم الحكومية الأخرى.
-                                    3. توفر شركة جاش للخدمات التقنية ذ.م.م  ، إقامة الموظفين ونقلهم وتوطينهم.<br/>
-                                    4. مدة عقد القوى العاملة سنة واحدة قابلة للتجديد حسب معايير الشروط والأحكام
-                                    الموضوعة.<br/>
+                                    أخرى ، ودفع الإجازة ،
+                                    @if($fnrco_quotation->saudization == 0)
+                                        <strong>السعودة </strong>,
+                                    @endif
+                                    ، والتأمين ، وتذاكر الطيران ، والرسوم الحكومية الأخرى.<br/>
+                                    3. توفر شركة
+                                    {{ $fnrco_quotation->company->name }}
+                                    ،
+                                    @if($fnrco_quotation->saudization == 1)
+                                        <strong>و السعودة </strong>
+                                    @endif، إقامة الموظفين ونقلهم.<br/>
+                                    4. مدة عقد القوى العاملة
+                                    @if($fnrco_quotation->Contract_period == 12)
+                                        <strong>12 شهر</strong>
+                                    @elseif($fnrco_quotation->Contract_period == 24)
+                                        <strong>24 شهر</strong>
+                                    @endif قابلة للتجديد حسب معايير الشروط والأحكام الموضوعة.<br/>
                                     5. إيداع مبلغ شهرين مقدماً.  بمعنى: يتعين على شركة جاش للخدمات التقنية إيداع مبلغ
                                     الفاتورة شهرين مقدمًا لدى FNRCO.<br/>
                                     6. الدفع في غضون 30 يومًا بعد تقديم الفاتورة مقابل جدول ساعات العمل المعتمد.
-                                    7. ساعات العمل حسب نظام العمل السعودي.<br/>
+                                    7. ساعات العمل حسب نظام العمل السعودي.
 
-                                    الإطار الزمني المطلوب لتعيين الأفراد المرشحين وتوظيفهم<br/>
-                                    • إذا كان المرشح داخل المملكة ، تكون المدة القصوى للتعيين في الحال وفي أقرب وقت.
+
+
+
 
 
 
@@ -440,7 +452,7 @@
                                     (Iqama), ATM, Salary Transfer Fee, Labor Office Charges, GOSI,
                                     EOS, Exit Re-Entry, Vacation Pay, Insurance,
                                     @if($fnrco_quotation->saudization == 0)
-                                        <strong style="color:red;">Saudization </strong>,
+                                        <strong>Saudization </strong>,
                                     @endif
                                     Flight Tickets & Other Government Related Charges will be
                                     provided by FNRCO.<br/>
@@ -448,15 +460,15 @@
                                     @if($fnrco_quotation->saudization == 1)
                                         <strong>and Saudization </strong>
                                     @endif
-                                        will be
-                                    provided by Jash Technical Services LLC .<br/>
+                                    will be
+                                    provided by {{ $fnrco_quotation->company->name }} .<br/>
                                     4. Manpower contract period is for
                                     @if($fnrco_quotation->Contract_period == 12)
                                         <strong>1 year</strong>
                                     @elseif($fnrco_quotation->Contract_period == 24)
                                         <strong>2 year</strong>
                                     @endif
-                                        and renewable as per the
+                                    and renewable as per the
                                     standard Terms & Conditions.<br/>
                                     5.<strong> Two months advance depositie ie; Jash Technical Services LLC</strong> has
                                     to deposit invoice amount of two months in advance with FNRCO .<br/>
