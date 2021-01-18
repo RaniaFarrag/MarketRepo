@@ -141,7 +141,7 @@
             </tr>
             <tr>
                 <td class="ltr" colspan="1">Address</td>
-                <td class="ltr" colspan="1">{{ $linrco_agreement->company_address }}</td>
+                <td class="ltr" colspan="1">Omar Bin Abdulaziz Street Al-Malaz District</td>
 
             </tr>
             <tr>
@@ -206,7 +206,7 @@
             <tr>
 
                 <td class="ltr" colspan="1">Address</td>
-                <td class="ltr" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
+                <td class="ltr" colspan="1">{{ $linrco_agreement->company_address_en }}</td>
             </tr>
             <tr>
 
@@ -239,7 +239,7 @@
             </tr>
             <tr>
 
-                <td class="ltr" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative }}</td>
+                <td class="ltr" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative_en }}</td>
             </tr>
 
 
@@ -346,7 +346,7 @@
                 <tr>
 
                     <td class="rtl" colspan="1">العنوان</td>
-                    <td class="rtl" colspan="1">{{ $linrco_agreement->company->district ? $linrco_agreement->company->district : '-'}}</td>
+                    <td class="rtl" colspan="1">{{ $linrco_agreement->company_address_ar }}</td>
                 </tr>
                 <tr>
 
@@ -379,7 +379,7 @@
                 </tr>
                 <tr>
 
-                    <td class="rtl" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative }}</td>
+                    <td class="rtl" style="border-top: none" colspan="2">{{ $linrco_agreement->company_representative_ar }}</td>
                 </tr>
 
 

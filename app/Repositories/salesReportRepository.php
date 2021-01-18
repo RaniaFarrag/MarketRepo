@@ -122,6 +122,28 @@ class salesReportRepository implements salesReportRepositoryInterface
 //            dd(json_decode(json_encode($request->ids) , true));
             //$query = $this->sales_lead_report_model::query()->whereIn('id',$request->ids);
             $query = $this->sales_lead_report_model::query()->whereIn('id', json_decode((json_encode($request->ids)) , true));
+
+            if (Auth::user()->hasRole('ADMIN')){
+                $data['representatives'] = $this->user_model::where('active' , 1)
+                    ->where(function ($q){
+                        $q->whereNotNull('parent_id')
+                            ->orWhereHas('childs');
+                    })->get();
+            }
+            elseif(Auth::user()->hasRole('Sales Manager')){
+                $data['representatives'] = $this->user_model::where('active' , 1)
+                    ->where(function ($q){
+                        $q->where('parent_id' , Auth::user()->id)
+                            ->orWhere('id' , Auth::user()->id);
+                    })->get();
+            }
+            else{
+                $data['representatives'] = $this->user_model::where('active' , 1)
+                    ->where(function ($q){
+                        $q->where('parent_id' , Auth::user()->id)
+                            ->orWhere('id' , Auth::user()->id);
+                    })->get();
+            }
         }
 
 //        if ($all){

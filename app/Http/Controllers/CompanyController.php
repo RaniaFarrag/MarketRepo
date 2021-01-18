@@ -175,9 +175,15 @@ class CompanyController extends Controller
         $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
 
         if ($request->ajax()) {
-            //dd($request->mother_company_id);
+            if (Auth::user()->hasRole('ADMIN')){
+                $mother_company_id = $request->mother_company_id;
+            }
+            else{
+                $mother_company_id = Auth::user()->mother_company_id;
+            }
+
             $data_json['viewBlade'] = view('system.reports.company_report_partial')
-                ->with(['data' => $data])->render();
+                ->with(['data' => $data , 'mother_company_id'=>$mother_company_id])->render();
             $data_json['count'] = $data['count'];
             return response()->json($data_json);
 

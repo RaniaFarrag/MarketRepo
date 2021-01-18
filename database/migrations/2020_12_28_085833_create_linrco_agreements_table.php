@@ -18,18 +18,18 @@ class CreateLinrcoAgreementsTable extends Migration
             $table->date('date')->nullable();
             $table->string('company_name')->nullable();
             $table->string('cr')->nullable();
-            $table->string('company_address')->nullable();
+            $table->string('company_address_en')->nullable();
             $table->string('phone')->nullable();
             $table->string('mail_box')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('email')->nullable();
-            $table->string('company_representative')->nullable();
-            $table->string('position')->nullable();
+            $table->string('company_representative_en')->nullable();
+            $table->string('company_representative_ar')->nullable();
             $table->string('duration_of_commitment')->nullable();
             $table->string('payment_of_fees')->nullable();
             $table->string('service_implementation_fee')->nullable();
             $table->string('the_notice_period')->nullable();
-            $table->string('linrco_email')->nullable();
+            $table->string('company_address_ar')->nullable();
 
             $table->integer('data_flow')->nullable();
             $table->string('healthcare_fee_ar')->nullable();

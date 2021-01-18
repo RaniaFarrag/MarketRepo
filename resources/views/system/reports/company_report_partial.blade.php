@@ -17,8 +17,8 @@
         @foreach($data['companies_user'] as $company_user)
             {{--{{ dd($company_user->company->id) }}--}}
             <tr>
-                <td style="width: 34px;"><a href="{{route('companies.show',$company_user->company->id)}}" target="_blank">{{$company_user->company->id}}</a></td>
-                <td><a target="_blank" href="{{route('companies.show',$company_user->company->id)}}">{{$company_user->company->name}}</a></td>
+                <td style="width: 34px;"><a href="{{route('show_company',[$company_user->company->id , $mother_company_id])}}" target="_blank">{{$company_user->company->id}}</a></td>
+                <td><a target="_blank" href="{{route('show_company',[$company_user->company->id , $mother_company_id])}}">{{$company_user->company->name}}</a></td>
                 <td>{{$company_user->company ? $company_user->company->sector->name : "-"}}</td>
                 <td>{{$company_user->company ? $company_user->company->subSector->name : "-"}}</td>
 

@@ -88,14 +88,13 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.company_address_en') }} :</label>
-                                            <input value="{{ $linrco_agreement->company_address }} " name="company_address" type="text" class="form-control"
+                                            <input value="{{ $linrco_agreement->company_address_en }} " name="company_address_en" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.company_address_en') }}" />
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.company_address_ar') }}:</label>
-                                            <input arr-name="item" value="{{ $linrco_agreement->linrco_email }}" name="linrco_email" type="text"
-                                                   class="form-control" placeholder="{{ trans('dashboard.company_address_en') }}" required/>
-
+                                            <input value="{{ $linrco_agreement->company_address_ar }}" name="company_address_ar" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.company_address_ar') }}" required/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.mail_box') }} :</label>
@@ -117,12 +116,12 @@
                                         </div>
                                         <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.Company Representative en') }}:</label>
-                                            <input arr-name="item" value="{{ $linrco_agreement->company_representative }}" name="company_representative" type="text"
+                                            <input value="{{ $linrco_agreement->company_representative_en }}" name="company_representative_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Company Representative en') }}" required/>
                                         </div>
                                         <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.Company Representative Ar') }}:</label>
-                                            <input arr-name="item" value="{{ $linrco_agreement->company_representative }}" name="company_representative" type="text"
+                                            <input value="{{ $linrco_agreement->company_representative_ar }}" name="company_representative_ar" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Company Representative Ar') }}" required/>
                                         </div>
                                         {{--<div class="col-lg-3 mb-2">--}}

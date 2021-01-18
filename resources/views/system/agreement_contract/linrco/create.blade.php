@@ -93,12 +93,12 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.company_address_en') }} :</label>
-                                            <input value="{{ $company->district }} " name="company_address" type="text" class="form-control"
+                                            <input value="{{ old('company_address_en') }} " name="company_address_en" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.company_address_en') }}" />
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.company_address_ar') }}:</label>
-                                            <input value="{{ old('linrco_email') }}" name="linrco_email" type="text"
+                                            <input value="{{ old('company_address_ar') }}" name="company_address_ar" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.company_address_ar') }}" required/>
                                         </div>
                                         <div class="col-lg-4">
@@ -122,20 +122,16 @@
                                         </div>
                                         <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.Company Representative en') }}:</label>
-                                            <input value="{{ $company->contract_manager_name }}" name="company_representative" type="text"
+                                            <input value="{{ old('company_representative_en') }}" name="company_representative_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Company Representative en') }}" required/>
                                         </div>
                                         <div class="col-lg-3 mb-2">
                                             <label>{{ trans('dashboard.Company Representative Ar') }}:</label>
-                                            <input value="{{ $company->contract_manager_name }}" name="company_representative" type="text"
+                                            <input value="{{ old('company_representative_ar') }}" name="company_representative_ar" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Company Representative Ar') }}" required/>
                                         </div>
 
-                                        {{--<div class="col-lg-3 mb-2">--}}
-                                            {{--<label>{{ trans('dashboard.position') }}:</label>--}}
-                                            {{--<input value="{{ old('position') }}" name="position" type="text"--}}
-                                                   {{--class="form-control" placeholder="{{ trans('dashboard.position') }}" required/>--}}
-                                        {{--</div>--}}
+
                                         {{--<div class="col-lg-3 mb-2">--}}
                                             {{--<label>{{ trans('dashboard.duration_of_commitment') }}:</label>--}}
                                             {{--<input value="{{ old('duration_of_commitment') }}" name="duration_of_commitment" type="number"--}}
