@@ -264,7 +264,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         'uses' => 'CompanyAgreementController@edit'
     ]);
 
-    Route::get('CompanyAgreement/destroy/{company_id}/{mother_company_id}', [
+    Route::get('CompanyAgreement/destroy/{agreement_id}/{mother_company_id}', [
         'as' => 'CompanyAgreement.destroy',
         'uses' => 'CompanyAgreementController@destroy'
     ]);

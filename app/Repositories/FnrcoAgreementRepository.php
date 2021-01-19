@@ -43,5 +43,14 @@ class FnrcoAgreementRepository implements FnrcoAgreementRepositoryInterface
         ]);
     }
 
+    public function destroy($fnrco_agreement, $mother_company_id)
+    {
+        $fnrco_agreement->delete();
+
+        $this->addLog(auth()->id() , $fnrco_agreement->id , 'FnrcoAgreement' , 'تم حذف عقد توظيف لشركة فناركو ' , 'Fnrco Agreement has been deleted');
+
+        Alert::success('success', trans('dashboard.deleted successfully'));
+        return redirect(route('companyQuotation.index' , [$fnrco_agreement->company_id , $mother_company_id]));
+    }
 
 }

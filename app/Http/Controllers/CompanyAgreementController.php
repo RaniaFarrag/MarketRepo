@@ -136,9 +136,10 @@ class CompanyAgreementController extends Controller
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             return $this->LinrcoAgreementRepositoryInterface->destroy($linrco_agreement , $mother_company_id);
         }
+
         elseif ($mother_company_id == 2){
-//            $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
-            //return $this->fnrcoQuotationRepositoryinterface->destroy($agreement_id);
+            $fnrco_agreement = FnrcoAgreement::where('id' , $agreement_id)->first();
+            return $this->fnrcoAgreementRepositoryinterface->destroy($fnrco_agreement , $mother_company_id);
         }
     }
 
@@ -186,6 +187,14 @@ class CompanyAgreementController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline',
             'filename' => "agreement.pdf'"]);
+    }
+
+    public function deleteFnrcoAgreement($agreement_id , $mother_company_id)
+    {
+
+        $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
+        return $this->LinrcoAgreementRepositoryInterface->destroy($linrco_agreement , $mother_company_id);
+
     }
 
 }
