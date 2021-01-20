@@ -150,7 +150,7 @@
                                                    {{--class="form-control" placeholder="{{ trans('dashboard.the_notice_period') }}" required/>--}}
                                         {{--</div>--}}
                                     </div>
-
+<hr/>
                                     <div class="form-group row">
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.healthcare_fee_ar') }} :</label>
@@ -244,7 +244,7 @@
                                     <div class="form-group row">
 
                                         <div class="col-lg-3">
-                                            <label>{{ trans('dashboard.referred_candidates_fee_ar') }} :</label>
+                                            <label style="font-size: 11px;">{{ trans('dashboard.referred_candidates_fee_ar') }} :</label>
                                             <input value="{{ $linrco_agreement->referred_candidates_fee_ar }}" name="referred_candidates_fee_ar" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.referred_candidates_fee_ar') }}" />
                                         </div>
@@ -254,7 +254,7 @@
                                                    class="form-control" placeholder="{{ trans('dashboard.referred_candidates_visa_fee_ar') }}" />
                                         </div>
                                         <div class="col-lg-3">
-                                            <label>{{ trans('dashboard.referred_candidates_fee_en') }} :</label>
+                                            <label style="font-size: 11px;">{{ trans('dashboard.referred_candidates_fee_en') }} :</label>
                                             <input value="{{ $linrco_agreement->referred_candidates_fee_en }}" name="referred_candidates_fee_en" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.referred_candidates_fee_en') }}" />
                                         </div>

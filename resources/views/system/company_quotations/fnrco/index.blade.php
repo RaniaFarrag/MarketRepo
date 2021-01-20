@@ -197,13 +197,13 @@
                                                                   cursor: default;
                                                                   text-decoration: none;
                                                                   " class="btn btn-success font-weight-bold" >
-                                                            {{ trans('dashboard.Convert To Contract') }}
+                                                            {{ trans('dashboard.Convert') }}
                                                         </a>
 
                                                     @else
                                                         <a class="btn btn-success font-weight-bold"
                                                            href="{{ route('convertToAgreement' , $quotation->id) }}">
-                                                            {{ trans('dashboard.Convert To Contract') }}
+                                                            {{ trans('dashboard.Convert') }}
                                                         </a>
                                                     @endif
                                                 </td>

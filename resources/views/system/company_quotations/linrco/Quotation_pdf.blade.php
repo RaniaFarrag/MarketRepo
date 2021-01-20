@@ -288,7 +288,7 @@
 
                                 <p>
                                     <strong>عزيزي السيد
-                                        <span class="en">/ ............................. ،</span>
+                                        <span class="en">/ {{ $linrco_quotation->attn }} ،</span>
                                     </strong> <br/>
                                     شكراً لإعطائنا الفرصة لتقديم عرض السعر هذا لشركتكم القيمة<span class="en">.</span>
                                     بناءً على متطلباتك<span class="en">،</span> فإن عرضنا التنافسي يتضمن
@@ -300,7 +300,7 @@
 
 
                                 <p class="en ltr">
-                                    <strong>Dear DR. MOHAMED YAMANI, </strong> <br/>
+                                    <strong>Dear {{ $linrco_quotation->attn }}, </strong> <br/>
                                     Thank you for giving us the opportunity to quote for your valued company. Based on
                                     your requirements our
                                     competitive quote is as follows. Below charges relate to the provision of

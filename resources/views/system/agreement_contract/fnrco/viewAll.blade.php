@@ -13,7 +13,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Fnrco Agreement') }} {{ $agreement->company->name }}
+                            {{ trans('dashboard.Fnrco Agreement') }} {{ $company->name }}
                         </h2>
                         <!--end::Title-->
 
@@ -34,8 +34,8 @@
 
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('companyQuotation.index' , [$agreement->company_id , 2]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Fnrco Quotations') }} {{ $agreement->company->name }}
+                            <a href="{{ route('companyQuotation.index' , [$company->id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ trans('dashboard.Fnrco Quotations') }} {{ $company->name }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -77,7 +77,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Agreement Of') }} {{ $agreement->company->name }}
+                                        {{ trans('dashboard.Fnrco Agreements') }} {{ $company->name }}
                                     </h3>
                                 </div>
 
@@ -99,6 +99,7 @@
                                         </thead>
 
                                         <tbody>
+                                        @foreach($fnrco_agreements as $k=>$agreement)
                                             <tr>
                                                 <td>{{ $agreement->id }}</td>
                                                 <td>{{ $agreement->fnrcoQuotation->Quotation_No }}</td>
@@ -115,6 +116,7 @@
 {{--                                                <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>--}}
                                                 <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyAgreement.destroy' , [$agreement->id , 2]) }}"><i class="fa fa-trash"></i></a></td>
                                             </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                     <!--end: Datatable-->

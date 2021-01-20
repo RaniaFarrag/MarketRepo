@@ -15,7 +15,7 @@
             letter-spacing: 0px;
             position: relative;
             text-align: right;
-            font-family: 'examplefont', sans-serif;
+            font-family: 'examplefont3', sans-serif;
         }
 
         main {
@@ -25,11 +25,11 @@
         }
 
         .ar {
-            font-family: 'examplefont', sans-serif;
+            font-family: 'examplefont3', sans-serif;
         }
 
         .en {
-            font-family: 'examplefont2', sans-serif;
+            font-family: 'examplefont3', sans-serif;
             direction: ltr;
         }
 
@@ -600,7 +600,7 @@
                 عند التوقيع على هذا العقد فإن الطرف الثاني وافق على أن يقوم بدفع الرسوم الشهرية عن كل عامل حسب
                 الجدول أدناه<span class="en">،</span> بالإضافة إلى دفعة مقدمة تعادل رسوم شهرين عن كل عامل بقيمة إجمالية
                 قدرها
-                <span class="en">{{ $total * 2 }}</span>
+                <span class="en">{{ round($total * 2 , 2) }}</span>
                 ريالاً
                 سعودياً كتأمين تسترجع بعد نهاية هذا العقد ولايحق للطرف الثاني المطالبة بخصم أي مستحقات للطرف الاول من
                 مبلغ التأمين أو حتي طلب رد أو استراجاع هذا التأمين قبل نهاية العقد لأي سبب من الاسباب
@@ -622,7 +622,7 @@
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 a) Upon signing this contract, the Second Party agreed to pay the monthly fees for each worker according
                 to the table below, in addition to an advance payment equivalent to two months fees for each worker with
-                a total value of {{ $total * 2 }} SR as an insurance to be recovered after the end of this contract The second
+                a total value of {{ round($total * 2 , 2) }} SR as an insurance to be recovered after the end of this contract The second
                 party has no right to demand deduction of any dues to the first party from the amount of the insurance
                 or even request to return or recover this insurance before the end of the contract for any reason. and
                 the value of the overtime allowance will be calculated for more than eight (8) hours, as well as work
@@ -653,17 +653,17 @@
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}<br/></td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('ar')->name }}</td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
-                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance }}</td>
+                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->Food_allowance }}</td>
-                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->value_per_employee_month }}</td>
-                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->total_value_per_month }}</td>
+                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month , 2) }}</td>
+                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->total_value_per_month , 2) }}</td>
                         </tr>
                     @endforeach
 
                     <tr>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px"><br/></td>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px">المجموع</td>
-                        <td style="text-align: center;  font-size: 12px; line-height: 18px" colspan="4">{{ $total }}</td>
+                        <td style="text-align: center;  font-size: 12px; line-height: 18px" colspan="4">{{ round($total , 2) }}</td>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px"></td>
                     </tr>
                     <tr>
@@ -722,10 +722,10 @@
                             <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}<br/></td>
                             <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('en')->name }}</td>
                             <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance }}</td>
+                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
                             <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->Food_allowance }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->value_per_employee_month }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->total_value_per_month }}</td>
+                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month ,2) }}</td>
+                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->total_value_per_month , 2) }}</td>
                         </tr>
                     @endforeach
 
@@ -733,7 +733,7 @@
                         <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px"><br/></td>
                         <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">TOTAL</td>
                         <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px"
-                            colspan="4">{{ $total }}</td>
+                            colspan="4">{{ round($total , 2) }}</td>
                         <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px"></td>
                     </tr>
                     <tr>

@@ -31,6 +31,11 @@ class FnrcoAgreementRepository implements FnrcoAgreementRepositoryInterface
         $this->fnrco_Agreement_model = $fnrcoAgreement;
     }
 
+    /** View All Agreements Of Company */
+    public function index($company_id , $mother_company_id){
+        return $this->fnrco_Agreement_model::where('company_id' , $company_id)->with('fnrcoQuotation')->paginate(20);
+    }
+
     // Save Agreement Of Quotation
     public function convertFnrcoquotationToAgreement($quotation_id){
 

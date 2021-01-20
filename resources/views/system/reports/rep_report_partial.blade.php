@@ -53,7 +53,8 @@
                 <td> {{$company->id}}</td>
                 <td> {{ app()->getLocale() == 'ar' ? $rep->name : $rep->name_en }}</td>
                 {{--<td> {{$company->assigned_to ? $company->assigned_to->name :"-" }}</td>--}}
-                <td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>
+                {{--<td><a target="_blank" href="{{route('companies.show',$company)}}">{{$company->name}}</a></td>--}}
+                <td>{{$company->name}}</td>
 
                 <td>
                     @if($company->representative[0]->pivot->confirm_connected)
