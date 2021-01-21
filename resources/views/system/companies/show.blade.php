@@ -100,6 +100,13 @@
                                     </a>
                                 </li>
 
+                                <li class="navi-item">
+                                    <a href="{{ route('view_all_invoices' , [$company->id , $mother_company_id]) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.Invoices') }}</span>
+                                    </a>
+                                </li>
+
                             </ul>
                             <!--end::Navigation-->
                         </div>

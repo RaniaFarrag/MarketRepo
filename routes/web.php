@@ -308,42 +308,32 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('CompanyUndertaking/print/{undertaking_id}/{mother_company_id}' , 'CompanyUndertakingController@printUndertaking')->name('undertaking_print');
 
 
-    Route::resource('CompanyUndertaking' , 'CompanyUndertakingController');
+    Route::resource('companyInvoice' , 'CompanyInvoiceController');
 
     /** Custom index route */
-    Route::get('CompanyUndertaking/index/{company_id}/{mother_company_id}', [
-        'as' => 'CompanyUndertaking.index',
-        'uses' => 'CompanyUndertakingController@index'
-    ]);
-
-    /** Custom create route */
-    Route::get('CompanyUndertaking/create/{company_id}/{mother_company_id}', [
-        'as' => 'CompanyUndertaking.create',
-        'uses' => 'CompanyUndertakingController@create'
-    ]);
-
-    /** Custom edit route */
-    Route::get('CompanyUndertaking/edit/{undertaking_id}/{mother_company_id}', [
-        'as' => 'CompanyUndertaking.edit',
-        'uses' => 'CompanyUndertakingController@edit'
-    ]);
-
-    /** Custom destroy route */
-    Route::get('CompanyUndertaking/destroy/{undertaking_id}/{mother_company_id}', [
-        'as' => 'CompanyUndertaking.destroy',
-        'uses' => 'CompanyUndertakingController@destroy'
-    ]);
-
-    Route::get('CompanyUndertaking/print/{undertaking_id}/{mother_company_id}' , 'CompanyUndertakingController@printUndertaking')->name('undertaking_print');
-
-
-    Route::resource('companyInvoice' , 'CompanyUndertakingController');
-
-    /** Custom index route */
-    Route::get('companyInvoice/index/{company_id}/{mother_company_id}', [
+    Route::get('companyInvoice/index/{agreement_id}/{mother_company_id}', [
         'as' => 'companyInvoice.index',
-        'uses' => 'CompanyUndertakingController@index'
+        'uses' => 'CompanyInvoiceController@index'
     ]);
+
+    Route::get('companyInvoice/create/{agreement_id}/{mother_company_id}', [
+        'as' => 'companyInvoice.create',
+        'uses' => 'CompanyInvoiceController@create'
+    ]);
+
+    Route::get('companyInvoice/edit/{invoice_id}/{mother_company_id}', [
+        'as' => 'companyInvoice.edit',
+        'uses' => 'CompanyInvoiceController@edit'
+    ]);
+
+    Route::get('companyInvoice/destroy/{invoice_id}/{mother_company_id}', [
+        'as' => 'companyInvoice.destroy',
+        'uses' => 'CompanyInvoiceController@destroy'
+    ]);
+
+    Route::get('companyInvoice/print/{invoice_id}/{mother_company_id}' , 'CompanyInvoiceController@printLinrcoinvoice')->name('linrco_invoice_print');
+    Route::get('viewAllinvoices/{company_id}/{mother_company_id}' , 'CompanyInvoiceController@viewAllinvoices')->name('view_all_invoices');
+
 
 
 

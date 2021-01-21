@@ -13,7 +13,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Linrco Agreement') }} {{ $company->name }}
+                            {{ trans('dashboard.Linrco Invoice') }} {{ $company->name }}
                         </h2>
                         <!--end::Title-->
 
@@ -35,7 +35,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Linrco Agreement') }} {{ $company->name }}
+                                {{ trans('dashboard.Linrco invoices') }} {{ $company->name  }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -44,14 +44,6 @@
                     <!--end::Heading-->
                 </div>
                 <!--end::Info-->
-
-                <div class="d-flex align-items-center">
-                    <!--begin::Button-->
-                    <a href="{{ route('CompanyAgreement.create' , [$company->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Add New Agreement') }}
-                    </a>
-                    <!--end::Button-->
-                </div>
 
             </div>
         </div>
@@ -77,7 +69,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Linrco Agreements') }} {{ $company->name }}
+                                        {{ trans('dashboard.Invoice') }} {{ $company->name  }}
                                     </h3>
                                 </div>
 
@@ -89,36 +81,29 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>{{ trans('dashboard.Invoice No') }}</th>
                                             <th>{{ trans('dashboard.date') }}</th>
-                                            <th>{{ trans('dashboard.CR') }}</th>
-                                            <th>{{ trans('dashboard.Phone') }}</th>
+                                            <th>{{ trans('dashboard.Contract No') }}</th>
+                                            <th>{{ trans('dashboard.INTERNAL CONTACT') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
-                                            <th>{{ trans('dashboard.Company Agreements') }}</th>
-                                            <th>{{ trans('dashboard.Invoice') }}</th>
+                                            <th>{{ trans('dashboard.Invoice Details') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>
                                             <th>{{ trans('dashboard.delete') }}</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        @foreach($linrco_agreements as $k=>$agreement)
+                                        @foreach($linrco_invoices as $linrco_invoice)
                                             <tr>
-                                                <td>{{ $k+1 }}</td>
-                                                <td>{{ $agreement->date }}</td>
-                                                <td>{{ $agreement->cr }}</td>
-                                                <td>{{ $agreement->phone }}</td>
-                                                <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>
-                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('CompanyAgreement_print' , [$agreement->id , $mother_company_id]) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
-                                                <td><a class="btn btn-success font-weight-bold" href="{{ route('companyInvoice.index' , [$agreement->id , $mother_company_id]) }}">{{ trans('dashboard.Invoice') }}</a></td>
-                                                <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
-                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyAgreement.destroy' , [$agreement->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
-                                                {{--<td>--}}
-                                                    {{--<form method="post" action="{{ route('CompanyAgreement.destroy' , [$agreement->id , $mother_company_id]) }}">--}}
-                                                        {{--@method('DELETE')--}}
-                                                        {{--@csrf--}}
-                                                        {{--<button onclick="return confirm('Are you sure?')" class="btn btn-danger mr-2" type="submit"><i class="fa fa-trash p-0"></i></button>--}}
-                                                    {{--</form>--}}
-                                                {{--</td>--}}
+                                                <td>{{ $linrco_invoice->id }}</td>
+                                                <td>{{ $linrco_invoice->id }}</td>
+                                                <td>{{ $linrco_invoice->date }}</td>
+                                                <td>{{ $linrco_invoice->agreement_no }}</td>
+                                                <td>{{ $linrco_invoice->internal_contact }}</td>
+                                                <td>{{ app()->getLocale() == 'ar' ? $linrco_invoice->user->name : $linrco_invoice->user->name_en }}</td>
+                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('linrco_invoice_print' ,  [$linrco_invoice->id , $mother_company_id]) }}">{{ trans('dashboard.Invoice Details') }}</a></td>
+                                                <td><a href="{{ route('companyInvoice.edit' ,  [$linrco_invoice->id, $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
+                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('companyInvoice.destroy' ,  [$linrco_invoice->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>

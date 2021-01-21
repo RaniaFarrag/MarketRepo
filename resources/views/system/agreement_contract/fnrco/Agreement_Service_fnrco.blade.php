@@ -371,7 +371,11 @@
                 وهذا متفق عليه بين الطرفين
 
                 <span class="en">.</span>
-
+<br/>
+                <span class="en">ب) </span>
+                يلتزم الطرف الثاني بتقديم أي وثيقة قانونية أخرى قد تكون مطلوبة بواسطة الحكومة السعودية للعمالة المستقدمة
+                حتى وقت انتهاء أو إنهاء هذا العقد
+                <span class="en">.</span>
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
@@ -385,26 +389,13 @@
                 all fees due on it for the previous period in addition to residence fees, work permits and any other
                 government fees due for the entire contract period, in addition to fifteen percent (50%) of the monthly
                 fees for the remainder of the contract period. And This is agreed upon between the two parties
-
-
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">ب) </span>
-                يلتزم الطرف الثاني بتقديم أي وثيقة قانونية أخرى قد تكون مطلوبة بواسطة الحكومة السعودية للعمالة المستقدمة
-                حتى وقت انتهاء أو إنهاء هذا العقد
-                <span class="en">.</span>
-
-
-            </td>
-            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
+<br/>
                 b) The second party is obligated to provide any other legal documents required by the Saudi Government
                 for the hired worker till the expiry/termination of this agreement.
 
-
             </td>
         </tr>
+
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
                 <span class="en">3.</span>
@@ -416,8 +407,6 @@
                 السكن الملائم لهم أيضا كلاً حسب وظيفته
 
                 <span class="en">.</span>
-
-
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 3. The SECOND PARTY shall provide transportation for the hired workers during the period of the
@@ -600,7 +589,7 @@
                 عند التوقيع على هذا العقد فإن الطرف الثاني وافق على أن يقوم بدفع الرسوم الشهرية عن كل عامل حسب
                 الجدول أدناه<span class="en">،</span> بالإضافة إلى دفعة مقدمة تعادل رسوم شهرين عن كل عامل بقيمة إجمالية
                 قدرها
-                <span class="en">{{ round($total * 2 , 2) }}</span>
+                <span class="en">( {{ round($total * 2 , 2) }} )</span>
                 ريالاً
                 سعودياً كتأمين تسترجع بعد نهاية هذا العقد ولايحق للطرف الثاني المطالبة بخصم أي مستحقات للطرف الاول من
                 مبلغ التأمين أو حتي طلب رد أو استراجاع هذا التأمين قبل نهاية العقد لأي سبب من الاسباب
@@ -622,7 +611,7 @@
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 a) Upon signing this contract, the Second Party agreed to pay the monthly fees for each worker according
                 to the table below, in addition to an advance payment equivalent to two months fees for each worker with
-                a total value of {{ round($total * 2 , 2) }} SR as an insurance to be recovered after the end of this contract The second
+                a total value of ( {{ round($total * 2 , 2) }} ) SR as an insurance to be recovered after the end of this contract The second
                 party has no right to demand deduction of any dues to the first party from the amount of the insurance
                 or even request to return or recover this insurance before the end of the contract for any reason. and
                 the value of the overtime allowance will be calculated for more than eight (8) hours, as well as work
@@ -1042,16 +1031,16 @@
                 بشكل كامل ولايحق له الاحتجاج علي أي بند أو نص لأي سبب من الاسباب بعد التوقيع علي هذا العقد
 
 
-                <span class="en">.</span><br/><br/>
+                <span class="en">.</span><br/><br/><br/><br/>
 
                 معلومات الاتصال
-                <span class="en">:</span><br/>
+                <span class="en">:</span><br/><br/>
 
                 الطرف الأول<br/>
                 اسم ممثل المشروع <span class="en">:</span><br/>
                 رقم التواصل <span class="en">:</span><br/>
 
-                الطرف الثاني<br/>
+                الطرف الثاني<br/><br/>
                 اسم ممثل المشروع<span class="en">:</span><br/>
                 رقم التواصل <span class="en">:</span><br/>
 
@@ -1065,25 +1054,151 @@
                 text for any reason after signing this contract.<br/>
 
 
-                Information Contact:<br/>
-                FIRST PARTY<br/>
+                Information Contact:<br/><br/><br/>
+                FIRST PARTY<br/><br/>
                 Project Representative Name: -<br/>
                 Contact No.: ….<br/>
 
-                SECOND PARTY<br/>
+                SECOND PARTY<br/><br/><br/><br/>
                 Project Representative Name: …….<br/>
                 Contact No.: ….<br/>
 
 
             </td>
         </tr>
-
-        </tbody>
+         </tbody>
     </table>
     <br>
 
-
 </main>
+<main>
+    <br>
+    <br>
+    <table style="line-height: 26px">
 
+        <tbody>
+        <tr>
+            <td style="width: 50%; text-align: center;  font-size: 12px; vertical-align: top ; direction: rtl">
+
+                المفوض بالتوقیع <br/><br/><br/>
+
+                عن (الطرف الأول)
+
+
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
+                AUTHORIZED SIGNATORY
+                <br/><br/><br/>
+
+                (FIRST PARTY)
+
+
+
+
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: middle ; direction: rtl">
+                <br/>
+                الاسم: السید/
+                <br/>
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: middle;line-height: 30px">
+                <br/>
+                Name: MR/
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: center;  font-size: 12px; vertical-align: top ; direction: rtl">
+
+                (التوقيع والختم)
+
+                <br>   <br>
+                <br>   <br> <br>   <br>
+
+                التاریخ....................
+
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
+                (Signature and Stamp)
+
+                <br>   <br>
+                <br>   <br>  <br>   <br>
+
+
+                Date:……………………………….
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <table style="line-height: 26px">
+
+        <tbody>
+        <tr>
+            <td style="width: 50%; text-align: center; font-size: 14px; vertical-align: top; line-height: 18px">
+
+                المفوض بالتوقیع <br/><br/><br/>
+
+                عن (الطرف الثانى)
+
+
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: center; font-size: 14px; vertical-align: top; line-height: 18px">
+                AUTHORIZED SIGNATORY
+                <br/><br/><br/>
+
+                (SECOND PARTY)
+
+
+
+
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top ; direction: rtl">
+                <br/>
+                الاسم: السید/
+                <br/>
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
+                <br/>
+                Name: MR/
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: center;  font-size: 12px; vertical-align: top ; direction: rtl">
+
+                (التوقيع والختم)
+
+                <br>   <br>
+                <br>   <br>  <br>   <br>
+
+                التاریخ....................
+
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
+                (Signature and Stamp)
+
+                <br>   <br>
+                <br>   <br> <br>   <br>
+
+
+                Date:……………………………….
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 </body>
 </html>

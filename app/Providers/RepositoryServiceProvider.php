@@ -99,6 +99,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\LinrcoUndertakingRepository'
         );
 
+        $this->app->bind(
+            'App\Interfaces\LinrcoInvoiceRepositoryInterface',
+            'App\Repositories\LinrcoInvoiceRepository'
+        );
+
 
     }
 

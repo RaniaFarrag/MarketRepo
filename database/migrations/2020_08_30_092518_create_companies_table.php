@@ -65,6 +65,8 @@ class CreateCompaniesTable extends Migration
             $table->string('contract_manager_linkedin')->nullable();
 
             $table->text('notes')->nullable();
+            $table->string('client_code')->nullable();
+            $table->string('customer_vat_no')->nullable();
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

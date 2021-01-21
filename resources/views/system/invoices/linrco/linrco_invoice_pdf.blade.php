@@ -103,13 +103,13 @@
 
 <main>
     <h3 style="text-align: center; width: 100%; background: #d6d6d6">INVOICE</h3>
-     <table style=" width: 100%; font-size: 12px;">
+    <table style=" width: 100%; font-size: 12px;">
         <tbody>
 
         <tr>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">INV NUMBER</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">INV DATE</td>
-            <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">VENDOR NO</td>
+            <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">CLIENT CODE</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">CONTRACT REF NO</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">INTERNAL CONTACT</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">TELEPHONE</td>
@@ -125,13 +125,13 @@
             <td style="text-align:center;font-weight: bold;font-size: 11px;background: #d6d6d6;">البريد الالكتروني</td>
         </tr>
         <tr>
-            <td style="text-align:center;font-size: 11px;">21515</td>
-            <td style="text-align:center;font-size: 11px;">31-Dec-21</td>
-            <td style="text-align:center;font-size: 11px;">51454</td>
-            <td style="text-align:center;font-size: 11px;">555656</td>
-            <td style="text-align:center;font-size: 11px;">555656</td>
-            <td style="text-align:center;font-size: 11px;">555656</td>
-            <td style="text-align:center;font-size: 11px;">555656</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->id }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->date }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->company->client_code }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->agreement_no }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->internal_contact }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->telephone }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->email }}</td>
         </tr>
 
 
@@ -150,8 +150,8 @@
 
             </tr>
             <tr>
-                <td colspan="2" style="text-align:left; font-weight: bold;font-size: 11px;line-height: 20px;">Hala Altab Medical Care
-<br/>
+                <td colspan="2" style="text-align:left; font-weight: bold;font-size: 11px;line-height: 20px;">{{ $linrco_invoice->company->name }}
+                    <br/>
                     Riyadh,Saudi Arabia
 
                 </td>
@@ -164,7 +164,7 @@
 
             </tr>
             <tr>
-                <td   colspan="2" style="text-align:left; font-size: 11px;">30000057845112</td>
+                <td   colspan="2" style="text-align:left; font-size: 11px;">{{ $linrco_invoice->company->customer_vat_no }}</td>
             </tr>
 
 
@@ -210,7 +210,7 @@
         <tbody>
 
         <tr style="border: 2px solid #000;">
-             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold; border: 2px solid #000; font-size: 10px; ">Particulars</td>
+            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold; border: 2px solid #000; font-size: 10px; ">Particulars</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">Recruitment Fee</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">Visa processing fee</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">TOTAL BEFORE TAX </td>
@@ -225,51 +225,24 @@
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> الضريبة 5%</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> المبلغ الاجمالى بعد الضريبة </td>
         </tr>
-        <tr>
-            <td style=" font-size: 10px; ">NURSE NURSE</td>
-            <td style=" font-size: 10px; ">500</td>
-            <td style=" font-size: 10px; ">600</td>
-            <td style=" font-size: 10px; ">SAR 1,100.00</td>
-            <td style=" font-size: 10px; ">SAR 55.00</td>
-            <td style="border: 2px solid #000; font-size: 10px; ">SAR 1,155.00</td>
 
-        </tr>
-        <tr>
-            <td style=" font-size: 10px; ">NURSE NURSE</td>
-            <td style=" font-size: 10px; ">500</td>
-            <td style=" font-size: 10px; ">600</td>
-            <td style=" font-size: 10px; ">SAR 1,100.00</td>
-            <td style=" font-size: 10px; ">SAR 55.00</td>
-            <td style="border: 2px solid #000; font-size: 10px; ">SAR 1,155.00</td>
+        @foreach($linrco_invoice->LinrcoInvoiceRequest as $request)
+            <tr>
+                <td style=" font-size: 10px; ">{{ $request->particulars }}</td>
+                <td style=" font-size: 10px; ">{{ $request->recruitment_fee }}</td>
+                <td style=" font-size: 10px; ">{{ $request->visa_processing_fee }}</td>
+                <td style=" font-size: 10px; ">{{ $request->total_before_tax}}</td>
+                <td style=" font-size: 10px; ">{{ $request->tax}}</td>
+                <td style="border: 2px solid #000; font-size: 10px; ">{{ $request->total_amount_after_tax }}</td>
 
-        </tr>
-        <tr>
-            <td style=" font-size: 10px; ">NURSE NURSE</td>
-            <td style=" font-size: 10px; ">500</td>
-            <td style=" font-size: 10px; ">600</td>
-            <td style=" font-size: 10px; ">SAR 1,100.00</td>
-            <td style=" font-size: 10px; ">SAR 55.00</td>
-            <td style="border: 2px solid #000; font-size: 10px; ">SAR 1,155.00</td>
-
-        </tr>
-        <tr>
-            <td style=" font-size: 10px; ">NURSE NURSE</td>
-            <td style=" font-size: 10px; ">500</td>
-            <td style=" font-size: 10px; ">600</td>
-            <td style=" font-size: 10px; ">SAR 1,100.00</td>
-            <td style=" font-size: 10px; ">SAR 55.00</td>
-            <td style="border: 2px solid #000; font-size: 10px; ">SAR 1,155.00</td>
-
-        </tr>
-
-
-
+            </tr>
+        @endforeach
         <tr style="border: 2px solid #000;">
             <td style="text-align: center; font-weight: bold; font-size: 14px;border: 2px solid #000;">Total</td>
             <td colspan="2" style="text-align: center;border: 2px solid #000;">Fifty Eight Thousand Nine Hundred Forty Four Riyals and No Halalas </td>
-            <td style="text-align: center;font-weight: bold;border: 2px solid #000;">58944.00</td>
-            <td style="text-align: center;font-weight: bold;border: 2px solid #000;">58944.00</td>
-            <td style="text-align: center;font-weight: bold;border: 2px solid #000;">58944.00</td>
+            <td style="text-align: center;font-weight: bold;border: 2px solid #000;">{{ $total_before_tax }}</td>
+            <td style="text-align: center;font-weight: bold;border: 2px solid #000;">{{ $total_tax }}</td>
+            <td style="text-align: center;font-weight: bold;border: 2px solid #000;">{{ $total_amount_after_tax }}</td>
         </tr>
 
         </tbody>
@@ -277,31 +250,31 @@
     <br/>
     <div style="float: left; width: 50%; display: inline-block"> </div>
     <div style="float: right; width: 50%; display: inline-block">
-    <table style="font-size: 10px;border: 2px solid #000;">
+        <table style="font-size: 10px;border: 2px solid #000;">
 
-        <tbody>
+            <tbody>
 
-        <tr style="border: 2px solid #000;">
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; ">Sub TOTAL</td>
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; "> Vat </td>
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; "> TOTAL</td>
-        </tr>
+            <tr style="border: 2px solid #000;">
+                <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; ">Sub TOTAL</td>
+                <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; "> Vat </td>
+                <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; "> TOTAL</td>
+            </tr>
 
-        <tr style="border: 2px solid #000;">
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000;font-size: 10px; ">الاجمالى بدون ضريبة</td>
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000;font-size: 10px; "> اجمالى الضريبة </td>
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000;font-size: 10px; "> الاجمالى</td>
-        </tr>
-        <tr style="border: 2px solid #000;">
-            <td style=" vertical-align: middle; text-align: center;border: 2px solid #000;font-size: 10px; ">4000</td>
-            <td style="vertical-align: middle; text-align: center; border: 2px solid #000;font-size: 10px; "> 220 </td>
-            <td style=" vertical-align: middle; text-align: center;border: 2px solid #000;font-size: 10px; "> 4220</td>
-        </tr>
-        </tbody>
-    </table>
+            <tr style="border: 2px solid #000;">
+                <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000;font-size: 10px; ">الاجمالى بدون ضريبة</td>
+                <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000;font-size: 10px; "> اجمالى الضريبة </td>
+                <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000;font-size: 10px; "> الاجمالى</td>
+            </tr>
+            <tr style="border: 2px solid #000;">
+                <td style=" vertical-align: middle; text-align: center;border: 2px solid #000;font-size: 10px; ">{{ $total_before_tax }}</td>
+                <td style="vertical-align: middle; text-align: center; border: 2px solid #000;font-size: 10px; "> {{ $total_tax }} </td>
+                <td style=" vertical-align: middle; text-align: center;border: 2px solid #000;font-size: 10px; "> {{ $total_amount_after_tax }}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <div style="width: 100%; display: inline-block;height: 20px;"></div>
- 
+
     <div style="float: right; width: 40%; display: inline-block"> </div>
     <div style="float:left ; width:60%; display: inline-block">
         <table style="font-size: 10px;border: 2px solid #000;">
@@ -314,7 +287,7 @@
             <tr>
                 <td colspan="2" class="ltr" style="background: #d6d6d6;vertical-align: middle;font-size: 11px; text-align: center">VENDOR BANK ACCOUNT DETAILS FOR PAYMENT: الدفع لعملية المورد بنك تفاصيل
                 </td>
-             </tr>
+            </tr>
             <tr>
                 <td class="ltr" style=" vertical-align: middle;">BENIFICIARY NAME:</td>
 
@@ -343,7 +316,7 @@
             </tbody>
         </table>
     </div>
-<div style="width: 100%; display: inline-block;height: 20px;"></div>
+    <div style="width: 100%; display: inline-block;height: 20px;"></div>
     <br/>
     <br/>
 
