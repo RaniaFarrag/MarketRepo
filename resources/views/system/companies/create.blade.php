@@ -342,6 +342,19 @@
                                     </div>
 
                                     <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Client Code') }}:</label>
+                                            <input value="{{ old('client_code') }}" name="client_code" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.Client Code') }}"/>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.customer_vat_no') }}:</label>
+                                            <input value="{{ old('customer_vat_no') }}" name="customer_vat_no" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.customer_vat_no') }}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Website') }}:</label>
                                             <input value="{{ old('website') }}" name="website" type="url"
@@ -1129,7 +1142,7 @@
 
     <script>
         $(document).ready(function () {
-            $("#createForm").submit(function (m) {
+            $("#createForm1").submit(function (m) {
                 m.preventDefault(); // avoid to execute the actual submit of the form momoomomomo.
 
                 url=$(this).attr('action')
@@ -1152,8 +1165,9 @@
                             });
                         } else {
                             toastr.success('Saved.');
+                            swal( 'Success', response, "success");
                             // $('#createForm').trigger("reset");
-                            location.replace('{{route('users.index')}}')
+                            location.replace('{{route('companies.index')}}')
 
                         }
                     },

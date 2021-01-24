@@ -352,6 +352,19 @@
 
                                         </div>
 
+                                        <div class="form-group row">
+                                            <div class="col-lg-6">
+                                                <label>{{ trans('dashboard.Client Code') }}:</label>
+                                                <input value="{{ $company->client_code }}" name="client_code" type="text" class="form-control"
+                                                       placeholder="{{ trans('dashboard.Client Code') }}"/>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>{{ trans('dashboard.customer_vat_no') }}:</label>
+                                                <input value="{{ $company->customer_vat_no }}" name="customer_vat_no" type="text" class="form-control"
+                                                       placeholder="{{ trans('dashboard.customer_vat_no') }}"/>
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group row">
                                             <div class="col-lg-3">

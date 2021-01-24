@@ -60,21 +60,10 @@ class Company extends Model
         'contract_manager_linkedin',
 
         'notes',
+        'client_code',
+        'customer_vat_no',
         'user_id',
-        'client_status',
-        'client_status_user_id',
-        'representative_id',
 
-        'evaluation_status',
-        'evaluation_status_user_id',
-        'confirm_connected',
-        'confirm_connected_user_id',
-        'confirm_interview',
-        'confirm_interview_user_id',
-        'confirm_need',
-        'confirm_need_user_id',
-        'confirm_contract',
-        'confirm_contract_user_id',
         'created_at',
         'updated_at',
     ];

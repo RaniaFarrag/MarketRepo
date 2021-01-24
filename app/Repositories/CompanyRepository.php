@@ -72,9 +72,9 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /** View All companies */
-    public function index($request, $all = null , $orderBy = 1)
+    public function index($request)
     {
-//        dd($request->mother_company_id);
+        //dd($request->mother_company_id);
         if (Auth::user()->hasRole('Sales Representative')) {
 //            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
 
@@ -112,7 +112,7 @@ class CompanyRepository implements CompanyRepositoryInterface
 //
 //            dd($data);
 
-            $query = $this->company_model::with(["representative" =>  function($q) use ($request , $orderBy) {
+            $query = $this->company_model::with(["representative" =>  function($q) use ($request) {
                 $q->where('company_user.mother_company_id' , $request->mother_company_id);
 //                if ($orderBy)
 //                {
@@ -208,13 +208,12 @@ class CompanyRepository implements CompanyRepositoryInterface
 //                }
 //            });
 
-
         }
 
         if (isset($request->communication_type) && count($request->communication_type) > 0){
             foreach ($request->communication_type as $val)
                 $query->whereNotNull($val);
-            }
+        }
 
         if (isset($request->evaluation_ids) && count($request->evaluation_ids) > 0){
 //            $query->whereIn('evaluation_status', $request->evaluation_ids);
@@ -237,62 +236,19 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         if ($request->name)
             $query->whereTranslationLike('name', '%' . $request->name . '%');
-//dd($query->paginate(10));
-        if($orderBy){
-//            $query->whereHas('representative' , function ($q){
-//                $q->orderBy('confirm_connected','desc')
-//                    ->orderBy('confirm_interview','desc')
-//                    ->orderBy('confirm_need','desc')
-//                    ->orderBy('confirm_contract','desc')
-//                    ->orderBy('company_id','desc');
-//            });
 
-//            $query->with('representative' , function ($q){
-//                $q->orderBy('confirm_connected','desc')
-//                    ->orderBy('confirm_interview','desc')
-//                    ->orderBy('confirm_need','desc')
-//                    ->orderBy('confirm_contract','desc');
-//                    //->orderBy('company_id','desc');
-//            });
+        $data = array();
+        $data['count'] = $query->count();
+        $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
+        return $data;
 
-            if ($all){
-                return $query->get();
-            }
-
-            else {
-                $data = array();
-                $data['count'] = $query->count();
-                $data['companies'] = $query->paginate(18);
-                return $data;
-            }
-        }
-        else{
-            $data = array();
-            $data['count'] = $query->count();
-            $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
-            return $data;
-        }
-
-//        if ($all)
-//            return $query->get();
-//        else {
-//            $data = array();
-//            $data['count'] = $query->count();
-//            $data['companies'] = $query->orderBy('created_at' , 'desc')->paginate(18);
-//            return $data;
-//        }
-
-        //dd($data['companies']);
-//        return $all ? $query->get() : $query->paginate(18);
     }
 
     /** Store Company */
     public function store($request)
     {
-        //dd($request->all());
-        //dd(count($request->designated_contact_name));
-//        dd(Storage::disk('local')->path('/'));
-//        dd(storage_path('app') .'/'. $logo);
+//      dd(Storage::disk('local')->path('/'));
+//      dd(storage_path('app') .'/'. $logo);
 
         $logo = $this->verifyAndStoreFile($request, 'logo');
         $first_business_card = $this->verifyAndStoreFile($request, 'first_business_card');
@@ -347,12 +303,9 @@ class CompanyRepository implements CompanyRepositoryInterface
 
             'user_id' => auth()->id(),
 
-//            'client_status' => $request->client_status,
-//            'client_status_user_id' =>  $request->client_status ? auth()->id() : Null,
-//            'evaluation_status' => $request->evaluation_status,
-//            'evaluation_status_user_id' => $request->evaluation_status ? auth()->id() : Null,
             'notes' => $request->notes,
-            //'representative_id' => $representative_id,
+            'client_code' => $request->client_code,
+            'customer_vat_no' => $request->customer_vat_no,
         ]);
 
 /** IF USER IS REPRESENTATIVE : COMPANY WILL ASSIGNED TO HIM AUTOMATIC */
@@ -370,7 +323,6 @@ class CompanyRepository implements CompanyRepositoryInterface
                     array("mother_company_id" => Auth::user()->mother_company_id, "client_status"=>$request->client_status,
                     "client_status_user_id"=>Auth::user()->id));
             }
-        
 
             if($request->evaluation_status){
                 $rep = $company->representative()->first();
@@ -522,12 +474,9 @@ class CompanyRepository implements CompanyRepositoryInterface
             'contract_manager_linkedin' => $request->contract_manager_linkedin,
 
             'user_id' => auth()->id(),
-
-//            'client_status' => $request->client_status,
-//            'client_status_user_id' => $request->client_status ? $request->client_status == $company->client_status ? $company->client_status_user_id : auth()->id() : Null,
-//            'evaluation_status' => $request->evaluation_status,
-//            'evaluation_status_user_id' => $request->evaluation_status ? $request->evaluation_status == $company->evaluation_status ? $company->evaluation_status_user_id : auth()->id() : Null,
             'notes' => $request->notes,
+            'client_code' => $request->client_code,
+            'customer_vat_no' => $request->customer_vat_no,
         ]);
 
         $rep = $company->representative()->first();
@@ -968,8 +917,8 @@ class CompanyRepository implements CompanyRepositoryInterface
         return $data;
     }
 
-    public function companiesReports_all($request, $all = false , $orderBy = false){
-        $data['companies'] = $this->index($request, $all , $orderBy);
+    public function companiesReports_all($request){
+        $data['companies'] = $this->index($request);
         $data['sectors'] = $this->sector_model::all();
         $data['countries'] = $this->country_model::all();
         $data['mother_companies'] = MotherCompany::all();
