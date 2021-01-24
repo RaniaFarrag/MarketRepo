@@ -435,8 +435,8 @@ return [
     'customer_vat_no' => 'Customer Vat No',
     'Linrco invoices' => 'Linrco Invoices',
     'Linrco Invoice' => 'Linrco Invoice',
-    'Month' => 'Month',
-    'Month' => 'Month',
+    'agreement_no' => 'Agreement No',
+    'client_code' => 'Client Code',
     'Month' => 'Month',
     'Month' => 'Month',
 

@@ -128,7 +128,7 @@
             <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->id }}</td>
             <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->date }}</td>
             <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->company->client_code }}</td>
-            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->agreement_no }}</td>
+            <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->linrcoAgreement->agreement_no }}</td>
             <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->internal_contact }}</td>
             <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->telephone }}</td>
             <td style="text-align:center;font-size: 11px;">{{ $linrco_invoice->email }}</td>

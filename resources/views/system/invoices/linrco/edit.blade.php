@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.agreement_no') }} :</label>
-                                            <input value="{{ $linrco_invoice->linrco_agreement_id  }}" name="agreement_no" type="text"
+                                            <input value="{{ $linrco_invoice->linrcoAgreement->agreement_no  }}" name="agreement_no" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.agreement_no') }}" required readonly/>
                                         </div>
 

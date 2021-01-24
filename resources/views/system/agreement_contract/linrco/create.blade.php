@@ -72,36 +72,41 @@
                                                        placeholder="Select date"/>
                                             </div>
                                         </div>
+
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.agreement_no') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ old('agreement_no') }}" name="agreement_no" type="text"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="Select date"/>
+                                            </div>
+                                        </div>
+
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Phone') }} :</label>
                                             <input value="{{ $company->phone }}" name="phone" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.Phone') }}" required/>
                                         </div>
 
-                                        {{--<div class="col-lg-4">--}}
-                                            {{--<label>{{ trans('dashboard.company_name') }} :</label>--}}
-                                            {{--<input value="{{ $company->name }}" name="company_name" type="text" class="form-control"--}}
-                                                   {{--placeholder="{{ trans('dashboard.company_name') }}" required/>--}}
-                                        {{--</div>--}}
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.cr') }} :</label>
-                                            <input value="{{ $company->cr }}" name="cr" type="text" class="form-control"
-                                                   placeholder="{{ trans('dashboard.cr') }}" />
-                                        </div>
-
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
                                             <label>{{ trans('dashboard.company_address_en') }} :</label>
                                             <input value="{{ old('company_address_en') }} " name="company_address_en" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.company_address_en') }}" />
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
                                             <label>{{ trans('dashboard.company_address_ar') }}:</label>
                                             <input value="{{ old('company_address_ar') }}" name="company_address_ar" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.company_address_ar') }}" required/>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
+                                            <label>{{ trans('dashboard.cr') }} :</label>
+                                            <input value="{{ $company->cr }}" name="cr" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.cr') }}" />
+                                        </div>
+                                        <div class="col-lg-3">
                                             <label>{{ trans('dashboard.mail_box') }} :</label>
                                             <input value="{{ old('mail_box') }}" name="mail_box" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.mail_box') }}" required/>

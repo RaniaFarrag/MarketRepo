@@ -41,6 +41,7 @@ class LinrcoAgreementRepository implements LinrcoAgreementRepositoryInterface
     {
         $linrco_Agreement_model = $this->linrco_Agreement_model::create([
             'date' => $request->date,
+            'agreement_no' => $request->agreement_no,
             'cr' => $request->cr,
             'company_address_en' => $request->company_address_en,
             'phone' => $request->phone,
@@ -98,7 +99,7 @@ class LinrcoAgreementRepository implements LinrcoAgreementRepositoryInterface
 
         $linrcoAgreement->update([
             'date' => $request->date,
-            //'company_name' => $request->company_name,
+            'agreement_no' => $request->agreement_no,
             'cr' => $request->cr,
             'company_address_en' => $request->company_address_en,
             'phone' => $request->phone,

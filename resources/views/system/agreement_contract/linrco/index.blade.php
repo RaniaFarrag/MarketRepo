@@ -90,6 +90,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{ trans('dashboard.date') }}</th>
+                                            <th>{{ trans('dashboard.agreement_no') }}</th>
                                             <th>{{ trans('dashboard.CR') }}</th>
                                             <th>{{ trans('dashboard.Phone') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
@@ -105,6 +106,7 @@
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
                                                 <td>{{ $agreement->date }}</td>
+                                                <td>{{ $agreement->agreement_no }}</td>
                                                 <td>{{ $agreement->cr }}</td>
                                                 <td>{{ $agreement->phone }}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>

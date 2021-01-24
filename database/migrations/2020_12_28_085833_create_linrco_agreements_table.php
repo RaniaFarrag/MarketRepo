@@ -16,6 +16,7 @@ class CreateLinrcoAgreementsTable extends Migration
         Schema::create('linrco_agreements', function (Blueprint $table) {
             $table->id();
             $table->date('date')->nullable();
+            $table->string('agreement_no')->nullable();
             $table->string('company_name')->nullable();
             $table->string('cr')->nullable();
             $table->string('company_address_en')->nullable();

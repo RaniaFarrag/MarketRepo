@@ -9,6 +9,7 @@ class LinrcoAgreement extends Model
 {
     protected $fillable = [
         'date',
+        'agreement_no',
         'company_name',
         'cr',
         'company_address_en',

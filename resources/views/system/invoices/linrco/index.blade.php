@@ -108,7 +108,7 @@
                                                 <td>{{ $linrco_invoice->id }}</td>
                                                 <td>{{ $linrco_invoice->id }}</td>
                                                 <td>{{ $linrco_invoice->date }}</td>
-                                                <td>{{ $linrco_invoice->agreement_no }}</td>
+                                                <td>{{ $linrco_agreement->agreement_no }}</td>
                                                 <td>{{ $linrco_invoice->internal_contact }}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $linrco_invoice->user->name : $linrco_invoice->user->name_en }}</td>
                                                 <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('linrco_invoice_print' ,  [$linrco_invoice->id , $mother_company_id]) }}">{{ trans('dashboard.Invoice Details') }}</a></td>

@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.agreement_no') }} :</label>
-                                            <input value="{{ $linrco_agreement->id  }}" name="agreement_no" type="text"
+                                            <input value="{{ $linrco_agreement->agreement_no  }}" name="agreement_no" type="text"
                                                    class="form-control" placeholder="{{ trans('dashboard.agreement_no') }}" required readonly/>
                                         </div>
 
