@@ -1353,11 +1353,11 @@
         </tr>
         <tr>
             <td class="rtl" style="width: 50%;">
-                <br/> {{ $linrco_agreement->company_representative }}
+                <br/> {{ $linrco_agreement->company_representative_ar }}
             </td>
             <td class="ltr" style="width: 50%;">
                 <br/>
-                {{ $linrco_agreement->company_representative }}
+                {{ $linrco_agreement->company_representative_en }}
             </td>
         </tr>
         <tr>

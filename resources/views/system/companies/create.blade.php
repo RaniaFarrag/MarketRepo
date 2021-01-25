@@ -306,17 +306,18 @@
                                                    placeholder="{{ trans('dashboard.Location') }}"/>
                                         </div>
                                         <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.address') }}:</label>
+                                            <input value="{{ old('address') }}" name="address" type="text"
+                                                   class="form-control"
+                                                   placeholder="{{ trans('dashboard.address') }}"/>
+                                        </div>
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Branches Number') }}:</label>
                                             <input value="{{ old('branch_number') }}" name="branch_number" type="text"
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Branches Number') }}"/>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <label>{{ trans('dashboard.Number of Employees Company') }}:</label>
-                                            <input value="{{ old('num_of_employees') }}" name="num_of_employees"
-                                                   type="text" class="form-control"
-                                                   placeholder="{{ trans('dashboard.Number of Employees Company') }}"/>
-                                        </div>
+
                                     </div>
 
                                     <div class="form-group row">
@@ -342,12 +343,18 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.Number of Employees Company') }}:</label>
+                                            <input value="{{ old('num_of_employees') }}" name="num_of_employees"
+                                                   type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.Number of Employees Company') }}"/>
+                                        </div>
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Client Code') }}:</label>
                                             <input value="{{ old('client_code') }}" name="client_code" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.Client Code') }}"/>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.customer_vat_no') }}:</label>
                                             <input value="{{ old('customer_vat_no') }}" name="customer_vat_no" type="text" class="form-control"
                                                    placeholder="{{ trans('dashboard.customer_vat_no') }}"/>

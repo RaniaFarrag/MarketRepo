@@ -132,7 +132,7 @@
                                                         <input arr-name="item" value="{{ $request->visa_processing_fee }}" name="visa_processing_fee" type="text" class="form-control PerEmployee" placeholder="visa_processing_fee "/>
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
-                                                        <label>{{ trans('dashboard.tax %') }}:</label>
+                                                        <label>{{ trans('dashboard.tax') }} % :</label>
                                                         <input arr-name="item" value="5" name="tax" type="text" class="form-control totalValue" placeholder="tax %"/>
                                                     </div>
                                                 </div>

@@ -28,6 +28,7 @@ class Company extends Model
         'city_id' ,
         'district' ,
         'location' ,
+        'address' ,
         'branch_number' ,
         'num_of_employees' ,
         'website' ,
