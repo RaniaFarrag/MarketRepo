@@ -184,12 +184,8 @@ class CompanyInvoiceController extends Controller
         }
     }
 
-    public function downloadInvoice($file_name){
-//        dd($file_name);
-        $file = storage_path('images/'.$file_name);
-//        dd($file);
-        return response()->download($file);
-
-    }
+//    public function downloadInvoice($file_name){
+//        return response()->file('storage/images/' . $file_name);
+//    }
 
 }

@@ -447,8 +447,8 @@ return [
     'tax' => 'Tax',
     'Upload' => 'Upload',
     'Upload Invoice' => 'Upload Invoice',
-    'Month' => 'Month',
-    'Month' => 'Month',
+    'uploaded successfully' => 'Uploaded Successfully',
+    'Invoices' => 'Invoices',
     'Month' => 'Month',
     'Month' => 'Month',
 

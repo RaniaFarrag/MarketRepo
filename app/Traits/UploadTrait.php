@@ -22,6 +22,12 @@ trait UploadTrait{
             }
             $file_name = time().'_'.$request->file($fieldname)->getClientOriginalName();
             $request->file($fieldname)->storeAs('public/images' , $file_name);
+//            $file_name=$request->file($fieldname)->HashName();
+//            $request->file($fieldname)->move(public_path('product') ,$file_name);
+//            dd($file_name);
+
+
+
             //dd($request->file($fieldname)->storeAs('public/images' , $file_name));
             return $file_name;
 //            return $path = $request->file($fieldname)->storeAs('uploads' , $file_name);

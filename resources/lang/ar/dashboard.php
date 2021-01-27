@@ -448,8 +448,8 @@ return [
     'tax' => 'الضرائب',
     'Upload' => 'رفع',
     'Upload Invoice' => 'رفع الفاتورة',
-    'Month' => 'شهر',
-    'Month' => 'شهر',
+    'uploaded successfully' => 'تم الرفع بنجاح',
+    'Invoices' => 'الفواتير',
     'Month' => 'شهر',
 
 

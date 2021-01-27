@@ -330,7 +330,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('companyInvoice/print/{invoice_id}/{mother_company_id}' , 'CompanyInvoiceController@printLinrcoinvoice')->name('linrco_invoice_print');
     Route::get('viewAllinvoices/{company_id}/{mother_company_id}' , 'CompanyInvoiceController@viewAllinvoices')->name('view_all_invoices');
     Route::post('upload/invoice' , 'CompanyInvoiceController@uploadInvoice')->name('upload_invoice');
-    Route::get('download/invoice/{file_name}' , 'CompanyInvoiceController@downloadInvoice')->name('download_invoice');
+    //Route::get('view/invoice/pdf/{file_name}' , 'CompanyInvoiceController@downloadInvoice')->name('view_invoice_pdf');
 
 
 });

@@ -69,7 +69,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Invoice') }} {{ $company->name  }}
+                                        {{ trans('dashboard.Invoices') }} {{ $company->name  }}
                                     </h3>
                                 </div>
 
@@ -84,7 +84,7 @@
                                             <th>{{ trans('dashboard.Invoice No') }}</th>
                                             <th>{{ trans('dashboard.date') }}</th>
                                             <th>{{ trans('dashboard.Contract No') }}</th>
-                                            <th>{{ trans('dashboard.INTERNAL CONTACT') }}</th>
+                                            <th>{{ trans('dashboard.Internal Contact') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
                                             <th>{{ trans('dashboard.Invoice Details') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>

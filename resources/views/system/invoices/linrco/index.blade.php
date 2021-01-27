@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label>{{ trans('dashboard.Upload Invoice') }}</label>
                         <input type="file" name="file" value="" class="form-control" required>
-                        <p id="demo"></p>
+                        <a id="demo" target="_blank"></a>
                     </div>
 
                 </div>
@@ -158,10 +158,13 @@
                                                     <td>
                                                         @if($linrco_invoice->file)
                                                             <a linrco_invoice_id="{{ $linrco_invoice->id }}" file_link="{{ $linrco_invoice->file }}"
-                                                               mother_company_id="{{ $mother_company_id }}" data-toggle="modal" class="btn btn-success font-weight-bold" target="_blank" href="#upload_Modal">{{ trans('dashboard.Upload') }}</a>
+                                                               mother_company_id="{{ $mother_company_id }}" data-toggle="modal" class="btn btn-success font-weight-bold"
+                                                               target="_blank" href="#upload_Modal">{{ trans('dashboard.Upload') }}</a>
                                                         @else
-
-                                                    @endif
+                                                            <a linrco_invoice_id="{{ $linrco_invoice->id }}" file_link="{{ $linrco_invoice->file }}"
+                                                               mother_company_id="{{ $mother_company_id }}" data-toggle="modal" class="btn btn-danger font-weight-bold"
+                                                               target="_blank" href="#upload_Modal">{{ trans('dashboard.Upload') }}</a>
+                                                        @endif
                                                     </td>
 
                                                     <td><a href="{{ route('companyInvoice.edit' ,  [$linrco_invoice->id, $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
@@ -196,18 +199,18 @@
             var linrco_invoice_id = $(this).attr('linrco_invoice_id');
             var mother_company_id = $(this).attr('mother_company_id');
             var file_name = $(this).attr('file_link');
-            // console.log(file_link);
 
             $('input[name="linrco_invoice_id"]').val(linrco_invoice_id);
             $('input[name="mother_company_id"]').val(mother_company_id);
-            //$('input[name="path_file"]').val(file_link);
 
-            var url = '{{ url("download/invoice/") }}' + '/' +file_name
+            //var url = '{{ url("view/invoice/pdf/") }}' + '/' + file_name;
+            // var link = file_name.link(url);
+            // document.getElementById("demo").innerHTML = link;
 
-            var link = file_name.link(url);
-            document.getElementById("demo").innerHTML = link;
-
+            var url = '{{ asset("storage/images") }}/' + file_name;
+            $('#demo').attr('href',url)
+            $('#demo').html(file_name)
         });
-
     </script>
 @endsection
+
