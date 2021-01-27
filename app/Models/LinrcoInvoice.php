@@ -17,6 +17,7 @@ class LinrcoInvoice extends Model
         'internal_contact',
         'telephone',
         'email',
+        'file',
         'linrco_agreement_id',
         'company_id',
         'user_id',

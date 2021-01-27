@@ -32,7 +32,7 @@ class LinrcoInvoiceRepository implements LinrcoInvoiceRepositoryInterface
 
     /** View One LinrcoInvoive */
     public function index($agreement_id , $mother_company_id){
-        return $this->linrco_invoice_model::where('linrco_agreement_id' , $agreement_id)->with('company' , 'user')->first();
+        return $this->linrco_invoice_model::where('linrco_agreement_id' , $agreement_id)->with('company' , 'user')->get();
     }
 
 
@@ -64,7 +64,6 @@ class LinrcoInvoiceRepository implements LinrcoInvoiceRepositoryInterface
             ]);
         }
 
-        
         $this->addLog(auth()->id() , $linrco_invoice->id , 'LinrcoInvoice' , 'تم اضافة فاتورة للعقد رقم  ' , 'New Linrco Voice for contract');
 
         Alert::success('success', trans('dashboard. added successfully'));
@@ -119,6 +118,14 @@ class LinrcoInvoiceRepository implements LinrcoInvoiceRepositoryInterface
 
         Alert::success('success', trans('dashboard.deleted successfully'));
         return redirect(route('companyInvoice.index' , [$linrco_invoice->linrco_agreement_id , $mother_company_id]));
+    }
+
+    public function uploadInvoice($request , $linrco_invoice){
+        $file_invoice = $this->verifyAndStoreFile($request , 'file');
+        $linrco_invoice->update(['file' => $file_invoice]);
+
+        Alert::success('success', trans('dashboard.uploaded successfully'));
+        return redirect(route('companyInvoice.index' , [$linrco_invoice->linrco_agreement_id , $request->mother_company_id]));
     }
 
 }

@@ -65,7 +65,7 @@ class LinrcoAgreement extends Model
     }
 
     public function linrcoInvoice(){
-        return $this->hasOne(LinrcoInvoice::class , 'linrco_agreement_id' , 'id');
+        return $this->hasMany(LinrcoInvoice::class , 'linrco_agreement_id' , 'id');
     }
 
 

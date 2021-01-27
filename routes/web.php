@@ -56,7 +56,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Mother Company */
     Route::resource('motherCompany' , 'MotherCompanyController');
 
-
     /** Manage Roles */
     Route::resource('roles' , 'RoleController');
 
@@ -124,39 +123,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
     Route::get('print/need/{need_id}/{mother_company_id}' , 'CompanyNeedController@printNeed')->name('print_need');
-
-
-    /** Manage Company Quotation */
-    Route::resource('companyQuotation' , 'CompanyQuotationController');
-
-    /** Custom index route */
-    Route::get('companyQuotation/index/{company_id}/{mother_company_id}', [
-        'as' =>   'companyQuotation.index',
-        'uses' => 'CompanyQuotationController@index'
-    ]);
-
-    /** Custom create route */
-    Route::get('companyQuotation/create/{company_id}/{mother_company_id}/{saudization}', [
-        'as' => 'companyQuotation.create',
-        'uses' => 'CompanyQuotationController@create'
-    ]);
-
-    /** Custom edit route */
-    Route::get('companyQuotation/edit/{quotation_id}/{mother_company_id}', [
-        'as' => 'companyQuotation.edit',
-        'uses' => 'CompanyQuotationController@edit'
-    ]);
-
-    /** Custom destroy route */
-    Route::get('companyQuotation/destroy/{quotation_id}/{mother_company_id}', [
-        'as' => 'companyQuotation.destroy',
-        'uses' => 'CompanyQuotationController@destroy'
-    ]);
-
-    Route::get('print/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printQuotation')->name('print_quotation');
-
-
-    /**************************************************GET******************************************************/
 
     /** Get Sub-Sectors Of Sector */
     Route::get('/get/sub/sectors/of/sector/{sector_id}' , 'SubSectorController@getSubsectorOfsector')->name('get_sub_sectros_of_sector');
@@ -236,15 +202,45 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');
 
 
-    Route::get('agreement' , 'CompanyController@agreement')->name('agreement');
+    //Route::get('agreement' , 'CompanyController@agreement')->name('agreement');
 
-    Route::get('agreement/service/fnrco' , 'CompanyController@agreement_service_fnrco')->name('agreement_service_fnrco');
+    //Route::get('agreement/service/fnrco' , 'CompanyController@agreement_service_fnrco')->name('agreement_service_fnrco');
 
-    Route::get('invoice' , 'CompanyController@invoice')->name('invoice');
+    //Route::get('invoice' , 'CompanyController@invoice')->name('invoice');
 
-    Route::get('sales/quotation' , 'CompanyController@sales_quotation')->name('sales_quotation');
+    //Route::get('sales/quotation' , 'CompanyController@sales_quotation')->name('sales_quotation');
 
-    Route::get('undertakeing/opal' , 'CompanyController@undertakeing_opal')->name('undertakeing_opal');
+    //Route::get('undertakeing/opal' , 'CompanyController@undertakeing_opal')->name('undertakeing_opal');
+
+
+    /** Manage Company Quotation */
+    Route::resource('companyQuotation' , 'CompanyQuotationController');
+
+    /** Custom index route */
+    Route::get('companyQuotation/index/{company_id}/{mother_company_id}', [
+        'as' =>   'companyQuotation.index',
+        'uses' => 'CompanyQuotationController@index'
+    ]);
+
+    /** Custom create route */
+    Route::get('companyQuotation/create/{company_id}/{mother_company_id}/{saudization}', [
+        'as' => 'companyQuotation.create',
+        'uses' => 'CompanyQuotationController@create'
+    ]);
+
+    /** Custom edit route */
+    Route::get('companyQuotation/edit/{quotation_id}/{mother_company_id}', [
+        'as' => 'companyQuotation.edit',
+        'uses' => 'CompanyQuotationController@edit'
+    ]);
+
+    /** Custom destroy route */
+    Route::get('companyQuotation/destroy/{quotation_id}/{mother_company_id}', [
+        'as' => 'companyQuotation.destroy',
+        'uses' => 'CompanyQuotationController@destroy'
+    ]);
+
+    Route::get('print/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printQuotation')->name('print_quotation');
 
 
     Route::resource('CompanyAgreement' , 'CompanyAgreementController');
@@ -333,8 +329,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('companyInvoice/print/{invoice_id}/{mother_company_id}' , 'CompanyInvoiceController@printLinrcoinvoice')->name('linrco_invoice_print');
     Route::get('viewAllinvoices/{company_id}/{mother_company_id}' , 'CompanyInvoiceController@viewAllinvoices')->name('view_all_invoices');
-
-
+    Route::post('upload/invoice' , 'CompanyInvoiceController@uploadInvoice')->name('upload_invoice');
+    Route::get('download/invoice/{file_name}' , 'CompanyInvoiceController@downloadInvoice')->name('download_invoice');
 
 
 });

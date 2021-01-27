@@ -13,6 +13,7 @@ use App\Models\LinrcoInvoice;
 use App\Models\LinrcoQuotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class CompanyInvoiceController extends Controller
@@ -34,10 +35,10 @@ class CompanyInvoiceController extends Controller
     public function index($agreement_id , $mother_company_id)
     {
         if ($mother_company_id == 1) {
-            $linrco_invoice = $this->LinrcoInvoiceRepositoryInterface->index($agreement_id , $mother_company_id);
+            $linrco_invoices = $this->LinrcoInvoiceRepositoryInterface->index($agreement_id , $mother_company_id);
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company')->first();
 //            dd($linrco_invoice->company->name);
-            return view('system.invoices.linrco.index')->with(['linrco_invoice' => $linrco_invoice , 'agreement_id' => $agreement_id,
+            return view('system.invoices.linrco.index')->with(['linrco_invoices' => $linrco_invoices , 'agreement_id' => $agreement_id,
                 'mother_company_id' => $mother_company_id , 'linrco_agreement' => $linrco_agreement]);
         }
         elseif ($mother_company_id == 2){
@@ -174,6 +175,21 @@ class CompanyInvoiceController extends Controller
             return view('system.invoices.linrco.view_all')->with(['linrco_invoices' => $linrco_invoices , 'company'=>$company ,
             'mother_company_id' => $mother_company_id]);
         }
+    }
+
+    public function uploadInvoice(Request $request){
+        if($request->mother_company_id == 1){
+            $linrco_invoice = LinrcoInvoice::findOrFail($request->linrco_invoice_id);
+           return $this->LinrcoInvoiceRepositoryInterface->uploadInvoice($request , $linrco_invoice);
+        }
+    }
+
+    public function downloadInvoice($file_name){
+//        dd($file_name);
+        $file = storage_path('images/'.$file_name);
+//        dd($file);
+        return response()->download($file);
+
     }
 
 }

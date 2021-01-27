@@ -1,5 +1,45 @@
 @extends('layouts.dashboard')
 
+<div class="modal fade" id="upload_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">
+
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <form class="form-group form-horizontal" action="{{ route('upload_invoice') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <input type="hidden" name="mother_company_id" value="">
+                <input type="hidden" name="linrco_invoice_id" value="">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>{{ trans('dashboard.Upload Invoice') }}</label>
+                        <input type="file" name="file" value="" class="form-control" required>
+                        <p id="demo"></p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"
+                            class="btn btn-primary font-weight-bold">{{ trans('dashboard.Upload') }}</button>
+                    <button type="button" class="btn btn-light-primary font-weight-bold"
+                            data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
 @section('body')
 
     <!--begin::Content-->
@@ -13,7 +53,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Linrco Invoice') }} {{ $linrco_invoice ? $linrco_invoice->company ? $linrco_invoice->company->name : '' : '' }}
+                            {{ trans('dashboard.Linrco Invoice') }} {{ $linrco_agreement->company ? $linrco_agreement->company->name : '' }}
                         </h2>
                         <!--end::Title-->
 
@@ -35,7 +75,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="{{ route('CompanyAgreement.index' , [$linrco_agreement->company->id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Linrco Agreement') }} {{ $linrco_invoice ? $linrco_invoice->company ? $linrco_invoice->company->name : '' : ''  }}
+                                {{ trans('dashboard.Linrco Agreement') }} {{ $linrco_agreement->company ? $linrco_agreement->company->name : ''  }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -47,11 +87,11 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    @if(!$linrco_invoice)
+                    {{--@if(!$linrco_invoice)--}}
                         <a href="{{ route('companyInvoice.create' , [$agreement_id , $mother_company_id]) }}" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                             {{ trans('dashboard.Add Invoice') }}
                         </a>
-                    @endif
+                    {{--@endif--}}
                     <!--end::Button-->
                 </div>
 
@@ -79,7 +119,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Invoice') }} {{ $linrco_invoice ? $linrco_invoice->company ? $linrco_invoice->company->name : '' : ''  }}
+                                        {{ trans('dashboard.Invoice') }} {{ $linrco_agreement->company ? $linrco_agreement->company->name : ''  }}
                                     </h3>
                                 </div>
 
@@ -90,7 +130,6 @@
                                     <table class="table table-bordered text-center">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
                                             <th>{{ trans('dashboard.Invoice No') }}</th>
                                             <th>{{ trans('dashboard.date') }}</th>
                                             <th>{{ trans('dashboard.agreement_no') }}</th>
@@ -98,25 +137,37 @@
                                             <th>{{ trans('dashboard.Internal Contact') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
                                             <th>{{ trans('dashboard.Invoice Details') }}</th>
+                                            <th>{{ trans('dashboard.Upload') }}</th>
                                             <th>{{ trans('dashboard.edit') }}</th>
                                             <th>{{ trans('dashboard.delete') }}</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        @if($linrco_invoice)
-                                            <tr>
-                                                <td>{{ $linrco_invoice->id }}</td>
-                                                <td>{{ $linrco_invoice->id }}</td>
-                                                <td>{{ $linrco_invoice->date }}</td>
-                                                <td>{{ $linrco_agreement->agreement_no }}</td>
-                                                <td>{{ $linrco_agreement->company->client_code }}</td>
-                                                <td>{{ $linrco_invoice->internal_contact }}</td>
-                                                <td>{{ app()->getLocale() == 'ar' ? $linrco_invoice->user->name : $linrco_invoice->user->name_en }}</td>
-                                                <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('linrco_invoice_print' ,  [$linrco_invoice->id , $mother_company_id]) }}">{{ trans('dashboard.Invoice Details') }}</a></td>
-                                                <td><a href="{{ route('companyInvoice.edit' ,  [$linrco_invoice->id, $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
-                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('companyInvoice.destroy' ,  [$linrco_invoice->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
-                                            </tr>
+                                        @if($linrco_invoices)
+                                            @foreach($linrco_invoices as $linrco_invoice)
+                                                <tr>
+                                                    <td>{{ $linrco_invoice->id }}</td>
+                                                    <td>{{ $linrco_invoice->date }}</td>
+                                                    <td>{{ $linrco_agreement->agreement_no }}</td>
+                                                    <td>{{ $linrco_agreement->company->client_code }}</td>
+                                                    <td>{{ $linrco_invoice->internal_contact }}</td>
+                                                    <td>{{ app()->getLocale() == 'ar' ? $linrco_invoice->user->name : $linrco_invoice->user->name_en }}</td>
+                                                    <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('linrco_invoice_print' ,  [$linrco_invoice->id , $mother_company_id]) }}">{{ trans('dashboard.Invoice Details') }}</a></td>
+
+                                                    <td>
+                                                        @if($linrco_invoice->file)
+                                                            <a linrco_invoice_id="{{ $linrco_invoice->id }}" file_link="{{ $linrco_invoice->file }}"
+                                                               mother_company_id="{{ $mother_company_id }}" data-toggle="modal" class="btn btn-success font-weight-bold" target="_blank" href="#upload_Modal">{{ trans('dashboard.Upload') }}</a>
+                                                        @else
+
+                                                    @endif
+                                                    </td>
+
+                                                    <td><a href="{{ route('companyInvoice.edit' ,  [$linrco_invoice->id, $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
+                                                    <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('companyInvoice.destroy' ,  [$linrco_invoice->id , $mother_company_id]) }}"><i class="fa fa-trash"></i></a></td>
+                                                </tr>
+                                            @endforeach
                                         @endif
                                         </tbody>
                                     </table>
@@ -140,5 +191,23 @@
 @endsection
 
 @section('script')
+    <script>
+        $('a[href="#upload_Modal"]').on('click',function(){
+            var linrco_invoice_id = $(this).attr('linrco_invoice_id');
+            var mother_company_id = $(this).attr('mother_company_id');
+            var file_name = $(this).attr('file_link');
+            // console.log(file_link);
 
+            $('input[name="linrco_invoice_id"]').val(linrco_invoice_id);
+            $('input[name="mother_company_id"]').val(mother_company_id);
+            //$('input[name="path_file"]').val(file_link);
+
+            var url = '{{ url("download/invoice/") }}' + '/' +file_name
+
+            var link = file_name.link(url);
+            document.getElementById("demo").innerHTML = link;
+
+        });
+
+    </script>
 @endsection

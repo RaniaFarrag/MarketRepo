@@ -19,4 +19,6 @@ interface LinrcoInvoiceRepositoryInterface
 
     public function destroy($linrco_invoice , $mother_company_id);
 
+    public function uploadInvoice($request , $linrco_invoice);
+
 }

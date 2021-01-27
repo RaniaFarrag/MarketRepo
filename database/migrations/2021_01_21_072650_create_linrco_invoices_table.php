@@ -22,6 +22,8 @@ class CreateLinrcoInvoicesTable extends Migration
             $table->string('telephone')->nullable();
             $table->string('email')->nullable();
 
+            $table->text('file')->nullable();
+
             $table->bigInteger('linrco_agreement_id')->unsigned();
             $table->foreign('linrco_agreement_id')->references('id')->on('linrco_agreements')->onDelete('cascade');
 
