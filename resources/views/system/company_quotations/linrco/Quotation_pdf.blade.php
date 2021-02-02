@@ -344,6 +344,10 @@
                                     </td>
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
+                                        {{ __('dashboard.other_allowance') }}
+                                    </td>
+                                    <td class="en ltr"
+                                        style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
                                         {{ __('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}
                                     </td>
                                     <td class="en ltr"
@@ -380,6 +384,10 @@
                                         <td class="en ltr"
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">
                                             {{ $linrco_request->salary }}
+                                        </td>
+                                        <td class="en ltr"
+                                            style="font-size: 12px; vertical-align: middle;text-align: center;">
+                                            {{ $linrco_request->other_allowance }}
                                         </td>
                                         <td class="en ltr"
                                             style="font-size: 12px; vertical-align: middle;text-align: center;">

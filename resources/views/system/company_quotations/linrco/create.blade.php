@@ -113,7 +113,7 @@
                                             <div data-repeater-list="item" class="col-lg-12">
                                                 <div data-repeater-item class="form-group row align-items-center">
 
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.TRADE') }}:</label>
                                                         <input arr-name="item" value="{{ old('trade') }}" name="trade"
                                                                type="text"
@@ -121,7 +121,7 @@
                                                                placeholder="{{ trans('dashboard.TRADE') }}" required/>
 
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.Gender') }} :</label>
                                                         <select arr-name="item" id="gender" class="form-control select"
                                                                 name="gender"
@@ -132,7 +132,7 @@
                                                             <option value="2">{{ trans('dashboard.Female') }}</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.Qualification') }}:</label>
                                                         <input arr-name="item"
                                                                value="{{ old('educational_qualification') }}"
@@ -142,7 +142,7 @@
                                                                required/>
 
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.QTY') }}:</label>
                                                         <input arr-name="item" value="{{ old('quantity') }}"
                                                                name="quantity" type="number"
@@ -150,7 +150,7 @@
                                                                placeholder="{{ trans('dashboard.QTY') }}" required/>
 
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.Nationality') }}:</label>
                                                         <select arr-name="item" class="form-control select"
                                                                 name="nationality"
@@ -164,7 +164,7 @@
                                                         </select>
 
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
                                                         <input arr-name="item" value="{{ old('salary') }}" name="salary"
                                                                type="text"
@@ -172,7 +172,7 @@
                                                                placeholder="{{ trans('dashboard.SALARY (SAR)') }}"
                                                                required/>
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}
                                                             :</label>
                                                         <input arr-name="item"
@@ -182,7 +182,7 @@
                                                                placeholder="{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}"
                                                                required/>
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="col-lg-4 mb-2">
                                                         <label>{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}
                                                             :</label>
                                                         <input arr-name="item"
@@ -190,6 +190,15 @@
                                                                name="VISA_PROCESSING_CHARGES_PER_CANDIDATE" type="text"
                                                                class="form-control"
                                                                placeholder="{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}"
+                                                               required/>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-2">
+                                                        <label>{{ trans('dashboard.other_allowance') }}
+                                                            :</label>
+                                                        <input arr-name="item"
+                                                               value="{{ old('other_allowance') }}"
+                                                               name="other_allowance" type="text" class="form-control"
+                                                               placeholder="{{ trans('dashboard.other_allowance') }}"
                                                                required/>
                                                     </div>
                                                 </div>

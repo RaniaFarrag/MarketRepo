@@ -452,7 +452,7 @@ return [
     'Invoices' => 'Invoices',
     'Fnrco Needs' => 'Fnrco Needs',
     'Linrco Needs' => 'Linrco Needs',
-    'Month' => 'Month',
+    'other_allowance' => 'Other Allowance',
     'Month' => 'Month',
     'Month' => 'Month',
 

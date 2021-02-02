@@ -15,6 +15,7 @@ class LinrcoQuotationRequest extends Model
         'salary',
         'RECRUITMENT_CHARGES_PER_CANDIDATE',
         'VISA_PROCESSING_CHARGES_PER_CANDIDATE',
+        'other_allowance',
         'linrco_quotation_id',
     ];   
 

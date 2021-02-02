@@ -111,13 +111,13 @@
                                                         <div data-repeater-item class="form-group row align-items-center">
                                                             <input arr-name="item" type="hidden" name="request_id" value={{ $linrco_request->id }}>
 
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.TRADE') }}:</label>
                                                                 <input arr-name="item" value="{{ $linrco_request->trade }}" name="trade" type="text"
                                                                     class="form-control" placeholder="{{ trans('dashboard.TRADE') }}" required/>
 
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.Gender') }} :</label>
                                                                 <select arr-name="item" id="gender" class="form-control select" name="gender">
                                                                     <option value="" >{{ trans('dashboard.Select All') }}</option>
@@ -125,18 +125,18 @@
                                                                     <option {{ $linrco_request->gender == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Female') }}</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.Qualification') }}:</label>
                                                                 <input arr-name="item" value="{{ $linrco_request->educational_qualification }}" name="educational_qualification" type="text"
                                                                     class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
 
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.QTY') }}:</label>
                                                                 <input arr-name="item" value="{{ $linrco_request->quantity }}" name="quantity" type="number"
                                                                     class="form-control" placeholder="{{ trans('dashboard.QTY') }}" required/>
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.Nationality') }}:</label>
                                                                 <select arr-name="item" class="form-control select" name="nationality">                                                                
                                                                     <option value="">{{ trans('dashboard.Select All') }}</option>
@@ -146,32 +146,41 @@
                                                                 </select>
 
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
                                                                 <input arr-name="item" value="{{ $linrco_request->salary }}" name="salary" type="text"
                                                                     class="form-control" placeholder="{{ trans('dashboard.SALARY (SAR)') }}" required/>
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}:</label>
                                                                 <input arr-name="item" value="{{ $linrco_request->RECRUITMENT_CHARGES_PER_CANDIDATE }}" name="RECRUITMENT_CHARGES_PER_CANDIDATE" type="text"
                                                                     class="form-control" placeholder="{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}" required/>
                                                             </div>
-                                                            <div class="col-lg-3 mb-2">
+                                                            <div class="col-lg-4 mb-2">
                                                                 <label>{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}:</label>
                                                                 <input arr-name="item" value="{{ $linrco_request->VISA_PROCESSING_CHARGES_PER_CANDIDATE }}" name="VISA_PROCESSING_CHARGES_PER_CANDIDATE" type="text"
                                                                     class="form-control" placeholder="{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}" required/>
+                                                            </div>
+                                                            <div class="col-lg-4 mb-2">
+                                                                <label>{{ trans('dashboard.other_allowance') }}
+                                                                    :</label>
+                                                                <input arr-name="item"
+                                                                       value="{{ $linrco_request->other_allowance }}"
+                                                                       name="other_allowance" type="text" class="form-control"
+                                                                       placeholder="{{ trans('dashboard.other_allowance') }}"
+                                                                       required/>
                                                             </div>
                                                         </div>
                                                     @endforeach
                                                 @else
                                                     <div data-repeater-item class="form-group row align-items-center">
                                                     <input arr-name="item" type="hidden" name="request_id" value="">
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.TRADE') }}:</label>
                                                             <input arr-name="item" value="{{ old('trade') }}" name="trade" type="text"
                                                                 class="form-control" placeholder="{{ trans('dashboard.TRADE') }}" required/>
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.Gender') }} :</label>
                                                             <select arr-name="item" id="gender" class="form-control select" name="gender"
                                                                     >
@@ -180,19 +189,19 @@
                                                                 <option value="2">{{ trans('dashboard.Female') }}</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.Qualification') }}:</label>
                                                             <input arr-name="item" value="{{ old('educational_qualification') }}" name="educational_qualification" type="text"
                                                                 class="form-control" placeholder="{{ trans('dashboard.Qualification') }}" required/>
 
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.QTY') }}:</label>
                                                             <input arr-name="item" value="{{ old('quantity') }}" name="quantity" type="number"
                                                                 class="form-control" placeholder="{{ trans('dashboard.QTY') }}" required/>
 
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.Nationality') }}:</label>
                                                             <select arr-name="item" class="form-control select" name="nationality">             
                                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
@@ -203,20 +212,29 @@
                                                             </select>
 
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.SALARY (SAR)') }}:</label>
                                                             <input arr-name="item" value="{{ old('salary') }}" name="salary" type="text"
                                                                 class="form-control" placeholder="{{ trans('dashboard.SALARY (SAR)') }}" required/>
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}:</label>
                                                             <input arr-name="item" value="{{ old('RECRUITMENT_CHARGES_PER_CANDIDATE') }}" name="RECRUITMENT_CHARGES_PER_CANDIDATE" type="text"
                                                                 class="form-control" placeholder="{{ trans('dashboard.RECRUITMENT CHARGES PER CANDIDATE') }}" required/>
                                                         </div>
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="col-lg-4 mb-2">
                                                             <label>{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}:</label>
                                                             <input arr-name="item" value="{{ old('VISA_PROCESSING_CHARGES_PER_CANDIDATE') }}" name="VISA_PROCESSING_CHARGES_PER_CANDIDATE" type="text"
                                                                 class="form-control" placeholder="{{ trans('dashboard.VISA PROCESSING CHARGES PER CANDIDATE (U.S $)') }}" required/>
+                                                        </div>
+                                                        <div class="col-lg-4 mb-2">
+                                                            <label>{{ trans('dashboard.other_allowance') }}
+                                                                :</label>
+                                                            <input arr-name="item"
+                                                                   value="{{ $linrco_request->other_allowance }}"
+                                                                   name="other_allowance" type="text" class="form-control"
+                                                                   placeholder="{{ trans('dashboard.other_allowance') }}"
+                                                                   required/>
                                                         </div>
                                                     </div>
                                                 @endif

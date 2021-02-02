@@ -76,6 +76,7 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
                 'salary' => $item['salary'],
                 'RECRUITMENT_CHARGES_PER_CANDIDATE' => $item['RECRUITMENT_CHARGES_PER_CANDIDATE'],
                 'VISA_PROCESSING_CHARGES_PER_CANDIDATE' => $item['VISA_PROCESSING_CHARGES_PER_CANDIDATE'],
+                'other_allowance' => $item['other_allowance'],
             ]);
         }
         
@@ -118,7 +119,8 @@ class LinrcoQuotationRepository implements LinrcoQuotationRepositoryInterface
                     'nationality' => $item['nationality'],
                     'salary' => $item['salary'],
                     'RECRUITMENT_CHARGES_PER_CANDIDATE' => $item['RECRUITMENT_CHARGES_PER_CANDIDATE'],
-                    'VISA_PROCESSING_CHARGES_PER_CANDIDATE' => $item['VISA_PROCESSING_CHARGES_PER_CANDIDATE'],                    
+                    'VISA_PROCESSING_CHARGES_PER_CANDIDATE' => $item['VISA_PROCESSING_CHARGES_PER_CANDIDATE'],
+                    'other_allowance' => $item['other_allowance'],
                 ]
             );
         }

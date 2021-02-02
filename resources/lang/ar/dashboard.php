@@ -453,7 +453,7 @@ return [
     'Invoices' => 'الفواتير',
     'Fnrco Needs' => 'احتياجات فناركو',
     'Linrco Needs' => 'احتياجات ليناركو',
-    'Month' => 'شهر',
+    'other_allowance' => 'بدلات أخري',
     'Month' => 'شهر',
     'Month' => 'شهر',
     'Month' => 'شهر',

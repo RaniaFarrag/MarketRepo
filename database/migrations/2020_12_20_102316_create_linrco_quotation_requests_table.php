@@ -23,6 +23,7 @@ class CreateLinrcoQuotationRequestsTable extends Migration
             $table->string('salary')->nullable();
             $table->string('RECRUITMENT_CHARGES_PER_CANDIDATE')->nullable();
             $table->string('VISA_PROCESSING_CHARGES_PER_CANDIDATE')->nullable();
+            $table->string('other_allowance')->nullable();
             $table->bigInteger('linrco_quotation_id')->unsigned();
             $table->foreign('linrco_quotation_id')->references('id')->on('linrco_quotations')->onDelete('cascade');
             $table->timestamps();
