@@ -117,8 +117,8 @@
                                                 <div data-repeater-item class="form-group row align-items-center">
 
                                                     <div class="col-lg-3 mb-2">
-                                                        <label>{{ trans('dashboard.particulars') }}:</label>
-                                                        <input arr-name="item" value="{{ old('particulars') }}"  name="particulars" type="text" class="form-control" placeholder="particulars"/>
+                                                        <label>{{ trans('dashboard.Emp.Name') }}:</label>
+                                                        <input arr-name="item" value="{{ old('particulars') }}"  name="particulars" type="text" class="form-control" placeholder="{{ trans('dashboard.Emp.Name') }}"/>
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.recruitment_fee') }}:</label>
@@ -130,7 +130,7 @@
                                                     </div>
                                                     <div class="col-lg-3 mb-2">
                                                         <label>{{ trans('dashboard.tax') }} % :</label>
-                                                        <input arr-name="item" value="5" name="tax" type="text" class="form-control totalValue" placeholder="tax %"/>
+                                                        <input arr-name="item" value="15" name="tax" type="text" class="form-control totalValue" placeholder="tax %"/>
                                                     </div>
                                                 </div>
                                             </div>

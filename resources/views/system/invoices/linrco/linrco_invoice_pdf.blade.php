@@ -111,7 +111,7 @@
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">INV DATE</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">CLIENT CODE</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">CONTRACT REF NO</td>
-            <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">INTERNAL CONTACT</td>
+            <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">LINRCO CONTACT</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">TELEPHONE</td>
             <td style="text-align:center; font-weight: bold;font-size: 11px;background: #d6d6d6;">EMAIL</td>
         </tr>
@@ -210,11 +210,11 @@
         <tbody>
 
         <tr style="border: 2px solid #000;">
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold; border: 2px solid #000; font-size: 10px; ">Particulars</td>
+            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold; border: 2px solid #000; font-size: 10px; ">Emp.Name</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">Recruitment Fee</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">Visa processing fee</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">TOTAL BEFORE TAX </td>
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> TAX 5% </td>
+            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> TAX 15% </td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px; "> TOTAL AMOUNT AFTER TAX</td>
         </tr>
         <tr style="border: 2px solid #000;">
@@ -222,7 +222,7 @@
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> رسوم التوظيف</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">رسوم معالجة التأشرية</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  ">اجمالى بدون ضريبة</td>
-            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> الضريبة 5%</td>
+            <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> الضريبة 15%</td>
             <td style="background: #d6d6d6; vertical-align: middle; text-align: center; font-weight: bold;border: 2px solid #000; font-size: 10px;  "> المبلغ الاجمالى بعد الضريبة </td>
         </tr>
 
@@ -239,7 +239,7 @@
         @endforeach
         <tr style="border: 2px solid #000;">
             <td style="text-align: center; font-weight: bold; font-size: 14px;border: 2px solid #000;">Total</td>
-            <td colspan="2" style="text-align: center;border: 2px solid #000;">Fifty Eight Thousand Nine Hundred Forty Four Riyals and No Halalas </td>
+            <td colspan="2" style="text-align: center;border: 2px solid #000;">{{ app()->getLocale() == 'ar' ? $totalInArabic : $totalInEnglish}} </td>
             <td style="text-align: center;font-weight: bold;border: 2px solid #000;">{{ $total_before_tax }}</td>
             <td style="text-align: center;font-weight: bold;border: 2px solid #000;">{{ $total_tax }}</td>
             <td style="text-align: center;font-weight: bold;border: 2px solid #000;">{{ $total_amount_after_tax }}</td>

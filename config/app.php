@@ -181,6 +181,8 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Alkoumi\LaravelArabicTafqeet\LaravelArabicTafqeetServiceProvider::class,
+
 
 
     ],

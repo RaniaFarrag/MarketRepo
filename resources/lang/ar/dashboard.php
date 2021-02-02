@@ -283,6 +283,7 @@ return [
     'Manager' => 'المدير',
     'Company Menu' => 'القائمة',
     'Quotation' => 'عرض اسعار',
+    'Quotations' => 'عروض اسعار',
     'Quotation Details' => 'تفاصيل عرض الاسعار',
     'Company Quotations' => 'عرض اسعار الشركة',
     'Add New Quotation' => 'اضافة عرض سعر جديد',
@@ -441,7 +442,7 @@ return [
     'address' => 'العنوان',
     'internal_contact' => 'المسؤول',
     'email' => 'البريد الالكتروني',
-    'particulars' => 'التفاصيل',
+    'Emp.Name' => 'Emp.Name',
     'recruitment_fee' => 'رسوم التوظيف',
     'telephone' => 'الهاتف',
     'visa_processing_fee' => 'رسوم معالجة التأشيرة',
@@ -450,6 +451,11 @@ return [
     'Upload Invoice' => 'رفع الفاتورة',
     'uploaded successfully' => 'تم الرفع بنجاح',
     'Invoices' => 'الفواتير',
+    'Fnrco Needs' => 'احتياجات فناركو',
+    'Linrco Needs' => 'احتياجات ليناركو',
+    'Month' => 'شهر',
+    'Month' => 'شهر',
+    'Month' => 'شهر',
     'Month' => 'شهر',
 
 

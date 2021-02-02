@@ -85,6 +85,26 @@
                                     </a>
                                 </li>
 
+                                <li class="navi-item">
+                                    <a href="{{ route('company_needs.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.Needs') }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="navi-item">
+                                    <a href="{{ route('companyQuotation.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
+                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                        <span class="navi-text">{{ trans('dashboard.Quotations') }}</span>
+                                    </a>
+                                </li>
+
+                                {{--<li class="navi-item">--}}
+                                    {{--<a href="{{ route('CompanyUndertaking.index' , [$company->id , $mother_company_id]) }}" class="navi-link">--}}
+                                        {{--<span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>--}}
+                                        {{--<span class="navi-text">{{ trans('dashboard.undertakeing') }}</span>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
 
                                 <li class="navi-item">
                                     <a href="{{ route('CompanyAgreement.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
@@ -93,12 +113,6 @@
                                     </a>
                                 </li>
 
-                                <li class="navi-item">
-                                    <a href="{{ route('CompanyUndertaking.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.undertakeing') }}</span>
-                                    </a>
-                                </li>
 
                                 <li class="navi-item">
                                     <a href="{{ route('view_all_invoices' , [$company->id , $mother_company_id]) }}" class="navi-link">
@@ -213,7 +227,7 @@
                                                 <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1"> <i class="fa fa-suitcase text-primary"></i></span>
                                                 {{ $company->subSector->name ? $company->subSector->name : '-' }}
                                             </a>
-                                            <a href="{{ $company->location }}" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                            <a href="{{ $company->location ? $company->location : '#' }}" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
                                                 <span class="svg-icon svg-icon-md svg-icon-gray-500 mr-1">
                                                     <i class="fas far fa-map-marker text-primary"></i>
                                                     {{ $company->city ? $company->city->name : '-' }}
@@ -334,13 +348,13 @@
                                         {{--{{ $company->location }}--}}
                                         {{--</span>--}}
                                         <span class="form-control-plaintext font-weight-bolder">
-                                        <a target="_blank" href="{{ $company->location }}">
-                                            <span class="text-muted font-weight-bold">
-                                                <i class="fas far fa-compass text-primary fa-spin"></i>
-                                                {{ $company->city ? $company->city->name : '-' }}
-                                            </span>
-                                        </a>
-                                            </span>
+                                            <a target="_blank" href="{{ $company->location ? $company->location : '#' }}">
+                                                <span class="text-muted font-weight-bold">
+                                                    <i class="fas far fa-compass text-primary fa-spin"></i>
+                                                    {{ $company->city ? $company->city->name : '-' }}
+                                                </span>
+                                            </a>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="form-group row my-2">

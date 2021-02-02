@@ -1,46 +1,45 @@
 @extends('layouts.dashboard')
 
-<div class="modal fade" id="upload_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalLabel">
+@section('body')
 
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <form class="form-group form-horizontal" action="{{ route('upload_invoice') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+    <div class="modal fade" id="upload_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">
 
-                <input type="hidden" name="mother_company_id" value="">
-                <input type="hidden" name="linrco_invoice_id" value="">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <form class="form-group form-horizontal" action="{{ route('upload_invoice') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>{{ trans('dashboard.Upload Invoice') }}</label>
-                        <input type="file" name="file" value="" class="form-control" required>
-                        <a id="demo" target="_blank"></a>
+                    <input type="hidden" name="mother_company_id" value="">
+                    <input type="hidden" name="linrco_invoice_id" value="">
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>{{ trans('dashboard.Upload Invoice') }}</label>
+                            <input type="file" name="file" value="" class="form-control" required>
+                            <a id="demo" target="_blank"></a>
+                        </div>
+
                     </div>
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-primary font-weight-bold">{{ trans('dashboard.Upload') }}</button>
+                        <button type="button" class="btn btn-light-primary font-weight-bold"
+                                data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="submit"
-                            class="btn btn-primary font-weight-bold">{{ trans('dashboard.Upload') }}</button>
-                    <button type="button" class="btn btn-light-primary font-weight-bold"
-                            data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
+                    </div>
+                </form>
 
-                </div>
-            </form>
-
+            </div>
         </div>
     </div>
-</div>
-
-
-@section('body')
 
     <!--begin::Content-->
     <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
