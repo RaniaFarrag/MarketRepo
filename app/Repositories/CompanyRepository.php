@@ -426,7 +426,6 @@ class CompanyRepository implements CompanyRepositoryInterface
             $third_business_card = $company->third_business_card;
         }
 
-
         $company->update([
             'logo' => $logo,
             'first_business_card' => $first_business_card,
@@ -482,11 +481,25 @@ class CompanyRepository implements CompanyRepositoryInterface
         ]);
 
         $rep = $company->representative()->first();
-        if ($rep){
+//        if ($rep){
+//            $company->representative()->save($rep ,
+//                array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
+//                    "evaluation_status_user_id"=>Auth::user()->id , "client_status"=>$request->client_status ,
+//                    "client_status_user_id"=>Auth::user()->id));
+//        }
+
+        if($request->client_status){
+            $rep = $company->representative()->first();
+            $company->representative()->save($rep ,
+                array("mother_company_id" => Auth::user()->mother_company_id, "client_status"=>$request->client_status,
+                    "client_status_user_id"=>Auth::user()->id));
+        }
+
+        if($request->evaluation_status){
+            $rep = $company->representative()->first();
             $company->representative()->save($rep ,
                 array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
-                    "evaluation_status_user_id"=>Auth::user()->id , "client_status"=>$request->client_status ,
-                    "client_status_user_id"=>Auth::user()->id));
+                    "evaluation_status_user_id"=>Auth::user()->id));
         }
 
 
@@ -587,7 +600,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         //$company = $this->company_model::findOrFail($company_id);
         if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
             $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
-
+            //dd($company);
             if ($company){
                 if (! $company->confirm_connected) {
                     $company->update([
@@ -595,7 +608,10 @@ class CompanyRepository implements CompanyRepositoryInterface
                         'confirm_connected_user_id' => auth()->id(),
                     ]);
                     $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد اتصال الشركة   ', 'Company contact confirmed');
-                    return trans('dashboard.Company contact confirmed');
+                    //return trans('dashboard.Company contact confirmed');
+                    $data['msg'] = trans('dashboard.Company contact confirmed');
+                    $data['type'] = "success";
+                    return $data;
                 }
                 elseif ($company->confirm_connected == 1 && Auth::user()->id == $company->confirm_connected_user_id) {
                     $company->update([
@@ -604,17 +620,30 @@ class CompanyRepository implements CompanyRepositoryInterface
                     ]);
                     $this->addLog(auth()->id(), $company->id, 'companies', 'تم إلغاء تأكيد اتصال الشركة  ', 'The Company contact confirmation has been canceled');
                     return trans('dashboard.The Company contact confirmation has been canceled');
+//                    $data['msg'] = 'The Company contact confirmation has been canceled';
+//                    $data['type'] = "success";
+//                    return $data;
                 }
                 else{
-                    return trans('dashboard.You do not have permission');
+//                    return trans('dashboard.You do not have permission');
+                    $data['msg'] = trans('You do not have permission');
+                    $data['type'] = "warning";
+                    return $data;
                 }
             }
             else{
-                return trans('dashboard.This company has not been assigned');
+//                return trans('dashboard.This company has not been assigned');
+                $data['msg'] = trans('This company has not been assigned');
+                $data['type'] = "warning";
+                return $data;
             }
         }
         else{
-            return trans('dashboard.You do not have permission');
+            //return trans('dashboard.You do not have permission');
+            $data['msg'] = trans('You do not have permission');
+            $data['type'] = "warning";
+            return $data;
+
         }
     }
 
@@ -641,14 +670,19 @@ class CompanyRepository implements CompanyRepositoryInterface
             if ($company){
                 if (! $company->confirm_interview) {
                     if (count($main_company->companyMeetings)) {
+//                        dd(5);
                         $company->update([
                             'confirm_interview' => 1,
                             'confirm_interview_user_id' => auth()->id(),
                         ]);
                         $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد مقابلة الشركة', 'The company interview was confirmed');
-                        return trans('dashboard.The company interview was confirmed');
+                        $data['msg'] = trans('The company interview was confirmed');
+                        $data['type'] = "success";
+                        return $data;
                     }
-                    return trans('dashboard.No interview has been added');
+                    $data['msg'] = trans('dashboard.No interview has been added');
+                    $data['type'] = "success";
+                    return $data;
                 }
 
                 elseif ($company->confirm_interview == 1 && Auth::user()->id == $company->confirm_interview_user_id) {
@@ -661,16 +695,22 @@ class CompanyRepository implements CompanyRepositoryInterface
                 }
 
                 else{
-                    return trans('dashboard.You do not have permission');
+                    $data['msg'] = trans('You do not have permission');
+                    $data['type'] = "warning";
+                    return $data;
                 }
             }
             else{
-                return trans('dashboard.This company has not been assigned');
+                $data['msg'] = trans('This company has not been assigned');
+                $data['type'] = "warning";
+                return $data;
             }
         }
 
         else{
-            return trans('dashboard.You do not have permission');
+            $data['msg'] = trans('You do not have permission');
+            $data['type'] = "warning";
+            return $data;
         }
 
     }
@@ -692,7 +732,10 @@ class CompanyRepository implements CompanyRepositoryInterface
                                 'confirm_need_user_id' => auth()->id(),
                             ]);
                             $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
-                            return trans('dashboard.The company needs was confirmed');
+//                            return trans('dashboard.The company needs was confirmed');
+                            $data['msg'] = trans('dashboard.The company needs was confirmed');
+                            $data['type'] = "success";
+                            return $data;
                         }
                     }
                     elseif ($user_mother_company_id == 2){
@@ -702,11 +745,15 @@ class CompanyRepository implements CompanyRepositoryInterface
                                 'confirm_need_user_id' => auth()->id(),
                             ]);
                             $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد احتياج الشركة ', 'The company need was confirmed');
-                            return trans('dashboard.The company needs was confirmed');
+                            $data['msg'] = trans('dashboard.The company needs was confirmed');
+                            $data['type'] = "success";
+                            return $data;
                         }
                     }
 
-                    return trans('dashboard.No Need has been added');
+                    $data['msg'] = trans('dashboard.No Need has been added');
+                    $data['type'] = "warning";
+                    return $data;
                 }
 
                 elseif ($company->confirm_need == 1 && Auth::user()->id == $company->confirm_need_user_id) {
@@ -719,16 +766,22 @@ class CompanyRepository implements CompanyRepositoryInterface
                 }
 
                 else{
-                    return trans('dashboard.You do not have permission');
+                    $data['msg'] = trans('You do not have permission');
+                    $data['type'] = "warning";
+                    return $data;
                 }
             }
             else{
-                return trans('dashboard.This company has not been assigned');
+                $data['msg'] = trans('This company has not been assigned');
+                $data['type'] = "warning";
+                return $data;
             }
         }
 
         else{
-            return trans('dashboard.You do not have permission');
+            $data['msg'] = trans('You do not have permission');
+            $data['type'] = "warning";
+            return $data;
         }
 
     }
@@ -748,7 +801,9 @@ class CompanyRepository implements CompanyRepositoryInterface
                         'confirm_contract_user_id' => auth()->id(),
                     ]);
                     $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد التعاقد مع الشركة ', 'The contract has been confirmed with the company');
-                    return trans('dashboard.The contract has been confirmed with the company');
+                    $data['msg'] = trans('dashboard.The contract has been confirmed with the company');
+                    $data['type'] = "success";
+                    return $data;
                 }
 
                 elseif ($company->confirm_contract == 1 && Auth::user()->id == $company->confirm_contract_user_id) {
@@ -761,16 +816,22 @@ class CompanyRepository implements CompanyRepositoryInterface
                 }
 
                 else{
-                    return trans('dashboard.You do not have permission');
+                    $data['msg'] = trans('You do not have permission');
+                    $data['type'] = "warning";
+                    return $data;
                 }
             }
             else{
-                return trans('dashboard.This company has not been assigned');
+                $data['msg'] = trans('This company has not been assigned');
+                $data['type'] = "warning";
+                return $data;
             }
         }
 
         else{
-            return trans('dashboard.You do not have permission');
+            $data['msg'] = trans('You do not have permission');
+            $data['type'] = "warning";
+            return $data;
         }
 
     }

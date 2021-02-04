@@ -21,7 +21,7 @@ class representativeReport implements FromView ,ShouldAutoSize
 
     protected $ids = [];
 
-    public function __construct($companies = array() ,$rep, $confirm_connected , $confirm_interview , $confirm_need , $confirm_contract)
+    public function __construct($companies = array() ,$rep, $confirm_connected , $confirm_interview , $confirm_need , $confirm_contract , $count_meetings)
     {
         $this->companies = $companies;
         $this->rep = $rep;
@@ -29,13 +29,15 @@ class representativeReport implements FromView ,ShouldAutoSize
         $this->confirm_interview = $confirm_interview;
         $this->confirm_need = $confirm_need;
         $this->confirm_contract = $confirm_contract;
+        $this->count_meetings = $count_meetings;
     }
 
 
     public function view(): View
     {
         return view('system.reports.rep_ReportExcel', ['companies' => $this->companies , 'rep'=>$this->rep, 'confirm_connected'=>$this->confirm_connected ,
-            'confirm_interview'=>$this->confirm_interview , 'confirm_need'=>$this->confirm_need , 'confirm_contract'=>$this->confirm_contract]);
+            'confirm_interview'=>$this->confirm_interview , 'confirm_need'=>$this->confirm_need , 'confirm_contract'=>$this->confirm_contract ,
+            'count_meetings'=>$this->count_meetings]);
     }
 
 

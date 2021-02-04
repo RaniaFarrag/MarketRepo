@@ -28,6 +28,7 @@
         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;"> {{ trans('dashboard.Total interviews') }} </th>
         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;" colspan="2"> {{ trans('dashboard.Total needs') }} </th>
         <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;" colspan="2"> {{ trans('dashboard.Total contracts') }} </th>
+        <th style="text-align: center; font-weight: bold; border: 1px solid #000000;background-color:#c7d9f1;" colspan="2"> {{ trans('dashboard.Total meetings') }} </th>
   </tr>
     </thead>
     <tbody>
@@ -39,6 +40,7 @@
         <td style="text-align: center; border: 1px solid #000000;"> {{$confirm_interview}}</td>
         <td style="text-align: center; border: 1px solid #000000;" colspan="2"> {{$confirm_need}}</td>
         <td style="text-align: center; border: 1px solid #000000;" colspan="2"> {{$confirm_contract}}</td>
+        <td style="text-align: center; border: 1px solid #000000;" colspan="2"> {{$count_meetings}}</td>
     </tr>
     </tbody>
 </table>

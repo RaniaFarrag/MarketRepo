@@ -428,14 +428,15 @@
                 var user_mother_company_id = $(this).attr('data-id2');
                 // var user_mother_company_id = $("#user_mother_company_id").val();
 
-                console.log(mother_company_id);
+                console.log(user_mother_company_id);
                 $.ajax({
                     type: "get",
                     url: "{{ url('/confirm/connected/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     //dataType: "json",
                     success: function (response) {
                         // swal("Our First Alert", "With some body text and success icon!", "success");
-                        swal( 'Success', response, "success");
+                        console.log(response.msg)
+                        swal( '', response.msg, response.type);
                     }
                 });
 
@@ -465,7 +466,7 @@
                     type : "get",
                     url : "{{ url('/confirm/interview/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
-                        swal('Success' , response , 'success');
+                        swal( '', response.msg, response.type);
                     },
                     error:function () {
                         swal('Faild' , response , 'failed');
@@ -482,6 +483,7 @@
                     url : "{{ url('/confirm/interview/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , response , 'success');
+                        //swal( '', response.msg, response.type);
                     }
                 })
             }
@@ -493,12 +495,12 @@
                 var company_id = $(this).attr('data-id');
                 var user_mother_company_id = $(this).attr('data-id2');
                 //var user_mother_company_id = $("#user_mother_company_id").val();
-                console.log(mother_company_id);
+                console.log(user_mother_company_id);
                 $.ajax({
                     type : "get",
                     url : "{{ url('/confirm/need/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
-                        swal('Success' , response , 'success');
+                        swal( '', response.msg, response.type);
                     },
                     error:function () {
                         swal('Faild' , response , 'failed');
@@ -530,7 +532,7 @@
                     type : "get",
                     url : "{{ url('/confirm/contract/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
-                        swal('Success' , response , 'success');
+                        swal( '', response.msg, response.type);
                     },
                     error:function () {
                         swal('Faild' , response , 'failed');

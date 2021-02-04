@@ -30,11 +30,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        //dd($request->mother_company_id);
+        //dd(Auth::user()->mother_company_id);
         $total_companies = Company::all()->count();
         $company_registered_today = Company::whereDate('created_at' , Carbon::today())->count();
 
         $mother_companies = MotherCompany::all();
+
+        if($request->mother_company_id){
+            $mother_company_id = $request->mother_company_id;
+        }
+        else{
+            $mother_company_id = Auth::user()->mother_company_id;
+        }
 
         if (Auth::user()->hasRole('ADMIN')){
             $total_users_under_me = User::where('mother_company_id' , $request->mother_company_id)->count();
@@ -63,6 +70,8 @@ class HomeController extends Controller
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
+
+
             $company_registered_today = Company::whereDate('created_at' , Carbon::today())
                 ->where(function ($q){
                     $q->where('user_id' , Auth::user()->id)
@@ -148,12 +157,13 @@ class HomeController extends Controller
 
         }
 
+
         if($request->ajax()){
             $data_json['total_users_under_me'] = $total_users_under_me;
             $data_json['rep_daily_reports'] = $rep_daily_reports;
             $data_json['today_meetings'] = $today_meetings;
             $data_json['coming_meetings']= $coming_meetings;
-            $data_json['meetings']= view('system.home_meetings_table')->with('meetings' , $meetings)->render();
+            $data_json['meetings']= view('system.home_meetings_table')->with(['meetings' => $meetings , 'mother_company_id' => $mother_company_id])->render();
             return response()->json($data_json);
         }
 
@@ -164,7 +174,7 @@ class HomeController extends Controller
             //'total_users_under_me'=>$total_users_under_me,
             //'rep_daily_reports'=>$rep_daily_reports,
             //'today_meetings'=>$today_meetings,
-            //'coming_meetings'=>$coming_meetings,
+            'mother_company_id'=>$mother_company_id,
             'mother_companies'=>$mother_companies,
             ]);
     }

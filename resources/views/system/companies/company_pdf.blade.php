@@ -480,17 +480,17 @@
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%">
                         {{ trans('dashboard.Name') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;width: 20%">{{ $company->hr_director_job_name ? $company->hr_director_job_name : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%">{{ $company->hr_director_name ? $company->hr_director_name : '-' }}</td>
                     <td class="rtl"
                         style="font-size: 12px; vertical-align: middle; border: none;width: 13.3%; ">
                         {{ trans('dashboard.Mobile') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;width: 20%"> {{ $company->hr_director_job_mobile ? $company->hr_director_job_mobile : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%"> {{ $company->hr_director_mobile ? $company->hr_director_mobile : '-' }}</td>
                     <td class="rtl"
                         style="font-size: 12px; vertical-align: middle; border: nonel;width: 13.3%;">
                         {{ trans('dashboard.Phone') }}:
                     </td>
-                    <td style="font-size: 12px;vertical-align: middle;width: 20%"> {{ $company->hr_director_job_phone ? $company->hr_director_job_phone : '-' }}</td>
+                    <td style="font-size: 12px;vertical-align: middle;width: 20%"> {{ $company->hr_director_phone ? $company->hr_director_phone : '-' }}</td>
                 </tr>
                 <tr>
                     <td class="rtl"
@@ -502,9 +502,9 @@
                     <td class="rtl" style="font-size: 12px; vertical-align: middle; border: none;width: 20%"><img
                                 src="https://seeklogo.com/images/W/whatsapp-icon-logo-BDC0A8063B-seeklogo.com.png"
                                 width="20" alt="whatsapp"></td>
-                    <td style="font-size: 12px;vertical-align: middle;">@if($company->hr_director_job_whatsapp)
+                    <td style="font-size: 12px;vertical-align: middle;">@if($company->hr_director_whatsapp)
                             <a target="_blank"
-                               href="https://api.whatsapp.com/send?phone={{ $company->hr_director_job_whatsapp }}">
+                               href="https://api.whatsapp.com/send?phone={{ $company->hr_director_whatsapp }}">
                                 <i class="fab fa-whatsapp  text-success"></i>
                             </a>
                         @else

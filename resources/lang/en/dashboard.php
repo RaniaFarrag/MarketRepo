@@ -453,6 +453,13 @@ return [
     'Fnrco Needs' => 'Fnrco Needs',
     'Linrco Needs' => 'Linrco Needs',
     'other_allowance' => 'Other Allowance',
+    'Total contracts' => 'Total contracts',
+    'You do not have permission' => 'You do not have permission',
+    'The contract with the company has been canceled' => 'The contract with the company has been canceled',
+    'Company interview canceled' => 'Company interview canceled',
+    'Month' => 'Month',
+    'Month' => 'Month',
+    'Month' => 'Month',
     'Month' => 'Month',
     'Month' => 'Month',
 

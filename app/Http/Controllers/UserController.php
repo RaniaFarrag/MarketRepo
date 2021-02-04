@@ -153,9 +153,10 @@ class UserController extends Controller
         $confirm_interview = $this->userRepositoryinterface->rep_companies_report($request)['confirm_interview'];
         $confirm_need = $this->userRepositoryinterface->rep_companies_report($request)['confirm_need'];
         $confirm_contract = $this->userRepositoryinterface->rep_companies_report($request)['confirm_contract'];
+        $count_meetings = $this->userRepositoryinterface->rep_companies_report($request)['count_meetings'];
 
         return Excel::download(new representativeReport($companies , $rep , $confirm_connected , $confirm_interview ,
-            $confirm_need , $confirm_contract), 'RepresentativeReportExcel.xlsx');
+            $confirm_need , $confirm_contract , $count_meetings), 'RepresentativeReportExcel.xlsx');
     }
 
     /** Active User */

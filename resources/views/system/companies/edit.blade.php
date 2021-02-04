@@ -378,7 +378,7 @@
                                                 <label>{{ trans('dashboard.Website') }}:</label>
                                                 <input value="{{ $company->website }}" name="website" type="url"
                                                        class="form-control"
-                                                       placeholder="{{ trans('dashboard.Website') }}" required/>
+                                                       placeholder="https://www.website.com" required/>
                                             </div>
                                             <div class="col-lg-3">
                                                 <label>{{ trans('dashboard.E-mail') }}:</label>
@@ -488,6 +488,12 @@
                                                             <input value="" name="designated_contact_mobile[]"
                                                                    type="number" class="form-control"
                                                                    placeholder="{{ trans('dashboard.Mobile') }}"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>{{ trans('dashboard.citizenship') }}:</label>
+                                                            <input value="" name="designated_contact_citizenship[]" type="text"
+                                                                   class="form-control"
+                                                                   placeholder="{{ trans('dashboard.citizenship') }}"/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Linkedin') }}:</label>

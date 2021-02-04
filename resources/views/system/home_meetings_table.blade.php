@@ -18,7 +18,7 @@
                     @if($meeting->company)
                         <tr>
                             <td>{{ $k+1 }}</td>
-                            <td> <a target="_blank" href="{{ route('companies.show' , $meeting->company_id) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
+                            <td> <a target="_blank" href="{{ route('show_company' , [$meeting->company_id , $mother_company_id] ) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
                             <td>{{ $meeting->company ? $meeting->company->subSector->name : '-' }}</td>
                             <td>
                                 @if($meeting->company->client_status == 1)

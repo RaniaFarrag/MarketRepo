@@ -324,7 +324,7 @@
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.ECN') }}:</label>
                                             <input value="{{ old('ecn') }}" name="ecn" type="text" class="form-control"
-                                                   placeholder="{{ trans('dashboard.ecn') }}"/>
+                                                   placeholder="{{ trans('dashboard.ECN') }}"/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.CR') }}:</label>
@@ -365,7 +365,7 @@
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Website') }}:</label>
                                             <input value="{{ old('website') }}" name="website" type="url"
-                                                   class="form-control" placeholder="{{ trans('dashboard.Website') }}"
+                                                   class="form-control" placeholder="https://www.website.com"
                                                    required/>
                                         </div>
                                         <div class="col-lg-3">
