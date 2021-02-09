@@ -808,21 +808,38 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Confirm Contract */
     public function confirmContract($company_id , $user_mother_company_id)
     {
-        //$main_company = $this->company_model::findOrFail($company_id);
-
+        $main_company = $this->company_model::findOrFail($company_id);
         if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
             $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
 
             if ($company){
                 if (! $company->confirm_contract) {
-                    $company->update([
-                        'confirm_contract' => 1,
-                        'confirm_contract_user_id' => auth()->id(),
-                    ]);
-                    $this->addLog(auth()->id(), $company->id, 'companies', 'تم تأكيد التعاقد مع الشركة ', 'The contract has been confirmed with the company');
-                    $data['msg'] = trans('dashboard.The contract has been confirmed with the company');
-                    $data['type'] = "success";
-                    return $data;
+                    if($user_mother_company_id == 1){
+                        if(count($main_company->LinrcoAgreement)){
+                            $company->update([
+                                'confirm_contract' => 1,
+                                'confirm_contract_user_id' => auth()->id(),
+                            ]);
+
+                            $this->addLog(auth()->id(), $company->id, 'Linrco companies', 'تم تأكيد التعاقد مع الشركة ', 'The contract has been confirmed with the company');
+                            $data['msg'] = trans('dashboard.The contract has been confirmed with the company');
+                            $data['type'] = "success";
+                            return $data;
+                        }
+                    }
+                    elseif ($user_mother_company_id == 2){
+                        if(count($main_company->FnrcoAgreement)){
+                            $company->update([
+                                'confirm_contract' => 1,
+                                'confirm_contract_user_id' => auth()->id(),
+                            ]);
+
+                            $this->addLog(auth()->id(), $company->id, 'Fnrco companies', 'تم تأكيد التعاقد مع الشركة ', 'The contract has been confirmed with the company');
+                            $data['msg'] = trans('dashboard.The contract has been confirmed with the company');
+                            $data['type'] = "success";
+                            return $data;
+                        }
+                    }
                 }
 
                 elseif ($company->confirm_contract == 1 && Auth::user()->id == $company->confirm_contract_user_id) {

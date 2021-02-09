@@ -449,7 +449,7 @@
                     type: "get",
                     url: "{{ url('/confirm/connected/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success: function (response) {
-                        swal( 'Cancel', response, "success");
+                        swal( 'Cancel', '', "success");
                     }
                 });
             }
@@ -482,7 +482,7 @@
                     type : "get",
                     url : "{{ url('/confirm/interview/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
-                        swal('Success' , response , 'success');
+                        swal('Success' , '' , 'success');
                         //swal( '', response.msg, response.type);
                     }
                 })
@@ -515,7 +515,7 @@
                     type : "get",
                     url : "{{ url('/confirm/need/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
-                        swal('Success' , response , 'success');
+                        swal('Success' , '' , 'success');
                     }
                 })
             }
@@ -548,7 +548,7 @@
                     type : "get",
                     url : "{{ url('/confirm/contract/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
-                        swal('Success' , response , 'success');
+                        swal('Success' , '' , 'success');
                     }
                 })
             }

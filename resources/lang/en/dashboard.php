@@ -457,7 +457,7 @@ return [
     'You do not have permission' => 'You do not have permission',
     'The contract with the company has been canceled' => 'The contract with the company has been canceled',
     'Company interview canceled' => 'Company interview canceled',
-    'Month' => 'Month',
+    'The company needs was confirmed' => 'The company needs was confirmed',
     'Month' => 'Month',
     'Month' => 'Month',
     'Month' => 'Month',

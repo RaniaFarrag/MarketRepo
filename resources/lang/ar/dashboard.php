@@ -458,7 +458,7 @@ return [
     'You do not have permission' => 'ليس لديك صلاحية',
     'The contract with the company has been canceled' => 'تم الغاء تاكيد العقد',
     'Company interview canceled' => 'تم الغاء الاجتماع',
-    'Month' => 'شهر',
+    'The company needs was confirmed' => 'تم تأكيد احتياجات الشركة',
     'Month' => 'شهر',
     'Month' => 'شهر',
     'Month' => 'شهر',

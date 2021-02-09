@@ -99,6 +99,14 @@ class Company extends Model
         return $this->hasMany(FnrcoNeed::class);
     }
 
+    public function LinrcoAgreement(){
+        return $this->hasMany(LinrcoAgreement::class);
+    }
+
+    public function FnrcoAgreement(){
+        return $this->hasMany(FnrcoAgreement::class);
+    }
+
     public function country(){
         return $this->belongsTo(Country::class);
     }

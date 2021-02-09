@@ -311,6 +311,7 @@
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_contract_checked" data-id="{{ $company->id }}"  data-id2="{{ $hidden_mother_company_id}}" value="1" type="checkbox" name="confirm_contract"
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_contract == 1 ? ' checked' : '' : ''}}
+                                            {{ $hidden_mother_company_id == 1 ?  (count($company->LinrcoAgreement) ? '' : 'disabled') : (count($company->FnrcoAgreement) ? '' : 'disabled') }}
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_contract == 1 && $company->representative[0]->pivot->confirm_contract_user_id != auth()->id() ? 'disabled' : '' : ''}}/>
                                     <span></span>{{ trans('dashboard.Confirm Contract') }}
                                 </label>
