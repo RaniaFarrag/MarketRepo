@@ -121,14 +121,29 @@ class salesReportRepository implements salesReportRepositoryInterface
         else{
             //dd(json_decode($request->ids));
             //$query = $this->sales_lead_report_model::query()->whereIn('id',$request->ids);
-//            $query = $this->sales_lead_report_model::query()->whereIn('id', json_decode($request->ids) , true);
-            $query = $this->sales_lead_report_model::whereIn('id', json_decode($request->ids));
+            if(is_array($request->ids)){
+                $ids_ = $request->ids;
+                //dd($ids_);
+            }
+            else{
+                $ids_ = json_decode($request->ids);
+            }
+//
+            if($all){
+                $query = $this->sales_lead_report_model::whereIn('id', $ids_);
+            }
+            else{
+                $query = $this->sales_lead_report_model;
+            }
+
+
+//            $query = $this->sales_lead_report_model::whereIn('id', json_decode(json_encode($request->ids)));
             if (Auth::user()->hasRole('ADMIN')){
                 $data['representatives'] = $this->user_model::where('active' , 1)
                     ->where(function ($q){
                         $q->whereNotNull('parent_id')
                             ->orWhereHas('childs');
-                    })->get();
+                    });
             }
             elseif(Auth::user()->hasRole('Sales Manager')){
                 $data['representatives'] = $this->user_model::where('active' , 1)
@@ -164,7 +179,6 @@ class salesReportRepository implements salesReportRepositoryInterface
 //        else{
 //            $data['representatives'] = $this->user_model::where('parent_id' , Auth::user()->id)->get();
 //        }
-
 
         $data['count'] = $query->count();
         $data['reports'] = $all ? $query->orderBy('created_at' , 'desc')->get() : $query->orderBy('created_at' , 'desc')->paginate(15);

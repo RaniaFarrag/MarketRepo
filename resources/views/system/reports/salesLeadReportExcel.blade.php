@@ -49,7 +49,21 @@
             <td style="text-align: center; border: 1px solid #000000;background-color:#ffc50c; ">{{$report->id}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->created_at->format('d/m/Y')}}</td>
             <td style="text-align: center; border: 1px solid #000000">Marketing-Hc</td>
-            <td style="text-align: center; border: 1px solid #000000">{{$report->statue?? '-'}}</td>
+            <td style="text-align: center; border: 1px solid #000000">
+                @if($report->statue)
+                    @if($report->statue == 1)
+                        {{ trans('dashboard.Hot') }}
+                    @elseif($report->statue == 2)
+                        {{ trans('dashboard.Warm') }}
+                    @elseif($report->statue == 3)
+                        {{ trans('dashboard.Cold') }}
+                    @elseif($report->statue == 4)
+                        {{ trans('dashboard.Awarded') }}
+                    @endif
+                @else
+                    -
+                @endif
+            </td>
             <td style="text-align: center; border: 1px solid #000000"><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->company->company_representative_name ?? '-'}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->company->company_representative_phone?? '-'}}</td>

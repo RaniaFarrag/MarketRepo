@@ -106,8 +106,9 @@
                                                     </div>
                                                 </td>
 
-                                                <td style="width: 34px;"><a href="#" target="_blank">{{ $company->id }}</a></td>
-                                                <td><a href="{{ route('companies.show' , $company->id) }}">{{ $company->name }}</a></td>
+                                                <td style="width: 34px;">{{ $company->id }}</td>
+                                                <td>{{ $company->name }}</td>
+                                                {{--<td><a href="{{ route('companies.show' , $company->id) }}">{{ $company->name }}</a></td>--}}
                                                 <td>{{ $company->sector ? $company->sector->name : trans('dashboard.non') }}</td>
                                                 <td>{{ $company->subSector ? $company->subSector->name : trans('dashboard.non') }}</td>
 

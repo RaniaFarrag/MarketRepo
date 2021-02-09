@@ -141,11 +141,9 @@ class HomeController extends Controller
             $today_meetings = 0 ;
             $coming_meetings = 0 ;
             $meetings = 0 ;
-
         }
 
         else{
-
             //All Companies created by me
             $company_registered_today = Company::whereDate('created_at' , Carbon::today())
                 ->where('user_id' , Auth::user()->id)->count();
@@ -157,13 +155,13 @@ class HomeController extends Controller
 
         }
 
-
         if($request->ajax()){
             $data_json['total_users_under_me'] = $total_users_under_me;
             $data_json['rep_daily_reports'] = $rep_daily_reports;
             $data_json['today_meetings'] = $today_meetings;
             $data_json['coming_meetings']= $coming_meetings;
-            $data_json['meetings']= view('system.home_meetings_table')->with(['meetings' => $meetings , 'mother_company_id' => $mother_company_id])->render();
+            $data_json['meetings']= view('system.home_meetings_table')
+                ->with(['meetings' => $meetings , 'mother_company_id' => $mother_company_id])->render();
             return response()->json($data_json);
         }
 

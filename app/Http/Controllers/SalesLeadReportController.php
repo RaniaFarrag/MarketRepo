@@ -78,6 +78,7 @@ class SalesLeadReportController extends Controller
      */
     public function show(Request $request, Company $company)
     {
+        //dd($request->all());
         $reports = $this->salesReportRepositoryInterface->show($request)['reports'];
 
         if ($request->ajax()){
