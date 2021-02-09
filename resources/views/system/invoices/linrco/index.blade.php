@@ -69,6 +69,11 @@
                             <a href="{{ route('companies.index') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.Companies Data') }}
                             </a>
+
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="{{ route('show_company' , [$linrco_agreement->company->id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ $linrco_agreement->company->name }}
+                            </a>
                             <!--end::Item-->
 
                             <!--begin::Item-->

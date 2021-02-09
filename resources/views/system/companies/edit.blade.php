@@ -75,6 +75,9 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+
+                                <input name="mother_company_id" value="{{ $mother_company_id }}" type="hidden">
+
                                 @can('General information about the company')
                                     <div class="card-body">
                                         <h3 class="card-label text-center border-bottom pb-2">
@@ -922,12 +925,12 @@
                                                             </option>
                                                         </select>
                                                     </div>
-                                                    {{--<div class="col-lg-6">--}}
-                                                        {{--<label>{{ trans('dashboard.By User') }} :</label>--}}
-                                                        {{--<input class="form-control" type="text"--}}
-                                                               {{--value="{{ $company->evaluator ? app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en : '-'}}"--}}
-                                                               {{--readonly>--}}
-                                                    {{--</div>--}}
+                                                    <div class="col-lg-6">
+                                                        <label>{{ trans('dashboard.By User') }} :</label>
+                                                        <input class="form-control" type="text"
+                                                               value="{{ $company_user->evaluation_status ? app()->getLocale() == 'ar' ? $company_user->evaluation_status_user->name : $company_user->evaluation_status_user->name_en : '-'}}"
+                                                               readonly>
+                                                    </div>
                                                 @else
                                                     <div class="col-lg-12">
                                                         <label>{{ trans('dashboard.Company Evaluation') }} :</label>
@@ -962,19 +965,19 @@
                                                         <select name="client_status" class="form-control select2">
                                                             <option value=""
                                                                     selected="">{{ trans('dashboard.Select One') }}</option>
-                                                            <option {{ $company->client_status == 1 ? 'selected' : '' }} value="1">{{ trans('dashboard.Hot') }}</option>
-                                                            <option {{ $company->client_status == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Warm') }}</option>
-                                                            <option {{ $company->client_status == 3 ? 'selected' : '' }} value="3">{{ trans('dashboard.Cold') }}</option>
-                                                            <option {{ $company->client_status == 4 ? 'selected' : '' }} value="4">{{ trans('dashboard.Awarded') }}</option>
+                                                            <option {{ $company->representative[0]->pivot->client_status == 1 ? 'selected' : '' }} value="1">{{ trans('dashboard.Hot') }}</option>
+                                                            <option {{ $company->representative[0]->pivot->client_status == 2 ? 'selected' : '' }} value="2">{{ trans('dashboard.Warm') }}</option>
+                                                            <option {{ $company->representative[0]->pivot->client_status == 3 ? 'selected' : '' }} value="3">{{ trans('dashboard.Cold') }}</option>
+                                                            <option {{ $company->representative[0]->pivot->client_status == 4 ? 'selected' : '' }} value="4">{{ trans('dashboard.Awarded') }}</option>
                                                         </select>
                                                     </div>
 
-                                                    {{--<div class="col-lg-6">--}}
-                                                        {{--<label>{{ trans('dashboard.By User') }} :</label>--}}
-                                                        {{--<input class="form-control" type="text"--}}
-                                                               {{--value="{{ $company->client_status_user ? app()->getLocale() == 'ar' ? $company->client_status_user->name : $company->client_status_user->name_en : '-'}}"--}}
-                                                               {{--readonly>--}}
-                                                    {{--</div>--}}
+                                                    <div class="col-lg-6">
+                                                        <label>{{ trans('dashboard.By User') }} :</label>
+                                                        <input class="form-control" type="text"
+                                                               value="{{ $company_user->client_status ? app()->getLocale() == 'ar' ? $company_user->client_status_user->name : $company_user->client_status_user->name_en : '-'}}"
+                                                               readonly>
+                                                    </div>
                                                 @else
                                                     <div class="col-lg-12">
                                                         <label>{{ trans('dashboard.Client Status') }} :</label>

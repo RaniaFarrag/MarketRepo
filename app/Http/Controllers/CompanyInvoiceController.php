@@ -133,7 +133,7 @@ class CompanyInvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($invoice_id , $mother_company_id)
-    {   
+    {
         if ($mother_company_id == 1){
             $linrco_invoice = LinrcoInvoice::where('id' , $invoice_id)->with('LinrcoInvoiceRequest' , 'linrcoAgreement' , 'company' , 'user')->first();
             return $this->LinrcoInvoiceRepositoryInterface->destroy($linrco_invoice , $mother_company_id);
@@ -196,13 +196,13 @@ class CompanyInvoiceController extends Controller
         $decnum = $num_arr[1];    //50
 
         $whole_arr = array_reverse(explode(",",$wholenum)); //[0]=>346
-       // dd($whole_arr);
+        // dd($whole_arr);
         krsort($whole_arr,1);   //true
         $rettxt = "";
 
         foreach($whole_arr as $key => $i){
             dd($whole_arr);
-               //346
+            //346
             //dd(substr($i,0,1));  //3
             while(substr($i,0,1)=="0"){
                 $i=substr($i,1,5);
@@ -348,12 +348,29 @@ class CompanyInvoiceController extends Controller
             $total_before_tax = $linrco_invoice->LinrcoInvoiceRequest->sum('total_before_tax');
             $total_tax = $linrco_invoice->LinrcoInvoiceRequest->sum('tax');
             $total_amount_after_tax = $linrco_invoice->LinrcoInvoiceRequest->sum('total_amount_after_tax');
-
+            //dd($total_amount_after_tax);
             $totalInArabic = Tafqeet::inArabic($total_amount_after_tax);
 
+            $totalInEnglish_array = explode('.' , $total_amount_after_tax);
+            $totalInEnglish_Ryials = $totalInEnglish_array[0];
+
             $inWords = new \NumberFormatter('en', \NumberFormatter::SPELLOUT);
-            number_format($total_amount_after_tax, 0, '.', ',');
-            $totalInEnglish = $inWords->format($total_amount_after_tax) .'  Ryal saudia';
+            number_format($totalInEnglish_Ryials, 0, '.', ',');
+            $totalInEnglish_Ryials = $inWords->format($totalInEnglish_Ryials);
+
+            if(count($totalInEnglish_array) > 1){
+                $totalInEnglish_halala = $totalInEnglish_array[1];
+
+                number_format($totalInEnglish_halala, 0, '.', ',');
+                $totalInEnglish_halala = $inWords->format($totalInEnglish_halala);
+                $totalInEnglish = $totalInEnglish_Ryials. ' Riyals and ' . $totalInEnglish_halala . ' halala';
+            }
+
+            else{
+                $totalInEnglish = $totalInEnglish_Ryials. ' Riyals';
+            }
+
+
 
             //$totalInEnglish = $this->convert(12000);
             //dd($totalInEnglish);
@@ -380,14 +397,14 @@ class CompanyInvoiceController extends Controller
         if ($mother_company_id == 1){
             $linrco_invoices = LinrcoInvoice::where('company_id' , $company_id)->with('LinrcoInvoiceRequest' , 'linrcoAgreement' , 'company' , 'user')->get();
             return view('system.invoices.linrco.view_all')->with(['linrco_invoices' => $linrco_invoices , 'company'=>$company ,
-            'mother_company_id' => $mother_company_id]);
+                'mother_company_id' => $mother_company_id]);
         }
     }
 
     public function uploadInvoice(Request $request){
         if($request->mother_company_id == 1){
             $linrco_invoice = LinrcoInvoice::findOrFail($request->linrco_invoice_id);
-           return $this->LinrcoInvoiceRepositoryInterface->uploadInvoice($request , $linrco_invoice);
+            return $this->LinrcoInvoiceRepositoryInterface->uploadInvoice($request , $linrco_invoice);
         }
     }
 

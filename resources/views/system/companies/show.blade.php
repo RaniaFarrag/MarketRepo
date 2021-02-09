@@ -62,7 +62,7 @@
                                 </li>--}}
                                 @can('Edit Company')
                                 <li class="navi-item pb-1">
-                                    <a href="{{ route('companies.edit' , $company->id) }}" class="navi-link">
+                                    <a href="{{ route('companies.edit' , [$company->id , $mother_company_id]) }}" class="navi-link">
                                         <span class="navi-icon"><i class="flaticon-edit"></i></span>
                                         <span class="navi-text"> {{ trans('dashboard.Modifying Company Data') }}</span>
                                     </a>
@@ -79,7 +79,7 @@
                                 @endcan
 
                                 <li class="navi-item">
-                                    <a href="{{ route('companySalesTeamReports.show',$company->id) }}" class="navi-link">
+                                    <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}" class="navi-link">
                                         <span class="navi-icon"><i class="flaticon-graph"></i></span>
                                         <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
                                     </a>

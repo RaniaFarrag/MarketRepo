@@ -6,6 +6,7 @@ use App\Exports\companiesReport;
 use App\Http\Requests\CompanyRequest;
 use App\Interfaces\CompanyRepositoryInterface;
 use App\Models\Company;
+use App\Models\CompanyUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,11 +108,18 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     /** Edit Company */
-    public function edit(Company $company)
+    public function edit($company_id , $mother_company_id)
     {
-        $data = $this->companyRepositoryinterface->edit($company);
+        $company = Company::findOrFail($company_id);
 
-        return view('system.companies.edit')->with(['company' => $company , 'data' => $data ]);
+        $data = $this->companyRepositoryinterface->edit($company);
+        if($company->representative){
+           $company_user = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $mother_company_id)->first();
+            return view('system.companies.edit')->with(['company' => $company , 'data' => $data ,
+                'mother_company_id'=>$mother_company_id , 'company_user' => $company_user]);
+        }
+        return view('system.companies.edit')->with(['company' => $company , 'data' => $data ,
+            'mother_company_id'=>$mother_company_id]);
     }
 
     /**

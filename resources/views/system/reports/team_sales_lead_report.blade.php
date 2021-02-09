@@ -81,7 +81,7 @@
 
                                 <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
-                                @include('system.reports.sales_lead_report_partial')
+                                @include('system.reports.team_sales_lead_report_partial')
                                 <!--end: Datatable-->
                                 </div>
                             </div>

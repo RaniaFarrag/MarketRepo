@@ -386,7 +386,6 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Edit Company */
     public function edit($company)
     {
-//        dd(count($company->company_designated_contacts));
         $data = array();
         $data['countries'] = $this->country_model::all();
         $data['cities'] = $this->city_model::all();;
@@ -399,7 +398,6 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Submit Edit company */
     public function update($request, $company)
     {
-        //dd($request->all());
         if ($request->hasFile('logo')) {
             $logo = $this->verifyAndStoreFile($request, 'logo');
         } else {
@@ -480,7 +478,7 @@ class CompanyRepository implements CompanyRepositoryInterface
             'customer_vat_no' => $request->customer_vat_no,
         ]);
 
-        $rep = $company->representative()->first();
+//        $rep = $company->representative()->first();
 //        if ($rep){
 //            $company->representative()->save($rep ,
 //                array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
@@ -488,19 +486,40 @@ class CompanyRepository implements CompanyRepositoryInterface
 //                    "client_status_user_id"=>Auth::user()->id));
 //        }
 
-        if($request->client_status){
-            $rep = $company->representative()->first();
-            $company->representative()->save($rep ,
-                array("mother_company_id" => Auth::user()->mother_company_id, "client_status"=>$request->client_status,
-                    "client_status_user_id"=>Auth::user()->id));
+        $company_user = CompanyUser::where('company_id' , $company->id)->where('mother_company_id' , $request->mother_company_id)->first();
+
+        if ($company_user){
+            if($request->client_status){
+                $company_user->update([
+                    'client_status' => $request->client_status,
+                    'client_status_user_id' => auth()->id(),
+                ]);
+            }
+
+            if($request->evaluation_status){
+                $company_user->update([
+                    'evaluation_status' => $request->evaluation_status,
+                    'evaluation_status_user_id' => auth()->id(),
+                ]);
+            }
         }
 
-        if($request->evaluation_status){
-            $rep = $company->representative()->first();
-            $company->representative()->save($rep ,
-                array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
-                    "evaluation_status_user_id"=>Auth::user()->id));
-        }
+
+
+
+//        if($request->client_status){
+//            $rep = $company->representative()->first();
+//            $company->representative()->save($rep ,
+//                array("mother_company_id" => Auth::user()->mother_company_id, "client_status"=>$request->client_status,
+//                    "client_status_user_id"=>Auth::user()->id));
+//        }
+//
+//        if($request->evaluation_status){
+//            $rep = $company->representative()->first();
+//            $company->representative()->save($rep ,
+//                array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
+//                    "evaluation_status_user_id"=>Auth::user()->id));
+//        }
 
 
         for ($i = 0; $i < count($request->designated_contact_name); $i++) {

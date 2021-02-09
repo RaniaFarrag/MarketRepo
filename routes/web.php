@@ -95,6 +95,12 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Company */
     Route::resource('companies' , 'CompanyController');
 
+    /** Custom edit route */
+    Route::get('companies/edit/{company_id}/{mother_company_id}', [
+        'as' => 'companies.edit',
+        'uses' => 'CompanyController@edit'
+    ]);
+
     Route::get('show_company/{company_id}/{mother_company_id}' , 'CompanyController@showCompany')->name('show_company');
 
     /** Manage Company Needs */
@@ -196,7 +202,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 //    Route::resource('companySalesTeamReports' , 'SalesLeadReportController');
     Route::get('companySalesTeamReports','SalesLeadReportController@index')->name('companySalesTeamReports.index');
-    Route::get('companySalesTeamReports/{company}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
+    Route::get('companySalesTeamReports/{company}/{mother_company_id}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
     Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')->name('companySalesTeamReports.create');
     Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');

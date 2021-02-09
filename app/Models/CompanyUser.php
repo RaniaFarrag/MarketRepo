@@ -53,6 +53,14 @@ class CompanyUser extends Model
         return $this->belongsTo(User::class,'confirm_contract_user_id');
     }
 
+    public function client_status_user(){
+        return $this->belongsTo(User::class,'client_status_user_id' , 'id');
+    }
+
+    public function evaluation_status_user(){
+        return $this->belongsTo(User::class,'evaluation_status_user_id' , 'id');
+    }
+
      public function company(){
         return $this->belongsTo(Company::class , 'company_id');
      }

@@ -12,10 +12,10 @@ namespace App\Interfaces;
 interface salesReportRepositoryInterface
 {
 
-    /** View All Sectors */
     public function index($request , $all = null);
 
-    /** Store Sector */
+    public function show($request , $all = null);
+
     public function store($request);
 
 }

@@ -45,7 +45,6 @@ class SalesLeadReportController extends Controller
 
 //            return view('system.reports.sales_lead_report_partial', compact('reports', 'checkAll', 'ids' , 'reports_count'))->render();
         }
-            //dd($reports_count);
 
         return view('system.reports.total_sales_lead_report', compact( 'reports', 'countries' , 'representatives' , 'reports_count'));
     }
@@ -79,11 +78,11 @@ class SalesLeadReportController extends Controller
      */
     public function show(Request $request, Company $company)
     {
-        $reports = $this->salesReportRepositoryInterface->index($request)['reports'];
+        $reports = $this->salesReportRepositoryInterface->show($request)['reports'];
 
-        if ($request->ajax())
-            return view('system.reports.sales_lead_report_partial', compact('reports'))->render();
-
+        if ($request->ajax()){
+            return view('system.reports.team_sales_lead_report_partial', compact('reports'))->render();
+        }
         return view('system.reports.team_sales_lead_report', compact('company', 'reports'));
     }
 

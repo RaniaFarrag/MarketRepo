@@ -67,7 +67,7 @@
 
                                     @can('Edit Company')
                                     <li class="navi-item">
-                                        <a href="{{ route('companies.edit' , $company->id) }}"
+                                        <a href="{{ route('companies.edit' , [$company->id , $hidden_mother_company_id]) }}"
                                            class="navi-link">
                                     <span class="navi-icon"><i
                                                 class="flaticon-edit"></i></span>
