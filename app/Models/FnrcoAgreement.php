@@ -14,6 +14,16 @@ class FnrcoAgreement extends Model
         'fnrco_quotation_id',
         'company_id',
         'user_id',
+        'cr_date',
+        'hr_system',
+        'signing_by',
+        'by_as',
+        'address_en',
+        'address_ar',
+        'phone',
+        'fax',
+        'mailing_address',
+        'postal_code',
     ];
 
     protected $dates = ['deleted_at'];

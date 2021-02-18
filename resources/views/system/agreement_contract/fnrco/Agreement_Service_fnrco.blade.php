@@ -165,31 +165,31 @@
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
                 <span class="en"> 2.</span>
-                <span class="en">  .............................</span>
+                <span class="en">  {{ $fnrco_agreement->company->name }}</span>
                 و هي شركة عاملة مسجلة تحت نظام وزارة التجارة و الإستثمار في المملكة
                 العربية السعودية بموجب السجل التجاري رقم
-                <span class="en"> ........</span>
+                <span class="en"> {{ $fnrco_agreement->company->cr }}</span>
                 تاريخ
-                <span class="en"> .....</span>
+                <span class="en"> {{ $fnrco_agreement->cr_date }}</span>
                 ونظام وزارة الموارد البشرية و التنمية
                 الاجتماعية بالرقم
-                <span class="en">......</span>
+                <span class="en">{{ $fnrco_agreement->hr_system }}</span>
                 و يمثلها بالتوقيع على هذا العقد السيد
-                <span class="en">........................</span>
+                <span class="en">{{ $fnrco_agreement->signing_by }}</span>
                 بصفته
-                <span class="en">..................</span><br>
+                <span class="en">{{ $fnrco_agreement->by_as }}</span><br>
                 العنوان
-                <span class="en">:.........................................</span><br>
+                <span class="en">: {{ $fnrco_agreement->address_ar }}</span><br>
                 الهاتف
-                <span class="en">:.........................................</span><br>
+                <span class="en">{{ $fnrco_agreement->phone }}</span><br>
                 فاكس
-                <span class="en">:.........................................</span><br>
+                <span class="en">{{ $fnrco_agreement->fax }}</span><br>
                 العنوان البريدي
-                <span class="en">:.........................................</span><br>
+                <span class="en">{{ $fnrco_agreement->mailing_address }}</span><br>
                 الرمز البريدي
-                <span class="en">:.........................................</span><br>
+                <span class="en">{{ $fnrco_agreement->postal_code }}</span><br>
                 عنوان البريد الإلكتروني
-                <span class="en">:.........................................</span><br>
+                <span class="en">: {{ $fnrco_agreement->company->email }}</span><br>
                 <span class="en">(</span>
                 ويشار إليها في هذا العقد بالطرف الثاني
                 <span class="en">)</span>
@@ -197,15 +197,16 @@
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-                2. --------------------------- It is a company operating and registered under the system of the Ministry
-                of Commerce and Investment in the Kingdom of Saudi Arabia under the commercial registration No …………….
-                Date/ ……….and the law of the Ministry of Human Resources and Social Development under No/ ………. and
-                represented in signing hereon by Mr./ …………. ID number/ ……………. in his capacity as ……………<br>
-                Address: …………<br>
-                Phone: ………….<br>
-                Fax: ………….<br>
-                Postal code: ……………<br>
-                E-mail address: ………….<br>
+                2. {{ $fnrco_agreement->company->name }} It is a company operating and registered under the system of the Ministry
+                of Commerce and Investment in the Kingdom of Saudi Arabia under the commercial registration No {{ $fnrco_agreement->company->cr }}
+                Date/ {{ $fnrco_agreement->cr_date }} and the law of the Ministry of Human Resources and Social Development under No/ {{ $fnrco_agreement->hr_system }} and
+                represented in signing hereon by Mr./ {{ $fnrco_agreement->signing_by }} ID number/ in his capacity as {{ $fnrco_agreement->by_as }}<br>
+                Address: {{ $fnrco_agreement->address_en }}<br>
+                Phone: {{ $fnrco_agreement->phone }}<br>
+                Fax: {{ $fnrco_agreement->fax }}<br>
+                Mailing Address: {{ $fnrco_agreement->mailing_address }}<br>
+                Postal code: {{ $fnrco_agreement->postal_code }}<br>
+                E-mail address:  {{ $fnrco_agreement->company->email }}<br>
                 (Referred to in this contract as the Second Party)
 
 

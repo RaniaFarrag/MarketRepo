@@ -36,6 +36,30 @@ class FnrcoAgreementRepository implements FnrcoAgreementRepositoryInterface
         return $this->fnrco_Agreement_model::where('company_id' , $company_id)->with('fnrcoQuotation')->paginate(20);
     }
 
+    public function update($request , $fnrco_agreement){
+        //dd($fnrco_agreement);
+        $fnrco_agreement->update([
+//           'fnrco_quotation_id' => $fnrco_agreement->fnrco_quotation_id,
+//           'company_id' => $fnrco_agreement->company_id,
+//           'user_id' => $fnrco_agreement->fnrco_quotation_id,
+           'cr_date' => $request->cr_date,
+           'hr_system' => $request->hr_system,
+           'signing_by' => $request->signing_by,
+           'by_as' => $request->by_as,
+           'address_en' => $request->address_en,
+           'address_ar' => $request->address_ar,
+           'phone' => $request->phone,
+           'fax' => $request->fax,
+           'mailing_address' => $request->mailing_address,
+           'postal_code' => $request->postal_code,
+        ]);
+
+        $this->addLog(auth()->id() , $fnrco_agreement->id , 'FnrcoAgreement' , 'تم تعديل عقد توظيف لشركة فناركو ' , 'Fnrco Agreement has been updated');
+
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('openFnrcoAgreement' , [$fnrco_agreement->id]));
+    }
+
     // Save Agreement Of Quotation
     public function convertFnrcoquotationToAgreement($quotation_id){
 

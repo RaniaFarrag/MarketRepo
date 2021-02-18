@@ -105,9 +105,9 @@ class CompanyAgreementController extends Controller
                 'mother_company_id' => $mother_company_id]);
         }
         elseif ($mother_company_id == 2){
-//            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
-//            return view('system.company_quotations.fnrco.edit')->with(['countries' => $countries ,
-//                'fnrco_quotation'=>$fnrco_quotation , 'mother_company_id' => $mother_company_id]);
+            $fnrco_agreement = FnrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
+            return view('system.agreement_contract.fnrco.edit')->with(['fnrco_agreement'=>$fnrco_agreement ,
+                'mother_company_id' => $mother_company_id]);
         }
     }
 
@@ -125,8 +125,8 @@ class CompanyAgreementController extends Controller
             return $this->LinrcoAgreementRepositoryInterface->update($request , $linrco_agreement);
         }
         elseif ($request->mother_company_id == 2){
-//            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
-//            return $this->fnrcoQuotationRepositoryinterface->update($request ,$fnrco_quotation);
+            $fnrco_agreement = FnrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
+            return $this->fnrcoAgreementRepositoryinterface->update($request ,$fnrco_agreement);
         }
     }
 

@@ -94,6 +94,7 @@
                                             <th>{{ trans('dashboard.Contarct Period') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
                                             <th>{{ trans('dashboard.Agreement Details') }}</th>
+                                            <th>{{ trans('dashboard.edit') }}</th>
                                             <th>{{ trans('dashboard.delete') }}</th>
                                         </tr>
                                         </thead>
@@ -112,7 +113,7 @@
                                                 <td>{{ $agreement->fnrcoQuotation->Contract_period }}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>
                                                 <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_FnrcoAgreement' , $agreement->id) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
-{{--                                                <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , $mother_company_id]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>--}}
+                                                <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , 2]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
                                                 <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyAgreement.destroy' , [$agreement->id , 2]) }}"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         </tbody>

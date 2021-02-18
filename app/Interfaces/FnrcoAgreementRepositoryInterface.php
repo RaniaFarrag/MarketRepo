@@ -15,6 +15,8 @@ interface FnrcoAgreementRepositoryInterface
 
     public function convertFnrcoquotationToAgreement($quotation_id);
 
+    public function update($request , $fnrco_agreement);
+
     public function destroy($fnrco_agreement , $mother_company_id);
 
 

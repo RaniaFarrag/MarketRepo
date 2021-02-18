@@ -24,6 +24,18 @@ class CreateFnrcoAgreementsTable extends Migration
 
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->date('cr_date')->nullable();
+            $table->string('hr_system')->nullable();
+            $table->string('signing_by')->nullable();
+            $table->string('by_as')->nullable();
+            $table->string('address_en')->nullable();
+            $table->string('address_ar')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('mailing_address')->nullable();
+            $table->string('postal_code')->nullable();
+
             $table->timestamps();
             $table->softDeletes();
         });

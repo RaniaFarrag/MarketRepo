@@ -33,6 +33,11 @@
                             </a>
                             <!--end::Item-->
 
+                            <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
+                            <a href="{{ route('show_company' , [$company->id , $mother_company_id]) }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
+                                {{ $company->name }}
+                            </a>
+
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
