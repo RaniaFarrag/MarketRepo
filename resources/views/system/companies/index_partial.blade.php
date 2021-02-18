@@ -102,9 +102,9 @@
                                     @endcan
                                     @can('Corporate Assignment')
                                     <li class="navi-item">
-                                        <a href="{{ route('assign_company_to_representative') }}" class="navi-link">
-                                    <span class="navi-icon"><i
-                                                class="flaticon2-user-1"></i></span>
+                                        <a data-rep-name="{{ count($company->representative) ? app()->getLocale() == 'ar' ? $company->representative[0]->name : $company->representative[0]->name_en : '' }}" id="get_rep"
+                                           data-id="{{ $company->id }}" href="#assign_Modal" class="navi-link" data-toggle="modal">
+                                            <span class="navi-icon"><i class="flaticon2-user-1"></i></span>
                                             <span class="navi-text">{{ trans('dashboard.Assign companies to a representative') }} </span>
                                         </a>
                                     </li>

@@ -30,6 +30,8 @@ interface AssignCompanyRepositoryInterface
     /** Cancel The Company Assignment */
     public function cancelCompanyassignment($company_id , $rep_id);
 
+    public function assignOnecompany($request);
+
 
 
 

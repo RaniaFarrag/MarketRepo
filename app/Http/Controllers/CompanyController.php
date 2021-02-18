@@ -230,7 +230,6 @@ class CompanyController extends Controller
     }
 
 
-
     public function agreement(){
         $pdf = pdf::loadView('system.pdf.agreement');
 

@@ -339,6 +339,14 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     //Route::get('view/invoice/pdf/{file_name}' , 'CompanyInvoiceController@downloadInvoice')->name('view_invoice_pdf');
 
 
+
+    Route::post('assign/one/company' , 'AssignCompanyController@assignOnecompany')->name('assign_one_company');
+
+
+
+
+
+
 });
 
 //-------------------------------------EXPORT OLD DATA--------------------------------------------------
@@ -476,7 +484,6 @@ Route::get('update/database/companies',function (){
     }
 
 });
-
 
 
 /** Divide Table Companies To Two Tables */

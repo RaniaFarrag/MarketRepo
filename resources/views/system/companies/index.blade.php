@@ -396,6 +396,45 @@
             </div>
         </div>
 
+
+        <div class="modal fade" id="assign_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">
+
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <form class="form-group form-horizontal" action="{{ route('assign_one_company') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+
+                            <input type="hidden" name="company_id" value="">
+
+                            <div class="form-group">
+                                <label>{{ trans('dashboard.representatives') }}</label>
+                                <select id="representatives" name="rep_id" class="form-control" required>
+                                    <option value="">{{ trans('dashboard.Select One') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                    class="btn btn-primary font-weight-bold">{{ trans('dashboard.Assign') }}</button>
+                            <button type="button" class="btn btn-light-primary font-weight-bold"
+                                    data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection
@@ -419,7 +458,7 @@
     <script>
 
         //$('input.confirm_connected_checked').on('change', function() {
-        $('body').on('click', '.pagination a, .confirm_connected_checked', function (e) {
+        $('body').on('click', '.confirm_connected_checked', function (e) {
             //alert( this.value );
             if ( this.checked ) {
                 // if checked ...
@@ -455,7 +494,7 @@
             }
         });
 
-        $('body').on('click', '.pagination a, .confirm_interview_checked', function (e) {
+        $('body').on('click', '.confirm_interview_checked', function (e) {
         //$('input.confirm_interview_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
@@ -489,7 +528,7 @@
             }
         });
 
-        $('body').on('click', '.pagination a, .confirm_need_checked', function (e) {
+        $('body').on('click', '.confirm_need_checked', function (e) {
         // $('input.confirm_need_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
@@ -521,7 +560,7 @@
             }
         });
 
-        $('body').on('click', '.pagination a, .confirm_contract_checked', function (e) {
+        $('body').on('click', '.confirm_contract_checked', function (e) {
         // $('input.confirm_contract_checked').on('change' , function () {
             if( this.checked ){
                 var company_id = $(this).attr('data-id');
@@ -700,6 +739,36 @@
             }
 
         });
+
+        $('body').on('click', '#get_rep', function (e) {
+            var company_id = $(this).attr('data-id');
+            var rep_name = $(this).attr('data-rep-name');
+            console.log(rep_name);
+            $.ajax({
+                type: "get",
+                url: "{{ route('get_all_representatives') }}",
+                dataType: "json",
+                success: function (response) {
+                    var representatives = response.representatives;
+                    if (representatives.length){
+                        var html = '<option value="" >{{ trans('dashboard.Select One') }}</option>'
+                        for (let i = 0; i < representatives.length; i++) {
+                            if('{{ config('app.locale') }}' == 'ar')
+                                html+= '<option value="'+ representatives[i].id +'">' + representatives[i].name +'</option>';
+                            else
+                                html+= '<option value="'+ representatives[i].id +'">' + representatives[i].name_en +'</option>';
+                        }
+                    }
+                    else {
+                        var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                    }
+                    $("#representatives").html(html);
+
+                    $('input[name="company_id"]').val(company_id);
+                }
+            });
+        });
+
 
     </script>
 

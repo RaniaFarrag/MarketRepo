@@ -37,9 +37,13 @@ class AssignCompanyController extends Controller
     }
 
     /** Get All Representatives */
-    public function getAllRepresentatives(){
+    public function getAllRepresentatives(Request $request){
         //return view('system.corporate_assignment.representatives_companies');
         $representatives =  $this->assignCompanyRepositoryinterface->getAllRepresentatives();
+
+        if($request->ajax()){
+            return response()->json(['representatives' => $representatives]);
+        }
 
         return view('system.corporate_assignment.representatives_companies')->with('representatives' , $representatives);
     }
@@ -59,6 +63,10 @@ class AssignCompanyController extends Controller
     public function cancelCompanyassignment($company_id , $rep_id){
         //dd($company_id);
         return $this->assignCompanyRepositoryinterface->cancelCompanyassignment($company_id , $rep_id);
+    }
+
+    public function assignOnecompany(Request $request){
+        return $this->assignCompanyRepositoryinterface->assignOnecompany($request);
 
     }
 

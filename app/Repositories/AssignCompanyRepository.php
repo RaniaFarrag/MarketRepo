@@ -237,6 +237,32 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
     }
 
+    public function assignOnecompany($request){
+        //dd($request->all());
+        $company = $this->company_model::findOrFail($request->company_id);
+        $representative = User::findOrFail($request->rep_id);
+//        dd($representative->mother_company_id);
+
+        $company_user = CompanyUser::where('company_id' , $request->company_id)->where('mother_company_id' , $representative->mother_company_id)->first();
+
+        if($company_user){
+            //$company->representative()->sync([$request->rep_id]);
+            //$company->representative()->updateExistingPivot([$request->rep_id , 'mother_company_id' => $representative->mother_company_id]);
+            $company_user->update([
+                'user_id' => $request->rep_id
+            ]);
+        }
+        else{
+            $company->representative()->attach($request->rep_id , array('mother_company_id' => $representative->mother_company_id ,
+                'created_at' => Carbon::now()));
+        }
+
+        $this->addLog(auth()->id() , $request->rep_id , 'companies_num'.$request->company_id , 'تم  اسناد الشركة للمندوب' , 'The company has been assigned to a representative');
+
+        Alert::success('success', trans('dashboard.Successful Assignment Of Companies'));
+        return redirect(route('companies.index'));
+
+    }
 
 
 

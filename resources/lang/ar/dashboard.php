@@ -459,9 +459,10 @@ return [
     'The contract with the company has been canceled' => 'تم الغاء تاكيد العقد',
     'Company interview canceled' => 'تم الغاء الاجتماع',
     'The company needs was confirmed' => 'تم تأكيد احتياجات الشركة',
-    'Month' => 'شهر',
-    'Month' => 'شهر',
-    'Month' => 'شهر',
+    'Fnrco Agreement' => 'عقد توظيف فناركو',
+    'Assign' => 'إسناد',
+    'representatives' => 'المندوبين',
+    'There Is No Companies In This Sector' => 'لا يوجد شركات في هذا القطاع',
     'Month' => 'شهر',
     'Month' => 'شهر',
 
