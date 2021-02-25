@@ -471,7 +471,7 @@ return [
     'fax' => 'Fax',
     'mailing_address' => 'Mailing Address',
     'The quotation has been converted to a contract successfully' => 'The quotation has been converted to a contract successfully',
-    'Month' => 'Month',
+    'This Manager Has Representatives' => 'This Manager Has Representatives',
     'Month' => 'Month',
     'Month' => 'Month',
     'Month' => 'Month',

@@ -85,7 +85,7 @@
                                                 @endforeach
                                             </select>
                                             @error('mother_company')
-                                            <div class="error">{{ $message }}</div>
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -98,7 +98,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Name Arabic') }}"/>
                                             @error('name')
-                                            <div class="error">{{ $message }}</div>
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-6">
@@ -107,7 +107,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Name English') }}"/>
                                             @error('name_en')
-                                            <div class="error">{{ $message }}</div>
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -118,20 +118,20 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Name Arabic') }}"/>
                                             @error('email')
-                                            <div class="error">{{ $message }}</div>
+                                            <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
                                         <div class="col-md-6 col-xs-6">
                                             <label>{{ trans('dashboard.Select Roles') }}</label>
-                                            <select class="form-control select2" name="role" disabled>
+                                            <select class="form-control select2" name="role" >
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['roles'] as $k=>$role)
-                                                    <option value="{{ $role->id }}" {{ isset($user->roles[0] )&& $role->id == $user->roles[0]->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
+                                                    <option value="{{ $role->name }}" {{ isset($user->roles[0] )&& $role->id == $user->roles[0]->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $role->name_ar : $role->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('role_id')
-                                            <div class="error">{{ $message }}</div>
+                                            @error('role')
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -142,7 +142,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Password') }}"/>
                                             @error('password')
-                                            <div class="error">{{ $message }}</div>
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
@@ -152,7 +152,7 @@
                                                    class="form-control"
                                                    placeholder="{{ trans('dashboard.Password') }}" autocomplete="new-password"/>
                                             @error('password')
-                                            <div class="error">{{ $message }}</div>
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -166,11 +166,11 @@
                                                 @endforeach
                                             </select>
                                             @error('parent_id')
-                                            <div class="error">{{ $message }}</div>
+                                                <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
 
-                                        @if($user->roles[0]->name == 'Sales Manager')
+                                        {{--@if($user->roles[0]->name == 'Sales Manager')--}}
                                             <div class="col-md-6 col-xs-6">
                                                 <label>{{ trans('dashboard.Select Sector') }}</label>
                                                 <select class="form-control select2" name="sector_ids[]" multiple>
@@ -180,10 +180,10 @@
                                                     @endforeach
                                                 </select>
                                                 @error('sector_ids')
-                                                <div class="error">{{ $message }}</div>
+                                                    <div style="color: red" class="error">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                        @endif
+                                        {{--@endif--}}
 
                                     </div>
 

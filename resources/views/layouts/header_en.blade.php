@@ -266,18 +266,20 @@
                                                     </a>
 
                                                 </li>
-                                                <li class="menu-item {{\Request::route()->getName() == 'monitor_report' ? 'menu-item-here' :"" }}"
-                                                    data-menu-toggle="hover"
-                                                    aria-haspopup="true">
-                                                    <a href="{{ route('monitor_report') }}" class="menu-link ">
-                                                        <span class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
-                                                         <i class="far fa-list-alt"></i>
-                                                            <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.Monitor the login') }}</span>
-                                                    </a>
 
-                                                </li>
+                                                @can('Monitor the login')
+                                                    <li class="menu-item {{\Request::route()->getName() == 'monitor_report' ? 'menu-item-here' :"" }}"
+                                                        data-menu-toggle="hover"
+                                                        aria-haspopup="true">
+                                                        <a href="{{ route('monitor_report') }}" class="menu-link ">
+                                                            <span class="svg-icon menu-icon">
+                                                                <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                             <i class="far fa-list-alt"></i>
+                                                                <!--end::Svg Icon--></span>
+                                                            <span class="menu-text">{{ trans('dashboard.Monitor the login') }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endcan
                                                 <li class="menu-item {{\Request::route()->getName() == 'companySalesTeamReports.index' ? 'menu-item-here' :"" }}"
                                                     data-menu-toggle="hover"
                                                     aria-haspopup="true">

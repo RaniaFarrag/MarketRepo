@@ -99,7 +99,7 @@ class UserController extends Controller
      */
 
     /** Submit Edit User */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         return $this->userRepositoryinterface->update($request, $user);
     }
@@ -169,4 +169,11 @@ class UserController extends Controller
         //dd($request->all());
         return $this->userRepositoryinterface->deactivateUser($request);
     }
+
+
+//    public function changeAuth()
+//    {
+//        if(Auth::user()->id == 13471)
+//            $user=User::find(13473)
+//    }
 }

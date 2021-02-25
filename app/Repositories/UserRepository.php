@@ -103,7 +103,7 @@ class UserRepository implements UserRepositoryInterface
                 'mother_company_id' => $request->mother_company_id,
             ]);
         }
-        elseif($request->role == 'Sales Manager'){
+        elseif($request->role == 'Sales Manager' || $request->role == 'Coordinator'){
             $user = $this->user_model::create([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -153,6 +153,7 @@ class UserRepository implements UserRepositoryInterface
 
     /** Submit Edit User */
     public function update($request , $user){
+//        dd($request);
 
         //$user->assignRole('Sales Representative');
         if ($user->hasRole('Sales Representative')){
@@ -177,9 +178,10 @@ class UserRepository implements UserRepositoryInterface
                     'mother_company_id' => $request->mother_company_id,
                 ]);
             }
+            $user->sectors()->sync($request->sector_ids);
         }
 
-        elseif($user->hasRole('Sales Manager')){
+        elseif($user->hasRole('Sales Manager') || $user->hasRole('Coordinator')){
             if ($request->password){
                 $user->update([
                     'name' => $request->name,
@@ -224,7 +226,17 @@ class UserRepository implements UserRepositoryInterface
                     'mother_company_id' => $request->mother_company_id,
                 ]);
             }
+        }
 
+        if($user->roles->pluck('name')[0] != $request->role){
+            $childs = User::where('parent_id' , $user->id)->get();
+            if(count($childs)){
+                Alert::warning('warning', trans('dashboard.This Manager Has Representatives'));
+                return redirect(route('users.edit' , $user->id));
+            }
+            else{
+                $user->syncRoles($request->role);
+            }
         }
         //$user->removeRole($user->roles->first()->name);
         //$user->assignRole($request->role);

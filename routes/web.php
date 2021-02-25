@@ -207,16 +207,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');
 
-
-    //Route::get('agreement' , 'CompanyController@agreement')->name('agreement');
-
-    //Route::get('agreement/service/fnrco' , 'CompanyController@agreement_service_fnrco')->name('agreement_service_fnrco');
-
-    //Route::get('invoice' , 'CompanyController@invoice')->name('invoice');
-
-    //Route::get('sales/quotation' , 'CompanyController@sales_quotation')->name('sales_quotation');
-
-    //Route::get('undertakeing/opal' , 'CompanyController@undertakeing_opal')->name('undertakeing_opal');
+    //NEW
+    Route::get('/get/reps/of/mothercompany/{mother_company_id}','AssignCompanyController@getRepofMothercompany');
 
 
     /** Manage Company Quotation */
@@ -354,125 +346,157 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 /** Export Companies Data */
 Route::get('update/database/companies',function (){
-    $oldData = \App\Models\marking_companies_old::with('images')->get();
-
-
+    $oldData = \App\Models\companies_old::withTrashed()->get();
     try{
         \Illuminate\Support\Facades\DB::beginTransaction();
         foreach ($oldData as $value)
         {
-            if (!$value->deleted_at){
-                $company= \App\Models\Company::create([
-                    'id' => $value->id , // add id in fillable
-                    'name:ar' => $value->com_name_ar , // Make name null in phpMyAdmin
-                    'name:en' => $value->com_name_en , // Make name null in phpMyAdmin
-                    'logo' => $value->com_photo ,
-                    'whatsapp' => $value->com_mobile ,
-                    'phone' => $value->com_phone ,
-                    'sector_id' => $value->sector_id ,
-                    'sub_sector_id' => $value->com_job_category ,
-                    'country_id' => $value->com_country ,
-                    'city_id' => $value->com_city ,
-                    'district' => $value->district ,
-                    'location' => $value->com_district ,
-                    'branch_number' => $value->com_branches,
-                    'num_of_employees' => $value->com_emplyee_nom,
-                    'website' => $value->com_website ,
-                    'email' => $value->com_email ,
-                    'linkedin' => $value->com_linked_in ,
-                    'twitter' => $value->com_facebook ,
-                    'company_representative_name' => $value->man_name ,
-                    'company_representative_job_title' => $value->man_job_title ,
-                    'company_representative_job_mobile' => $value->man_mobile ,
-                    'company_representative_job_phone' => $value->man_phone ,
-                    'company_representative_job_email' => $value->man_email ,
-                    'hr_director_job_name' => $value->hr_name ,
-                    'hr_director_job_email' => $value->hr_email ,
-                    'hr_director_job_mobile' => $value->hr_mobile ,
-                    'hr_director_job_phone' => $value->hr_phone ,
-                    'hr_director_job_whatsapp' => $value->hr_whats ,
-                    'client_status' => $value->client_status ,
-                    'evaluation_status' => $value->rate ,
-                    'evaluation_status_user_id' => $value->user_rate ,
-                    'confirm_connected' => $value->is_called ,
-                    'confirm_connected_user_id' => $value->is_called_user ,
-                    'confirm_interview' => $value->is_verified ,
-                    'confirm_interview_user_id' => $value->is_verified_user ,
-                    'confirm_need' => $value->confirm_register ,
-                    'confirm_need_user_id' => $value->confirm_register_user ,
-                    'confirm_contract' => $value->is_registered ,
-                    'confirm_contract_user_id' => $value->is_registered_user ,
-                    'notes' => $value->notes ,
-                    'created_at' => $value->created_at ,
-                    'updated_at' => $value->updated_at ,
+            $company= \App\Models\Company::create([
+                'id' => $value->id , // add id in fillable
+                'logo' => $value->logo , // Make name null in phpMyAdmin
+                'first_business_card' => $value->first_business_card , // Make name null in phpMyAdmin
+                'second_business_card' => $value->second_business_card ,
+                'third_business_card' => $value->third_business_card ,
+                'whatsapp' => $value->whatsapp ,
+                'phone' => $value->phone ,
+                'sector_id' => $value->sector_id ,
+                'sub_sector_id' => $value->sub_sector_id ,
+                'country_id' => $value->country_id ,
+                'city_id' => $value->city_id ,
+                'district' => $value->district ,
+                'location' => $value->location,
+                'branch_number' => $value->branch_number,
+                'num_of_employees' => $value->num_of_employees ,
+                'website' => $value->website ,
+                'email' => $value->email ,
+                'linkedin' => $value->linkedin ,
+                'twitter' => $value->twitter,
+                'ecn' => $value->ecn,
+                'cr' => $value->cr,
+                'ksa_branch' => $value->ksa_branch,
+                'company_representative_name' => $value->company_representative_name ,
+                'company_representative_title' => $value->company_representative_title ,
+                'company_representative_mobile' => $value->company_representative_mobile ,
+                'company_representative_phone' => $value->company_representative_phone ,
+                'company_representative_email' => $value->company_representative_email ,
 
-                ]);
+                'hr_director_name' => $value->hr_director_name ,
+                'hr_director_email' => $value->hr_director_email ,
+                'hr_director_mobile' => $value->hr_director_mobile ,
+                'hr_director_phone' => $value->hr_director_phone ,
+                'hr_director_whatsapp' => $value->hr_director_whatsapp ,
+                'hr_director_linkedin' => $value->hr_director_linkedin ,
 
-                if (count($value->images)){
-                    //dd($value->id);
-                    foreach ($value->images as $k=>$image){
-                        if(count($value->images) == 1){
-                            //dd(4);
-                            $company->update([
-                                'first_business_card' => $image->image ,
-                            ]);
-                        }
-                        elseif (count($value->images) == 2){
-                            //dd(5);
-                            $company->update([
-                                'first_business_card' => $image->image,
-                                'second_business_card' => $image->image,
-                            ]);
-                        }
-                        elseif (count($value->images) ==3){
-                            //dd(6);
-                            $company->update([
-                                'first_business_card' => $image->image,
-                                'second_business_card' => $image->image,
-                                'third_business_card' => $image->image,
-                            ]);
-                        }
-                    }
-                }
+                'contract_manager_name' => $value->contract_manager_name ,
+                'contract_manager_email' => $value->contract_manager_email ,
+                'contract_manager_mobile' => $value->contract_manager_mobile ,
+                'contract_manager_phone' => $value->contract_manager_phone ,
+                'contract_manager_whatsapp' => $value->contract_manager_whatsapp ,
+                'contract_manager_linkedin' => $value->contract_manager_linkedin ,
 
-                $company_designated_contact = App\Models\CompanyDesignatedContact::create([
-                    'name' => $value->name_1,
-                    'job_title' => $value->jobTitle_1,
-                    'mobile' => $value->phone_1,
-                    'linkedin' => $value->linkedin_1,
-                    'whatsapp' => $value->whatsApp_1,
-                    'email' => $value->d_email_1,
-                    'company_id' => $company->id,
-                ]);
+                'notes' => $value->notes ,
 
-                $company_designated_contact = App\Models\CompanyDesignatedContact::create([
-                    'name' => $value->name_2,
-                    'job_title' => $value->jobTitle_2,
-                    'mobile' => $value->phone_2,
-                    'linkedin' => $value->linkedin_2,
-                    'whatsapp' => $value->whatsApp_2,
-                    'email' => $value->d_email_2,
-                    'company_id' => $company->id,
-                ]);
+                'user_id' => $value->user_id ,
 
-                $company_designated_contact = App\Models\CompanyDesignatedContact::create([
-                    'name' => $value->name_3,
-                    'job_title' => $value->jobTitle_3,
-                    'mobile' => $value->phone_3,
-                    'linkedin' => $value->linkedin_3,
-                    'whatsapp' => $value->whatsApp_3,
-                    'email' => $value->email_3,
-                    'company_id' => $company->id,
-                ]);
+                'created_at' => $value->created_at ,
+                'updated_at' => $value->updated_at ,
+                'deleted_at' => $value->deleted_at ,
 
-                $oldRepCompany = \App\Models\rep_companies_old::where('company_id' , $company->id)->first();
-                if($oldRepCompany){
-                    //dd($oldRepCompany);
-                    $company->update([
-                        'representative_id' => $oldRepCompany->rep_id ,
-                    ]);
-                }
-            }
+            ]);
+
+//                if (count($value->images)){
+//                    //dd($value->id);
+//                    foreach ($value->images as $k=>$image){
+//                        if(count($value->images) == 1){
+//                            //dd(4);
+//                            $company->update([
+//                                'first_business_card' => $image->image ,
+//                            ]);
+//                        }
+//                        elseif (count($value->images) == 2){
+//                            //dd(5);
+//                            $company->update([
+//                                'first_business_card' => $image->image,
+//                                'second_business_card' => $image->image,
+//                            ]);
+//                        }
+//                        elseif (count($value->images) ==3){
+//                            //dd(6);
+//                            $company->update([
+//                                'first_business_card' => $image->image,
+//                                'second_business_card' => $image->image,
+//                                'third_business_card' => $image->image,
+//                            ]);
+//                        }
+//                    }
+//                }
+
+//                $company_designated_contact = App\Models\CompanyDesignatedContact::create([
+//                    'name' => $value->name_1,
+//                    'job_title' => $value->jobTitle_1,
+//                    'mobile' => $value->phone_1,
+//                    'linkedin' => $value->linkedin_1,
+//                    'whatsapp' => $value->whatsApp_1,
+//                    'email' => $value->d_email_1,
+//                    'company_id' => $company->id,
+//                ]);
+//
+//                $company_designated_contact = App\Models\CompanyDesignatedContact::create([
+//                    'name' => $value->name_2,
+//                    'job_title' => $value->jobTitle_2,
+//                    'mobile' => $value->phone_2,
+//                    'linkedin' => $value->linkedin_2,
+//                    'whatsapp' => $value->whatsApp_2,
+//                    'email' => $value->d_email_2,
+//                    'company_id' => $company->id,
+//                ]);
+//
+//                $company_designated_contact = App\Models\CompanyDesignatedContact::create([
+//                    'name' => $value->name_3,
+//                    'job_title' => $value->jobTitle_3,
+//                    'mobile' => $value->phone_3,
+//                    'linkedin' => $value->linkedin_3,
+//                    'whatsapp' => $value->whatsApp_3,
+//                    'email' => $value->email_3,
+//                    'company_id' => $company->id,
+//                ]);
+
+//                $oldRepCompany = \App\Models\rep_companies_old::where('company_id' , $company->id)->first();
+//                if($oldRepCompany){
+//                    //dd($oldRepCompany);
+//                    $company->update([
+//                        'representative_id' => $oldRepCompany->rep_id ,
+//                    ]);
+//                }
+
+
+        }
+        \Illuminate\Support\Facades\DB::commit();
+    }
+
+    catch (\Exception $e) {
+        \Illuminate\Support\Facades\DB::rollback();
+        throw $e;
+    }
+
+});
+
+/**  Export Company Translation*/
+Route::get('update/database/company_translations',function (){
+    $oldData = \App\Models\companies_old::withTrashed()->get();
+    try{
+        \Illuminate\Support\Facades\DB::beginTransaction();
+        foreach ($oldData as $value)
+        {
+            $company = \App\Models\CompanyTranslation::create([
+                'id' => $value->id , // add id in fillable
+                'company_id' => $value->company_id , // Make name null in phpMyAdmin
+                'locale' => $value->locale , // Make name null in phpMyAdmin
+                'name' => $value->name ,
+                'created_at' => $value->created_at ,
+                'updated_at' => $value->updated_at ,
+
+            ]);
 
         }
         \Illuminate\Support\Facades\DB::commit();
@@ -488,19 +512,19 @@ Route::get('update/database/companies',function (){
 
 /** Divide Table Companies To Two Tables */
 Route::get('update/database/companies/to',function (){
-    $oldData = \App\Models\marking_companies_old::all();
+    $oldData = \App\Models\companies_old::withTrashed()->get();
 
     try{
         \Illuminate\Support\Facades\DB::beginTransaction();
         foreach ($oldData as $value)
         {
-            if (!$value->deleted_at){
+//            if (!$value->deleted_at){
                 if ($value->representative_id){
-                    //dd($value->representative_id);
+                    $rep = \App\User::find($value->representative_id);
                     $company_user = \App\Models\CompanyUser::create([
                         'company_id' => $value->id ,
                         'user_id' => $value->representative_id ,
-                        'mother_company_id' => null ,
+                        'mother_company_id' => $rep->mother_company_id ,
                         'client_status' => $value->client_status ,
                         'client_status_user_id' => $value->client_status_user_id ,
                         'evaluation_status' => $value->evaluation_status ,
@@ -516,7 +540,7 @@ Route::get('update/database/companies/to',function (){
                     ]);
                 }
 
-            }
+//            }
 
         }
         \Illuminate\Support\Facades\DB::commit();
@@ -537,39 +561,72 @@ Route::get('update/database/company/needs' , function (){
     try{
         \Illuminate\Support\Facades\DB::beginTransaction();
         foreach ($oldData as $value) {
-        if (!$value->delated_at){
-            $Company_need = \App\Models\CompanyNeed::create([
-                'id' => $value->id , // add id in fillable
-                'employment_type_id' => $value->Manpower ,
-                'required_position' => $value->RequiredPosition ,
-                'job_description' => $value->JobDescription ,
-                'candidates_number' => $value->candidates ,
-                'country_id' => $value->nationality ,
-                'gender' => $value->gender ,
-                'minimum_age' => $value->AgeLimit ,
-                'total_salary' => $value->TotalSalary ,
-                'special_note' => $value->SpecialRemarks ,
-                'contract_duration' => $value->Contract_Duration ,
-                'experience_range' => $value->Experience_Range ,
-                'work_location' => $value->Work_Location ,
-                'work_hours' => $value->Working_Hours ,
-                'deadline' => $value->Deadline ,
-                'educational_qualification' => $value->EducationalQualification ,
-                'data_flow' => $value->DataFlow ,
-                'prometric' => $value->Pro_metric ,
-                'classification' => $value->Classification ,
-                'total_experience' => $value->InternationalExperience ,
-                'area_of_experience' => $value->AreaOfExpertise ,
-                'other_skills' => $value->OtherSkills ,
-                'company_id' => $value->company_id ,
-                'user_id' => $value->user ,
-                'created_at' => $value->created_at ,
-                'updated_at' => $value->updated_at ,
+            if (!$value->delated_at){
+            $company = App\Models\Company::where('id',$value->company_id)->withTrashed()->first();
+                if($company){
+                    if($company->sector_id != 1){
+                        $fnrco_need = \App\Models\FnrcoNeed::create([
+                            'id' => $value->id , // add id in fillable
+                            'employment_type_id' => $value->employment_type_id ,
+                            'required_position' => $value->required_position ,
+                            'job_description' => $value->job_description ,
+                            'candidates_number' => $value->candidates_number ,
+                            'country_id' => $value->country_id ,
+                            'gender' => $value->gender ,
+                            'minimum_age' => $value->minimum_age ,
+                            'total_salary' => $value->total_salary ,
+                            'special_note' => $value->special_note ,
+                            'contract_duration' => $value->contract_duration ,
+                            'experience_range' => $value->experience_range ,
+                            'work_location' => $value->work_location ,
+                            'work_hours' => $value->work_hours ,
+                            'deadline' => $value->deadline ,
+                            'educational_qualification' => $value->educational_qualification ,
+                            'data_flow' => $value->data_flow ,
+                            'prometric' => $value->prometric ,
+                            'classification' => $value->classification ,
+                            'total_experience' => $value->total_experience ,
+                            'area_of_experience' => $value->area_of_experience ,
+                            'other_skills' => $value->other_skills ,
+                            'company_id' => $value->company_id ,
+                            'user_id' => $value->user_id ,
+                            'created_at' => $value->created_at ,
+                            'updated_at' => $value->updated_at ,
+                        ]);
+                    }
+                    else{
+                        $linrco_need = \App\Models\LinrcoNeed::create([
+                            'id' => $value->id , // add id in fillable
+                            'employment_type_id' => $value->employment_type_id ,
+                            'required_position' => $value->required_position ,
+                            'job_description' => $value->job_description ,
+                            'candidates_number' => $value->candidates_number ,
+                            'country_id' => $value->country_id ,
+                            'gender' => $value->gender ,
+                            'minimum_age' => $value->minimum_age ,
+                            'total_salary' => $value->total_salary ,
+                            'special_note' => $value->special_note ,
+                            'contract_duration' => $value->contract_duration ,
+                            'experience_range' => $value->experience_range ,
+                            'work_location' => $value->work_location ,
+                            'work_hours' => $value->work_hours ,
+                            'deadline' => $value->deadline ,
+                            'educational_qualification' => $value->educational_qualification ,
+                            'data_flow' => $value->data_flow ,
+                            'prometric' => $value->prometric ,
+                            'classification' => $value->classification ,
+                            'total_experience' => $value->total_experience ,
+                            'area_of_experience' => $value->area_of_experience ,
+                            'other_skills' => $value->other_skills ,
+                            'company_id' => $value->company_id ,
+                            'user_id' => $value->user_id ,
+                            'created_at' => $value->created_at ,
+                            'updated_at' => $value->updated_at ,
+                        ]);
+                    }
+                }
 
-            ]);
         }
-
-
     }
         \Illuminate\Support\Facades\DB::commit();
     }

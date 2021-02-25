@@ -51,7 +51,6 @@ class WhatsAppController extends Controller
 //                        ->orWhereIn('representative_id' , Auth::user()->childs()->pluck('id'));
 //                        })
 
-
             //dd($companies);
         }
 

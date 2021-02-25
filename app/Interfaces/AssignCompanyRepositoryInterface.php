@@ -32,6 +32,8 @@ interface AssignCompanyRepositoryInterface
 
     public function assignOnecompany($request);
 
+    public function getRepsofMothercompany($mother_company_id);
+
 
 
 

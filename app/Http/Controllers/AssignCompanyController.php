@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AssignCompanyRequest;
 use App\Interfaces\AssignCompanyRepositoryInterface;
+use App\Models\MotherCompany;
 use Illuminate\Http\Request;
 
 class AssignCompanyController extends Controller
@@ -19,8 +20,9 @@ class AssignCompanyController extends Controller
     /** Assign Company To Representative Form */
     public function assignCompanyToRepresentativeForm(){
         $data = $this->assignCompanyRepositoryinterface->assignCompanyToRepresentativeForm();
+        $mother_companies = MotherCompany::all();
 
-        return view('system.corporate_assignment.assign_companies_to_representatives')->with('data' , $data);
+        return view('system.corporate_assignment.assign_companies_to_representatives')->with(['data'=>$data , 'mother_companies'=>$mother_companies]);
     }
 
     /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
@@ -67,6 +69,12 @@ class AssignCompanyController extends Controller
 
     public function assignOnecompany(Request $request){
         return $this->assignCompanyRepositoryinterface->assignOnecompany($request);
+
+    }
+
+    public function getRepofMothercompany($mother_company_id){
+        $representatives =  $this->assignCompanyRepositoryinterface->getRepsofMothercompany($mother_company_id);
+        return response()->json(['representatives' => $representatives]);
 
     }
 

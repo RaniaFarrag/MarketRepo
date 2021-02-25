@@ -471,7 +471,7 @@ return [
     'address_ar' => 'العنوان بالعربية',
     'mailing_address' => 'العنوان البريدي',
     'The quotation has been converted to a contract successfully' => 'تم تحويل عرض الاسعار لعقد توظيف بنجاح',
-    'Month' => 'شهر',
+    'This Manager Has Representatives' => 'هذا المدير لديه مندوبين',
     'Month' => 'شهر',
     'Month' => 'شهر',
 

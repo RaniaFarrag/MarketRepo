@@ -57,22 +57,36 @@
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
+                                    @can('Show Mother Company_coordinator')
+                                        <div class="form-group row">
+                                            <div class="col-md-12 col-xs-12">
+                                                <label> {{ trans('dashboard.Mother Company') }}  </label>
+                                                {{--<input name="mother_company_id" value="1" type="hidden">--}}
+                                                <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
+                                                    {{--<option value="" selected="">{{ trans('dashboard.Select One') }}</option>--}}
+                                                    @foreach($mother_companies as $key=> $mother_company)
+                                                        <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
+                                                            {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endcan
 
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Representative') }} :</label>
-                                            <select name="representative_id" class="form-control select2" required>
-                                                <option value="">{{ trans('dashboard.Select one') }}</option>
-                                                @foreach($data['representatives'] as $representative)
-                                                    <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</option>
-                                                @endforeach
+                                            <select id="representatives" name="representative_id" class="form-control select2" required>
+                                                <option value="" selected>{{ trans('dashboard.Select one') }}</option>
+                                                {{--@foreach($data['representatives'] as $representative)--}}
+                                                    {{--<option value="" selected="">{{ trans('dashboard.Select All') }}</option>--}}
+                                                    {{--<option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</option>--}}
+                                                {{--@endforeach--}}
                                                 {{--@if(auth()->user()->hasRole('Sales Manager'))--}}
                                                     {{--<option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>--}}
                                                 {{--@endif--}}
                                             </select>
-                                            @error('representative_id')
-                                            <div class="error">{{ $message }}</div>
-                                            @enderror
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Country') }} :</label>
@@ -83,7 +97,6 @@
                                                     @endforeach
                                             </select>
                                         </div>
-
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
@@ -212,7 +225,6 @@
                     var html = '<option value="" selected="">{{ trans('dashboard.Select All') }}</option>'
                     $("#subSectors").html(html);
                 }
-
             })
 
             {{--  GET ALL COMPANIES OF BASED ON SECTOR , SUB-SECTOR , COUNTRY AND CITY --}}
@@ -264,5 +276,81 @@
         });
 
     </script>
+
+    <script>
+        $(document).on('change', '#mother_company_id', function (e) {
+            var mother_company_id = $("#mother_company_id").val();
+            console.log(mother_company_id)
+            if (mother_company_id){
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('/get/reps/of/mothercompany/') }}" + '/' + mother_company_id,
+                    dataType: "json",
+                    success: function (response) {
+                        var $representatives = response.representatives;
+                        if ($representatives.length){
+
+                            var html = '<option value="">{{ trans('dashboard.Select One') }}</option>'
+                            for (let i = 0; i < $representatives.length; i++) {
+                                if('{{ config('app.locale') }}' == 'ar')
+                                    html+= '<option value="'+ $representatives[i].id +'">' + $representatives[i].name +'</option>';
+                                else
+                                    html+= '<option value="'+ $representatives[i].id +'">' + $representatives[i].name_en +'</option>';
+                            }
+                        }
+                        else {
+                            var html = '<option value="" selected="">{{ trans('dashboard.Not Found') }}</option>'
+                        }
+                        $("#representatives").html(html);
+
+                    }
+                });
+            }
+            else {
+                var html = '<option value="" selected="">{{ trans('dashboard.Select one') }}</option>'
+                $("#representatives").html(html);
+            }
+        })
+
+
+        $(document).ready(function() {
+            var mother_company_id = $("#mother_company_id").val();
+
+            if (mother_company_id){
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('/get/reps/of/mothercompany/') }}" + '/' + mother_company_id,
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response)
+                        var $representatives = response.representatives;
+                        console.log($representatives)
+                        if ($representatives.length){
+                            var html = '<option value="">{{ trans('dashboard.Select One') }}</option>'
+                            for (let i = 0; i < $representatives.length; i++) {
+                                if('{{ config('app.locale') }}' == 'ar')
+                                    html+= '<option value="'+ $representatives[i].id +'">' + $representatives[i].name +'</option>';
+                                else
+                                    html+= '<option value="'+ $representatives[i].id +'">' + $representatives[i].name_en +'</option>';
+                            }
+                        }
+                        else {
+                            var html = '<option value="" selected="">{{ trans('dashboard.Not') }}</option>'
+                        }
+                        $("#representatives").html(html);
+
+                    }
+                });
+            }
+            else {
+                var html = '<option value="" selected="">{{ trans('dashboard.Select one') }}</option>'
+                $("#representatives").html(html);
+            }
+
+        })
+    </script>
+
+
+
 
 @endsection

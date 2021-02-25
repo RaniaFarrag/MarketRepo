@@ -11,6 +11,6 @@ class company_images extends Model
     protected $table = "company_images";
 
     public function company(){
-        return $this->belongsTo(marking_companies_old::class);
+        return $this->belongsTo(companies_old::class);
     }
 }

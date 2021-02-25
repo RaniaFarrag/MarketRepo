@@ -3,7 +3,11 @@
 namespace App\Http\Requests;
 
 use http\Env\Request;
+//use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -24,33 +28,38 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        if (request()->role == 'Sales Representative'){
+        if (request()->role == 'Sales Manager' || request()->role == 'Coordinator'){
+
             return [
                 'name' => 'required',
-                'email' => 'required | email | max:255 | unique:users',
+                'name_en' => 'required',
+                'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id,
+//                'email' => 'required|email|max:255|unique:users,email,'.$this->user->id,
+                //'email' =>  Rule::unique('users')->ignore(request()->id),
                 //'password' => 'required | min:8 | confirmed',
                 'role' => 'required',
-                'parent_id' => 'required',
+                'sector_ids' => 'required',
+
             ];
 
         }
-        elseif(request()->role == 'Sales Manager'){
+        elseif(request()->role == 'Sales Representative'){
            return [
                'name' => 'required',
-               'email' => 'required | email | max:255 | unique:users',
-               //'password' => 'required | min:8 | confirmed',
+               'name_en' => 'required',
+               'email' => 'required | email | max:255|unique:users,email,'.$this->user->id,
+
                'role' => 'required',
-               'sector_ids' => 'required',
+               'parent_id' => 'required',
             ];
         }
         else{
             return [
                 'name' => 'required',
-                'email' => 'required | email | max:255 | unique:users',
-                //'password' => 'required | min:8 | confirmed',
+                'name_en' => 'required',
+                'email' => 'required | email | max:255|unique:users,email,'.$this->user->id,
                 'role' => 'required',
             ];
         }
-
     }
 }

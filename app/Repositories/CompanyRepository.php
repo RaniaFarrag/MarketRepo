@@ -74,7 +74,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** View All companies */
     public function index($request)
     {
-        //dd($request->mother_company_id);
+//        dd(Auth::user()->mother_company_id);
         if (Auth::user()->hasRole('Sales Representative')) {
 //            $query = $this->company_model->where('representative_id', Auth::user()->id)->with('subSector');
 
