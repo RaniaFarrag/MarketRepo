@@ -28,11 +28,22 @@ class CompanyController extends Controller
     public function __construct(CompanyRepositoryInterface $companyRepositoryinterface)
     {
         $this->companyRepositoryinterface = $companyRepositoryinterface;
+        $this->middleware('permission:Add Company', ['only' => ['store','create']]);
+        $this->middleware('permission:Edit Company', ['only' => ['update','edit']]);
+        $this->middleware('permission:Delete Company', ['only' => ['destroy']]);
+
+        $this->middleware('permission:Confirm Connection', ['only' => ['confirmConnected']]);
+        $this->middleware('permission:Confirm Interview', ['only' => ['confirmInterview']]);
+        $this->middleware('permission:Confirm Need', ['only' => ['confirmNeed']]);
+        $this->middleware('permission:Confirm Contract', ['only' => ['confirmContract']]);
+
+        $this->middleware('permission:print company', ['only' => ['print_show_company']]);
     }
 
     /** View All companies */
     public function index(Request $request)
     {
+//        $this->middleware('permission:Delete Company');
         $data = $this->companyRepositoryinterface->companiesReports_all($request)['companies'];
         //dd($data);
         $sectors = $this->companyRepositoryinterface->companiesReports_all($request)['sectors'];
@@ -41,7 +52,7 @@ class CompanyController extends Controller
         $mother_companies = $this->companyRepositoryinterface->companiesReports_all($request)['mother_companies'];
 
         if($request->ajax()){
-            if (Auth::user()->hasRole('ADMIN')){
+            if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
                 $mother_company_id = $request->mother_company_id;
             }
             else{
@@ -176,12 +187,12 @@ class CompanyController extends Controller
     /** Company Report */
     public function companiesReports(Request $request){
         $data = $this->companyRepositoryinterface->companiesReports($request , false , true)['companies_user'];
-
+        //dd($data['companies_user'][0]);
         $countries = $this->companyRepositoryinterface->companiesReports($request)['countries'];
         $sectors = $this->companyRepositoryinterface->companiesReports($request)['sectors'];
         $representatives= $this->companyRepositoryinterface->companiesReports($request)['representatives'];
         $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
-
+        //dd($representatives);
         if ($request->ajax()) {
             if (Auth::user()->hasRole('ADMIN')){
                 $mother_company_id = $request->mother_company_id;

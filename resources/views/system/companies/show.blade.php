@@ -43,9 +43,11 @@
                 <!--end::Info-->
                 <!--begin::Toolbar-->
                 <div class="d-flex align-items-center">
-                    <a target="_blank" href="{{ route('print_show_company' , $company->id) }}" class="btn btn-light btn-hover-primary  mr-2">
-                        <i class="flaticon2-fax text-muted"></i> {{ trans('dashboard.Print') }}
-                    </a>
+                    @can('print company')
+                        <a target="_blank" href="{{ route('print_show_company' , $company->id) }}" class="btn btn-light btn-hover-primary  mr-2">
+                            <i class="flaticon2-fax text-muted"></i> {{ trans('dashboard.Print') }}
+                        </a>
+                    @endcan
 
                     <!--end::Actions-->
 
@@ -77,27 +79,33 @@
                                     {{--</a>--}}
                                 {{--</li>--}}
                                 @endcan
+                                
+                                @can('TEAM SALES LEAD REPORT')
+                                    <li class="navi-item">
+                                        <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}" class="navi-link">
+                                            <span class="navi-icon"><i class="flaticon-graph"></i></span>
+                                            <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
+                                        </a>
+                                    </li>
+                                @endcan
 
-                                <li class="navi-item">
-                                    <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon-graph"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
-                                    </a>
-                                </li>
+                                @can('Add Company Need')
+                                    <li class="navi-item">
+                                        <a href="{{ route('company_needs.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
+                                            <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                            <span class="navi-text">{{ trans('dashboard.Needs') }}</span>
+                                        </a>
+                                    </li>
+                                @endcan
 
-                                <li class="navi-item">
-                                    <a href="{{ route('company_needs.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.Needs') }}</span>
-                                    </a>
-                                </li>
-
-                                <li class="navi-item">
-                                    <a href="{{ route('companyQuotation.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
-                                        <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
-                                        <span class="navi-text">{{ trans('dashboard.Quotations') }}</span>
-                                    </a>
-                                </li>
+                                @can('Create a quote')
+                                    <li class="navi-item">
+                                        <a href="{{ route('companyQuotation.index' , [$company->id , $mother_company_id]) }}" class="navi-link">
+                                            <span class="navi-icon"><i class="flaticon2-open-text-book"></i></span>
+                                            <span class="navi-text">{{ trans('dashboard.Quotations') }}</span>
+                                        </a>
+                                    </li>
+                                @endcan
 
                                 {{--<li class="navi-item">--}}
                                     {{--<a href="{{ route('CompanyUndertaking.index' , [$company->id , $mother_company_id]) }}" class="navi-link">--}}

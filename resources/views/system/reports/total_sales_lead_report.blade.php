@@ -331,6 +331,7 @@
             return false;
         }
     </script>
+
     <script>
         var checkCvOriginal = [];
         $(document).on('change', '.checkReports', function () {
@@ -354,6 +355,7 @@
             }
         });
     </script>
+
     <script>
         $(document).on('click', '#checkAll', function (e) {
             if ($('.items:checked').length == $('.items:checkbox').length) {
@@ -369,6 +371,7 @@
         });
 
     </script>
+
     <script>
         $('body').on('click', '.pagination a , #searchBtn', function (e) {
             e.preventDefault();
@@ -409,6 +412,7 @@
             });
         });
     </script>
+
     <script>
         {{-- GET ALL SUB-SECTORS OF SECTOR AND CITIES OF COUNTRY--}}
 

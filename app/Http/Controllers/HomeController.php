@@ -30,18 +30,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        //dd(Auth::user()->mother_company_id);
+        //dd($request->mother_company_id);
         $total_companies = Company::all()->count();
         $company_registered_today = Company::whereDate('created_at' , Carbon::today())->count();
 
         $mother_companies = MotherCompany::all();
 
-        if($request->mother_company_id){
-            $mother_company_id = $request->mother_company_id;
-        }
-        else{
-            $mother_company_id = Auth::user()->mother_company_id;
-        }
+//        if($request->mother_company_id){
+//            $mother_company_id = $request->mother_company_id;
+//        }
+//        else{
+//            $mother_company_id = Auth::user()->mother_company_id;
+//        }
 
         if (Auth::user()->hasRole('ADMIN')){
             $total_users_under_me = User::where('mother_company_id' , $request->mother_company_id)->count();
@@ -70,17 +70,17 @@ class HomeController extends Controller
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
-
-
             $company_registered_today = Company::whereDate('created_at' , Carbon::today())
                 ->where(function ($q){
                     $q->where('user_id' , Auth::user()->id)
                         ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
                 })->count();
+
+
             //Companies in my sectors
             $total_companies = Company::WhereIn('sector_id' , Auth::user()->sectors->pluck('id'))->count();
             $total_users_under_me = User::where('parent_id' , Auth::user()->id)
-                                    ->where('mother_company_id' , Auth::user()->mother_company_id)->count();
+                                    ->where('mother_company_id' ,$request->mother_company_id)->count();
             $rep_daily_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)
                 ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'))->count();
             $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
@@ -93,7 +93,7 @@ class HomeController extends Controller
                     $q->where('user_id' , Auth::user()->id)
                         ->orWhereIn('user_id' , Auth::user()->childs->pluck('id'));
                 })->count();
-
+            //dd($coming_meetings);
             $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
                 ->where(function ($q){
                     $q->where('user_id' , Auth::user()->id)
@@ -111,7 +111,7 @@ class HomeController extends Controller
                 ->where('user_id' , Auth::user()->id)->count();
 
             //Assign to me
-            $total_companies = Auth::user()->assignedCompanies()->where('mother_company_id' , Auth::user()->mother_company_id)->count();
+            $total_companies = Auth::user()->assignedCompanies()->where('mother_company_id' , $request->mother_company_id)->count();
             $total_users_under_me = 0;
             $rep_daily_reports = Company_sales_lead_report::where('user_id' , Auth::user()->id)->count();
             $today_meetings = CompanyMeeting::whereDate('date' , Carbon::today())
@@ -156,23 +156,34 @@ class HomeController extends Controller
         }
 
         if($request->ajax()){
+            //dd(43335);
             $data_json['total_users_under_me'] = $total_users_under_me;
+
+            $data_json['company_registered_today'] = $company_registered_today;
+            $data_json['total_companies'] = $total_companies;
+
             $data_json['rep_daily_reports'] = $rep_daily_reports;
             $data_json['today_meetings'] = $today_meetings;
             $data_json['coming_meetings']= $coming_meetings;
-            $data_json['meetings']= view('system.home_meetings_table')
-                ->with(['meetings' => $meetings , 'mother_company_id' => $mother_company_id])->render();
+
+            $data_json['viewblade']= view('system.home_meetings_table')
+                ->with(['meetings' => $meetings , 'mother_company_id' => $request->mother_company_id])->render();
+
+
             return response()->json($data_json);
         }
 
         return view('system.home')->with([
+//            'total_users_under_me'=>$total_users_under_me,
+//            'company_registered_today'=>$company_registered_today,
+//            'total_companies'=>$total_companies,
+//            'rep_daily_reports'=>$rep_daily_reports,
+//            'today_meetings'=>$today_meetings,
+//            'coming_meetings'=>$coming_meetings,
+//
             'meetings'=>$meetings ,
-            'company_registered_today_created_by_me'=>$company_registered_today,
-            'total_companies'=>$total_companies,
-            //'total_users_under_me'=>$total_users_under_me,
-            //'rep_daily_reports'=>$rep_daily_reports,
-            //'today_meetings'=>$today_meetings,
-            'mother_company_id'=>$mother_company_id,
+
+            'mother_company_id'=>$request->mother_company_id,
             'mother_companies'=>$mother_companies,
             ]);
     }

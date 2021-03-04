@@ -244,11 +244,35 @@ class CompanyRepository implements CompanyRepositoryInterface
 
     }
 
+    /** View All companies */
+    public function companiesReports_all($request){
+        $data['companies'] = $this->index($request);
+        $data['sectors'] = $this->sector_model::all();
+        $data['countries'] = $this->country_model::all();
+        $data['mother_companies'] = MotherCompany::all();
+
+        if (Auth::user()->hasRole('ADMIN'))
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->whereNotNull('parent_id')
+                        ->orWhereHas('childs');
+                })->get();
+        else
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->where('parent_id' , Auth::user()->id)
+                        ->orWhere('id' , Auth::user()->id);
+                })->get();
+
+        return $data;
+    }
+
     /** Store Company */
     public function store($request)
     {
 //      dd(Storage::disk('local')->path('/'));
 //      dd(storage_path('app') .'/'. $logo);
+        //dd($request->all());
 
         $logo = $this->verifyAndStoreFile($request, 'logo');
         $first_business_card = $this->verifyAndStoreFile($request, 'first_business_card');
@@ -339,7 +363,6 @@ class CompanyRepository implements CompanyRepositoryInterface
 //                "client_status_user_id"=>Auth::user()->id , "evaluation_status"=>$request->evaluation_status ,
 //                "evaluation_status_user_id"=>Auth::user()->id));
 //        }
-
 
         for ($i = 0; $i < count($request->designated_contact_name); $i++) {
             if ($request->designated_contact_name[$i] != null) {
@@ -739,7 +762,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     {
         $main_company = $this->company_model::findOrFail($company_id);
 
-        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative' , 'ADMIN'])){
+        if (Auth::user()->hasRole(['Sales Manager' , 'Sales Representative'])){
             $company = CompanyUser::where('company_id' , $company_id)->where('mother_company_id' , $user_mother_company_id)->first();
 
             if ($company){
@@ -886,7 +909,7 @@ class CompanyRepository implements CompanyRepositoryInterface
                                 ->where(function ($q){
                                     $q->where('user_id' , Auth::user()->id)
                                         ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
-                                })->with('company');
+                                })->with('company' , 'representative');
 
         }
         else {
@@ -1007,36 +1030,17 @@ class CompanyRepository implements CompanyRepositoryInterface
                                                     ->orWhereHas('childs');
                                             })->get();
         else
+
             $data['representatives'] = $this->user_model::where('active' , 1)
                 ->where(function ($q){
                     $q->where('parent_id' , Auth::user()->id)
                         ->orWhere('id' , Auth::user()->id);
                 })->get();
+        //dd($data);
 
         return $data;
     }
 
-    public function companiesReports_all($request){
-        $data['companies'] = $this->index($request);
-        $data['sectors'] = $this->sector_model::all();
-        $data['countries'] = $this->country_model::all();
-        $data['mother_companies'] = MotherCompany::all();
-
-        if (Auth::user()->hasRole('ADMIN'))
-            $data['representatives'] = $this->user_model::where('active' , 1)
-                ->where(function ($q){
-                    $q->whereNotNull('parent_id')
-                        ->orWhereHas('childs');
-                })->get();
-        else
-            $data['representatives'] = $this->user_model::where('active' , 1)
-                ->where(function ($q){
-                    $q->where('parent_id' , Auth::user()->id)
-                        ->orWhere('id' , Auth::user()->id);
-                })->get();
-
-        return $data;
-    }
 
     /** Send Email To Company */
     public function sendEmail($request)

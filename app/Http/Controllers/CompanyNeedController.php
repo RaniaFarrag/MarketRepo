@@ -22,6 +22,7 @@ class CompanyNeedController extends Controller
     {
         $this->linrcoNeedRepositoryinterface = $linrcoNeedRepositoryinterface;
         $this->fnrcoNeedRepositoryinterface = $fnrcoNeedRepositoryinterface;
+
     }
 
     /**

@@ -22,7 +22,9 @@ class WhatsAppController extends Controller
 
 
     /** Whatsapp Messages */
-    public function WhatsappMessages(){
+    public function WhatsappMessages(Request $request){
+
+        $ids = $request->ids;
         if (Auth::user()->hasRole('ADMIN')) {
 //            $companies = $this->company_model::whereNotNull('whatsapp')->with(['sector' , 'subSector'])
 //                ->orderBy('created_at', 'desc')->paginate(20);
@@ -52,6 +54,15 @@ class WhatsAppController extends Controller
 //                        })
 
             //dd($companies);
+        }
+
+        if ($request->ajax()){
+            //dd(55);
+            $data_json['viewBlade']= view('system.whatsapp.view_whatsapp_partial'
+                , compact( 'ids' , 'companies' ))->render();
+
+            return response()->json($data_json);
+
         }
 
         return view('system.whatsapp.view')->with('companies' , $companies);

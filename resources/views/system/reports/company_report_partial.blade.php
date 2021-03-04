@@ -5,6 +5,7 @@
         <th> {{ trans('dashboard.Company Name') }}</th>
         <th>{{ trans('dashboard.Sector') }}</th>
         <th>{{ trans('dashboard.Company Type') }}</th>
+        <th>{{ trans('dashboard.Representative') }}</th>
         <th>{{ trans('dashboard.Evaluation status') }}</th>
         <th>{{ trans('dashboard.Evaluator') }}</th>
         <th>{{ trans('dashboard.Confirm Connection') }}</th>
@@ -15,12 +16,13 @@
     </thead>
     <tbody>
         @foreach($data['companies_user'] as $company_user)
-            {{--{{ dd($company_user->company->id) }}--}}
+
             <tr>
-                <td style="width: 34px;"><a href="{{route('show_company',[$company_user->company->id , $mother_company_id])}}" target="_blank">{{$company_user->company->id}}</a></td>
-                <td><a target="_blank" href="{{route('show_company',[$company_user->company->id , $mother_company_id])}}">{{$company_user->company->name}}</a></td>
+                <td style="width: 34px;"><a href="{{ route('show_company',[$company_user->company->id , $mother_company_id]) }}" target="_blank">{{$company_user->company ? $company_user->company->id : '-'}}</a></td>
+                <td><a target="_blank" href="{{ route('show_company',[$company_user->company->id , $mother_company_id]) }}">{{ $company_user->company ? $company_user->company->name : '-' }}</a></td>
                 <td>{{$company_user->company ? $company_user->company->sector->name : "-"}}</td>
                 <td>{{$company_user->company ? $company_user->company->subSector->name : "-"}}</td>
+                <td>{{$company_user->representative ? app()->getLocale() == 'ar' ? $company_user->representative->name : $company_user->representative->name_en : "-"}}</td>
 
                 @if( $company_user->evaluation_status == 1 )
                     <td>A</td>

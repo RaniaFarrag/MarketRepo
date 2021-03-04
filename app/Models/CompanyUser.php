@@ -64,4 +64,8 @@ class CompanyUser extends Model
      public function company(){
         return $this->belongsTo(Company::class , 'company_id');
      }
+
+    public function representative(){
+        return $this->belongsTo(User::class,'user_id' , 'id');
+    }
 }

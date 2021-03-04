@@ -172,9 +172,9 @@
                                                                         </option>
                                                                     @endforeach
 
-                                                                    @if(auth()->user()->hasRole('Sales Manager'))
-                                                                        <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
-                                                                    @endif
+                                                                    {{--@if(auth()->user()->hasRole('Sales Manager'))--}}
+                                                                        {{--<option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>--}}
+                                                                    {{--@endif--}}
 
                                                                 </select>
                                                             </div>

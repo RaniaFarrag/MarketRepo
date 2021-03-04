@@ -77,7 +77,7 @@
                     <!--end::Button-->
                     <!--begin::Button-->
                     <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
-                        {{ trans('dashboard.Total companies') }} <span id="counter">{{  $data['count'] ?? '-'}}</span>
+                        {{ trans('dashboard.Total companies') }} <span id="counter">{{ $data['count'] ?? '-' }}</span>
                     </a>
                     <!--end::Button-->
                 </div>
@@ -507,9 +507,9 @@
                     success:function (response) {
                         swal( '', response.msg, response.type);
                     },
-                    error:function () {
-                        swal('Faild' , response , 'failed');
-                    }
+                    // error:function () {
+                    //     swal('Faild' , response , 'failed');
+                    // }
                 })
             }
             else {

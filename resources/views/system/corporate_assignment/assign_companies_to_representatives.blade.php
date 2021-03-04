@@ -77,16 +77,21 @@
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Representative') }} :</label>
-                                            <select id="representatives" name="representative_id" class="form-control select2" required>
-                                                <option value="" selected>{{ trans('dashboard.Select one') }}</option>
-                                                {{--@foreach($data['representatives'] as $representative)--}}
-                                                    {{--<option value="" selected="">{{ trans('dashboard.Select All') }}</option>--}}
-                                                    {{--<option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</option>--}}
-                                                {{--@endforeach--}}
-                                                {{--@if(auth()->user()->hasRole('Sales Manager'))--}}
-                                                    {{--<option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>--}}
-                                                {{--@endif--}}
-                                            </select>
+                                            @if(auth()->user()->hasRole('Sales Manager'))
+                                                <select name="representative_id" class="form-control select2" required>
+                                                    <option value="" selected>{{ trans('dashboard.Select one') }}</option>
+                                                        @foreach($data['representatives'] as $representative)
+                                                            <option value="{{ $representative->id }}">{{ app()->getLocale() == 'ar' ? $representative->name : $representative->name_en }}</option>
+                                                        @endforeach
+                                                    {{--@if(auth()->user()->hasRole('Sales Manager'))--}}
+                                                        {{--<option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>--}}
+                                                    {{--@endif--}}
+                                                </select>
+                                            @else
+                                                <select id="representatives" name="representative_id" class="form-control select2" required>
+                                                    <option value="" selected>{{ trans('dashboard.Select one') }}</option>
+                                                </select>
+                                            @endif
                                         </div>
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Country') }} :</label>
@@ -129,7 +134,7 @@
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Companies') }} :</label>
                                             <select id="companies" name="company_ids[]"  class="form-control select2" multiple>
-                                                <option value="" disabled >{{ trans('dashboard.Select All') }}</option>
+                                                {{--<option value="" disabled >{{ trans('dashboard.Select All') }}</option>--}}
                                             </select>
                                         </div>
                                     </div>
@@ -228,11 +233,12 @@
             })
 
             {{--  GET ALL COMPANIES OF BASED ON SECTOR , SUB-SECTOR , COUNTRY AND CITY --}}
-            $(document).on('change', '#countries , #cities ,#sectors , #subSectors', function() {
+            $(document).on('change', '#representatives , #countries , #cities ,#sectors , #subSectors', function() {
                 var country_id = $('#countries').val()
                 var city_id = $('#cities').val()
                 var sector_id = $('#sectors').val()
                 var subSector_id = $('#subSectors').val()
+                var representatives = $('#representatives').val()
                 if (sector_id){
                     $.ajax({
                         type: "get",
@@ -241,7 +247,8 @@
                             country_id : country_id,
                             city_id : city_id,
                             sector_id : sector_id,
-                            subSector_id : subSector_id
+                            subSector_id : subSector_id,
+                            representatives : representatives
                         },
                         dataType: "json",
                         success: function (response) {
@@ -255,7 +262,7 @@
                                 }
                             }
                             else {
-                                var html = '<option value="" disabled selected>{{ trans('dashboard.Not Found') }}</option>'
+                                {{--var html = '<option value="" disabled selected>{{ trans('dashboard.Not Found') }}</option>'--}}
                                 // $(':input[type="submit"]').prop('disabled', true);
                             }
                             $("#companies").html(html);
@@ -272,6 +279,7 @@
                 }
 
             });
+
 
         });
 

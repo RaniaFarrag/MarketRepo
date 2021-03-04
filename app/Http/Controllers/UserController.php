@@ -20,26 +20,26 @@ class UserController extends Controller
 
     protected $userRepositoryinterface;
 
-    public function __construct(UserRepositoryInterface $userRepositoryinterface)
-    {
-        $this->userRepositoryinterface = $userRepositoryinterface;
-
-    }
-
-    /** View All Users */
-    public function index()
-    {
-        $users = $this->userRepositoryinterface->index();
-        return view('system.users.index')->with('users', $users);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
 
+    public function __construct(UserRepositoryInterface $userRepositoryinterface)
+    {
+        $this->userRepositoryinterface = $userRepositoryinterface;
+        //$this->middleware('permission:Add Company', ['only' => ['store']]);
+
+    }
+    /** View All Users */
+    public function index()
+    {
+        $users = $this->userRepositoryinterface->index();
+        return view('system.users.index')->with('users', $users);
+    }
     /** Create User */
+
     public function create()
     {
         $data = $this->userRepositoryinterface->create();

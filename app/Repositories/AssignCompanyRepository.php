@@ -100,13 +100,23 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
 //            $companies->whereNull('representative_id');
 
+            if (Auth::user()->hasRole('Coordinator')) {
+                if($request->representatives){
 
-            $companies->whereDoesntHave('representative' , function ($q){
-                $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
-            });
+                    $rep = User::findOrFail($request->representatives);
 
-            return $companies->get();
-
+                    $companies->whereDoesntHave('representative' , function ($q) use ($rep){
+                        $q->where('company_user.mother_company_id' , $rep->mother_company_id);
+                    });
+                    return $companies->get();
+                }
+            }
+            else{
+                $companies->whereDoesntHave('representative' , function ($q){
+                    $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+                });
+                return $companies->get();
+            }
         }
 
     }

@@ -53,9 +53,12 @@
                         <div class="col-xl-12">
                             <div class="form-group">
                                 <h6 class="text-white font-weight-bold my-2 mr-5"> {{ trans('dashboard.Mother Company') }}  </h6>
-                                <select id="mother_company_id" name="mother_company_id" class="form-control select2" >
+                                <select id="mother_company_id" name="mother_company_id" class="form-control select2">
+                                    <option value="">{{ trans('dashboard.Select One') }}</option>
                                     @foreach($mother_companies as $key=> $mother_company)
-                                        <option {{ $key == 0 ? 'selected' : ''}} value="{{ $mother_company->id }}">
+                                        <option
+                                                {{ $key == 0 ? 'selected' : ''}}
+                                                value="{{ $mother_company->id }}">
                                             {{ app()->getLocale() == 'ar' ? $mother_company->name : $mother_company->name_en }}
                                         </option>
                                     @endforeach
@@ -87,10 +90,11 @@
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
+                                                        <a href="#"
+                                                           class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.COMPANIES REGISTERED TODAY') }}
                                                             <div class="text-dark-75 company_registered_today">
-                                                                {{ $company_registered_today_created_by_me }}
+                                                                {{--{{ $company_registered_today_created_by_me }}--}}
                                                             </div>
                                                         </a>
                                                     </div>
@@ -116,10 +120,11 @@
                                                     <!--end::Icon-->
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
+                                                        <a href="#"
+                                                           class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL COMPANIES') }}
-                                                            <div class="text-dark-75 TOTAL_COMPANIES">
-                                                                {{ $total_companies }}
+                                                            <div class="text-dark-75 total_companies">
+                                                                {{--{{ $total_companies }}--}}
                                                             </div>
                                                         </a>
 
@@ -146,10 +151,11 @@
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
+                                                        <a href="#"
+                                                           class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TOTAL USERS') }}
-                                                            <div  class="text-dark-75 total_users_under_me">
-
+                                                            <div class="text-dark-75 total_users_under_me">
+                                                                {{--{{ $total_users_under_me }}--}}
                                                             </div>
                                                         </a>
 
@@ -179,11 +185,12 @@
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3 REP_DAILY_REPORT">
+                                                        <a href="#"
+                                                           class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3 REP_DAILY_REPORT">
                                                             {{ trans('dashboard.REP DAILY REPORT') }}
 
                                                             <div class="text-dark-75 rep_daily_reports">
-
+                                                                {{--{{ $rep_daily_reports }}--}}
                                                             </div>
                                                         </a>
 
@@ -211,10 +218,11 @@
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
+                                                        <a href="#"
+                                                           class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.TODAY MEETING') }}
                                                             <div class="text-dark-75 today_meetings">
-
+                                                                {{--{{ $today_meetings }}--}}
                                                             </div>
                                                         </a>
 
@@ -244,10 +252,11 @@
 
                                                     <!--begin::Content-->
                                                     <div class="d-flex flex-column">
-                                                        <a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
+                                                        <a href="#"
+                                                           class="text-dark text-hover-primary font-weight-bold font-size-h5 mb-3">
                                                             {{ trans('dashboard.COMING MEETING') }}
                                                             <div class="text-dark-75 coming_meetings">
-
+                                                                {{--{{ $coming_meetings }}--}}
                                                             </div>
                                                         </a>
 
@@ -268,8 +277,8 @@
                 </div>
                 <!--begin::Row-->
                 <div class="row">
-                    @if($meetings)
-                        <div class="col-md-12">
+                    {{--@if($meetings)--}}
+                    <div class="col-md-12">
                         <!--begin::Card-->
                         <div class="card card-custom">
                             <div class="card-header flex-wrap">
@@ -280,17 +289,17 @@
                                 </div>
 
                             </div>
-                                <div class="card-body">
+                            <div class="card-body">
                                 <div class="table-responsive renderTable">
-                                <!--begin: Datatable-->
-                                    <!-- @include('system.home_meetings_table') -->
+                                    <!--begin: Datatable-->
+                                {{--@include('system.home_meetings_table')--}}
                                 <!--end: Datatable-->
                                 </div>
                             </div>
                         </div>
                         <!--end::Card-->
                     </div>
-                    @endif
+                    {{--@endif--}}
                 </div>
                 <!--end::Row-->
 
@@ -314,31 +323,40 @@
                 url: "{{ route('home') }}",
 
                 "data": {
-                    "mother_company_id": $("#mother_company_id").val(),
+                    @if(Auth::user()->mother_company_id)
+                        "mother_company_id": '{{ Auth::user()->mother_company_id }}',
+                    @else
+                        "mother_company_id": $("#mother_company_id").val(),
+                    @endif
                 },
                 // console.log($("#mother_company_id").val());
                 success: function (data) {
+                    $('.company_registered_today').html(JSON.parse(data).company_registered_today)
+                    $('.total_companies').html(JSON.parse(data).total_companies)
+
                     $('.total_users_under_me').html(JSON.parse(data).total_users_under_me)
                     $('.rep_daily_reports').html(JSON.parse(data).rep_daily_reports)
                     $('.today_meetings').html(JSON.parse(data).today_meetings)
                     $('.coming_meetings').html(JSON.parse(data).coming_meetings)
 
-                    $('.renderTable').html(JSON.parse(data).meetings);
-
+                    $('.renderTable').html(JSON.parse(data).viewblade);
+                    KTApp.initComponents();
                 }
-            });
+            })
+            ;
 
         }
     </script>
 
 
     <script>
-        $("#mother_company_id").on('change' , function () {
+        $("#mother_company_id").on('change', function () {
             filter($(this))
         });
 
 
-        $(document).ready(function() {
+        $(document).ready(function () {
+            // alert(4)
             filter($(this));
         });
 

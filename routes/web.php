@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,40 +58,41 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::resource('motherCompany' , 'MotherCompanyController');
 
     /** Manage Roles */
-    Route::resource('roles' , 'RoleController');
+    Route::resource('roles' , 'RoleController')->middleware(['permission:Menu Users']);
 
     /** Manage Permissions */
-    Route::resource('permissions' , 'PermissionController');
+    Route::resource('permissions' , 'PermissionController')->middleware(['permission:Menu Users']);
 
     /** Manage Countries */
-    Route::resource('countries' , 'CountryController');
+    Route::resource('countries' , 'CountryController')->middleware(['permission:Menu Region']);
 
     /** Manage Cities */
-    Route::resource('cities' , 'CityController');
+    Route::resource('cities' , 'CityController')->middleware(['permission:Menu Region']);
 
     /** Manage Users */
-    Route::resource('users' , 'UserController');
+    Route::resource('users' , 'UserController')->middleware(['permission:Menu Users']);
 
     /** Active User */
-    Route::get('active' , 'UserController@activeUser')->name('active_user');
+    Route::get('active' , 'UserController@activeUser')->name('active_user')->middleware(['permission:Menu Users']);
     /** Deactivate User */
-    Route::get('deactivate' , 'UserController@deactivateUser')->name('deactivate_user');
+    Route::get('deactivate' , 'UserController@deactivateUser')->name('deactivate_user')->middleware(['permission:Menu Users']);
 
     /** Manage Sectors */
-    Route::resource('sectors' , 'SectorController');
+    Route::resource('sectors' , 'SectorController')->middleware(['permission:Menu Sectors']);
 
     /** Manage Sub-Sectors */
     //Route::resource('sub_sectors', 'SubSectorController', ['except' => 'index' , 'create']);
-    Route::resource('sub_sectors', 'SubSectorController')->except('index' , 'create');
+    Route::resource('sub_sectors', 'SubSectorController')->except('index' , 'create')->middleware(['permission:Menu Sectors']);
     /** Custom index route */
     Route::get('sub_sectors/index/{sector_id}', [
         'as' => 'sub_sectors.index',
         'uses' => 'SubSectorController@index'
-    ]);
+    ])->middleware(['permission:Menu Sectors']);
+
     Route::get('sub_sectors/create/{sector_id}' , [
         'as' => 'sub_sectors.create',
         'uses' => 'SubSectorController@create'
-    ]);
+    ])->middleware(['permission:Menu Sectors']);
 
     /** Manage Company */
     Route::resource('companies' , 'CompanyController');
@@ -104,31 +106,32 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('show_company/{company_id}/{mother_company_id}' , 'CompanyController@showCompany')->name('show_company');
 
     /** Manage Company Needs */
-    Route::resource('company_needs' , 'CompanyNeedController');
+    Route::resource('company_needs' , 'CompanyNeedController')->middleware(['permission:Show Company Needs']);
     /** Custom index route */
     Route::get('company_needs/index/{company_id}/{mother_company_id}', [
         'as' => 'company_needs.index',
         'uses' => 'CompanyNeedController@index'
-    ]);
+    ])->middleware(['permission:Show Company Needs']);
     /** Custom create route */
     Route::get('company_needs/create/{company_id}/{mother_company_id}', [
         'as' => 'company_needs.create',
         'uses' => 'CompanyNeedController@create'
-    ]);
+    ])->middleware(['permission:Show Company Needs']);
     /** Custom edit route */
     Route::get('company_needs/edit/{need_id}/{mother_company_id}', [
         'as' => 'company_needs.edit',
         'uses' => 'CompanyNeedController@edit'
-    ]);
+    ])->middleware(['permission:Show Company Needs']);
 
     /** Custom edit route */
     Route::get('company_needs/destroy/{need_id}/{mother_company_id}', [
         'as' => 'company_needs.destroy',
         'uses' => 'CompanyNeedController@destroy'
-    ]);
+    ])->middleware(['permission:Show Company Needs']);
 
 
-    Route::get('print/need/{need_id}/{mother_company_id}' , 'CompanyNeedController@printNeed')->name('print_need');
+    Route::get('print/need/{need_id}/{mother_company_id}' , 'CompanyNeedController@printNeed')->name('print_need')
+        ->middleware(['permission:Show Company Needs']);
 
     /** Get Sub-Sectors Of Sector */
     Route::get('/get/sub/sectors/of/sector/{sector_id}' , 'SubSectorController@getSubsectorOfsector')->name('get_sub_sectros_of_sector');
@@ -138,25 +141,26 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     /** Assign Company To Representative Form */
     Route::get('assign/company/representative' , 'AssignCompanyController@assignCompanyToRepresentativeForm')
-        ->name('assign_company_to_representative');
+        ->name('assign_company_to_representative')->middleware(['permission:Menu Corporate Assignment']);
 
     /** Get Fetch Companies Based On Country ,City, Sector And Sub-sector */
     Route::get('fetch/company/data' , 'AssignCompanyController@fetchCompanyData')->name('fetch_company_data');
 
     /** Submit Assign Company To Representative */
     Route::post('assign/company' , 'AssignCompanyController@submitAssignCompanyToRepresentative')
-        ->name('assign_company');
+        ->name('assign_company')->middleware(['permission:Menu Corporate Assignment']);
 
     /** Get All Representatives */
     Route::get('get/all/representatives' , 'AssignCompanyController@getAllRepresentatives')
-        ->name('get_all_representatives');
+        ->name('get_all_representatives')->middleware(['permission:Menu Corporate Assignment']);
 
     /** Get Companies Of Representative */
     Route::get('get/companies/of/representative/{representative_id}' , 'AssignCompanyController@getCompaniesofRepresentative')
-        ->name('get_companies_of_representative');
+        ->name('get_companies_of_representative')->middleware(['permission:Menu Corporate Assignment']);
 
     /** Cancel The Company Assignment */
-    Route::get('cancel/company/assignment/{company_id}/{rep_id}' , 'AssignCompanyController@cancelCompanyassignment')->name('cancel_company_assignment');
+    Route::get('cancel/company/assignment/{company_id}/{rep_id}' , 'AssignCompanyController@cancelCompanyassignment')
+        ->name('cancel_company_assignment')->middleware(['permission:Menu Corporate Assignment']);
 
     /** Whatsapp Messages */
     Route::get('whatsapp/messages' , 'WhatsAppController@WhatsappMessages')->name('whatsapp_message');
@@ -167,78 +171,95 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('print/show/company/{company_id}' , 'CompanyController@print_show_company')->name('print_show_company');
 
     /** Send Email To Company */
-    Route::post('send/email','CompanyController@sendEmail')->name('send_email');
+    Route::post('send/email','CompanyController@sendEmail')->name('send_email')->middleware(['permission:Send Mail']);
 
 
     /*********************************************MANAGE CHECK BOXES****************************************************/
     /** Confirm Connected */
-    Route::get('/confirm/connected/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmConnected')->name('confirm_connected');
+    Route::get('/confirm/connected/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmConnected')
+        ->name('confirm_connected');
 
     /** Confirm Interview */
-    Route::get('/confirm/interview/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmInterview')->name('confirm_interview');
+    Route::get('/confirm/interview/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmInterview')
+        ->name('confirm_interview');
 
     /** Confirm Need */
-    Route::get('/confirm/need/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmNeed')->name('confirm_need');
+    Route::get('/confirm/need/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmNeed')
+        ->name('confirm_need');
 
     /** Confirm Contract */
-    Route::get('/confirm/contract/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmContract')->name('confirm_contract');
+    Route::get('/confirm/contract/{company_id}/{user_mother_company_id}' , 'CompanyController@confirmContract')
+        ->name('confirm_contract');
 
 
     /**************************************************REPORTS******************************************************************/
     /** Company Report */
-    Route::get('company/report','CompanyController@companiesReports')->name('company_report');
-    Route::get('export/company/report','CompanyController@extractCompanyReportExcel')->name('extract_company_report_excel');
+    Route::get('company/report','CompanyController@companiesReports')->name('company_report')
+        ->middleware(['permission:Reports']);
+
+    Route::get('export/company/report','CompanyController@extractCompanyReportExcel')->name('extract_company_report_excel')
+        ->middleware(['permission:Reports']);
 
     /** Representative Report */
-    Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report');
-    Route::get('export/representative/company/report','UserController@export_representative_company_report')->name('export_representative_company_report');
+    Route::get('representative/company/report','UserController@rep_companies_report')->name('rep_report')
+        ->middleware(['permission:Reports']);
+
+    Route::get('export/representative/company/report','UserController@export_representative_company_report')
+        ->name('export_representative_company_report')->middleware(['permission:Reports']);
 
     /** Monitor Report */
-    Route::get('monitor/report' , 'LogController@monitorReport')->name('monitor_report');
-    Route::get('export/monitor/report' , 'LogController@exportMonitorReport')->name('export_monitor_report');
+    Route::get('monitor/report' , 'LogController@monitorReport')->name('monitor_report')->middleware(['permission:Reports']);
+    Route::get('export/monitor/report' , 'LogController@exportMonitorReport')->name('export_monitor_report')
+        ->middleware(['permission:Reports']);
 
 
     /** sales Team Report */
 
 //    Route::resource('companySalesTeamReports' , 'SalesLeadReportController');
-    Route::get('companySalesTeamReports','SalesLeadReportController@index')->name('companySalesTeamReports.index');
-    Route::get('companySalesTeamReports/{company}/{mother_company_id}','SalesLeadReportController@show')->name('companySalesTeamReports.show');
-    Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')->name('companySalesTeamReports.create');
-    Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')->name('companySalesTeamReports.store');
-    Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')->name('extract_sales_lead_report_excel');
+    Route::get('companySalesTeamReports','SalesLeadReportController@index')->name('companySalesTeamReports.index')
+        ->middleware(['permission:Reports']);
+    Route::get('companySalesTeamReports/{company}/{mother_company_id}','SalesLeadReportController@show')
+        ->name('companySalesTeamReports.show')->middleware(['permission:Reports']);
+    Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')
+        ->name('companySalesTeamReports.create')->middleware(['permission:Reports']);
+    Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')
+        ->name('companySalesTeamReports.store')->middleware(['permission:Reports']);
+    Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')
+        ->name('extract_sales_lead_report_excel')->middleware(['permission:Reports']);
 
     //NEW
     Route::get('/get/reps/of/mothercompany/{mother_company_id}','AssignCompanyController@getRepofMothercompany');
 
 
     /** Manage Company Quotation */
-    Route::resource('companyQuotation' , 'CompanyQuotationController');
+    Route::resource('companyQuotation' , 'CompanyQuotationController')->middleware(['permission:quotations']);
 
     /** Custom index route */
     Route::get('companyQuotation/index/{company_id}/{mother_company_id}', [
         'as' =>   'companyQuotation.index',
         'uses' => 'CompanyQuotationController@index'
-    ]);
+    ])->middleware(['permission:quotations']);
 
     /** Custom create route */
     Route::get('companyQuotation/create/{company_id}/{mother_company_id}/{saudization}', [
         'as' => 'companyQuotation.create',
         'uses' => 'CompanyQuotationController@create'
-    ]);
+    ])->middleware(['permission:Create a quote']);
 
     /** Custom edit route */
     Route::get('companyQuotation/edit/{quotation_id}/{mother_company_id}', [
         'as' => 'companyQuotation.edit',
         'uses' => 'CompanyQuotationController@edit'
-    ]);
+    ])->middleware(['permission:quotations']);
 
     /** Custom destroy route */
     Route::get('companyQuotation/destroy/{quotation_id}/{mother_company_id}', [
         'as' => 'companyQuotation.destroy',
         'uses' => 'CompanyQuotationController@destroy'
-    ]);
+    ])->middleware(['permission:quotations']);
 
-    Route::get('print/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printQuotation')->name('print_quotation');
+    Route::get('print/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printQuotation')
+        ->name('print_quotation')->middleware(['permission:quotations']);
 
 
     Route::resource('CompanyAgreement' , 'CompanyAgreementController');
@@ -333,9 +354,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
     Route::post('assign/one/company' , 'AssignCompanyController@assignOnecompany')->name('assign_one_company');
-
-
-
 
 
 
@@ -776,6 +794,20 @@ Route::get('update/database/sub/sectors' , function (){
             'name:ar' => $value->title,
             'name:en' => $value->title_en,
         ]);
+    }
+});
+
+
+
+/** Get Deleted companies */
+Route::get('deleted/at' , function (){
+    $deleted_companies = App\Models\Company::onlyTrashed()->get();
+    //dd($deleted_companies);
+    foreach ($deleted_companies as $deleted_company){
+//        dd($deleted_company);
+        DB::table('company_user')
+            ->where('company_id', $deleted_company->id)
+            ->update(['deleted_at' => $deleted_company->deleted_at]);
     }
 });
 
