@@ -150,7 +150,7 @@
                                             <div class="col-lg-12 text-center">
                                                 <button type="submit"
                                                         class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                                <a href="{{ route('companySalesTeamReports.show' , $company->id) }}"
+                                                <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}"
                                                    class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                             </div>
                                         </div>

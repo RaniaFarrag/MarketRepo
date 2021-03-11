@@ -218,12 +218,16 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 //    Route::resource('companySalesTeamReports' , 'SalesLeadReportController');
     Route::get('companySalesTeamReports','SalesLeadReportController@index')->name('companySalesTeamReports.index')
         ->middleware(['permission:Reports']);
-    Route::get('companySalesTeamReports/{company}/{mother_company_id}','SalesLeadReportController@show')
+
+    Route::get('companySalesTeamReports/{company_id}/{mother_company_id}','SalesLeadReportController@show')
         ->name('companySalesTeamReports.show')->middleware(['permission:Reports']);
-    Route::get('companySalesTeamReports/create/{company}','SalesLeadReportController@create')
+
+    Route::get('create/companySalesTeamReports/{company}/{mother_company_id}','SalesLeadReportController@create')
         ->name('companySalesTeamReports.create')->middleware(['permission:Reports']);
+
     Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')
         ->name('companySalesTeamReports.store')->middleware(['permission:Reports']);
+
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')
         ->name('extract_sales_lead_report_excel')->middleware(['permission:Reports']);
 

@@ -52,6 +52,27 @@ class FnrcoAgreementRepository implements FnrcoAgreementRepositoryInterface
            'fax' => $request->fax,
            'mailing_address' => $request->mailing_address,
            'postal_code' => $request->postal_code,
+
+           'mol' => $request->mol,
+           'location' => $request->location,
+           'agreement_num' => $request->agreement_num,
+           'agreement_issue_date' => $request->agreement_issue_date,
+           'agreement_expiry_date' => $request->agreement_expiry_date,
+
+           'work_hours' => $request->work_hours,
+           'work_hours_ar' => $request->work_hours_ar,
+
+           'work_days' => $request->work_days,
+           'work_days_en' => $request->work_days_en,
+
+           'work_hours_weekly' => $request->work_hours_weekly,
+           'work_hours_weekly_ar' => $request->work_hours_weekly_ar,
+
+           'first_party' => $request->first_party,
+           'first_party_en' => $request->first_party_en,
+
+           'second_party' => $request->second_party,
+           'second_party_en' => $request->second_party_en,
         ]);
 
         $this->addLog(auth()->id() , $fnrco_agreement->id , 'FnrcoAgreement' , 'تم تعديل عقد توظيف لشركة فناركو ' , 'Fnrco Agreement has been updated');

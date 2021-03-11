@@ -104,9 +104,9 @@ class CompanyQuotationController extends Controller
                 'linrco_quotation'=>$linrco_quotation ,'mother_company_id' => $mother_company_id]);
         }
         elseif ($mother_company_id == 2){
-//            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
-//            return view('system.company_quotations.fnrco.edit')->with(['countries' => $countries ,
-//                'fnrco_quotation'=>$fnrco_quotation , 'mother_company_id' => $mother_company_id]);
+            $fnrco_quotation = FnrcoQuotation::where('id' , $quotation_id)->with('fnrcoQuotationsRequest')->first();
+            return view('system.company_quotations.fnrco.edit')->with(['countries' => $countries ,
+                'fnrco_quotation'=>$fnrco_quotation , 'mother_company_id' => $mother_company_id]);
         }
     }
 

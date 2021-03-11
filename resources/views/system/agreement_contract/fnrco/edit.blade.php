@@ -65,6 +65,33 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.mol') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ $fnrco_agreement->mol }}" name="mol" type="text"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="{{ trans('dashboard.mol') }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.location') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ $fnrco_agreement->location }}" name="location" type="text"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="{{ trans('dashboard.location') }}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.agreement_num') }} :</label>
+                                            <input value="{{ $fnrco_agreement->agreement_num }}" name="agreement_num" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.agreement_num') }}" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.cr_date') }} :</label>
                                             <div class="input-group input-group-solid date"
                                                  data-target-input="nearest">
@@ -108,6 +135,29 @@
                                         </div>
 
                                     </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.agreement_issue_date') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ $fnrco_agreement->agreement_issue_date }}" name="agreement_issue_date" type="date"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="{{ trans('dashboard.agreement_issue_date') }}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.agreement_expiry_date') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ $fnrco_agreement->agreement_expiry_date }}" name="agreement_expiry_date" type="date"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="{{ trans('dashboard.agreement_expiry_date') }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Phone') }} :</label>
@@ -135,6 +185,77 @@
                                                    placeholder="{{ trans('dashboard.postal_code') }}" />
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.work hours') }} :</label>
+                                            <input value="{{ $fnrco_agreement->work_hours }}" name="work_hours" type="text"
+                                                   class="form-control" placeholder="8" required/>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.work_hours_ar') }} :</label>
+                                            <input value="{{ $fnrco_agreement->work_hours_ar }}" name="work_hours_ar" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.eight') }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.work_days') }} :</label>
+                                            <input value="{{ $fnrco_agreement->work_days }}" name="work_days" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.six') }}" required/>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.work_days_en') }} :</label>
+                                            <input value="{{ $fnrco_agreement->work_days_en }}" name="work_days_en" type="text" class="form-control"
+                                                   placeholder="6" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.work_hours_weekly') }} :</label>
+                                            <input value="{{ $fnrco_agreement->work_hours_weekly }}" name="work_hours_weekly" type="text"
+                                                   class="form-control" placeholder="48" required/>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.work_hours_weekly_ar') }} :</label>
+                                            <input value="{{ $fnrco_agreement->work_hours_weekly_ar }}" name="work_hours_weekly_ar" type="text" class="form-control"
+                                                   placeholder="ثمانية واربعون" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.first_party') }} :</label>
+                                            <input value="{{ $fnrco_agreement->first_party }}" name="first_party" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.first_party') }}" required/>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.first_party_en') }} :</label>
+                                            <input value="{{ $fnrco_agreement->first_party_en }}" name="first_party_en" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.first_party_en') }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.second_party') }} :</label>
+                                            <input value="{{ $fnrco_agreement->second_party }}" name="second_party" type="text"
+                                                   class="form-control" placeholder="{{ trans('dashboard.second_party') }}" required/>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.second_party_en') }} :</label>
+                                            <input value="{{ $fnrco_agreement->second_party_en }}" name="second_party_en" type="text" class="form-control"
+                                                   placeholder="{{ trans('dashboard.second_party_en') }}" />
+                                        </div>
+                                    </div>
+
 
                                 </div>
                                 <div class="card-footer">

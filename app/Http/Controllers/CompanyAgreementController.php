@@ -185,7 +185,14 @@ class CompanyAgreementController extends Controller
         $fnrco_agreement = FnrcoAgreement::where('id' , $fnrco_agreement_id)->with('company' , 'user' , 'fnrcoQuotation')->first();
 //        dd($fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest->sum('total_value_per_month'));
         $total = $fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest->sum('total_value_per_month');
-        $pdf = Pdf::loadView('system.agreement_contract.fnrco.Agreement_Service_fnrco' ,compact('fnrco_agreement' , 'total'));
+        if($fnrco_agreement->fnrcoQuotation->saudization == 1){ //Ageer
+            $pdf = Pdf::loadView('system.agreement_contract.fnrco.Agreement_Ageer_fnrco' ,compact('fnrco_agreement' , 'total'));
+        }
+        else{
+            $pdf = Pdf::loadView('system.agreement_contract.fnrco.Agreement_Service_fnrco' ,compact('fnrco_agreement' , 'total'));
+        }
+
+
 
         $output = $pdf->output();
 

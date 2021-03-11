@@ -112,8 +112,8 @@
                                         <select class="form-control select2" id="period" name="Contract_period"
                                                             required>
                                             <option value="" selected="">Select All</option>
-                                            <option {{ $fnrco_quotation->Contract_period == 24 ? 'selected' : ''}} value="24"  iqama="1019.6" >3 {{ trans('dashboard.Month') }}</option>
-                                            <option {{ $fnrco_quotation->Contract_period == 24 ? 'selected' : ''}} value="24" iqama="1019.6">6 {{ trans('dashboard.Month') }}</option>
+                                            <option {{ $fnrco_quotation->Contract_period == 3 ? 'selected' : ''}} value="3"  iqama="1019.6" >3 {{ trans('dashboard.Month') }}</option>
+                                            <option {{ $fnrco_quotation->Contract_period == 6 ? 'selected' : ''}} value="6" iqama="1019.6">6 {{ trans('dashboard.Month') }}</option>
                                             <option {{ $fnrco_quotation->Contract_period == 12 ? 'selected' : ''}} value="12"  iqama="1115.5" >12 {{ trans('dashboard.Month') }}</option>
                                             <option {{ $fnrco_quotation->Contract_period == 24 ? 'selected' : ''}} value="24" iqama="1019.6">24 {{ trans('dashboard.Month') }}</option>
                                         </select>
@@ -277,11 +277,12 @@
     </script>
 
     
-<script>
+    <script>
     $(document).on('change', '#period , .basicSalary, .foodAllowance, .fNRCOCharge,.qty', function() {
 
         // Does some stuff and logs the event to the console
-        var period =$('#period').val();
+        // var period =$('#period').val();
+        var period = 24;
         var iqama = $('#period :selected').attr('iqama')
 
         $(".basicSalary").each(function() {

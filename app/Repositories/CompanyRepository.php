@@ -606,14 +606,17 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** STOP THIS FUNCTION*/
     public function destroy($company)
     {
-//        dd($company->companyDesignatedcontacts);
-        foreach ($company->companyDesignatedcontacts as $companyDesignatedcontact) {
-            $companyDesignatedcontact->delete();
-        }
+//        foreach ($company->companyDesignatedcontacts as $companyDesignatedcontact) {
+//            $companyDesignatedcontact->delete();
+//        }
 
-        foreach ($company->companyMeetings as $companyMeeting) {
-            $companyMeeting->delete();
-        }
+        $company->companyDesignatedcontacts()->delete();
+
+//        foreach ($company->companyMeetings as $companyMeeting) {
+//            $companyMeeting->delete();
+//        }
+
+        $company->companyMeetings()->delete();
 
 //        $company->representative()->detach();
 //        $company->representative()->pivot()->delete();
@@ -623,10 +626,6 @@ class CompanyRepository implements CompanyRepositoryInterface
                 ->where('company_id', $company->id)
                 ->update(array('deleted_at' => DB::raw('NOW()')));
         }
-        else{
-            dd(7);
-        }
-
 
         $company->delete();
 

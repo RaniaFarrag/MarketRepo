@@ -47,7 +47,7 @@
 
                 <div class="d-flex align-items-center">
                     <!--begin::Button-->
-                    <a href="{{route('companySalesTeamReports.create',$company->id)}}"
+                    <a href="{{route('companySalesTeamReports.create' , [$company->id , $mother_company_id])}}"
                        class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.create Report') }}
                     </a>
@@ -174,7 +174,8 @@
             $('#checkAll').is(':checked') ? checked_val = 1 : checked_val = 0;
             $.ajax({
                 dataType: 'html',
-                url: '{{route("companySalesTeamReports.show",$company)}}',
+                url: '{{route("companySalesTeamReports.show",[$company , $mother_company_id])}}',
+                url: '{{route("companySalesTeamReports.show",[$company , $mother_company_id])}}',
                 data: {
                     "checkAll": checked_val,
                     "ids": checkCvOriginal,

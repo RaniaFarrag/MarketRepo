@@ -111,13 +111,12 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-3">
-
                                         <label>{{ trans('dashboard.Contract Period') }} :</label>
                                         <select class="form-control select2" id="period" name="Contract_period"
                                                             required>
                                             <option value="" selected="">Select All</option>
-                                           <option value="24"  iqama="1019.6" >3 {{ trans('dashboard.Month') }}</option>
-                                           <option value="24" iqama="1019.6">6 {{ trans('dashboard.Month') }}</option>
+                                           <option value="3"  iqama="1019.6" >3 {{ trans('dashboard.Month') }}</option>
+                                           <option value="6" iqama="1019.6">6 {{ trans('dashboard.Month') }}</option>
                                             <option value="12"  iqama="1115.5" >12 {{ trans('dashboard.Month') }}</option>
                                             <option value="24" iqama="1019.6">24 {{ trans('dashboard.Month') }}</option>
                                         </select>
@@ -283,7 +282,9 @@
     $(document).on('change', '#period , .basicSalary, .foodAllowance, .fNRCOCharge,.qty', function() {
 
         // Does some stuff and logs the event to the console
-        var period =$('#period').val();
+        // var period =$('#period').val();
+        var period = 24;
+        //console.log(period)
         var iqama = $('#period :selected').attr('iqama')
 
         $(".basicSalary").each(function() {

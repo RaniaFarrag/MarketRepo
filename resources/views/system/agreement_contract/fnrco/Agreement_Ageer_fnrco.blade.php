@@ -3,100 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Agreement Service</title>
-    {{--<style>--}}
-        {{--@page {--}}
-            {{--margin: 90px 20px;--}}
-            {{--header: page-header;--}}
-            {{--footer: page-footer;--}}
-        {{--}--}}
-
-        {{--body {--}}
-            {{--font-size: 13px;--}}
-            {{--letter-spacing: 0px;--}}
-            {{--position: relative;--}}
-            {{--text-align: right;--}}
-            {{--font-family: 'examplefont3', sans-serif;--}}
-        {{--}--}}
-
-        {{--main {--}}
-            {{--height: 870px;--}}
-            {{--position: relative;--}}
-            {{--display: block;--}}
-        {{--}--}}
-
-        {{--.ar {--}}
-            {{--font-family: 'examplefont3', sans-serif;--}}
-        {{--}--}}
-
-        {{--.en {--}}
-            {{--font-family: 'examplefont3', sans-serif;--}}
-            {{--direction: ltr;--}}
-        {{--}--}}
-
-        {{--td {--}}
-            {{--padding: 2px 5px;--}}
-            {{--text-align: center;--}}
-            {{--border: 1px solid #77697a;--}}
-            {{--border-collapse: collapse;--}}
-            {{--font-size: 14px !important;--}}
-        {{--}--}}
-
-        {{--.ltr {--}}
-            {{--direction: ltr;--}}
-            {{--text-align: left--}}
-        {{--}--}}
-
-        {{--h4 {--}}
-            {{--font-size: 24px;--}}
-        {{--}--}}
-
-        {{--h5 {--}}
-            {{--font-size: 18px--}}
-        {{--}--}}
-
-        {{--table {--}}
-            {{--width: 100% !important;--}}
-            {{--border-collapse: collapse;--}}
-            {{--border: 1px solid #77697a--}}
-        {{--}--}}
-
-        {{--.page_break {--}}
-            {{--page-break-before: always;--}}
-        {{--}--}}
-
-        {{--p {--}}
-            {{--font-size: 14px--}}
-        {{--}--}}
-
-        {{--header {--}}
-            {{--position: absolute;--}}
-            {{--top: 0cm;--}}
-            {{--left: 0cm;--}}
-            {{--right: 0cm;--}}
-            {{--text-align: center;--}}
-            {{--width: 100%;--}}
-            {{--height: 0cm;--}}
-        {{--}--}}
-
-        {{--footer {--}}
-            {{--position: absolute;--}}
-            {{--bottom: 0cm;--}}
-            {{--left: 0cm;--}}
-            {{--right: 0cm;--}}
-            {{--text-align: center;--}}
-            {{--width: 100%;--}}
-        {{--}--}}
-
-        {{--table {--}}
-            {{--page-break-inside: auto--}}
-        {{--}--}}
-
-        {{--tr {--}}
-            {{--page-break-inside: avoid;--}}
-            {{--page-break-after: auto--}}
-        {{--}--}}
-    {{--</style>--}}
-
     <style>
         @page {
             margin: 120px 20px 70px 20px;
@@ -196,46 +102,45 @@
 
 <body dir="rtl">
 
+{{--<htmlpageheader name="page-header">
+    <header><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/fhead.jpg"></header>
+</htmlpageheader>--}}
 <htmlpageheader name="page-header">
     <header>
         <div style="width: 100%;margin: auto; padding: 20px; margin-bottom: 20px;">
-            <table style="text-align: center; direction: ltr">
-                <tbody>
-                <tr>
-                    <td style="font-size: 10px !important; font-weight: bold">CLIENT CODE</td>
-                    <td style="font-size: 10px !important; font-weight: bold">MOL</td>
-                    <td style="font-size: 10px !important; font-weight: bold">COMPANY NAME</td>
-                    <td style="font-size: 10px !important; font-weight: bold">LOCATION</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 11px !important;">{{ $fnrco_agreement->company->client_code }}</td>
-                    <td style="font-size: 11px !important;">{{ $fnrco_agreement->mol }}</td>
-                    <td style="font-size: 11px !important;">{{ $fnrco_agreement->company->name }}</td>
-                    <td style="font-size: 11px !important;">{{ $fnrco_agreement->location }}</td>
-                </tr>
-                <tr>
-                    <td style="font-size: 11px !important; font-weight: bold" colspan="2">AGREEMENT NUMBER</td>
-                    <td style="font-size: 11px !important; font-weight: bold">AGREEMENT ISSUE DATE</td>
-                    <td style="font-size: 11px !important; font-weight: bold">AGREEMENT EXPIRY DATE</td>
+        <table style="text-align: center; direction: ltr">
+            <tbody>
+            <tr>
+                <td style="font-size: 10px !important; font-weight: bold">CLIENT CODE</td>
+                <td style="font-size: 10px !important; font-weight: bold">MOL</td>
+                <td style="font-size: 10px !important; font-weight: bold">COMPANY NAME</td>
+                <td style="font-size: 10px !important; font-weight: bold">LOCATION</td>
+            </tr>
+            <tr>
+                <td style="font-size: 11px !important;">{{ $fnrco_agreement->company->client_code }}</td>
+                <td style="font-size: 11px !important;">{{ $fnrco_agreement->mol }}</td>
+                <td style="font-size: 11px !important;">{{ $fnrco_agreement->company->name }}</td>
+                <td style="font-size: 11px !important;">{{ $fnrco_agreement->location }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 11px !important; font-weight: bold" colspan="2">AGREEMENT NUMBER</td>
+                <td style="font-size: 11px !important; font-weight: bold">AGREEMENT ISSUE DATE</td>
+                <td style="font-size: 11px !important; font-weight: bold">AGREEMENT EXPIRY DATE</td>
 
-                </tr>
-                <tr>
-                    <td style="font-size: 11px !important;" colspan="2">{{ $fnrco_agreement->agreement_num }}</td>
-                    <td style="font-size: 11px !important;">{{ $fnrco_agreement->agreement_issue_date }}</td>
-                    <td style="font-size: 11px !important;">{{ $fnrco_agreement->agreement_expiry_date }}</td>
+            </tr>
+            <tr>
+                <td style="font-size: 11px !important;" colspan="2">{{ $fnrco_agreement->agreement_num }}</td>
+                <td style="font-size: 11px !important;">{{ $fnrco_agreement->agreement_issue_date }}</td>
+                <td style="font-size: 11px !important;">{{ $fnrco_agreement->agreement_expiry_date }}</td>
 
-                </tr>
-                </tbody>
-            </table>
+            </tr>
+            </tbody>
+        </table>
         </div>
         <br/>
         <br/>
     </header>
 </htmlpageheader>
-
-{{--<htmlpageheader name="page-header">--}}
-    {{--<header><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/fhead.jpg"></header>--}}
-{{--</htmlpageheader>--}}
 
 <htmlpagefooter name="page-footer">
 
@@ -262,23 +167,11 @@
         </tr>
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">  1.</span>
-                الشركة الوطنية الأولى للموارد البشرية شركة سعودية مساهمه مقفلة سجل تجاري رقم
-                <span class="en">١٠١٠٣٥٣٦٤</span>
-                و يمثلها في التوقيع على هذا العقد السيد
-                <span class="en">/</span>
-                علي جابر ذيب بصفته المدير العام <span class="en">،</span> العنوان المملكة العربية السعودية مدينة الرياض
-                <span class="en">،</span> حي الملز
-                <span class="en">،</span>
-                ١١٣٤٢
-                ص
-                <span class="en">.</span>
-                ب
-                <span class="en">٢٦١٦٥٦</span><br><br>
-                الهاتف
-                <span class="en">: 47724510096611</span><br>
-                فاكس
-                <span class="en"> : 00966112457248</span><br>
+                1. الشركة الوطنية الأولى للموارد البشرية شركة سعودية مساهمه مقفلة سجل تجاري رقم ١٠١٠٣٥٣٦٤ و يمثلها في
+                التوقيع على هذا العقد السيد / علي جابر ذيب بصفته المدير العام، العنوان المملكة العربية السعودية مدينة
+                الرياض ، حي الملز،١١٣٤٢ ص.ب ٢٦١٦٥٦<br>
+                الهاتف : 47724510096611<br>
+                فاكس : 00966112457248<br>
                 ويشار إليها في هذا العقد بالطرف الأول
 
 
@@ -296,52 +189,44 @@
         </tr>
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en"> 2.</span>
-                <span class="en">  {{ $fnrco_agreement->company->name }}</span>
+
+                2. {{ $fnrco_agreement->company->name }}
                 و هي شركة عاملة مسجلة تحت نظام وزارة التجارة و الإستثمار في المملكة
-                العربية السعودية بموجب السجل التجاري رقم
-                <span class="en"> {{ $fnrco_agreement->company->cr }}</span>
-                تاريخ
-                <span class="en"> {{ $fnrco_agreement->cr_date }}</span>
+                العربية السعودية بموجب السجل التجاري رقم {{ $fnrco_agreement->company->cr }}
+                 تاريخ {{ $fnrco_agreement->cr_date }}
                 ونظام وزارة الموارد البشرية و التنمية
-                الاجتماعية بالرقم
-                <span class="en">{{ $fnrco_agreement->hr_system }}</span>
-                و يمثلها بالتوقيع على هذا العقد السيد
-                <span class="en">{{ $fnrco_agreement->signing_by }}</span>
-                بصفته
-                <span class="en">{{ $fnrco_agreement->by_as }}</span><br>
-                العنوان
-                <span class="en">: {{ $fnrco_agreement->address_ar }}</span><br>
-                الهاتف
-                <span class="en">{{ $fnrco_agreement->phone }}</span><br>
-                فاكس
-                <span class="en">{{ $fnrco_agreement->fax }}</span><br>
-                العنوان البريدي
-                <span class="en">{{ $fnrco_agreement->mailing_address }}</span><br>
-                الرمز البريدي
-                <span class="en">{{ $fnrco_agreement->postal_code }}</span><br>
-                عنوان البريد الإلكتروني
-                <span class="en">: {{ $fnrco_agreement->company->email }}</span><br>
-                <span class="en">(</span>
-                ويشار إليها في هذا العقد بالطرف الثاني
-                <span class="en">)</span>
+                الاجتماعية بالرقم {{ $fnrco_agreement->hr_system }} و يمثلها بالتوقيع على هذا
+                العقد السيد {{ $fnrco_agreement->signing_by }}
+                بصفته {{ $fnrco_agreement->by_as }}
+                <br>
+                العنوان :{{ $fnrco_agreement->address_ar }}<br>
+                الهاتف :{{ $fnrco_agreement->phone }}<br>
+                فاكس :{{ $fnrco_agreement->fax }}<br>
+                العنوان البريدي : {{ $fnrco_agreement->mailing_address }}<br>
+                الرمز البريدي : {{ $fnrco_agreement->postal_code }}<br>
+                عنوان البريد الإلكتروني : {{ $fnrco_agreement->company->email }}<br>
+
+                (ويشار إليها في هذا العقد بالطرف الثاني)
 
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-                2. {{ $fnrco_agreement->company->name }} It is a company operating and registered under the system of the Ministry
-                of Commerce and Investment in the Kingdom of Saudi Arabia under the commercial registration No {{ $fnrco_agreement->company->cr }}
-                Date/ {{ $fnrco_agreement->cr_date }} and the law of the Ministry of Human Resources and Social Development under No/ {{ $fnrco_agreement->hr_system }} and
-                represented in signing hereon by Mr./ {{ $fnrco_agreement->signing_by }} ID number/ in his capacity as {{ $fnrco_agreement->by_as }}<br>
-                Address: {{ $fnrco_agreement->address_en }}<br>
-                Phone: {{ $fnrco_agreement->phone }}<br>
-                Fax: {{ $fnrco_agreement->fax }}<br>
-                Mailing Address: {{ $fnrco_agreement->mailing_address }}<br>
-                Postal code: {{ $fnrco_agreement->postal_code }}<br>
-                E-mail address:  {{ $fnrco_agreement->company->email }}<br>
+
+                2. {{ $fnrco_agreement->company->name }} It is a company operating and registered under the system of
+                the Ministry
+                of Commerce and Investment in the Kingdom of Saudi Arabia under the commercial registration
+                No {{ $fnrco_agreement->company->cr }}
+                Date/ {{ $fnrco_agreement->cr_date }} and the law of the Ministry of Human Resources and Social
+                Development under No/ {{ $fnrco_agreement->hr_system }} and
+                represented in signing hereon by Mr./ {{ $fnrco_agreement->signing_by }} ID number/ in his capacity
+                as {{ $fnrco_agreement->by_as }}<br>
+                Address : {{ $fnrco_agreement->address_en }}<br>
+                Phone : {{ $fnrco_agreement->phone }}<br>
+                Fax : {{ $fnrco_agreement->fax }}<br>
+                Mailing Address : {{ $fnrco_agreement->mailing_address }}<br>
+                Postal code : {{ $fnrco_agreement->postal_code }}<br>
+                E-mail address : {{ $fnrco_agreement->company->email }}<br>
                 (Referred to in this contract as the Second Party)
-
-
             </td>
         </tr>
         <tr>
@@ -360,15 +245,11 @@
 
                 حيث إن الطرف الأول مرخص من قبل الجهات المختصة للعمل في مجال تقديم الخدمات العمالية للغير ولديه الخبرة
                 والإمكانيات اللازمة لتقديم الخدمات التي يطلبها الغير وفق الأنظمة واللوائح المعمول بها في المملكة العربية
-                السعودية<span class="en">،</span> وحيث أن الطرف الثاني يرغب في الاستفادة من خدمات الطرف الأول وذلك في
-                الحصول على خدمات العمالة
-                للعمل لديه وتحت مسئوليته ووفق الأنظمة المعمول بها في المملكة العربية السعودية بنظام أجير <span
-                        class="en">.</span>
-                وبناء على تطابق الإيجاب والقبول بين الطرفين<span class="en">،</span> فقد أبرم الطرفان هذا العقد وهما
-                بكامل الأهلية المعتبرة
+                السعودية، وحيث أن الطرف الثاني يرغب في الاستفادة من خدمات الطرف الأول وذلك في الحصول على خدمات العمالة
+                للعمل لديه وتحت مسئوليته ووفق الأنظمة المعمول بها في المملكة العربية السعودية بنظام أجير .<br/>
+                وبناء على تطابق الإيجاب والقبول بين الطرفين، فقد أبرم الطرفان هذا العقد وهما بكامل الأهلية المعتبرة
                 لإبرام العقود شرعاً ونظاماً واعتبرا أن المقدمة أعلاه جزءاً لا يتجزأ من العقد وتم الاتفاق بينهما على ما
-                يلي
-                <span class="en">:-</span>
+                يلي:-
 
 
             </td>
@@ -389,37 +270,6 @@
         <tr>
             <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
                 <strong>
-                    موضوع الإتفاقية
-                </strong>
-            </td>
-
-            <td class="en ltr"
-                style="width: 50%; text-align: center;  font-size: 14px;line-height: 24px;background:#ddd"><strong>SUBJECT
-                    OF AGREEMENT</strong>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">.</span>
-                يقوم الطرف الأول بتوفير الخدمات العمالية التالية
-
-                <span class="en">:-</span> <br/>
-                <span class="en"> ---------------------------------------------------------------
-</span>
-
-
-            </td>
-            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-                The FIRST PARTY to provide the services of Manpower Support and Services of:
-                <br/>
-                ---------------------------------------------------------------
-
-
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
-                <strong>
                     إلتزمات الطرف الأول
                 </strong>
             </td>
@@ -432,11 +282,8 @@
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
                 يلتزم الطرف الأول باتخاذ كافة الترتيبات اللازمة المتعلقة بإنهاء إجراءات الإقامة وتراخيص العمل والتأمين
-                الطبي وتوزيع الرواتب<span class="en">.</span> وذلك بعد إستلام كافة المستحقات الخاصة بهذه العمالة من
-                الطرف الثاني وفي حالة وجود
-                أي غرامات أو مخالفات تنتج عن تأخير الطرف الثاني في السداد فيتحملها الطرف الثاني منفرداً
-
-                <span class="en">.</span>
+                الطبي وتوزيع الرواتب. وذلك بعد إستلام كافة المستحقات الخاصة بهذه العمالة من الطرف الثاني وفي حالة وجود
+                أي غرامات أو مخالفات تنتج عن تأخير الطرف الثاني في السداد فيتحملها الطرف الثاني منفرداً .
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
@@ -445,7 +292,6 @@
                 And that is after receiving all the dues for this employment from the second party, and in the event of
                 any fines or violations resulting from the delay of the second party in payment, the second party shall
                 bear them individually.
-
 
             </td>
         </tr>
@@ -457,19 +303,16 @@
             </td>
 
             <td class="en ltr"
-                style="width: 50%; text-align: center;  font-size: 14px;line-height: 24px;background:#ddd"><strong>SECOND
-                    PARTY OBLIGATIONS</strong>
+                style="width: 50%; text-align: center;  font-size: 14px;line-height: 24px;background:#ddd"><strong>
+                    SECOND PARTY OBLIGATIONS
+                </strong>
             </td>
         </tr>
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">1.</span>
-                يلتزم الطرف الثاني بتوفير صورة من السجل التجاري وشهادة الزكاة وصورة شهادة التوطين وصورة بطاقة و هوية
+                1. يلتزم الطرف الثاني بتوفير صورة من السجل التجاري وشهادة الزكاة وصورة شهادة التوطين وصورة بطاقة و هوية
                 ملاك المنشأة و صورة من عقد تأسيس الشركة أو النظام الأساسي للطرف الأول متى طلب منه ذلك وكذلك صورة من
-                تفويض الشخص المخول بتوقيع هذا العقد مصدقة من الغرفة التجارية إلى الطرف الأول عند التوقيع على هذا العقد
-                <span class="en">.</span>
-
-
+                تفويض الشخص المخول بتوقيع هذا العقد مصدقة من الغرفة التجارية إلى الطرف الأول عند التوقيع على هذا العقد.
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 1.The Second Party is obliged to provide a copy of the commercial registration, the Zakat certificate, a
@@ -480,35 +323,20 @@
 
             </td>
         </tr>
+
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">2.</span>
-
-                يلتزم الطرف الثاني بالمحافظة على <span class="en">:-</span><br/>
-                <span class="en">أ)</span>
-                نسبة التوطين حسب متطلبات وزارة الموارد البشريه والتنميه
-                الاجتماعيه وجميع أنظمة واشتراطات الوزارة وبرنامج أجير
-                <span class="en">،</span>
-                وفي حال عدم التزام الطرف الثاني بذلك عليه إشعار
-                الطرف الأول فوراً بأي تغيير يطرأ عليه بعد التعاقد مما يعد مخالفا لهذه الأنظمة والاشتراطات
-                <span class="en">،</span>
-                ويتحمل الطرف
-                الثاني وحده جميع التبعات والغرامات المترتبة على ذلك كما يحق للطرف الأول الرجوع عليه ومطالبته بها<span
-                        class="en">،</span> كما
+                2. يلتزم الطرف الثاني بالمحافظة على :- <br/>
+                أ) نسبة التوطين حسب متطلبات وزارة الموارد البشريه والتنميه
+                الاجتماعيه وجميع أنظمة واشتراطات الوزارة وبرنامج أجير، وفي حال عدم التزام الطرف الثاني بذلك عليه إشعار
+                الطرف الأول فوراً بأي تغيير يطرأ عليه بعد التعاقد مما يعد مخالفا لهذه الأنظمة والاشتراطات، ويتحمل الطرف
+                الثاني وحده جميع التبعات والغرامات المترتبة على ذلك كما يحق للطرف الأول الرجوع عليه ومطالبته بها، كما
                 يحق للطرف الأول على إثر ذلك سحب العمالة وتحميل الطرف الثاني كافة الأتعاب المستحقة عليه عن الفترة السابقة
-                بالإضافة إلى رسوم الإقامات ورخص العمل وأي رسوم حكومية أخرى مستحقة عن كامل فترة العقد<span
-                        class="en">،</span> بالإضافة إلى
-                <span class="en"> (50%)</span>
-                خمسين بالمائة من الأتعاب الشهرية عن باقي فترة العقد
-                <span class="en">.</span>
-                وهذا متفق عليه بين الطرفين
+                بالإضافة إلى رسوم الإقامات ورخص العمل وأي رسوم حكومية أخرى مستحقة عن كامل فترة العقد، بالإضافة إلى (50%)
+                خمسين بالمائة من الأتعاب الشهرية عن باقي فترة العقد. وهذا متفق عليه بين الطرفين<br/>
+                ب) يلتزم الطرف الثاني بتقديم أي وثيقة قانونية أخرى قد تكون مطلوبة بواسطة الحكومة السعودية للعمالة
+                المستقدمة حتى وقت انتهاء أو إنهاء هذا العقد .
 
-                <span class="en">.</span>
-<br/>
-                <span class="en">ب) </span>
-                يلتزم الطرف الثاني بتقديم أي وثيقة قانونية أخرى قد تكون مطلوبة بواسطة الحكومة السعودية للعمالة المستقدمة
-                حتى وقت انتهاء أو إنهاء هذا العقد
-                <span class="en">.</span>
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
@@ -520,26 +348,20 @@
                 solely bears all the consequences and fines. The First Party also has the right to refer to it and claim
                 it, and the First Party also has the right to withdraw the workforce and to charge the Second Party with
                 all fees due on it for the previous period in addition to residence fees, work permits and any other
-                government fees due for the entire contract period, in addition to fifteen percent (50%) of the monthly
-                fees for the remainder of the contract period. And This is agreed upon between the two parties
-<br/>
+                government fees due for the entire contract period, in addition to fifty percent (50%) of the monthly
+                fees for the remainder of the contract period. And This is agreed upon between the two parties<br/>
                 b) The second party is obligated to provide any other legal documents required by the Saudi Government
                 for the hired worker till the expiry/termination of this agreement.
 
             </td>
         </tr>
-
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">3.</span>
-                يلتزم الطرف الثاني بتوفير خدمات النقل للعمالة المطلوبة خلال فترة التعاقد
-                <span class="en">،</span>
-                وتأمين معدات السلامة
+                3. يلتزم الطرف الثاني بتوفير خدمات النقل للعمالة المطلوبة خلال فترة التعاقد، وتأمين معدات السلامة
                 والوقاية الشخصية والتدريب لهم علي الاعمال المطلوبة منهم بالاضافة الي توفير أي معدات أو آليات قد تكون
                 مطلوبة لتنفيذ الأعمال وإصدار الشهادات وبوالص التأمين اللازمة كتأمين المركبات وغيرها، كما يلتزم بتأمين
-                السكن الملائم لهم أيضا كلاً حسب وظيفته
+                السكن الملائم لهم أيضا كلاً حسب وظيفته .
 
-                <span class="en">.</span>
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 3. The SECOND PARTY shall provide transportation for the hired workers during the period of the
@@ -547,21 +369,19 @@
                 in addition to providing any equipment or machines that may be required to carry out the business and
                 issue certificates and insurance policies needed such as vehicle insurance and other. In addition,
                 providing appropriate accommodation, each according to his job.
+
             </td>
         </tr>
+
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">4.</span>
-                يتحمل الطرف الثاني المسؤولية كاملة عن أيه تجاوزات تلحق ضرراً بالعمالة أو أي غرامات مترتبه لارتكاب
+                4. يتحمل الطرف الثاني المسؤولية كاملة عن أيه تجاوزات تلحق ضرراً بالعمالة أو أي غرامات مترتبه لارتكاب
                 العمالة لأي مخالفات للأنظمة المعمول بها داخل المملكة نتيجه توجيههم للعمل بأعمال غير نظامية او إهمالهم او
                 توجيههم باستخدام معدات أو أليات او سيارات غير مصرح للعمالة باستخدامها مما يترتب عليه مخالفات أو غرامات
                 أو إصابات وفي هذه الحالة يحق للطرف الأول إلغاء العقد وسحب العمالة و تحميل الطرف الثاني كافة التكاليف و
                 الغرامات و الأحكام القضائية و القرارات القانونية المترتبه على هذه المخالفات . كما يحق للطرف الاول أيضاً
                 مطالبة الطرف الثاني بالتعويض عن هذه التجاوزات أو الاضرار أو المخالفات في أي وقت حتي بعد إنتهاء أو فسخ
-                هذا العقد
-                <span class="en">.</span>
-
-
+                هذا العقد .
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 4. The Second Party shall bears full liability for any violations that cause damage to labor force or
@@ -575,20 +395,13 @@
                 of this contract.
             </td>
         </tr>
-
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">5.</span>
-                يلتزم الطرف الثاني في حال تغيب أو هروب أي عامل إبلاغ الطرف الأول كتابياً خلال مدة أقصاها
-                <span class="en">(24)</span>
-                أربعه و
-                عشرون ساعه من وقت تغييب العمالة <span class="en">.</span> وإلا يتحمل الطرف الثاني منفرداً كافة الاثار
-                القانونية والمالية أمام
-                كافة الجهات الحكومية وامام الطرف الاول <span class="en">.</span> كما يتحمل الطرف الثاني كافة الاجراءات
-                القانونية والغرامات
+                5. يلتزم الطرف الثاني في حال تغيب أو هروب أي عامل إبلاغ الطرف الأول كتابياً خلال مدة أقصاها (24) أربعه و
+                عشرون ساعه من وقت تغييب العمالة . وإلا يتحمل الطرف الثاني منفرداً كافة الاثار القانونية والمالية أمام
+                كافة الجهات الحكومية وامام الطرف الاول . كما يتحمل الطرف الثاني كافة الاجراءات القانونية والغرامات
                 والمخالفات في حالة تقديم العمالة لأي شكوي أمام أي جهه مختصة وتكون هذه الشكوي لسبب يرجع للطرف الثاني سواء
-                بشكل مباشر أو غير مباشر
-                <span class="en">.</span>
+                بشكل مباشر أو غير مباشر .
 
 
             </td>
@@ -604,22 +417,13 @@
 
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">6.</span>
-                يلتزم الطرف الثاني بتسليم الطرف الأول كل من بطاقة الإقامة وبطاقة التأمين الطبي لتجديدها قبل التاريخ
-                المحدد لانتهائها<span class="en">،</span> أي قبل
-                <span class="en">(45)</span>
-                خمسة وأربعون يوماً من تاريخ الانتهاء كما يلتزم بالحضور هو أو من يمثله إذا
-                استدعى الأمر لاستلام بطاقة الإقامة وبطاقة التأمين الطبي المجددة من الطرف الأول
-                <span class="en">،</span> وفي حالة حدوث أي تأخير
-                من جانب الطرف الثاني فعليه تحمل كافة الغرامات الناتجة عن ذلك
-                <span class="en">.</span>
-                <br/>
-                <br/>
-                ويلتزم الطرف الثاني أيضًا بإحضار العمالة لإجراء الفحص الطبي إذا لزم الأمر<span class="en">،</span> وفي
-                حالة عدم الالتزام فإن
-                الطرف الثاني يتحمل أية تكاليف علاجية مترتبة على ذلك<span class="en">.</span> ولايحق له في هذه الحالة
-                المطالبة بالاستفادة من
-                التأمين الطبي لعلاج العمالة<span class="en">.</span>
+                6. يلتزم الطرف الثاني بتسليم الطرف الأول كل من بطاقة الإقامة وبطاقة التأمين الطبي لتجديدها قبل التاريخ
+                المحدد لانتهائها، أي قبل (45) خمسة وأربعون يوماً من تاريخ الانتهاء، كما يلتزم بالحضور هو أو من يمثله إذا
+                استدعى الأمر لاستلام بطاقة الإقامة وبطاقة التأمين الطبي المجددة من الطرف الأول، وفي حالة حدوث أي تأخير
+                من جانب الطرف الثاني فعليه تحمل كافة الغرامات الناتجة عن ذلك. <br/>
+                ويلتزم الطرف الثاني أيضًا بإحضار العمالة لإجراء الفحص الطبي إذا لزم الأمر، وفي حالة عدم الالتزام فإن
+                الطرف الثاني يتحمل أية تكاليف علاجية مترتبة على ذلك. ولايحق له في هذه الحالة المطالبة بالاستفادة من
+                التأمين الطبي لعلاج العمالة.
 
 
             </td>
@@ -628,31 +432,25 @@
                 renewal, forty-five (45) days before the date set for its expiry, the Second Party or his
                 representative, if necessary, is obliged to receive the residency card and the renewed medical insurance
                 card. and in the event of non-compliance with that, the Second Party bears all the fines resulting from
-                the delay.
-                <br/>
+                the delay.<br/>
                 The second party is obliged to bring the labors to perform the medical examination if necessary, In the
                 event of non-compliance, the Second Party bears any treatment costs that may result accordingly. In this
                 case, he is not entitled to claim to benefit from medical insurance to treat employees.
+
             </td>
         </tr>
 
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">7.</span>
-                في حال قيادة العمالة لمركبات الطرف الثاني، فيجب أن تكون جميع المركبات التي يقودها السائق باسم الطرف
-                الثاني<span class="en">،</span> ومؤمن عليها تأميناً شاملاً لجميع الأطراف<span class="en">،</span> وإذا
-                كان التأمين غير شامل لجميع الأطراف فإن الطرف
+                7. في حال قيادة العمالة لمركبات الطرف الثاني، فيجب أن تكون جميع المركبات التي يقودها السائق باسم الطرف
+                الثاني، ومؤمن عليها تأميناً شاملاً لجميع الأطراف، وإذا كان التأمين غير شامل لجميع الأطراف فإن الطرف
                 الثاني يتحمل كافة التكاليف أو الأضرار الناتجة أو المترتبة على السائق لصالحه أو لصالح جميع الأطراف
-                المتضررة<span class="en">.</span> كما يلتزم الطرف الثاني بعمل صيانة دورية للمركبات التي يستخدمها السائق
-                وفي حال حدوث أي خلل أو
+                المتضررة. كما يلتزم الطرف الثاني بعمل صيانة دورية للمركبات التي يستخدمها السائق وفي حال حدوث أي خلل أو
                 عطل في المركبات فإن الطرف الثاني يتحمل كافة التكاليف والأضرار الناتجة عن ذلك دون أدنى مسؤولية على السائق
-                أو الطرف الأول<span class="en">.</span> <br><br>
+                أو الطرف الأول.<br/>
                 وفي حال ثبوت ارتكاب أي مخالفات مرورية من جانب العمالة، يلتزم الطرف الثاني بإبلاغ كلا من السائق والطرف
-                الأول كتابياً بتلك المخالفات خلال مدة أقصاها
-                <span class="en">(7)</span>
-                أيام من تاريخ وقوع المخالفة<span class="en">،</span>
-                وإلا فإنه يسقط حقه في
-                المطالبة بالتعويض عن قيمة المخالفة أو أي غرامات أخرى<span class="en">.</span>
+                الأول كتابياً بتلك المخالفات خلال مدة أقصاها (7) أيام من تاريخ وقوع المخالفة، وإلا فإنه يسقط حقه في
+                المطالبة بالتعويض عن قيمة المخالفة أو أي غرامات أخرى.
 
 
             </td>
@@ -664,7 +462,7 @@
                 for the benefit of all the affected parties; The Second Party shall perform periodic maintenance for the
                 vehicles that the driver uses, and in case of any malfunctions or breakdowns in the vehicles, the Second
                 Party bears all consequential costs and damages without any liability on the driver or the First Party.
-                <br>
+                <br/>
                 the Second Party shall notify the driver and the First Party in writing of any traffic violations
                 committed by the labors within a maximum period of (7) seven days from the date of the violation,
                 otherwise he will forfeit his right to claim compensation for the value of the violation or any other
@@ -675,17 +473,11 @@
 
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">8.</span>
-                يلتزم الطرف الثاني في حالة حاجة العمالة للرعاية الطبية مراجعة أقرب مركز طبي معتمد في شبكة المراكز
+                8. يلتزم الطرف الثاني في حالة حاجة العمالة للرعاية الطبية مراجعة أقرب مركز طبي معتمد في شبكة المراكز
                 الطبية لشركة التأمين المعتمدة لدى الطرف الأول أو معالجة العمالة على حساب الطرف الثاني بدون تحمل الطرف
-                الأول أي تكلفة<span class="en">،</span> كما يلتزم الطرف الثاني بإبلاغ الطرف الأول مباشرة في حالة حصول
-                إصابات العمل وبحد أقصى
-                <span class="en">(</span>
-                يوم واحد
-                <span class="en">)</span>
-                من وقت الإصابة مباشرة حتي يتمكن الطرف الاول من إتخاذ الاجراءات النظامية اللازمة وإلا تحمل
-                الطرف الثاني التعويضات اللازمة للعامل وفقا للأنظمة المعمول بها في المملكة العربية السعودية
-                <span class="en">.</span>
+                الأول أي تكلفة، كما يلتزم الطرف الثاني بإبلاغ الطرف الأول مباشرة في حالة حصول إصابات العمل وبحد أقصى
+                (يوم واحد) من وقت الإصابة مباشرة حتي يتمكن الطرف الاول من إتخاذ الاجراءات النظامية اللازمة وإلا تحمل
+                الطرف الثاني التعويضات اللازمة للعامل وفقا للأنظمة المعمول بها في المملكة العربية السعودية.
 
 
             </td>
@@ -696,10 +488,7 @@
                 the Second Party shall inform the First Party directly in the event of work injuries with a maximum of
                 (one day) from the time of the injury directly So that the first party can take the necessary legal
                 measures, otherwise the Second Party will bear the necessary indemnity for the worker in accordance with
-                the laws in force in the Kingdom of Saudi Arabia.<br/>
-                <br/>
-                <br/><br/>
-                <br/>
+                the laws in force in the Kingdom of Saudi Arabia.
 
             </td>
         </tr>
@@ -744,7 +533,8 @@
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 a) Upon signing this contract, the Second Party agreed to pay the monthly fees for each worker according
                 to the table below, in addition to an advance payment equivalent to two months fees for each worker with
-                a total value of ( {{ round($total * 2 , 2) }} ) SR as an insurance to be recovered after the end of this contract The second
+                a total value of ( {{ round($total * 2 , 2) }} ) SR as an insurance to be recovered after the end of
+                this contract The second
                 party has no right to demand deduction of any dues to the first party from the amount of the insurance
                 or even request to return or recover this insurance before the end of the contract for any reason. and
                 the value of the overtime allowance will be calculated for more than eight (8) hours, as well as work
@@ -772,7 +562,8 @@
                     </tr>
                     @foreach($fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest as $fnrco_request)
                         <tr>
-                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}<br/></td>
+                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}
+                                <br/></td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('ar')->name }}</td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
@@ -785,7 +576,8 @@
                     <tr>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px"><br/></td>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px">المجموع</td>
-                        <td style="text-align: center;  font-size: 12px; line-height: 18px" colspan="4">{{ round($total , 2) }}</td>
+                        <td style="text-align: center;  font-size: 12px; line-height: 18px"
+                            colspan="4">{{ round($total , 2) }}</td>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px"></td>
                     </tr>
                     <tr>
@@ -841,13 +633,21 @@
                     </tr>
                     @foreach($fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest as $fnrco_request)
                         <tr>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}<br/></td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('en')->name }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->Food_allowance }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month ,2) }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->total_value_per_month , 2) }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}
+                                <br/></td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('en')->name }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->Food_allowance }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month ,2) }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->total_value_per_month , 2) }}</td>
                         </tr>
                     @endforeach
 
@@ -884,7 +684,8 @@
 
                 <span class="en">1. </span>
                 إنهاء العقد بالكامل و سحب جميع العمالة فوراً مع تحمل الطرف الثاني وسداده كامل أتعاب العقد للطرف الأول
-                شاملة الأتعاب المتأخرة و أتعاب الفترة المتبقية من العقد<span class="en">.</span> وهذا متفق عليه بين الطرفين ولايحق لأي منهما
+                شاملة الأتعاب المتأخرة و أتعاب الفترة المتبقية من العقد<span class="en">.</span> وهذا متفق عليه بين
+                الطرفين ولايحق لأي منهما
                 الاعتراض عليه لأي سبب من الاسباب مستقبلاً <span class="en">.</span> <br/>
                 <span class="en">2.</span>
                 الإستمرار في تنفيذ العقد مع سحب العمالة التي لم يقوم الطرف الثاني بسداد الأتعاب المستحقة عنهم مع
@@ -961,16 +762,16 @@
                 <span class="en">.</span><br/>
                 <span class="en">ج)</span>
                 عدد ساعات العمل لكافة العمال
-                <span class="en">(8)</span>
-                ثمانية ساعات في اليوم بمعدل سته أيام في الأسبوع بعدد
-                <span class="en">(48)</span>
-                ثمانية و
-                أربعون ساعه في الأسبوع
+                <span class="en">({{ $fnrco_agreement->work_hours }})</span>
+                {{ $fnrco_agreement->work_hours_ar }} ساعات في اليوم بمعدل {{ $fnrco_agreement->work_days }} أيام في الأسبوع بعدد
+                <span class="en">({{ $fnrco_agreement->work_hours_weekly }})</span>
+                {{  $fnrco_agreement->work_hours_weekly_ar }} ساعه في الأسبوع
                 <span class="en">.</span>
+                <br/>
                 <span class="en">ح)</span>
                 أن أي تعديل في ساعات عمل الموظفين إلى أقل من
-                <span class="en">(48)</span>
-                ثمانية و أربعون ساعه في الأسبوع سيتم تطبيقة وفقاً
+                <span class="en">({{ $fnrco_agreement->work_hours_weekly }})</span>
+                {{ $fnrco_agreement->work_hours_weekly_ar }}  ساعه في الأسبوع سيتم تطبيقة وفقاً
                 للأنظمة في المملكة العربية السعودية دون التأثير على رسوم الطرف الأول و أتعابه الشهرية <span
                         class="en">.</span> <br/>
                 <span class="en">خ)</span>
@@ -992,8 +793,8 @@
                 such as iqama fees, taxes, Medical insurance and airline tickets, exit and reentry visa charges and any
                 other governmental fees. The fees shall be collected from the SECOND PARTY when the official authorities
                 start collecting them.<br/>
-                E) All employees shall work 8 hours a day, 6 days a week (48hrs/week).
-                F) Any changes in the employee's working hours to less than forty-eight (48) hours per week will be
+                E) All employees shall work {{ $fnrco_agreement->work_hours }} hours a day, {{ $fnrco_agreement->work_days_en }} days a week ({{ $fnrco_agreement->work_hours_weekly }}hrs/week).
+                F) Any changes in the employee's working hours to less than ({{ $fnrco_agreement->work_hours_weekly }}) hours per week will be
                 applied according to the laws in the Kingdom of Saudi Arabia, without affecting the First Party's
                 charges and its monthly fees.<br/>
                 G) Absentee of the employees shall only be deducted from the basic salary. After reviewing with the
@@ -1030,7 +831,8 @@
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
 
-                The term of this Agreement shall be {{ $fnrco_agreement->fnrcoQuotation->Contract_period }} Month from the date of signature and shall be automatically
+                The term of this Agreement shall be {{ $fnrco_agreement->fnrcoQuotation->Contract_period }} Month from
+                the date of signature and shall be automatically
                 renewed unless one of the Parties notifies the other of its desire not renew it at least 30 days before
                 the end of the Agreement. Otherwise it is renewed for a similar period. And it has all the legal and
                 financial implications.
@@ -1038,6 +840,48 @@
 
             </td>
         </tr>
+
+        <tr>
+            <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
+                <strong>
+                    شروط الإستبدال
+                </strong>
+            </td>
+
+            <td class="en ltr"
+                style="width: 50%; text-align: center;  font-size: 14px;line-height: 24px;background:#ddd"><strong>REPLACEMENT
+                    CONDITIONS
+                </strong>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
+
+                يلتزم الطرف الأول بإستبدال العمالة حسب الشروط الموضحة أدناه:<br/>
+                • في حال عدم كفاءة العمالة خلال مدة شهر من تاريخ الإلتحاق وذلك بعد تحقق الطرف الأول من الحالة وموافقته و
+                يطبق هذا البند على نسبة ٢٥٪ من مجموع العمالة في هذه الإتفاقية. بعد إنقضاء مدة الشهر، لا يحق للطرف الثاني
+                طلب إستبدال ويطبق بند الإنهاء المبكر في هذه الحالة.<br/>
+                • عند هروب العمالة خلال فترة التعاقد.<br/>
+                • يتم الإستبدال للحالات أعلاه في حال توفر العدد المطلوب إستبداله لدى سكن الطرف الأول.
+
+
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
+
+                First Party will provide replacement workers based on below conditions:<br/>
+                • In case employees are not qualified for the job during a month from the deployment date and after the
+                case is checked and confirmed by first party, this clause applies on 25% of total number in this
+                agreement. After the period of one month, Second party has no right to ask for replacements and the
+                premature termination clause will be applied in this case.<br/>
+                • In case of employees absconding during the contract duration.<br/>
+                • Replacements based on above conditions will be provided based on workers availability in First Party
+                camp.
+
+
+            </td>
+        </tr>
+
 
         <tr>
             <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
@@ -1055,22 +899,15 @@
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
 
-                مدة هذا العقد
-
-                في حال رغبه الطرف الثاني عدم إستكمال مدة الأتفاقية فيما يخص أي موظف فإنه يتوجب عليه إشعار الطرف الأول
-                برغبته في الإنهاء قبل 30 يوماً من التاريخ المراد الإنهاء فيه <span class="en">،</span> كما يلتزم الطرف
-                الثاني بدفع ما قيمته
-                <span class="en">(15%)</span>
-                من المقابل الشهري للعامل لباقي فترة الإتفاقية <span class="en">.</span> هذا البند متفق عليه بين الطرفين
-                <span class="en">.</span>
-
+                -في حال رغبه الطرف الثاني عدم إستكمال مدة الأتفاقية فيما يخص أي موظف فإنه يتوجب عليه إشعار الطرف الأول
+                برغبته في الإنهاء قبل 30 يوماً من التاريخ المراد الإنهاء فيه ، كما يلتزم الطرف الثاني بدفع ما قيمته
+                (15%) من المقابل الشهري للعامل لباقي فترة الإتفاقية. هذا البند متفق عليه بين الطرفين.
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-
                 If the Second Party wishes not to complete the term of the Agreement with respect to any Employee, it
                 shall notify the FIRST PARTY of its desire 30 days prior to the expiry date. The SECOND PARTY shall also
-                pay 15% of the employee's monthly salary for the remainder of Agreement. This clause is agreed upon
+                pay 15% of the employee's monthly payment for the remainder of Agreement. This clause is agreed upon
                 between the two parties.
 
 
@@ -1095,18 +932,14 @@
 
                 يتم تفسير هذا العقد وفقاً للقوانين و الأنظمة المعمول بها في المملكة العربية السعودية ومحاكمها و أي
                 نزاعات أو خلافات قد تنشأ من هذا العقد و التي لا يمكن أن يتم تسويتها بالطرق الودية بين الطرفين يكون
-                الأختصاص المكاني بنظرها محاكم مدينة الرياض في المملكة العربية السعودية
-                <span class="en">.</span>
-
+                الأختصاص المكاني بنظرها محاكم مدينة الرياض في المملكة العربية السعودية.
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-
                 This contract is interpreted in accordance with the laws and regulations in force in the Kingdom of
                 Saudi Arabia and its courts. In the case of disputes or conflicts that may arise from this contract
                 between both parties and cannot be settled amicably, the spatial jurisdiction of its adjudication will
                 be assigned to the courts of Riyadh in the eastern region of the Kingdom of Saudi Arabia.
-
 
             </td>
         </tr>
@@ -1199,7 +1032,7 @@
 
             </td>
         </tr>
-         </tbody>
+        </tbody>
     </table>
     <br>
 
@@ -1226,19 +1059,20 @@
                 (FIRST PARTY)
 
 
-
-
             </td>
         </tr>
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: middle ; direction: rtl">
                 <br/>
                 الاسم: السید/
+                {{ $fnrco_agreement->first_party }}
                 <br/>
             </td>
-            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: middle;line-height: 30px">
+            <td class="en ltr"
+                style="width: 50%; text-align: left; font-size: 12px; vertical-align: middle;line-height: 30px">
                 <br/>
                 Name: MR/
+                {{ $fnrco_agreement->first_party_en }}
                 <br/>
             </td>
         </tr>
@@ -1247,8 +1081,8 @@
 
                 (التوقيع والختم)
 
-                <br>   <br>
-                <br>   <br> <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
                 التاریخ....................
 
@@ -1256,8 +1090,8 @@
             <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
                 (Signature and Stamp)
 
-                <br>   <br>
-                <br>   <br>  <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
 
                 Date:……………………………….
@@ -1284,13 +1118,12 @@
 
 
             </td>
-            <td class="en ltr" style="width: 50%; text-align: center; font-size: 14px; vertical-align: top; line-height: 18px">
+            <td class="en ltr"
+                style="width: 50%; text-align: center; font-size: 14px; vertical-align: top; line-height: 18px">
                 AUTHORIZED SIGNATORY
                 <br/><br/><br/>
 
                 (SECOND PARTY)
-
-
 
 
             </td>
@@ -1299,11 +1132,13 @@
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top ; direction: rtl">
                 <br/>
                 الاسم: السید/
+                {{ $fnrco_agreement->second_party }}
                 <br/>
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 <br/>
                 Name: MR/
+                {{ $fnrco_agreement->second_party_en }}
                 <br/>
             </td>
         </tr>
@@ -1312,8 +1147,8 @@
 
                 (التوقيع والختم)
 
-                <br>   <br>
-                <br>   <br>  <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
                 التاریخ....................
 
@@ -1321,8 +1156,8 @@
             <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
                 (Signature and Stamp)
 
-                <br>   <br>
-                <br>   <br> <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
 
                 Date:……………………………….

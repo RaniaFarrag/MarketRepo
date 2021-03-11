@@ -24,6 +24,27 @@ class FnrcoAgreement extends Model
         'fax',
         'mailing_address',
         'postal_code',
+
+        'mol',
+        'location',
+        'agreement_num',
+        'agreement_issue_date',
+        'agreement_expiry_date',
+
+        'work_hours',
+        'work_hours_ar',
+
+        'work_days',
+        'work_days_en',
+
+        'work_hours_weekly',
+        'work_hours_weekly_ar',
+
+        'first_party',
+        'first_party_en',
+
+        'second_party',
+        'second_party_en',
     ];
 
     protected $dates = ['deleted_at'];

@@ -71,6 +71,7 @@ class CountryRepository implements CountryRepositoryInterface
     /** Delete Role */
     public function destroy($country){
         $country->delete();
+        $country->cities()->delete();
         $this->addLog(auth()->id() , $country->id , 'countries' , 'تم حذف دولة' , 'Country has been deleted');
 
         Alert::success('success', trans('dashboard.deleted successfully'));

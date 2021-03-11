@@ -58,7 +58,7 @@
                                     @can('Show Company Quotation')
                                         <li class="navi-item">
                                             <a href="{{ route('companyQuotation.index' , [$company->id , $hidden_mother_company_id]) }}" class="navi-link">
-                                            <span class="navi-icon"><i
+                                                <span class="navi-icon"><i
                                                     class="flaticon2-list-3"></i></span>
                                                 <span class="navi-text">{{ trans('dashboard.View Company Quotation') }}</span>
                                             </a>
@@ -66,14 +66,14 @@
                                     @endcan
 
                                     @can('Edit Company')
-                                    <li class="navi-item">
-                                        <a href="{{ route('companies.edit' , [$company->id , $hidden_mother_company_id]) }}"
-                                           class="navi-link">
-                                    <span class="navi-icon"><i
-                                                class="flaticon-edit"></i></span>
-                                            <span class="navi-text">{{ trans('dashboard.Modifying Company Data') }}</span>
-                                        </a>
-                                    </li>
+                                        <li class="navi-item">
+                                            <a href="{{ route('companies.edit' , [$company->id , $hidden_mother_company_id]) }}"
+                                               class="navi-link">
+                                        <span class="navi-icon"><i
+                                                    class="flaticon-edit"></i></span>
+                                                <span class="navi-text">{{ trans('dashboard.Modifying Company Data') }}</span>
+                                            </a>
+                                        </li>
                                     @endcan
                                     @can('Send Mail')
                                     <li class="navi-item">
@@ -86,37 +86,37 @@
                                     </li>
                                     @endcan
                                     @can('Delete Company')
-                                    {{--<li class="navi-item">--}}
-                                        {{--<form id="del" method="post"--}}
-                                              {{--action="{{ route('companies.destroy' , $company->id) }}">--}}
-                                            {{--@method('DELETE')--}}
-                                            {{--@csrf--}}
-                                            {{--<button onclick="return confirm('Are you sure?')"--}}
-                                                    {{--class="navi-link" type="submit">--}}
-                                                {{--<span class="navi-icon"><i--}}
-                                                            {{--class="flaticon2-rubbish-bin"></i></span>--}}
-                                                {{--<span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>--}}
-                                            {{--</button>--}}
-                                        {{--</form>--}}
-                                    {{--</li>--}}
+                                    <li class="navi-item">
+                                        <form id="del" method="post"
+                                              action="{{ route('companies.destroy' , $company->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button onclick="return confirm('Are you sure?')"
+                                                    class="navi-link" type="submit">
+                                                <span class="navi-icon"><i
+                                                            class="flaticon2-rubbish-bin"></i></span>
+                                                <span class="navi-text">{{ trans('dashboard.Delete Company') }} </span>
+                                            </button>
+                                        </form>
+                                    </li>
                                     @endcan
                                     @can('Corporate Assignment')
-                                    <li class="navi-item">
-                                        <a data-rep-name="{{ count($company->representative) ? app()->getLocale() == 'ar' ? $company->representative[0]->name : $company->representative[0]->name_en : '' }}" id="get_rep"
-                                           data-id="{{ $company->id }}" href="#assign_Modal" class="navi-link" data-toggle="modal">
-                                            <span class="navi-icon"><i class="flaticon2-user-1"></i></span>
-                                            <span class="navi-text">{{ trans('dashboard.Assign companies to a representative') }} </span>
-                                        </a>
-                                    </li>
+                                        <li class="navi-item">
+                                            <a data-rep-name="{{ count($company->representative) ? app()->getLocale() == 'ar' ? $company->representative[0]->name : $company->representative[0]->name_en : '' }}" id="get_rep"
+                                               data-id="{{ $company->id }}" href="#assign_Modal" class="navi-link" data-toggle="modal">
+                                                <span class="navi-icon"><i class="flaticon2-user-1"></i></span>
+                                                <span class="navi-text">{{ trans('dashboard.Assign companies to a representative') }} </span>
+                                            </a>
+                                        </li>
                                     @endcan
                                     @can('TEAM SALES LEAD REPORT')
-                                    <li class="navi-item">
-                                        <a href="{{ route('companySalesTeamReports.show',$company->id) }}" class="navi-link">
-                                    <span class="navi-icon"><i
-                                                class="flaticon-graph"></i></span>
-                                            <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }} </span>
-                                        </a>
-                                    </li>
+                                        <li class="navi-item">
+                                            <a href="{{ route('companySalesTeamReports.show',[$company->id , $hidden_mother_company_id]) }}" class="navi-link">
+                                                <span class="navi-icon"><i
+                                                    class="flaticon-graph"></i></span>
+                                                <span class="navi-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }} </span>
+                                            </a>
+                                        </li>
                                     @endcan
                                 </ul>
                                 <!--end::Navigation-->
