@@ -618,6 +618,8 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         $company->companyMeetings()->delete();
 
+        $company->salesLeadReports()->delete();
+
 //        $company->representative()->detach();
 //        $company->representative()->pivot()->delete();
         if (count($company->representative)){

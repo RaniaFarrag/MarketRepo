@@ -14,7 +14,8 @@ interface salesReportRepositoryInterface
 
     public function index($request , $all = null);
 
-    public function show($request , $all = null);
+//    public function show($request ,  $company_id , $mother_company_id , $all = null);
+    public function show($company , $mother_company_id);
 
     public function store($request);
 

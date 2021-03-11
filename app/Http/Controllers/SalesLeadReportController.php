@@ -77,17 +77,26 @@ class SalesLeadReportController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $company_id , $mother_company_id)
-    {
-       //dd($request);
-       //dd($company_id);
-        $reports = $this->salesReportRepositoryInterface->show($request)['reports'];
-        $company = Company::findOrFail($company_id);
+//    public function show(Request $request, $company_id , $mother_company_id)
+//    {
+////       dd($request->all());
+//       //dd($company_id);
+//        $reports = $this->salesReportRepositoryInterface->show($request , $company_id , $mother_company_id)['reports'];
+//        $company = Company::findOrFail($company_id);
+//
+//        if ($request->ajax()){
+//            return view('system.reports.team_sales_lead_report_partial', compact('reports'))->render();
+//        }
+//        return view('system.reports.team_sales_lead_report', compact('company', 'reports' , 'mother_company_id'));
+//    }
 
-        if ($request->ajax()){
-            return view('system.reports.team_sales_lead_report_partial', compact('reports'))->render();
-        }
-        return view('system.reports.team_sales_lead_report', compact('company', 'reports' , 'mother_company_id'));
+
+    public function show($company_id , $mother_company_id)
+    {
+        $company = Company::findOrFail($company_id);
+        $reports = $this->salesReportRepositoryInterface->show($company , $mother_company_id);
+
+        return view('system.reports.show_sales_lead_report_of_company', compact('company', 'reports' , 'mother_company_id'));
     }
 
     public function extractSalesLeadReportExcel(Request $request)
