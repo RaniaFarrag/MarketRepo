@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LinrcoQuotationRequest extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'trade',
         'gender',
@@ -17,7 +20,9 @@ class LinrcoQuotationRequest extends Model
         'VISA_PROCESSING_CHARGES_PER_CANDIDATE',
         'other_allowance',
         'linrco_quotation_id',
-    ];   
+    ];
+
+    protected $dates = ['deleted_at'];
 
     public function linrcoQuotation(){
         return $this->belongsTo(LinrcoQuotation::class);

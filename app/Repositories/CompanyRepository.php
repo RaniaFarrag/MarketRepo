@@ -620,6 +620,19 @@ class CompanyRepository implements CompanyRepositoryInterface
 
         $company->salesLeadReports()->delete();
 
+        $company->FnrcoNeed()->delete();
+        $company->LinrcoNeed()->delete();
+
+        $company->FnrcoQuotations()->delete();
+        $company->LinrcoQuotations()->delete();
+
+        $company->LinrcoAgreement()->delete();
+        $company->FnrcoAgreement()->delete();
+
+        $company->LinrcoInvoices()->delete();
+
+        $company->CompanyUser()->delete();
+
 //        $company->representative()->detach();
 //        $company->representative()->pivot()->delete();
         if (count($company->representative)){

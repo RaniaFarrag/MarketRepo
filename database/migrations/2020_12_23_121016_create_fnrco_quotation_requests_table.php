@@ -28,6 +28,7 @@ class CreateFnrcoQuotationRequestsTable extends Migration
             $table->bigInteger('fnrco_quotation_id')->unsigned();
             $table->foreign('fnrco_quotation_id')->references('id')->on('fnrco_quotations')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FnrcoQuotationRequest extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'category',
         'quantity',
@@ -18,7 +21,9 @@ class FnrcoQuotationRequest extends Model
         'value_per_employee_month',
         'total_value_per_month',
         'fnrco_quotation_id',
-    ];   
+    ];
+
+    protected $dates = ['deleted_at'];
 
     public function fnrcoQuotation(){
         return $this->belongsTo(FnrcoQuotation::class);

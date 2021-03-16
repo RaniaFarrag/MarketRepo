@@ -102,15 +102,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>{{ $agreement->id }}</td>
-                                                <td>{{ $agreement->fnrcoQuotation->Quotation_No }}</td>
+                                                <td>{{ $agreement->fnrcoQuotation ? $agreement->fnrcoQuotation->Quotation_No : '' }}</td>
                                                 <td>
-                                                    @if($agreement->fnrcoQuotation->saudization == 1)
-                                                        {{ trans('dashboard.Ageer') }}
-                                                    @elseif($agreement->fnrcoQuotation->saudization == 0)
-                                                        {{ trans('dashboard.Services') }}
+                                                    @if($agreement->fnrcoQuotation)
+                                                        @if($agreement->fnrcoQuotation->saudization == 1)
+                                                            {{ trans('dashboard.Ageer') }}
+                                                        @elseif($agreement->fnrcoQuotation->saudization == 0)
+                                                            {{ trans('dashboard.Services') }}
+                                                        @endif
                                                     @endif
                                                 </td>
-                                                <td>{{ $agreement->fnrcoQuotation->Contract_period }}</td>
+                                                <td>{{ $agreement->fnrcoQuotation ? $agreement->fnrcoQuotation->Contract_period : ''}}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>
                                                 <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_FnrcoAgreement' , $agreement->id) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
                                                 <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , 2]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>

@@ -139,6 +139,7 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
         $fnrco_quotation = $this->fnrco_quotation_model::findOrFail($quotation_id);
         $fnrco_quotation->delete();
         $fnrco_quotation->FnrcoQuotationsRequest()->delete();
+        $fnrco_quotation->fnrcoAgreement()->delete();
 
         $this->addLog(auth()->id() , $fnrco_quotation->id , 'FnrcoQuotation' , 'تم حذف عرض اسعار لشركة فناركو ' , 'Fnrco Quotation has been deleted');
 

@@ -4,9 +4,13 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FnrcoQuotation extends Model
 {
+
+    use SoftDeletes;
+
     protected $fillable = [
         'ref_no',
         'attn',
@@ -19,6 +23,8 @@ class FnrcoQuotation extends Model
         'company_id',
         'user_id',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function fnrcoQuotationsRequest(){
         return $this->hasMany(FnrcoQuotationRequest::class);

@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LinrcoAgreement extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'date',
         'agreement_no',
@@ -55,6 +58,7 @@ class LinrcoAgreement extends Model
         'company_id',
         'user_id',
     ];
+    protected $dates = ['deleted_at'];
 
     public function company(){
         return $this->belongsTo(Company::class);

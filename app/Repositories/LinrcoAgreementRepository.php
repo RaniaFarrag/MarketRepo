@@ -155,6 +155,7 @@ class LinrcoAgreementRepository implements LinrcoAgreementRepositoryInterface
     public function destroy($linrcoAgreement , $mother_company_id){
 
         $linrcoAgreement->delete();
+        $linrcoAgreement->linrcoInvoice()->delete();
 
         $this->addLog(auth()->id() , $linrcoAgreement->id , 'LinrcoAgreement' , 'تم حذف عقد توظيف لشركة ليناركو ' , 'Linrco Agreement has been deleted');
 

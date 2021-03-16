@@ -96,12 +96,24 @@ class Company extends Model
         return $this->hasMany(FnrcoNeed::class);
     }
 
+    public function LinrcoQuotations(){
+        return $this->hasMany(LinrcoQuotation::class);
+    }
+
+    public function FnrcoQuotations(){
+        return $this->hasMany(FnrcoQuotation::class);
+    }
+
     public function LinrcoAgreement(){
         return $this->hasMany(LinrcoAgreement::class);
     }
 
     public function FnrcoAgreement(){
         return $this->hasMany(FnrcoAgreement::class);
+    }
+
+    public function LinrcoInvoices(){
+        return $this->hasMany(LinrcoInvoice::class);
     }
 
     public function country(){
@@ -123,6 +135,10 @@ class Company extends Model
             ,'confirm_connected_user_id','confirm_interview','confirm_interview_user_id','confirm_need' ,
             'confirm_need_user_id' , 'confirm_contract' , 'confirm_contract_user_id'])->whereNull('company_user.deleted_at');
 
+    }
+
+    public function CompanyUser(){
+        return $this->hasMany(CompanyUser::class);
     }
 
     /** Changed */

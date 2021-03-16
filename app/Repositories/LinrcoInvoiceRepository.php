@@ -113,6 +113,7 @@ class LinrcoInvoiceRepository implements LinrcoInvoiceRepositoryInterface
     public function destroy($linrco_invoice , $mother_company_id){
 
         $linrco_invoice->delete();
+        $linrco_invoice->LinrcoInvoiceRequest()->delete();
 
         $this->addLog(auth()->id() , $linrco_invoice->id , 'LinrcoInvoice' , 'تم حذف فاتورة رقم  ' , 'Linrco Invoice has been deleted');
 

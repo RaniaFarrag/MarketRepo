@@ -52,7 +52,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Linrco Invoice') }} {{ $linrco_agreement->company ? $linrco_agreement->company->name : '' }}
+                            {{ trans('dashboard.Linrco Invoice') }} {{ $linrco_agreement ? $linrco_agreement->company ? $linrco_agreement->company->name : '' : ''}}
                         </h2>
                         <!--end::Title-->
 

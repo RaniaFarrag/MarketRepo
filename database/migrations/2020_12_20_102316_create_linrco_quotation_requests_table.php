@@ -27,6 +27,7 @@ class CreateLinrcoQuotationRequestsTable extends Migration
             $table->bigInteger('linrco_quotation_id')->unsigned();
             $table->foreign('linrco_quotation_id')->references('id')->on('linrco_quotations')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

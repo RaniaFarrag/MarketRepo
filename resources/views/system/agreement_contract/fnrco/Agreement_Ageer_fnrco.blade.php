@@ -517,7 +517,7 @@
                 مبلغ التأمين أو حتي طلب رد أو استراجاع هذا التأمين قبل نهاية العقد لأي سبب من الاسباب
                 <span class="en">،</span> وأتفق الطرفان
                 علي أنه يتم احتساب قيمة بدل ساعات العمل الإضافية لأكثر من
-                <span class="en">(8)</span>
+                <span class="en">({{ $fnrco_agreement->work_hours }})</span>
                 ثماني ساعات يومياً وكذلك العمل أثناء
                 العطلات بما يوازي أجر الساعة مضافاً إليه
                 <span class="en">(50%)</span>
@@ -537,7 +537,7 @@
                 this contract The second
                 party has no right to demand deduction of any dues to the first party from the amount of the insurance
                 or even request to return or recover this insurance before the end of the contract for any reason. and
-                the value of the overtime allowance will be calculated for more than eight (8) hours, as well as work
+                the value of the overtime allowance will be calculated for more than eight ({{ $fnrco_agreement->work_hours }}) hours, as well as work
                 during the holidays, in a manner equal to the hourly wages plus fifty percent (50%) of the basic wage
                 according to the labor laws in the Kingdom of Saudi Arabia for the next month, according to the schedule
                 of working hours provided.
@@ -765,7 +765,7 @@
                 <span class="en">({{ $fnrco_agreement->work_hours }})</span>
                 {{ $fnrco_agreement->work_hours_ar }} ساعات في اليوم بمعدل {{ $fnrco_agreement->work_days }} أيام في الأسبوع بعدد
                 <span class="en">({{ $fnrco_agreement->work_hours_weekly }})</span>
-                {{  $fnrco_agreement->work_hours_weekly_ar }} ساعه في الأسبوع
+                {{  $fnrco_agreement->work_hours_weekly_ar }} ساعة في الأسبوع
                 <span class="en">.</span>
                 <br/>
                 <span class="en">ح)</span>
@@ -793,7 +793,7 @@
                 such as iqama fees, taxes, Medical insurance and airline tickets, exit and reentry visa charges and any
                 other governmental fees. The fees shall be collected from the SECOND PARTY when the official authorities
                 start collecting them.<br/>
-                E) All employees shall work {{ $fnrco_agreement->work_hours }} hours a day, {{ $fnrco_agreement->work_days_en }} days a week ({{ $fnrco_agreement->work_hours_weekly }}hrs/week).
+                E) All employees shall work {{ $fnrco_agreement->work_hours }} hours a day, {{ $fnrco_agreement->work_days_en }} days a week ({{ $fnrco_agreement->work_hours_weekly }} hrs/week).
                 F) Any changes in the employee's working hours to less than ({{ $fnrco_agreement->work_hours_weekly }}) hours per week will be
                 applied according to the laws in the Kingdom of Saudi Arabia, without affecting the First Party's
                 charges and its monthly fees.<br/>

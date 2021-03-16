@@ -4,97 +4,97 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>Agreement Service</title>
     {{--<style>--}}
-        {{--@page {--}}
-            {{--margin: 90px 20px;--}}
-            {{--header: page-header;--}}
-            {{--footer: page-footer;--}}
-        {{--}--}}
+    {{--@page {--}}
+    {{--margin: 90px 20px;--}}
+    {{--header: page-header;--}}
+    {{--footer: page-footer;--}}
+    {{--}--}}
 
-        {{--body {--}}
-            {{--font-size: 13px;--}}
-            {{--letter-spacing: 0px;--}}
-            {{--position: relative;--}}
-            {{--text-align: right;--}}
-            {{--font-family: 'examplefont3', sans-serif;--}}
-        {{--}--}}
+    {{--body {--}}
+    {{--font-size: 13px;--}}
+    {{--letter-spacing: 0px;--}}
+    {{--position: relative;--}}
+    {{--text-align: right;--}}
+    {{--font-family: 'examplefont3', sans-serif;--}}
+    {{--}--}}
 
-        {{--main {--}}
-            {{--height: 870px;--}}
-            {{--position: relative;--}}
-            {{--display: block;--}}
-        {{--}--}}
+    {{--main {--}}
+    {{--height: 870px;--}}
+    {{--position: relative;--}}
+    {{--display: block;--}}
+    {{--}--}}
 
-        {{--.ar {--}}
-            {{--font-family: 'examplefont3', sans-serif;--}}
-        {{--}--}}
+    {{--.ar {--}}
+    {{--font-family: 'examplefont3', sans-serif;--}}
+    {{--}--}}
 
-        {{--.en {--}}
-            {{--font-family: 'examplefont3', sans-serif;--}}
-            {{--direction: ltr;--}}
-        {{--}--}}
+    {{--.en {--}}
+    {{--font-family: 'examplefont3', sans-serif;--}}
+    {{--direction: ltr;--}}
+    {{--}--}}
 
-        {{--td {--}}
-            {{--padding: 2px 5px;--}}
-            {{--text-align: center;--}}
-            {{--border: 1px solid #77697a;--}}
-            {{--border-collapse: collapse;--}}
-            {{--font-size: 14px !important;--}}
-        {{--}--}}
+    {{--td {--}}
+    {{--padding: 2px 5px;--}}
+    {{--text-align: center;--}}
+    {{--border: 1px solid #77697a;--}}
+    {{--border-collapse: collapse;--}}
+    {{--font-size: 14px !important;--}}
+    {{--}--}}
 
-        {{--.ltr {--}}
-            {{--direction: ltr;--}}
-            {{--text-align: left--}}
-        {{--}--}}
+    {{--.ltr {--}}
+    {{--direction: ltr;--}}
+    {{--text-align: left--}}
+    {{--}--}}
 
-        {{--h4 {--}}
-            {{--font-size: 24px;--}}
-        {{--}--}}
+    {{--h4 {--}}
+    {{--font-size: 24px;--}}
+    {{--}--}}
 
-        {{--h5 {--}}
-            {{--font-size: 18px--}}
-        {{--}--}}
+    {{--h5 {--}}
+    {{--font-size: 18px--}}
+    {{--}--}}
 
-        {{--table {--}}
-            {{--width: 100% !important;--}}
-            {{--border-collapse: collapse;--}}
-            {{--border: 1px solid #77697a--}}
-        {{--}--}}
+    {{--table {--}}
+    {{--width: 100% !important;--}}
+    {{--border-collapse: collapse;--}}
+    {{--border: 1px solid #77697a--}}
+    {{--}--}}
 
-        {{--.page_break {--}}
-            {{--page-break-before: always;--}}
-        {{--}--}}
+    {{--.page_break {--}}
+    {{--page-break-before: always;--}}
+    {{--}--}}
 
-        {{--p {--}}
-            {{--font-size: 14px--}}
-        {{--}--}}
+    {{--p {--}}
+    {{--font-size: 14px--}}
+    {{--}--}}
 
-        {{--header {--}}
-            {{--position: absolute;--}}
-            {{--top: 0cm;--}}
-            {{--left: 0cm;--}}
-            {{--right: 0cm;--}}
-            {{--text-align: center;--}}
-            {{--width: 100%;--}}
-            {{--height: 0cm;--}}
-        {{--}--}}
+    {{--header {--}}
+    {{--position: absolute;--}}
+    {{--top: 0cm;--}}
+    {{--left: 0cm;--}}
+    {{--right: 0cm;--}}
+    {{--text-align: center;--}}
+    {{--width: 100%;--}}
+    {{--height: 0cm;--}}
+    {{--}--}}
 
-        {{--footer {--}}
-            {{--position: absolute;--}}
-            {{--bottom: 0cm;--}}
-            {{--left: 0cm;--}}
-            {{--right: 0cm;--}}
-            {{--text-align: center;--}}
-            {{--width: 100%;--}}
-        {{--}--}}
+    {{--footer {--}}
+    {{--position: absolute;--}}
+    {{--bottom: 0cm;--}}
+    {{--left: 0cm;--}}
+    {{--right: 0cm;--}}
+    {{--text-align: center;--}}
+    {{--width: 100%;--}}
+    {{--}--}}
 
-        {{--table {--}}
-            {{--page-break-inside: auto--}}
-        {{--}--}}
+    {{--table {--}}
+    {{--page-break-inside: auto--}}
+    {{--}--}}
 
-        {{--tr {--}}
-            {{--page-break-inside: avoid;--}}
-            {{--page-break-after: auto--}}
-        {{--}--}}
+    {{--tr {--}}
+    {{--page-break-inside: avoid;--}}
+    {{--page-break-after: auto--}}
+    {{--}--}}
     {{--</style>--}}
 
     <style>
@@ -189,7 +189,11 @@
             page-break-inside: avoid;
             page-break-after: auto
         }
-        header table tr td {font-size: 11px !important; background: #000}
+
+        header table tr td {
+            font-size: 11px !important;
+            background: #000
+        }
     </style>
 </head>
 
@@ -234,7 +238,7 @@
 </htmlpageheader>
 
 {{--<htmlpageheader name="page-header">--}}
-    {{--<header><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/fhead.jpg"></header>--}}
+{{--<header><img style="width: 100%" src="http://alwatnia.com.sa/demo/linrcopdf/fhead.jpg"></header>--}}
 {{--</htmlpageheader>--}}
 
 <htmlpagefooter name="page-footer">
@@ -329,16 +333,20 @@
 
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-                2. {{ $fnrco_agreement->company->name }} It is a company operating and registered under the system of the Ministry
-                of Commerce and Investment in the Kingdom of Saudi Arabia under the commercial registration No {{ $fnrco_agreement->company->cr }}
-                Date/ {{ $fnrco_agreement->cr_date }} and the law of the Ministry of Human Resources and Social Development under No/ {{ $fnrco_agreement->hr_system }} and
-                represented in signing hereon by Mr./ {{ $fnrco_agreement->signing_by }} ID number/ in his capacity as {{ $fnrco_agreement->by_as }}<br>
+                2. {{ $fnrco_agreement->company->name }} It is a company operating and registered under the system of
+                the Ministry
+                of Commerce and Investment in the Kingdom of Saudi Arabia under the commercial registration
+                No {{ $fnrco_agreement->company->cr }}
+                Date/ {{ $fnrco_agreement->cr_date }} and the law of the Ministry of Human Resources and Social
+                Development under No/ {{ $fnrco_agreement->hr_system }} and
+                represented in signing hereon by Mr./ {{ $fnrco_agreement->signing_by }} ID number/ in his capacity
+                as {{ $fnrco_agreement->by_as }}<br>
                 Address: {{ $fnrco_agreement->address_en }}<br>
                 Phone: {{ $fnrco_agreement->phone }}<br>
                 Fax: {{ $fnrco_agreement->fax }}<br>
                 Mailing Address: {{ $fnrco_agreement->mailing_address }}<br>
                 Postal code: {{ $fnrco_agreement->postal_code }}<br>
-                E-mail address:  {{ $fnrco_agreement->company->email }}<br>
+                E-mail address: {{ $fnrco_agreement->company->email }}<br>
                 (Referred to in this contract as the Second Party)
 
 
@@ -386,7 +394,7 @@
 
             </td>
         </tr>
-        <tr>
+   {{--     <tr>
             <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
                 <strong>
                     موضوع الإتفاقية
@@ -416,7 +424,7 @@
 
 
             </td>
-        </tr>
+        </tr>--}}
         <tr>
             <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
                 <strong>
@@ -435,7 +443,7 @@
                 الطبي وتوزيع الرواتب<span class="en">.</span> وذلك بعد إستلام كافة المستحقات الخاصة بهذه العمالة من
                 الطرف الثاني وفي حالة وجود
                 أي غرامات أو مخالفات تنتج عن تأخير الطرف الثاني في السداد فيتحملها الطرف الثاني منفرداً
-
+                . كما يلتزم الطرف الأول المحافظة على نسبة التوطين حسب متطلبات وزارة الموارد البشريه والتنميه الاجتماعيه.
                 <span class="en">.</span>
 
             </td>
@@ -446,7 +454,8 @@
                 any fines or violations resulting from the delay of the second party in payment, the second party shall
                 bear them individually.
 
-
+                . First party also shall maintain the percentage of Saudization according to the requirements of the
+                Ministry of Human Resources & Social Development.
             </td>
         </tr>
         <tr>
@@ -482,48 +491,11 @@
         </tr>
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
-                <span class="en">2.</span>
-
-                يلتزم الطرف الثاني بالمحافظة على <span class="en">:-</span><br/>
-                <span class="en">أ)</span>
-                نسبة التوطين حسب متطلبات وزارة الموارد البشريه والتنميه
-                الاجتماعيه وجميع أنظمة واشتراطات الوزارة وبرنامج أجير
-                <span class="en">،</span>
-                وفي حال عدم التزام الطرف الثاني بذلك عليه إشعار
-                الطرف الأول فوراً بأي تغيير يطرأ عليه بعد التعاقد مما يعد مخالفا لهذه الأنظمة والاشتراطات
-                <span class="en">،</span>
-                ويتحمل الطرف
-                الثاني وحده جميع التبعات والغرامات المترتبة على ذلك كما يحق للطرف الأول الرجوع عليه ومطالبته بها<span
-                        class="en">،</span> كما
-                يحق للطرف الأول على إثر ذلك سحب العمالة وتحميل الطرف الثاني كافة الأتعاب المستحقة عليه عن الفترة السابقة
-                بالإضافة إلى رسوم الإقامات ورخص العمل وأي رسوم حكومية أخرى مستحقة عن كامل فترة العقد<span
-                        class="en">،</span> بالإضافة إلى
-                <span class="en"> (50%)</span>
-                خمسين بالمائة من الأتعاب الشهرية عن باقي فترة العقد
-                <span class="en">.</span>
-                وهذا متفق عليه بين الطرفين
-
-                <span class="en">.</span>
-<br/>
-                <span class="en">ب) </span>
-                يلتزم الطرف الثاني بتقديم أي وثيقة قانونية أخرى قد تكون مطلوبة بواسطة الحكومة السعودية للعمالة المستقدمة
-                حتى وقت انتهاء أو إنهاء هذا العقد
-                <span class="en">.</span>
-
+                2. يلتزم الطرف الثاني بتقديم أي وثيقة قانونية أخرى قد تكون مطلوبة بواسطة الحكومة السعودية للعمالة
+                المستقدمة حتى وقت انتهاء أو إنهاء هذا العقد .
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
-                2. SECOND PARTY shall maintain:<br/>
-                A) The percentage of Saudization according to the requirements of the Ministry of human resources &
-                social development and all the Ministry’s regulations and requirements and Ajeer program. In the event
-                that the Second Party does not adhere to this, he must immediately notify the First Party of any change
-                that occurs after contracting, which is contrary to these regulations and requirements. The Second Party
-                solely bears all the consequences and fines. The First Party also has the right to refer to it and claim
-                it, and the First Party also has the right to withdraw the workforce and to charge the Second Party with
-                all fees due on it for the previous period in addition to residence fees, work permits and any other
-                government fees due for the entire contract period, in addition to fifteen percent (50%) of the monthly
-                fees for the remainder of the contract period. And This is agreed upon between the two parties
-<br/>
-                b) The second party is obligated to provide any other legal documents required by the Saudi Government
+                2. The second party is obligated to provide any other legal documents required by the Saudi Government
                 for the hired worker till the expiry/termination of this agreement.
 
             </td>
@@ -728,7 +700,7 @@
                 مبلغ التأمين أو حتي طلب رد أو استراجاع هذا التأمين قبل نهاية العقد لأي سبب من الاسباب
                 <span class="en">،</span> وأتفق الطرفان
                 علي أنه يتم احتساب قيمة بدل ساعات العمل الإضافية لأكثر من
-                <span class="en">(8)</span>
+                <span class="en">({{ $fnrco_agreement->work_hours }})</span>
                 ثماني ساعات يومياً وكذلك العمل أثناء
                 العطلات بما يوازي أجر الساعة مضافاً إليه
                 <span class="en">(50%)</span>
@@ -744,10 +716,12 @@
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 a) Upon signing this contract, the Second Party agreed to pay the monthly fees for each worker according
                 to the table below, in addition to an advance payment equivalent to two months fees for each worker with
-                a total value of ( {{ round($total * 2 , 2) }} ) SR as an insurance to be recovered after the end of this contract The second
+                a total value of ( {{ round($total * 2 , 2) }} ) SR as an insurance to be recovered after the end of
+                this contract The second
                 party has no right to demand deduction of any dues to the first party from the amount of the insurance
                 or even request to return or recover this insurance before the end of the contract for any reason. and
-                the value of the overtime allowance will be calculated for more than eight (8) hours, as well as work
+                the value of the overtime allowance will be calculated for more than eight
+                ({{ $fnrco_agreement->work_hours }}) hours, as well as work
                 during the holidays, in a manner equal to the hourly wages plus fifty percent (50%) of the basic wage
                 according to the labor laws in the Kingdom of Saudi Arabia for the next month, according to the schedule
                 of working hours provided.
@@ -772,7 +746,8 @@
                     </tr>
                     @foreach($fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest as $fnrco_request)
                         <tr>
-                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}<br/></td>
+                            <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}
+                                <br/></td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('ar')->name }}</td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
                             <td style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
@@ -785,7 +760,8 @@
                     <tr>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px"><br/></td>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px">المجموع</td>
-                        <td style="text-align: center;  font-size: 12px; line-height: 18px" colspan="4">{{ round($total , 2) }}</td>
+                        <td style="text-align: center;  font-size: 12px; line-height: 18px"
+                            colspan="4">{{ round($total , 2) }}</td>
                         <td style="text-align: center;  font-size: 12px; line-height: 18px"></td>
                     </tr>
                     <tr>
@@ -841,13 +817,21 @@
                     </tr>
                     @foreach($fnrco_agreement->fnrcoQuotation->fnrcoQuotationsRequest as $fnrco_request)
                         <tr>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}<br/></td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('en')->name }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->Food_allowance }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month ,2) }}</td>
-                            <td class="en ltr" style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->total_value_per_month , 2) }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->id }}
+                                <br/></td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->country->translate('en')->name }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->quantity }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month - $fnrco_request->Food_allowance , 2) }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ $fnrco_request->Food_allowance }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->value_per_employee_month ,2) }}</td>
+                            <td class="en ltr"
+                                style="text-align: center;  font-size: 12px; line-height: 18px">{{ round($fnrco_request->total_value_per_month , 2) }}</td>
                         </tr>
                     @endforeach
 
@@ -884,7 +868,8 @@
 
                 <span class="en">1. </span>
                 إنهاء العقد بالكامل و سحب جميع العمالة فوراً مع تحمل الطرف الثاني وسداده كامل أتعاب العقد للطرف الأول
-                شاملة الأتعاب المتأخرة و أتعاب الفترة المتبقية من العقد<span class="en">.</span> وهذا متفق عليه بين الطرفين ولايحق لأي منهما
+                شاملة الأتعاب المتأخرة و أتعاب الفترة المتبقية من العقد<span class="en">.</span> وهذا متفق عليه بين
+                الطرفين ولايحق لأي منهما
                 الاعتراض عليه لأي سبب من الاسباب مستقبلاً <span class="en">.</span> <br/>
                 <span class="en">2.</span>
                 الإستمرار في تنفيذ العقد مع سحب العمالة التي لم يقوم الطرف الثاني بسداد الأتعاب المستحقة عنهم مع
@@ -961,16 +946,16 @@
                 <span class="en">.</span><br/>
                 <span class="en">ج)</span>
                 عدد ساعات العمل لكافة العمال
-                <span class="en">(8)</span>
-                ثمانية ساعات في اليوم بمعدل سته أيام في الأسبوع بعدد
-                <span class="en">(48)</span>
-                ثمانية و
-                أربعون ساعه في الأسبوع
+                <span class="en">({{ $fnrco_agreement->work_hours }})</span>
+                {{ $fnrco_agreement->work_hours_ar }} ساعات في اليوم بمعدل {{ $fnrco_agreement->work_days }} أيام في
+                الأسبوع بعدد
+                <span class="en">({{ $fnrco_agreement->work_hours_weekly }})</span>
+                {{  $fnrco_agreement->work_hours_weekly_ar }} ساعة في الاسبوع
                 <span class="en">.</span>
                 <span class="en">ح)</span>
                 أن أي تعديل في ساعات عمل الموظفين إلى أقل من
-                <span class="en">(48)</span>
-                ثمانية و أربعون ساعه في الأسبوع سيتم تطبيقة وفقاً
+                <span class="en">({{ $fnrco_agreement->work_hours_weekly }})</span>
+                {{ $fnrco_agreement->work_hours_weekly_ar }} ساعه في الأسبوع سيتم تطبيقة وفقاً
                 للأنظمة في المملكة العربية السعودية دون التأثير على رسوم الطرف الأول و أتعابه الشهرية <span
                         class="en">.</span> <br/>
                 <span class="en">خ)</span>
@@ -992,8 +977,11 @@
                 such as iqama fees, taxes, Medical insurance and airline tickets, exit and reentry visa charges and any
                 other governmental fees. The fees shall be collected from the SECOND PARTY when the official authorities
                 start collecting them.<br/>
-                E) All employees shall work 8 hours a day, 6 days a week (48hrs/week).
-                F) Any changes in the employee's working hours to less than forty-eight (48) hours per week will be
+                E) All employees shall work {{ $fnrco_agreement->work_hours }} hours a
+                day, {{ $fnrco_agreement->work_days_en }} days a week ({{ $fnrco_agreement->work_hours_weekly }}
+                hrs/week).
+                F) Any changes in the employee's working hours to less than ({{ $fnrco_agreement->work_hours_weekly }})
+                hours per week will be
                 applied according to the laws in the Kingdom of Saudi Arabia, without affecting the First Party's
                 charges and its monthly fees.<br/>
                 G) Absentee of the employees shall only be deducted from the basic salary. After reviewing with the
@@ -1030,10 +1018,52 @@
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
 
-                The term of this Agreement shall be {{ $fnrco_agreement->fnrcoQuotation->Contract_period }} Month from the date of signature and shall be automatically
+                The term of this Agreement shall be {{ $fnrco_agreement->fnrcoQuotation->Contract_period }} Month from
+                the date of signature and shall be automatically
                 renewed unless one of the Parties notifies the other of its desire not renew it at least 30 days before
                 the end of the Agreement. Otherwise it is renewed for a similar period. And it has all the legal and
                 financial implications.
+
+
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%; text-align: center;  font-size: 14px; line-height: 24px;background:#ddd">
+                <strong>
+                    شروط الإستبدال
+                </strong>
+            </td>
+
+            <td class="en ltr"
+                style="width: 50%; text-align: center;  font-size: 14px;line-height: 24px;background:#ddd"><strong>REPLACEMENT
+                    CONDITIONS
+                </strong>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top">
+
+                يلتزم الطرف الأول بإستبدال العمالة حسب الشروط الموضحة أدناه:<br/>
+                • في حال عدم كفاءة العمالة خلال مدة شهر من تاريخ الإلتحاق وذلك بعد تحقق الطرف الأول من الحالة وموافقته و
+                يطبق هذا البند على نسبة ٢٥٪ من مجموع العمالة في هذه الإتفاقية. بعد إنقضاء مدة الشهر، لا يحق للطرف الثاني
+                طلب إستبدال ويطبق بند الإنهاء المبكر في هذه الحالة.<br/>
+                • عند هروب العمالة خلال فترة التعاقد.<br/>
+                • يتم الإستبدال للحالات أعلاه في حال توفر العدد المطلوب إستبداله لدى سكن الطرف الأول.
+
+
+            </td>
+            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
+
+                First Party will provide replacement workers based on below conditions:<br/>
+                • In case employees are not qualified for the job during a month from the deployment date and after the
+                case is checked and confirmed by first party, this clause applies on 25% of total number in this
+                agreement. After the period of one month, Second party has no right to ask for replacements and the
+                premature termination clause will be applied in this case.<br/>
+                • In case of employees absconding during the contract duration.<br/>
+                • Replacements based on above conditions will be provided based on workers availability in First Party
+                camp.
 
 
             </td>
@@ -1166,16 +1196,6 @@
 
                 <span class="en">.</span><br/><br/><br/><br/>
 
-                معلومات الاتصال
-                <span class="en">:</span><br/><br/>
-
-                الطرف الأول<br/>
-                اسم ممثل المشروع <span class="en">:</span><br/>
-                رقم التواصل <span class="en">:</span><br/>
-
-                الطرف الثاني<br/><br/>
-                اسم ممثل المشروع<span class="en">:</span><br/>
-                رقم التواصل <span class="en">:</span><br/>
 
 
             </td>
@@ -1187,19 +1207,11 @@
                 text for any reason after signing this contract.<br/>
 
 
-                Information Contact:<br/><br/><br/>
-                FIRST PARTY<br/><br/>
-                Project Representative Name: -<br/>
-                Contact No.: ….<br/>
-
-                SECOND PARTY<br/><br/><br/><br/>
-                Project Representative Name: …….<br/>
-                Contact No.: ….<br/>
-
+              
 
             </td>
         </tr>
-         </tbody>
+        </tbody>
     </table>
     <br>
 
@@ -1226,19 +1238,20 @@
                 (FIRST PARTY)
 
 
-
-
             </td>
         </tr>
         <tr>
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: middle ; direction: rtl">
                 <br/>
                 الاسم: السید/
+                {{ $fnrco_agreement->first_party }}
                 <br/>
             </td>
-            <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: middle;line-height: 30px">
+            <td class="en ltr"
+                style="width: 50%; text-align: left; font-size: 12px; vertical-align: middle;line-height: 30px">
                 <br/>
                 Name: MR/
+                {{ $fnrco_agreement->first_party_en }}
                 <br/>
             </td>
         </tr>
@@ -1247,8 +1260,8 @@
 
                 (التوقيع والختم)
 
-                <br>   <br>
-                <br>   <br> <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
                 التاریخ....................
 
@@ -1256,8 +1269,8 @@
             <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
                 (Signature and Stamp)
 
-                <br>   <br>
-                <br>   <br>  <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
 
                 Date:……………………………….
@@ -1284,13 +1297,12 @@
 
 
             </td>
-            <td class="en ltr" style="width: 50%; text-align: center; font-size: 14px; vertical-align: top; line-height: 18px">
+            <td class="en ltr"
+                style="width: 50%; text-align: center; font-size: 14px; vertical-align: top; line-height: 18px">
                 AUTHORIZED SIGNATORY
                 <br/><br/><br/>
 
                 (SECOND PARTY)
-
-
 
 
             </td>
@@ -1299,11 +1311,13 @@
             <td style="width: 50%; text-align: right;  font-size: 12px; vertical-align: top ; direction: rtl">
                 <br/>
                 الاسم: السید/
+                {{ $fnrco_agreement->first_party }}
                 <br/>
             </td>
             <td class="en ltr" style="width: 50%; text-align: left; font-size: 12px; vertical-align: top">
                 <br/>
                 Name: MR/
+                {{ $fnrco_agreement->first_party_en }}
                 <br/>
             </td>
         </tr>
@@ -1312,8 +1326,8 @@
 
                 (التوقيع والختم)
 
-                <br>   <br>
-                <br>   <br>  <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
                 التاریخ....................
 
@@ -1321,8 +1335,8 @@
             <td class="en ltr" style="width: 50%; text-align: center; font-size: 12px; vertical-align: top">
                 (Signature and Stamp)
 
-                <br>   <br>
-                <br>   <br> <br>   <br>
+                <br> <br>
+                <br> <br> <br> <br>
 
 
                 Date:……………………………….

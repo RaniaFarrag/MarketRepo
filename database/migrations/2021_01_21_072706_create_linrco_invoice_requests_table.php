@@ -27,6 +27,7 @@ class CreateLinrcoInvoiceRequestsTable extends Migration
             $table->foreign('linrco_invoice_id')->references('id')->on('linrco_invoices')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
