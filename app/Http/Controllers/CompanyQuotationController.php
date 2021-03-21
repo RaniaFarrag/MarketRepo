@@ -6,6 +6,7 @@ use App\Interfaces\FnrcoQuotationRepositoryInterface;
 use App\Interfaces\LinrcoQuotationRepositoryInterface;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\FnrcoFlatRedQuotation;
 use App\Models\FnrcoQuotation;
 use App\Models\LinrcoQuotation;
 use Illuminate\Http\Request;
@@ -37,8 +38,8 @@ class CompanyQuotationController extends Controller
                 'company'=>$company , 'mother_company_id' => $mother_company_id]);
         }
         elseif ($mother_company_id == 2){
-            $fnrco_quotations = $this->fnrcoQuotationRepositoryinterface->index($company_id , $mother_company_id);
-            return view('system.company_quotations.fnrco.index')->with(['fnrco_quotations' => $fnrco_quotations , 'company_id' => $company_id ,
+            $data = $this->fnrcoQuotationRepositoryinterface->index($company_id , $mother_company_id);
+            return view('system.company_quotations.fnrco.index')->with(['data' => $data , 'company_id' => $company_id ,
                 'company'=>$company , 'mother_company_id' => $mother_company_id]);
         }
     }
@@ -158,6 +159,49 @@ class CompanyQuotationController extends Controller
         
             $pdf = Pdf::loadView('system.company_quotations.fnrco.Quotation_pdf',compact('fnrco_quotation'));
         }
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "quotation.pdf'"]);
+    }
+
+    /*********************************************Fnrco VISA FlatRed Quotations**********************************************/
+
+    public function createVisaFlatredQuotation($company_id , $mother_company_id , $saudization = null){
+        $countries = Country::all();
+        $company = Company::findOrFail($company_id);
+        return view('system.company_quotations.fnrco.Flat_Red.create')->with(['countries' => $countries ,
+           'company'=>$company ,'company_id' => $company_id , 'mother_company_id' => $mother_company_id , 'saudization' => $saudization]);
+    }
+
+    public function storeVisaFlatredQuotation(Request $request){
+        return $this->fnrcoQuotationRepositoryinterface->storeVisaFlatredQuotation($request);
+    }
+
+    public function editVisaFlatredQuotation($quotation_id , $mother_company_id){
+        $countries = Country::all();
+        $fnrco_flat_red_quotation = FnrcoFlatRedQuotation::where('id' , $quotation_id)->with('fnrcoFlatredQuotationRequests')->first();
+        return view('system.company_quotations.fnrco.Flat_Red.edit')->with(['countries' => $countries ,
+            'fnrco_flat_red_quotation'=>$fnrco_flat_red_quotation , 'mother_company_id' => $mother_company_id]);
+    }
+
+    public function updateVisaFlatredQuotation(Request $request , $quotation_id){
+        $fnrco_flat_red_quotation = FnrcoFlatRedQuotation::where('id' , $quotation_id)->with('fnrcoFlatredQuotationRequests')->first();
+        return $this->fnrcoQuotationRepositoryinterface->updateVisaFlatredQuotation($request ,$fnrco_flat_red_quotation);
+    }
+
+    public function deleteVisaFlatredQuotation($quotation_id , $mother_company_id){
+        return $this->fnrcoQuotationRepositoryinterface->deleteVisaFlatredQuotation($quotation_id , $mother_company_id);
+    }
+
+    public function printFlatRedQuotation($quotation_id , $mother_company_id){
+        $fnrco_flat_red_quotation = FnrcoFlatRedQuotation::where('id' , $quotation_id)->with('fnrcoFlatredQuotationRequests')->first();
+
+        $pdf = Pdf::loadView('system.company_quotations.fnrco.Flat_Red.flat_red_Quotation_pdf',compact('fnrco_flat_red_quotation'));
+
 
         $output = $pdf->output();
 

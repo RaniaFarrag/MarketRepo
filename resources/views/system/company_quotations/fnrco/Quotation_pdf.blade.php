@@ -427,7 +427,7 @@
                                     ،
                                     @if($fnrco_quotation->saudization == 1)
                                         <strong>و السعودة </strong>
-                                    @endif، إقامة الموظفين ونقلهم.<br/>
+                                    @endif، إقامة الموظفين ونقلهم. <br/>
                                     4. مدة عقد القوى العاملة
                                     @if($fnrco_quotation->Contract_period == 12)
                                         <strong>12 شهر</strong>

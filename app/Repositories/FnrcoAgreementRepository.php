@@ -87,6 +87,13 @@ class FnrcoAgreementRepository implements FnrcoAgreementRepositoryInterface
         $quotation = $this->fnrco_Quotation_model::findOrFail($quotation_id);
 
         return $this->fnrco_Agreement_model::create([
+           'work_hours' =>8,
+           'work_hours_ar' =>"ثمانية",
+           'work_days' =>"ستة",
+           'work_days_en' =>6,
+           'work_hours_weekly' =>48,
+           'work_hours_weekly_ar' =>"ثمانية و أربعون",
+           'work_hours_weekly' =>48,
            'fnrco_quotation_id' =>$quotation_id,
            'company_id' =>$quotation->company_id,
            'user_id' =>Auth::user()->id,

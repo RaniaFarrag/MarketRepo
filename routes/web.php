@@ -265,6 +265,31 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('print/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printQuotation')
         ->name('print_quotation')->middleware(['permission:quotations']);
 
+    /*********************************************Fnrco VISA Quotations**********************************************/
+
+    Route::get('create/visa/flatred/quotation/{company_id}/{mother_company_id}/{saudization}',
+        'CompanyQuotationController@createVisaFlatredQuotation')
+                ->name('create_visa_flatred_quotation');
+
+    Route::post('store/visa/flatred/quotation/',
+        'CompanyQuotationController@storeVisaFlatredQuotation')
+        ->name('store_visa_flatred_quotation');
+
+    Route::get('edit/visa/flatred/quotation/{quotation_id}/{mother_company_id}',
+        'CompanyQuotationController@editVisaFlatredQuotation')
+        ->name('edit_visa_flatred_quotation');
+
+    Route::post('update/visa/flatred/quotation/{quotation_id}',
+        'CompanyQuotationController@updateVisaFlatredQuotation')
+        ->name('update_visa_flatred_quotation');
+
+    Route::get('delete/visa/flatred/quotation/{quotation_id}/{mother_company_id}',
+        'CompanyQuotationController@deleteVisaFlatredQuotation')
+        ->name('delete_visa_flatred_quotation');
+
+    Route::get('print/flat/red/quotation/{quotation_id}/{mother_company_id}' , 'CompanyQuotationController@printFlatRedQuotation')
+        ->name('print_flat_red_quotation');
+
 
     Route::resource('CompanyAgreement' , 'CompanyAgreementController');
 

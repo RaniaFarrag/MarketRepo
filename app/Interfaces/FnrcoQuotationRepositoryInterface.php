@@ -15,8 +15,16 @@ interface FnrcoQuotationRepositoryInterface
 
     public function store($request);
 
-    public function update($request , $linrco_quotation);
+    public function update($request , $fnrco_quotation);
 
     public function destroy($quotation_id , $mother_company_id);
+
+    /*********************************************Fnrco VISA FlatRed Quotations**********************************************/
+
+    public function storeVisaFlatredQuotation($request);
+
+    public function updateVisaFlatredQuotation($request , $fnrco_flat_red_quotation);
+
+    public function deleteVisaFlatredQuotation($quotation_id , $mother_company_id);
 
 }

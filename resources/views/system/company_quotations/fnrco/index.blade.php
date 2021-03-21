@@ -90,16 +90,22 @@
                             <!--begin::Navigation-->
                             <ul class="navi navi-hover">
 
-                                <li class="navi-item pb-1">
-                                    <a href="#" class="navi-link">
 
-                                        <span class="navi-text"> {{ trans('dashboard.Ajeer Cost Plus') }}</span>
+                                <li class="navi-item pb-1">
+                                    <a href="{{ route('create_visa_flatred_quotation' , [$company->id , $mother_company_id , 1]) }}" class="navi-link">
+                                        <span class="navi-text"> {{ trans('dashboard.Ajeer Flat Red') }}</span>
                                     </a>
                                 </li>
+
+                                <li class="navi-item pb-1">
+                                    <a href="{{ route('create_visa_flatred_quotation' , [$company->id , $mother_company_id , 0]) }}" class="navi-link">
+                                        <span class="navi-text"> {{ trans('dashboard.Services Flat Red') }}</span>
+                                    </a>
+                                </li>
+
                                 <li class="navi-item pb-1">
                                     <a href="#" class="navi-link">
-
-                                        <span class="navi-text"> {{ trans('dashboard.Ajeer Flat Red') }}</span>
+                                        <span class="navi-text"> {{ trans('dashboard.Ajeer Cost Plus') }}</span>
                                     </a>
                                 </li>
 
@@ -109,14 +115,6 @@
                                         <span class="navi-text"> {{ trans('dashboard.Services Cost Plus') }}</span>
                                     </a>
                                 </li>
-                                <li class="navi-item pb-1">
-                                    <a href="#" class="navi-link">
-
-                                        <span class="navi-text"> {{ trans('dashboard.Services Flat Red') }}</span>
-                                    </a>
-                                </li>
-
-
                             </ul>
                             <!--end::Navigation-->
                         </div>
@@ -149,7 +147,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Fnrco Quotations') }} {{ $company->name }}
+                                        {{ trans('dashboard.Ready ManPower Quotations') }}
                                     </h3>
                                 </div>
 
@@ -176,7 +174,7 @@
                                         </thead>
 
                                         <tbody>
-                                        @foreach($fnrco_quotations as $k=>$quotation)
+                                        @foreach($data['fnrco_readyManpower_quotations'] as $k=>$quotation)
                                             <tr>
                                                 <td>{{ $quotation->ref_no }}</td>
                                                 <td>{{ $quotation->Quotation_No }}</td>
@@ -241,13 +239,115 @@
                                         </tbody>
                                     </table>
                                     <!--end: Datatable-->
+                                    {{ $data['fnrco_readyManpower_quotations']->links() }}
                                 </div>
                             </div>
+
+
+                            <div class="card-header flex-wrap">
+                                    <div class="card-title text-center" style="width: 100%;display: inline-block;">
+                                        <h3 class="card-label" style="line-height: 70px;">
+                                            {{ trans('dashboard.Visa FlatRed Quotations') }}
+                                            {{--{{ $company->name }}--}}
+                                        </h3>
+                                    </div>
+
+                                </div>
+                            <div class="card-body">
+                                    <div class="table-responsive">
+                                        <!--begin: Datatable-->
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                            <tr>
+                                                <th>{{ trans('dashboard.Ref No') }}</th>
+                                                <th>{{ trans('dashboard.Quotation No') }}</th>
+                                                <th>{{ trans('dashboard.Attn') }}</th>
+                                                <th>{{ trans('dashboard.Date') }}</th>
+                                                <th>{{ trans('dashboard.type') }}</th>
+                                                <th>{{ trans('dashboard.By') }}</th>
+                                                <th>{{ trans('dashboard.Contract Period') }}</th>
+                                                <th>{{ trans('dashboard.Company Quotations') }}</th>
+                                                <th>{{ trans('dashboard.Convert To Contract') }}</th>
+                                                <th>{{ trans('dashboard.The Contract') }}</th>
+                                                <th>{{ trans('dashboard.edit') }}</th>
+                                                <th>{{ trans('dashboard.delete') }}</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            @foreach($data['fnrco_visa_quotations'] as $k=>$quotation)
+                                                <tr>
+                                                    <td>{{ $quotation->ref_no }}</td>
+                                                    <td>{{ $quotation->Quotation_No }}</td>
+                                                    <td>{{ $quotation->attn }}</td>
+                                                    <td>{{ $quotation->created_at }}</td>
+                                                    <td>
+                                                        @if($quotation->saudization == 1)
+                                                            {{ trans('dashboard.Ageer') }}
+                                                        @elseif($quotation->saudization == 0)
+                                                            {{ trans('dashboard.Services') }}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $quotation->user->name }}</td>
+                                                    <td>{{ $quotation->Contract_period }} Month</td>
+                                                    {{--<td>{{ $quotation->user->name }}</td>--}}
+                                                    <td><a class="btn btn-success font-weight-bold" target="_blank"
+                                                           href="{{ route('print_flat_red_quotation' , [$quotation->id , $mother_company_id]) }}">{{ trans('dashboard.Details') }}</a>
+                                                    </td>
+
+                                                    <td>
+                                                        @if($quotation->fnrcoAgreement)
+                                                            <a  style="color: grey; pointer-events: none;
+                                                                  cursor: default;
+                                                                  text-decoration: none;
+                                                                  " class="btn btn-success font-weight-bold" >
+                                                                {{ trans('dashboard.Convert') }}
+                                                            </a>
+                                                        @else
+                                                            <a class="btn btn-success font-weight-bold"
+                                                               href="#">
+                                                                {{ trans('dashboard.Convert') }}
+                                                            </a>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($quotation->fnrcoAgreement)
+                                                            <a class="btn btn-success font-weight-bold"
+                                                               href="#">
+                                                                {{ trans('dashboard.Contract') }}
+                                                            </a>
+                                                        @else
+                                                            <a  style="color: grey; pointer-events: none;
+                                                                  cursor: default;
+                                                                  text-decoration: none;
+                                                                  " class="btn btn-success font-weight-bold" >
+                                                                {{ trans('dashboard.Contract') }}
+                                                            </a>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('edit_visa_flatred_quotation' , [$quotation->id , $mother_company_id]) }}" class="btn
+                                                       btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a>
+                                                    </td>
+                                                    <td><a onclick="return confirm('Are you sure?')"
+                                                           class="btn btn-danger font-weight-bold"
+                                                           href="{{ route('delete_visa_flatred_quotation' , [$quotation->id , $mother_company_id]) }}"><i
+                                                                    class="fa fa-trash"></i></a></td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                        <!--end: Datatable-->
+                                        {{ $data['fnrco_visa_quotations']->links() }}
+                                    </div>
+                                </div>
                         </div>
                         <!--end::Card-->
                     </div>
                 </div>
                 <!--end::Row-->
+
 
                 <!--end::Dashboard-->
             </div>
