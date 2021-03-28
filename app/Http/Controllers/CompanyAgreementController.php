@@ -6,6 +6,8 @@ use App\Interfaces\FnrcoAgreementRepositoryInterface;
 use App\Interfaces\LinrcoAgreementRepositoryInterface;
 use App\Models\Company;
 use App\Models\FnrcoAgreement;
+use App\Models\FnrcoFlatRedAgreement;
+use App\Models\FnrcoFlatRedQuotation;
 use App\Models\FnrcoQuotation;
 use App\Models\LinrcoAgreement;
 use Illuminate\Http\Request;
@@ -74,10 +76,6 @@ class CompanyAgreementController extends Controller
         if ($request->mother_company_id == 1){
             return $this->LinrcoAgreementRepositoryInterface->store($request);
         }
-        elseif ($request->mother_company_id == 2){
-            //return $this->fnrcoQuotationRepositoryinterface->store($request);
-        }
-
     }
 
     /**
@@ -104,6 +102,7 @@ class CompanyAgreementController extends Controller
             return view('system.agreement_contract.linrco.edit')->with(['linrco_agreement' => $linrco_agreement ,
                 'mother_company_id' => $mother_company_id]);
         }
+        // ٌReadyMan Power
         elseif ($mother_company_id == 2){
             $fnrco_agreement = FnrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             return view('system.agreement_contract.fnrco.edit')->with(['fnrco_agreement'=>$fnrco_agreement ,
@@ -124,6 +123,7 @@ class CompanyAgreementController extends Controller
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             return $this->LinrcoAgreementRepositoryInterface->update($request , $linrco_agreement);
         }
+        // ٌReadyMan Power
         elseif ($request->mother_company_id == 2){
             $fnrco_agreement = FnrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             return $this->fnrcoAgreementRepositoryinterface->update($request ,$fnrco_agreement);
@@ -142,13 +142,14 @@ class CompanyAgreementController extends Controller
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             return $this->LinrcoAgreementRepositoryInterface->destroy($linrco_agreement , $mother_company_id);
         }
-
+        // ٌReadyMan Power
         elseif ($mother_company_id == 2){
             $fnrco_agreement = FnrcoAgreement::where('id' , $agreement_id)->first();
             return $this->fnrcoAgreementRepositoryinterface->destroy($fnrco_agreement , $mother_company_id);
         }
     }
 
+    // ٌLinrco
     public function printAgreement($agreement_id , $mother_company_id){
         if ($mother_company_id == 1){
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
@@ -164,8 +165,7 @@ class CompanyAgreementController extends Controller
     }
 
 
-    /*********************************************FNRCO COMPANy*****************************************************/
-
+    /*********************************************FNRCO READYMAN POWER Agreements*****************************************************/
 
     public function convertFnrcoquotationToAgreement($quotation_id){
         $quotation = FnrcoQuotation::findOrFail($quotation_id);
@@ -192,8 +192,6 @@ class CompanyAgreementController extends Controller
             $pdf = Pdf::loadView('system.agreement_contract.fnrco.Agreement_Service_fnrco' ,compact('fnrco_agreement' , 'total'));
         }
 
-
-
         $output = $pdf->output();
 
         return new \Illuminate\Http\Response($output, 200, [
@@ -202,12 +200,67 @@ class CompanyAgreementController extends Controller
             'filename' => "agreement.pdf'"]);
     }
 
-    public function deleteFnrcoAgreement($agreement_id , $mother_company_id)
-    {
+//    public function deleteFnrcoAgreement($agreement_id , $mother_company_id)
+//    {
+//        $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
+//        return $this->LinrcoAgreementRepositoryInterface->destroy($linrco_agreement , $mother_company_id);
+//    }
 
-        $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
-        return $this->LinrcoAgreementRepositoryInterface->destroy($linrco_agreement , $mother_company_id);
+    /*********************************************FNRCO VISA FlatRed Agreements**********************************************/
 
+    public function convertFnrcoFlatRedQuotationToAgreement($quotation_id){
+        $quotation = FnrcoFlatRedQuotation::findOrFail($quotation_id);
+        $this->fnrcoAgreementRepositoryinterface->convertFnrcoFlatRedQuotationToAgreement($quotation);
+
+        Alert::success('success', trans('dashboard.The quotation has been converted to a contract successfully'));
+        return redirect(route('companyQuotation.index' , [$quotation->company_id , 2]));
+    }
+
+    public function openFlatRedAgreement($flatred_agreement_id){
+        $flat_red_agreement = FnrcoFlatRedAgreement::where('id' , $flatred_agreement_id)->with('fnrcoFlatRedQuotation')->first();
+
+        return view('system.agreement_contract.fnrco.Flat_Red.index')->with('flat_red_agreement' , $flat_red_agreement);
+    }
+
+    public function editFlatRedAgreement($flatred_agreement_id , $mother_company_id){
+        $flatred_agreement = FnrcoFlatRedAgreement::where('id' , $flatred_agreement_id)->with('agreementFlatRedAnnexure','company' , 'user')->first();
+        //dd(json_decode($flatred_agreement->agreementFlatRedAnnexure->notes)[0]);
+        return view('system.agreement_contract.fnrco.Flat_Red.edit')->with(['flatred_agreement' => $flatred_agreement ,
+            'mother_company_id'=>$mother_company_id]);
+    }
+
+    public function updateFlatRedAgreement(Request $request, $flatagreement_id){
+        $flatred_agreement = FnrcoFlatRedAgreement::where('id' , $flatagreement_id)->with('agreementFlatRedAnnexure','company' , 'user')->first();
+
+        return $this->fnrcoAgreementRepositoryinterface->updateFlatRedAgreement($request ,$flatred_agreement);
+    }
+
+    public function flatRedAgeerAgreementprint($flatagreement_id){
+        $fnrco_flat_red_agreement = FnrcoFlatRedAgreement::where('id' , $flatagreement_id)->with('agreementFlatRedAnnexure' ,
+            'fnrcoFlatRedQuotation' , 'company' , 'user')->first();
+        $total_quantity = $fnrco_flat_red_agreement->fnrcoFlatRedQuotation->fnrcoFlatRedQuotationRequests->sum('quantity');
+        $total_amount = $fnrco_flat_red_agreement->fnrcoFlatRedQuotation->fnrcoFlatRedQuotationRequests->sum('total_value_per_month');
+
+        if ($fnrco_flat_red_agreement->fnrcoFlatRedQuotation->saudization == 1){
+            $pdf = Pdf::loadView('system.agreement_contract.fnrco.Flat_Red.ageer_pdf' , compact('fnrco_flat_red_agreement' ,
+                'total_quantity' , 'total_amount'));
+        }
+        else{
+            $pdf = Pdf::loadView('system.agreement_contract.fnrco.Flat_Red.service_pdf' , compact('fnrco_flat_red_agreement' ,
+                'total_quantity' , 'total_amount'));
+        }
+
+        $output = $pdf->output();
+
+        return new \Illuminate\Http\Response($output, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline',
+            'filename' => "FlatRed_agreement.pdf'"]);
+    }
+
+    public function deleteflatRedAgreement($flatagreement_id , $mother_company_id){
+        $flatred_agreement = FnrcoFlatRedAgreement::where('id' , $flatagreement_id)->first();
+        return $this->fnrcoAgreementRepositoryinterface->deleteflatRedAgreement($flatred_agreement , $mother_company_id);
     }
 
 }

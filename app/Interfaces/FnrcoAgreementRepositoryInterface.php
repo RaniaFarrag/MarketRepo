@@ -19,5 +19,13 @@ interface FnrcoAgreementRepositoryInterface
 
     public function destroy($fnrco_agreement , $mother_company_id);
 
+    /*********************************************FNRCO VISA FlatRed Agreements**********************************************/
+
+    public function convertFnrcoFlatRedQuotationToAgreement($quotation);
+
+    public function updateFlatRedAgreement($request , $flatred_agreement);
+
+    public function deleteflatRedAgreement($flatred_agreement , $mother_company_id);
+
 
 }

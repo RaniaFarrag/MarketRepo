@@ -42,7 +42,7 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
          $data['fnrco_readyManpower_quotations'] = $this->fnrco_quotation_model::where('company_id' , $company_id)
              ->with(['company' , 'fnrcoQuotationsRequest'])->paginate(10);
 
-         $data['fnrco_visa_quotations'] = FnrcoFlatRedQuotation::where('company_id' , $company_id)
+         $data['fnrco_flatRed_quotations'] = FnrcoFlatRedQuotation::where('company_id' , $company_id)
              ->with(['company' , 'fnrcoFlatredQuotationRequests'])->paginate(10);
 
         return $data;
@@ -191,7 +191,7 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
                 'admin_fees' => $item['admin_fees'],
                 'value_per_employee_month' => $item['value_per_employee_month'],
                 'total_value_per_month' => $item['total_value_per_month'],
-                'fnrco_flat_red_quotation_id' => $fnrco_flat_red_Quotation->id,
+                'flatred_quotation_id' => $fnrco_flat_red_Quotation->id,
             ]);
         }
 
@@ -221,25 +221,28 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
             'user_id' => Auth::user()->id,
         ]);
 
-        foreach ($request->item as $item) {
-            FnrcoFlatRedQuotationRequest::updateOrCreate(
-                ['fnrco_flat_red_quotation_requests.id' => $item['request_id']],
-                [
-                    'category' => $item['category'],
-                    'visa_category_available' => $item['visa_category_available'],
-                    'visa_category_arabic' => $item['visa_category_arabic'],
-                    'quantity' => $item['quantity'],
-                    'nationality' => $item['nationality'],
-                    'salary' => $item['salary'],
-                    'Food_allowance' => $item['Food_allowance'],
-                    'Fnrco_charge' => $item['Fnrco_charge'],
-                    'iqama_visa' => $item['iqama_visa'],
-                    'admin_fees' => $item['admin_fees'],
-                    'value_per_employee_month' => $item['value_per_employee_month'],
-                    'total_value_per_month' => $item['total_value_per_month'],
-                    'fnrco_flat_red_quotation_id' => $fnrco_flat_red_quotation->id,
-                ]
-            );
+        if ($request->item){
+            foreach ($request->item as $item) {
+                FnrcoFlatRedQuotationRequest::updateOrCreate(
+                    ['fnrco_flat_red_quotation_requests.id' => $item['request_id']],
+                    [
+                        'category' => $item['category'],
+                        'visa_category_available' => $item['visa_category_available'],
+                        'visa_category_arabic' => $item['visa_category_arabic'],
+                        'quantity' => $item['quantity'],
+                        'nationality' => $item['nationality'],
+                        'salary' => $item['salary'],
+                        'Food_allowance' => $item['Food_allowance'],
+                        'Fnrco_charge' => $item['Fnrco_charge'],
+                        'iqama_visa' => $item['iqama_visa'],
+                        'admin_fees' => $item['admin_fees'],
+                        'value_per_employee_month' => $item['value_per_employee_month'],
+                        'total_value_per_month' => $item['total_value_per_month'],
+                        'flatred_quotation_id' => $fnrco_flat_red_quotation->id,
+                    ]
+                );
+            }
+
         }
 
         $this->addLog(auth()->id() , $fnrco_flat_red_quotation->id , 'FnrcoFlatRedQuotation' , 'تم تعديل عرض اسعار لشركة فناركو ' , 'New Fnrco FlatRed Quotation has been added');
@@ -252,6 +255,9 @@ class FnrcoQuotationRepository implements FnrcoQuotationRepositoryInterface
         $fnrco_flatred_quotation = FnrcoFlatRedQuotation::findOrFail($quotation_id);
         $fnrco_flatred_quotation->delete();
         $fnrco_flatred_quotation->fnrcoFlatredQuotationRequests()->delete();
+
+        $fnrco_flatred_quotation->fnrcoFlatRedAgreement()->delete();
+        $fnrco_flatred_quotation->fnrcoFlatRedAgreement()->agreementFlatRedAnnexure->delete();
 
         $this->addLog(auth()->id() , $fnrco_flatred_quotation->id , 'FnrcoFlatRedQuotation' , 'تم حذف عرض اسعار لشركة فناركو ' , 'Fnrco Quotation has been deleted');
 

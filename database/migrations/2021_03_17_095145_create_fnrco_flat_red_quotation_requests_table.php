@@ -27,8 +27,8 @@ class CreateFnrcoFlatRedQuotationRequestsTable extends Migration
             $table->string('admin_fees')->nullable();
             $table->string('value_per_employee_month')->nullable();
             $table->string('total_value_per_month')->nullable();
-            $table->bigInteger('fnrco_flat_red_quotation_id')->unsigned();
-            $table->foreign('fnrco_flat_red_quotation_id')->references('id')->on('fnrco_flat_red_quotations')->onDelete('cascade');
+            $table->bigInteger('flatred_quotation_id')->unsigned();
+            $table->foreign('flatred_quotation_id')->references('id')->on('fnrco_flat_red_quotations')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

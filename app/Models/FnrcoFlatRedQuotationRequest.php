@@ -22,13 +22,13 @@ class FnrcoFlatRedQuotationRequest extends Model
         'admin_fees',
         'value_per_employee_month',
         'total_value_per_month',
-        'fnrco_flat_red_quotation_id',
+        'flatred_quotation_id',
     ];
 
     protected $dates = ['deleted_at'];
 
     public function fnrcoFlatredQuotation(){
-        return $this->belongsTo(FnrcoFlatRedQuotation::class , 'fnrco_flat_red_quotation_id' , 'id');
+        return $this->belongsTo(FnrcoFlatRedQuotation::class , 'flatred_quotation_id' , 'id');
     }
 
     public function country(){

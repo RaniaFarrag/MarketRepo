@@ -275,7 +275,7 @@
                                             </thead>
 
                                             <tbody>
-                                            @foreach($data['fnrco_visa_quotations'] as $k=>$quotation)
+                                            @foreach($data['fnrco_flatRed_quotations'] as $k=>$quotation)
                                                 <tr>
                                                     <td>{{ $quotation->ref_no }}</td>
                                                     <td>{{ $quotation->Quotation_No }}</td>
@@ -296,7 +296,7 @@
                                                     </td>
 
                                                     <td>
-                                                        @if($quotation->fnrcoAgreement)
+                                                        @if($quotation->fnrcoFlatRedAgreement)
                                                             <a  style="color: grey; pointer-events: none;
                                                                   cursor: default;
                                                                   text-decoration: none;
@@ -305,16 +305,16 @@
                                                             </a>
                                                         @else
                                                             <a class="btn btn-success font-weight-bold"
-                                                               href="#">
+                                                               href="{{ route('convert_flatred_quotation_agreement' , $quotation->id) }}">
                                                                 {{ trans('dashboard.Convert') }}
                                                             </a>
                                                         @endif
                                                     </td>
 
                                                     <td>
-                                                        @if($quotation->fnrcoAgreement)
+                                                        @if($quotation->fnrcoFlatRedAgreement)
                                                             <a class="btn btn-success font-weight-bold"
-                                                               href="#">
+                                                               href="{{ route('open_FlatRedAgreement' , $quotation->fnrcoFlatRedAgreement->id) }}">
                                                                 {{ trans('dashboard.Contract') }}
                                                             </a>
                                                         @else
@@ -339,7 +339,7 @@
                                             </tbody>
                                         </table>
                                         <!--end: Datatable-->
-                                        {{ $data['fnrco_visa_quotations']->links() }}
+                                        {{ $data['fnrco_flatRed_quotations']->links() }}
                                     </div>
                                 </div>
                         </div>

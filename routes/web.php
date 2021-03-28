@@ -322,6 +322,26 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('FnrcoAgreement/print/{fnrco_agreement_id}' , 'CompanyAgreementController@printFnrcoAgreement')->name('print_FnrcoAgreement');
 
+    /********************************************************FLATE RED AGREEMENT*********************************************************/
+
+    Route::get('convert/flat/red/quotation/agreement/{quotation_id}' , 'CompanyAgreementController@convertFnrcoFlatRedQuotationToAgreement')
+        ->name('convert_flatred_quotation_agreement');
+
+    Route::get('open/FlatRedAgreement/{flatred_agreement_id}' , 'CompanyAgreementController@openFlatRedAgreement')
+        ->name('open_FlatRedAgreement');
+
+    Route::get('edit/FlatRedAgreement/{flatred_agreement_id}/{mother_company_id}' , 'CompanyAgreementController@editFlatRedAgreement')
+        ->name('edit_FlatRedAgreement');
+
+    Route::post('update/FlatRedAgreement/{flatred_agreement_id}' , 'CompanyAgreementController@updateFlatRedAgreement')
+        ->name('update_FlatRedAgreement');
+
+    Route::get('FlatRedAgreement/print/{flatred_agreement_id}' , 'CompanyAgreementController@flatRedAgeerAgreementprint')->name('flatRed_print_FnrcoAgreement');
+
+    Route::get('FlatRedAgreement/delete/{flatred_agreement_id}/{mother_company_id}' , 'CompanyAgreementController@deleteflatRedAgreement')->name('flatRed_delete_FnrcoAgreement');
+
+
+
 
     Route::resource('CompanyUndertaking' , 'CompanyUndertakingController');
 
@@ -381,9 +401,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     //Route::get('view/invoice/pdf/{file_name}' , 'CompanyInvoiceController@downloadInvoice')->name('view_invoice_pdf');
 
 
-
     Route::post('assign/one/company' , 'AssignCompanyController@assignOnecompany')->name('assign_one_company');
-
 
 
 });

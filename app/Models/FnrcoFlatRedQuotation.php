@@ -25,9 +25,14 @@ class FnrcoFlatRedQuotation extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function fnrcoFlatredQuotationRequests(){
-        return $this->hasMany(FnrcoFlatRedQuotationRequest::class , 'fnrco_flat_red_quotation_id' , 'id');
+    public function fnrcoFlatRedQuotationRequests(){
+        return $this->hasMany(FnrcoFlatRedQuotationRequest::class , 'flatred_quotation_id' , 'id');
     }
+
+    public function fnrcoFlatRedAgreement(){
+        return $this->hasOne(FnrcoFlatRedAgreement::class , 'flatred_quotation_id' , 'id');
+    }
+
 
     public function company(){
         return $this->belongsTo(Company::class);
