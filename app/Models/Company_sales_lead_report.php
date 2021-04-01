@@ -13,7 +13,7 @@ class Company_sales_lead_report extends Model
     protected $fillable =['id' ,'company_id' , 'cat_of_req','brochurs_status',
         'quanity','type_of_serves',
         'client_feeback','remarks',
-        'updates','nextFollowUp',
+        'updates','nextFollowUp','visit_date',
         'statue','user_id',
         'created_at' , 'updated_at'
         ];

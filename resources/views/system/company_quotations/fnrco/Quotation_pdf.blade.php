@@ -3,11 +3,14 @@
 
     <html lang="ar" dir="rtl">
     <head>
+
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
         <title> {{$fnrco_quotation->company->name }} عرض اسعار الى </title>
+
         @else
 
-            <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr">
             <head>
                 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
                 <title>Quotation For {{$fnrco_quotation->company->name }} </title>
@@ -217,10 +220,10 @@
 
                         @else
 
-                            <table class="en ltr" style="line-height: 24px; border: none;">
+                     <table class="en ltr" style="line-height: 24px; border: none;">
 
 
-                                @endif
+                     @endif
 
 
                                 <tbody>
@@ -283,7 +286,7 @@
                                     <td class="en ltr" style="font-size: 12px; vertical-align: middle;">1</td>
                                 </tr>
                                 </tbody>
-                            </table>
+                    </table>
 
 
                             @if (app()->getLocale() == 'ar')
@@ -319,6 +322,7 @@
                             <table class="en ltr" style="line-height: 16px; border: none;">
 
                                 <tbody>
+
                                 <tr class="en ltr">
                                     <td class="en ltr"
                                         style="background: #d7d7d7;font-size: 12px; vertical-align: middle; text-align: center;line-height: 16px;">
@@ -409,6 +413,7 @@
                             </p>
 
                             <p class="en ltr" style="line-height: 18px;">
+
                                 <strong>{{ __('dashboard.Terms & Conditions') }}:-</strong><br/>
 
                                 @if (app()->getLocale() == 'ar')
@@ -427,13 +432,17 @@
                                     ،
                                     @if($fnrco_quotation->saudization == 1)
                                         <strong>و السعودة </strong>
-                                    @endif، إقامة الموظفين ونقلهم. <br/>
+                                    @endif
+                                    ، إقامة الموظفين ونقلهم.
+                                    <br/>
                                     4. مدة عقد القوى العاملة
                                     @if($fnrco_quotation->Contract_period == 12)
                                         <strong>12 شهر</strong>
                                     @elseif($fnrco_quotation->Contract_period == 24)
                                         <strong>24 شهر</strong>
-                                    @endif قابلة للتجديد حسب معايير الشروط والأحكام الموضوعة.<br/>
+                                    @endif
+                                    قابلة للتجديد حسب معايير الشروط والأحكام الموضوعة
+                                    .<br/>
                                     5. إيداع مبلغ شهرين مقدماً.  بمعنى: يتعين على شركة جاش للخدمات التقنية إيداع مبلغ
                                     الفاتورة شهرين مقدمًا لدى FNRCO.<br/>
                                     6. الدفع في غضون 30 يومًا بعد تقديم الفاتورة مقابل جدول ساعات العمل المعتمد.
@@ -539,7 +548,9 @@
 
                                 </tbody>
                             </table>
+
+
             </main>
 
-            </body>
-    </html>
+  </body>
+ </html>

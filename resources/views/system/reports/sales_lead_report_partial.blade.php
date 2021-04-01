@@ -63,7 +63,7 @@
             <td>{{$report->company->company_representative_name ?? '-'}}</td>
             <td>{{$report->company->company_representative_phone?? '-'}}</td>
             <td>{{$report->company->company_representative_mobile?? '-'}}</td>
-            <td><a href="mailto:{{$report->company->company_representative_email}}">{{$report->company->company_representative_email?? '-'}}</a></td>
+            <td><a href="mailto:{{$report->company->company_representative_email ?? ''}}">{{$report->company->company_representative_email?? '-'}}</a></td>
             <td>{{$report->brochurs_status?? '-'}}</td>
             <td>{{$report->type_of_serves?? '-'}}</td>
 

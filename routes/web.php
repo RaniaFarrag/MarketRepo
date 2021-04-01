@@ -231,6 +231,11 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')
         ->name('extract_sales_lead_report_excel')->middleware(['permission:Reports']);
 
+
+    Route::get('visit/report','SalesLeadReportController@visitReport')
+        ->name('visit_report')->middleware(['permission:Reports']);
+
+
     //NEW
     Route::get('/get/reps/of/mothercompany/{mother_company_id}','AssignCompanyController@getRepofMothercompany');
 

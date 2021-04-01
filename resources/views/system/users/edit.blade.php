@@ -78,13 +78,13 @@
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label>{{ trans('dashboard.Mother Company') }} :</label>
-                                            <select class="form-control select2" name="mother_company_id" required>
+                                            <select class="form-control select2" name="mother_company_id" >
                                                 <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
                                                 @foreach($data['motherCompanies'] as $motherCompany)
                                                     <option value="{{ $motherCompany->id }}" {{ $user->mother_company_id == $motherCompany->id  ? 'selected' : ''}}>{{ app()->getLocale() == 'ar' ? $motherCompany->name : $motherCompany->name_en }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('mother_company')
+                                            @error('mother_company_id')
                                                 <div style="color: red" class="error">{{ $message }}</div>
                                             @enderror
                                         </div>

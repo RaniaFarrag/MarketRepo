@@ -19,4 +19,7 @@ interface salesReportRepositoryInterface
 
     public function store($request);
 
+    //1/4/2021
+    public function visitReport($request);
+
 }

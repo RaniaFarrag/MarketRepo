@@ -94,13 +94,13 @@
                                             <th>{{ trans('dashboard.Contarct Period') }}</th>
                                             <th>{{ trans('dashboard.By') }}</th>
                                             <th>{{ trans('dashboard.Agreement Details') }}</th>
-                                            <th>{{ trans('dashboard.edit') }}</th>
-                                            <th>{{ trans('dashboard.delete') }}</th>
+                                            {{--<th>{{ trans('dashboard.edit') }}</th>--}}
+                                            {{--<th>{{ trans('dashboard.delete') }}</th>--}}
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        @foreach($fnrco_agreements as $k=>$agreement)
+                                        @foreach($data['agreement_readyman_power'] as $k=>$agreement)
                                             <tr>
                                                 <td>{{ $agreement->id }}</td>
                                                 <td>{{ $agreement->fnrcoQuotation ? $agreement->fnrcoQuotation->Quotation_No : '' }}</td>
@@ -116,8 +116,8 @@
                                                 <td>{{ $agreement->fnrcoQuotation ? $agreement->fnrcoQuotation->Contract_period : ''}}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>
                                                 <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('print_FnrcoAgreement' , $agreement->id) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
-                                                <td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , 2]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>
-                                                <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyAgreement.destroy' , [$agreement->id , 2]) }}"><i class="fa fa-trash"></i></a></td>
+                                                {{--<td><a href="{{ route('CompanyAgreement.edit' , [$agreement->id , 2]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>--}}
+                                                {{--<td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('CompanyAgreement.destroy' , [$agreement->id , 2]) }}"><i class="fa fa-trash"></i></a></td>--}}
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -125,6 +125,60 @@
                                     <!--end: Datatable-->
                                 </div>
                             </div>
+
+
+                                <div class="card-header flex-wrap">
+                                    <div class="card-title text-center" style="width: 100%;display: inline-block;">
+                                        <h3 class="card-label" style="line-height: 70px;">
+                                            {{ trans('dashboard.Fnrco FlatRed Agreements') }} {{ $company->name }}
+                                        </h3>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <!--begin: Datatable-->
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{ trans('dashboard.Quotation No') }}</th>
+                                                <th>{{ trans('dashboard.type') }}</th>
+                                                <th>{{ trans('dashboard.Contarct Period') }}</th>
+                                                <th>{{ trans('dashboard.By') }}</th>
+                                                <th>{{ trans('dashboard.Agreement Details') }}</th>
+                                                {{--<th>{{ trans('dashboard.edit') }}</th>--}}
+                                                {{--<th>{{ trans('dashboard.delete') }}</th>--}}
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                            @foreach($data['agreement_flatRed'] as $k=>$agreement)
+                                                <tr>
+                                                    <td>{{ $agreement->id }}</td>
+                                                    <td>{{ $agreement->fnrcoFlatRedQuotation ? $agreement->fnrcoFlatRedQuotation->Quotation_No : '' }}</td>
+                                                    <td>
+                                                        @if($agreement->fnrcoFlatRedQuotation)
+                                                            @if($agreement->fnrcoFlatRedQuotation->saudization == 1)
+                                                                {{ trans('dashboard.Ageer') }}
+                                                            @elseif($agreement->fnrcoFlatRedQuotation->saudization == 0)
+                                                                {{ trans('dashboard.Services') }}
+                                                            @endif
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $agreement->fnrcoFlatRedQuotation ? $agreement->fnrcoFlatRedQuotation->Contract_period : ''}}</td>
+                                                    <td>{{ app()->getLocale() == 'ar' ? $agreement->user->name : $agreement->user->name_en }}</td>
+                                                    <td><a class="btn btn-success font-weight-bold" target="_blank" href="{{ route('flatRed_print_FnrcoAgreement' , $agreement->id) }}">{{ trans('dashboard.Agreement Details') }}</a></td>
+                                                    {{--<td><a href="{{ route('edit_FlatRedAgreement' , [$agreement->id , 2]) }}" class="btn btn-success font-weight-bold">{{ trans('dashboard.edit') }}</a></td>--}}
+                                                    {{--<td><a onclick="return confirm('Are you sure?')" class="btn btn-danger font-weight-bold" href="{{ route('flatRed_delete_FnrcoAgreement' , [$agreement->id , 2]) }}"><i class="fa fa-trash"></i></a></td>--}}
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                        <!--end: Datatable-->
+                                    </div>
+                                </div>
                         </div>
                         <!--end::Card-->
                     </div>

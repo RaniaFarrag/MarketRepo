@@ -125,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="name">{{__('dashboard.Lead status')}}</label>
                                             <select name="statue" class="form-control">
                                                 <option value="">There is no status</option>
@@ -135,10 +135,18 @@
                                                 <option value="CLOSED-WON">CLOSED-WON</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label for="name">{{__('dashboard.nextFollowUp')}}</label>
                                             <input type="date" class="form-control"
                                                    name="nextFollowUp"
+                                                   value=""
+                                                   placeholder="dd-mm-yyyy">
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="name">{{__('dashboard.visit date')}}</label>
+                                            <input type="date" class="form-control"
+                                                   name="visit_date"
                                                    value=""
                                                    placeholder="dd-mm-yyyy">
                                         </div>

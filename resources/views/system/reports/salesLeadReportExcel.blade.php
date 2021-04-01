@@ -64,11 +64,12 @@
                     -
                 @endif
             </td>
-            <td style="text-align: center; border: 1px solid #000000"><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>
+            {{--<td style="text-align: center; border: 1px solid #000000"><a target="_blank" href="{{route('companies.show',$report->company)}}">{{$report->company->name?? '-'}}</a></td>--}}
+            <td style="text-align: center; border: 1px solid #000000">{{$report->company->name?? '-'}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->company->company_representative_name ?? '-'}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->company->company_representative_phone?? '-'}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->company->company_representative_mobile?? '-'}}</td>
-            <td style="text-align: center; border: 1px solid #000000"><a href="mailto:{{$report->company->company_representative_email}}">{{$report->company->company_representative_email?? '-'}}</a></td>
+            <td style="text-align: center; border: 1px solid #000000"><a href="mailto:{{$report->company->company_representative_email ?? ''}}">{{$report->company->company_representative_email?? '-'}}</a></td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->brochurs_status?? '-'}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->type_of_serves?? '-'}}</td>
             <td style="text-align: center; border: 1px solid #000000">{{$report->quanity?? '-'}}</td>

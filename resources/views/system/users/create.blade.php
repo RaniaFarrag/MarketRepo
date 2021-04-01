@@ -78,7 +78,7 @@
                                                     <option value="{{ $motherCompany->id }}">{{ app()->getLocale() == 'ar' ? $motherCompany->name : $motherCompany->name_en }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('mother_company')
+                                            @error('mother_company_id')
                                                 <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>

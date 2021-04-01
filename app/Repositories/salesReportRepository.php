@@ -129,11 +129,12 @@ class salesReportRepository implements salesReportRepositoryInterface
                 $ids_ = json_decode($request->ids);
             }
 //
-            if($all){
+            if($all){   //Export Excel
                 $query = $this->sales_lead_report_model::whereIn('id', $ids_);
             }
             else{
-                $query = $this->sales_lead_report_model;
+                //$query = $this->sales_lead_report_model::query();
+                $query = Auth::user()->company_sales_lead_report();
             }
 
 
@@ -354,6 +355,7 @@ class salesReportRepository implements salesReportRepositoryInterface
             'remarks' => $request->remarks,
             'statue' => $request->statue,
             'nextFollowUp' => $request->nextFollowUp,
+            'visit_date' => $request->visit_date,
             'user_id' => Auth::user()->id,
             'company_id' => $request->company->id
         ]);
@@ -366,5 +368,46 @@ class salesReportRepository implements salesReportRepositoryInterface
 
     }
 
+    public function visitReport($request){
+        if (Auth::user()->hasRole('ADMIN')){
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->whereNotNull('parent_id')
+                        ->orWhereHas('childs');
+                })->get();
+            $query = $this->sales_lead_report_model::whereNotNull('visit_date');
+        }
+        elseif(Auth::user()->hasRole('Sales Manager')){
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->where('parent_id' , Auth::user()->id)
+                        ->orWhere('id' , Auth::user()->id);
+                })->get();
 
+            $query = $this->sales_lead_report_model::whereHas('company' , function ($q){
+                $q->whereIn('sector_id' , Auth::user()->sectors->pluck('id'));
+            });
+        }
+        else{
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->where('parent_id' , Auth::user()->id)
+                        ->orWhere('id' , Auth::user()->id);
+                })->get();
+            $query = Auth::user()->company_sales_lead_report();
+        }
+
+        if ($request->representative_id)
+            $query->where('user_id' , $request->representative_id);
+
+        if ($request->from)
+            $query->where('visit_date' , '>=' , $request->from);
+
+        if ($request->to)
+            $query->where('visit_date' , '<=' , $request->to);
+
+        $data['reports'] = $query->paginate(10);
+        $data['count'] = $query->count();
+        return $data;
+    }
 }

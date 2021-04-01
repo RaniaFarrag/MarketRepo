@@ -33,8 +33,8 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required',
                 'name_en' => 'required',
-                'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id,
-//                'email' => 'required|email|max:255|unique:users,email,'.$this->user->id,
+//                'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id,
+                'email' => 'required|email|max:255|unique:users,email,'.$this->user->id,
                 //'email' =>  Rule::unique('users')->ignore(request()->id),
                 //'password' => 'required | min:8 | confirmed',
                 'role' => 'required',

@@ -40,8 +40,8 @@ class CompanyAgreementController extends Controller
                 'company'=>$company , 'mother_company_id' => $mother_company_id]);
         }
         elseif ($mother_company_id == 2){
-            $fnrco_agreements = $this->fnrcoAgreementRepositoryinterface->index($company_id , $mother_company_id);
-            return view('system.agreement_contract.fnrco.viewAll')->with(['fnrco_agreements' => $fnrco_agreements , 'company_id' => $company_id ,
+            $data = $this->fnrcoAgreementRepositoryinterface->index($company_id , $mother_company_id);
+            return view('system.agreement_contract.fnrco.viewAll')->with(['data' => $data , 'company_id' => $company_id ,
                 'company'=>$company , 'mother_company_id' => $mother_company_id]);
         }
 

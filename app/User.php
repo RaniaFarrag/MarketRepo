@@ -8,6 +8,7 @@ use App\Models\CompanyMeeting;
 use App\Models\Log;
 use App\Models\MotherCompany;
 use App\Models\Sector;
+use App\Models\UserSalary;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -94,5 +95,9 @@ class User extends Authenticatable
 
     public function company_sales_lead_report(){
         return $this->hasMany(Company_sales_lead_report::class);
+    }
+
+    protected function salary(){
+        return $this->hasOne(UserSalary::class);
     }
 }

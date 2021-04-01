@@ -108,5 +108,22 @@ class SalesLeadReportController extends Controller
         }
     }
 
+    public function visitReport(Request $request){
+        $representatives = $this->salesReportRepositoryInterface->visitReport($request)['representatives'];
+        $reports = $this->salesReportRepositoryInterface->visitReport($request)['reports'];
+        $count = $this->salesReportRepositoryInterface->visitReport($request)['count'];
+
+        if ($request->ajax()){
+            //dd($count);
+            $data_json['viewBlade']= view('system.reports.visit_report_partial'
+                , compact('reports','count'))->render();
+            $data_json['count']= $count;
+            return response()->json($data_json);
+
+        }
+
+        return view('system.reports.visit_report' , compact('representatives' , 'reports' , 'count'));
+    }
+
 
 }

@@ -34,7 +34,10 @@ class FnrcoAgreementRepository implements FnrcoAgreementRepositoryInterface
 
     /** View All Agreements Of Company */
     public function index($company_id , $mother_company_id){
-        return $this->fnrco_Agreement_model::where('company_id' , $company_id)->with('fnrcoQuotation')->paginate(20);
+        $data = [];
+        $data['agreement_readyman_power'] = $this->fnrco_Agreement_model::where('company_id' , $company_id)->with('fnrcoQuotation')->paginate(10);
+        $data['agreement_flatRed'] = FnrcoFlatRedAgreement::where('company_id' , $company_id)->with('fnrcoFlatRedQuotation')->get();
+        return $data;
     }
 
     public function update($request , $fnrco_agreement){

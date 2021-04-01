@@ -1062,7 +1062,7 @@
         <tr>
             <td style="font-size: 12px;">4</td>
             <td style="font-size: 12px;text-align: left">COMPANY REGISTRATION / CR NUMBER</td>
-            <td colspan="2" style="font-size: 12px;">1010355026</td>
+            <td colspan="2" style="font-size: 12px;">1010305364</td>
 
         </tr>
         <tr>
@@ -1112,7 +1112,7 @@
             <td rowspan="4" style="font-size: 12px;">7</td>
             <td rowspan="4" style="font-size: 12px;text-align: left">Bank Details for Transactions</td>
             <td style="font-size: 12px;text-align: left">NAME OF BENEFICIARY</td>
-            <td style="font-size: 12px;">FNRCO</td>
+            <td style="font-size: 12px;">FNSC</td>
         </tr>
         <tr>
             <td  style="font-size: 12px;text-align: left">NAME OF BANK</td>
@@ -1121,7 +1121,7 @@
         </tr>
         <tr>
             <td style="font-size: 12px;text-align: left">BRANCH</td>
-            <td style="font-size: 12px;">AL FAYHA DISTRICT – UTHMAN IBN AFFAN ROAD</td>
+            <td style="font-size: 12px;">MUSHRIFA BRANCH RIYADH</td>
 
         </tr>
         <tr>
@@ -1130,12 +1130,11 @@
         </tr>
         <tr>
             <td  style="font-size: 12px;text-align: left">ACCOUNT NUMBER</td>
-            <td  style="font-size: 12px;">528-608-010-777-996
-            </td>
+            <td  style="font-size: 12px;">204-608-010-8310</td>
         </tr>
         <tr>
             <td  style="font-size: 12px;text-align: left">IBAN NUMBER</td>
-            <td  style="font-size: 12px;">SA9680000528608010777996</td>
+            <td  style="font-size: 12px;">SA96800002046080108310</td>
         </tr>
 
         <tr>
