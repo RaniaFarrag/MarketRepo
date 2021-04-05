@@ -213,7 +213,7 @@
                                             <label>{{ trans('dashboard.Company Name Arabic') }} :</label>
                                             <input value="{{ old('name_ar') }}" name="name_ar" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Company Name Arabic') }}" required/>
+                                                   placeholder="{{ trans('dashboard.Company Name Arabic') }}" />
                                             @error('name_ar')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
@@ -232,11 +232,11 @@
                                             <label>{{ trans('dashboard.Mobile / WhatsApp number') }} :</label>
 
                                             <input class="form-control tel leyka_donor_phone" type="tel" name="whatsapp"
-                                                   inputmode="tel" value="{{ old('whatsapp') }}" required/>
+                                                   inputmode="tel" value="{{ old('whatsapp') }}" />
 
                                             <input value="{{ old('whatsapp') }}" name="whatsapp" type="hidden"
                                                    class="form-control whatsapp"
-                                                   placeholder="Mobile / WhatsApp number" required/>
+                                                   placeholder="Mobile / WhatsApp number" />
 
                                         </div>
                                     </div>
@@ -244,7 +244,7 @@
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.phone number') }} :</label>
                                             <input value="{{ old('phone') }}" name="phone" type="tel"
-                                                   class="form-control tel leyka_donor_phone" required/>
+                                                   class="form-control tel leyka_donor_phone" />
 
                                             <input class="form-control phone" type="hidden" name="phone"
                                                    value="{{ old('phone') }}"/>
@@ -275,7 +275,7 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Country') }}:</label>
-                                            <select id="countries" class="form-control select2" name="country_id">
+                                            <select id="countries" class="form-control select2" name="country_id" required>
                                                 <option value=""
                                                         selected="">{{ trans('dashboard.Select All') }}</option>
                                                 @foreach($data['countries'] as $country)
@@ -286,7 +286,7 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.City') }}:</label>
-                                            <select id="cities" class="form-control select2" name="city_id">
+                                            <select id="cities" class="form-control select2" name="city_id" required>
                                                 <option value=""
                                                         selected="">{{ trans('dashboard.Select All') }}</option>
                                             </select>
@@ -303,7 +303,7 @@
                                             <label>{{ trans('dashboard.Location') }}:</label>
                                             <input value="{{ old('location') }}" name="location" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Location') }}"/>
+                                                   placeholder="{{ trans('dashboard.Location') }}" required/>
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.address') }}:</label>
@@ -334,7 +334,7 @@
 
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.ksa_branch') }}:</label>
-                                            <select class="form-control select2" name="ksa_branch">
+                                            <select class="form-control select2" name="ksa_branch" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select') }}</option>
                                                 <option value="1">{{ trans('dashboard.yes') }}</option>
                                                 <option value="2">{{ trans('dashboard.No') }}</option>
@@ -366,13 +366,13 @@
                                             <label>{{ trans('dashboard.Website') }}:</label>
                                             <input value="{{ old('website') }}" name="website" type="url"
                                                    class="form-control" placeholder="https://www.website.com"
-                                                   required/>
+                                                   />
                                         </div>
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.E-mail') }}:</label>
                                             <input value="{{ old('email') }}" name="email" type="email"
                                                    class="form-control" placeholder="{{ trans('dashboard.E-mail') }}"
-                                                   required/>
+                                                   />
                                         </div>
                                         <div class="col-lg-3">
                                             <label>{{ trans('dashboard.Linkedin') }}:</label>
@@ -396,6 +396,7 @@
                                         </h3>
                                         <div class="row">
                                             @for($i = 0 ; $i<3 ; $i++)
+                                                {{--@if($i == 0) {{ $required = 'required' }} @else {{ $required = '' }} @endif--}}
                                                 <div class="col-md-4 border">
                                                     <span class="label label-xl label-rounded label-primary mr-2 mt-2 mb-2">{{ $i+1 }}</span>
                                                     <div class="form-group">
@@ -404,7 +405,7 @@
                                                         <label>{{ trans('dashboard.Name') }}:</label>
                                                         <input value="" name="designated_contact_name[]" type="text"
                                                                class="form-control"
-                                                               placeholder="{{ trans('dashboard.Name') }}"/>
+                                                               placeholder="{{ trans('dashboard.Name') }}" {{ $i == 0 ? 'required' : ''}}/>
                                                         {{--@endfor--}}
                                                         {{--@endif--}}
                                                     </div>
@@ -412,19 +413,19 @@
                                                         <label>{{ trans('dashboard.Job Title') }}:</label>
                                                         <input value="" name="designated_contact_job_title[]"
                                                                type="text" class="form-control"
-                                                               placeholder="{{ trans('dashboard.Job Title') }}"/>
+                                                               placeholder="{{ trans('dashboard.Job Title') }}" {{ $i == 0 ? 'required' : ''}}/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{ trans('dashboard.Mobile') }}:</label>
                                                         <input value="" name="designated_contact_mobile[]" type="number"
                                                                class="form-control"
-                                                               placeholder="{{ trans('dashboard.Mobile') }}"/>
+                                                               placeholder="{{ trans('dashboard.Mobile') }}" {{ $i == 0 ? 'required' : ''}}/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{ trans('dashboard.citizenship') }}:</label>
                                                         <input value="" name="designated_contact_citizenship[]"
                                                                type="text" class="form-control"
-                                                               placeholder="{{ trans('dashboard.citizenship') }}"/>
+                                                               placeholder="{{ trans('dashboard.citizenship') }}" {{ $i == 0 ? 'required' : ''}}/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{ trans('dashboard.Linkedin') }}:</label>
@@ -436,13 +437,13 @@
                                                         <label>{{ trans('dashboard.Whatsapp') }}:</label>
                                                         <input value="" name="designated_contact_whatsapp[]" type="text"
                                                                class="form-control"
-                                                               placeholder="{{ trans('dashboard.Whatsapp') }}"/>
+                                                               placeholder="{{ trans('dashboard.Whatsapp') }}" {{ $i == 0 ? 'required' : ''}}/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>{{ trans('dashboard.E-Mail') }}:</label>
                                                         <input value="" name="designated_contact_email[]" type="email"
                                                                class="form-control"
-                                                               placeholder="{{ trans('dashboard.E-Mail') }}"/>
+                                                               placeholder="{{ trans('dashboard.E-Mail') }}" {{ $i == 0 ? 'required' : ''}}/>
                                                     </div>
                                                 </div>
                                             @endfor

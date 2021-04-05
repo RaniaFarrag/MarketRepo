@@ -34,8 +34,8 @@ class UserRequest extends FormRequest
                 'name' => 'required',
                 'name_en' => 'required',
 //                'email' => 'required|email|max:255|unique:users,email,'.Auth::user()->id,
-                'email' => 'required|email|max:255|unique:users,email,'.$this->user->id,
-                //'email' =>  Rule::unique('users')->ignore(request()->id),
+                'email' => $this->check(),
+//                'email' =>  Rule::unique('users')->ignore(request()->id),
                 //'password' => 'required | min:8 | confirmed',
                 'role' => 'required',
                 'sector_ids' => 'required',
@@ -47,8 +47,7 @@ class UserRequest extends FormRequest
            return [
                'name' => 'required',
                'name_en' => 'required',
-               'email' => 'required | email | max:255|unique:users,email,'.$this->user->id,
-
+               'email' => $this->check(),
                'role' => 'required',
                'parent_id' => 'required',
             ];
@@ -57,9 +56,18 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required',
                 'name_en' => 'required',
-                'email' => 'required | email | max:255|unique:users,email,'.$this->user->id,
+                'email' => $this->check(),
                 'role' => 'required',
             ];
+        }
+    }
+
+    public function check(){
+        if(\Request::route()->getName() == 'users.store'){
+            return 'required | email | max:255|unique:users,email';
+
+        }elseif(\Request::route()->getName() == 'users.update'){
+            return 'required | email | max:255|unique:users,email,'.$this->user->id;
         }
     }
 }

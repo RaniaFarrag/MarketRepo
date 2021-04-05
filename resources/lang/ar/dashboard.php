@@ -508,7 +508,7 @@ return [
     'Total visits' => 'عدد الزيارات',
     'linrco' => 'ليناركو',
     'fnrco' => 'فناركو',
-    'Month' => 'شهر',
+    'there is no mail' => 'لا يوجد بريد إليكتروني',
     'Month' => 'شهر',
     'Month' => 'شهر',
     'Month' => 'شهر',

@@ -1059,10 +1059,13 @@ class CompanyRepository implements CompanyRepositoryInterface
     /** Send Email To Company */
     public function sendEmail($request)
     {
-        //dd($request->email);
+        if (!$request->email){
+            Alert::warning('warning', trans('dashboard.there is no mail'));
+            return redirect(route('companies.index'));
+        }
         Mail::send([], [], function ($message) use ($request) {
             $message->to($request->email);
-            $message->subject('Mail Sysytem');
+            $message->subject('Markerting Sysytem');
             $message->setBody($request->message);
         });
 

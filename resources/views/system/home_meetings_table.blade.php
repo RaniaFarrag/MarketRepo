@@ -21,13 +21,13 @@
                             <td> <a target="_blank" href="{{ route('show_company' , [$meeting->company_id , $mother_company_id] ) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
                             <td>{{ $meeting->company ? $meeting->company->subSector->name : '-' }}</td>
                             <td>
-                                @if($meeting->company->client_status == 1)
+                                @if($meeting->company->representative[0]->pivot->client_status == 1)
                                     {{ trans('dashboard.Hot') }}
-                                @elseif($meeting->company->client_status == 2)
+                                @elseif($meeting->company->representative[0]->pivot->client_status == 2)
                                     {{ trans('dashboard.Warm') }}
-                                @elseif($meeting->company->client_status == 3)
+                                @elseif($meeting->company->representative[0]->pivot->client_status == 3)
                                     {{ trans('dashboard.Cold') }}
-                                @elseif($meeting->company->client_status == 4)
+                                @elseif($meeting->company->representative[0]->pivot->client_status == 4)
                                     {{ trans('dashboard.Awarded') }}
                                 @else
                                     -

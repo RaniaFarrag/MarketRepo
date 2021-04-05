@@ -233,9 +233,9 @@
                                                                     </option>
                                                                 @endforeach
 
-                                                                @if(auth()->user()->hasRole('Sales Manager'))
-                                                                    <option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>
-                                                                @endif
+                                                                {{--@if(auth()->user()->hasRole('Sales Manager'))--}}
+                                                                    {{--<option value="{{ auth()->user()->id }}">{{ app()->getLocale() == 'ar' ? auth()->user()->name : auth()->user()->name_en }}</option>--}}
+                                                                {{--@endif--}}
 
                                                             </select>
                                                         </div>
@@ -427,7 +427,6 @@
                                     class="btn btn-primary font-weight-bold">{{ trans('dashboard.Assign') }}</button>
                             <button type="button" class="btn btn-light-primary font-weight-bold"
                                     data-dismiss="modal">{{ trans('dashboard.cancel') }}</button>
-
                         </div>
                     </form>
 
@@ -476,6 +475,9 @@
                         // swal("Our First Alert", "With some body text and success icon!", "success");
                         console.log(response.msg)
                         swal( '', response.msg, response.type);
+                    },
+                    error:function () {
+                        swal('Faild');
                     }
                 });
 
@@ -489,6 +491,9 @@
                     url: "{{ url('/confirm/connected/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success: function (response) {
                         swal( 'Cancel', '', "success");
+                    },
+                    error:function () {
+                        swal('Faild');
                     }
                 });
             }
@@ -507,9 +512,9 @@
                     success:function (response) {
                         swal( '', response.msg, response.type);
                     },
-                    // error:function () {
-                    //     swal('Faild' , response , 'failed');
-                    // }
+                    error:function () {
+                        swal('Faild');
+                    }
                 })
             }
             else {
@@ -523,6 +528,9 @@
                     success:function (response) {
                         swal('Success' , '' , 'success');
                         //swal( '', response.msg, response.type);
+                    },
+                    error:function () {
+                        swal('Faild');
                     }
                 })
             }
@@ -542,7 +550,7 @@
                         swal( '', response.msg, response.type);
                     },
                     error:function () {
-                        swal('Faild' , response , 'failed');
+                        swal('Faild');
                     }
                 })
             }
@@ -555,6 +563,9 @@
                     url : "{{ url('/confirm/need/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , '' , 'success');
+                    },
+                    error:function () {
+                        swal('Faild');
                     }
                 })
             }
@@ -574,7 +585,7 @@
                         swal( '', response.msg, response.type);
                     },
                     error:function () {
-                        swal('Faild' , response , 'failed');
+                        swal('Faild');
                     }
                 })
             }
@@ -588,6 +599,9 @@
                     url : "{{ url('/confirm/contract/') }}" + '/' + company_id + '/' + user_mother_company_id,
                     success:function (response) {
                         swal('Success' , '' , 'success');
+                    },
+                    error:function () {
+                        swal('Faild');
                     }
                 })
             }
@@ -731,23 +745,36 @@
 
     <script>
 
-        $('a[href="#mail_Modal"]').on('click',function(){
-            var email = $(this).attr('data-id');
-            if (email != '-'){
-                //console.log(email)
+        // $('a[href="#mail_Modal"]').on('click',function(){
+        //     console.log(44)
+        //     var email = $(this).attr('data-id');
+        //     console.log(email)
+        //     if (email != '-'){
+        //         console.log(email)
+        //         $('input[name="email"]').val(email);
+        //     }
+        //
+        // });
+
+        $('body').on('click', '.sendmail', function (e) {
+            var email = $(this).attr('data-mail');
+            if (email){
+                console.log(email);
                 $('input[name="email"]').val(email);
             }
-
         });
 
         $('body').on('click', '#get_rep', function (e) {
             var company_id = $(this).attr('data-id');
             var rep_name = $(this).attr('data-rep-name');
-            console.log(rep_name);
+            var mother_company_id = $(this).attr('date_mother_company_id');
+
+            console.log(mother_company_id);
             $.ajax({
                 type: "get",
-                url: "{{ route('get_all_representatives') }}",
-                dataType: "json",
+                {{--url: "{{ route('get_all_representatives') }}",--}}
+                url: "{{ url('/get/reps/of/mothercompany/') }}" + '/' + mother_company_id,
+                // dataType: "json",
                 success: function (response) {
                     var representatives = response.representatives;
                     if (representatives.length){

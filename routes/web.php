@@ -150,9 +150,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::post('assign/company' , 'AssignCompanyController@submitAssignCompanyToRepresentative')
         ->name('assign_company')->middleware(['permission:Menu Corporate Assignment']);
 
-    /** Get All Representatives */
-    Route::get('get/all/representatives' , 'AssignCompanyController@getAllRepresentatives')
-        ->name('get_all_representatives')->middleware(['permission:Menu Corporate Assignment']);
+
 
     /** Get Companies Of Representative */
     Route::get('get/companies/of/representative/{representative_id}' , 'AssignCompanyController@getCompaniesofRepresentative')
@@ -238,6 +236,10 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     //NEW
     Route::get('/get/reps/of/mothercompany/{mother_company_id}','AssignCompanyController@getRepofMothercompany');
+
+    /** Get All Representatives */
+    Route::get('get/all/representatives' , 'AssignCompanyController@getAllRepresentatives')
+        ->name('get_all_representatives')->middleware(['permission:Menu Corporate Assignment']);
 
 
     /** Manage Company Quotation */
@@ -344,7 +346,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('FlatRedAgreement/print/{flatred_agreement_id}' , 'CompanyAgreementController@flatRedAgeerAgreementprint')->name('flatRed_print_FnrcoAgreement');
 
     Route::get('FlatRedAgreement/delete/{flatred_agreement_id}/{mother_company_id}' , 'CompanyAgreementController@deleteflatRedAgreement')->name('flatRed_delete_FnrcoAgreement');
-
 
 
 

@@ -524,7 +524,7 @@ return [
     'From' => 'From',
     'linrco' => 'Linrco',
     'fnrco' => 'Fnrco',
-    'Month' => 'Month',
+    'there is no mail' => 'There Is No E-mail',
     'Month' => 'Month',
     'Month' => 'Month',
     'Month' => 'Month',

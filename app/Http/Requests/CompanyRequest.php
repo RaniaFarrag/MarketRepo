@@ -24,18 +24,18 @@ class CompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_ar' => 'required',
+            //'name_ar' => 'required',
             'name_en' => 'required',
-            'phone' => 'required',
+            //'phone' => 'required',
             'sector_id' => 'required',
             'sub_sector_id' => 'required',
-            'whatsapp' => 'required',
-            'website' => 'required',
-            'email' => 'required',
-            'logo' => 'image|mimes:jpeg,png,jpg',
-            'first_business_card' => 'image|mimes:jpeg,png,jpg',
-            'second_business_card' => 'image|mimes:jpeg,png,jpg',
-            'third_business_card' => 'image|mimes:jpeg,png,jpg',
+            //'whatsapp' => 'required',
+            //'website' => 'required',
+//            'email' => 'required',
+//            'logo' => 'image|mimes:jpeg,png,jpg',
+//            'first_business_card' => 'image|mimes:jpeg,png,jpg',
+//            'second_business_card' => 'image|mimes:jpeg,png,jpg',
+//            'third_business_card' => 'image|mimes:jpeg,png,jpg',
         ];
     }
 }

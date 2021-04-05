@@ -77,7 +77,7 @@
                                     @endcan
                                     @can('Send Mail')
                                     <li class="navi-item">
-                                        <a data-id="{{ $company->email ?? '-' }}" href="#mail_Modal" class="navi-link"
+                                        <a data-mail="{{ $company->email }}" href="#mail_Modal" class="navi-link sendmail"
                                            data-toggle="modal">
                                             <span class="navi-icon"><i
                                                 class="flaticon2-rocket-1"></i></span>
@@ -103,7 +103,7 @@
                                     @can('Corporate Assignment')
                                         <li class="navi-item">
                                             <a data-rep-name="{{ count($company->representative) ? app()->getLocale() == 'ar' ? $company->representative[0]->name : $company->representative[0]->name_en : '' }}" id="get_rep"
-                                               data-id="{{ $company->id }}" href="#assign_Modal" class="navi-link" data-toggle="modal">
+                                               date_mother_company_id="{{ $hidden_mother_company_id }}" data-id="{{ $company->id }}" href="#assign_Modal" class="navi-link" data-toggle="modal">
                                                 <span class="navi-icon"><i class="flaticon2-user-1"></i></span>
                                                 <span class="navi-text">{{ trans('dashboard.Assign companies to a representative') }} </span>
                                             </a>
@@ -229,12 +229,13 @@
                             <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Communication Type') }}:</span>
                             <span class="text-muted font-weight-bold">
                                 @if($company->email)
-                                    <a class="md-effect sociall" data-toggle="modal"
-                                       href="#btnMail-2863"
-                                       data-effect="md-flipHor" req_id="1248">
+                                    <a data-mail="{{ $company->email }}" class="md-effect sociall sendmail" data-toggle="modal"
+                                       href="#mail_Modal"
+                                       data-effect="md-flipHor">
                                         <img class="img-responsive"
                                              src="{{ asset('dashboard/assets/media/mail.png') }}">
                                     </a>
+
                                 @endif
 
                                 @if($company->twitter)

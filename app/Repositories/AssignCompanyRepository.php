@@ -63,8 +63,10 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                 })->get();
         }
         else{
-            $data['representatives'] = $this->user_model::where('parent_id' , auth()->id())
-                ->orWhere('id' , auth()->id())->get();
+            $data['representatives'] = $this->user_model::where('active' , 1)
+                ->where(function ($q){
+                    $q->where('parent_id' , auth()->id())->orWhere('id' , auth()->id());
+                })->get();
         }
 
         //$data['countries'] = $this->country_model::all();
@@ -269,7 +271,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
     /** Get All Representatives */
     public function getAllRepresentatives(){
-        if (Auth::user()->hasRole('ADMIN')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
             return $this->user_model::where('active' , 1)
                 ->where(function ($q){
                     $q->whereNotNull('parent_id')
@@ -277,7 +279,10 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
                 })->get();
         }
         else{
-            return $this->user_model::where('parent_id' , Auth::user()->id)->orWhere('id' , auth()->id())->get();
+            return $this->user_model::where('active' , 1)
+               ->where(function ($q){
+                   $q->where('parent_id' , Auth::user()->id)->orWhere('id' , Auth::user()->id);
+               })->get();
         }
 
     }

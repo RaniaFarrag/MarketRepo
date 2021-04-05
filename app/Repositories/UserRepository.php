@@ -92,7 +92,9 @@ class UserRepository implements UserRepositoryInterface
     /** Store User */
     public function store($request)
     {
+
         if ($request->role == 'Sales Representative'){
+
             $user = $this->user_model::create([
                 'name' => $request->name,
                 'name_en' => $request->name_en,
@@ -153,8 +155,6 @@ class UserRepository implements UserRepositoryInterface
 
     /** Submit Edit User */
     public function update($request , $user){
-//        dd($request);
-
         //$user->assignRole('Sales Representative');
         if ($user->hasRole('Sales Representative')){
             if ($request->password){
