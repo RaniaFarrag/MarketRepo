@@ -9,17 +9,34 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end">
 
+                        {{--<div class="dropdown dropdown-inline" data-toggle="tooltip" data-trigger="focus"--}}
+                             {{--title=""--}}
+                             {{--data-placement="left"--}}
+                             {{--data-original-title="{{count($company->companyMeetings) ?  $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time : ''  }}">--}}
+                            {{--<a href="javascript:;"--}}
+                               {{--class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">--}}
+                                {{--<i class="far fa-bell text-primary"></i>--}}
+                                {{--@if(count($company->companyMeetings))--}}
+                                     {{--<span class="pulse-ring"></span>--}}
+                                {{--@endif--}}
+                                {{--<span class="badge" id="count-alert2">{{ count($company->companyMeetings) ? count($company->companyMeetings) : 0 }}</span>--}}
+                            {{--</a>--}}
+                        {{--</div>--}}
+
                         <div class="dropdown dropdown-inline" data-toggle="tooltip" data-trigger="focus"
                              title=""
                              data-placement="left"
-                             data-original-title="{{count($company->companyMeetings) ?  $company->companyMeetings[ count($company->companyMeetings) - 1 ]->date . ' ' .$company->companyMeetings[ count($company->companyMeetings) - 1 ]->time : ''  }}">
+                             data-original-title="{{count($company->companyMeetingsofMother($company->id , $hidden_mother_company_id)) ?
+                             $company->companyMeetingsofMother($company->id , $hidden_mother_company_id)[ count($company->companyMeetingsofMother($company->id , $hidden_mother_company_id)) - 1 ]->date .
+                              ' ' .$company->companyMeetingsofMother($company->id , $hidden_mother_company_id)[ count($company->companyMeetingsofMother($company->id , $hidden_mother_company_id)) - 1 ]->time : ''  }}">
                             <a href="javascript:;"
                                class="btn btn-clean btn-hover-light-primary btn-sm btn-icon pulse pulse-primary text-primary">
                                 <i class="far fa-bell text-primary"></i>
                                 @if(count($company->companyMeetings))
-                                     <span class="pulse-ring"></span>
+                                    <span class="pulse-ring"></span>
                                 @endif
-                                <span class="badge" id="count-alert2">{{ count($company->companyMeetings) ? count($company->companyMeetings) : 0 }}</span>
+                                <span class="badge" id="count-alert2">{{ count($company->companyMeetingsofMother($company->id , $hidden_mother_company_id)) ?
+                                count($company->companyMeetingsofMother($company->id , $hidden_mother_company_id)) : 0 }}</span>
                             </a>
                         </div>
 

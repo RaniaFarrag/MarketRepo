@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\company_images;
+use App\Models\CompanyUser;
 use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
 use App\Models\MotherCompany;
@@ -43,7 +45,7 @@ class HomeController extends Controller
 //            $mother_company_id = Auth::user()->mother_company_id;
 //        }
 
-        if (Auth::user()->hasRole('ADMIN')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
             $total_users_under_me = User::where('mother_company_id' , $request->mother_company_id)->count();
 
             $rep_daily_reports = Company_sales_lead_report::whereHas('user' , function ($q) use ($request){
@@ -63,10 +65,7 @@ class HomeController extends Controller
             $meetings = CompanyMeeting::whereDate('date' , '>=' , Carbon::today())
                                         ->whereHas('user' , function ($q) use ($request){
                                             $q->where('users.mother_company_id' , $request->mother_company_id);
-                                        })
-                                        ->with('company' , 'user')
-                                        ->paginate(10);
-
+                                          })->with(['company' ,'user'])->paginate(10);
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')){
@@ -75,7 +74,6 @@ class HomeController extends Controller
                     $q->where('user_id' , Auth::user()->id)
                         ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
                 })->count();
-
 
             //Companies in my sectors
             $total_companies = Company::WhereIn('sector_id' , Auth::user()->sectors->pluck('id'))->count();

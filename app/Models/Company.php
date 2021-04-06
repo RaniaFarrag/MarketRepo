@@ -84,6 +84,16 @@ class Company extends Model
         return $this->hasMany(CompanyMeeting::class);
     }
 
+    public static function companyMeetingsofMother($com_id , $mother_company_id){
+        return CompanyMeeting::where('company_id' , $com_id)
+//                                ->where(function ($query){
+//                                    $query->where('user_id' , Auth::user()->id)->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+//                                })
+                                ->whereHas('user' , function ($q) use ($mother_company_id){
+                                    $q->where('users.mother_company_id' , $mother_company_id);
+                                })->get();
+    }
+
     public function companyNeeds(){
         return $this->hasMany(CompanyNeed::class);
     }

@@ -21,17 +21,26 @@
                             <td> <a target="_blank" href="{{ route('show_company' , [$meeting->company_id , $mother_company_id] ) }}">{{ $meeting->company ? $meeting->company->name : '-' }}</a></td>
                             <td>{{ $meeting->company ? $meeting->company->subSector->name : '-' }}</td>
                             <td>
-                                @if($meeting->company->representative[0]->pivot->client_status == 1)
-                                    {{ trans('dashboard.Hot') }}
-                                @elseif($meeting->company->representative[0]->pivot->client_status == 2)
-                                    {{ trans('dashboard.Warm') }}
-                                @elseif($meeting->company->representative[0]->pivot->client_status == 3)
-                                    {{ trans('dashboard.Cold') }}
-                                @elseif($meeting->company->representative[0]->pivot->client_status == 4)
-                                    {{ trans('dashboard.Awarded') }}
-                                @else
-                                    -
+
+                                @if($meeting->company->CompanyUser)
+                                    @foreach($meeting->company->CompanyUser as $companyuser)
+                                        @if($companyuser->mother_company_id == $mother_company_id)
+                                            @if($companyuser->client_status == 1)
+                                                {{ trans('dashboard.Hot') }}
+                                            @elseif($companyuser->client_status == 2)
+                                                {{ trans('dashboard.Warm') }}
+                                            @elseif($companyuser->client_status == 3)
+                                                {{ trans('dashboard.Cold') }}
+                                            @elseif($companyuser->client_status == 4)
+                                                {{ trans('dashboard.Awarded') }}
+                                            @else
+                                                -
+                                            @endif
+                                        @endif
+                                    @endforeach
                                 @endif
+
+
                             </td>
                             <td>{{ $meeting->time }}</td>
                             <td>{{ $meeting->date }}</td>
@@ -47,5 +56,5 @@
         </tbody>
     </table>
 
-        {{ $meetings->links() }}
+        {{--{{ $meetings->links() }}--}}
 

@@ -91,8 +91,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
             }
 
             if ($request->city_id){
-                $companies->where('city_id' , $request->city_id)->get();
-
+                $companies->where('city_id' , $request->city_id);
                 //dd($companies);
             }
 
@@ -102,7 +101,7 @@ class AssignCompanyRepository implements AssignCompanyRepositoryInterface
 
 //            $companies->whereNull('representative_id');
 
-            if (Auth::user()->hasRole('Coordinator')) {
+            if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Coordinator')) {
                 if($request->representatives){
 
                     $rep = User::findOrFail($request->representatives);
