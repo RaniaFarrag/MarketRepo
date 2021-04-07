@@ -72,6 +72,8 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     /** Manage Users */
     Route::resource('users' , 'UserController')->middleware(['permission:Menu Users']);
 
+    Route::resource('usersalaries' , 'UserSalaryController')->middleware(['permission:Menu Users']);
+
     /** Active User */
     Route::get('active' , 'UserController@activeUser')->name('active_user')->middleware(['permission:Menu Users']);
     /** Deactivate User */

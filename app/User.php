@@ -97,7 +97,7 @@ class User extends Authenticatable
         return $this->hasMany(Company_sales_lead_report::class);
     }
 
-    protected function salary(){
+    public function userSalary(){
         return $this->hasOne(UserSalary::class);
     }
 }

@@ -82,7 +82,10 @@ class UserRepository implements UserRepositoryInterface
         $data = array();
 
         $data['sectors'] = $this->sector_model::all();
-        $data['managers'] = $this->user_model::where('parent_id' , null)->get();
+//        $data['managers'] = $this->user_model::where('active' , 1)->where('parent_id' , null)->get();
+        $data['managers'] = $this->user_model::where('active' , 1)->whereHas('roles' , function ($q){
+            $q->where('role_id' , 1);
+        })->get();
         $data['roles'] = $this->role_model::all();
         $data['motherCompanies'] = $this->motherCompany::all();
 
@@ -145,7 +148,10 @@ class UserRepository implements UserRepositoryInterface
         $data = array();
 
         $data['sectors'] = $this->sector_model::all();
-        $data['managers'] = $this->user_model::where('parent_id' , null)->get();
+//        $data['managers'] = $this->user_model::where('active' , 1)->where('parent_id' , null)->get();
+        $data['managers'] = $this->user_model::where('active' , 1)->whereHas('roles' , function ($q){
+            $q->where('role_id' , 1);
+        })->get();
         $data['roles'] = $this->role_model::all();
         $data['motherCompanies'] = $this->motherCompany::all();
 

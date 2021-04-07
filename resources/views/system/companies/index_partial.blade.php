@@ -306,6 +306,7 @@
                                     </label>
                                 @endcan
 
+                                @can('Confirm Interview')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_interview_checked" data-id="{{ $company->id }}" data-id2="{{ $hidden_mother_company_id}}" value="1" type="checkbox" name="confirm_interview"
                                             {{ count($company->representative) ? $company->representative[0]->pivot->confirm_interview == 1 ? 'checked' : '' : ''}}
@@ -314,6 +315,8 @@
                                     <span></span>
                                     {{ trans('dashboard.Confirm Interview') }}
                                 </label>
+                                @endcan
+
                                 @can('Confirm Need')
                                 <label class="checkbox checkbox-success">
                                     <input class="confirm_need_checked" data-id="{{ $company->id }}" data-id2="{{ $hidden_mother_company_id}}" value="1" type="checkbox" name="confirm_need"

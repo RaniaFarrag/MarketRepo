@@ -380,8 +380,9 @@ class CompanyRepository implements CompanyRepositoryInterface
             //dd($request->designated_contact_name[$i]);
         }
 
-        foreach ($request->item as $item) {
-            //dd($item['time']);
+        if($request->item){
+            foreach ($request->item as $item) {
+                //dd($item['time']);
 //            $changedDate = Carbon::createFromFormat('dd/mm/YYYY', $item['date'])->format('YYYY-mm-dd');
 //            $res = explode("/", $item['date']);
 //           $changedDate = $res[2]."-".$res[0]."-".$res[1];
@@ -390,13 +391,14 @@ class CompanyRepository implements CompanyRepositoryInterface
 //            $date = DateTime::createFromFormat("m/d/Y" , $item['date']);
 //            $changed_date =  $date->format('Y-m-d');
 
-            if ($item['date']) {
-                $company_meeting = $this->company_meeting_model::create([
-                    'date' => $item['date'],
-                    'time' => $item['time'],
-                    'company_id' => $company->id,
-                    'user_id' => auth()->id(),
-                ]);
+                if ($item['date']) {
+                    $company_meeting = $this->company_meeting_model::create([
+                        'date' => $item['date'],
+                        'time' => $item['time'],
+                        'company_id' => $company->id,
+                        'user_id' => auth()->id(),
+                    ]);
+                }
             }
         }
 
@@ -576,25 +578,29 @@ class CompanyRepository implements CompanyRepositoryInterface
             }
         }
 
-        foreach ($request->item as $k => $item) {
-            if (isset($company->companyMeetings[$k])) {
-                $company->companyMeetings[$k]->update([
-                    'date' => $item['date'],
-                    'time' => $item['time'],
-                    'company_id' => $company->id,
-                    //'user_id' => auth()->id(),
-                ]);
-            } else {
-                if ($item['date']) {
-                    $company_meeting = $this->company_meeting_model::create([
+        if($request->item){
+            foreach ($request->item as $k => $item) {
+                if (isset($company->companyMeetings[$k])) {
+                    $company->companyMeetings[$k]->update([
                         'date' => $item['date'],
                         'time' => $item['time'],
                         'company_id' => $company->id,
-                        'user_id' => auth()->id(),
+                        //'user_id' => auth()->id(),
                     ]);
+                } else {
+                    if ($item['date']) {
+                        $company_meeting = $this->company_meeting_model::create([
+                            'date' => $item['date'],
+                            'time' => $item['time'],
+                            'company_id' => $company->id,
+                            'user_id' => auth()->id(),
+                        ]);
+                    }
                 }
             }
         }
+
+
 
         $this->addLog(auth()->id(), $company->id, 'companies', 'تم تعديل شركة ', 'Company has been updated');
 

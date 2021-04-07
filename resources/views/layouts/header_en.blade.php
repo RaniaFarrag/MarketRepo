@@ -347,6 +347,18 @@
                                                     </a>
 
                                                 </li>
+                                                @can('Add Salaries')
+                                                   <li class="menu-item " data-menu-toggle="hover"
+                                                    aria-haspopup="true">
+                                                    <a href="{{ route('usersalaries.index') }}" class="menu-link ">
+                                                        <span class="svg-icon menu-icon">
+                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                         <i class="fas fa-user-plus"></i>
+                                                            <!--end::Svg Icon--></span>
+                                                        <span class="menu-text">{{ trans('dashboard.Add Salaries') }}</span>
+                                                    </a>
+                                                </li>
+                                                @endcan
                                                 <li class="menu-item " data-menu-toggle="hover"
                                                     aria-haspopup="true">
                                                     <a href="{{ route('roles.index') }}" class="menu-link">
