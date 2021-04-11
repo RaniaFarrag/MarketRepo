@@ -17,8 +17,6 @@
         <th>{{ trans('dashboard.Company Representative name') }}</th>
         <th>{{ trans('dashboard.Location') }}</th>
         <th>{{ trans('dashboard.Client Feedback') }}</th>
-
-
         <th>{{ trans('dashboard.Next FollowUp') }}</th>
     </tr>
 

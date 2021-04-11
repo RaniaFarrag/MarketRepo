@@ -6,6 +6,7 @@ use App\Exports\salesLeadReport;
 use App\Http\Requests\SalesLeadReportRequest;
 use App\Interfaces\salesReportRepositoryInterface;
 use App\Models\Company;
+use App\Models\Company_sales_lead_report;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -56,7 +57,6 @@ class SalesLeadReportController extends Controller
      */
     public function create(Company $company , $mother_company_id)
     {
-
         return view('system.reports.create_team_sales_lead_report', compact('company' , 'mother_company_id'));
     }
 
@@ -68,7 +68,7 @@ class SalesLeadReportController extends Controller
      */
     public function store(SalesLeadReportRequest $request, Company $company)
     {
-        return $this->salesReportRepositoryInterface->store($request);
+        return $this->salesReportRepositoryInterface->store($request , $company);
     }
 
     /**
@@ -99,9 +99,22 @@ class SalesLeadReportController extends Controller
         return view('system.reports.show_sales_lead_report_of_company', compact('company', 'reports' , 'mother_company_id'));
     }
 
+    public function edit($report_id , $mother_company_id)
+    {
+        $report = Company_sales_lead_report::findOrFail($report_id);
+
+        return view('system.reports.edit_team_sales_lead_report', compact('report', 'mother_company_id'));
+    }
+
+    public function updateCompanySalesTeamReports(SalesLeadReportRequest $request , $report_id)
+    {
+        $report = Company_sales_lead_report::findOrFail($report_id);
+
+        return $this->salesReportRepositoryInterface->updateCompanySalesTeamReports($request , $report);
+    }
+
     public function extractSalesLeadReportExcel(Request $request)
     {
-//        dd($request->all());
         if ($request->type == 1) {
             $reports = $this->salesReportRepositoryInterface->index($request, true)['reports'];
             return Excel::download(new salesLeadReport($reports), 'salesLeadReportExcel.xlsx');
@@ -114,15 +127,20 @@ class SalesLeadReportController extends Controller
         $count = $this->salesReportRepositoryInterface->visitReport($request)['count'];
 
         if ($request->ajax()){
-            //dd($count);
             $data_json['viewBlade']= view('system.reports.visit_report_partial'
                 , compact('reports','count'))->render();
             $data_json['count']= $count;
             return response()->json($data_json);
-
         }
 
         return view('system.reports.visit_report' , compact('representatives' , 'reports' , 'count'));
+    }
+
+    public function getSalesReportdetails($report_id){
+        $sales_report = $this->salesReportRepositoryInterface->getSalesReportdetails($report_id);
+
+        return view('system.reports.sales_report_details')->with('sales_report' , $sales_report);
+
     }
 
 

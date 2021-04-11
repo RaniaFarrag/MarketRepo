@@ -31,7 +31,7 @@
                             {{--{{ trans('dashboard.Region') }}--}}
                             {{--</a>--}}
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
-                            <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}"
+                            <a href="{{ route('companySalesTeamReports.show' , [$report->company->id , $mother_company_id]) }}"
                                class="text-white text-hover-white opacity-75 hover-opacity-100">
                                 {{ trans('dashboard.TEAM SALES LEAD REPORT') }}
                             </a>
@@ -62,8 +62,9 @@
                         <!--begin::Card-->
                         <div class="card card-custom">
 
-                            <form method="post" action="{{ route('companySalesTeamReports.store',$company->id) }}"
-                                  class="form">
+                            <form method="POST" action="{{ route('update_sales_report' , $report->id) }}"
+                                  class="form" enctype="multipart/form-data">
+                                {{--@method('PUT')--}}
                                 @csrf
 
                                 <input type="hidden" name="mother_company_id" value="{{ $mother_company_id }}">
@@ -78,27 +79,27 @@
                                             <label>{{__('dashboard.Brochure status')}} :</label>
                                             <select name="brochurs_status" class="form-control" required>
                                                 <option value="">select</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
+                                                <option {{ $report->brochurs_status == 'Yes' ? 'selected' : '' }} value="Yes">Yes</option>
+                                                <option {{ $report->brochurs_status == 'No' ? 'selected' : '' }} value="No">No</option>
                                             </select>
 
                                         </div>
                                         <div class="col-lg-3">
                                             <label for="name">{{__('dashboard.Category of Requirement')}}</label>
                                             <input type="text" class="form-control" required="" name="cat_of_req"
-                                                   value="" placeholder="{{__('dashboard.Category of Requirement')}}">
+                                                   value="{{ $report->cat_of_req }}" placeholder="{{__('dashboard.Category of Requirement')}}">
                                         </div>
                                         <div class="col-lg-3">
                                             <label for="name">{{__('dashboard.Quanity')}}</label>
                                             <input type="number" class="form-control" required="" name="quanity"
-                                                   value="" placeholder="{{__('dashboard.Quanity')}}">
+                                                   value="{{ $report->quanity }}" placeholder="{{__('dashboard.Quanity')}}">
                                         </div>
                                         <div class="col-lg-3">
                                             <label for="name">{{__('dashboard.Type of Service required')}}</label>
                                             <input type="text" class="form-control def-input def-select"
                                                    required
                                                    name="type_of_serves"
-                                                   value=""
+                                                   value="{{ $report->type_of_serves }}"
                                                    placeholder="{{__('dashboard.Type of Service required')}}">
                                         </div>
                                     </div>
@@ -107,7 +108,7 @@
                                             <label for="name">{{__('dashboard.Client Feedback')}}</label>
                                             <textarea name="client_feeback" id="" class="form-control"
                                                       style="width: 100%"
-                                                      rows="5"> </textarea>
+                                                      rows="5">{{ $report->client_feeback }}</textarea>
                                         </div>
                                         {{-- <div class="col-lg-6">
                                              <label for="name">{{__('dashboard.Updates')}}</label>
@@ -117,7 +118,7 @@
                                         <div class="col-lg-6">
                                             <label for="name">{{__('dashboard.Remarks')}}</label>
                                             <textarea name="remarks" id="" class="form-control" style="width: 100%"
-                                                      rows="5"> </textarea>
+                                                      rows="5">{{ $report->remarks }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -125,7 +126,7 @@
                                         {{--<div class="col-lg-6">--}}
                                             {{--<label for="name">{{__('dashboard.Notes')}}</label>--}}
                                             {{--<textarea name="notes" id="" class="form-control" style="width: 100%"--}}
-                                                      {{--rows="5"></textarea>--}}
+                                                      {{--rows="5">{{ $report->notes }}</textarea>--}}
                                         {{--</div>--}}
                                     </div>
                                     <div class="form-group row">
@@ -133,17 +134,17 @@
                                             <label for="name">{{__('dashboard.Lead status')}}</label>
                                             <select name="statue" class="form-control">
                                                 <option value="">There is no status</option>
-                                                <option value="Hot">Hot</option>
-                                                <option value="Warm">Warm</option>
-                                                <option value="Cold">Cold</option>
-                                                <option value="CLOSED-WON">CLOSED-WON</option>
+                                                <option {{ $report->statue == 'Hot' ? 'selected' : '' }} value="Hot">Hot</option>
+                                                <option {{ $report->statue == 'Warm' ? 'selected' : ''  }} value="Warm">Warm</option>
+                                                <option {{ $report->statue == 'Cold' ? 'selected' : ''  }} value="Cold">Cold</option>
+                                                <option {{ $report->statue == 'CLOSED-WON' ? 'selected' : ''  }} value="CLOSED-WON">CLOSED-WON</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-4">
                                             <label for="name">{{__('dashboard.nextFollowUp')}}</label>
                                             <input type="date" class="form-control"
                                                    name="nextFollowUp"
-                                                   value=""
+                                                   value="{{ $report->nextFollowUp }}"
                                                    placeholder="dd-mm-yyyy">
                                         </div>
 
@@ -151,18 +152,17 @@
                                             <label for="name">{{__('dashboard.visit date')}}</label>
                                             <input type="date" class="form-control"
                                                    name="visit_date"
-                                                   value=""
+                                                   value="{{ $report->visit_date }}"
                                                    placeholder="dd-mm-yyyy">
                                         </div>
                                     </div>
 
                                     <div class="card-footer">
                                         <div class="row">
-
                                             <div class="col-lg-12 text-center">
                                                 <button type="submit"
                                                         class="btn btn-primary mr-2">{{ trans('dashboard.submit') }}</button>
-                                                <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}"
+                                                <a href="{{ route('companySalesTeamReports.show' , [$report->company->id , $mother_company_id]) }}"
                                                    class="btn btn-secondary">{{ trans('dashboard.cancel') }}</a>
                                             </div>
                                         </div>
@@ -170,8 +170,6 @@
                                 </div>
                             </form>
                         </div>
-
-
                     </div>
                     <!--end::Card-->
                 </div>
@@ -181,8 +179,6 @@
         </div>
         <!--end::Container-->
     </div>
-
-
 
 
 @endsection

@@ -228,12 +228,21 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::post('companySalesTeamReports/{company}','SalesLeadReportController@store')
         ->name('companySalesTeamReports.store')->middleware(['permission:Reports']);
 
+    Route::get('edit/companySalesTeamReports/{report_id}/{mother_company_id}','SalesLeadReportController@edit')
+        ->name('companySalesTeamReports.edit')->middleware(['permission:Reports']);
+
+    Route::post('update/sales/report/{report_id}','SalesLeadReportController@updateCompanySalesTeamReports')
+        ->name('update_sales_report')->middleware(['permission:Reports']);
+
     Route::get('export/sales/lead/report','SalesLeadReportController@extractSalesLeadReportExcel')
         ->name('extract_sales_lead_report_excel')->middleware(['permission:Reports']);
 
 
     Route::get('visit/report','SalesLeadReportController@visitReport')
         ->name('visit_report')->middleware(['permission:Reports']);
+
+    Route::get('get/sales/report/details/{report_id}','SalesLeadReportController@getSalesReportdetails')
+        ->name('get_sales_report_details')->middleware(['permission:Reports']);
 
 
     //NEW

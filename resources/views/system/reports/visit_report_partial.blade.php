@@ -14,7 +14,7 @@
         <tr>
             <td>{{ $report->user->mother_company_id == 1 ? trans('dashboard.linrco') : trans('dashboard.fnrco') }}</td>
             <td>{{ app()->getLocale() == 'ar' ? $report->user->name : $report->user->name_en}}</td>
-            <td>{{ $report->company->name }}</td>
+            <td><a href="{{ route('get_sales_report_details' , $report->id) }}">{{ $report->company->name }}</a></td>
             <td>{{ $report->visit_date }}</td>
         </tr>
     @endforeach

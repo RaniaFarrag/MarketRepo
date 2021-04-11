@@ -133,8 +133,8 @@ class salesReportRepository implements salesReportRepositoryInterface
                 $query = $this->sales_lead_report_model::whereIn('id', $ids_);
             }
             else{
-                //$query = $this->sales_lead_report_model::query();
-                $query = Auth::user()->company_sales_lead_report();
+                $query = $this->sales_lead_report_model::query();
+//                $query = Auth::user()->company_sales_lead_report();
             }
 
 
@@ -342,11 +342,12 @@ class salesReportRepository implements salesReportRepositoryInterface
 
 
     /** Store Role */
-    public function store($request)
+    public function store($request , $company)
     {
         $report = $this->sales_lead_report_model::create([
             'cat_of_req' => $request->cat_of_req,
-            'company_id' => $request->company_id,
+            'company_id' => $company->id,
+//            'company_id' => $request->company_id,
             'brochurs_status' => $request->brochurs_status,
             'quanity' => $request->quanity,
             'type_of_serves' => $request->type_of_serves,
@@ -357,15 +358,12 @@ class salesReportRepository implements salesReportRepositoryInterface
             'nextFollowUp' => $request->nextFollowUp,
             'visit_date' => $request->visit_date,
             'user_id' => Auth::user()->id,
-            'company_id' => $request->company->id
         ]);
-
 
         $this->addLog(auth()->id(), $report->id, 'Company_sales_lead_report', 'تم اضافة تقرير جديد', 'New sales lead report has been added');
 
         Alert::success('success', trans('dashboard. added successfully'));
-        return redirect(route('companySalesTeamReports.show', [$request->company->id , 1]));
-
+        return redirect(route('companySalesTeamReports.show', [$request->company->id , $request->mother_company_id]));
     }
 
     public function visitReport($request){
@@ -409,5 +407,34 @@ class salesReportRepository implements salesReportRepositoryInterface
         $data['reports'] = $query->paginate(10);
         $data['count'] = $query->count();
         return $data;
+    }
+
+    public function getSalesReportdetails($report_id){
+        return $this->sales_lead_report_model::findOrFail($report_id);
+    }
+
+
+    public function updateCompanySalesTeamReports($request , $report)
+    {
+        $report->update([
+            'cat_of_req' => $request->cat_of_req,
+            'company_id' => $report->company_id,
+            'brochurs_status' => $request->brochurs_status,
+            'quanity' => $request->quanity,
+            'type_of_serves' => $request->type_of_serves,
+            'client_feeback' => $request->client_feeback,
+            'updates' => $request->updates,
+            'remarks' => $request->remarks,
+            'statue' => $request->statue,
+            'nextFollowUp' => $request->nextFollowUp,
+            'visit_date' => $request->visit_date,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        $this->addLog(auth()->id(), $report->id, 'Company_sales_lead_report', 'تم تعديل  تقرير مبيعات  ', 'Sales lead report has been updated');
+        Alert::success('success', trans('dashboard. added successfully'));
+
+        return redirect(route('companySalesTeamReports.show', [$report->company_id , $request->mother_company_id]));
+
     }
 }

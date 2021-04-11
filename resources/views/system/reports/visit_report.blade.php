@@ -99,9 +99,9 @@
                                                         <div class="col-md-6 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>{{ trans('dashboard.Company Representative name') }}</label>
-                                                                <select class="form-control select2" id="representative_id" name="representative_id[]"
-                                                                        multiple="multiple">
-                                                                    {{--<option value="" selected="">{{ trans('dashboard.Select All') }}</option>--}}
+                                                                <select class="form-control select2" id="representative_id" name="representative_id[]">
+                                                                    {{--multiple="multiple"--}}
+                                                                    <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
                                                                     @foreach($representatives as $representative)
                                                                         <option value="{{ $representative->id }}" >
                                                                             {{ app()->getLocale()=='ar' ? $representative->name : $representative->name_en }}

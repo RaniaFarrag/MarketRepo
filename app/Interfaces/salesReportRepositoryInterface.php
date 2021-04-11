@@ -17,9 +17,13 @@ interface salesReportRepositoryInterface
 //    public function show($request ,  $company_id , $mother_company_id , $all = null);
     public function show($company , $mother_company_id);
 
-    public function store($request);
+    public function store($request , $company);
+
 
     //1/4/2021
     public function visitReport($request);
 
+    public function getSalesReportdetails($report_id);
+
+    public function updateCompanySalesTeamReports($request , $report);
 }

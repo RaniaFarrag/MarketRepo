@@ -529,6 +529,7 @@ return [
     'Salary' => 'Salary',
     'Add Salary' => 'Add Salary',
     'visit_price' => 'Visit Price',
+    'SALES LEAD REPORT' => 'SALES LEAD REPORT',
     'Month' => 'Month',
     'Month' => 'Month',
     'Month' => 'Month',

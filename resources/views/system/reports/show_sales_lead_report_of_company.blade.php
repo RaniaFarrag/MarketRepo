@@ -106,9 +106,9 @@
                                             <th>{{ trans('dashboard.Company Representative name') }}</th>
                                             <th>{{ trans('dashboard.Location') }}</th>
                                             <th>{{ trans('dashboard.Client Feedback') }}</th>
-
-
+                                            <th>{{ trans('dashboard.visit date') }}</th>
                                             <th>{{ trans('dashboard.Next FollowUp') }}</th>
+                                            <th>{{ trans('dashboard.edit') }}</th>
                                         </tr>
 
                                         </thead>
@@ -149,7 +149,10 @@
 
                                                 <td>{{$report->company->city->name ?? '-'}}</td>
                                                 <td><span style="width: 500px !important;display: block;">{{$report->client_feeback?? '-'}}</span></td>
-                                                <td>{{$report->nextFollowUp?? '-'}}</td>
+                                                <td>{{$report->visit_date ?? '-'}}</td>
+                                                <td>{{$report->nextFollowUp ?? '-'}}</td>
+                                                <td><a class="btn btn-success font-weight-bold"
+                                                       href="{{ route('companySalesTeamReports.edit' , [$report->id,$mother_company_id]) }}">{{ trans('dashboard.edit') }}</a></td>
 
                                             </tr>
                                         @endforeach
