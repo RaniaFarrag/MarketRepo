@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\salesLeadReport;
+use App\Exports\VisitReport;
 use App\Http\Requests\SalesLeadReportRequest;
 use App\Interfaces\salesReportRepositoryInterface;
 use App\Models\Company;
@@ -132,8 +132,13 @@ class SalesLeadReportController extends Controller
             $data_json['count']= $count;
             return response()->json($data_json);
         }
-
+        //dd($reports);
         return view('system.reports.visit_report' , compact('representatives' , 'reports' , 'count'));
+    }
+
+    public function exportVisitreport(Request $request){
+        $reports = $this->salesReportRepositoryInterface->visitReport($request)['reports'];
+        return Excel::download(new VisitReport($reports), 'visitReportExcel.xlsx');
     }
 
     public function getSalesReportdetails($report_id){

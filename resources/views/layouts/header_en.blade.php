@@ -294,21 +294,20 @@
 
                                                 </li>
 
-
-                                                <li class="menu-item {{\Request::route()->getName() == 'companySalesTeamReports.index' ? 'menu-item-here' :"" }}"
-                                                    data-menu-toggle="hover"
-                                                    aria-haspopup="true">
-                                                    <a href="{{ route('visit_report')}}"
-                                                       class="menu-link ">
-                                                        <span class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
-                                                         <i class="fas fa-users-cog"></i>
-                                                            <!--end::Svg Icon--></span>
-                                                        <span class="menu-text">{{ trans('dashboard.VISITS REPORT') }}</span>
-                                                    </a>
-                                                </li>
-
-
+                                                @can('Visit Report')
+                                                    <li class="menu-item {{\Request::route()->getName() == 'companySalesTeamReports.index' ? 'menu-item-here' :"" }}"
+                                                        data-menu-toggle="hover"
+                                                        aria-haspopup="true">
+                                                        <a href="{{ route('visit_report')}}"
+                                                           class="menu-link ">
+                                                            <span class="svg-icon menu-icon">
+                                                                <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                             <i class="fas fa-users-cog"></i>
+                                                                <!--end::Svg Icon--></span>
+                                                            <span class="menu-text">{{ trans('dashboard.VISITS REPORT') }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endcan
                                             </ul>
                                         </div>
                                     </li>

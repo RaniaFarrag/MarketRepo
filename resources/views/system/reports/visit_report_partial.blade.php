@@ -22,3 +22,6 @@
     </tbody>
 
 </table>
+{{--{!! $reports->links() !!}--}}
+
+{{--{{ $reports->links() }}--}}

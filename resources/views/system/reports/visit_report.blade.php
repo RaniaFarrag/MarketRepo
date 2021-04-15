@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form id="salesFrom" action="">
+                                <form id="salesFrom" action="{{ route('export_visit_report_excel') }}">
                                     <div class="accordion accordion-toggle-arrow" id="accordionExample1">
                                         <div class="card">
                                             <div class="card-header">
@@ -90,8 +90,6 @@
                                                     {{ trans('dashboard.Companies Filters') }}
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="type" class="type"
-                                                   value=""> {{-- type = 1 for export , type = 2 for sendmail--}}
                                             <div id="collapseOne1" class="collapse show"
                                                  data-parent="#accordionExample1">
                                                 <div class="card-body">
@@ -99,7 +97,7 @@
                                                         <div class="col-md-6 col-xs-12">
                                                             <div class="form-group">
                                                                 <label>{{ trans('dashboard.Company Representative name') }}</label>
-                                                                <select class="form-control select2" id="representative_id" name="representative_id[]">
+                                                                <select class="form-control select2" id="representative_id" name="representative_id">
                                                                     {{--multiple="multiple"--}}
                                                                     <option value="" selected="">{{ trans('dashboard.Select One') }}</option>
                                                                     @foreach($representatives as $representative)
@@ -145,11 +143,12 @@
                                     <div class="separator separator-dashed mt-8 mb-5"></div>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Button-->
-                                        {{--<button type="submit" id="exportExcel" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">--}}
-                                            {{--Export Excel--}}
-                                        {{--</button>--}}
+                                        <button type="submit" id="exportExcel" class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                                            Export Excel
+                                        </button>
                                     </div>
                                 </form>
+                                <div class="separator separator-dashed mt-8 mb-5"></div>
 
                                 <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
@@ -162,44 +161,11 @@
                     </div>
                 </div>
                 <!--end::Row-->
-
-
                 <!--end::Dashboard-->
             </div>
 
-
             <!--end::Container-->
         </div>
-        <!--end::Entry-->
-        <!-- Modal-->
-        <div class="modal fade" id="btnMail-2863" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            {{ trans('dashboard.Send mail To Selected Company') }}
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i aria-hidden="true" class="ki ki-close"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <label>{{ trans('dashboard.email') }}:</label>
-                        <input type="email" class="form-control" name="email">
-
-                        <label>{{ trans('dashboard.message') }}:</label>
-                        <textarea name="message" class="form-control" rows="5"> </textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">
-                            {{ trans('dashboard.send') }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
     <!--end::Content-->
 

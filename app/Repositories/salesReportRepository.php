@@ -367,32 +367,38 @@ class salesReportRepository implements salesReportRepositoryInterface
     }
 
     public function visitReport($request){
-        if (Auth::user()->hasRole('ADMIN')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Sales Manager')){
+
             $data['representatives'] = $this->user_model::where('active' , 1)
                 ->where(function ($q){
                     $q->whereNotNull('parent_id')
                         ->orWhereHas('childs');
                 })->get();
-            $query = $this->sales_lead_report_model::whereNotNull('visit_date');
+            $query = $this->sales_lead_report_model::whereNotNull('visit_date')->orderBy('visit_date' , 'asc');
         }
-        elseif(Auth::user()->hasRole('Sales Manager')){
-            $data['representatives'] = $this->user_model::where('active' , 1)
-                ->where(function ($q){
-                    $q->where('parent_id' , Auth::user()->id)
-                        ->orWhere('id' , Auth::user()->id);
-                })->get();
-
-            $query = $this->sales_lead_report_model::whereHas('company' , function ($q){
-                $q->whereIn('sector_id' , Auth::user()->sectors->pluck('id'));
-            });
-        }
+//        elseif(Auth::user()->hasRole('Sales Manager')){
+//            $data['representatives'] = $this->user_model::where('active' , 1)
+//                ->where(function ($q){
+//                    $q->where('parent_id' , Auth::user()->id)
+//                        ->orWhere('id' , Auth::user()->id);
+//                })->get();
+//
+//            $query = $this->sales_lead_report_model::whereNotNull('visit_date')
+//                ->whereHas('user' , function ($q){
+//                     $q->where('mother_company_id' , Auth::user()->mother_company_id);
+//                });
+//        }
         else{
             $data['representatives'] = $this->user_model::where('active' , 1)
                 ->where(function ($q){
                     $q->where('parent_id' , Auth::user()->id)
                         ->orWhere('id' , Auth::user()->id);
                 })->get();
-            $query = Auth::user()->company_sales_lead_report();
+//            $query = Auth::user()->company_sales_lead_report();
+            $query = $this->sales_lead_report_model::whereNotNull('visit_date')->orderBy('visit_date' , 'asc')
+                ->whereHas('user' , function ($q){
+                    $q->where('user_id' , Auth::user()->id);
+                });
         }
 
         if ($request->representative_id)
@@ -404,7 +410,7 @@ class salesReportRepository implements salesReportRepositoryInterface
         if ($request->to)
             $query->where('visit_date' , '<=' , $request->to);
 
-        $data['reports'] = $query->paginate(10);
+        $data['reports'] = $query->get();
         $data['count'] = $query->count();
         return $data;
     }

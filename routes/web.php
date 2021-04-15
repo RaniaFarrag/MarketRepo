@@ -239,7 +239,10 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
     Route::get('visit/report','SalesLeadReportController@visitReport')
-        ->name('visit_report')->middleware(['permission:Reports']);
+        ->name('visit_report')->middleware(['permission:Visit Report']);
+
+    Route::get('export/visit/report','SalesLeadReportController@exportVisitreport')
+        ->name('export_visit_report_excel')->middleware(['permission:Visit Report']);
 
     Route::get('get/sales/report/details/{report_id}','SalesLeadReportController@getSalesReportdetails')
         ->name('get_sales_report_details')->middleware(['permission:Reports']);
