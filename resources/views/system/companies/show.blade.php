@@ -70,16 +70,16 @@
                                     </a>
                                 </li>
                                 @endcan
+
                                 @can('Add Company Need')
                                 {{--<li class="navi-item">--}}
-
                                     {{--<a href="{{ route('company_needs.index' , $company->id) }}" class="navi-link">--}}
                                         {{--<span class="navi-icon"><i class="flaticon2-list-3"></i></span>--}}
                                         {{--<span class="navi-text">{{ trans('dashboard.View Company Needs') }}</span>--}}
                                     {{--</a>--}}
                                 {{--</li>--}}
                                 @endcan
-                                
+
                                 @can('TEAM SALES LEAD REPORT')
                                     <li class="navi-item">
                                         <a href="{{ route('companySalesTeamReports.show' , [$company->id , $mother_company_id]) }}" class="navi-link">
@@ -185,42 +185,14 @@
                                                class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">
                                                 {{ $company->name }}
                                             </a>
-                                            @if($company->evaluation_status)
-                                                @if($company->evaluation_status == 1)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">A</span>
-                                                @elseif($company->evaluation_status == 2)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">B</span>
-                                                @elseif($company->evaluation_status == 3)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">C</span>
-                                                @endif
-                                                @if($company->evaluator) :
-                                                        {{--{{ trans('dashboard.By User') }}--}}
-                                                    <span class="label  label-dark label-inline font-weight-bolder ml-1 mr-1">
-                                                        {{ app()->getLocale() == 'ar' ? $company->evaluator->name : $company->evaluator->name_en }}
-                                                    </span>
-                                                @endif
-                                            @endif
-
-                                        <!--end::Name-->
-                                            @if($company->client_status)
-                                                @if($company->client_status == 1)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Hot') }}</span>
-                                                @elseif($company->client_status == 2)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Warm') }}</span>
-                                                @elseif($company->client_status == 3)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Cold') }}</span>
-                                                @elseif($company->client_status == 4)
-                                                    <span class="label label-light-danger label-inline font-weight-bolder mr-1">{{ trans('dashboard.Awarded') }}</span>
-
-                                                @endif
-                                                {{--<span class="label  label-dark label-inline font-weight-bolder ml-1">{{ auth()->user()->name }}</span>--}}
-                                                @if($company->client_status_user) :
-                                                        {{--{{ trans('dashboard.By User') }}--}}
-                                                    <span class="label  label-dark label-inline font-weight-bolder ml-1">
-                                                            {{ app()->getLocale() == 'ar' ? $company->client_status_user->name : $company->client_status_user->name_en }}
-                                                    </span>
-                                                @endif
-                                            @endif
+{{--                                            @if($company->client_status)--}}
+{{--                                                @if($company->client_status_user) :--}}
+{{--                                                        --}}{{--{{ trans('dashboard.By User') }}--}}
+{{--                                                    <span class="label  label-dark label-inline font-weight-bolder ml-1">--}}
+{{--                                                            {{ app()->getLocale() == 'ar' ? $company->client_status_user->name : $company->client_status_user->name_en }}--}}
+{{--                                                    </span>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
                                         </div>
 
                                         <!--begin::Contacts-->
@@ -250,6 +222,23 @@
                                                     </span>{{ $company->whatsapp }}
                                                 @endif
                                             </a>
+
+                                            @if(count($company->representative))
+                                                <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                                    @if($company->representative[0]->pivot->evaluation_status == 1)A
+                                                    @elseif($company->representative[0]->pivot->evaluation_status == 2)B
+                                                    @elseif($company->representative[0]->pivot->evaluation_status == 3)C
+                                                    @endif
+                                                </a>
+
+                                                <a href="#" class="text-muted text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2">
+                                                    @if($company->representative[0]->pivot->client_status == 1){{ trans('dashboard.Hot') }}
+                                                    @elseif($company->representative[0]->pivot->client_status == 2){{ trans('dashboard.Warm') }}
+                                                    @elseif($company->representative[0]->pivot->client_status == 3){{ trans('dashboard.Cold') }}
+                                                    @elseif($company->representative[0]->pivot->client_status == 4){{ trans('dashboard.Awarded') }}
+                                                    @endif
+                                                </a>
+                                            @endif
                                         </div>
                                         <!--end::Contacts-->
                                     </div>
@@ -259,7 +248,6 @@
                                   {{--  <div class="mb-10">
                                         <a target="_blank" href="{{ route('print_show_company' , $company->id) }}"
                                            class="btn btn-sm btn-light-primary font-weight-bolder text-uppercase mr-2">{{ trans('dashboard.Print') }}</a>
-
                                     </div>--}}
                                     <!--end::Actions-->
                                 </div>

@@ -107,7 +107,11 @@ class CompanyController extends Controller
 
     public function showCompany($company_id , $mother_company_id)
     {
-        $company = Company::findOrFail($company_id);
+        //$company = Company::findOrFail($company_id);
+        $company = Company::where('id' , $company_id)->with(['representative' => function($q) use ($mother_company_id){
+            $q->where('company_user.mother_company_id' , $mother_company_id);
+        }])->first();
+        //dd($company);
 
         return view ('system.companies.show')->with(['company' => $company , 'mother_company_id' => $mother_company_id]);
     }

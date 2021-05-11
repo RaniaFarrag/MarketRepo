@@ -83,8 +83,9 @@ class CompanyRepository implements CompanyRepositoryInterface
             $query = $this->company_model::whereHas('representative' ,function ($q){
                 $q->where('user_id' , Auth::user()->id)
                     ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
-            })->with('representative');
-            //dd($query->get());
+            })->with(['representative' => function($q){
+                $q->where('user_id' , Auth::user()->id);
+            }]);
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')) {
@@ -339,19 +340,19 @@ class CompanyRepository implements CompanyRepositoryInterface
             if (!Auth::user()->sectors()->find($request->sector_id)) {
                 Auth::user()->sectors()->attach($request->sector_id);
             }
-            $company->representative()->attach( Auth::user()->id , 
+            $company->representative()->attach( Auth::user()->id ,
                 array("mother_company_id" => Auth::user()->mother_company_id));
-            
+
             if($request->client_status){
                 $rep = $company->representative()->first();
-                $company->representative()->save($rep , 
+                $company->representative()->save($rep ,
                     array("mother_company_id" => Auth::user()->mother_company_id, "client_status"=>$request->client_status,
                     "client_status_user_id"=>Auth::user()->id));
             }
 
             if($request->evaluation_status){
                 $rep = $company->representative()->first();
-                $company->representative()->save($rep , 
+                $company->representative()->save($rep ,
                     array("mother_company_id" => Auth::user()->mother_company_id, "evaluation_status"=>$request->evaluation_status,
                     "evaluation_status_user_id"=>Auth::user()->id));
             }

@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Company;
 use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
+use App\Models\CompanyRequest;
 use App\Models\Log;
 use App\Models\MotherCompany;
 use App\Models\Sector;
@@ -99,5 +100,9 @@ class User extends Authenticatable
 
     public function userSalary(){
         return $this->hasOne(UserSalary::class);
+    }
+
+    public function companyRequests(){
+        return $this->hasMany(CompanyRequest::class);
     }
 }

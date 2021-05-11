@@ -284,6 +284,22 @@
                                 @endif
                             </span>
                         </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-dark-75 font-weight-bolder mr-2">{{ trans('dashboard.Evaluation status') }}:</span>
+
+                            <span class="text-muted font-weight-bold">
+                                @if(count($company->representative))
+                                    @if($company->representative[0]->pivot->evaluation_status == 1)A
+                                    @elseif($company->representative[0]->pivot->evaluation_status == 2)B
+                                    @elseif($company->representative[0]->pivot->evaluation_status == 3)C
+                                    @endif
+                                @else
+                                    '-'
+                               @endif
+
+                            </span>
+                        </div>
                     </div>
                     <!--end::Info-->
 

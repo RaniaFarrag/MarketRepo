@@ -303,7 +303,7 @@
                                             <label>{{ trans('dashboard.Location') }}:</label>
                                             <input value="{{ old('location') }}" name="location" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.Location') }}" required/>
+                                                   placeholder="{{ trans('dashboard.Location') }}" />
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.address') }}:</label>

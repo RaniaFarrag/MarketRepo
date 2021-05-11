@@ -148,6 +148,7 @@
                                         </div>
                                     </li>
                                     @endcan
+
                                     @can('Menu Region')
                                     <li class="menu-item  menu-item-submenu menu-item-rel {{Request::is('cities') || Request::is('countries')? 'menu-item-here' :"" }}"
                                         data-menu-toggle="click"
@@ -222,14 +223,25 @@
                                                             <!--end::Svg Icon--></span>
                                                         <span class="menu-text">{{ trans('dashboard.Add New Sector') }}</span>
                                                     </a>
-
                                                 </li>
-
-
                                             </ul>
                                         </div>
                                     </li>
                                     @endcan
+
+                                    @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Coordinator'))
+                                        @can('Requests Report')
+                                            <li class="menu-item {{\Request::route()->getName() == 'requests_report' ? 'menu-item-here' :"" }}"
+                                                data-menu-toggle="hover"
+                                                aria-haspopup="true">
+                                                <a href="{{ route('requests_report')}}" class="menu-link ">
+                                                                <span class="svg-icon menu-icon"></span>
+                                                    <span class="menu-text">{{ trans('dashboard.requests_report') }}</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                    @endif
+
                                     @can('Reports')
                                     <li class="menu-item  menu-item-submenu menu-item-rel   {{Request::is('company/report') || Request::is('representative/company/report') || Request::is('monitor/report')|| Request::is('companySalesTeamReports')? 'menu-item-here' :"" }}"
                                         data-menu-toggle="click"
@@ -264,8 +276,21 @@
                                                             <!--end::Svg Icon--></span>
                                                         <span class="menu-text">{{ trans('dashboard.Rep Reports') }}</span>
                                                     </a>
-
                                                 </li>
+
+                                                @can('Requests Report')
+                                                    <li class="menu-item {{\Request::route()->getName() == 'requests_report' ? 'menu-item-here' :"" }}"
+                                                        data-menu-toggle="hover"
+                                                        aria-haspopup="true">
+                                                        <a href="{{ route('requests_report')}}" class="menu-link ">
+                                                            <span class="svg-icon menu-icon">
+                                                                <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                             <i class="fas fa-user-tie"></i>
+                                                                <!--end::Svg Icon--></span>
+                                                            <span class="menu-text">{{ trans('dashboard.requests_report') }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endcan
 
                                                 @can('Monitor the login')
                                                     <li class="menu-item {{\Request::route()->getName() == 'monitor_report' ? 'menu-item-here' :"" }}"
@@ -291,8 +316,23 @@
                                                             <!--end::Svg Icon--></span>
                                                         <span class="menu-text">{{ trans('dashboard.TEAM SALES LEAD REPORT') }}</span>
                                                     </a>
-
                                                 </li>
+
+
+                                                @can('Add company Requests')
+                                                    <li class="menu-item {{\Request::route()->getName() == 'company_requests_of_user' ? 'menu-item-here' :"" }}"
+                                                        data-menu-toggle="hover"
+                                                        aria-haspopup="true">
+                                                        <a href="{{ route('company_requests_of_user')}}"
+                                                           class="menu-link ">
+                                                            <span class="svg-icon menu-icon">
+                                                                <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                             <i class="fas fa-users-cog"></i>
+                                                                <!--end::Svg Icon--></span>
+                                                            <span class="menu-text">{{ trans('dashboard.Add company Requests') }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endcan
 
                                                 @can('Visit Report')
                                                     <li class="menu-item {{\Request::route()->getName() == 'companySalesTeamReports.index' ? 'menu-item-here' :"" }}"
@@ -312,6 +352,7 @@
                                         </div>
                                     </li>
                                     @endcan
+
                                     @can('Menu Users')
                                     <li class="menu-item  menu-item-submenu menu-item-rel {{Request::is('users*') || Request::is('roles*')? 'menu-item-here' :"" }}"
                                         data-menu-toggle="click"

@@ -247,7 +247,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('get/sales/report/details/{report_id}','SalesLeadReportController@getSalesReportdetails')
         ->name('get_sales_report_details')->middleware(['permission:Reports']);
 
-
     //NEW
     Route::get('/get/reps/of/mothercompany/{mother_company_id}','AssignCompanyController@getRepofMothercompany');
 
@@ -422,6 +421,35 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
 
     Route::post('assign/one/company' , 'AssignCompanyController@assignOnecompany')->name('assign_one_company');
+
+    //NEW
+    Route::get('company/requests/of/user' , 'CompanyRequestController@index')
+        ->name('company_requests_of_user')->middleware(['permission:Add company Requests']);
+
+    Route::get('create/company/requests/of/user' , 'CompanyRequestController@create')
+        ->name('create_company_requests_of_user')->middleware(['permission:Add company Requests']);
+
+    Route::post('save/company/requests/of/user' , 'CompanyRequestController@store')
+        ->name('save_company_requests_of_user')->middleware(['permission:Add company Requests']);
+
+    Route::get('requests/report' , 'CompanyRequestController@getRequestsReport')
+        ->name('requests_report')->middleware(['permission:Requests Report']);
+
+    Route::get('get/notes/of/request/report/{report_id}' , 'CompanyRequestController@getNotesOfRequestReport')
+        ->name('get_notes_of_request_report')->middleware(['permission:Requests Report']);
+
+    Route::get('create/notes/of/request/report/{report_id}' , 'CompanyRequestController@createNotesOfRequestReport')
+        ->name('create_notes_of_request_report')->middleware(['permission:Requests Report']);
+
+    Route::post('save/notes/of/request/report' , 'CompanyRequestController@saveNotesOfRequestReport')
+        ->name('save_notes_of_request_report')->middleware(['permission:Requests Report']);
+
+    Route::get('edit/notes/of/request/report/{note_id}' , 'CompanyRequestController@editNotesOfRequestReport')
+        ->name('edit_notes_of_request_report')->middleware(['permission:Requests Report']);
+
+    Route::post('update/notes/of/request/report/{note_id}' , 'CompanyRequestController@updateNotesOfRequestReport')
+        ->name('update_notes_of_request_report')->middleware(['permission:Requests Report']);
+
 
 
 });
