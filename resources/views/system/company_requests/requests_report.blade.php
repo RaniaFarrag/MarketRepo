@@ -38,9 +38,9 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-{{--                    <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">--}}
-{{--                        {{ trans('dashboard.Export Excel ') }}--}}
-{{--                    </button>--}}
+                    <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Export Excel') }}
+                    </button>
 
                     <a href="#" class="btn btn-white font-weight-bold py-3 px-6">
                         {{ trans('dashboard.Reports') }} <span id="counter">{{ $count ?? '-' }}</span>
@@ -76,7 +76,7 @@
                                                 {{ trans('dashboard.Companies Filters') }}
                                             </div>
                                         </div>
-                                        <form autocomplete="off" id="exportExcelForm" action="{{route('extract_company_report_excel')}}">
+                                        <form autocomplete="off" id="exportExcelForm" action="{{route('export_excel_request_report')}}">
                                             <div id="collapseOne1" class="collapse show"
                                                  data-parent="#accordionExample1">
                                                 <div class="card-body">
@@ -122,7 +122,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-6 col-xs-12">
+                                                        <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label for="name">{{ trans('dashboard.From') }}</label>
                                                                 <input type="date" class="form-control" id="from"
@@ -130,13 +130,25 @@
                                                                        value="">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 col-xs-12">
+                                                        <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
                                                                 <label
                                                                     for="name">{{ trans('dashboard.To') }}</label>
                                                                 <input type="date" class="form-control"
                                                                        id="to" name="to"
                                                                        value="">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label for="name">{{ trans('dashboard.request_status') }}</label>
+                                                                <select id="request_status" name="request_status" class="form-control select2" required>
+                                                                    <option value="" selected="">{{ trans('dashboard.Select') }}</option>
+                                                                    <option value="Open">{{ trans('dashboard.Open') }}</option>
+                                                                    <option value="Closed">{{ trans('dashboard.Closed') }}</option>
+                                                                    <option value="Pending">{{ trans('dashboard.Pending') }}</option>
+                                                                </select>
                                                             </div>
                                                         </div>
 
@@ -201,6 +213,7 @@
                     "evaluation_ids": $("#evaluation_ids").val(),
                     "from": $("#from").val(),
                     "to": $("#to").val(),
+                    "request_status": $("#request_status").val(),
 
                 },
                 success: function (data) {

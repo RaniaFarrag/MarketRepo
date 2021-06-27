@@ -89,7 +89,7 @@
                                             <label>{{ trans('dashboard.Salary') }} :</label>
                                             <input value="{{ old('salary') }}" name="salary" type="text"
                                                    class="form-control"
-                                                   placeholder="{{ trans('dashboard.salary') }}" required/>
+                                                   placeholder="{{ trans('dashboard.Salary') }}" required/>
                                             @error('salary')
                                                 <div class="error">{{ $message }}</div>
                                             @enderror

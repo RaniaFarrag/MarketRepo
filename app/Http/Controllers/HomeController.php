@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\company_images;
+use App\Models\CompanyRequest;
 use App\Models\CompanyUser;
 use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
+use App\Models\MeetingTeller;
 use App\Models\MotherCompany;
 use App\User;
 use Carbon\Carbon;
@@ -37,6 +39,16 @@ class HomeController extends Controller
         $company_registered_today = Company::whereDate('created_at' , Carbon::today())->count();
 
         $mother_companies = MotherCompany::all();
+
+        $meetings_by_teller = MeetingTeller::where('representative_id' , Auth::user()->id)
+            ->where('date_meeting' , '>=' , Carbon::today())
+            ->orderBy('id' , 'desc')->get();
+
+        $next_follow_requests = CompanyRequest::whereHas('notes' , function ($query){
+            $query->where('notes.next_follow_date' , '>=' , Carbon::today())->where('teller_id' , Auth::user()->id);
+        })->with(['notes' => function($q){
+            $q->latest();
+        }])->orderBy('id' , 'desc')->get();
 
 //        if($request->mother_company_id){
 //            $mother_company_id = $request->mother_company_id;
@@ -103,7 +115,6 @@ class HomeController extends Controller
         }
 
         elseif (Auth::user()->hasRole('Sales Representative')){
-
             //All Companies created by me
             $company_registered_today = Company::whereDate('created_at' , Carbon::today())
                 ->where('user_id' , Auth::user()->id)->count();
@@ -150,7 +161,6 @@ class HomeController extends Controller
             $today_meetings = 0 ;
             $coming_meetings = 0 ;
             $meetings = 0 ;
-
         }
 
         if($request->ajax()){
@@ -180,7 +190,8 @@ class HomeController extends Controller
 //            'coming_meetings'=>$coming_meetings,
 //
             'meetings'=>$meetings ,
-
+            'meetings_by_teller'=>$meetings_by_teller,
+            'next_follow_requests'=>$next_follow_requests,
             'mother_company_id'=>$request->mother_company_id,
             'mother_companies'=>$mother_companies,
             ]);

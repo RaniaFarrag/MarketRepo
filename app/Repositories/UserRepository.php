@@ -8,12 +8,17 @@
 
 namespace App\Repositories;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\Company;
+use App\Models\Company_sales_lead_report;
 use App\Models\CompanyMeeting;
 use App\Models\Log;
 use App\Models\MotherCompany;
 use App\Models\Sector;
+use App\Models\UserSalary;
 use App\Traits\logTrait;
 use App\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -49,7 +54,7 @@ class UserRepository implements UserRepositoryInterface
     /** Get Representative*/
     public function get_reps()
     {
-        if (Auth::user()->hasRole('ADMIN')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
 //            $x = User::whereHas('roles' , function ($q){
 ////                $q->whereIn('name' , ['Sales Manager' , 'Sales Representative'])->get();
 //                $q->where('name' , 'Sales Manager')->orWhere('name' , 'Sales Representative')->get();
@@ -107,6 +112,8 @@ class UserRepository implements UserRepositoryInterface
                 'parent_id' => $request->parent_id,
                 'mother_company_id' => $request->mother_company_id,
             ]);
+            
+            $user->sectors()->sync($request->sector_ids);
         }
         elseif($request->role == 'Sales Manager' || $request->role == 'Coordinator'){
             $user = $this->user_model::create([
@@ -263,7 +270,6 @@ class UserRepository implements UserRepositoryInterface
         return redirect(route('users.index'));
     }
 
-
     public function rep_companies_report($request, $all = null)
     {
         $data =[];
@@ -316,5 +322,87 @@ class UserRepository implements UserRepositoryInterface
             ]);
         $this->addLog(auth()->id(), $request->user_id , 'users', 'تم تعطيل مستخدم ', 'user has been deactivate');
         return trans('dashboard.DeActivation completed successfully');
+    }
+
+    /** Get Count Of Visits & Adding'sCompanies For Every Representative */
+    public function getVisitscountReport($request){
+//      $start_date = Carbon::now()->subMonth()->startOfMonth()->toDateString();   get from first day in last month
+        $start_date = Carbon::now()->startOfMonth()->toDateString();
+        $end_date = Carbon::now()->toDateString();
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
+            $representative = User::where('active' , 1)->whereNotNull('parent_id')->orderBy('id' , 'asc')->get();
+        else
+            $representative = User::where('active' , 1)->where('parent_id' , Auth::user()->id)->get();
+        //$representative = User::where('active' , 1)->whereNotNull('parent_id')->orderBy('id' , 'asc')->get();
+        $representative_id = $representative[0]->id;
+        if (app()->getLocale() == 'ar')
+            $representative_name = $representative[0]->name;
+        else
+            $representative_name = $representative[0]->name_en;
+
+        if ($request->from){
+            $start_date = $request->from;
+        }
+
+        if ($request->to){
+            $end_date = $request->to;
+        }
+
+        if ($request->representative_id){
+            $representative_id = $request->representative_id;
+            $representative = User::findOrFail($request->representative_id);
+            if (app()->getLocale() == 'ar')
+                $representative_name = $representative->name;
+            else
+                $representative_name = $representative->name_en;
+        }
+
+        $period = CarbonPeriod::create($start_date , $end_date);
+
+        foreach ($period as $date) {
+            $listOfDates[] = $date->format('Y-m-d');
+        }
+        $sum_added = 0;
+        $sum_visited = 0;
+        $representative_salary = UserSalary::where('user_id' , $representative_id)->first();
+        foreach ($listOfDates as $k=>$date) {
+            $added_count = Company::where('user_id' , $representative_id)->whereDate('created_at' , $date)->count();
+            $visit_count = Company_sales_lead_report::where('user_id' , $representative_id)
+                ->where('visit_date' , $date)->count();
+            $listofCounts[$k]['date'] = $date;
+            $listofCounts[$k]['added'] = $added_count;
+            $listofCounts[$k]['visited'] = $visit_count;
+
+            $sum_added += $added_count;
+            $sum_visited += $visit_count;
+
+            $chart_array1[$k]['label'] = $date;
+            $chart_array1[$k]['y'] = $added_count;
+
+            $chart_array2[$k]['label'] = $date;
+            $chart_array2[$k]['y'] = $visit_count;
+        }
+
+        $data['listofCounts'] = $listofCounts;
+        $data['representative_name'] = $representative_name;
+        $data['chart_array1'] = $chart_array1;
+        $data['chart_array2'] = $chart_array2;
+
+        $data['sum_added'] = $sum_added;
+        $data['sum_visited'] = $sum_visited;
+
+        if ($representative_salary){
+            $data['salary'] = $representative_salary->salary;
+            $data['daily_visits'] = $representative_salary->num_visits_per_day;
+            $data['visit_price'] = $representative_salary->visit_price;
+        }
+
+        else{
+            $data['salary'] = '';
+            $data['daily_visits'] = '';
+            $data['visit_price'] = '';
+        }
+
+        return $data;
     }
 }

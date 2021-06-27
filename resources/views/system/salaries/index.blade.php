@@ -102,6 +102,7 @@
 
                                         <tbody>
                                         @foreach($users as $k=>$user)
+
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
                                                 <td>{{ $user->name }}</td>

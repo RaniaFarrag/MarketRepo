@@ -81,7 +81,9 @@
                                             <select name="request_type" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select') }}</option>
                                                 <option value="visa">{{ trans('dashboard.visa') }}</option>
-                                                <option value="ready_manpower">{{ trans('dashboard.Ready ManPower') }}</option>
+                                                <option value="Jahez">{{ trans('dashboard.Jahez') }}</option>
+                                                <option value="Local transfer">{{ trans('dashboard.Local transfer') }}</option>
+
                                             </select>
                                         </div>
                                     </div>

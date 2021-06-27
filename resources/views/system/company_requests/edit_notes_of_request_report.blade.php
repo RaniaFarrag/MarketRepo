@@ -64,22 +64,18 @@
                                     <h3 class="card-label text-center border-bottom pb-2">
                                          {{ trans('dashboard.Edit Note') }}
                                     </h3>
-
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.feedback') }} :</label>
-                                            <input value="{{ $note->feedback }}" name="feedback" type="text" class="form-control" placeholder="{{ trans('dashboard.feedback') }}"/>
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.date') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ $note->date }}" name="date" type="date"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="Select date"/>
+                                            </div>
                                         </div>
 
-                                        <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.notes') }} :</label>
-                                            <input value="{{ $note->note }}" name="note" type="text" class="form-control" placeholder="{{ trans('dashboard.notes') }}"/>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.nextfollow_date') }} :</label>
                                             <div class="input-group input-group-solid date"
                                                  data-target-input="nearest">
@@ -89,16 +85,31 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.request_status') }} :</label>
                                             <select name="request_status" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select') }}</option>
-                                                <option {{ $note->request_status == 'Open' ? 'selected' : '' }} value="Open">{{ trans('dashboard.Open') }}</option>
+                                                <option {{ $note->request_status == 'In process' ? 'selected' : '' }} value="In process">{{ trans('dashboard.In process') }}</option>
                                                 <option {{ $note->request_status == 'Closed' ? 'selected' : '' }} value="Closed">{{ trans('dashboard.Closed') }}</option>
-                                                <option {{ $note->request_status == 'Pending' ? 'selected' : '' }} value="Pending">{{ trans('dashboard.Pending') }}</option>
+{{--                                                <option {{ $note->request_status == 'Pending' ? 'selected' : '' }} value="Pending">{{ trans('dashboard.Pending') }}</option>--}}
                                             </select>
                                         </div>
 
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.feedback') }} :</label>
+                                            <textarea name="feedback" class="form-control"
+                                                      rows="5">{{ $note->feedback }}</textarea>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.notes') }} :</label>
+                                            <textarea name="note" class="form-control"
+                                                      rows="5">{{ $note->note }}</textarea>
+                                        </div>
 
                                     </div>
 

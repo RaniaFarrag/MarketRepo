@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
+use App\Exports\RequestsReport;
 use App\Models\CompanyUser;
 use App\Models\CompanyRequest;
 use App\Models\MotherCompany;
@@ -10,6 +10,7 @@ use App\Models\Note;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CompanyRequestController extends Controller
@@ -53,6 +54,9 @@ class CompanyRequestController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'company_id' => 'required',
+        ]);
         $company_user = CompanyUser::where('company_id' , $request->company_id)->where('user_id' , Auth::user()->id)
             ->where('mother_company_id' , Auth::user()->mother_company_id)->first();
 
@@ -139,21 +143,21 @@ class CompanyRequestController extends Controller
                         ->orWhereHas('childs');
                 })->get();
             $requests_report = CompanyRequest::with(['notes' => function($query){
-                $query->orderBy('created_at', 'desc')->first();
+//                $query->orderBy('id', 'desc')->first();
+                $query->latest();
             }])->orderBy('id' , 'desc');
-            //dd($requests_report->get());
         }
 
         elseif(Auth::user()->hasRole('Sales Manager')){
             $representatives = User::where('active' , 1)
                 ->where(function ($q){
                     $q->where('parent_id' , Auth::user()->id);
-                        //->orWhere('id' , Auth::user()->id);
+                    //->orWhere('id' , Auth::user()->id);
                 })->get();
             $requests_report = CompanyRequest::whereIn('user_id' , Auth::user()->childs->pluck('id'))
                 ->with(['notes' => function($query){
-                $query->orderBy('created_at', 'desc')->first();
-            }])->orderBy('id' , 'desc');
+                    $query->latest();
+                }])->orderBy('id' , 'desc');
         }
 
         else{
@@ -164,7 +168,7 @@ class CompanyRequestController extends Controller
                 })->get();
             $requests_report = CompanyRequest::where('user_id' , Auth::user()->id)
                 ->with(['notes' => function($query){
-                    $query->orderBy('created_at', 'desc')->first();
+                    $query->latest();
                 }])->orderBy('id' , 'desc');
         }
 
@@ -190,12 +194,19 @@ class CompanyRequestController extends Controller
             //dd($requests_report->get());
         }
 
+        if ($request->request_status){
+            $requests_report->where('request_status'  , $request->request_status);
+        }
+
         $data['requests_report'] = $requests_report->get();
 
         foreach ($data['requests_report'] as $request){
             $company_user = CompanyUser::where('company_id' , $request->company_id)
+                ->whereNull('deleted_at')
                 ->where('mother_company_id' , $request->mother_company_id)->first();
-            $request['status'].= $company_user->evaluation_status;
+
+            if ($company_user)
+                $request['status'].= $company_user->evaluation_status;
         }
 
         $data['representatives'] = $representatives;
@@ -249,11 +260,15 @@ class CompanyRequestController extends Controller
         $report = CompanyRequest::findOrFail($request->report_id);
 
         $report->notes()->create([
+            'teller_id' => Auth::user()->id,
             'feedback' => $request->feedback,
             'note' => $request->note,
+            'date' => $request->date,
             'next_follow_date' => $request->next_follow_date,
             'request_status' => $request->request_status,
         ]);
+
+        $report->update(['request_status'=>$request->request_status]);
 
         Alert::success('success', trans('dashboard. added successfully'));
         return redirect(route('get_notes_of_request_report' , $report->id));
@@ -268,15 +283,29 @@ class CompanyRequestController extends Controller
 
         $note = Note::findOrFail($note_id);
 
+        $report = CompanyRequest::findOrFail($note->company_request_id);
+
         $note->update([
+            'teller_id' => Auth::user()->id,
             'feedback' => $request->feedback,
             'note' => $request->note,
+            'date' => $request->date,
             'next_follow_date' => $request->next_follow_date,
             'request_status' => $request->request_status,
         ]);
 
+        $report->update(['request_status'=>$request->request_status]);
+
         Alert::success('success', trans('dashboard.added successfully'));
         return redirect(route('get_notes_of_request_report' , $note->company_request_id));
     }
+
+    public function exportExcelRequestsReport(Request $request){
+        $requests_report = $this->getRequestsReportAjax($request)['requests_report'];
+
+        return Excel::download(new RequestsReport($requests_report), 'RequestsReportExcel.xlsx');
+    }
+
+
 }
 

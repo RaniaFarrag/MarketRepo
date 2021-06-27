@@ -19,6 +19,7 @@ class CompanyRequest extends Model
         'request_type',
         'quantity',
         'date',
+        'request_status',
     ];
 
     protected $dates = ['deleted_at'];

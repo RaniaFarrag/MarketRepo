@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Company_sales_lead_report;
+use App\Models\Company_sales_lead_report;
 
 use App\User;
 use Illuminate\Contracts\View\View;

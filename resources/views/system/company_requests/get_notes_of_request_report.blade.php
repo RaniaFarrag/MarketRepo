@@ -13,7 +13,7 @@
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Requests Report') }}
+                            {{ trans('dashboard.Notes Report') }}
                         </h2>
                         <!--end::Title-->
 
@@ -27,7 +27,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="{{ route('requests_report') }}" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Requests Report of '). $report->company->name  }}
+                                {{ trans('dashboard.Notes Report of '). $report->company->name  }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -62,7 +62,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Requests Report of '). $report->company->name  }}
+                                        {{ trans('dashboard.Notes Report of '). $report->company->name  }}
                                     </h3>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                             <tr>
                                                 <td>{{ $k+1 }}</td>
                                                 <td>{{ app()->getLocale() == 'ar' ? $report->user->name : $report->user->name_en }}</td>
-                                                <td>{{ $report->date }}</td>
+                                                <td>{{ $note->date }}</td>
                                                 <td>{{ $note->feedback }}</td>
                                                 <td>{{ $note->note }}</td>
                                                 <td>{{ $note->next_follow_date }}</td>

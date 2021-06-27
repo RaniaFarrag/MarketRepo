@@ -35,14 +35,31 @@
                 @endif
 
                 <td>{{ $company_user->evaluator ? app()->getLocale() == 'ar' ? $company_user->evaluator->name : $company_user->evaluator->name_en : '-' }}</td>
-                @if($company_user->confirmConnect)
+
+                @if($company_user->confirmConnect && $company_user->confirm_connected == 1)
                     <td>{{ app()->getLocale() == 'ar' ? $company_user->confirmConnect->name : $company_user->confirmConnect->name_en}}</td>
                 @else
                     <td>-</td>
                 @endif
-                <td>{{ $company_user->confirmInterview ? app()->getLocale() == 'ar' ? $company_user->confirmInterview->name : $company_user->confirmInterview->name_en : "-" }}</td>
-                <td>{{ $company_user->confirmNeed ? app()->getLocale() == 'ar' ? $company_user->confirmNeed->name : $company_user->confirmNeed->name_en : "-" }}</td>
-                <td>{{ $company_user->confirmContract ? app()->getLocale() == 'ar' ? $company_user->confirmContract->name : $company_user->confirmContract->name_en : "-" }}</td>
+
+                @if($company_user->confirmInterview && $company_user->confirm_interview == 1)
+                    <td>{{ app()->getLocale() == 'ar' ? $company_user->confirmInterview->name : $company_user->confirmInterview->name_en}}</td>
+                @else
+                    <td>-</td>
+                @endif
+
+                @if($company_user->confirmNeed && $company_user->confirm_need == 1)
+                    <td>{{ app()->getLocale() == 'ar' ? $company_user->confirmNeed->name : $company_user->confirmNeed->name_en}}</td>
+                @else
+                    <td>-</td>
+                @endif
+
+                @if($company_user->confirmContract && $company_user->confirm_contract == 1)
+                    <td>{{ app()->getLocale() == 'ar' ? $company_user->confirmContract->name : $company_user->confirmContract->name_en}}</td>
+                @else
+                    <td>-</td>
+                @endif
+
             </tr>
         @endforeach
     </tbody>

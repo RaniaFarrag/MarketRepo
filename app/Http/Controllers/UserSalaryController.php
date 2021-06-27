@@ -57,7 +57,7 @@ class UserSalaryController extends Controller
             'user_id' => $request->user_id,
             'salary' => $request->salary,
             'visit_price' => $request->visit_price,
-            'num_visits_per_day' => ($request->salary / 26) / $request->visit_price,
+            'num_visits_per_day' => ($request->salary / 22) / $request->visit_price,
         ]);
 
         $this->addLog(auth()->id() , $user_salary->id , 'userSalary' , 'تم اضافة راتب شهري ' , 'User Salary has been added');

@@ -68,20 +68,17 @@
                                     </h3>
 
                                     <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.feedback') }} :</label>
-                                            <input value="{{ old('feedback') }}" name="feedback" type="text" class="form-control" placeholder="{{ trans('dashboard.feedback') }}"/>
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.date') }} :</label>
+                                            <div class="input-group input-group-solid date"
+                                                 data-target-input="nearest">
+                                                <input value="{{ old('date') }}" name="date" type="date"
+                                                       class="form-control form-control-solid "
+                                                       placeholder="Select date"/>
+                                            </div>
                                         </div>
 
-                                        <div class="col-lg-6">
-                                            <label>{{ trans('dashboard.notes') }} :</label>
-                                            <input value="{{ old('note') }}" name="note" type="text" class="form-control" placeholder="{{ trans('dashboard.notes') }}"/>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.nextfollow_date') }} :</label>
                                             <div class="input-group input-group-solid date"
                                                  data-target-input="nearest">
@@ -91,17 +88,30 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <label>{{ trans('dashboard.request_status') }} :</label>
                                             <select name="request_status" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select') }}</option>
-                                                <option value="Open">{{ trans('dashboard.Open') }}</option>
+                                                <option value="In process">{{ trans('dashboard.In process') }}</option>
                                                 <option value="Closed">{{ trans('dashboard.Closed') }}</option>
-                                                <option value="Pending">{{ trans('dashboard.Pending') }}</option>
+{{--                                                <option value="Pending">{{ trans('dashboard.Pending') }}</option>--}}
                                             </select>
                                         </div>
 
+                                    </div>
 
+                                    <div class="form-group row">
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.Feedback') }} :</label>
+                                            <textarea name="feedback" class="form-control"
+                                                      rows="5">{{ old('feedback') }}</textarea>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label>{{ trans('dashboard.notes') }} :</label>
+                                            <textarea name="note" class="form-control"
+                                                      rows="5">{{ old('note') }}</textarea>
+                                        </div>
                                     </div>
 
                                 </div>

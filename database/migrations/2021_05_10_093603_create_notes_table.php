@@ -17,8 +17,11 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->bigInteger('company_request_id')->unsigned();
             $table->foreign('company_request_id')->references('id')->on('company_requests')->onDelete('cascade');
-            $table->string('feedback')->nullable();
-            $table->string('note')->nullable();
+            $table->bigInteger('teller_id')->unsigned();
+            $table->foreign('teller_id')->references('id')->on('users')->onDelete('cascade');
+            $table->text('feedback')->nullable();
+            $table->text('note')->nullable();
+            $table->date('date')->nullable();
             $table->date('next_follow_date')->nullable();
             $table->string('request_status')->nullable();
             $table->timestamps();

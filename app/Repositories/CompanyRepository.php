@@ -89,14 +89,20 @@ class CompanyRepository implements CompanyRepositoryInterface
         }
 
         elseif (Auth::user()->hasRole('Sales Manager')) {
-            $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
+            // $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
+            //     ->with(["representative" =>  function($q){
+            //         $q->where(function ($q2){
+            //             $q2->where('user_id' , Auth::user()->id)
+            //                 ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
+            //         })
+            //         ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+            //     }]);
+                
+                $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
                 ->with(["representative" =>  function($q){
-                    $q->where(function ($q2){
-                        $q2->where('user_id' , Auth::user()->id)
-                            ->orWhereIn('user_id' , Auth::user()->childs()->pluck('id'));
-                    })
-                    ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
+                    $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
                 }]);
+                
             //dd($query->get()[0]->representative[0]->pivot->confirm_connected);
 
         }
@@ -252,7 +258,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         $data['countries'] = $this->country_model::all();
         $data['mother_companies'] = MotherCompany::all();
 
-        if (Auth::user()->hasRole('ADMIN'))
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
             $data['representatives'] = $this->user_model::where('active' , 1)
                 ->where(function ($q){
                     $q->whereNotNull('parent_id')
@@ -1044,7 +1050,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         $data['countries'] = $this->country_model::all();
         $data['mother_companies'] = MotherCompany::all();
 
-        if (Auth::user()->hasRole('ADMIN'))
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
             $data['representatives'] = $this->user_model::where('active' , 1)
                                             ->where(function ($q){
                                                 $q->whereNotNull('parent_id')

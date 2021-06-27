@@ -423,6 +423,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::post('assign/one/company' , 'AssignCompanyController@assignOnecompany')->name('assign_one_company');
 
     //NEW
+    /*******************************************Request Report******************************************/
     Route::get('company/requests/of/user' , 'CompanyRequestController@index')
         ->name('company_requests_of_user')->middleware(['permission:Add company Requests']);
 
@@ -450,7 +451,58 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::post('update/notes/of/request/report/{note_id}' , 'CompanyRequestController@updateNotesOfRequestReport')
         ->name('update_notes_of_request_report')->middleware(['permission:Requests Report']);
 
+    Route::get('export/excel/request/report' , 'CompanyRequestController@exportExcelRequestsReport')
+        ->name('export_excel_request_report')->middleware(['permission:Requests Report']);
 
+    /*******************************************Teller Report******************************************/
+    Route::get('get/Teller/Report' , 'MeetingTellerController@getTellerReport')
+        ->name('get_teller_report')->middleware(['permission:Teller Report']);
+
+    Route::get('get/assigned/companies/{representative_id}' , 'MeetingTellerController@getAssignedCompanies')
+        ->name('get_assigned_companies');
+
+    Route::get('add/Teller/Report' , 'MeetingTellerController@AddTellerReport')
+        ->name('add_teller_report')->middleware(['permission:Add Teller Report']);
+
+    Route::post('store/Teller/Report' , 'MeetingTellerController@storeTellerReport')
+        ->name('store_teller_report')->middleware(['permission:Add Teller Report']);
+
+    Route::get('edit/Teller/Report/{teller_report_id}' , 'MeetingTellerController@editTellerReport')
+        ->name('edit_teller_report')->middleware(['permission:Add Teller Report']);
+
+    Route::post('update/Teller/Report/{teller_report_id}' , 'MeetingTellerController@updateTellerReport')
+        ->name('update_teller_report')->middleware(['permission:Add Teller Report']);
+
+    Route::get('export/excel/Teller/report' , 'MeetingTellerController@exportExcelTellerReport')
+        ->name('export_excel_teller_report')->middleware(['permission:Teller Report']);
+
+    /*******************************************Visit Count Report******************************************/
+    Route::get('get/visits/count/report' , 'UserController@getVisitscountReport')
+        ->name('get_visits_count_report')->middleware(['permission:General Report']);
+
+    Route::get('generate/chart' , 'UserController@generateChart')->name('generate_chart');
+
+    Route::get('export/visits/count/report' , 'UserController@exportVisitsCountReport')
+        ->name('export_visits_count_report');
+    /*******************************************Visit Count Report******************************************/
+
+    Route::get('get/agreement/report' , 'CompanyAgreementController@getAgreementReport')
+        ->name('get_agreement_report')->middleware(['permission:Agreement Report']);
+
+    Route::get('create/agreement/report' , 'CompanyAgreementController@createAgreementReport')
+        ->name('create_agreement_report')->middleware(['permission:Add Agreement Report']);
+
+    Route::post('store/agreement/report' , 'CompanyAgreementController@storeAgreementReport')
+        ->name('store_agreement_report')->middleware(['permission:Add Agreement Report']);
+
+    Route::get('edit/agreement/report/{agreement_report_id}' , 'CompanyAgreementController@editAgreementReport')
+        ->name('edit_agreement_report')->middleware(['permission:Add Agreement Report']);
+
+    Route::post('update/agreement/report/{agreement_report_id}' , 'CompanyAgreementController@updateAgreementReport')
+        ->name('update_agreement_report')->middleware(['permission:Add Agreement Report']);
+
+    Route::get('export/excel/agreement/report' , 'CompanyAgreementController@exportExcelAgreementReport')
+        ->name('export_excel_agreement_report')->middleware(['permission:Agreement Report']);
 
 });
 
@@ -891,8 +943,6 @@ Route::get('update/database/sub/sectors' , function (){
         ]);
     }
 });
-
-
 
 /** Get Deleted companies */
 Route::get('deleted/at' , function (){

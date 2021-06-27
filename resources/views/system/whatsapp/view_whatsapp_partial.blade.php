@@ -2,7 +2,14 @@
 <table class="table table-bordered text-center">
     <thead>
     <tr>
-        <th>#</th>
+        <th style="padding-top: 30px;">
+            <div class="checkbox-inline">
+                <label class="checkbox checkbox-outline checkbox-success m-auto">
+                    <input type="checkbox" name="Checkboxes15" id="checkAll" value="1"  {{isset($checkAll) &&$checkAll==1 ? "checked" :"" }}>
+                    <span class="m-0"></span>
+                </label>
+            </div>
+        </th>
         <th>#</th>
         <th style="max-width: 350px;">{{ trans('dashboard.Company Name') }}</th>
         <th>{{ trans('dashboard.Sector') }}</th>
@@ -19,8 +26,8 @@
             <td>
                 <div class="checkbox-inline">
                     <label class="checkbox checkbox-outline checkbox-success m-auto ">
-                        <input type="checkbox" name="company_ids[]" {{isset($ids)&& in_array($company->whatsapp,$ids)  ? "checked" :"" }} class="checkPhones"
-                               value="{{ $company->whatsapp }}">
+                        <input type="checkbox" name="company_ids[]" {{isset($ids)&& in_array($company->whatsapp,$ids)  ? "checked" :"" }}
+                        class="checkPhones items" value="{{ $company->whatsapp }}">
                         <span class="m-0"></span>
                     </label>
                 </div>

@@ -19,7 +19,7 @@ class CreateUserSalariesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('salary')->nullable();
             $table->double('visit_price')->nullable();
-            $table->integer('num_visits_per_day')->nullable();
+            $table->double('num_visits_per_day')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

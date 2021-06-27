@@ -433,7 +433,7 @@
                                                             <input value=" {{ $company->companyDesignatedcontacts[$i]->job_title }}"
                                                                    name="designated_contact_job_title[]" type="text"
                                                                    class="form-control"
-                                                                   placeholder="{{ trans('dashboard.Job Title') }}" {{ $i == 0 ? 'required' : ''}} />
+                                                                   placeholder="{{ trans('dashboard.Job Title') }}" />
                                                         </div>
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Mobile') }}:</label>
@@ -447,7 +447,7 @@
                                                             <input value="{{ $company->companyDesignatedcontacts[$i]->citizenship }}"
                                                                    name="designated_contact_citizenship[]" type="text"
                                                                    class="form-control"
-                                                                   placeholder="{{ trans('dashboard.citizenship') }}" {{ $i == 0 ? 'required' : ''}}/>
+                                                                   placeholder="{{ trans('dashboard.citizenship') }}"/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label>{{ trans('dashboard.Linkedin') }}:</label>

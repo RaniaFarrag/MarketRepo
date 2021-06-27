@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\representativeReport;
+use App\Exports\countReport;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\Company;
+use App\Models\Company_sales_lead_report;
 use App\Repositories\UserRepository;
 use App\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class UserController extends Controller
 {
@@ -168,6 +174,93 @@ class UserController extends Controller
     public function deactivateUser(Request $request){
         //dd($request->all());
         return $this->userRepositoryinterface->deactivateUser($request);
+    }
+
+    /** Get Count Of Visits & Adding'sCompanies For Every Representative */
+    public function getVisitscountReport(Request $request){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
+            $representatives = User::where('active' , 1)->whereNotNull('parent_id')->orderBy('id' , 'asc')->get();
+        else
+            $representatives = User::where('active' , 1)->where('parent_id' , Auth::user()->id)->get();
+        //$representatives = User::where('active' , 1)->whereNotNull('parent_id')->orderBy('id' , 'asc')->get();
+
+        $data_counts = $this->userRepositoryinterface->getVisitscountReport($request)['listofCounts'];
+        $representative_name = $this->userRepositoryinterface->getVisitscountReport($request)['representative_name'];
+
+        $chart_array1 = $this->userRepositoryinterface->getVisitscountReport($request)['chart_array1'];
+        $chart_array2 = $this->userRepositoryinterface->getVisitscountReport($request)['chart_array2'];
+
+        $sum_added = $this->userRepositoryinterface->getVisitscountReport($request)['sum_added'];
+        $sum_visited = $this->userRepositoryinterface->getVisitscountReport($request)['sum_visited'];
+
+        $salary = $this->userRepositoryinterface->getVisitscountReport($request)['salary'];
+        $daily_visits = $this->userRepositoryinterface->getVisitscountReport($request)['daily_visits'];
+        $visit_price = $this->userRepositoryinterface->getVisitscountReport($request)['visit_price'];
+
+        if($request->ajax()){
+            $data_json['viewBlade']= view('system.companies_visits_count.report_partial')
+                ->with(['data_counts' => $data_counts , 'representative_name'=>$representative_name ,
+                    'chart_array1'=>$chart_array1 , 'chart_array2'=>$chart_array2,
+                    'sum_added'=>$sum_added , 'sum_visited'=>$sum_visited , 'salary'=>$salary ,
+                    'daily_visits'=>$daily_visits , 'visit_price'=>$visit_price])->render();
+            $data_json['representative_name'] = $representative_name;
+            $data_json['chart_array1'] = $chart_array1;
+            $data_json['chart_array2'] = $chart_array2;
+            return response()->json($data_json);
+        }
+
+        return view('system.companies_visits_count.report' , compact('representatives' , 'data_counts'
+        ,'representative_name' , 'chart_array1' , 'chart_array2' , 'sum_added' , 'sum_visited' , 'salary' , 'daily_visits' , 'visit_price'));
+    }
+
+    public function generateChart(Request $request){
+        $period = CarbonPeriod::create($request->from , $request->to);
+        $representative = User::findOrFail($request->representative_id);
+        $representative_name = $representative->name_en;
+
+        foreach ($period as $date) {
+            $listOfDates[] = $date->format('Y-m-d');
+        }
+
+        foreach ($listOfDates as $k=>$date) {
+            $added_count = Company::where('user_id' , $representative->id)->whereDate('created_at' , $date)->count();
+            $visit_count = Company_sales_lead_report::where('user_id' , $representative->id)
+                            ->where('visit_date' , $date)->count();
+
+//            $chart_array1[$k]['label'] = $date;
+//            $chart_array1[$k]['y'] = $added_count;
+            $chart_array1[] = $added_count;
+
+//            $chart_array2[$k]['label'] = $date;
+//            $chart_array2[$k]['y'] = $visit_count;
+
+            $chart_array2[] = $visit_count;
+        }
+
+//        return view('system.companies_visits_count.chart' , compact('chart_array1' ,
+//            'chart_array2' , 'representative_name'));
+
+        return view('system.chart.chart' , compact('listOfDates','chart_array1' ,
+            'chart_array2' , 'representative_name'));
+    }
+
+    public function exportVisitsCountReport(Request $request){
+        //dd($request->all());
+        $data_counts = $this->userRepositoryinterface->getVisitscountReport($request)['listofCounts'];
+        //dd($data_counts);
+        $representative_name = $this->userRepositoryinterface->getVisitscountReport($request)['representative_name'];
+
+        $sum_added = $this->userRepositoryinterface->getVisitscountReport($request)['sum_added'];
+        $sum_visited = $this->userRepositoryinterface->getVisitscountReport($request)['sum_visited'];
+
+//        $chart_array1 = $this->userRepositoryinterface->getVisitscountReport($request)['chart_array1'];
+//        $chart_array2 = $this->userRepositoryinterface->getVisitscountReport($request)['chart_array2'];
+
+        $salary = $this->userRepositoryinterface->getVisitscountReport($request)['salary'];
+        $daily_visits = $this->userRepositoryinterface->getVisitscountReport($request)['daily_visits'];
+
+        return Excel::download(new countReport($data_counts , $representative_name , $sum_added , $sum_visited ,
+            $salary , $daily_visits), 'GeneralReportExcel.xlsx');
     }
 
 

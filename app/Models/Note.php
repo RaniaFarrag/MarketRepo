@@ -9,7 +9,7 @@ class Note extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['company_request_id' , 'feedback' , 'note' , 'next_follow_date' , 'request_status'];
+    protected $fillable = ['company_request_id' , 'teller_id','feedback' , 'note' , 'date' ,'next_follow_date' , 'request_status'];
     protected $dates = ['deleted_at'];
 
     public function companyRequest(){

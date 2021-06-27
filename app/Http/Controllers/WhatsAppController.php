@@ -25,7 +25,7 @@ class WhatsAppController extends Controller
     public function WhatsappMessages(Request $request){
 
         $ids = $request->ids;
-        if (Auth::user()->hasRole('ADMIN')) {
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')) {
 //            $companies = $this->company_model::whereNotNull('whatsapp')->with(['sector' , 'subSector'])
 //                ->orderBy('created_at', 'desc')->paginate(20);
             $companies = $this->company_model
@@ -93,7 +93,7 @@ class WhatsAppController extends Controller
         $result = curl_exec($curl);
         curl_close($curl);
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
@@ -123,7 +123,7 @@ class WhatsAppController extends Controller
             curl_close($curl);
         }
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
@@ -154,7 +154,7 @@ class WhatsAppController extends Controller
         $result = curl_exec($curl);
         curl_close($curl);
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
@@ -184,22 +184,75 @@ class WhatsAppController extends Controller
             curl_close($curl);
         }
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
     /****************************************************/
 
-    public function send_document($request , $file , $original_name){
-        //dd($original_name);
+    public function send_text_for_document($request){
         $curl = curl_init();
         $token = "UYbGcupMzhq2aPwbcNiswLEhMwNIAx1o1qXRzH3wXU8ymQESRVh9dXieQ2rVGO4G";
         $data = [
             'phone' => $request->whatsapp,
+            'message' => $request->messagetxt,
+        ];
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: $token",
+            )
+        );
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_URL, "https://teras.wablas.com/api/send-message");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($curl);
+        curl_close($curl);
+    }
+
+    public function send_text_for_document2($request , $mobiles){
+        foreach ($mobiles as $mobile){
+            $curl = curl_init();
+            $token = "UYbGcupMzhq2aPwbcNiswLEhMwNIAx1o1qXRzH3wXU8ymQESRVh9dXieQ2rVGO4G";
+            $data = [
+                'phone' => $mobile,
+                'message' => $request->messagetxt,
+            ];
+
+            curl_setopt($curl, CURLOPT_HTTPHEADER,
+                array(
+                    "Authorization: $token",
+                )
+            );
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($curl, CURLOPT_URL, "https://teras.wablas.com/api/send-message");
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            $result = curl_exec($curl);
+        }
+    }
+
+
+    public function send_document($request , $file , $original_name){
+       // dd($original_name);
+
+        if ($request->messagetxt){
+             $this->send_text_for_document($request);
+        }
+        $curl = curl_init();
+        $token = "UYbGcupMzhq2aPwbcNiswLEhMwNIAx1o1qXRzH3wXU8ymQESRVh9dXieQ2rVGO4G";
+        $data = [
+
+            'phone' => $request->whatsapp,
             'document' => $file,
             //'caption' => $request->messagetxt,
-            'caption' => $original_name,
-            'message' => 'hello world',
+         //   'caption' => $original_name,
+            'message' => $request->messagetxt,
 
         ];
 
@@ -217,15 +270,17 @@ class WhatsAppController extends Controller
         $result = curl_exec($curl);
         curl_close($curl);
 
-        if ($request->messagetxt){
-            return $this->send_text($request);
-        }
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
     public function send_document2($request , $file , $mobiles , $original_name){
+        if ($request->messagetxt){
+             $this->send_text_for_document2($request , $mobiles);
+        }
+
         foreach ($mobiles as $mobile){
             $curl = curl_init();
             $token = "UYbGcupMzhq2aPwbcNiswLEhMwNIAx1o1qXRzH3wXU8ymQESRVh9dXieQ2rVGO4G";
@@ -248,14 +303,8 @@ class WhatsAppController extends Controller
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             $result = curl_exec($curl);
             curl_close($curl);
-
-
         }
-
-        if ($request->messagetxt){
-            return $this->send_text2($request , $mobiles);
-        }
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
@@ -285,7 +334,7 @@ class WhatsAppController extends Controller
         $result = curl_exec($curl);
         curl_close($curl);
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
@@ -314,7 +363,7 @@ class WhatsAppController extends Controller
             curl_close($curl);
         }
 
-        Alert::success('success', trans('dashboard.sent succesfully'));
+        Alert::success('success', trans('dashboard.sent successfully'));
         return redirect(route('whatsapp_message'));
     }
 
@@ -342,6 +391,8 @@ class WhatsAppController extends Controller
                     $file->move(public_path("/files") , $fileName);
 
                     $image = asset("/files/". $fileName);
+
+
                 }
                 return $this->send_image2($request , $image , $whatsapp);
             }
@@ -349,12 +400,14 @@ class WhatsAppController extends Controller
                 if($request->hasFile('document')){
                     $file_ = $request->file('document');
                     $original_name = $file_->getClientOriginalName();
-                    $original_name = pathinfo($original_name,PATHINFO_FILENAME);
+                    //$original_name = pathinfo($original_name,PATHINFO_FILENAME);
                     $extension = $file_->getClientOriginalExtension();
-                    $fileName  = time().'_file.'.$extension;
+//                    $fileName  = time().'_file.'.$extension;
+                    $fileName  = $original_name;
                     $file_->move(public_path("/files") , $fileName);
 
                     $file = asset("/files/". $fileName);
+
 
                 }
                 return $this->send_document2($request , $file , $whatsapp , $original_name);
@@ -374,7 +427,6 @@ class WhatsAppController extends Controller
         }
 
         else{
-            //dd(55);
             if ($request->type == 'text'){
                 return $this->send_text($request);
             }
@@ -391,6 +443,7 @@ class WhatsAppController extends Controller
                     $file->move(public_path("/files") , $fileName);
 
                     $image = asset("/files/". $fileName);
+                 //   dd($fileName);
                 }
 
                 return $this->send_image($request , $image);
@@ -398,16 +451,28 @@ class WhatsAppController extends Controller
             elseif ($request->type == 'document'){
                 if($request->hasFile('document')){
                     $file_ = $request->file('document');
-                    $original_name = $file_->getClientOriginalName();
-                    $original_name = pathinfo($original_name,PATHINFO_FILENAME);
-                    $extension = $file_->getClientOriginalExtension();
-                    $fileName  = time().'_file.'.$extension;
+            //        $original_name = $file_->getClientOriginalName();
+            //        $original_name = pathinfo($original_name,PATHINFO_FILENAME);
+          //          $extension = $file_->getClientOriginalExtension();
+                   $fileName  = $file_->getClientOriginalName();
+                    $fileNamePath=explode('.',$fileName);
+                    
+                    // $file_name = str_replace(' ', '', $fileNamePath[0]);
+                    
+              //      dd($fileName[0]);
+                    //$fileName  = $original_name;
                     $file_->move(public_path("/files") , $fileName);
 
                     $file = asset("/files/". $fileName);
+                    
+                    // $file_->move(public_path("/files") , $file_name.'.'.$extension);
+
+                    // $file = asset("/files/". $file_name.'.'.$extension);
+               //    dd($file);
 
                 }
-                return $this->send_document($request , $file , $original_name);
+             //   return $this->send_document($request , $file , $original_name);
+                return $this->send_document($request , $file , $fileNamePath[0]);
             }
             elseif ($request->type == 'video'){
                 if($request->hasFile('document')){

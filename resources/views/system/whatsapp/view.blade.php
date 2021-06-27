@@ -108,6 +108,9 @@
                             @csrf
                             <div class="modal-body">
 
+{{--                                <input type="hidden" name="checkAll" class="checkAllInput" value="">--}}
+{{--                                <input type="hidden" name="company_ids" class="company_ids" value="">--}}
+
                                 <div class="form-group">
                                     <label>{{ trans('dashboard.WhatsApp Number') }}</label>
                                     <textarea id="mobile_val"  name="whatsapp"  class="form-control"
@@ -178,7 +181,7 @@
 
     <script>
         var phones = [];
-        $(document).on('change', '.checkPhones', function () {
+        $(document).on('change', '.checkPhones' ,function () {
             if (contains(phones, $(this).val())) {
                 var index = phones.indexOf($(this).val());
                 phones.splice(index, 1);
@@ -186,14 +189,14 @@
                 phones.push($(this).val());
 
             }
-            console.log(phones)
+            //console.log(phones)
              $('.company_ids').val(JSON.stringify(phones));
-            // console.log($('.ids').val());
+            console.log($('.company_ids').val());
         });
 
         $(document).on('click', '.sendMessage', function (e) {
-
             var phonesText="";
+            console.log(phones.length)
 
             for (var i = 0 ; i<phones.length ;i++)
             {
@@ -210,8 +213,6 @@
 
         });
     </script>
-
-
 
 
     <script>
@@ -250,6 +251,37 @@
                     $("#file").hide()
             }
         });
+    </script>
+
+
+    <script>
+        $(document).on('click', '#checkAll', function (e) {
+            if ($('.items:checked').length == $('.items:checkbox').length) {
+                $('.items:checkbox').prop('checked', false);
+                $('.checkAllInput').val(0);
+                console.log(15)
+                phones.length = 0;
+            }
+            else {
+                 console.log(55)
+                $('.items:checkbox').prop('checked', true);
+                $('.checkAllInput').val(1);
+
+                $("input[name='company_ids[]']:checked").each(function() {
+                    phones.push($(this).val());
+                });
+
+            }
+
+            // $(':checkbox:checked').each(function(i){
+            //     phones.push($(this).val());
+            // });
+
+
+            $('.company_ids').val(JSON.stringify(phones));
+            console.log(JSON.stringify(phones))
+        });
+
     </script>
 
 

@@ -92,21 +92,21 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Company logo') }} :</label>
-                                            <input value="" name="logo" type="file" class="form-control" placeholder="{{ trans('dashboard.Mother Company Name Arabic') }}" required/>
+                                            <input value="" name="logo" type="file" class="form-control" placeholder="{{ trans('dashboard.Mother Company Name Arabic') }}" />
                                             @error('logo')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Header') }}  :</label>
-                                            <input value="" name="header" type="file" class="form-control" placeholder="{{ trans('dashboard.Mother Company Name English') }}" required/>
+                                            <input value="" name="header" type="file" class="form-control" placeholder="{{ trans('dashboard.Mother Company Name English') }}" />
                                             @error('header')
                                             <div class="error">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.Footer') }}  :</label>
-                                            <input value="" name="footer" type="file" class="form-control" placeholder="{{ trans('dashboard.Mother Company Name English') }}" required/>
+                                            <input value="" name="footer" type="file" class="form-control" placeholder="{{ trans('dashboard.Mother Company Name English') }}" />
                                             @error('footer')
                                             <div class="error">{{ $message }}</div>
                                             @enderror

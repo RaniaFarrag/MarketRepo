@@ -47,7 +47,7 @@ class CompanyUser extends Model
     }
 
     public function confirmNeed(){
-        return $this->belongsTo(User::class,'confirm_connected_user_id');
+        return $this->belongsTo(User::class,'confirm_need_user_id');
     }
     public function confirmContract(){
         return $this->belongsTo(User::class,'confirm_contract_user_id');

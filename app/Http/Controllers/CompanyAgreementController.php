@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\FnrcoAgreementRepositoryInterface;
 use App\Interfaces\LinrcoAgreementRepositoryInterface;
+use App\Models\AgreementReport;
 use App\Models\Company;
 use App\Models\FnrcoAgreement;
 use App\Models\FnrcoFlatRedAgreement;
 use App\Models\FnrcoFlatRedQuotation;
 use App\Models\FnrcoQuotation;
 use App\Models\LinrcoAgreement;
+use App\Models\MotherCompany;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -137,7 +141,7 @@ class CompanyAgreementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($agreement_id , $mother_company_id)
-    {   
+    {
         if ($mother_company_id == 1){
             $linrco_agreement = LinrcoAgreement::where('id' , $agreement_id)->with('company' , 'user')->first();
             return $this->LinrcoAgreementRepositoryInterface->destroy($linrco_agreement , $mother_company_id);
@@ -261,6 +265,134 @@ class CompanyAgreementController extends Controller
     public function deleteflatRedAgreement($flatagreement_id , $mother_company_id){
         $flatred_agreement = FnrcoFlatRedAgreement::where('id' , $flatagreement_id)->first();
         return $this->fnrcoAgreementRepositoryinterface->deleteflatRedAgreement($flatred_agreement , $mother_company_id);
+    }
+
+    /*****************************************************REPORT*****************************************************************/
+
+    public function getAgreementReport(Request $request){
+        $mother_companies = MotherCompany::all();
+
+        $companies = $this->getAgreementReportAjax($request)['companies'];
+        $representatives = $this->getAgreementReportAjax($request)['representatives'];
+        $agreement_reports = $this->getAgreementReportAjax($request)['agreement_reports'];
+        $count = $this->getAgreementReportAjax($request)['count'];
+
+        if ($request->ajax()){
+            $data_json['viewBlade']= view('system.agreement_contract.agreement_report_partial'
+                , compact('agreement_reports' , 'count'))->render();
+            $data_json['count']= $count;
+            return response()->json($data_json);
+        }
+
+        return view('system.agreement_contract.agreement_report' , compact('mother_companies' , 'companies' ,
+        'representatives' , 'agreement_reports' , 'count'));
+
+    }
+
+    public function getAgreementReportAjax($request){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+            $companies = Company::all();
+            $representatives = User::where('active' , 1)
+                ->where(function ($q){
+                    $q->whereNotNull('parent_id')
+                        ->orWhereHas('childs');
+                })->get();
+            $agreement_reports = AgreementReport::query();
+        }
+        elseif (Auth::user()->hasRole('Sales Manager')){
+            $companies = Company::WhereIn('sector_id', Auth::user()->sectors->pluck('id'))->get();
+            $representatives = User::where('active' , 1)
+                ->where(function ($q){
+                    $q->where('parent_id' , Auth::user()->id);
+                })->get();
+            $agreement_reports = AgreementReport::whereIn('user_id' , Auth::user()->childs->pluck('id'));
+        }
+        elseif (Auth::user()->hasRole('Sales Representative')){
+            $companies = Auth::user()->assignedCompanies()->get();
+            $representatives = User::where('active' , 1)->where('id' , Auth::user()->id)->get();
+
+            $agreement_reports = AgreementReport::where('user_id' , Auth::user()->id)->orderBy('id' , 'desc');
+        }
+
+        if ($request->mother_company_id)
+            $agreement_reports->where('mother_company_id' , $request->mother_company_id);
+
+        if ($request->company_id){
+            $agreement_reports->where('company_id' , $request->company_id);
+        }
+
+        if ($request->user_id){
+            $agreement_reports->where('user_id' , $request->user_id);
+        }
+
+        if ($request->contract_status){
+            $agreement_reports->where('contract_status' , $request->contract_status);
+        }
+
+        if ($request->from){
+            $agreement_reports->where('date' , '>=' , $request->from);
+        }
+
+        if ($request->to){
+            $agreement_reports->where('date' , '<=' , $request->to);
+        }
+
+        $data['companies'] = $companies;
+        $data['representatives'] = $representatives;
+        $data['agreement_reports'] = $agreement_reports->get();
+        $data['count'] = $agreement_reports->count();
+
+        return $data;
+    }
+
+    public function createAgreementReport(){
+        if (Auth::user()->hasRole('Sales Representative')){
+            $companies = Auth::user()->assignedCompanies()->get();
+        }
+        return view('system.agreement_contract.create_agreement_report' , compact( 'companies'));
+    }
+
+    public function storeAgreementReport(Request $request){
+        AgreementReport::create([
+            'company_id' => $request->company_id,
+            'user_id' => Auth::user()->id,
+            'mother_company_id' => Auth::user()->mother_company_id,
+            'contract_status' => $request->contract_status,
+            'date' => $request->date,
+            'feedback' => $request->feedback,
+        ]);
+
+        Alert::success('success', trans('dashboard. added successfully'));
+        return redirect(route('get_agreement_report'));
+    }
+
+    public function editAgreementReport($agreement_report_id){
+        $agreement_report = AgreementReport::findOrFail($agreement_report_id);
+        if (Auth::user()->hasRole('Sales Representative')){
+            $companies = Auth::user()->assignedCompanies()->get();
+        }
+        return view('system.agreement_contract.edit_agreement_report' , compact( 'companies' ,
+            'agreement_report'));
+    }
+
+    public function updateAgreementReport(Request $request , $agreement_report_id){
+        $agreement_report = AgreementReport::findOrFail($agreement_report_id);
+        $agreement_report->update([
+            'company_id' => $request->company_id,
+            'user_id' => Auth::user()->id,
+            'mother_company_id' => Auth::user()->mother_company_id,
+            'contract_status' => $request->contract_status,
+            'date' => $request->date,
+            'feedback' => $request->feedback,
+        ]);
+
+        Alert::success('success', trans('dashboard. updated successfully'));
+        return redirect(route('get_agreement_report'));
+    }
+
+    public function exportExcelAgreementReport(Request $request){
+        $agreement_reports = $this->getAgreementReportAjax($request)['agreement_reports'];
+        return Excel::download(new \App\Exports\AgreementReport($agreement_reports), 'AgreementReportExcel.xlsx');
     }
 
 }

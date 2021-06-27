@@ -45,6 +45,9 @@ interface UserRepositoryInterface
     /** Deactivate User */
     public function deactivateUser($request);
 
+    /** Get Count Of Visits & Adding'sCompanies For Every Representative */
+    public function getVisitscountReport($request);
+
 
 
 }

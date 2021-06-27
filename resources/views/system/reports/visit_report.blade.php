@@ -45,7 +45,7 @@
                     <!--begin::Button-->
                     <a href="#"
                        class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Total visits') }} <span id="counter" > </span>
+                        {{ trans('dashboard.Total visits') }} <span id="counter" > {{ $count }}</span>
                     </a>
                     <!--end::Button-->
                     <!--begin::Button-->

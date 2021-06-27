@@ -193,4 +193,8 @@ class Company extends Model
     public function salesLeadReports(){
         return $this->hasMany(Company_sales_lead_report::class);
     }
+
+    public function meetingTeller(){
+        return $this->hasMany(MeetingTeller::class , 'company_id' , 'id');
+    }
 }

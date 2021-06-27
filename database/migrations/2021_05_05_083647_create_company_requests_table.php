@@ -30,6 +30,7 @@ class CreateCompanyRequestsTable extends Migration
             $table->string('request_type')->nullable();
             $table->integer('quantity')->nullable();
             $table->date('date')->nullable();
+            $table->string('request_status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
