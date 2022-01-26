@@ -123,20 +123,22 @@ class CompanyRequestController extends Controller
         $representatives = $this->getRequestsReportAjax($request)['representatives'];
         $requests_report = $this->getRequestsReportAjax($request)['requests_report'];
         $count = $this->getRequestsReportAjax($request)['count'];
+        $sum_total_volume = $this->getRequestsReportAjax($request)['sum_total_volume'];
 
         if ($request->ajax()){
             $data_json['viewBlade']= view('system.company_requests.requests_report_partial'
                 , compact('requests_report'))->render();
             $data_json['count']= $count;
+            $data_json['sum_total_volume']= $sum_total_volume;
             return response()->json($data_json);
         }
 
-        return view('system.company_requests.requests_report' , compact('requests_report' ,'count',
+        return view('system.company_requests.requests_report' , compact('requests_report' ,'count','sum_total_volume',
             'representatives' , 'mother_companies'));
     }
 
     public function getRequestsReportAjax($request){
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
             $representatives = User::where('active' , 1)
                 ->where(function ($q){
                     $q->whereNotNull('parent_id')
@@ -191,7 +193,6 @@ class CompanyRequestController extends Controller
             $requests_report->whereHas('companyUser' , function ($q) use ($request){
                 $q->whereIn('evaluation_status' , $request->evaluation_ids);
             });
-            //dd($requests_report->get());
         }
 
         if ($request->request_status){
@@ -200,7 +201,9 @@ class CompanyRequestController extends Controller
 
         $data['requests_report'] = $requests_report->get();
 
+        $sum_total_volume = 0;
         foreach ($data['requests_report'] as $request){
+            $sum_total_volume += $request->quantity;
             $company_user = CompanyUser::where('company_id' , $request->company_id)
                 ->whereNull('deleted_at')
                 ->where('mother_company_id' , $request->mother_company_id)->first();
@@ -211,6 +214,8 @@ class CompanyRequestController extends Controller
 
         $data['representatives'] = $representatives;
         $data['count'] = $requests_report->count();
+        $data['sum_total_volume'] = $sum_total_volume;
+
         return $data;
     }
 

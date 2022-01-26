@@ -81,7 +81,7 @@
                                       {{ trans('dashboard.Add Agreement Report') }}
                                     </h3>
                                     <div class="form-group row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <label>{{ trans('dashboard.Company Name') }} :</label>
                                             <select id="company_id" name="company_id" class="form-control select2" required>
                                                 <option value="" selected="">{{ trans('dashboard.Select All') }}</option>
@@ -92,7 +92,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-4 col-xs-12">
+                                        <div class="col-md-6 col-xs-12">
                                             <div class="form-group">
                                                 <label for="name">{{ trans('dashboard.contract_status') }}</label>
                                                 <select id="contract_status" name="contract_status" class="form-control select2" required>
@@ -103,6 +103,9 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="form-group row">
                                         <div class="col-lg-4">
                                             <label>{{ trans('dashboard.date') }} :</label>
                                             <div class="input-group input-group-solid date"
@@ -112,6 +115,23 @@
                                                        class="form-control form-control-solid "
                                                        placeholder="Select date"/>
                                             </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.type') }} :</label>
+                                            <select name="contract_type" class="form-control select2" required>
+                                                <option value="" selected="">{{ trans('dashboard.Select') }}</option>
+                                                <option value="visa">{{ trans('dashboard.visa') }}</option>
+                                                <option value="Jahez">{{ trans('dashboard.Jahez') }}</option>
+                                                <option value="Local transfer">{{ trans('dashboard.Local transfer') }}</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label>{{ trans('dashboard.total_volume') }} :</label>
+                                            <input value="{{ old('total_volume') }}" name="total_volume" type="text" class="form-control" placeholder="{{ trans('dashboard.total_volume') }}"/>
+
                                         </div>
                                     </div>
 

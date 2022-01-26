@@ -298,7 +298,7 @@
                                                 @endcan
 
                                                 @can('Agreement Report')
-                                                    <li class="menu-item {{\Request::route()->getName() == 'requests_report' ? 'menu-item-here' :"" }}"
+                                                    <li class="menu-item {{\Request::route()->getName() == 'get_agreement_report' ? 'menu-item-here' :"" }}"
                                                         data-menu-toggle="hover"
                                                         aria-haspopup="true">
                                                         <a href="{{ route('get_agreement_report')}}" class="menu-link ">
@@ -339,8 +339,24 @@
                                                     </li>
                                                 @endcan
 
+
+                                                @can('Sales Pipeline Report')
+                                                    <li class="menu-item {{\Request::route()->getName() == 'sales_pipeline' ? 'menu-item-here' :"" }}"
+                                                        data-menu-toggle="hover"
+                                                        aria-haspopup="true">
+                                                        <a href="{{ route('sales_pipeline') }}" class="menu-link ">
+                                                            <span class="svg-icon menu-icon">
+                                                                <i class="far fa-list-alt"></i>
+                                                            </span>
+                                                            <span class="menu-text">{{ trans('dashboard.Sales Pipeline Report') }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endcan
+
                                                  @can('General Report')
-                                                    @if(count(auth()->user()->childs) || \Illuminate\Support\Facades\Auth::user()->hasRole('ADMIN') || \Illuminate\Support\Facades\Auth::user()->hasRole('Coordinator'))
+                                                    @if(count(auth()->user()->childs) || \Illuminate\Support\Facades\Auth::user()->hasRole('ADMIN')
+                                                        || \Illuminate\Support\Facades\Auth::user()->hasRole('Coordinator')
+                                                        || \Illuminate\Support\Facades\Auth::user()->hasRole('Assistant G.Manger'))
                                                         <li class="menu-item {{\Request::route()->getName() == 'get_visits_count_report' ? 'menu-item-here' :"" }}"
                                                            data-menu-toggle="hover"
                                                             aria-haspopup="true">
@@ -355,7 +371,19 @@
                                                     @endif
                                                 @endcan
 
-
+                                                @can('Managers Report')
+                                                    <li class="menu-item {{\Request::route()->getName() == 'get_managers_report' ? 'menu-item-here' :"" }}"
+                                                        data-menu-toggle="hover"
+                                                        aria-haspopup="true">
+                                                        <a href="{{ route('get_managers_report') }}" class="menu-link ">
+                                                            <span class="svg-icon menu-icon">
+                                                                <!--begin::Svg Icon | path:public/dashboard/assets/media/svg/icons/Communication/Add-user.svg-->
+                                                             <i class="far fa-list-alt"></i>
+                                                                <!--end::Svg Icon--></span>
+                                                            <span class="menu-text">{{ trans('dashboard.Managers Report') }}</span>
+                                                        </a>
+                                                    </li>
+                                                @endcan
 
                                                 <li class="menu-item {{\Request::route()->getName() == 'companySalesTeamReports.index' ? 'menu-item-here' :"" }}"
                                                     data-menu-toggle="hover"
@@ -387,7 +415,7 @@
                                                 @endcan
 
                                                 @can('Visit Report')
-                                                    <li class="menu-item {{\Request::route()->getName() == 'companySalesTeamReports.index' ? 'menu-item-here' :"" }}"
+                                                    <li class="menu-item {{\Request::route()->getName() == 'visit_report' ? 'menu-item-here' :"" }}"
                                                         data-menu-toggle="hover"
                                                         aria-haspopup="true">
                                                         <a href="{{ route('visit_report')}}"

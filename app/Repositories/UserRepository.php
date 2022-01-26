@@ -48,13 +48,13 @@ class UserRepository implements UserRepositoryInterface
 
     /** View All Users */
     public function index(){
-        return  $this->user_model->with('roles')->paginate(20);
+        return  $this->user_model->where('id' , '!=' , 13497)->with('roles')->paginate(20);
     }
 
     /** Get Representative*/
     public function get_reps()
     {
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
 //            $x = User::whereHas('roles' , function ($q){
 ////                $q->whereIn('name' , ['Sales Manager' , 'Sales Representative'])->get();
 //                $q->where('name' , 'Sales Manager')->orWhere('name' , 'Sales Representative')->get();
@@ -112,7 +112,7 @@ class UserRepository implements UserRepositoryInterface
                 'parent_id' => $request->parent_id,
                 'mother_company_id' => $request->mother_company_id,
             ]);
-            
+
             $user->sectors()->sync($request->sector_ids);
         }
         elseif($request->role == 'Sales Manager' || $request->role == 'Coordinator'){
@@ -329,7 +329,7 @@ class UserRepository implements UserRepositoryInterface
 //      $start_date = Carbon::now()->subMonth()->startOfMonth()->toDateString();   get from first day in last month
         $start_date = Carbon::now()->startOfMonth()->toDateString();
         $end_date = Carbon::now()->toDateString();
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger'))
             $representative = User::where('active' , 1)->whereNotNull('parent_id')->orderBy('id' , 'asc')->get();
         else
             $representative = User::where('active' , 1)->where('parent_id' , Auth::user()->id)->get();

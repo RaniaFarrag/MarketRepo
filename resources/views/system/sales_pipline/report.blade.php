@@ -8,12 +8,11 @@
             <div class=" container  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                 <!--begin::Info-->
                 <div class="d-flex align-items-center flex-wrap mr-1">
-
                     <!--begin::Heading-->
                     <div class="d-flex flex-column">
                         <!--begin::Title-->
                         <h2 class="text-white font-weight-bold my-2 mr-5">
-                            {{ trans('dashboard.Requests Report') }}
+                            {{ trans('dashboard.Sales Pipeline Report') }}
                         </h2>
                         <!--end::Title-->
 
@@ -27,7 +26,7 @@
                             <!--begin::Item-->
                             <span class="label label-dot label-sm bg-white opacity-75 mx-3"></span>
                             <a href="#" class="text-white text-hover-white opacity-75 hover-opacity-100">
-                                {{ trans('dashboard.Requests Report') }}
+                                {{ trans('dashboard.Sales Pipeline Report') }}
                             </a>
                             <!--end::Item-->
                         </div>
@@ -38,6 +37,13 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
+                    @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales Representative'))
+                        <a href="{{ route('create_sales_pipeline') }}"
+                           class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                            {{ trans('dashboard.Add Sales Pipeline') }}
+                        </a>
+                    @endif
+
                     <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
                         {{ trans('dashboard.Export Excel') }}
                     </button>
@@ -67,7 +73,7 @@
                             <div class="card-header flex-wrap">
                                 <div class="card-title text-center" style="width: 100%;display: inline-block;">
                                     <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.Requests Report') }}
+                                        {{ trans('dashboard.Sales Pipeline Report') }}
                                     </h3>
                                 </div>
                             </div>
@@ -80,7 +86,7 @@
                                                 {{ trans('dashboard.Companies Filters') }}
                                             </div>
                                         </div>
-                                        <form autocomplete="off" id="exportExcelForm" action="{{route('export_excel_request_report')}}">
+                                        <form autocomplete="off" id="exportExcelForm" action="{{ route('export_sales_pipeline') }}">
                                             <div id="collapseOne1" class="collapse show"
                                                  data-parent="#accordionExample1">
                                                 <div class="card-body">
@@ -146,12 +152,12 @@
 
                                                         <div class="col-md-4 col-xs-12">
                                                             <div class="form-group">
-                                                                <label for="name">{{ trans('dashboard.request_status') }}</label>
-                                                                <select id="request_status" name="request_status" class="form-control select2" required>
+                                                                <label for="name">{{ trans('dashboard.contract_type') }}</label>
+                                                                <select id="contract_type" name="contract_type" class="form-control select2" required>
                                                                     <option value="" selected="">{{ trans('dashboard.Select') }}</option>
-                                                                    <option value="Open">{{ trans('dashboard.Open') }}</option>
-                                                                    <option value="Closed">{{ trans('dashboard.Closed') }}</option>
-                                                                    <option value="Pending">{{ trans('dashboard.Pending') }}</option>
+                                                                    <option value="visa">{{ trans('dashboard.visa') }}</option>
+                                                                    <option value="Jahez">{{ trans('dashboard.Jahez') }}</option>
+                                                                    <option value="Local transfer">{{ trans('dashboard.Local transfer') }}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -174,7 +180,7 @@
                                 <div class="separator separator-dashed mt-8 mb-5"></div>
                                 <div class="table-responsive renderTable">
                                     <!--begin: Datatable-->
-                                @include('system.company_requests.requests_report_partial')
+                                @include('system.sales_pipline.report_partial')
                                 <!--end: Datatable-->
                                 </div>
                             </div>
@@ -201,7 +207,7 @@
             e.preventDefault();
             $.ajax({
                 dataType: 'html',
-                url: '{{ route("requests_report") }}',
+                url: '{{ route("sales_pipeline") }}',
                 beforeSend: function () {
                     $('#searchFilter').addClass('spinner');
                     $('#searchFilter').attr('disabled', 'true');
@@ -217,7 +223,7 @@
                     "evaluation_ids": $("#evaluation_ids").val(),
                     "from": $("#from").val(),
                     "to": $("#to").val(),
-                    "request_status": $("#request_status").val(),
+                    "contract_type": $("#contract_type").val(),
 
                 },
                 success: function (data) {

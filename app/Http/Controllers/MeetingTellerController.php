@@ -49,7 +49,7 @@ class MeetingTellerController extends Controller
             $q->where('id' , 6);
         })->get();
 
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
             $representatives = User::where('active' , 1)->whereNotNull('parent_id')->get();
             $companies = Company::whereHas('meetingTeller')->get();
         }
@@ -83,7 +83,7 @@ class MeetingTellerController extends Controller
     }
 
     public function getTellerReportAjax($request){
-        if (Auth::user()->hasRole('ADMIN')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Assistant G.Manger')){
             $teller_reports = MeetingTeller::query();
         }
         elseif (Auth::user()->hasRole('Sales Manager')){

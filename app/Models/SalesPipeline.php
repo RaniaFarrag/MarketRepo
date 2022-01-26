@@ -4,22 +4,23 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AgreementReport extends Model
+class SalesPipeline extends Model
 {
-    use SoftDeletes;
-
     protected $fillable = [
         'company_id',
         'user_id',
+        'company_user_id',
         'mother_company_id',
         'contract_status',
         'date',
-        'feedback',
         'total_volume',
         'contract_type',
     ];
+
+    public function history(){
+        return $this->hasMany(SalesPipelineHistory::class);
+    }
 
     public function company(){
         return $this->belongsTo(Company::class);
@@ -31,5 +32,9 @@ class AgreementReport extends Model
 
     public function motherCompany(){
         return $this->belongsTo(MotherCompany::class);
+    }
+
+    public function companyUser(){
+        return $this->belongsTo(CompanyUser::class);
     }
 }

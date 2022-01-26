@@ -46,7 +46,7 @@ class salesReportRepository implements salesReportRepositoryInterface
         $checkAll = $request->checkAll;
         if ((!isset($ids) && is_null($ids)) || $checkAll == 1)
         {
-            if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+            if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
                 $data['representatives'] = $this->user_model::where('active' , 1)
                     ->where(function ($q){
                         $q->whereNotNull('parent_id')
@@ -65,7 +65,7 @@ class salesReportRepository implements salesReportRepositoryInterface
                 // $query = $this->sales_lead_report_model::whereHas('company' , function ($q){
                 //     $q->whereIn('sector_id' , Auth::user()->sectors->pluck('id'));
                 // });
-                
+
                 $query = $this->sales_lead_report_model::where('user_id' , Auth()->user()->id)->orWhereIn('user_id' , Auth()->user()->childs->pluck('id'));
             }
             else{
@@ -369,7 +369,7 @@ class salesReportRepository implements salesReportRepositoryInterface
     }
 
     public function visitReport($request){
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
 
             $data['representatives'] = $this->user_model::where('active' , 1)
                 ->where(function ($q){
@@ -389,7 +389,7 @@ class salesReportRepository implements salesReportRepositoryInterface
             //     ->whereHas('user' , function ($q){
             //         $q->where('mother_company_id' , Auth::user()->mother_company_id);
             //     });
-            
+
             $query = $this->sales_lead_report_model::whereNotNull('visit_date')
                 ->where(function ($q){
                     $q->where('user_id' , Auth::user()->id)->OrwhereIn('user_id' , Auth()->user()->childs->pluck('id'));

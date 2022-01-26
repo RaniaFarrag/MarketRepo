@@ -290,7 +290,7 @@ class CompanyAgreementController extends Controller
     }
 
     public function getAgreementReportAjax($request){
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
             $companies = Company::all();
             $representatives = User::where('active' , 1)
                 ->where(function ($q){
@@ -360,6 +360,8 @@ class CompanyAgreementController extends Controller
             'contract_status' => $request->contract_status,
             'date' => $request->date,
             'feedback' => $request->feedback,
+            'total_volume' => $request->total_volume,
+            'contract_type' => $request->contract_type,
         ]);
 
         Alert::success('success', trans('dashboard. added successfully'));
@@ -384,6 +386,8 @@ class CompanyAgreementController extends Controller
             'contract_status' => $request->contract_status,
             'date' => $request->date,
             'feedback' => $request->feedback,
+            'total_volume' => $request->total_volume,
+            'contract_type' => $request->contract_type,
         ]);
 
         Alert::success('success', trans('dashboard. updated successfully'));

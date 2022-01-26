@@ -96,7 +96,7 @@
                                                     <div class="col-md-6 col-xs-12">
                                                         <div class="form-group">
                                                             <button type="submit" class="btn btn-block btn-success font-weight-bold  py-3 px-6 mr-2">
-                                                                {{ trans('dashboard.Export Excel ') }}
+                                                                {{ trans('dashboard.Export Excel') }}
                                                             </button>
                                                             <button type="button" id="searchBtn" class="btn btn-block btn-success spinner-white spinner-right">{{ trans('dashboard.Search') }}
                                                             </button>

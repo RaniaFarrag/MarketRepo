@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exports\countReport;
+use App\Exports\ManagersReport;
+use App\Exports\representativeReport;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\AgreementReport;
 use App\Models\Company;
 use App\Models\Company_sales_lead_report;
+use App\Models\CompanyRequest;
+use App\Models\UserSalary;
 use App\Repositories\UserRepository;
 use App\User;
 use Carbon\Carbon;
@@ -178,7 +183,7 @@ class UserController extends Controller
 
     /** Get Count Of Visits & Adding'sCompanies For Every Representative */
     public function getVisitscountReport(Request $request){
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger'))
             $representatives = User::where('active' , 1)->whereNotNull('parent_id')->orderBy('id' , 'asc')->get();
         else
             $representatives = User::where('active' , 1)->where('parent_id' , Auth::user()->id)->get();
@@ -264,9 +269,151 @@ class UserController extends Controller
     }
 
 
+    public function getManagersReport(Request $request){
+        //dd($this->getManagersReportAjax($request));
+        $managers = $this->getManagersReportAjax($request)['managers'];
+        $manager = $this->getManagersReportAjax($request)['manager'];
+        $manager_salary = $this->getManagersReportAjax($request)['manager_salary'];
+        $manager_rest_salary = $this->getManagersReportAjax($request)['manager_rest_salary'];
+        $manager_agreement_closed = $this->getManagersReportAjax($request)['manager_agreement_closed'];
+        $manager_total_orders = $this->getManagersReportAjax($request)['manager_total_orders'];
+
+        $users = $this->getManagersReportAjax($request)['users'];
+        $manager_name = $this->getManagersReportAjax($request)['manager_name'];
+
+        if($request->ajax()){
+            $data_json['viewBlade']= view('system.managers_report.report_partial')
+                ->with(['users' => $users , 'manager'=>$manager , 'manager_salary'=>$manager_salary, 'manager_rest_salary'=>$manager_rest_salary,
+                    'manager_agreement_closed'=>$manager_agreement_closed ,  'manager_total_orders'=>$manager_total_orders,
+                    'manager_name'=>$manager_name])->render();
+            $data_json['manager_name'] = $manager_name;
+            return response()->json($data_json);
+        }
+
+        return view('system.managers_report.report' , compact('managers' , 'manager' , 'manager_salary'
+            ,'manager_rest_salary', 'manager_agreement_closed', 'manager_total_orders' ,'manager_name' , 'users'));
+
+    }
+
+    public function getManagersReportAjax($request){
+
+        $start_date = Carbon::now()->startOfMonth()->toDateString();
+        $end_date = Carbon::now()->toDateString();
+
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger')){
+            $managers = User::where('active' , 1)->whereHas('roles' , function ($q){
+                $q->where('name' , 'Sales Manager');
+            })->with(['userSalary' , 'childs' => function($q2){
+                $q2->where('active' , 1)->with('userSalary');
+            }])->get();
+            //dd($managers[0]->childs[0]->userSalary);
+        }
+
+        else{
+            $managers = User::where('id' , Auth::user()->id)->with(['userSalary' , 'childs' => function($q2){
+                $q2->where('active' , 1)->with('userSalary');
+            }])->get();
+        }
+
+        $manager = $managers[0];
+        $manager_id = $managers[0]->id;
+        //dd($managers[0]);
+
+        if (app()->getLocale() == 'ar')
+            $manager_name = $managers[0]->name;
+        else
+            $manager_name = $managers[0]->name_en;
+
+        //dd($manager);
+
+        if ($request->from){
+            $start_date = $request->from;
+        }
+
+        if ($request->to){
+            $end_date = $request->to;
+        }
+
+        if ($request->manager_id){
+            $manager_id = $request->manager_id;
+
+            $manager = User::where('id' , $manager_id)->with(['userSalary' , 'childs' => function($q){
+                $q->where('active' , 1)->with('userSalary');
+            }])->first();
+            if (app()->getLocale() == 'ar')
+                $manager_name = $manager->name;
+            else
+                $manager_name = $manager->name_en;
+        }
+
+        $period = CarbonPeriod::create($start_date , $end_date);
+
+        foreach ($period as $date) {
+            $listOfDates[] = $date->format('Y-m-d');
+        }
+        $sum_visited = 0;
+        $manager_rest_salary = 0;
+        $manager_agreement_closed = 0;
+        $manager_total_orders = 0;
+        //$manager_salary = UserSalary::where('user_id' , $manager_id)->first();
+
+        foreach ($manager->childs as $k=>$child){
+            //dd($child);
+            foreach ($listOfDates as $date) {
+                $visit_count = Company_sales_lead_report::where('user_id', $child->id)
+                                ->where('visit_date', $date)->count();
+                $sum_visited += $visit_count;
+//                $us += AgreementReport::where('user_id' , $child->id)->where('contract_status' , 'Approved')
+//                    ->whereDate('date' , $date)->count();
+            }
+            $user[$k]['name'] = app()->getLocale() == 'ar' ? $child->name : $child->name_en;
+            $user[$k]['agreement_closed'] = AgreementReport::where('user_id' , $child->id)->where('contract_status' , 'Approved')
+                                            ->where('date' , '>=' , $start_date)->where('date' , '<=' , $end_date)->count();
+            $user[$k]['total_orders'] = CompanyRequest::where('user_id' , $child->id)->where('date' , '>=' , $start_date)
+                ->where('date' , '<=' , $end_date)->count();
+
+            $user[$k]['salary'] = $child->userSalary ? $child->userSalary->salary : '';
+            $user[$k]['num_visits_per_day'] = $child->userSalary ? $child->userSalary->num_visits_per_day : '';
+            $user[$k]['visit_price'] = $child->userSalary ? $child->userSalary->visit_price : '';
+            $user[$k]['sum_visited'] = $sum_visited;
+            $user[$k]['user_rest_salary'] = $child->userSalary ? $user[$k]['salary'] -  ($user[$k]['sum_visited'] * $user[$k]['visit_price']) : 0;
+
+            $manager_rest_salary += $user[$k]['user_rest_salary'];
+            $manager_agreement_closed += $user[$k]['agreement_closed'];
+            $manager_total_orders += $user[$k]['total_orders'];
+        }
+        $data['managers'] = $managers;
+        $data['manager'] = $manager;
+        $data['manager_salary'] = $manager->userSalary ? $manager->userSalary->salary : 0;
+        $data['manager_name'] = $manager_name;
+        $data['users'] = $user;
+
+        $data['manager_rest_salary'] = $manager_rest_salary;
+        $data['manager_agreement_closed'] = $manager_agreement_closed;
+        $data['manager_total_orders'] = $manager_total_orders;
+
+        return $data;
+    }
+
+    public function exportExcelManagersReport(Request $request){
+        $manager = $this->getManagersReportAjax($request)['manager'];
+        $manager_salary = $this->getManagersReportAjax($request)['manager_salary'];
+        $manager_rest_salary = $this->getManagersReportAjax($request)['manager_rest_salary'];
+        $manager_agreement_closed = $this->getManagersReportAjax($request)['manager_agreement_closed'];
+        $manager_total_orders = $this->getManagersReportAjax($request)['manager_total_orders'];
+
+        $users = $this->getManagersReportAjax($request)['users'];
+        $manager_name = $this->getManagersReportAjax($request)['manager_name'];
+
+        return Excel::download(new ManagersReport($manager , $manager_salary , $manager_rest_salary , $manager_agreement_closed ,
+            $manager_total_orders , $users , $manager_name), 'ManagersReportExcel.xlsx');
+    }
+
+
 //    public function changeAuth()
 //    {
 //        if(Auth::user()->id == 13471)
 //            $user=User::find(13473)
 //    }
+
 }

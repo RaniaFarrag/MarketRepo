@@ -198,7 +198,7 @@ class CompanyController extends Controller
         $mother_companies = $this->companyRepositoryinterface->companiesReports($request)['mother_companies'];
         //dd($representatives);
         if ($request->ajax()) {
-            if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')){
+            if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator')|| Auth::user()->hasRole('Assistant G.Manger')){
                 $mother_company_id = $request->mother_company_id;
             }
             else{

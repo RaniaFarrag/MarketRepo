@@ -153,7 +153,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
         ->name('assign_company')->middleware(['permission:Menu Corporate Assignment']);
 
 
-
     /** Get Companies Of Representative */
     Route::get('get/companies/of/representative/{representative_id}' , 'AssignCompanyController@getCompaniesofRepresentative')
         ->name('get_companies_of_representative')->middleware(['permission:Menu Corporate Assignment']);
@@ -361,7 +360,6 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('FlatRedAgreement/delete/{flatred_agreement_id}/{mother_company_id}' , 'CompanyAgreementController@deleteflatRedAgreement')->name('flatRed_delete_FnrcoAgreement');
 
 
-
     Route::resource('CompanyUndertaking' , 'CompanyUndertakingController');
 
     /** Custom index route */
@@ -484,7 +482,7 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
 
     Route::get('export/visits/count/report' , 'UserController@exportVisitsCountReport')
         ->name('export_visits_count_report');
-    /*******************************************Visit Count Report******************************************/
+    /*******************************************Visit Agreement Report******************************************/
 
     Route::get('get/agreement/report' , 'CompanyAgreementController@getAgreementReport')
         ->name('get_agreement_report')->middleware(['permission:Agreement Report']);
@@ -504,9 +502,42 @@ Route::group(['middleware'=>['auth' , 'locale']] , function (){
     Route::get('export/excel/agreement/report' , 'CompanyAgreementController@exportExcelAgreementReport')
         ->name('export_excel_agreement_report')->middleware(['permission:Agreement Report']);
 
+    /*******************************************Managers Report******************************************/
+    Route::get('get/managers/report' , 'UserController@getManagersReport')
+        ->name('get_managers_report')->middleware(['permission:Managers Report']);
+
+    Route::get('export/excel/managers/report' , 'UserController@exportExcelManagersReport')
+        ->name('export_excel_managers_report')->middleware(['permission:Managers Report']);
+
+
+    Route::get('sales/pipeline' , 'SalesLeadReportController@getSalesPipeline')->name('sales_pipeline');
+    Route::get('create/sales/pipeline' , 'SalesLeadReportController@createSalesPipeline')->name('create_sales_pipeline');
+    Route::post('store/sales/pipeline' , 'SalesLeadReportController@storeSalesPipeline')->name('store_sales_pipeline');
+    Route::get('edit/sales/pipeline/{report_id}' , 'SalesLeadReportController@editSalesPipeline')->name('edit_sales_pipeline');
+    Route::post('update/sales/pipeline/{report_id}' , 'SalesLeadReportController@updateSalesPipeline')->name('update_sales_pipeline');
+
+    Route::get('show/history/sales/pipeline/{sales_report_id}' , 'SalesLeadReportController@showHistoryofSalesPipeline')
+        ->name('show_history_sales_pipeline');
+
+    Route::get('create/history/sales/pipeline/{sales_report_id}' , 'SalesLeadReportController@createHistoryofSalesPipeline')
+        ->name('create_history_sales_pipeline');
+    Route::post('store/history/sales/pipeline/{sales_report_id}' , 'SalesLeadReportController@storeHistoryofSalesPipeline')
+        ->name('store_history_sales_pipeline');
+
+    Route::get('edit/history/sales/pipeline/{history_id}' , 'SalesLeadReportController@editHistoryofSalesPipeline')
+        ->name('edit_history_sales_pipeline');
+    Route::post('update/history/sales/pipeline/{history_id}' , 'SalesLeadReportController@updateHistoryofSalesPipeline')
+        ->name('update_history_sales_pipeline');
+
+    Route::get('export/sales/pipeline' , 'SalesLeadReportController@exportSalesPipeline')
+        ->name('export_sales_pipeline');
+
+
+
 });
 
-//-------------------------------------EXPORT OLD DATA--------------------------------------------------
+
+//-----------------------------------------EXPORT OLD DATA--------------------------------------------------
 
 
 /** Export Companies Data */

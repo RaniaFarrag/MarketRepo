@@ -46,7 +46,7 @@
                     {{--</a>--}}
 
                     <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
-                        {{ trans('dashboard.Export Excel ') }}
+                        {{ trans('dashboard.Export Excel') }}
                     </button>
                     <!--end::Button-->
                     <!--begin::Button-->

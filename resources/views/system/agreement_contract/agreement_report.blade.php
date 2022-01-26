@@ -36,9 +36,9 @@
                 <!--end::Info-->
 
                 <div class="d-flex align-items-center">
-{{--                    <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">--}}
-{{--                        {{ trans('dashboard.Export Excel') }}--}}
-{{--                    </button>--}}
+                    <button type="button" onclick='document.getElementById("exportExcelForm").submit();' class="btn btn-success font-weight-bold  py-3 px-6 mr-2">
+                        {{ trans('dashboard.Export Excel') }}
+                    </button>
 
                     @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales Representative'))
                         @can('Add Agreement Report')

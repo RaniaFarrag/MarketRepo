@@ -292,98 +292,99 @@
                         </div>
                         <!--end::Card-->
 
-                    <div class="separator separator-dashed mt-8 mb-5"></div>
+                        <div class="separator separator-dashed mt-8 mb-5"></div>
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales Representative'))
-                        <div class="card card-custom">
-                            <div class="card-header flex-wrap">
-                                <div class="card-title text-center" style="width: 100%;display: inline-block;">
-                                    <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.The Dates of Interviews By Teller') }}
-                                    </h3>
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Sales Representative'))
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap">
+                                    <div class="card-title text-center" style="width: 100%;display: inline-block;">
+                                        <h3 class="card-label" style="line-height: 70px;">
+                                            {{ trans('dashboard.The Interviews By Teller') }}
+                                        </h3>
+                                    </div>
+
                                 </div>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th> {{ trans('dashboard.Company Name') }}</th>
-                                            <th> {{ trans('dashboard.Representative name') }}</th>
-                                            <th>{{ trans('dashboard.Interview Date') }}</th>
-                                            <th>{{ trans('dashboard.Interview Time') }}</th>
-                                            <th>{{ trans('dashboard.Feedback') }}</th>
-                                            <th>{{ trans('dashboard.BY') }}</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        @foreach($meetings_by_teller as $k=>$meeting)
-                                            @if($meeting->company)
-                                                <tr>
-                                                    <td>{{ $k+1 }}</td>
-                                                    <td>{{ $meeting->company ? $meeting->company->name : '-' }}</td>
-                                                    <td>{{ app()->getLocale() == 'ar' ? $meeting->representative->name : $meeting->representative->name_en }}</td>
-                                                    <td>{{ $meeting->date_meeting }}</td>
-                                                    <td>{{ $meeting->time_meeting }}</td>
-                                                    <td>{{ $meeting->feedback }}</td>
-                                                    <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-
-                    <div class="separator separator-dashed mt-8 mb-5"></div>
-
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Coordinator'))
-                        <div class="card card-custom">
-                            <div class="card-header flex-wrap">
-                                <div class="card-title text-center" style="width: 100%;display: inline-block;">
-                                    <h3 class="card-label" style="line-height: 70px;">
-                                        {{ trans('dashboard.The Dates of Next Follow up') }}
-                                    </h3>
-                                </div>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th> {{ trans('dashboard.Company Name') }}</th>
-                                            <th> {{ trans('dashboard.Representative name') }}</th>
-                                            <th>{{ trans('dashboard.Date Call') }}</th>
-                                            <th>{{ trans('dashboard.Next FollowUp') }}</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        @foreach($next_follow_requests as $k=>$request)
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                             <tr>
-                                                <td>{{ $request->id }}</td>
-                                                <td>{{ $request->company ? $request->company->name : '-' }}</td>
-                                                <td>{{ app()->getLocale() == 'ar' ? $request->user->name : $request->user->name_en }}</td>
-                                                <td>{{ $request->notes[0]->date }}</td>
-                                                <td>{{ $request->notes[0]->next_follow_date }}</td>
+                                                <th>#</th>
+                                                <th> {{ trans('dashboard.Company Name') }}</th>
+                                                <th> {{ trans('dashboard.Representative name') }}</th>
+                                                <th>{{ trans('dashboard.Interview Date') }}</th>
+                                                <th>{{ trans('dashboard.Interview Time') }}</th>
+                                                <th>{{ trans('dashboard.Feedback') }}</th>
+                                                <th>{{ trans('dashboard.BY') }}</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+
+                                            <tbody>
+                                            @foreach($meetings_by_teller as $k=>$meeting)
+                                                @if($meeting->company)
+                                                    <tr>
+                                                        <td>{{ $k+1 }}</td>
+                                                        <td>{{ $meeting->company ? $meeting->company->name : '-' }}</td>
+                                                        <td>{{ app()->getLocale() == 'ar' ? $meeting->representative->name : $meeting->representative->name_en }}</td>
+                                                        <td>{{ $meeting->date_meeting }}</td>
+                                                        <td>{{ $meeting->time_meeting }}</td>
+                                                        <td>{{ $meeting->feedback }}</td>
+                                                        <td>{{ app()->getLocale() == 'ar' ?  $meeting->user->name : $meeting->user->name_en }}</td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
 
 
+                        <div class="separator separator-dashed mt-8 mb-5"></div>
+
+                        @if(\Illuminate\Support\Facades\Auth::user()->hasRole('Coordinator'))
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap">
+                                    <div class="card-title text-center" style="width: 100%;display: inline-block;">
+                                        <h3 class="card-label" style="line-height: 70px;">
+                                            {{ trans('dashboard.The Dates of Next Follow up for Teller') }}
+                                        </h3>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th> {{ trans('dashboard.Mother Company') }}</th>
+                                                <th> {{ trans('dashboard.Company Name') }}</th>
+                                                <th> {{ trans('dashboard.Representative name') }}</th>
+                                                <th>{{ trans('dashboard.Date Call') }}</th>
+                                                <th>{{ trans('dashboard.Next FollowUp') }}</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            @foreach($next_follow_requests as $k=>$request)
+
+                                                <tr>
+                                                    <td>{{ $request->id }}</td>
+                                                    <td>{{ $request->motherCompany ? app()->getLocale() == 'ar' ? $request->motherCompany->name : $request->motherCompany->name_en : '-' }}</td>
+                                                    <td>{{ $request->company ? $request->company->name : '-' }}</td>
+                                                    <td>{{ app()->getLocale() == 'ar' ? $request->user->name : $request->user->name_en }}</td>
+                                                    <td>{{ $request->notes[0]->date }}</td>
+                                                    <td>{{ $request->notes[0]->next_follow_date }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
                     </div>
                     {{--@endif--}}

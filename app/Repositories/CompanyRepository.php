@@ -97,12 +97,12 @@ class CompanyRepository implements CompanyRepositoryInterface
             //         })
             //         ->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
             //     }]);
-                
+
                 $query = $this->company_model->WhereIn('sector_id', Auth::user()->sectors->pluck('id'))
                 ->with(["representative" =>  function($q){
                     $q->where('company_user.mother_company_id' , Auth::user()->mother_company_id);
                 }]);
-                
+
             //dd($query->get()[0]->representative[0]->pivot->confirm_connected);
 
         }
@@ -1050,7 +1050,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         $data['countries'] = $this->country_model::all();
         $data['mother_companies'] = MotherCompany::all();
 
-        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator'))
+        if (Auth::user()->hasRole('ADMIN') || Auth::user()->hasRole('Coordinator') || Auth::user()->hasRole('Assistant G.Manger'))
             $data['representatives'] = $this->user_model::where('active' , 1)
                                             ->where(function ($q){
                                                 $q->whereNotNull('parent_id')
